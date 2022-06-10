@@ -18,6 +18,31 @@ function App() {
           </div>
         </div>
 
+        <div className='icons'>
+          <span className='facebook'>
+            <a href="https://www.facebook.com/DRC1960">
+              <i className='fa fa-facebook'></i>
+            </a>
+          </span>
+          <span className='twitter'>
+            <a href="https://twitter.com/drc_du">
+              <i className='fa fa-twitter'></i>
+            </a>
+          </span>
+          <span className='linkedin'>
+            <a href="https://www.dr.du.ac.in/magic-lantern-film-society-society.php#" target="_blank">
+              <i className='fa fa-linkedin'></i>
+            </a>
+          </span>
+          <span className='instagram'>
+            <a href="https://www.instagram.com/daulat_ram_college_/?hl=en">
+              <i class="fa fa-instagram" ></i>
+            </a>
+          </span>
+
+        </div>
+
+
       </div>
     </>
   );
