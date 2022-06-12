@@ -42,7 +42,7 @@ function Quicklinks() {
             <span className="gallery_item gallery_item-4">
               <img className="hostel" src={hostel} alt="" />
               <p>
-                <b>Hostel</b>
+                <b>Hostel Facilities</b>
               </p>
             </span>
             <span className="gallery_item gallery_item-5">
