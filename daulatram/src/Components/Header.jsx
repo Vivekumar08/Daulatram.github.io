@@ -3,13 +3,13 @@ import React from "react";
 function Header() {
   return (
     <>
-      <div className="main_header flex bg-[#E3E5C7]">
-        <div className="ml-28 flex">
+      <div className="main_header flex bg-[#fff]">
+        <div className="ml-28 mt-2 mb-3 flex">
           <div className="logo ">
             <img className="logo" src="\images\logo.png" alt="logo" />
           </div>
-          <div className="header1">
-            <span className="college_name">
+          <div className="header1  ">
+            <span className="college_name text-4xl">
               <strong>Daulat Ram College, University of Delhi</strong>
             </span>
             <div className="header2 mb-3">

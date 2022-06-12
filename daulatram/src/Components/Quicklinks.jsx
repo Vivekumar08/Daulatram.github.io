@@ -13,13 +13,13 @@ import time_table from "../Dummy_data/images/time_table.png";
 function Quicklinks() {
   return (
     <>
-      <div className="quick mt-20">
-        <div class="quick_links top-[170px] flex flex-row items-center justify-center text-center text-white font-bold">
-          {/* <span className="quick_content"> */}
+      <div className="quick mt-0 mb-0 bg-orange-200 h-auto pb-10">
+        <div class="quick_links top-[170px] flex flex-row items-center justify-center text-center text-white font-bold ">
+          <span className="quick_content">
             <strong>Quick Links</strong>
-          {/* </span> */}
-        </div>
-        <div className="row">
+          </span>
+        </div> 
+        <div className="row ">
           <div className="col">
             <span className="gallery_item gallery_item-1">
               <img className="attendance" src={attendance} alt="" />
@@ -42,7 +42,7 @@ function Quicklinks() {
             <span className="gallery_item gallery_item-4">
               <img className="hostel" src={hostel} alt="" />
               <p>
-                <b>Hostel</b>
+                <b>Hostel Facilities</b>
               </p>
             </span>
             <span className="gallery_item gallery_item-5">
