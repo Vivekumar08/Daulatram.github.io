@@ -1,7 +1,9 @@
+import "./App.css";
+import Header from "./Components/Header";
+import Quicklinks from "./Components/Quicklinks";
+import Bulletin from "./Components/Bulletin";
 
 import './App.css';
-import Bulletin from './Components/Bulletin';
-import Header from './Components/Header'
 import Navbar from './Components/Nav';
 import Footer from './Components/Footer';
 
@@ -16,8 +18,9 @@ function App() {
     <>
       <Router>
         <Header />
-        <Navbar />
         <Bulletin />
+        <Navbar />
+        <Quicklinks/>
         <Footer />
       </Router>
 
