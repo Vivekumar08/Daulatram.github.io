@@ -107,6 +107,7 @@
     display: flex;
     margin-left: -8px;
     margin-top: 8px;
+    background-color: rgb(168, 171, 220);
 }
 
 .name1 {
@@ -128,7 +129,7 @@
 
 .bulletin_content {
     width: 100%;
-    background-color: white;
+    background-color: rgb(168, 171, 220);
 }
 
 
@@ -152,6 +153,7 @@
     top: 16%;
     height: 40px;
     width: 400px;
+    margin-top: 31px;
     margin-left: -200px;
     border-radius: 8px;
 }
@@ -168,7 +170,7 @@
 .row {
     width: 60%;
     margin: 2rem auto;
-    margin-top: 5rem;
+    margin-top: 4rem;
     font-family: 'Roboto Slab', serif;
 }
 
