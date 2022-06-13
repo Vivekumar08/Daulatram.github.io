@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./Components/Header";
 import Bulletin from "./Components/Bulletin";
 import Navbar from './Components/Nav';
+import Icons from "./Components/Icons";
 import Upperfooter from "./Components/Footer/Upperfooter";
 
 
@@ -24,6 +25,7 @@ function App() {
           <Header />
           <Bulletin />
           <Navbar />
+          <Icons/>
         <Routes>
           <Route element={<><Home/></>} path="/"></Route>
           <Route element={<><AboutUs/></>} path="/About"></Route>
