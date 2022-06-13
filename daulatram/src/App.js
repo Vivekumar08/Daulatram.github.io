@@ -11,6 +11,7 @@ import {
   Routes,
   Route
 } from "react-router-dom"
+import Events from "./Components/Events/Events";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Navbar />
         <Slider/>
         <Quicklinks />
+        <Events/>
         <Upperfooter/>
       </Router>
 
