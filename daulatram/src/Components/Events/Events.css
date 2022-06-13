@@ -51,6 +51,8 @@ opacity: 0;
 
 .small_box:hover .event_img{
 opacity: 0.3;
+transition: all .3s ease;
+
 border: 4px solid darkred;
 
 }
@@ -61,6 +63,8 @@ border: 4px solid darkred;
     }
 .read_btn:hover{
     border: 2px solid black;
+    transition: all .3s ease;
+
     box-shadow: 50px;
 
 }
