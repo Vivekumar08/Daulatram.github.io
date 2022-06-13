@@ -5,17 +5,23 @@ const Events = () => {
     <>
     <div className='main_div1'>
      <div className='small_box'>
-    <img src="" alt="IQAC Events" />
-    </div> 
+    <img  className= "event_img z=-10" src="images/IQAC.png" alt="IQAC Events" />
+    <a href=""><button className='read_btn'>Read More </button></a>
+
+    </div>
+ 
     
       <div className='small_box'>
-    <img src="" alt="Vidya Vistar" />
+      <img  className= "event_img z=-10" src="images/Vidya.png" alt="IQAC Events" />
+    <a href=""><button className='read_btn'>Read More </button></a>
     </div>
      <div className='small_box'>
-    <img src="" alt="Add On Courses" />
+     <img  className= "event_img z=-10" src="images/add_on.png" alt="IQAC Events" />
+    <a href=""><button className='read_btn'>Read More </button></a>
     </div>
      <div className='small_box'>
-    <img src="" alt="Student Activities" />
+     <img  className= "event_img z=-10" src="images/student.png" alt="IQAC Events" />
+    <a href=""><button className='read_btn'>Read More </button></a>
     </div> 
     </div>
     </>
