@@ -5,7 +5,7 @@ const Nav = () => {
   const [open, setOpen] = useState(false);
   return (
     <nav className="bg-[#000080]">
-      <div className="flex items-center font-medium ml-32 text-white ">
+      <div className="flex items-center font-medium ml-28 text-white ">
         <div className="z-40 p-5 md:w-auto w-full flex justify-between">
           <div className="md:hidden" onClick={() => setOpen(!open)}>
             <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon>
