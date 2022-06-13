@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Icons from "./Icons";
 
 function Header() {
   return (
@@ -27,41 +28,9 @@ function Header() {
               <span style={{ color: "black" }}>| </span> DBT STAR COLLEGE
             </div>
           </div>
+
         </div>
-        <div className="icons mt-4">
-          <span className="facebook">
-            <a
-              href="https://www.facebook.com/DRC1960"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="fa fa-facebook"></i>
-            </a>
-          </span>
-          <span className="twitter">
-            <a
-              href="https://twitter.com/drc_du"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i className="fa fa-twitter"></i>
-            </a>
-          </span>
-          <span className="linkedin">
-            <a href="#" target="_blank" rel="noreferrer">
-              <i className="fa fa-linkedin"></i>
-            </a>
-          </span>
-          <span className="instagram">
-            <a
-              href="https://www.instagram.com/daulat_ram_college_/?hl=en"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <i class="fa fa-instagram"></i>
-            </a>
-          </span>
-        </div>
+        {/* <Icons/> */}
       </div>
     </>
   );

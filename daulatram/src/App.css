@@ -35,7 +35,7 @@ margin: -8px;
   margin-bottom: 12px;
   margin-top: 5px;
 }
-.icons{
+/* .icons{
   font-size: x-large;
   margin-left: 55px;
   display: flex;
@@ -65,7 +65,6 @@ margin: -8px;
   
 }
 .facebook {
-  margin-left: 180px;
   padding: 6px;
 }
 .fa-facebook {
@@ -73,17 +72,17 @@ margin: -8px;
 }
 .fa-facebook:hover {
   font-size: xx-large;
-}
-.linkedin {
+} */
+/* .linkedin {
   margin-left: 8px;
   padding: 6px;
-}
-.fa-linkedin {
+} */
+/* .fa-linkedin {
   color: #0a66c2;
-}
-.fa-linkedin:hover {
+} */
+/* .fa-linkedin:hover {
   font-size: xx-large;
-}
+} */
 
 
 .name1{
@@ -242,62 +241,35 @@ margin: -8px;
     
     .icons {
         font-size: x-large;
-        margin-left: 55px;
-        display: flex;
-        margin-top: 15px;
+        /* margin-left: 5px; */
+        /* margin-top: 15px; */
     }
     
-    .instagram {
-        padding: 6px;
-    }
     
     .fa-instagram {
-        color: #c32aa3;
-        margin-left: 8px;
+        color: #fff;
+        /* margin-left: 8px; */
     }
     
-    .fa-instagram:hover {
-        font-size: xx-large;
-    }
     
-    .twitter {
-        padding: 6px;
-    }
     
     .fa-twitter {
-        margin-left: 8px;
-        color: #1da1f2;
+        /* margin-left: 8px; */
+        color: #fff;
     }
     
-    .fa-twitter:hover {
-        font-size: xx-large;
-    }
     
-    .facebook {
-        margin-left: 180px;
-        padding: 6px;
-    }
     
     .fa-facebook {
-        color: #1877f2;
+        color: #fff;
     }
     
-    .fa-facebook:hover {
-        font-size: xx-large;
-    }
     
-    .linkedin {
-        margin-left: 8px;
-        padding: 6px;
-    }
     
     .fa-linkedin {
-        color: #0a66c2;
+        color: #fff;
     }
     
-    .fa-linkedin:hover {
-        font-size: xx-large;
-    }
     /* <<<<<<< HEAD ======= */
     
     .main_bull {
