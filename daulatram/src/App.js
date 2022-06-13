@@ -12,6 +12,7 @@ import {
   Route
 } from "react-router-dom"
 import Events from "./Components/Events/Events";
+import Campustour from "./Components/Campus Tour/Campustour";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Bulletin />
         <Navbar />
         <Slider/>
+        <Campustour/>
         <Quicklinks />
         <Events/>
         <Upperfooter/>
