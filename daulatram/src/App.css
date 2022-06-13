@@ -203,6 +203,10 @@
         font-family: 'Roboto Slab', serif;
     }
     
+    img:hover {
+        transform: scale(1.1);
+    }
+    
     .col {
         display: grid;
         grid-template-columns: repeat(5, 1fr);
@@ -238,16 +242,16 @@
         z-index: 1000000 !important;
     }
     
-    ::-webkit-scrollbar {
+     ::-webkit-scrollbar {
         width: 6px;
     }
     
-    ::-webkit-scrollbar-thumb {
+     ::-webkit-scrollbar-thumb {
         background-color: rgb(216, 216, 216);
         border-radius: 40px;
     }
     
-    ::-webkit-scrollbar-track {
+     ::-webkit-scrollbar-track {
         background-color: transparent;
     }
     /* color-picker style  */
@@ -335,8 +339,4 @@
     .time_table {
         height: 79px;
         width: 75px;
-    }
-    
-    .campus_tour_container {
-        background-color: #361313;
     }
