@@ -1,11 +1,13 @@
 import "./App.css";
 import Header from "./Components/Header";
-import Quicklinks from "./Components/Quicklinks";
 import Bulletin from "./Components/Bulletin";
 import Navbar from './Components/Nav';
-import Slider from './Components/Slider/Slider'
-import Information from "./Components/Information";
 import Upperfooter from "./Components/Footer/Upperfooter";
+
+
+// Import Pages 
+import AboutUs from "./Pages/AboutUs";
+import Home from "./Pages/Home";
 
 import {
   BrowserRouter as Router,
@@ -19,19 +21,18 @@ function App() {
   return (
     <>
       <Router>
-        <Header />
-        <Bulletin />
-        <Navbar />
-        <Slider/>
-        <Information/>
-        <Campustour/>
-        <Quicklinks />
-        <Events/>
-        <Upperfooter/>
+          <Header />
+          <Bulletin />
+          <Navbar />
+        <Routes>
+          <Route element={<><Home/></>} path="/"></Route>
+          <Route element={<><AboutUs/></>} path="/About"></Route>
+        </Routes>
+          <Upperfooter />
       </Router>
 
-      </>
-      );
+    </>
+  );
 }
 
-      export default App;
+export default App;
