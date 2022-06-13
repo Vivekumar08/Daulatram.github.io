@@ -1,0 +1,19 @@
+.main_div1{
+background-color: cadetblue;
+display: flex;
+width: 100%;
+height: fit-content;
+}
+
+
+.small_box{
+    width: 150px;
+    margin: 90px;
+    padding: 15px;
+    margin-left: 120px;
+    background-color: bisque;
+}
+
+.small_box:hover{
+    /* dvfbg */
+}
