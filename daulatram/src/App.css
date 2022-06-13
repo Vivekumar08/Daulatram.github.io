@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 
 .App {
@@ -211,6 +212,8 @@ margin: -8px;
     float: none;
   }
 }
+=======
+>>>>>>> 2ff488eb86fb5210d3608b6cb3bb9f999785415c
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
     @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
     .App {
@@ -218,12 +221,10 @@ margin: -8px;
     }
     
     .main_header {
-        background-color: #E3E5C7;
-        display: flex;
-        height: 120px;
-        padding: 0px;
-        width: 101%;
-        margin: -8px;
+        /* background-color: #E3E5C7; */
+        /* padding: 0px; */
+        /* width: 101%; */
+        /* margin: -8px; */
     }
     
     .logo {
@@ -315,8 +316,8 @@ margin: -8px;
     .main_bull {
         display: flex;
         margin-left: -8px;
-        margin-top: 8px;
-        background-color: rgb(168, 171, 220);
+        /* margin-top: px; */
+        background-color: rgb(255, 255, 255);
     }
     
     .name1 {
@@ -339,7 +340,7 @@ margin: -8px;
     
     .bulletin_content {
         width: 100%;
-        background-color: rgb(168, 171, 220);
+        background-color: rgb(255, 255, 255);
     }
     /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
     
@@ -391,20 +392,22 @@ margin: -8px;
     
     .quick_links {
         background-color: #000080;
-        position: absolute;
+        display: flex;
+        /* position: absolute; */
         left: 50%;
         height: 40px;
         width: 400px;
-        margin-top: 31px;
-        margin-left: -200px;
+        margin: auto;
+        padding: 10px;
         border-radius: 8px;
     }
     
     .quick_content {
-        margin-left: 150px;
+        /* margin-left: 150px; */
         text-align: center;
         vertical-align: middle;
         line-height: 38px;
+        background-color: #000080;
         color: white;
         font-family: 'Roboto Slab', serif;
     }
