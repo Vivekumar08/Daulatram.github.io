@@ -18,6 +18,7 @@ const Nav = () => {
             </Link>
           </li>
           <NavLinks />
+
         </ul>
         {/* Mobile nav */}
         <ul
@@ -31,7 +32,7 @@ const Nav = () => {
               Home
             </Link>
           </li>
-          <NavLinks />
+          {/* <NavLinks /> */}
         </ul>
       </div>
     </nav>

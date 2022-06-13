@@ -15,83 +15,83 @@ function Quicklinks() {
     <>
       <div className="quick mt-0 mb-0 bg-orange-200 h-auto pb-10">
         <div class="quick_links top-[170px] flex flex-row items-center justify-center text-center text-white font-bold ">
-          <span className="quick_content">
+          <span  className="quick_content">
             <strong>Quick Links</strong>
-          </span>
+          </span >
         </div> 
+        
         <div className="row ">
           <div className="col">
-            <span className="gallery_item gallery_item-1">
+            <a href="#"  className="gallery_item gallery_item-1  cursor-pointer">
+
               <img className="attendance" src={attendance} alt="" />
-              <p>
+              <p className="mt-2">
                 <strong>Attendance</strong>
               </p>
-            </span>
-            <span className="gallery_item gallery_item-2">
+            </a >
+            <a href="#"  className="gallery_item gallery_item-2  cursor-pointer">
               <img className="calendar" src={calendar} alt="" />
-              <p>
+              <p className="mt-2">
                 <b>Calendar</b>
               </p>
-            </span>
-            <span className="gallery_item gallery_item-3">
+            </a >
+            <a href="#"  className="gallery_item gallery_item-3  cursor-pointer">
               <img className="datesheet" src={datesheet} alt="" />
-              <p>
+              <p className="mt-2">
                 <b>Datesheet</b>
               </p>
-            </span>
-            <span className="gallery_item gallery_item-4">
+            </a >
+            <a href="#"  className="gallery_item gallery_item-4  cursor-pointer">
               <img className="hostel" src={hostel} alt="" />
-              <p>
+              <p className="mt-2">
                 <b>Hostel Facilities</b>
               </p>
-            </span>
-            <span className="gallery_item gallery_item-5">
+            </a >
+            <a href="#"  className="gallery_item gallery_item-5  cursor-pointer">
               <img
                 className="internal_assessment"
                 src={internal_assessment}
                 alt=""
               />
-              <p>
+              <p className="mt-2">
                 <b>Internal Assessment</b>
               </p>
-            </span>
-            <span className="gallery_item gallery_item-6">
+            </a >
+            <a href="#"  className="gallery_item gallery_item-6  cursor-pointer">
               <img className="placement_cell" src={placement_cell} alt="" />
-              <p>
+              <p className="mt-2">
                 <b>Placement Cell</b>
               </p>
-            </span>
-            <span className="gallery_item gallery_item-7">
+            </a >
+            <a href="#"  className="gallery_item gallery_item-7  cursor-pointer">
               <img className="scholarship" src={scholarship} alt="" />
-              <p>
+              <p className="mt-2">
                 <b>Scholarship</b>
               </p>
-            </span>
-            <span className="gallery_item gallery_item-8">
+            </a >
+            <a href="#"  className="gallery_item gallery_item-8  cursor-pointer">
               <img
-                className="student_facilities"
-                src={student_facilities}
-                alt=""
-              />
-              <p>
+                className="student_facilities" src={student_facilities} alt="" />
+              <p className="mt-2">
                 <b>Student Facilities</b>
               </p>
-            </span>
-            <span className="gallery_item gallery_item-9">
+            </a >
+            <a href="#"  className="gallery_item gallery_item-9  cursor-pointer">
               <img className="student_union" src={student_union} alt="" />
-              <p>
+              <p className="mt-2">
                 <b>Student Union</b>
               </p>
-            </span>
-            <span className="gallery_item gallery_item-10">
+            </a >
+            <a href="#"  className="gallery_item gallery_item-10  cursor-pointer">
               <img className="time_table" src={time_table} alt="" />
-              <p>
+              <p className="mt-2">
                 <b>Time Table</b>
               </p>
-            </span>
+            </a >
+          </div>
           </div>
         </div>
-      </div>
+      
     </>
   );
 }
