@@ -8,8 +8,8 @@ const NavLinks = () => {
   return (
     <>
       {links.map((link) => (
-        <div>
-          <div className=" text-left md:cursor-pointer group">
+        <div className="z-10">
+          <div className=" text-left md:cursor-pointer group ">
             <h1
               className="py-4 flex justify-between items-center md:pr-0 pr-4 group"
               onClick={() => {
@@ -44,7 +44,7 @@ const NavLinks = () => {
                           <li className="text-sm text-gray-500 rounded-sm outline-none hover:outline-red-400 ">
                             <Link
                               to={slink.name}
-                              className="hover:text-red-600"
+                              className="hover:text-red-600 m-2"
                             >
                               {slink.name}
                             </Link>

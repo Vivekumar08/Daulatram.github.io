@@ -1,4 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+
 // import "./style.css"
 
 function Upperfooter() {
@@ -7,74 +11,100 @@ function Upperfooter() {
       <footer className="footer  pt-0 bg-[#24262c] text-white">
         <div className="container flex flex-col">
           <div className=" h-96 ml-12 mt-10 ">
-            <div className="flex justify-evenly">
+            <div className="flex  justify-evenly">
               <ul>
-                <h4 className="mb-5 relative">
-                  INFORMATION
-                </h4>
+                <h4 className="mb-5 relative">INFORMATION</h4>
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    - Gallery
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    Gallery
                   </a>
                 </li>
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    - Contact Us
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    Contact Us
                   </a>
                 </li>
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    -RTI
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    RTI
                   </a>
                 </li>
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    -Feedback
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    Feedback
                   </a>
                 </li>
 
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    -Tender
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    Tender
                   </a>
                 </li>
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    -Grievances
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    Grievances
                   </a>
                 </li>
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    -Job Opportunities
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    Job Opportunities
                   </a>
                 </li>
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    -Anti-Sexual Harrasement
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    Anti-Sexual Harrasement
                   </a>
                 </li>
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    -ST-SC-OBC Complaints
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    ST-SC-OBC Complaints
                   </a>
                 </li>
                 <li className="pb-2">
-                  <a href="#" className="hover:text-red-400 hover:text-lg">
-                    -Sitemap
+                  <span className="mr-3">-</span>
+                  <a href="#" className="hover:text-red-400 hover:px-2">
+                    Sitemap
                   </a>
                 </li>
               </ul>
               <ul className="mb-4 ml-4 ">
                 <h4 className="mb-4">ALUMNAE CONNECT</h4>
                 <li className="pb-2">
-                  <a href="https://drcaa.org/">-https://drcaa.org/ </a>
+                  <span className="mr-3">-</span>
+                  <a
+                    href="https://drcaa.org/"
+                    className="hover:text-blue-400 hover:px-2"
+                  >
+                    https://drcaa.org/{" "}
+                  </a>
                 </li>
                 <br />
                 <br />
                 <h4 className="mb-4">ADDRESS</h4>
                 <p>4, Patel Marg, Maurice Nagar, Delhi PIN-110007</p>
                 <br />
-                <div className="email-id"><p> Email : <span>daulatramcollegedu@gmail.com</span></p></div>
+                <div className="email-id">
+                  <p className="">
+                    <a
+                      href="mailto: daulatramcollegedu@gmail.com ? Subject: Query Regarding to Daulat Ram Collge"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="hover:text-lime-300"
+                    >
+                      <FontAwesomeIcon icon={faEnvelope} className="mr-1   " />
+                      <span className="ml-2">daulatramcollegedu@gmail.com</span>
+                    </a>
+                  </p>
+                </div>
               </ul>
             </div>
 
@@ -89,7 +119,10 @@ function Upperfooter() {
           </div>
           <div className="mt-1">
             <p className="text-gray-200 bg-[#1E1F29] text-center h-12 pt-3">
-              © All Rights Reserved DAULAT RAM COLLEGE
+              © All Rights Reserved
+              <Link to="/" className="ml-3">
+                DAULAT RAM COLLEGE
+              </Link>
             </p>
           </div>
         </div>

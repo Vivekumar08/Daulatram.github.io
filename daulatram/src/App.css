@@ -85,17 +85,12 @@ margin: -8px;
   font-size: xx-large;
 }
 
-.main_bull{
-  display: flex;
-  margin-left: -8px;
-  margin-top: 8px;
-}
 
 .name1{
   display: block;
   background-color: #06283D;
   color: white;
-  padding: 7px;
+  padding-top: 4px;
   padding-left: 15px;
   padding-right: 16px;
   
@@ -105,12 +100,7 @@ margin: -8px;
   height: 0; 
   border-top: 16px solid transparent;
   border-bottom: 16px solid transparent;
-  
   border-left: 16px solid #06283D;
-}
-.bulletin_content{
-  width: 100%;
-  background-color: white;
 }
 * {box-sizing:border-box}
 
