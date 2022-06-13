@@ -8,8 +8,8 @@ const NavLinks = () => {
   return (
     <>
       {links.map((link) => (
-        <div>
-          <div className=" text-left md:cursor-pointer group">
+        <div className="z-10">
+          <div className=" text-left md:cursor-pointer group ">
             <h1
               className="py-4 flex justify-between items-center md:pr-0 pr-4 group"
               onClick={() => {
