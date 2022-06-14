@@ -9,6 +9,7 @@ function Upperfooter() {
   return (
     <>
       <footer className="footer   bg-[#000080] text-white">
+        <div className="flex flex-col">
         <div className="flex flex-col ">
           <div className=" h-96 mt-10 ">
             <div className="flex  justify-evenly">
