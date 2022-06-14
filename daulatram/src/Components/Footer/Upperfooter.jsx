@@ -12,7 +12,7 @@ function Upperfooter() {
         <div className="container flex flex-col">
           <div className=" h-96 mt-10 ">
             <div className="flex  justify-evenly">
-              <ul>
+              <ul className="w-[15%]">
                 <h4 className="mb-5 relative font-bold text-2xl">INFORMATION</h4>
                 <li className="pb-2">
                   <span className="mr-3">-</span>
