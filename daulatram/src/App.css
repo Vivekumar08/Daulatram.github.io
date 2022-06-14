@@ -317,6 +317,9 @@
     font-size: 20px;
     border-bottom-right-radius: 15px;
     border-bottom-left-radius: 15px;
+    width: 100%;
+    padding: 10px;
+    
 }
 
 .quick_content {
@@ -326,6 +329,8 @@
     line-height: 38px;
     background-color: #000080;
     color: white;
+    font-size: larger;
+
 }
 
 .row {
