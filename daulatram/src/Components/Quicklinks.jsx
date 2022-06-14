@@ -22,67 +22,67 @@ function Quicklinks() {
         
         <div className="row ">
           <div className="col">
-            <a href="#"  className="gallery_item gallery_item-1  cursor-pointer">
+            <a href="#"  className="gallery_item gallery_item-1 flex flex-col justify-center items-center cursor-pointer">
 
               <img className="attendance" src={attendance} alt="" />
               <p className="mt-2">
                 <strong>Attendance</strong>
               </p>
             </a >
-            <a href="#"  className="gallery_item gallery_item-2  cursor-pointer">
+            <a href="#"  className="gallery_item gallery_item-2 flex flex-col justify-center items-center cursor-pointer">
               <img className="calendar" src={calendar} alt="" />
               <p className="mt-2">
                 <b>Calendar</b>
               </p>
             </a >
-            <a href="#"  className="gallery_item gallery_item-3  cursor-pointer">
+            <a href="#"  className="gallery_item gallery_item-3 flex flex-col justify-center items-center  cursor-pointer">
               <img className="datesheet" src={datesheet} alt="" />
               <p className="mt-2">
                 <b>Datesheet</b>
               </p>
             </a >
-            <a href="#"  className="gallery_item gallery_item-4  cursor-pointer">
+            <a href="#"  className="gallery_item gallery_item-4 flex flex-col justify-center items-center cursor-pointer">
               <img className="hostel" src={hostel} alt="" />
               <p className="mt-2">
                 <b>Hostel Facilities</b>
               </p>
             </a >
-            <a href="#"  className="gallery_item gallery_item-5  cursor-pointer">
+            <a href="#"  className=" gallery_item gallery_item-5 flex flex-col justify-center items-center cursor-pointer">
               <img
                 className="internal_assessment"
                 src={internal_assessment}
                 alt=""
               />
-              <p className="mt-2">
+              <p className="mt-2 w-[160px]">
                 <b>Internal Assessment</b>
               </p>
             </a >
-            <a href="#"  className="gallery_item gallery_item-6  cursor-pointer">
+            <a href="#"  className="gallery_item gallery_item-6 flex flex-col justify-center items-center cursor-pointer">
               <img className="placement_cell" src={placement_cell} alt="" />
               <p className="mt-2">
                 <b>Placement Cell</b>
               </p>
             </a >
-            <a href="#"  className="gallery_item gallery_item-7  cursor-pointer">
+            <a href="#"  className="gallery_item gallery_item-7 flex flex-col justify-center items-center cursor-pointer">
               <img className="scholarship" src={scholarship} alt="" />
               <p className="mt-2">
                 <b>Scholarship</b>
               </p>
             </a >
-            <a href="#"  className="gallery_item gallery_item-8  cursor-pointer">
+            <a href="#"  className="gallery_item gallery_item-8 flex flex-col justify-center items-center cursor-pointer">
               <img
                 className="student_facilities" src={student_facilities} alt="" />
               <p className="mt-2">
                 <b>Student Facilities</b>
               </p>
             </a >
-            <a href="#"  className="gallery_item gallery_item-9  cursor-pointer">
+            <a href="#"  className="gallery_item gallery_item-9 flex flex-col justify-center items-center cursor-pointer">
               <img className="student_union" src={student_union} alt="" />
               <p className="mt-2">
                 <b>Student Union</b>
               </p>
             </a >
-            <a href="#"  className="gallery_item gallery_item-10  cursor-pointer">
+            <a href="#"  className="gallery_item gallery_item-10 flex flex-col justify-center items-center cursor-pointer">
               <img className="time_table" src={time_table} alt="" />
               <p className="mt-2">
                 <b>Time Table</b>

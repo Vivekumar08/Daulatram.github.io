@@ -11,24 +11,24 @@ function Information() {
 
   return (
     <>
-      <div className="bg-blue-100 pb-4">
-        <div className="quick_links top-[170px] flex flex-row items-center justify-center text-center text-white font-bold  ">
-          <span className="quick_content uppercase">
+      <div className="bg-white pb-4">
+        <div className="quick_links flex flex-row items-center justify-center text-center text-white font-bold  ">
+          <span className="quick_content uppercase w-full">
             <strong>Information Section</strong>
           </span>
         </div>
         {/* content/body/messages */}
         <div className="flex flex-row w-auto h-[500px] mb-5 mt-8 justify-between ml-24 mr-24 ">
-          <div className=" bg-[#d9d9d9] w-[20em] rounded-lg text-lg font-semibold">
+          <div className=" bg-[#d3d3d3] w-[20em] rounded-lg text-lg font-semibold">
             <span className="bg-[#273E47] rounded-t-lg flex flex-row justify-center  text-white pb-4  px-4 ">
-              <span className="mt-3">Notice for Student</span>
+              <span className="mt-3">Notice for Students</span>
             </span>
             {Studentinfo.map((curElem) => {
               const { id, info, link } = curElem;
               return (
                 <>
                   <a href={link} target="_blank" rel="norefferer">
-                    <span className=" information flex flex-col hover:font-semibold hover:text-blue-600 ml-4 text-sm mb-4 mt-4">
+                    <span className=" information flex flex-col hover:font-semibold hover:text-blue-600 hover:text-base ml-4 text-sm mb-4 mt-4">
                       {info}
                     </span>
                   </a>
@@ -45,7 +45,7 @@ function Information() {
               return (
                 <>
                   <a href={link} target="_blank" rel="norefferer">
-                    <span className=" information flex flex-col ml-4 hover:font-semibold hover:text-blue-600 text-sm mb-4 mt-4">
+                    <span className=" information flex flex-col ml-4 hover:font-semibold hover:text-blue-600 hover:text-base text-sm mb-4 mt-4">
                       {info}
                     </span>
                   </a>
@@ -62,7 +62,7 @@ function Information() {
               return (
                 <>
                   <a href={link} target="_blank" rel="noreferrer">
-                    <span className=" information flex flex-col ml-4 text-sm mb-4 hover:font-semibold hover:text-blue-600 mt-4">
+                    <span className=" information flex flex-col ml-4 text-sm mb-4 hover:font-semibold hover:text-blue-600 hover:text-base mt-4">
                       {info}
                     </span>
                   </a>

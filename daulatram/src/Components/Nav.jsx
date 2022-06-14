@@ -5,15 +5,15 @@ const Nav = () => {
   const [open, setOpen] = useState(false);
   return (
     <nav className="bg-[#000080]">
-      <div className="flex items-center font-medium ml-28 text-white ">
+      <div className="flex items-center font-medium ml-12 tracking-[1px] text-white ">
         <div className="z-40 p-5 md:w-auto w-full flex justify-between">
           <div className="md:hidden" onClick={() => setOpen(!open)}>
             <ion-icon name={`${open ? "close" : "menu"}`}></ion-icon>
           </div>
         </div>
-        <ul className="md:flex hidden uppercase items-center gap-8 font-[Poppins]">
+        <ul className="md:flex hidden  items-center gap-4 font-Noto_Sans">
           <li>
-            <Link to="/" className="py-4 px-2 inline-block">
+            <Link to="/" className="py-4 font-bold px-2 uppercase inline-block">
               Home
             </Link>
           </li>
