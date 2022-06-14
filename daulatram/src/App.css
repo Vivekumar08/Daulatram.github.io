@@ -393,8 +393,8 @@
     display: flex;
     /* position: absolute; */
     left: 50%;
-    height: 40px;
-    width: 400px;
+    height: 50px;
+    width: 500px;
     margin: auto;
     padding: 10px;
     border-radius: 8px;
@@ -408,6 +408,7 @@
     background-color: #000080;
     color: white;
     font-family: 'Roboto Slab', serif;
+    font-size: larger;
 }
 
 .row {
