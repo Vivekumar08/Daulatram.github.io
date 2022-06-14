@@ -13,7 +13,7 @@ import time_table from "../Dummy_data/images/time_table.png";
 function Quicklinks() {
   return (
     <>
-      <div className="quick mt-0 mb-0 bg-orange-200 h-auto pb-10">
+      <div className="quick mt-0 mb-0  h-auto pb-10">
         <div class="quick_links top-[170px] flex flex-row items-center justify-center text-center text-white font-bold ">
           <span  className="quick_content uppercase">
             <strong>Quick Links</strong>

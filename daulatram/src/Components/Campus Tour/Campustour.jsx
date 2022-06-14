@@ -6,14 +6,14 @@ function Campustour() {
     <>
       <div className="main_div">
         <div className="small_box1  rounded-lg ">
-          <video className="rounded-lg" src={sample} autoplay controls loop/>
+          <video className="rounded-lg h-[430px]" src={sample} autoplay controls loop/>
         
         </div>
 
         <div className="small_box2 uppercase" >
-        <strong><h1>virtual</h1></strong>
-        <strong><h1>Campus</h1></strong>
-        <strong><h1>Tour</h1></strong>
+        <strong><h2>virtual</h2></strong>
+        <strong><h2>Campus</h2></strong>
+        <strong><h2>Tour</h2></strong>
 
 
           
