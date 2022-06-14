@@ -43,9 +43,9 @@ const NavLinks = () => {
                     <div>
                       <li className="text-sm text-gray-500 rounded-sm outline-none hover:outline-red-400 ">
                         <a
-                          href={slink.link}
+                          href= {slink.link}
                           target="_blank"
-                          rel="noreferrer"
+                          // rel="noreferrer"
                           className="hover:text-red-600 m-2"
                         >
                           {slink.name}
