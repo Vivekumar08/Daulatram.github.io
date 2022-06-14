@@ -41,7 +41,7 @@ export const links = [
     name: "Academics",
     links: [
       {
-        name: "Departsments",
+        name: "Departments",
         link: "#",
       },
       {
@@ -141,7 +141,7 @@ export const links = [
     ],
   },
   {
-    name: "Student ZOne",
+    name: "Students ZOne",
     links: [
       {
         name: "Time Table & Academics Calendar",

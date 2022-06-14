@@ -22,8 +22,8 @@ function App() {
   return (
     <>
       <Router>
-          <Header />
           <Bulletin />
+          <Header />
           <Navbar />
           <Icons/>
         <Routes>

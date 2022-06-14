@@ -5,7 +5,7 @@ const Bulletin = () => {
   const [Studentinfo,setInfo] = useState(StudentInfo)
   return (
     <>
-    <div className='mt-6 flex' >
+    <div className=' flex' >
         <div className='name1 flex flex-row justify-center items-center  px-2'>Bulletin</div>
         <div className='triangle bg-blue-200 '></div>
         <div className='w-full bg-blue-200 pt-1'>

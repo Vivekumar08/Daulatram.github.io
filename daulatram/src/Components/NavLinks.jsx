@@ -11,7 +11,7 @@ const NavLinks = () => {
         <div className="z-10">
           <div className=" text-left md:cursor-pointer group ">
             <h1
-              className="py-4 flex justify-between items-center md:pr-0 pr-4 group"
+              className="py-4 font-bold uppercase flex justify-between items-center md:pr-0 pr-4 group"
               onClick={() => {
                 heading !== link.name ? setHeading(link.name) : setHeading("");
                 setSubHeading("");
@@ -31,7 +31,7 @@ const NavLinks = () => {
               </span>
             </h1>
             <div>
-              <div className="absolute top-48 hidden group-hover:md:block hover:md:block">
+              <div className="absolute top-[15rem] hidden group-hover:md:block hover:md:block">
                 <div className="py-3">
                   <div
                     className=" h-4 left-3 absolute 
@@ -41,7 +41,7 @@ const NavLinks = () => {
                 <div className=" p-2 grid grid-cols-1 gap-4 bg-white rounded-md">
                   {link.links.map((slink) => (
                     <div>
-                      <li className="text-sm text-gray-500 rounded-sm outline-none hover:outline-red-400 ">
+                      <li className="text-md text-gray-500 capitalize rounded-sm outline-none hover:outline-red-400 ">
                         <a
                           href= {slink.link}
                           target="_blank"

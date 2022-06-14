@@ -5,30 +5,42 @@ import Icons from "./Icons";
 function Header() {
   return (
     <>
-      <div className="main_header flex bg-[#fff]">
-        <div className="ml-28 mt-4  flex">
-          <div className="logo ">
+      <div className="main_header mb-14 bg-[#fff]">
+        <div className="ml-28  mt-4 flex flex-row justify-center ">
+          <div className="">
             <Link to="/">
-              <img className="logo" src="\images\logo.png" alt="logo" />
+              <img
+                className="w-[150px] h-[150px]"
+                src="\images\logo.png"
+                alt="logo"
+              />
             </Link>
           </div>
-          <div className="header1  ">
-            <Link to="/">
-              <span className="college_name text-4xl">
-                <strong>Daulat Ram College, University of Delhi</strong>
-              </span>
-              <div className="header2 mb-3">
-                Star College, <strong>Estb. 1960 </strong>
+          <div className="text-[#000080] mt-2 flex flex-col ml-52">
+            <div>
+              <Link to="/">
+                <div className="flex flex-col justify-center items-center">
+                  <div>
+                    <span className="college_name text-5xl font-Noto_Serif">
+                      <strong>Daulat Ram College</strong>
+                    </span>
+                  </div>
+                  <div>
+                    <span className="text-xl font-medium"> University of Delhi</span>
+                  </div>
+                  <div className="header2 mb-3">
+                    <strong>Star College, Estb. 1960 </strong>
+                  </div>
+                </div>
+              </Link>
+              <div className="header3">
+                NIRF RANK: 26 <span style={{ color: "black" }}>| </span> NAAC
+                GRADE 'A' <span style={{ color: "black" }}>| </span> INDIA TODAY
+                RANK (SCIENCE:7 COMMERCE:13 HUMANITIES:15 ){" "}
+                <span style={{ color: "black" }}>| </span> DBT STAR COLLEGE
               </div>
-            </Link>
-            <div className="header3 mt-2">
-              NIRF RANK: 26 <span style={{ color: "black" }}>| </span> NAAC
-              GRADE 'A' <span style={{ color: "black" }}>| </span> INDIA TODAY
-              RANK (SCIENCE:7 COMMERCE:13 HUMANITIES:15 ){" "}
-              <span style={{ color: "black" }}>| </span> DBT STAR COLLEGE
             </div>
           </div>
-
         </div>
         {/* <Icons/> */}
       </div>
