@@ -394,10 +394,10 @@
     /* position: absolute; */
     left: 50%;
     height: 50px;
-    width: 500px;
-    margin: auto;
+    width: 100%;
     padding: 10px;
-    border-radius: 8px;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .quick_content {
