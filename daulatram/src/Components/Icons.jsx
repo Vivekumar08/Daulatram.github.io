@@ -3,7 +3,7 @@ import React from "react";
 function Icons() {
   return (
     <div>
-      <div className="icons z-50 fixed top-[36%] w-[60px] right-[0px] ">
+      <div className="icons z-50 fixed top-[4%] w-[60px] right-[0px] ">
         <a
           href="https://www.facebook.com/DRC1960"
           target="_blank"
