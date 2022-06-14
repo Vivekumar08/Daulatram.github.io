@@ -9,10 +9,10 @@ function Upperfooter() {
   return (
     <>
       <footer className="footer   bg-[#000080] text-white">
-        <div className="container flex flex-col">
+        <div className="flex flex-col ">
           <div className=" h-96 mt-10 ">
             <div className="flex  justify-evenly">
-              <ul className="w-[15%]">
+              <ul className="w-[20%]">
                 <h4 className="mb-5 relative font-bold text-2xl">INFORMATION</h4>
                 <li className="pb-2">
                   <span className="mr-3">-</span>
@@ -117,7 +117,7 @@ function Upperfooter() {
               /> */}
             </div>
           </div>
-          <div className="mt-1">
+          <div className="mt-1 ">
             <p className="text-gray-200 bg-[#1E1F29] text-center h-12 pt-3">
               © All Rights Reserved
               <Link to="/" className="ml-3">
