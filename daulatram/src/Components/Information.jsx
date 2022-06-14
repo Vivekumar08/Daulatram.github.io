@@ -28,7 +28,7 @@ function Information() {
               return (
                 <>
                   <a href={link} target="_blank" rel="norefferer">
-                    <span className=" information flex flex-col ml-4 text-sm mb-4 mt-4">
+                    <span className=" information flex flex-col hover:font-semibold hover:text-blue-600 ml-4 text-sm mb-4 mt-4">
                       {info}
                     </span>
                   </a>
@@ -45,7 +45,7 @@ function Information() {
               return (
                 <>
                   <a href={link} target="_blank" rel="norefferer">
-                    <span className=" information flex flex-col ml-4 text-sm mb-4 mt-4">
+                    <span className=" information flex flex-col ml-4 hover:font-semibold hover:text-blue-600 text-sm mb-4 mt-4">
                       {info}
                     </span>
                   </a>
@@ -62,7 +62,7 @@ function Information() {
               return (
                 <>
                   <a href={link} target="_blank" rel="noreferrer">
-                    <span className=" information flex flex-col ml-4 text-sm mb-4 mt-4">
+                    <span className=" information flex flex-col ml-4 text-sm mb-4 hover:font-semibold hover:text-blue-600 mt-4">
                       {info}
                     </span>
                   </a>
