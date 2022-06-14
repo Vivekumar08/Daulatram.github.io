@@ -6,7 +6,7 @@ function Header() {
   return (
     <>
       <div className="main_header mb-14 bg-[#fff]">
-        <div className="ml-28  mt-4 flex flex-row justify-center ">
+        <div className="ml-24  mt-4 flex flex-row justify-center ">
           <div className="">
             <Link to="/">
               <img
