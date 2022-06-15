@@ -4,18 +4,18 @@ import about1 from "../../Dummy_data/ImgPages/About/about1.png";
 import about2 from "../../Dummy_data/ImgPages/About/about2.png";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Banner from "../../Components/Banner";
+import { about } from "../../Components/Mylinks";
 
 const App = () => {
   return (
     <>
       <div className=" flex flex-col">
-        <div className="mb-2">
+        <div className="">
           <Banner />
         </div>
-        <div className="flex flex-row h-auto">
-          {/* <div className="relative"><Sidebar /></div> */}
+        <div className="flex flex-row ">
+          <Sidebar/>
           <div className="">
-            {/* <span className='card-number card-circle subtle'>2</span> */}
             <h2 className="card-title text-4xl font-bold mb-5 mt-5 flex flex-row justify-center items-center">
               {" "}
               College Profile Mission and Vision
