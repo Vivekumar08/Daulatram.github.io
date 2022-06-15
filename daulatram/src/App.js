@@ -31,7 +31,8 @@ function App() {
           <Route element={<><AboutUs/></>} path="/About"></Route>
         </Routes>
           <Upperfooter />
-          {/* <Banner/> */}
+          <Banner/>
+
       </Router>
 
     </>

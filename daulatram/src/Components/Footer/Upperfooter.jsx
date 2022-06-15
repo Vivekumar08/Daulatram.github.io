@@ -128,7 +128,7 @@ function Upperfooter() {
           </div>
           </div>
         </div>
-        </div>
+        
       </footer>
     </>
   );
