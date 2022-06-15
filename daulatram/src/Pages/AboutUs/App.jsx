@@ -13,10 +13,10 @@ const App = () => {
           <Banner />
         </div>
         <div className="flex flex-row">
-          <div className="w-[25%]">
+          <div className="w-[350px]">
             <Sidebar />
           </div>
-          <div className="">
+          <div className="w-[1100px]">
             <h2 className="text-4xl font-bold mb-5 mt-5 flex flex-row justify-center items-center">
               College Profile Mission and Vision
             </h2>
