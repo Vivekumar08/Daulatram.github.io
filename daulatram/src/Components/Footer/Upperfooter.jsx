@@ -126,6 +126,7 @@ function Upperfooter() {
               </Link>
             </p>
           </div>
+          </div>
         </div>
       </footer>
     </>
