@@ -1,8 +1,11 @@
 import React from 'react'
+import Sidebar from '../../Components/Sidebar/Sidebar'
 
 const Mission = () => {
   return (
-    <div>Mission</div>
+    <div>
+      <Sidebar/>
+    </div>
   )
 }
 

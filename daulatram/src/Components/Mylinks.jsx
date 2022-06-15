@@ -9,7 +9,7 @@ export const links = [
       },
       {
         name: "College Profile Mission and Vision",
-        link: "#",
+        link: "about/mission",
       },
       {
         name: "Chairperson's Message",
@@ -305,3 +305,42 @@ export const links = [
     ],
   },
 ];
+
+export const about=[{
+  name: "About Us",
+    // submenu: true,
+    links: [
+      {
+        name: "Founder",
+        link: "#",
+      },
+      {
+        name: "College Profile Mission and Vision",
+        link: "about/mission",
+      },
+      {
+        name: "Chairperson's Message",
+        link: "#",
+      },
+      {
+        name: "Principal's Message",
+        link: "#",
+      },
+      {
+        name: "Vice-Principal's Message",
+        link: "#",
+      },
+      {
+        name: "Administration",
+        link: "#",
+      },
+      {
+        name: "Annual Report",
+        link: "#",
+      },
+      {
+        name: "Gallery",
+        link: "#",
+      },
+    ],
+}]
