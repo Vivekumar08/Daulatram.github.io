@@ -4,7 +4,7 @@ import Bulletin from "./Components/Bulletin";
 import Navbar from './Components/Nav';
 import Icons from "./Components/Icons";
 import Upperfooter from "./Components/Footer/Upperfooter";
-
+import Banner from "./Components/Banner";
 
 // Import Pages 
 import AboutUs from "./Pages/AboutUs";
@@ -31,6 +31,7 @@ function App() {
           <Route element={<><AboutUs/></>} path="/About"></Route>
         </Routes>
           <Upperfooter />
+          {/* <Banner/> */}
       </Router>
 
     </>
