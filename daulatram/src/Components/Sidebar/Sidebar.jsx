@@ -1,26 +1,31 @@
 import React from "react";
-import "./side.css";
+// import "./side.css";
 import { about } from "../Mylinks";
 
 function Sidebar() {
   return (
-    <div className="relative ">
+    <div className="">
       {about.map((link) => (
-        <div className="bg-[#000080] flex justify-center text-white p-2 rounded-b-lg text-xl">
-          {link.name}
-        </div>
-      ))}
-      <ul className="flex ">
-        {about.map((link) => (
-          <li className="ml-5 mr-6">
-            {link.links.map((slink) => (
-              <a href={slink.link} className="hover:text-blue-600 mb-4">
-                <p className="text-black font-bold  ">{slink.name}</p>
-              </a>
+        <>
+          <div className="bg-[#fff] w-full flex justify-center mb-4 text-black pt-2 pb-2 pl-4 pr-4 rounded-b-lg font-bold text-2xl">
+            {link.name}
+            {/* ndsvlsvnlvervoenlvel */}
+          </div>
+          <ul className=" ">
+            {about.map((link) => (
+              <div className="flex flex-col">
+                {link.links.map((slink) => (
+                  <li className="ml-5 p-2 hover:pl-4  mr-6">
+                    <a href={slink.link} className=" ">
+                       <p className="text-black font-semibold  ">- {""}{slink.name}</p>
+                    </a>
+                  </li>
+                ))}
+              </div>
             ))}
-          </li>
-        ))}
-      </ul>
+          </ul>
+        </>
+      ))}
     </div>
   );
 }
