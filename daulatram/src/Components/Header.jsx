@@ -16,7 +16,7 @@ function Header() {
               />
             </Link>
           </div>
-          <div className="text-[#000080] mt-2 flex flex-col ml-52">
+          <div className="text-[#000080] mt-2 flex flex-col ml-44">
             <div>
               <Link to="/">
                 <div className="flex flex-col justify-center items-center">
@@ -26,7 +26,10 @@ function Header() {
                     </span>
                   </div>
                   <div>
-                    <span className="text-xl font-medium"> University of Delhi</span>
+                    <span className="text-xl font-medium">
+                      {" "}
+                      University of Delhi
+                    </span>
                   </div>
                   <div className="header2 mb-3">
                     <strong>Star College, Estb. 1960 </strong>
@@ -41,8 +44,10 @@ function Header() {
               </div>
             </div>
           </div>
+          <Link to="/Admin" className="text-lg font-semibold text-[#000080]  mt-4 ml-20">
+            <span className="hover:text-xl"> Admin login</span>
+          </Link>
         </div>
-        {/* <Icons/> */}
       </div>
     </>
   );
