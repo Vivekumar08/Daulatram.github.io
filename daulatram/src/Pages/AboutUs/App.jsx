@@ -4,7 +4,6 @@ import about1 from "../../Dummy_data/ImgPages/About/about1.png";
 import about2 from "../../Dummy_data/ImgPages/About/about2.png";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Banner from "../../Components/Banner";
-import { about } from "../../Components/Mylinks";
 
 const App = () => {
   return (
@@ -13,11 +12,12 @@ const App = () => {
         <div className="">
           <Banner />
         </div>
-        <div className="flex flex-row ">
-          <Sidebar/>
+        <div className="flex flex-row">
+          <div className="w-[25%]">
+            <Sidebar />
+          </div>
           <div className="">
-            <h2 className="card-title text-4xl font-bold mb-5 mt-5 flex flex-row justify-center items-center">
-              {" "}
+            <h2 className="text-4xl font-bold mb-5 mt-5 flex flex-row justify-center items-center">
               College Profile Mission and Vision
             </h2>
 
