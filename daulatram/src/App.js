@@ -31,7 +31,6 @@ function App() {
           <Route element={<><Mission/></>} path="/about/mission"></Route>
         </Routes>
           <Upperfooter />
-          {/* <Banner/> */}
       </Router>
 
     </>

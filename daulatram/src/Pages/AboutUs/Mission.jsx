@@ -1,14 +1,12 @@
-import React from 'react'
-import Sidebar from '../../Components/Sidebar/Sidebar'
-import Banner from '../../Components/Banner'
+import React from "react";
+import App from "./App";
 
 const Mission = () => {
   return (
-    <div>
-      <Banner/>
-      <Sidebar/>
+    <div className="flex flex-col">
+        <App />
     </div>
-  )
-}
+  );
+};
 
-export default Mission
+export default Mission;

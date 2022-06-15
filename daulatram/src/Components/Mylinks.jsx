@@ -316,7 +316,7 @@ export const about=[{
       },
       {
         name: "College Profile Mission and Vision",
-        link: "about/mission",
+        link: "./mission",
       },
       {
         name: "Chairperson's Message",
@@ -325,7 +325,7 @@ export const about=[{
       {
         name: "Principal's Message",
         link: "#",
-      },
+      }, 
       {
         name: "Vice-Principal's Message",
         link: "#",
