@@ -5,9 +5,9 @@ import { about } from "../Mylinks";
 function Sidebar() {
   return (
     <section class="app">
-      <aside class="sidebar rounded-r-2xl bg-[#bdbfc1]  text-white ">
+      <aside class="sidebar rounded-br-xl bg-[#bdbfc1]  text-white ">
         {about.map((link) => (
-          <header className="bg-[#000080] text-xl">{link.name}</header>
+          <header className="bg-[#000080] rounded-b-xl text-xl">{link.name}</header>
         ))}
         <nav class="sidebar-nav">
           <ul>
