@@ -4,19 +4,17 @@ import Bulletin from "./Components/Bulletin";
 import Navbar from './Components/Nav';
 import Icons from "./Components/Icons";
 import Upperfooter from "./Components/Footer/Upperfooter";
-import Banner from "./Components/Banner";
 
 // Import Pages 
 import Home from "./Pages/Home";
 import Mission from "./Pages/AboutUs/Mission";
+import Department from "./Pages/Academics/Department";
 
 import {
   BrowserRouter as Router,
   Routes,
   Route
 } from "react-router-dom"
-import Events from "./Components/Events/Events";
-import Campustour from "./Components/Campus Tour/Campustour";
 
 function App() {
   return (
@@ -29,6 +27,7 @@ function App() {
         <Routes>
           <Route element={<><Home/></>} path="/"></Route>
           <Route element={<><Mission/></>} path="/about/mission"></Route>
+          <Route element={<><Department/></>} path="/academics/departments"></Route>
         </Routes>
           <Upperfooter />
       </Router>
