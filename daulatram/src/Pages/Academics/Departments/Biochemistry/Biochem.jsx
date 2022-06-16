@@ -1,7 +1,7 @@
 import React from "react";
-import DepartBanner from "../../../Components/Banners/DepartBanner";
-import DeptSidebar from "../../../Components/Sidebar/DeptSidebar";
-import Biochemistry1 from "../../../Dummy_data/ImgPages/Biochemistry/Biochemistry1.jpg";
+import DepartBanner from "../../../../Components/Banners/DepartBanner";
+import DeptSidebar from "../../../../Components/Sidebar/DeptSidebar";
+import Biochemistry1 from "../../../../Dummy_data/ImgPages/Biochemistry/Biochemistry1.jpg";
 
 const Biochem = () => {
   return (
