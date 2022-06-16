@@ -106,7 +106,7 @@ const Biochem = () => {
                 </a>
                 </span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1gWkXO6TKhbkyYaAUHlNm1c0or8aZ8K7U/view?usp=sharing">
+                <a href="./biochem/programmesoffer">
                   Programmes Offered
                 </a>
                 </span>

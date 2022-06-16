@@ -12,6 +12,7 @@ import Department from "./Pages/Academics/Department";
 import Biochem from "./Pages/Academics/Departments/Biochemistry/Biochem";
 
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Programmesoffer from "./Pages/Academics/Departments/Biochemistry/Programmesoffer";
 
 function App() {
   return (
@@ -55,7 +56,22 @@ function App() {
             exact
             path="/academics/departments/biochem"
           ></Route>
+
+<Route
+            element={
+              <>
+                <Programmesoffer />
+              </>
+            }
+            exact
+            path="/academics/departments/biochem/programmesoffer"
+          ></Route>
+          
+
+
+
         </Routes>
+
         <Upperfooter />
       </Router>
     </>
