@@ -9,6 +9,7 @@ import Upperfooter from "./Components/Footer/Upperfooter";
 import Home from "./Pages/Home";
 import Mission from "./Pages/AboutUs/Mission";
 import Department from "./Pages/Academics/Department";
+import Biochem from "./Pages/Academics/Departments/Biochem";
 
 import {
   BrowserRouter as Router,
@@ -28,6 +29,7 @@ function App() {
           <Route element={<><Home/></>} path="/"></Route>
           <Route element={<><Mission/></>} path="/about/mission"></Route>
           <Route element={<><Department/></>} path="/academics/departments"></Route>
+          <Route element={<><Biochem/></>} exact path="/academics/departments/biochem"></Route>
         </Routes>
           <Upperfooter />
       </Router>

@@ -396,7 +396,7 @@ export const dept =[{
   names:[
     {
       name:"Biochemistry",
-      link:"./"
+      link:"/academics/departments/biochem"
     },
     {
       name:"Botany",
