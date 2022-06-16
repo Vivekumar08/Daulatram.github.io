@@ -4,10 +4,10 @@ import { about } from "../Mylinks";
 
 function Sidebar() {
   return (
-    <div className="">
+    <div className="mt-4">
       {about.map((link) => (
         <>
-          <div className="bg-[#fff] w-full flex justify-center mb-4 text-black pt-2 pb-2 pl-4 pr-4 rounded-b-lg font-bold text-2xl">
+          <div className="bg-[#fff] w-full flex justify-center mb-4 text-black pt-2 pb-2 pl-4 pr-4 rounded-b-lg font-bold text-3xl">
             {link.name}
             {/* ndsvlsvnlvervoenlvel */}
           </div>

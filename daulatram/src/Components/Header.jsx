@@ -44,8 +44,8 @@ function Header() {
               </div>
             </div>
           </div>
-          <Link to="/Admin" className="text-lg font-semibold text-[#000080]  mt-4 ml-20">
-            <span className="hover:text-xl"> Admin login</span>
+          <Link to="/Admin" className="text-lg hover:text-xl  font-semibold text-[#000080]  mt-4 ml-20">
+            <span className=" bg-blue-500 rounded-lg pl-5 pr-5 p-2 text-white"> Admin </span>
           </Link>
         </div>
       </div>
