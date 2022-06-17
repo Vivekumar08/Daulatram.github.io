@@ -17,6 +17,7 @@ import Programmesoffer from "./Pages/Academics/Departments/Biochemistry/Programm
 import Founder from "./Pages/AboutUs/Founder";
 import Chairperson from "./Pages/AboutUs/Chairperson";
 import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
+import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
 
 function App() {
   return (
@@ -74,6 +75,14 @@ function App() {
               </>
             }
             path="/academics/departments"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Faculty />
+              </>
+            }
+            path="/academics/departments/biochem/faculty"
           ></Route>
           <Route
             element={
