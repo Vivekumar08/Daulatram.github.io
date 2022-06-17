@@ -17,6 +17,9 @@ import Programmesoffer from "./Pages/Academics/Departments/Biochemistry/Programm
 import Founder from "./Pages/AboutUs/Founder";
 import Chairperson from "./Pages/AboutUs/Chairperson";
 import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
+import Association from "./Pages/Academics/Departments/Biochemistry/Association";
+import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
+
 
 function App() {
   return (
@@ -94,6 +97,30 @@ function App() {
             exact
             path="/academics/departments/biochem/programmesoffer"
           ></Route>
+
+<Route
+            element={
+              <>
+                <Association />
+              </>
+            }
+            exact
+            path="/academics/departments/biochem/association"
+          ></Route>
+<Route
+            element={
+              <>
+                <Laboratorystaff/>
+              </>
+            }
+            exact
+            path="/academics/departments/biochem/laboratorystaff"
+          ></Route>
+
+
+
+
+
         </Routes>
 
         <Upperfooter />
