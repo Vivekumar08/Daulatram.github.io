@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Programmesoffer from "./Pages/Academics/Departments/Biochemistry/Programmesoffer";
 import Founder from "./Pages/AboutUs/Founder";
 import Chairperson from "./Pages/AboutUs/Chairperson";
+import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
 
 function App() {
   return (
@@ -61,6 +62,14 @@ function App() {
           <Route
             element={
               <>
+                <VicePrincipal />
+              </>
+            }
+            path="/about/vice-principal"
+          ></Route>
+          <Route
+            element={
+              <>
                 <Department />
               </>
             }
@@ -76,7 +85,7 @@ function App() {
             path="/academics/departments/biochem"
           ></Route>
 
-<Route
+          <Route
             element={
               <>
                 <Programmesoffer />
@@ -85,10 +94,6 @@ function App() {
             exact
             path="/academics/departments/biochem/programmesoffer"
           ></Route>
-          
-
-
-
         </Routes>
 
         <Upperfooter />
