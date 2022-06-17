@@ -1,12 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Icons from "./Icons";
+// import Icons from "./Icons";
 
 function Header() {
   return (
     <>
       <div className="main_header mb-8 bg-[#fff]">
-        <div className="ml-24  mt-4 flex flex-row justify-center ">
+        <div className="ml-16  mt-4 flex flex-row justify-evenly ">
           <div className="">
             <Link to="/">
               <img
@@ -44,9 +44,17 @@ function Header() {
               </div>
             </div>
           </div>
-          <Link to="/Admin" className="text-lg hover:text-xl  font-semibold text-[#000080]  mt-4 ml-20">
-            <span className=" bg-blue-500 rounded-lg pl-5 pr-5 p-2 text-white"> Admin </span>
-          </Link>
+          <div className="mt-6">
+            <Link
+              to="/Admin"
+              className="text-lg hover:text-xl  font-semibold text-[#000080]  mt-4 ml-28"
+            >
+              <span className=" bg-blue-500 rounded-lg pl-5 pr-5 p-2 text-white">
+                {" "}
+                Admin{" "}
+              </span>
+            </Link>
+          </div>
         </div>
       </div>
     </>

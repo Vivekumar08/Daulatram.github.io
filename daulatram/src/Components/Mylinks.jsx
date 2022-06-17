@@ -82,19 +82,11 @@ export const links = [
     name: "Research",
     links: [
       {
-        name: "facilities",
+        name: "Facilities & Research Centres",
         link: "#",
       },
       {
-        name: "Publication",
-        link: "#",
-      },
-      {
-        name: "Magazine",
-        link: "#",
-      },
-      {
-        name: "Newsletters",
+        name: "Publications",
         link: "#",
       },
     ],
@@ -188,7 +180,7 @@ export const links = [
         link: "#",
       },
       {
-        name: "E-Rsources",
+        name: "E-Resources",
         link: "#",
       },
       {
@@ -200,7 +192,7 @@ export const links = [
         link: "#",
       },
       {
-        name: "Equal Oppotunities Cell",
+        name: "Equal Opportunities Cell",
         link: "#",
       },
       {
@@ -245,6 +237,23 @@ export const links = [
         link: "#",
       },
     ],
+  },
+  {
+    name: "Societies",
+    links:[
+      {
+        name:"Enabling Unit",
+        link:"#"
+      },
+      {
+        name:"Extra-Curricular",
+        link:"#"
+      },
+      {
+        name:"Memesis-Drammatic Society",
+        link:"#"
+      },
+    ]
   },
   {
     name: "Accreditation",
