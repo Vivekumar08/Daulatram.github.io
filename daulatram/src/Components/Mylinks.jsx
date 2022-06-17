@@ -5,11 +5,11 @@ export const links = [
     links: [
       {
         name: "Founder",
-        link: "#",
+        link: "../about/founder",
       },
       {
         name: "College Profile Mission and Vision",
-        link: "about/mission",
+        link: "../about/mission",
       },
       {
         name: "Chairperson's Message",
@@ -42,7 +42,7 @@ export const links = [
     links: [
       {
         name: "Departments",
-        link: "#",
+        link: "../academics/departments",
       },
       {
         name: "Teacher-In-Charges",
@@ -306,9 +306,9 @@ export const links = [
   },
 ];
 
-export const about=[{
-  name: "About Us",
-    // submenu: true,
+export const about = [
+  {
+    name: "About Us",
     links: [
       {
         name: "Founder",
@@ -316,7 +316,7 @@ export const about=[{
       },
       {
         name: "College Profile Mission and Vision",
-        link: "about/mission",
+        link: "./mission",
       },
       {
         name: "Chairperson's Message",
@@ -343,4 +343,129 @@ export const about=[{
         link: "#",
       },
     ],
+  },
+];
+
+export const acade = [
+  {
+    name: "Academics",
+    links: [
+      {
+        name: "Departments",
+        link: "academics/departments",
+      },
+      {
+        name: "Teacher-In-Charges",
+        link: "#",
+      },
+      {
+        name: "Undergraduate Courses",
+        link: "#",
+      },
+      {
+        name: "Centre for Foreign Languages(Add-On Courses)",
+        link: "#",
+      },
+      {
+        name: "Facilities",
+        link: "#",
+      },
+      {
+        name: "Resources",
+        link: "#",
+      },
+      {
+        name: "Training Programs",
+        link: "#",
+      },
+      {
+        name: "Academic Calendar",
+        link: "#",
+      },
+      {
+        name: "College Academic Calendar",
+        link: "#",
+      },
+    ],
+  },
+];
+
+
+export const dept =[{
+  name:"Departments",
+  names:[
+    {
+      name:"Biochemistry",
+      link:"/academics/departments/biochem"
+    },
+    {
+      name:"Botany",
+      link:"./"
+    },
+    {
+      name:"Chemistry",
+      link:"./"
+    },
+    {
+      name:"Commerce",
+      link:"./"
+    },
+    {
+      name:"Economics",
+      link:"./"
+    },
+    {
+      name:"English",
+      link:"./"
+    },
+    {
+      name:"Hindi",
+      link:"./"
+    },
+    {
+      name:"History",
+      link:"./"
+    },
+    {
+      name:"Mathematics",
+      link:"./"
+    },
+    {
+      name:"Music",
+      link:"./"
+    },
+    {
+      name:"NHE",
+      link:"./"
+    },
+    {
+      name:"Philosophy",
+      link:"./"
+    },
+    {
+      name:"Physical Education",
+      link:"./"
+    },
+    {
+      name:"Physics",
+      link:"./"
+    },
+    {
+      name:"Political Science",
+      link:"./"
+    },
+    {
+      name:"Psychology",
+      link:"./"
+    },
+    {
+      name:"Sanskrit",
+      link:"./"
+    },
+    {
+      name:"Zoology",
+      link:"./"
+    },
+
+  ]
 }]
