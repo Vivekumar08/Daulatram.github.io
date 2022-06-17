@@ -1,14 +1,14 @@
 import React from "react";
 import Vp_banner from "../../Components/Banners/Vp_banner";
 import Sidebar from "../../Components/Sidebar/Sidebar";
-import VP from '../../Dummy_data/ImgPages/About/Sarita_VP.jpg'
+import VP from "../../Dummy_data/ImgPages/About/Sarita_VP.jpg";
 
 const VicePrincipal = () => {
   return (
     <>
       <div className=" flex flex-col">
         <div className="">
-          < Vp_banner/>
+          <Vp_banner />
         </div>
         <div className="flex flex-row">
           <div className="w-[350px]">
@@ -16,79 +16,89 @@ const VicePrincipal = () => {
           </div>
           <div className="w-[1100px]">
             <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              Chairperson's Message
+              Vice-Principal's Message
             </h2>
 
-            <figure className="flex p-4 ">
+            <figure className="flex pl-4 pr-4 pb-2 ">
               <img
                 src={VP}
                 alt="Vice-Principal"
-                className="rounded-3xl border-black border-2 h-[180px] ml-6"
-                width={180}
+                className="rounded-3xl border-black border-2 h-[220px] ml-6"
+                width={220}
               />
 
-              <span className=" card-description text-lg text-justify font-medium m-50 pr-4 pl-4 pt-2">
-                Daulat Ram College is a premium college for women in Delhi
-                University, founded by the individualistic educationist, Late
-                Shri Daulat Ram Gupta in 1960. The institute, a large
-                constituent college of University of Delhi, originally started
-                as ‘Pramila College’ and was renamed as Daulat Ram College in
-                1964 as it grew into a full-fledged extended college of
-                University of Delhi. It imparts education at the Bachelors level
-                in Arts, Science and Commerce. It also enrols students at the
-                Masters Level and hold M.A. Tutorials.
+              <span className=" card-description text-lg text-justify font-medium  pr-4 pl-4 pt-2">
+                Students you should be assured that you are about to be admitted
+                to Daulat Ram College, which is a renowned affiliated college of
+                Delhi University. The college imparts holistic education to
+                female students by training students in education coursework as
+                well as in co-curricular activities and extracurricular
+                activities. The college also gives a chance to add additional
+                skills for your progression into your career path by providing
+                you the opportunity to participate in Skill Development Programs
+                (SDP) which are conducted by the college faculty, in summer and
+                winter breaks. These SDPs can provide you training in various
+                progressive fields like Digital literacy, Bioinformatics, Music,
+                cybercrimes and many more areas of interest.
                 <br />
               </span>
             </figure>
-            <figure className="flex p-2">
+            <figure className="flex pl-4 pr-4">
               <span className="card-description text-justify text-lg font-medium ml-4 ">
-                At present the college has 18 departments, over 3546 students on
-                rolls, 185 teaching staff and 71 non-teaching staff. The courses
-                in Science were introduced in 1968 which led to the construction
-                of the Science Block and Science laboratories. The Commerce and
-                M.A. courses as well as new Courses in B.A. (Hons.) and B.A.
-                Programme were added simultaneously. Further expansion occurred
-                with the introduction of B.Sc. (Hons.) in Bio-Chemistry,
-                Chemistry and addition of Nutrition and Health Education (NHE),
-                Office Management cum Secretarial Practice (OMSP) and
-                Mathematics (Hons.). Foreign language as an add-on Course in the
-                college is open to the public. It offers
-                Certificate/Diploma/Advanced Diploma courses in French/ German/
-                Spanish/ Italian/ Chinese/ Japanese and Korean languages. The
-                College building also houses a block of tutorial rooms, an
-                imposing seminar hall, Computer laboratories with internet
-                facilitates and a well-equipped library with over 90,000 titles.
-                The college holds a leading position in sports and was developed
-                as a training venue for the Commonwealth Games, 2010. It boasts
-                of a State-de-arte multi-sports Academy and compendium of latest
-                sports facilities. Co-curricular activities like Societies,
-                Departmental Associations, the Women’s Development Centre,
-                Eco-Club, N.S.S and N.C.C. are available. For the old students
-                to connect to their alma mater, the college has an active Alumni
-                Association. The college student’s hostel has an intake capacity
-                of nearly 204 students. Every year it wins the University award
-                for the best maintained environment and hostel in Delhi
-                University. The intensely cherished dream of the founder Shri
-                Daulat Ram Gupta was finally given expression in 1990 by the
-                then Chairperson late Shri Mahendra Nath Gupta (his son) who
-                called upon Shri Rajiv Gandhi to lay the foundation stone of
-                what stands today as an imposing multi -purpose auditorium in
-                the frontage of the college. On the spur of the moment, it was
-                named ‘Sadbhavana Bhawan’. From 1990 onwards, Shri Mahendra Nath
-                Gupta relentlessly pursued its construction in 1997, the
-                ‘Sadbhavana Bhawan’ was inaugurated to articulate the talent and
-                the creative genius in Arts, Culture, Sports & Drama of the
-                students and having a seating capacity of over 1400 persons. The
-                vibrant mix of the cocurricular and extracurricular activities
-                both at the intra-college and inter-college levels adds to the
-                multidimensional character of the college. I feel privileged to
-                be the Chairperson of such an institution and carrying forward
-                the vision of its founder Daulat Ram Gupta, as his descendant.
+                You can register yourself to any of these courses which are
+                launched from time to time by various departments. You can also
+                enroll for National Service Scheme (NSS), for community services
+                like blood donation, and National Cadet Corp (NCC) for advanced
+                physical training like trekking, which will boost discipline,
+                compassion and integrity within you. The college has an active
+                placement cell which will train you in writing your resume,
+                apprise you of off campus internships and career opportunities.
+                You can also get on- campus placements in your final year
+                through these opportunities. The college also has taken a
+                proactive role in keeping the college campus environment neat
+                and clean by recycling the college wastes. You can participate
+                in this venture and make yourself aware of the environment
+                sustainability of the campus which is one of the sustainable
+                goals of the United Nations. In case you are interested in
+                research, college can help you to acquire skill sets for this
+                purpose. The college has maintained several resource centres
+                like Zebrafish Facility, Drosophila Facility, Environment Lab
+                where you can participate in Internships and also undertake
+                small research projects. If you or your friends are facing any
+                mental anxieties you can approach the psychology resource centre
+                where you can take counselling about how to enhance your
+                positive mental health. The college also has a well-equipped
+                sports complex and big sports ground where you can train
+                yourself in Gym and other sports activities. You will also have
+                a chance to be a part of the Student Union to inculcate
+                leadership skills. You will have a chance to upgrade and
+                showcase your talent and organise events which can help other
+                students to do the same. This academic session we are going to
+                launch Vidya Vistar Scheme in which you may get an opportunity
+                to be trained in skill sets which may be unique to colleges
+                located away from NCR. College has been running Add courses in
+                foreign languages for the last ten years. This provides
+                education in 7 foreign languages like Spanish, French, Italian,
+                German, Chinese, Korean and Japanese which gives you an
+                opportunity to learn a foreign language thoroughly. You can
+                enrol in any one of the courses in the first year itself in the
+                certificate course. You can progress to Diploma and Advanced
+                Diploma in the same language in the subsequent years. So, you
+                can earn an additional qualification during your undergraduate
+                degree education period. We are also launching some additional
+                new add-on courses like Awareness in Legal Literacy , R
+                analytics, Happiness and Well-being this academic session. You
+                can enrol for any of these along with your degree course. Thus,
+                college life is going to give you a plethora of platforms where
+                you can groom yourself for the successful life ahead. It's up to
+                you how much interest you can take, work with energy and passion
+                to make the best use of campus life at Daulat Ram College. My
+                best wishes are with you.
               </span>
             </figure>
             <figure className="flex p-4 ">
               <span className=" card-description text-lg text-justify font-medium  p-4">
-                <b> - Prof. Mukund Gupta</b>
+                <b> - Prof. Sarita Nanda</b>
               </span>
             </figure>
           </div>
