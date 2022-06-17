@@ -346,6 +346,7 @@ export const about = [
   },
 ];
 
+
 export const acade = [
   {
     name: "Academics",
