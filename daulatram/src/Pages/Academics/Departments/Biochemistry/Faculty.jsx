@@ -1,6 +1,25 @@
 import React from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Departments from "../../../../Components/Sidebar/Departments";
+import sn from "../../../../Dummy_data/ImgPages/Biochemistry/Sarita_Nanda.jpg";
+import sp from "../../../../Dummy_data/ImgPages/Biochemistry/Sarita_cv.pdf";
+import pp from "../../../../Dummy_data/ImgPages/Biochemistry/padam_cv.pdf";
+import ps from "../../../../Dummy_data/ImgPages/Biochemistry/padmshree.jpg";
+import ap from "../../../../Dummy_data/ImgPages/Biochemistry/Anita_M.pdf";
+import am from "../../../../Dummy_data/ImgPages/Biochemistry/anita_mangla.jpg";
+import np from "../../../../Dummy_data/ImgPages/Biochemistry/neeru_cv.pdf";
+import nd from "../../../../Dummy_data/ImgPages/Biochemistry/neeru.jpg";
+
+import lp from "../../../../Dummy_data/ImgPages/Biochemistry/Leena_cv.pdf";
+import lv from "../../../../Dummy_data/ImgPages/Biochemistry/leena.jpg";
+import rp from "../../../../Dummy_data/ImgPages/Biochemistry/Radhika_cv.pdf";
+import rg from "../../../../Dummy_data/ImgPages/Biochemistry/Radhika.jpg";
+import agp from "../../../../Dummy_data/ImgPages/Biochemistry/Anita_g_cv.pdf";
+import dag from "../../../../Dummy_data/ImgPages/Biochemistry/anita_g.jpg";
+import ndp from "../../../../Dummy_data/ImgPages/Biochemistry/Neeraj_cv.pdf";
+import ndj from "../../../../Dummy_data/ImgPages/Biochemistry/neeraj.jpg";
+
+
 import "./fac.css";
 
 function Faculty() {
@@ -13,37 +32,119 @@ function Faculty() {
         <div className="w-[350px]">
           <Departments />
         </div>
-        <div className="ml-3 mt-12">
-          <div class="py-4">
-            <div class="shadow-lg group container  rounded-md bg-white  max-w-sm flex justify-center items-center  mx-auto content-div">
-              <div>
-                <div class="w-full image-cover rounded-t-md">
-                </div>
-                <div class="py-8 px-4 bg-white  rounded-b-md fd-cl group-hover:opacity-25">
-                  <span class="block text-lg text-gray-800 font-bold tracking-wide">
-                    Book a flight
-                  </span>
-                  <span class="block text-gray-600 text-sm">
-                    Vivamus ac ligula sit amet erat luctus laoreet ac quis
-                    ligula. Donec bibendum faucibus purus eget cursus. Proin
-                    enim ante, scelerisque vel sem sit amet, ultrices mollis
-                    risus. Praesent justo felis, ullamcorper a cursus sed,
-                    condimentum at dui.
-                  </span>
-                </div>
+        <div className="ml-3 ">
+          <div className="w-[1100px]">
+            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+              Faculty
+            </h2>
+          </div>
+          <div class="wrapper mt-5 mb-5">
+            <div class="card">
+              <img src={sn} />
+              <div class="info">
+                <h1> Prof. Sarita Nanda </h1>
+                <p>Vice Principal</p>
+                <a href={sp}>
+                  <button>View CV</button>
+                </a>
               </div>
-              <div class="absolute opacity-0 fd-sh group-hover:opacity-100">
-                <span class="text-3xl font-bold text-white tracking-wider leading-relaxed font-sans">
-                  Paris city of light
-                </span>
-                <div class="pt-8 text-center">
-                  <button class="text-center rounded-lg p-4 bg-white  text-gray-700 font-bold text-lg">
-                    Learn more
-                  </button>
-                </div>
+            </div>
+            <div class="card">
+              <img src={ps} />
+              <div class="info">
+                <h1>Dr. Padamshree Mudgal</h1>
+                <p>Professor</p>
+                <a href={pp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card">
+              <img src={am} />
+              <div class="info">
+                <h1>Dr. Anita Garg Mangla</h1>
+                <p>Assistant Professor</p>
+                <a href={ap}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card">
+              <img src={nd} />
+              <div class="info">
+                <h1>Dr. Neeru Dhamija</h1>
+                <p> Assistant Professor</p>
+                <a href={np}>
+                  <button>View CV</button>
+                </a>
               </div>
             </div>
           </div>
+
+          <div class="wrapper mt-6">
+            <div class="card">
+              <img src={lv} />
+              <div class="info">
+                <h1> Dr. Leena Vij </h1>
+                <p>Assistant Professor</p>
+                <a href={lp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card">
+              <img src={rg} />
+              <div class="info">
+                <h1>Dr. Radhika Gupta</h1>
+                <p>Assistant Professor</p>
+                <a href={rp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card">
+              <img src={dag} />
+              <div class="info">
+                <h1>Dr. Anita Goel</h1>
+                <p>Assistant Professor</p>
+                <a href={agp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card">
+              <img src={ndj} />
+              <div class="info">
+                <h1>Dr. Neeraj Dohare</h1>
+                <p> Assistant Professor</p>
+                <a href={ndp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="wrapper1 mt-6 ">
+            <div class="card ">
+              <img src={lv} />
+              <div class="info">
+                <h1> Dr. K. Nirmala </h1>
+                <p>Associate Professor</p>
+                <a href={lp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card ml-7">
+              <img src={rg} />
+              <div class="info">
+                <h1>Dr. Sunita Joshi</h1>
+                <p>Associate Professor</p>
+                <a href={rp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            </div>
         </div>
       </div>
     </div>
