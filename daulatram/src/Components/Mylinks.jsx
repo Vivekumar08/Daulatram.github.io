@@ -17,7 +17,7 @@ export const links = [
       },
       {
         name: "Principal's Message",
-        link: "#",
+        link: "../about/vicePrincipal",
       },
       {
         name: "Vice-Principal's Message",
@@ -312,7 +312,7 @@ export const about = [
     links: [
       {
         name: "Founder",
-        link: "#",
+        link: "./founder",
       },
       {
         name: "College Profile Mission and Vision",
@@ -320,15 +320,15 @@ export const about = [
       },
       {
         name: "Chairperson's Message",
-        link: "#",
+        link: "./chairperson",
       },
       {
         name: "Principal's Message",
-        link: "#",
+        link: "./principal",
       },
       {
         name: "Vice-Principal's Message",
-        link: "#",
+        link: "./vicePrincipal",
       },
       {
         name: "Administration",
