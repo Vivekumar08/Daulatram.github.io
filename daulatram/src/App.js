@@ -1,3 +1,4 @@
+import React from "react"
 import "./App.css";
 import Header from "./Components/Header";
 import Bulletin from "./Components/Bulletin";
@@ -22,6 +23,7 @@ import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
+import Facilities from "./Pages/Academics/Facilities";
 
 
 
@@ -128,7 +130,14 @@ function App() {
             exact
             path="/academics/departments/biochem/laboratorystaff"
           ></Route>
-
+  <Route
+            element={
+              <>
+                <Facilities />
+              </>
+            }
+            path="/academics/facilities"
+          ></Route>  
 
 
 
@@ -137,6 +146,8 @@ function App() {
 
         <Upperfooter />
         {/* <Chairperson_banner/> */}
+        
+       
       </Router>
     </>
   );
