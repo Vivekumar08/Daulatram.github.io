@@ -1,6 +1,7 @@
 import React from "react";
 import Vp_banner from "../../Components/Banners/Vp_banner";
 import Sidebar from "../../Components/Sidebar/Sidebar";
+import VP from '../../Dummy_data/ImgPages/About/Sarita_VP.jpg'
 
 const VicePrincipal = () => {
   return (
@@ -20,8 +21,8 @@ const VicePrincipal = () => {
 
             <figure className="flex p-4 ">
               <img
-                src={chairman}
-                alt="chairman"
+                src={VP}
+                alt="Vice-Principal"
                 className="rounded-3xl border-black border-2 h-[180px] ml-6"
                 width={180}
               />
