@@ -23,12 +23,11 @@ const Chairperson = () => {
               <img 
                 src={chairman}
                 alt="chairman"
-                className="rounded-3xl border-black border-2 h-[250px] ml-20"
-                // height={350}
-                width={250}
+                className="rounded-3xl border-black border-2 h-[180px] ml-6"
+                width={180}
               />
 
-              <span className=" card-description text-lg text-justify font-medium m-50 p-9">
+              <span className=" card-description text-lg text-justify font-medium m-50 pr-4 pl-4 pt-2">
               Daulat Ram College is a premium college for women in Delhi University, founded by the individualistic educationist,
                Late Shri Daulat Ram Gupta in 1960. The institute, a large constituent college of University of Delhi, originally started as
                 ‘Pramila College’ and was renamed as Daulat Ram College in 1964 as it grew into a full-fledged extended college of University of Delhi.
@@ -37,7 +36,7 @@ const Chairperson = () => {
                 </span>
               
             </figure>
-            <figure className="flex p-4">
+            <figure className="flex p-2">
               <span className="card-description text-justify text-lg font-medium ml-4 ">
                 At present the college has 18 departments, over 3546 students on rolls, 185 teaching staff and 71 non-teaching staff. 
                 The courses in Science were introduced in 1968 which led to the construction of the Science Block and Science laboratories. 
@@ -62,18 +61,13 @@ const Chairperson = () => {
                         and inter-college levels adds to the multidimensional character of the college. I feel privileged to be the Chairperson 
                         of such an institution and carrying forward the vision of its founder Daulat Ram Gupta, as his descendant.
               </span>
-              {/* <img
-                src={about2}
-                alt="images"
-                className=" rounded-3xl h-[250px] border-black border-2 ml-10 mr-8"
-              /> */}
             </figure>
             <figure className="flex p-4 ">
               
 
-              <span className=" card-description text-lg text-justify font-medium m-50 p-9">
+              <span className=" card-description text-lg text-justify font-medium  p-4">
     
-                 <b>Prof. Mukund Gupta</b>
+                 <b> - Prof. Mukund Gupta</b>
                 </span>
               
             </figure>
