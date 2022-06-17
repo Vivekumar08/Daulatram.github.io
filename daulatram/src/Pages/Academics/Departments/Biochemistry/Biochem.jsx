@@ -1,6 +1,6 @@
 import React from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
-import DeptSidebar from "../../../../Components/Sidebar/DeptSidebar";
+import Departments from "../../../../Components/Sidebar/Departments";
 import Biochemistry1 from "../../../../Dummy_data/ImgPages/Biochemistry/Biochemistry1.jpg";
 
 const Biochem = () => {
@@ -12,7 +12,7 @@ const Biochem = () => {
         </div>
         <div className="flex flex-row">
           <div className="w-[350px]">
-            <DeptSidebar />
+            <Departments />
           </div>
           <div>
             <div className="w-[1100px]">
