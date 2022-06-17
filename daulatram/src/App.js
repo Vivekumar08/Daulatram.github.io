@@ -65,7 +65,7 @@ function App() {
                 <VicePrincipal />
               </>
             }
-            path="/about/vice-principal"
+            path="/about/vicePrincipal"
           ></Route>
           <Route
             element={
