@@ -1,5 +1,6 @@
 import React from "react";
-import DeptSidebar from "../../../../Components/Sidebar/DeptSidebar";
+import Departments from "../../../../Components/Sidebar/Departments";
+
 import Programbanner from "../../../../Components/Banners/Programbanner";
 import "./laboratorystaff.css"
 
@@ -12,7 +13,7 @@ const Laboratorystaff = () => {
 
       <div className="flex flex-row">
         <div className="w-[350px]">
-          <DeptSidebar />
+          <Departments />
         </div>
         <div className="w-[1100px]">
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
