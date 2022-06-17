@@ -5,7 +5,7 @@ export const links = [
     links: [
       {
         name: "Founder",
-        link: "../about/founder",
+        link: "#",
       },
       {
         name: "College Profile Mission and Vision",
@@ -13,11 +13,11 @@ export const links = [
       },
       {
         name: "Chairperson's Message",
-        link: "../about/chairperson",
+        link: "#",
       },
       {
         name: "Principal's Message",
-        link: "../about/vicePrincipal",
+        link: "#",
       },
       {
         name: "Vice-Principal's Message",
@@ -42,7 +42,7 @@ export const links = [
     links: [
       {
         name: "Departments",
-        link: "../academics/departments",
+        link: "./academics/departments",
       },
       {
         name: "Teacher-In-Charges",
@@ -321,7 +321,7 @@ export const about = [
     links: [
       {
         name: "Founder",
-        link: "./founder",
+        link: "#",
       },
       {
         name: "College Profile Mission and Vision",
@@ -329,15 +329,15 @@ export const about = [
       },
       {
         name: "Chairperson's Message",
-        link: "./chairperson",
+        link: "#",
       },
       {
         name: "Principal's Message",
-        link: "./principal",
+        link: "#",
       },
       {
         name: "Vice-Principal's Message",
-        link: "./vicePrincipal",
+        link: "#",
       },
       {
         name: "Administration",
