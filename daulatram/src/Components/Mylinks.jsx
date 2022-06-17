@@ -13,7 +13,7 @@ export const links = [
       },
       {
         name: "Chairperson's Message",
-        link: "#",
+        link: "../about/chairperson",
       },
       {
         name: "Principal's Message",

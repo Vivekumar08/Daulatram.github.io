@@ -4,6 +4,7 @@ import Bulletin from "./Components/Bulletin";
 import Navbar from "./Components/Nav";
 import Icons from "./Components/Icons";
 import Upperfooter from "./Components/Footer/Upperfooter";
+// import Chairperson_banner from "./Components/Banners/Chairperson_banner";
 
 // Import Pages
 import Home from "./Pages/Home";
@@ -14,6 +15,7 @@ import Biochem from "./Pages/Academics/Departments/Biochemistry/Biochem";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Programmesoffer from "./Pages/Academics/Departments/Biochemistry/Programmesoffer";
 import Founder from "./Pages/AboutUs/Founder";
+import Chairperson from "./Pages/AboutUs/Chairperson";
 
 function App() {
   return (
@@ -51,6 +53,14 @@ function App() {
           <Route
             element={
               <>
+                <Chairperson />
+              </>
+            }
+            path="/about/chairperson"
+          ></Route>
+          <Route
+            element={
+              <>
                 <Department />
               </>
             }
@@ -82,6 +92,7 @@ function App() {
         </Routes>
 
         <Upperfooter />
+        {/* <Chairperson_banner/> */}
       </Router>
     </>
   );
