@@ -170,11 +170,18 @@ function App() {
           <Route
             element={
               <>
-
-                <EnablinUnit />
+                <Publications />
               </>
             }
-            path="/societies/enablingUint"
+            path="/academics/departments/biochem/publications"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Events />
+              </>
+            }
+            path="/academics/departments/biochem/events"
           ></Route>
           <Route
             element={
@@ -192,31 +199,8 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>
-        </Routes>
-        <Upperfooter /> {/* <Chairperson_banner/> */}
-
-                <Publications />
-              </>
-            }
-            path="/academics/departments/biochem/publications"
-          ></Route>
-<Route
-            element={
-              <>
-                <Events />
-              </>
-            }
-            path="/academics/departments/biochem/events"
-          ></Route>
-
-
-
-
-
-
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
-
       </Router>{" "}
     </>
   );
