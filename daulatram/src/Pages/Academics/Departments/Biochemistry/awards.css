@@ -1,11 +1,11 @@
-.wrapper2 {
+.wrapper3 {
     display: flex;
     width: 100%;
     justify-content: space-around;
     margin-left: 10px;
 }
 
-.card1 {
+.card2 {
     width: 350px;
     height: 300px;
     border-radius: 15px;
@@ -19,20 +19,24 @@
     margin-top: 30px;
 }
 
-.card1:hover {
+.card2:hover {
     transform: translateY(20px);
 }
 
-.card1:hover:before {
+.card2:hover span {
+    opacity: 0;
+}
+
+.card2:hover:before {
     opacity: 1;
 }
 
-.card1:hover .info {
+.card2:hover .info {
     opacity: 1;
     transform: translateY(0px);
 }
 
-.card1:before {
+.card2:before {
     content: "";
     position: absolute;
     top: 0;
@@ -47,18 +51,14 @@
     opacity: 0;
 }
 
-.card1 span {
+.card2 span {
     position: absolute;
     color: rgba(254, 252, 252, 0.8);
     top: 45%;
     left: 15%;
 }
 
-.card1:hover span {
-    opacity: 0;
-}
-
-.card1 .info {
+.card2 .info {
     position: relative;
     z-index: 3;
     color: white;
@@ -67,17 +67,17 @@
     transition: 0.5s;
 }
 
-.card1 .info h1 {
+.card2 .info h1 {
     margin: 0px;
 }
 
-.card1 .info p {
+.card2 .info p {
     letter-spacing: 1px;
     font-size: 15px;
     margin-top: 8px;
 }
 
-.card1 .info button {
+.card2 .info button {
     padding: 0.6rem;
     outline: none;
     border: none;
@@ -88,9 +88,10 @@
     cursor: pointer;
     transition: 0.4s ease;
     margin-top: 5px;
+    width: 70%;
 }
 
-.card1 .info button:hover {
+.card2 .info button:hover {
     background: dodgerblue;
     color: white;
 }

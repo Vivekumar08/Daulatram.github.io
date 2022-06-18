@@ -21,6 +21,10 @@ import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
 
 import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
 import Research_facilities from "./Pages/Academics/Departments/Biochemistry/Research_facilities";
+import Studentsachieve from "./Pages/Academics/Departments/Biochemistry/Studentsachieve";
+import Awards from "./Pages/Academics/Departments/Biochemistry/Awards";
+import Publications from "./Pages/Academics/Departments/Biochemistry/Publications";
+import Events from "./Pages/Academics/Departments/Biochemistry/Events";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -103,7 +107,7 @@ function App() {
             }
             exact
             path="/academics/departments/biochem"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -112,7 +116,7 @@ function App() {
             }
             exact
             path="/academics/departments/biochem/programmesoffer"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -146,10 +150,27 @@ function App() {
               </>
             }
             path="/academics/departments/biochem/research"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Studentsachieve />
+              </>
+            }
+            path="/academics/departments/biochem/studentsachieve"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Awards />
+              </>
+            }
+            path="/academics/departments/biochem/awards"
           ></Route>
           <Route
             element={
               <>
+
                 <EnablinUnit />
               </>
             }
@@ -173,6 +194,29 @@ function App() {
           ></Route>
         </Routes>
         <Upperfooter /> {/* <Chairperson_banner/> */}
+
+                <Publications />
+              </>
+            }
+            path="/academics/departments/biochem/publications"
+          ></Route>
+<Route
+            element={
+              <>
+                <Events />
+              </>
+            }
+            path="/academics/departments/biochem/events"
+          ></Route>
+
+
+
+
+
+
+        </Routes>{" "}
+        <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
+
       </Router>{" "}
     </>
   );
