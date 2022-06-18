@@ -21,6 +21,8 @@ import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
 
 import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
 import Research_facilities from "./Pages/Academics/Departments/Biochemistry/Research_facilities";
+import Studentsachieve from "./Pages/Academics/Departments/Biochemistry/Studentsachieve";
+import Awards from "./Pages/Academics/Departments/Biochemistry/Awards";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -99,7 +101,7 @@ function App() {
             }
             exact
             path="/academics/departments/biochem"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -108,7 +110,7 @@ function App() {
             }
             exact
             path="/academics/departments/biochem/programmesoffer"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -143,8 +145,33 @@ function App() {
             }
             path="/academics/departments/biochem/research"
           ></Route>
-        </Routes>
-        <Upperfooter /> {/* <Chairperson_banner/> */}
+          <Route
+            element={
+              <>
+                <Studentsachieve />
+              </>
+            }
+            path="/academics/departments/biochem/studentsachieve"
+          ></Route>
+<Route
+            element={
+              <>
+                <Awards/>
+              </>
+            }
+            path="/academics/departments/biochem/awards"
+          ></Route>
+
+
+
+
+
+
+
+
+
+        </Routes>{" "}
+        <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}
     </>
   );
