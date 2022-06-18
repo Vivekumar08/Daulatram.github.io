@@ -25,17 +25,17 @@ function Publications() {
                 Neeraj And Nanda Sarita Pollution Controlling Ability Of
                 Indigenous Plant Species Growing Around Drain In Delhi.
                 Pollution Research(2019)
-                <strong> Vol 38, November Suppl Issue; Page No.(29-35 )</strong>
-                .
+                <strong> Vol 38, November Suppl Issue; Page No.(29-35 ).</strong>
+                
               </li>
               <br />
 
               <li>
                 Babbar Simran, Manisha Gupta, Neeraj Dohare, Anita Goel, Radhika
                 Gupta And Sarita Nanda Pollution Controlling Ability Of Plant
-                Species Growing On College Campus In Delhi, India.
+                Species Growing On College Campus In Delhi, India.{" "}
                 <strong>
-                  Pollution Research 2019Vol 38, November Suppl Issue; Page
+                  Pollution Research 2019 Vol 38, November Suppl Issue; Page
                   No.(23-29 )
                 </strong>{" "}
                 ISSN 0257-8050-Quarterly
@@ -56,7 +56,7 @@ function Publications() {
                 Neuroinflammation and Aberration in Monoamine levels in
                 Hypothalamus are associated with Temperature Dysregulation;
                 Neuroscience, 2017, 358, 79-92.
-                <strong>(Impact Factor: 3.277)ISSN 0306-4522</strong>{" "}
+                <strong>(Impact Factor: 3.277) ISSN 0306-4522</strong>{" "}
               </li>
               <br />
               <li>
@@ -104,7 +104,7 @@ function Publications() {
                 Enthalpy-driven interaction between dihydropyrimidine compound
                 and bovine serum albumin: a spectroscopic and computational
                 approach. Manasa Kongot, Neha Maurya,{" "}
-                <strong>Neeraj Dohare,</strong>
+                <strong>Neeraj Dohare, </strong>
                 Mehraj-ud-din Parray, Jitendra Kumar Maurya, Amit Kumar, Rajan
                 Patel. Journal of Biomolecular Structure and Dynamics 2018
               </li>
