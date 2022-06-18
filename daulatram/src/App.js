@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import Bulletin from "./Components/Bulletin";
@@ -20,12 +20,11 @@ import Chairperson from "./Pages/AboutUs/Chairperson";
 import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
 
 import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
+import Research_facilities from "./Pages/Academics/Departments/Biochemistry/Research_facilities";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
 import Facilities from "./Pages/Academics/Facilities";
-
-
 
 function App() {
   return (
@@ -43,7 +42,7 @@ function App() {
               </>
             }
             path="/"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -51,7 +50,7 @@ function App() {
               </>
             }
             path="/about/mission"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -59,7 +58,7 @@ function App() {
               </>
             }
             path="/about/founder"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -67,7 +66,7 @@ function App() {
               </>
             }
             path="/about/chairperson"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -75,7 +74,7 @@ function App() {
               </>
             }
             path="/about/vicePrincipal"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -83,7 +82,7 @@ function App() {
               </>
             }
             path="/academics/departments"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -91,7 +90,7 @@ function App() {
               </>
             }
             path="/academics/departments/biochem/faculty"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -101,7 +100,6 @@ function App() {
             exact
             path="/academics/departments/biochem"
           ></Route>
-
           <Route
             element={
               <>
@@ -111,8 +109,7 @@ function App() {
             exact
             path="/academics/departments/biochem/programmesoffer"
           ></Route>
-
-<Route
+          <Route
             element={
               <>
                 <Association />
@@ -120,35 +117,35 @@ function App() {
             }
             exact
             path="/academics/departments/biochem/association"
-          ></Route>
-<Route
+          ></Route>{" "}
+          <Route
             element={
               <>
-                <Laboratorystaff/>
+                <Laboratorystaff />
               </>
             }
             exact
             path="/academics/departments/biochem/laboratorystaff"
-          ></Route>
-  <Route
+          ></Route>{" "}
+          <Route
             element={
               <>
                 <Facilities />
               </>
             }
             path="/academics/facilities"
-          ></Route>  
-
-
-
-
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Research_facilities />
+              </>
+            }
+            path="/academics/departments/biochem/research"
+          ></Route>
         </Routes>
-
-        <Upperfooter />
-        {/* <Chairperson_banner/> */}
-        
-       
-      </Router>
+        <Upperfooter /> {/* <Chairperson_banner/> */}
+      </Router>{" "}
     </>
   );
 }
