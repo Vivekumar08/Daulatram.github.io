@@ -479,3 +479,21 @@ export const dept =[{
 
   ]
 }]
+
+export const soc=[{
+  name:"Societies",
+  links:[
+    {
+      name:"Enabling Unit",
+      link:"/societies/enablingUnit"
+    },
+    {
+      name:"Extra - Curricular Activities",
+      link:"/societies/extraCurricularActivities"
+    },
+    {
+      name:"Memesis-Dramatic Society",
+      link:"/societies/dramaScociety"
+    },
+  ]
+}]

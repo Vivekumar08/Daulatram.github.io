@@ -26,6 +26,10 @@ import Association from "./Pages/Academics/Departments/Biochemistry/Association"
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
 import Facilities from "./Pages/Academics/Facilities";
 
+import { EnablinUnit } from "./Pages/Societies/EnablinUnit";
+import ExtraCurricular from "./Pages/Societies/ExtraCurricular";
+import Memesis from "./Pages/Societies/Memesis";
+
 function App() {
   return (
     <>
@@ -142,6 +146,30 @@ function App() {
               </>
             }
             path="/academics/departments/biochem/research"
+          ></Route>
+          <Route
+            element={
+              <>
+                <EnablinUnit />
+              </>
+            }
+            path="/societies/enablingUint"
+          ></Route>
+          <Route
+            element={
+              <>
+                <ExtraCurricular />
+              </>
+            }
+            path="/societies/extraCurricularActivities"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Memesis />
+              </>
+            }
+            path="/societies/dramaScociety"
           ></Route>
         </Routes>
         <Upperfooter /> {/* <Chairperson_banner/> */}
