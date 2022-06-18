@@ -80,7 +80,6 @@ function Faculty() {
               </div>
             </div>
           </div>
-
           <div class="wrapper mt-6">
             <div class="card">
               <img src={lv} />
@@ -124,7 +123,7 @@ function Faculty() {
             </div>
           </div>
           <div class="wrapper1 mt-6 ">
-            <div class="card ">
+            <div class="card ml-2">
               <img src={lv} />
               <div class="info">
                 <h1> Dr. K. Nirmala </h1>
@@ -134,7 +133,7 @@ function Faculty() {
                 </a>
               </div>
             </div>
-            <div class="card ml-7">
+            <div class="card ml-10">
               <img src={rg} />
               <div class="info">
                 <h1>Dr. Sunita Joshi</h1>
