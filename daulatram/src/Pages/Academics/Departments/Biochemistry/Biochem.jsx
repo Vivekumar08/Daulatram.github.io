@@ -121,7 +121,7 @@ const Biochem = () => {
                 </a>
                 </span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                <a href="./biochem/events">
                   Events
                 </a>
                 </span>
