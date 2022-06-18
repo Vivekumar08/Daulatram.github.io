@@ -1,6 +1,7 @@
 import React from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Departments from "../../../../Components/Sidebar/Departments";
+import Awds from "../../../../Dummy_data/ImgPages/Biochemistry/Awards.pdf"
 import "./awards.css";
 function Awards() {
   return (
@@ -20,13 +21,20 @@ function Awards() {
           </div>
           <div class="wrapper3 mt-5 mb-5">
             <div class="card2">
-                <span>cakcbsjkvbsdvbskbj</span>
+                
+                <span className="font-bold text-2xl ml-16" >Awards</span>
               <div className="flex flex-col">
                 <div class="info">
-                  <h1 className="font-bold text-2xl">Awards</h1>
-                  <p>Faculty/ Non Teaching Staff</p>
-                  <a href={"#"}>
-                    <button>View</button>
+                  <p className="ml-14">Faculty/ Non Teaching Staff</p>
+                  
+                  <br/>
+                  <a href={Awds}>
+                    <button className="ml-16">View</button>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
+                    <br/>
                   </a>
                 </div>
               </div>
