@@ -9,6 +9,13 @@ module.exports = {
         Noto_Serif: ['Noto Serif', "serif"]
       }
     },
+    listStyleType: {
+      none: 'none',
+      disc: 'disc',
+      decimal: 'decimal',
+      square: 'square',
+      roman: 'upper-roman',
+    }
   },
   plugins: [],
 }
