@@ -103,20 +103,21 @@ const Laboratorystaff = () => {
                 </a>
                 </span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                <a href="./biochem/events">
                   Events
                 </a>
                 </span>
 
-            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/laboratorystaff">
-                  Laboratory Staff
-                </a>
-                </span>
+            
 
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
                 <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Publications / Awards
+                  Publications
+                </a>
+                </span>
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+                <a href="./biochem/awards">
+                 Awards
                 </a>
                 </span>
 
@@ -125,6 +126,23 @@ const Laboratorystaff = () => {
                   Research
                 </a>
                 </span>
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                  Time Table
+                </a>
+                </span>
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                  Photo Gallery
+                </a>
+                </span>
+
+
+
+
+
+
+
                 
               </div>
         </div>
@@ -134,3 +152,5 @@ const Laboratorystaff = () => {
 };
 
 export default Laboratorystaff;
+
+

@@ -31,27 +31,24 @@ function Programmesoffer() {
               </a>
             </span>
           </div>
-          <div className="p-3 grid grid-cols-4 mr-2 ml-2 mt-11">
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500"><a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+          <div className="p-3 grid grid-cols-4 mr-2 ml-2">
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500"
+                ><a href="./biochem/faculty">
                   Faculty
                 </a>
                 </span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/programmesoffer">
-                  Programmes Offered
-                </a>
-                </span>
+                
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
                   <a href="./biochem/association">
                   Association
                 </a></span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                <a href="./biochem/studentsachieve">
                   Student's Achievements
                 </a>
                 </span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                <a href="./biochem/events">
                   Events
                 </a>
                 </span>
@@ -63,18 +60,42 @@ function Programmesoffer() {
                 </span>
 
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Publications / Awards
+                <a href="./biochem/publications">
+                  Publications
                 </a>
                 </span>
 
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                <a href="./biochem/awards">
+                 Awards
+                </a>
+                </span>
+
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+                <a href="./biochem/research">
                   Research
                 </a>
                 </span>
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                  Time Table
+                </a>
+                </span>
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                  Photo Gallery
+                </a>
+                </span>
+
+
+
+
+
+
+
                 
               </div>
+
         </div>
       </div>
     </div>
