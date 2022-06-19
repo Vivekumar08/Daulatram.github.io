@@ -67,7 +67,7 @@ function Publications_res() {
               </div>
             </div>
             <div class="card2">
-              <span className="font-bold text-xl ml-2">Magzine</span>
+              <span className="font-bold text-xl ml-20">Magzine</span>
               <div className="flex flex-col">
                 <div class="info ml-8">
                   <p className="ml-16">Magzine</p>
