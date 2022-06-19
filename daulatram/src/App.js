@@ -25,6 +25,7 @@ import Studentsachieve from "./Pages/Academics/Departments/Biochemistry/Students
 import Awards from "./Pages/Academics/Departments/Biochemistry/Awards";
 import Publications from "./Pages/Academics/Departments/Biochemistry/Publications";
 import Events from "./Pages/Academics/Departments/Biochemistry/Events";
+import About from "./Pages/Academics/Departments/Botany/About";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -199,6 +200,15 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>
+          <Route
+            element={
+              <>
+                <About/>
+              </>
+            }
+            path="Academics/Departments/Botany"
+          ></Route>
+          
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}

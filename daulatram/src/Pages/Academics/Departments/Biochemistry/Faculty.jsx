@@ -19,7 +19,6 @@ import dag from "../../../../Dummy_data/ImgPages/Biochemistry/anita_g.jpg";
 import ndp from "../../../../Dummy_data/ImgPages/Biochemistry/Neeraj_cv.pdf";
 import ndj from "../../../../Dummy_data/ImgPages/Biochemistry/neeraj.jpg";
 
-
 import "./fac.css";
 
 function Faculty() {
@@ -38,6 +37,7 @@ function Faculty() {
               Faculty
             </h2>
           </div>
+          <span className="font-bold text-xl ml-6">Current Faculty</span>
           <div class="wrapper mt-5 mb-5">
             <div class="card">
               <img src={sn} />
@@ -80,7 +80,7 @@ function Faculty() {
               </div>
             </div>
           </div>
-          <div class="wrapper mt-6">
+          <div class="wrapper mt-6 mb-16">
             <div class="card">
               <img src={lv} />
               <div class="info">
@@ -122,7 +122,9 @@ function Faculty() {
               </div>
             </div>
           </div>
-          <div class="wrapper1 mt-6 ">
+          <span className="font-bold text-xl ml-6 mt-16">Superannuated Faculty</span>
+
+          <div class="wrapper1 mt-6 mb-10 ">
             <div class="card ml-2">
               <img src={lv} />
               <div class="info">
@@ -143,71 +145,47 @@ function Faculty() {
                 </a>
               </div>
             </div>
-            </div>
-            <div className="p-3 grid grid-cols-4 mr-2 ml-2">
-                
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/programmesoffer">
-                  Programmes Offered
-                </a>
-                </span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                  <a href="./biochem/association">
-                  Association
-                </a></span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/studentsachieve">
-                  Student's Achievements
-                </a>
-                </span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/events">
-                  Events
-                </a>
-                </span>
+          </div>
+          <div className="p-3 grid grid-cols-4 mr-2 ml-2">
+            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+              <a href="./biochem/programmesoffer">Programmes Offered</a>
+            </span>
+            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+              <a href="./biochem/association">Association</a>
+            </span>
+            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+              <a href="./biochem/studentsachieve">Student's Achievements</a>
+            </span>
+            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+              <a href="./biochem/events">Events</a>
+            </span>
 
             <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/laboratorystaff">
-                  Laboratory Staff
-                </a>
-                </span>
+              <a href="./biochem/laboratorystaff">Laboratory Staff</a>
+            </span>
 
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/publications">
-                  Publications
-                </a>
-                </span>
+            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+              <a href="./biochem/publications">Publications</a>
+            </span>
 
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/awards">
-                 Awards
-                </a>
-                </span>
+            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+              <a href="./biochem/awards">Awards</a>
+            </span>
 
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/research">
-                  Research
-                </a>
-                </span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Time Table
-                </a>
-                </span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Photo Gallery
-                </a>
-                </span>
-
-
-
-
-
-
-
-                
-              </div>
+            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+              <a href="./biochem/research">Research</a>
+            </span>
+            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+              <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                Time Table
+              </a>
+            </span>
+            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+              <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                Photo Gallery
+              </a>
+            </span>
+          </div>
         </div>
       </div>
     </div>
