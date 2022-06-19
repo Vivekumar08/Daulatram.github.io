@@ -35,6 +35,9 @@ import { EnablinUnit } from "./Pages/Societies/EnablinUnit";
 import ExtraCurricular from "./Pages/Societies/ExtraCurricular";
 import Memesis from "./Pages/Societies/Memesis";
 
+import Research_Facilities from "./Pages/Research/Research_Facilities";
+import Publications_res from "./Pages/Research/Publications_res";
+
 function App() {
   return (
     <>
@@ -167,7 +170,7 @@ function App() {
               </>
             }
             path="/academics/departments/biochem/awards"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -175,7 +178,7 @@ function App() {
               </>
             }
             path="/academics/departments/biochem/publications"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -183,7 +186,7 @@ function App() {
               </>
             }
             path="/academics/departments/biochem/events"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -191,7 +194,7 @@ function App() {
               </>
             }
             path="/societies/extraCurricularActivities"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -200,15 +203,23 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>
+          {/* Research And Facilities */}
           <Route
             element={
               <>
-                <About/>
+                <Research_Facilities />
               </>
             }
-            path="Academics/Departments/Botany"
+            path="/research/research_facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Publications_res />
+              </>
+            }
+            path="/research/publications"
           ></Route>
-          
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}
