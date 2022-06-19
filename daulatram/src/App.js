@@ -34,6 +34,9 @@ import { EnablinUnit } from "./Pages/Societies/EnablinUnit";
 import ExtraCurricular from "./Pages/Societies/ExtraCurricular";
 import Memesis from "./Pages/Societies/Memesis";
 
+import Research_Facilities from "./Pages/Research/Research_Facilities";
+import Publications_res from "./Pages/Research/Publications_res";
+
 function App() {
   return (
     <>
@@ -199,6 +202,26 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>
+
+            {/* Research And Facilities */}
+
+          <Route
+            element={
+              <>
+                <Research_Facilities />
+              </>
+            }
+            path="/research/research_facilities"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Publications_res />
+              </>
+            }
+            path="/research/publications"
+          ></Route>
+
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}

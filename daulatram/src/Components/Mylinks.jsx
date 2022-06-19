@@ -497,3 +497,17 @@ export const soc=[{
     },
   ]
 }]
+
+export const research=[{
+  name:"Research",
+  links:[
+    {
+      name:"Research and Facilities Centres",
+      link:"/research/research_facilities"
+    },
+    {
+      name:"Publications",
+      link:"/research/publications"
+    },
+  ]
+}]
