@@ -199,6 +199,14 @@ function App() {
           <Route
             element={
               <>
+                <EnablinUnit />
+              </>
+            }
+            path="/societies/enablingUnit"
+          ></Route>
+          <Route
+            element={
+              <>
                 <Memesis />
               </>
             }
