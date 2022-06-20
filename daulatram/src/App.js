@@ -230,6 +230,8 @@ function App() {
           ></Route>
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
+        {/* <Chairperson/>
+        <Chairperson_banner/> */}
       </Router>{" "}
     </>
   );
