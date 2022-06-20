@@ -45,6 +45,9 @@ import Memesis from "./Pages/Societies/Memesis";
 import Research_Facilities from "./Pages/Research/Research_Facilities";
 import Publications_res from "./Pages/Research/Publications_res";
 
+import Admission_committee from "./Pages/Admission/Admission_committee";
+import Fee_Structure from "./Pages/Admission/Fee_Structure";
+
 function App() {
   return (
     <>
@@ -202,6 +205,26 @@ function App() {
             }
             path="/societies/extraCurricularActivities"
           ></Route>{" "}
+          {/* Admission */}
+          <Route
+            element={
+              <>
+                <Admission_committee />
+              </>
+            }
+            path="/admission/committee"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Admission_committee />
+              </>
+            }
+            path="/admission/feeStructure"
+          ></Route>{" "}
+
+            {/* Socieites */}
+
           <Route
             element={
               <>
@@ -274,6 +297,8 @@ function App() {
 
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
+        {/* <Chairperson/>
+        <Chairperson_banner/> */}
       </Router>{" "}
     </>
   );
