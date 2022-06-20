@@ -31,6 +31,7 @@ import About from "./Pages/Academics/Departments/Botany/About";
 import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
 import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered";
 import Botanystudachieve from "./Pages/Academics/Departments/Botany/Botanystudachieve";
+import Bot_Publications from "./Pages/Academics/Departments/Botany/Bot_Publications"
 
 
 
@@ -291,6 +292,15 @@ function App() {
             }
             path="/academics/departments/Botany/Botanystudachieve"
           ></Route>
+          <Route
+            element={
+              <>
+                <Bot_Publications/>
+              </>
+            }
+            path="/academics/departments/Botany/Bot_Publications"
+          ></Route>
+
 
 
 
