@@ -29,7 +29,9 @@ import Events from "./Pages/Academics/Departments/Biochemistry/Events";
 // botany
 import About from "./Pages/Academics/Departments/Botany/About";
 import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
-import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered"
+import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered";
+import Botanystudachieve from "./Pages/Academics/Departments/Botany/Botanystudachieve";
+
 
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
@@ -258,6 +260,15 @@ function App() {
             }
             path="/academics/departments/Botany/Programoffered"
           ></Route>
+          <Route
+            element={
+              <>
+                <Botanystudachieve/>
+              </>
+            }
+            path="/academics/departments/Botany/Botanystudachieve"
+          ></Route>
+
 
 
 
