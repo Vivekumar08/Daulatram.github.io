@@ -13,9 +13,8 @@ const Maintanence = () => {
           </div>
           <h1 className="maint">Under Maintenance</h1>
           <h2>
-            Our developers are hard at work updating your system. Please wait
-            while we do this. We have also made the spinning cogs to distract
-            you.
+            Our developer team is hard at work updating our system. Please wait Or you can browse other tabs and pages of our website.
+            
           </h2>
         </div>
       </div>
