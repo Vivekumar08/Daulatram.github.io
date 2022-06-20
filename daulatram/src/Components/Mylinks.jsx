@@ -123,8 +123,12 @@ export const links = [
         link: "/admission/OBC_SC_ST_EWS_Complaints",
       },
       {
+        name: "Admission Grievance Committee",
+        link: "/admission/Admission_Grievance_Committee",
+      },
+      {
         name: "Anti Ragging Guidlines",
-        link: "/admission/AntiRaggingGuidlines",
+        link: "/admission/AntiRaggingGuidelines",
       },
       {
         name: "FAQS For Admissions",
@@ -546,6 +550,10 @@ export const admisn = [
       {
         name: "OBC/SC/ST/EWS Complaints",
         link: "/admission/OBC_SC_ST_EWS_Complaints",
+      },
+      {
+        name: "Admission Grievance Committee",
+        link: "/admission/Admission_Grievance_Committee",
       },
       {
         name: "Anti Ragging Guidlines",
