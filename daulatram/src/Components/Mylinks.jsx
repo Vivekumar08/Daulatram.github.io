@@ -5,23 +5,23 @@ export const links = [
     links: [
       {
         name: "Founder",
-        link: "#",
+        link: "/about/founder",
       },
       {
         name: "College Profile Mission and Vision",
-        link: "../about/mission",
+        link: "/about/mission",
       },
       {
         name: "Chairperson's Message",
-        link: "#",
+        link: "/about/chairperson",
       },
       {
         name: "Principal's Message",
-        link: "#",
+        link: "/about/principal",
       },
       {
         name: "Vice-Principal's Message",
-        link: "#",
+        link: "/about/vicePrincipal",
       },
       {
         name: "Administration",
@@ -42,7 +42,7 @@ export const links = [
     links: [
       {
         name: "Departments",
-        link: "./academics/departments",
+        link: "/academics/departments",
       },
       {
         name: "Teacher-In-Charges",
@@ -83,11 +83,11 @@ export const links = [
     links: [
       {
         name: "Facilities & Research Centres",
-        link: "#",
+        link: "/research/research_facilities",
       },
       {
         name: "Publications",
-        link: "#",
+        link: "/research/publications",
       },
     ],
   },
@@ -243,15 +243,15 @@ export const links = [
     links:[
       {
         name:"Enabling Unit",
-        link:"#"
+        link:"/societies/enablingUnit"
       },
       {
         name:"Extra-Curricular",
-        link:"#"
+        link:"/societies/extraCurricularActivities"
       },
       {
         name:"Memesis-Drammatic Society",
-        link:"#"
+        link:"/societies/dramaScociety"
       },
     ]
   },
