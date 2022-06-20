@@ -38,6 +38,8 @@ import rmp from "../../../../Dummy_data/ImgPages/Botany/Rajeshwari_Madhavan_cv.p
 import rm from "../../../../Dummy_data/ImgPages/Botany/Rajeshwari_Madhavan.png";
 import spp from "../../../../Dummy_data/ImgPages/Botany/Sudha_Prakash_cv.pdf";
 import spt from "../../../../Dummy_data/ImgPages/Botany/Sudha_Prakash.jpg";
+import npp from "../../../../Dummy_data/ImgPages/Botany/Neelam_Malkhani_cv.pdf";
+import npm from "../../../../Dummy_data/ImgPages/Botany/Neelam_Malkani.png";
 
 import sdj from "../../../../Dummy_data/ImgPages/Botany/Shubhasni_Dewan.jpg";
 import kn from "../../../../Dummy_data/ImgPages/Botany/Kanan_Nanda.jpeg";
@@ -188,13 +190,83 @@ function Botanyfaculty() {
               </div>
             </div>
           </div>
-          <div class="wrapper4 mt-5 mb-5 ">
+          <div class="wrapper4 mt-5 mb-9 ">
             <div class="card ">
               <img src={kk} />
               <div class="info">
                 <h1> Dr. Kamlesh Kumari</h1>
                 <p>Assistant Professor (Ad hoc)</p>
                 <a href={kkp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <span className="font-bold text-xl ml-6 mt-20 mb-9">
+            Superannuated Faculty
+          </span>
+
+          <div class="wrapper mt-4 mb-10 ">
+            <div class="card">
+              <img src={ss} />
+              <div class="info">
+                <h1> Dr. Sunita Sinha</h1>
+                <p>Senior Reader</p>
+                <a href={ssp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card ">
+              <img src={rm} />
+              <div class="info">
+                <h1>Dr. Rajeshwari Madhwan</h1>
+                <p>Associate Professor</p>
+                <a href={rmp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card ">
+              <img src={npm} />
+              <div class="info">
+                <h1>Dr. Neelam Pari Malkani</h1>
+                <p>Associate Professor</p>
+                <a href={npp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card ">
+              <img src={spt} />
+              <div class="info">
+                <h1>Dr. Sudha Prakash</h1>
+                <p>Reader</p>
+                <a href={spp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="wrapper1 mt-6 mb-10 ">
+            <div class="card ml-2">
+              <img src={sdj} />
+              <div class="info">
+                <h1> Dr. Subhashni Dewan</h1>
+                <p>Associate Professor</p>
+                <a href={"#"}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card ml-10">
+              <img src={kn} />
+              <div class="info">
+                <h1>Dr. Kanan Nanda</h1>
+                <p>Associate Professor</p>
+                <a href={"#"}>
                   <button>View CV</button>
                 </a>
               </div>
