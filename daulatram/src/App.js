@@ -25,8 +25,12 @@ import Studentsachieve from "./Pages/Academics/Departments/Biochemistry/Students
 import Awards from "./Pages/Academics/Departments/Biochemistry/Awards";
 import Publications from "./Pages/Academics/Departments/Biochemistry/Publications";
 import Events from "./Pages/Academics/Departments/Biochemistry/Events";
+
+// botany
 import About from "./Pages/Academics/Departments/Botany/About";
 import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
+import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered"
+
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -246,6 +250,17 @@ function App() {
             }
             path="/academics/departments/Botany/Botanyfaculty"
           ></Route>
+          <Route
+            element={
+              <>
+                <Programoffered/>
+              </>
+            }
+            path="/academics/departments/Botany/Programoffered"
+          ></Route>
+
+
+
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}
