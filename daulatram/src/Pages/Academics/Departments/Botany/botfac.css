@@ -94,14 +94,7 @@
     color: white;
 }
 
-.wrapper1 {
-    display: flex;
-    /* width: %; */
-    /* justify-content: space-around; */
-    margin-left: 20px;
-}
-
 .wrapper4 {
     display: flex;
-    margin-left: 20px;
+    margin-left: 30px;
 }
