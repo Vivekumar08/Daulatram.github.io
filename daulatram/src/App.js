@@ -26,7 +26,7 @@ import Awards from "./Pages/Academics/Departments/Biochemistry/Awards";
 import Publications from "./Pages/Academics/Departments/Biochemistry/Publications";
 import Events from "./Pages/Academics/Departments/Biochemistry/Events";
 import About from "./Pages/Academics/Departments/Botany/About";
-
+import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -203,8 +203,8 @@ function App() {
               </>
             }
             path="/societies/dramaScociety"
-          ></Route>
-          {/* Research And Facilities */}
+          ></Route>{" "}
+          {/* Research And Facilities */}{" "}
           <Route
             element={
               <>
@@ -221,21 +221,23 @@ function App() {
             }
             path="/research/publications"
           ></Route>
-
           {/* Botany */}
           <Route
             element={
               <>
-                <About/>
+                <About />
               </>
             }
-            path="/academics/departments/Botany/"
+            path="/academics/departments/Botany"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Botanyfaculty/>
+              </>
+            }
+            path="/academics/departments/Botany/Botanyfaculty"
           ></Route>
-
-
-
-
-
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}
