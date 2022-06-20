@@ -19,14 +19,22 @@ const Biochem = () => {
               <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
                 About the department
               </h2>
+                <figure className="flex pr-4 pl-4 pb-2 ">
+                
 
-              <figure className="flex pr-4 pl-4 pb-2">
-                <img
-                  src={Biochemistry1}
-                  alt="images"
-                  className="rounded-3xl border-black border-2 h-[380px] mr-10"
-                  width={380}
-                />
+                <div
+                  style={{
+                    backgroundImage:
+                      "url(/images/ImgPages/Biochemistry/Biochemistry1.jpg)",
+                    width: "3500px",
+                    height: "320px",
+                  
+
+                  }}
+                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-4 rounded-3xl border-2 border-black"
+                  
+                ></div>
+
                 <span className=" card-description text-lg text-justify font-medium ">
                   The Department of Biochemistry was started in the year 1988
                   and offers a BSc (Hons) course which is unique to only a few
@@ -46,7 +54,7 @@ const Biochem = () => {
                   awarded to the college science departments, by the Department
                   of Biotechnology, GOI.
                 </span>
-              </figure>
+                </figure>
               <div className="pr-3 pl-3 flex mr-2 ml-2">
                 <span className="text-lg text-justify font-medium ">
                   Over the years, the department has been awarded projects from
@@ -101,72 +109,47 @@ const Biochem = () => {
                 </span>
               </div>
               <div className="p-3 grid grid-cols-4 mr-2 ml-2">
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500"
-                ><a href="./biochem/faculty">
-                  Faculty
-                </a>
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+                  <a href="./biochem/faculty">Faculty</a>
                 </span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/programmesoffer">
-                  Programmes Offered
-                </a>
+                  <a href="./biochem/programmesoffer">Programmes Offered</a>
                 </span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                  <a href="./biochem/association">
-                  Association
-                </a></span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/studentsachieve">
-                  Student's Achievements
-                </a>
+                  <a href="./biochem/association">Association</a>
                 </span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/events">
-                  Events
-                </a>
+                  <a href="./biochem/studentsachieve">Student's Achievements</a>
                 </span>
-
-            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/laboratorystaff">
-                  Laboratory Staff
-                </a>
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+                  <a href="./biochem/events">Events</a>
                 </span>
 
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/publications">
-                  Publications
-                </a>
+                  <a href="./biochem/laboratorystaff">Laboratory Staff</a>
                 </span>
 
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/awards">
-                 Awards
-                </a>
+                  <a href="./biochem/publications">Publications</a>
                 </span>
 
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/research">
-                  Research
-                </a>
+                  <a href="./biochem/awards">Awards</a>
+                </span>
+
+                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
+                  <a href="./biochem/research">Research</a>
                 </span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Time Table
-                </a>
+                  <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                    Time Table
+                  </a>
                 </span>
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Photo Gallery
-                </a>
+                  <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+                    Photo Gallery
+                  </a>
                 </span>
-
-
-
-
-
-
-
-                
               </div>
             </div>
           </div>

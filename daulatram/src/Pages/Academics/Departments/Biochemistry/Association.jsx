@@ -31,12 +31,18 @@ function Association() {
             </span>
           </div>
           <div className=" mt-4 ml-4 flex flex-row pr-2 ">
-            <img
-              src={association1}
-              alt="images"
-              className="rounded-3xl border-black border-2 h-[350px]  mr-10"
-              width={350}
-            />
+          <div
+                  style={{
+                    backgroundImage:
+                      "url(/images/ImgPages/Biochemistry/association1.jpg)",
+                    width: "2000px",
+                    height: "320px",
+                  
+
+                  }}
+                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-4 rounded-3xl border-2 border-black"
+                  
+                ></div>
             <span className=" card-description text-lg text-justify font-medium ">
               The annual Fresher’s party is hosted by the 2nd and 3rd year
               students at the start of a new session to welcome new students
@@ -55,25 +61,43 @@ function Association() {
             </span>
           </div>
 
-          <div className=" mt-4 ml-4 flex flex-row mb-4  ">
-          <img
-              src={association2}
-              alt="images"
-              className="rounded-3xl border-black border-2 h-[330px]  mr-3 "
-              width={350}
-            />
-            <img
-              src={association3}
-              alt="images"
-              className="rounded-3xl border-black border-2 h-[330px]  mr-3"
-              width={350}
-            />
-            <img
-              src={association4}
-              alt="images"
-              className="rounded-3xl border-black border-2 h-[330px]  mr-10"
-              width={350}
-            />
+          <div className=" mt-4 ml-5 flex flex-row mb-4  ">
+          <div
+                  style={{
+                    backgroundImage:
+                      "url(/images/ImgPages/Biochemistry/association2.jpg)",
+                    width: "3500px",
+                    height: "320px",
+                  
+
+                  }}
+                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-4 rounded-3xl border-2 border-black"
+                  
+                ></div>
+            <div
+                  style={{
+                    backgroundImage:
+                      "url(/images/ImgPages/Biochemistry/association3.jpg)",
+                    width: "3500px",
+                    height: "320px",
+                  
+
+                  }}
+                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-4 rounded-3xl border-2 border-black"
+                  
+                ></div>
+            <div
+                  style={{
+                    backgroundImage:
+                      "url(/images/ImgPages/Biochemistry/association4.jpg)",
+                    width: "3500px",
+                    height: "320px",
+                  
+
+                  }}
+                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-4 rounded-3xl border-2 border-black"
+                  
+                ></div>
           </div>
           <div className="p-3 grid grid-cols-4 mr-2 ml-2 ">
                 <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500"

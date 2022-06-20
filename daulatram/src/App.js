@@ -25,7 +25,12 @@ import Studentsachieve from "./Pages/Academics/Departments/Biochemistry/Students
 import Awards from "./Pages/Academics/Departments/Biochemistry/Awards";
 import Publications from "./Pages/Academics/Departments/Biochemistry/Publications";
 import Events from "./Pages/Academics/Departments/Biochemistry/Events";
+
+// botany
 import About from "./Pages/Academics/Departments/Botany/About";
+import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
+import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered"
+
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -37,6 +42,9 @@ import Memesis from "./Pages/Societies/Memesis";
 
 import Research_Facilities from "./Pages/Research/Research_Facilities";
 import Publications_res from "./Pages/Research/Publications_res";
+
+import Admission_committee from "./Pages/Admission/Admission_committee";
+import Fee_Structure from "./Pages/Admission/Fee_Structure";
 
 function App() {
   return (
@@ -195,6 +203,26 @@ function App() {
             }
             path="/societies/extraCurricularActivities"
           ></Route>{" "}
+          {/* Admission */}
+          <Route
+            element={
+              <>
+                <Admission_committee />
+              </>
+            }
+            path="/admission/committee"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Admission_committee />
+              </>
+            }
+            path="/admission/feeStructure"
+          ></Route>{" "}
+
+            {/* Socieites */}
+
           <Route
             element={
               <>
@@ -210,8 +238,8 @@ function App() {
               </>
             }
             path="/societies/dramaScociety"
-          ></Route>
-          {/* Research And Facilities */}
+          ></Route>{" "}
+          {/* Research And Facilities */}{" "}
           <Route
             element={
               <>
@@ -228,6 +256,34 @@ function App() {
             }
             path="/research/publications"
           ></Route>
+          {/* Botany */}
+          <Route
+            element={
+              <>
+                <About />
+              </>
+            }
+            path="/academics/departments/Botany"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Botanyfaculty/>
+              </>
+            }
+            path="/academics/departments/Botany/Botanyfaculty"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Programoffered/>
+              </>
+            }
+            path="/academics/departments/Botany/Programoffered"
+          ></Route>
+
+
+
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
         {/* <Chairperson/>

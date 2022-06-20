@@ -19,12 +19,15 @@ function About() {
               About the department
             </h2>
             <figure className="flex pr-4 pl-4 pb-2">
-              <img
-                src={bot_depart}
-                alt="images"
-                className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
-                width={600}
-              />
+            <div
+              style={{
+                backgroundImage: "url(/images/ImgPages/Botany/Botany_Depart.png)",
+                width: "700px",
+                height: "300px",
+              }}
+              className="bg-center bg-no-repeat mt-[3%] bg-cover h-10 ml-64 rounded-3xl border-2 border-black"
+              // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
+              ></div>
             </figure>
             <div className="pr-3 pl-3 flex mr-2 ml-2">
               <span className="text-lg text-justify font-medium mt-3">

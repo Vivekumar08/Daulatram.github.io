@@ -25,15 +25,15 @@ export const links = [
       },
       {
         name: "Administration",
-        link: "#",
+        link: "/about/administration",
       },
       {
         name: "Annual Report",
-        link: "#",
+        link: "/about/Annual_Report",
       },
       {
         name: "Gallery",
-        link: "#",
+        link: "/about/Gallery",
       },
     ],
   },
@@ -46,35 +46,35 @@ export const links = [
       },
       {
         name: "Teacher-In-Charges",
-        link: "#",
+        link: "/academics/Teacher_in_charge",
       },
       {
         name: "Undergraduate Courses",
-        link: "#",
+        link: "/academics/UG_courses",
       },
       {
         name: "Centre for Foreign Languages(Add-On Courses)",
-        link: "#",
+        link: "/academics/Add_on_courses",
       },
       {
         name: "Facilities",
-        link: "#",
+        link: "/academics/Facilities",
       },
       {
         name: "Resources",
-        link: "#",
+        link: "/academics/Resources",
       },
       {
         name: "Training Programs",
-        link: "#",
+        link: "/academics/Training_program",
       },
       {
         name: "Academic Calendar",
-        link: "#",
+        link: "/academics/Academic_calendar",
       },
       {
         name: "College Academic Calendar",
-        link: "#",
+        link: "/academics/College_Calendar",
       },
     ],
   },
@@ -96,39 +96,39 @@ export const links = [
     links: [
       {
         name: "Online Admissions",
-        link: "#",
+        link: "/admission/Online_Admission",
       },
       {
         name: "Admissions Bulletin 2022-23",
-        link: "#",
+        link: "/admission/Admission_Bulletin",
       },
       {
         name: "Admission Committee",
-        link: "#",
+        link: "/admission/committee",
       },
       {
         name: "Fee Structure",
-        link: "#",
+        link: "/admission/feeStructure",
       },
       {
         name: "GE Options 2022-23",
-        link: "#",
+        link: "/admission/GEoption",
       },
       {
         name: "Helpdesk",
-        link: "#",
+        link: "/admission/helpdesk",
       },
       {
         name: "OBC/SC/ST/EWS Complaints",
-        link: "#",
+        link: "/admission/OBC_SC_ST_EWS_Complaints",
       },
       {
         name: "Anti Ragging Guidlines",
-        link: "#",
+        link: "/admission/AntiRaggingGuidlines",
       },
       {
         name: "FAQS For Admissions",
-        link: "#",
+        link: "/admission/FAQs_Admission",
       },
     ],
   },
@@ -240,47 +240,47 @@ export const links = [
   },
   {
     name: "Societies",
-    links:[
+    links: [
       {
-        name:"Enabling Unit",
-        link:"/societies/enablingUnit"
+        name: "Enabling Unit",
+        link: "/societies/enablingUnit",
       },
       {
-        name:"Extra-Curricular",
-        link:"/societies/extraCurricularActivities"
+        name: "Extra-Curricular",
+        link: "/societies/extraCurricularActivities",
       },
       {
-        name:"Memesis-Drammatic Society",
-        link:"/societies/dramaScociety"
+        name: "Memesis-Drammatic Society",
+        link: "/societies/dramaScociety",
       },
-    ]
+    ],
   },
   {
     name: "Accreditation",
     links: [
       {
         name: "NAAC/IQAC",
-        link: "#",
+        link: "/Accreditation/NAAC_IQAC",
       },
       {
         name: "NAAC/AQAR",
-        link: "#",
+        link: "/academics/NAAC_AQAR",
       },
       {
         name: "NIRF",
-        link: "#",
+        link: "/academics/NIRF",
       },
       {
         name: "AISHE",
-        link: "#",
+        link: "/academics/AISHE",
       },
       {
         name: "DBT Star College",
-        link: "#",
+        link: "/academics/DBT_Star_college",
       },
       {
         name: "Other Rankings",
-        link: "#",
+        link: "/academics/Other_rankings",
       },
     ],
   },
@@ -321,40 +321,39 @@ export const about = [
     links: [
       {
         name: "Founder",
-        link: "#",
+        link: "/about/founder",
       },
       {
         name: "College Profile Mission and Vision",
-        link: "./mission",
+        link: "/about/mission",
       },
       {
         name: "Chairperson's Message",
-        link: "#",
+        link: "/about/chairperson",
       },
       {
         name: "Principal's Message",
-        link: "#",
+        link: "/about/principal",
       },
       {
         name: "Vice-Principal's Message",
-        link: "#",
+        link: "/about/vicePrincipal",
       },
       {
         name: "Administration",
-        link: "#",
+        link: "/about/administration",
       },
       {
         name: "Annual Report",
-        link: "#",
+        link: "/about/Annual_Report",
       },
       {
         name: "Gallery",
-        link: "#",
+        link: "/about/Gallery",
       },
     ],
   },
 ];
-
 
 export const acade = [
   {
@@ -362,152 +361,200 @@ export const acade = [
     links: [
       {
         name: "Departments",
-        link: "academics/departments",
+        link: "/academics/departments",
       },
       {
         name: "Teacher-In-Charges",
-        link: "#",
+        link: "/academics/Teacher_in_charge",
       },
       {
         name: "Undergraduate Courses",
-        link: "#",
+        link: "/academics/UG_courses",
       },
       {
         name: "Centre for Foreign Languages(Add-On Courses)",
-        link: "#",
+        link: "/academics/Add_on_courses",
       },
       {
         name: "Facilities",
-        link: "#",
+        link: "/academics/Facilities",
       },
       {
         name: "Resources",
-        link: "#",
+        link: "/academics/Resources",
       },
       {
         name: "Training Programs",
-        link: "#",
+        link: "/academics/Training_program",
       },
       {
         name: "Academic Calendar",
-        link: "#",
+        link: "/academics/Academic_calendar",
       },
       {
         name: "College Academic Calendar",
-        link: "#",
+        link: "/academics/College_Calendar",
       },
     ],
   },
 ];
 
+export const dept = [
+  {
+    name: "Departments",
+    names: [
+      {
+        name: "Biochemistry",
+        link: "/academics/departments/biochem",
+      },
+      {
+        name: "Botany",
+        link: "/academics/departments/Botany/",
+      },
+      {
+        name: "Chemistry",
+        link: "./",
+      },
+      {
+        name: "Commerce",
+        link: "./",
+      },
+      {
+        name: "Economics",
+        link: "./",
+      },
+      {
+        name: "English",
+        link: "./",
+      },
+      {
+        name: "Hindi",
+        link: "./",
+      },
+      {
+        name: "History",
+        link: "./",
+      },
+      {
+        name: "Mathematics",
+        link: "./",
+      },
+      {
+        name: "Music",
+        link: "./",
+      },
+      {
+        name: "NHE",
+        link: "./",
+      },
+      {
+        name: "Philosophy",
+        link: "./",
+      },
+      {
+        name: "Physical Education",
+        link: "./",
+      },
+      {
+        name: "Physics",
+        link: "./",
+      },
+      {
+        name: "Political Science",
+        link: "./",
+      },
+      {
+        name: "Psychology",
+        link: "./",
+      },
+      {
+        name: "Sanskrit",
+        link: "./",
+      },
+      {
+        name: "Zoology",
+        link: "./",
+      },
+    ],
+  },
+];
 
-export const dept =[{
-  name:"Departments",
-  names:[
-    {
-      name:"Biochemistry",
-      link:"/academics/departments/biochem"
-    },
-    {
-      name:"Botany",
-      link:"./"
-    },
-    {
-      name:"Chemistry",
-      link:"./"
-    },
-    {
-      name:"Commerce",
-      link:"./"
-    },
-    {
-      name:"Economics",
-      link:"./"
-    },
-    {
-      name:"English",
-      link:"./"
-    },
-    {
-      name:"Hindi",
-      link:"./"
-    },
-    {
-      name:"History",
-      link:"./"
-    },
-    {
-      name:"Mathematics",
-      link:"./"
-    },
-    {
-      name:"Music",
-      link:"./"
-    },
-    {
-      name:"NHE",
-      link:"./"
-    },
-    {
-      name:"Philosophy",
-      link:"./"
-    },
-    {
-      name:"Physical Education",
-      link:"./"
-    },
-    {
-      name:"Physics",
-      link:"./"
-    },
-    {
-      name:"Political Science",
-      link:"./"
-    },
-    {
-      name:"Psychology",
-      link:"./"
-    },
-    {
-      name:"Sanskrit",
-      link:"./"
-    },
-    {
-      name:"Zoology",
-      link:"./"
-    },
+export const soc = [
+  {
+    name: "Societies",
+    links: [
+      {
+        name: "Enabling Unit",
+        link: "/societies/enablingUnit",
+      },
+      {
+        name: "Extra - Curricular Activities",
+        link: "/societies/extraCurricularActivities",
+      },
+      {
+        name: "Memesis-Dramatic Society",
+        link: "/societies/dramaScociety",
+      },
+    ],
+  },
+];
 
-  ]
-}]
+export const research = [
+  {
+    name: "Research",
+    links: [
+      {
+        name: "Research and Facilities Centres",
+        link: "/research/research_facilities",
+      },
+      {
+        name: "Publications",
+        link: "/research/publications",
+      },
+    ],
+  },
+];
 
-export const soc=[{
-  name:"Societies",
-  links:[
-    {
-      name:"Enabling Unit",
-      link:"/societies/enablingUnit"
-    },
-    {
-      name:"Extra - Curricular Activities",
-      link:"/societies/extraCurricularActivities"
-    },
-    {
-      name:"Memesis-Dramatic Society",
-      link:"/societies/dramaScociety"
-    },
-  ]
-}]
-
-export const research=[{
-  name:"Research",
-  links:[
-    {
-      name:"Research and Facilities Centres",
-      link:"/research/research_facilities"
-    },
-    {
-      name:"Publications",
-      link:"/research/publications"
-    },
-  ]
-}]
+export const admisn = [
+  {
+    name: "Admission",
+    names: [
+      {
+        name: "Online Admissions",
+        link: "/admission/Online_Admission",
+      },
+      {
+        name: "Admissions Bulletin 2022-23",
+        link: "/admission/Admission_Bulletin",
+      },
+      {
+        name: "Admission Committee",
+        link: "/admission/committee",
+      },
+      {
+        name: "Fee Structure",
+        link: "/admission/feeStructure",
+      },
+      {
+        name: "GE Options 2022-23",
+        link: "/admission/GEoption",
+      },
+      {
+        name: "Helpdesk",
+        link: "/admission/helpdesk",
+      },
+      {
+        name: "OBC/SC/ST/EWS Complaints",
+        link: "/admission/OBC_SC_ST_EWS_Complaints",
+      },
+      {
+        name: "Anti Ragging Guidlines",
+        link: "/admission/AntiRaggingGuidlines",
+      },
+      {
+        name: "FAQS For Admissions",
+        link: "/admission/FAQs_Admission",
+      },
+    ],
+  },
+];
