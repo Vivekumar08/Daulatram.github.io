@@ -265,7 +265,7 @@ function Botanyfaculty() {
               <img src={kn} />
               <div class="info">
                 <h1>Dr. Kanan Nanda</h1>
-                <p>Associate Professor</p>
+                <p>Principal (2007-10)</p>
                 <a href={"#"}>
                   <button>View CV</button>
                 </a>

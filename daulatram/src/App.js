@@ -25,8 +25,17 @@ import Studentsachieve from "./Pages/Academics/Departments/Biochemistry/Students
 import Awards from "./Pages/Academics/Departments/Biochemistry/Awards";
 import Publications from "./Pages/Academics/Departments/Biochemistry/Publications";
 import Events from "./Pages/Academics/Departments/Biochemistry/Events";
+
+// botany
 import About from "./Pages/Academics/Departments/Botany/About";
 import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
+import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered";
+import Botanystudachieve from "./Pages/Academics/Departments/Botany/Botanystudachieve";
+import Bot_Publications from "./Pages/Academics/Departments/Botany/Bot_Publications";
+import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearch_Fac"
+import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association"
+
+
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -343,8 +352,55 @@ function App() {
             }
             path="/academics/departments/Botany/Botanyfaculty"
           ></Route>
+          <Route
+            element={
+              <>
+                <Programoffered/>
+              </>
+            }
+            path="/academics/departments/Botany/Programoffered"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Botanystudachieve/>
+              </>
+            }
+            path="/academics/departments/Botany/Botanystudachieve"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Bot_Publications/>
+              </>
+            }
+            path="/academics/departments/Botany/Bot_Publications"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Bot_research_fac/>
+              </>
+            }
+            path="/academics/departments/Botany/Research_Fac"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Botany_Association/>
+              </>
+            }
+            path="/academics/departments/Botany/Botany_Association"
+          ></Route>
+
+
+
+
+
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
+        {/* <Chairperson/>
+        <Chairperson_banner/> */}
       </Router>{" "}
     </>
   );

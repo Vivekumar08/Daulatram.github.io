@@ -2,12 +2,14 @@ import React from 'react'
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Chairperson_banner from '../../Components/Banners/Founder_banner';
 import chairman from "../../Dummy_data/ImgPages/About/Chairman.jpeg";
+import Founder_banner from '../../Components/Banners/Founder_banner';
 
 const Chairperson = () => {
   return (
    <>
    <div className=" flex flex-col">
         <div className="">
+        {/* <Founder_banner/> */}
         <Chairperson_banner/>
         </div>
         <div className="flex flex-row">
