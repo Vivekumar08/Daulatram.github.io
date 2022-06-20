@@ -27,6 +27,7 @@ import Publications from "./Pages/Academics/Departments/Biochemistry/Publication
 import Events from "./Pages/Academics/Departments/Biochemistry/Events";
 import About from "./Pages/Academics/Departments/Botany/About";
 
+
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
 import Facilities from "./Pages/Academics/Facilities";
@@ -220,6 +221,21 @@ function App() {
             }
             path="/research/publications"
           ></Route>
+
+          {/* Botany */}
+          <Route
+            element={
+              <>
+                <About/>
+              </>
+            }
+            path="/academics/departments/Botany/"
+          ></Route>
+
+
+
+
+
         </Routes>{" "}
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}

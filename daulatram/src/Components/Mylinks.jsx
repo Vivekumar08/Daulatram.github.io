@@ -410,7 +410,7 @@ export const dept =[{
     },
     {
       name:"Botany",
-      link:"./"
+      link:"/academics/departments/Botany/"
     },
     {
       name:"Chemistry",
