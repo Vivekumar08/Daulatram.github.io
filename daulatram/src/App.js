@@ -18,6 +18,7 @@ import Programmesoffer from "./Pages/Academics/Departments/Biochemistry/Programm
 import Founder from "./Pages/AboutUs/Founder";
 import Chairperson from "./Pages/AboutUs/Chairperson";
 import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
+import Principal from "./Pages/AboutUs/Principal";
 
 import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
 import Research_facilities from "./Pages/Academics/Departments/Biochemistry/Research_facilities";
@@ -94,6 +95,14 @@ function App() {
               </>
             }
             path="/about/vicePrincipal"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Principal/>
+              </>
+            }
+            path="/about/principal"
           ></Route>{" "}
           <Route
             element={
@@ -288,6 +297,7 @@ function App() {
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
         {/* <Chairperson/>
         <Chairperson_banner/> */}
+        {/* <Principal/> */}
       </Router>{" "}
     </>
   );
