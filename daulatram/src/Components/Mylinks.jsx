@@ -123,8 +123,12 @@ export const links = [
         link: "/admission/OBC_SC_ST_EWS_Complaints",
       },
       {
+        name: "Admission Grievance Committee",
+        link: "/admission/Admission_Grievance_Committee",
+      },
+      {
         name: "Anti Ragging Guidlines",
-        link: "/admission/AntiRaggingGuidlines",
+        link: "/admission/AntiRaggingGuidelines",
       },
       {
         name: "FAQS For Admissions",
@@ -210,31 +214,31 @@ export const links = [
     links: [
       {
         name: "Staff Council Committee",
-        link: "#",
+        link: "/StaffZone/Staff_Council_Committee",
       },
       {
         name: "Roster",
-        link: "#",
+        link: "/StaffZone/Roster",
       },
       {
         name: "Seniority List",
-        link: "#",
+        link: "/StaffZone/Seniority_List",
       },
       {
         name: "Forms",
-        link: "#",
+        link: "/StaffZone/Forms",
       },
       {
         name: "Professional Code of Ethics",
-        link: "#",
+        link: "/StaffZone/Ethics",
       },
       {
         name: "Notices",
-        link: "#",
+        link: "/StaffZone/Notices",
       },
       {
         name: "Feedback",
-        link: "#",
+        link: "/StaffZone/Feedback",
       },
     ],
   },
@@ -548,6 +552,10 @@ export const admisn = [
         link: "/admission/OBC_SC_ST_EWS_Complaints",
       },
       {
+        name: "Admission Grievance Committee",
+        link: "/admission/Admission_Grievance_Committee",
+      },
+      {
         name: "Anti Ragging Guidlines",
         link: "/admission/AntiRaggingGuidlines",
       },
@@ -558,3 +566,37 @@ export const admisn = [
     ],
   },
 ];
+
+export const staff =[{
+  name: "Staff Zone",
+    links: [
+      {
+        name: "Staff Council Committee",
+        link: "/StaffZone/Staff_Council_Committee",
+      },
+      {
+        name: "Roster",
+        link: "/StaffZone/Roster",
+      },
+      {
+        name: "Seniority List",
+        link: "/StaffZone/Seniority_List",
+      },
+      {
+        name: "Forms",
+        link: "/StaffZone/Forms",
+      },
+      {
+        name: "Professional Code of Ethics",
+        link: "/StaffZone/Ethics",
+      },
+      {
+        name: "Notices",
+        link: "/StaffZone/Notices",
+      },
+      {
+        name: "Feedback",
+        link: "/StaffZone/Feedback",
+      },
+    ]
+}]
