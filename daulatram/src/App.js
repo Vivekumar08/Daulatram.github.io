@@ -5,7 +5,6 @@ import Bulletin from "./Components/Bulletin";
 import Navbar from "./Components/Nav";
 import Icons from "./Components/Icons";
 import Upperfooter from "./Components/Footer/Upperfooter";
-// import Chairperson_banner from "./Components/Banners/Chairperson_banner";
 
 // Import Pages
 import Home from "./Pages/Home";
@@ -58,6 +57,11 @@ import Helpdesk from "./Pages/Admission/Helpdesk";
 import Guidelines_Admission from "./Pages/Admission/Guidelines_Admission";
 import Bulletins_Admission from "./Pages/Admission/Bulletins_Admission";
 import Anti_Ragging from "./Pages/Admission/Anti_Ragging";
+import Feedback from "./Pages/Staff_Zone/Feedback";
+import Notices from "./Pages/Staff_Zone/Notices";
+import Seniority_list from "./Pages/Staff_Zone/Seniority_list";
+import Staff_Council_Committee from "./Pages/Staff_Zone/Staff_Council_Committee";
+import Roster from "./Pages/Staff_Zone/Roster";
 
 function App() {
   return (
@@ -300,6 +304,49 @@ function App() {
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
           {/* *********************** */}
+          {/* Staff Zone */}
+          {/* *********************** */}
+          <Route
+            element={
+              <>
+                <Feedback />
+              </>
+            }
+            path="/StaffZone/Feedback"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Notices />
+              </>
+            }
+            path="/StaffZone/Notices"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Seniority_list />
+              </>
+            }
+            path="/StaffZone/Seniority_List"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Staff_Council_Committee />
+              </>
+            }
+            path="/StaffZone/Staff_Council_committee"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Roster />
+              </>
+            }
+            path="/StaffZone/Roster"
+          ></Route>{" "}
+          {/* *********************** */}
           {/* Socieites */}
           {/* *********************** */}
           <Route
@@ -392,15 +439,8 @@ function App() {
             }
             path="/academics/departments/Botany/Botany_Association"
           ></Route>
-
-
-
-
-
         </Routes>{" "}
-        <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
-        {/* <Chairperson/>
-        <Chairperson_banner/> */}
+        <Upperfooter /> {" "}
       </Router>{" "}
     </>
   );
