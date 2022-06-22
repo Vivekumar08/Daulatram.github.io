@@ -415,7 +415,7 @@ function App() {
                 <About />
               </>
             }
-            path="/academics/departments/Botany"
+            path="/academics/departments/Botany/About"
           ></Route>{" "}
           <Route
             element={
@@ -472,7 +472,7 @@ function App() {
               </>
             }
             path="/student/timetable"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -480,9 +480,9 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botany_lab_Staff"
-          ></Route>
+          ></Route>{" "}
         </Routes>{" "}
-        <Upperfooter /> {/* <Chairperson_banner/> */}
+        <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}
     </>
   );

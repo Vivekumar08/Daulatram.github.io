@@ -3,55 +3,56 @@ import React from 'react'
 function Botany() {
   return (
     <div>
-      <a href="/academics/departments/biochem/">
+      <a href="/academics/departments/Botany/about">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           About The Deparment
         </span>
       </a>
-      <a href="/academics/departments/biochem/faculty">
+      <a href="/academics/departments/Botany/faculty">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Faculty
         </span>
       </a>
-      <a href="/academics/departments/biochem/programmesoffer">
+      <a href="/academics/departments/Botany/programoffered">
         <span className="  bg-[#000080] rounded-lg p-2 flex w-[220px] flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
-          Programmes Offered
+          Programmes Offer
         </span>
       </a>
-      <a href="/academics/departments/biochem/association">
+      <a href="/academics/departments/Botany/Botany_Association">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Association
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/studentsachieve">
+      <a href="/academics/departments/Botany/Botanystudachieve">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Student's Achievements
         </span>{" "}
       </a>
+      <a href="/academics/departments/Botany/events">
       <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-        <a href="/academics/departments/biochem/events">Events</a>
+        Events
       </span>
-
-      <a href="/academics/departments/biochem/laboratorystaff">
+      </a>
+      <a href="/academics/departments/Botany/laboratorystaff">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Laboratory Staff
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/publications">
+      <a href="/academics/departments/Botany/Bot_Publications">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Publications
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/awards">
+      <a href="/academics/departments/Botany/awards">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Awards
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/research">
+      <a href="/academics/departments/Botany/research">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Research
         </span>

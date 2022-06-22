@@ -4,7 +4,7 @@ import Departments from "../../../../Components/Sidebar/Departments";
 import structure from "../../../../Dummy_data/ImgPages/Botany/bsc(lifescience).pdf";
 import bscbo from "../../../../Dummy_data/ImgPages/Botany/bschonsbotany.pdf";
 import lifesc from "../../../../Dummy_data/ImgPages/Botany/CoursestructureBsc(hons)botany.pdf";
-
+import Botany from "../../../../Components/DepartSIde/Botany.jsx";
 function Programoffered() {
   return (
     <div className=" flex flex-col">
@@ -21,7 +21,7 @@ function Programoffered() {
               Program Offered
             </h2>
           </div>
-
+ <div className="flex flex-row">
           <div class="wrapper2 mt-5 mb-5">
           <div class="card1">
               <div className="">
@@ -48,8 +48,7 @@ function Programoffered() {
                 <p>
                   B.Sc. Programme in Life Sciences is designed to afford a
                   skeletal structure within which the programme can be developed
-                  to suit the need of the hour, in keeping with the emergence of
-                  new areas of life sciences through interdisciplinary approach.
+                  to suit the need of the hour.
                 </p>
 
                 <a href={lifesc}>
@@ -77,7 +76,10 @@ function Programoffered() {
                 </a>
               </div>
             </div>
-            
+            </div>
+          <div className=" flex  flex-col  mt-10">
+          <Botany/>
+        </div>
           </div>
         </div>
       </div>
