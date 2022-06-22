@@ -15,7 +15,7 @@ import mb from "../../../../Dummy_data/ImgPages/Botany/Meenam_Bhatia.jpg";
 import sgp from "../../../../Dummy_data/ImgPages/Botany/Sunita_George.pdf";
 import sg from "../../../../Dummy_data/ImgPages/Botany/SUNITA_GEORGE.jpg";
 import msp from "../../../../Dummy_data/ImgPages/Botany/Meenakshi_Sharma_cv.pdf";
-import ms from "../../../../Dummy_data/ImgPages/Botany/Meenakshi_Sharma.jpg";
+import ms from "../../../../Dummy_data/ImgPages/Botany/Meenakshi_Sharma.JPG";
 import vdp from "../../../../Dummy_data/ImgPages/Botany/Vidhi_Chaudhary_cv.pdf";
 import vd from "../../../../Dummy_data/ImgPages/Botany/Vidhi_Chaudhary.jpg";
 import mlp from "../../../../Dummy_data/ImgPages/Botany/Mayanglambam_Leleeka_cv.pdf";
