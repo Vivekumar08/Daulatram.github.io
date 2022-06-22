@@ -5,7 +5,7 @@ const Events = () => {
     <>
       <div className="quick_links flex flex-row items-center mt-6 justify-center text-center text-white font-bold  ">
         <span className="quick_content uppercase w-full">
-          <strong>Latest Events </strong>
+          <strong>College Events and Activities </strong>
         </span>
       </div>
       <div className="main_div1">

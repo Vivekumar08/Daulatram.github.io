@@ -35,6 +35,7 @@ import Botanystudachieve from "./Pages/Academics/Departments/Botany/Botanystudac
 import Bot_Publications from "./Pages/Academics/Departments/Botany/Bot_Publications";
 import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearch_Fac"
 import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association"
+import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff"
 
 
 
@@ -66,6 +67,7 @@ import Staff_Council_Committee from "./Pages/Staff_Zone/Staff_Council_Committee"
 import Roster from "./Pages/Staff_Zone/Roster";
 import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
+import Admin from "./Pages/Admin/Admin";
 
 function App() {
   return (
@@ -76,6 +78,7 @@ function App() {
         <Navbar />
         <Icons />
         <Routes>
+
           <Route
             element={
               <>
@@ -83,6 +86,15 @@ function App() {
               </>
             }
             path="/"
+            ></Route>{" "}
+            {/* Admin */}
+          <Route
+            element={
+              <>
+                <Admin />
+              </>
+            }
+            path="/Admin"
           ></Route>{" "}
           <Route
             element={
@@ -467,6 +479,22 @@ function App() {
             }
             path="/student/timetable"
           ></Route>
+
+<Route
+            element={
+              <>
+                <Bot_Lab_Staff/>
+              </>
+            }
+            path="/academics/departments/Botany/Botany_lab_Staff"
+          ></Route>
+
+
+
+
+
+
+
         </Routes>{" "}
         <Upperfooter /> {" "}
         {/* <Chairperson_banner/> */}

@@ -7,8 +7,9 @@
 .main_header {
     background-color: white;
     display: flex;
-    height: 147px;
+    height: 170px;
     padding: 0px;
+    padding-top: 15px;
 }
 
 .logo {
@@ -305,9 +306,6 @@
     margin-top: 4rem;
 }
 
-img:hover {
-    transform: scale(1.1);
-}
 
 .col {
     display: grid;
@@ -389,4 +387,7 @@ img:hover {
 .time_table {
     height: 100px;
     width: 100px;
+}
+a:hover img{
+    transform: scale(1.1);
 }
