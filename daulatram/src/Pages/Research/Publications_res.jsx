@@ -1,22 +1,12 @@
 import React from "react";
+import Research_banner from "../../Components/Banners/Research_banner";
 import Research_side from "../../Components/Sidebar/Research_side";
-import R_A from '../../Dummy_data/pdfs/Research/Sheet1.pdf'
-import Books from '../../Dummy_data/pdfs/Research/Sheet2.pdf'
+import R_A from "../../Dummy_data/pdfs/Research/Sheet1.pdf";
+import Books from "../../Dummy_data/pdfs/Research/Sheet2.pdf";
 function Publications_res() {
   return (
     <div className=" flex flex-col">
-      <div
-        className="Banner"
-        style={{ backgroundImage: "url(/images/img1.jpg)" }}
-      >
-        <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-          Research{" "}
-        </span>
-        <div className="ml-2 text-lg text-white mt-28">
-          <span className="ml-5">Home</span>
-          <span className="ml-5">Research</span>
-        </div>
-      </div>
+      <Research_banner/>
       <div className="flex flex-row">
         <div className="w-[350px]">
           <Research_side />
@@ -29,7 +19,9 @@ function Publications_res() {
           </div>
           <div class="wrapper3 mt-5 mb-5">
             <div class="card2">
-              <span className="font-bold text-xl ml-2">Research Articles & Papers</span>
+              <span className="font-bold text-xl ml-2">
+                Research Articles & Papers
+              </span>
               <div className="flex flex-col">
                 <div class="info">
                   <p className="ml-14">Research Articles & Papers</p>
@@ -48,7 +40,7 @@ function Publications_res() {
             </div>
             <div class="card2">
               <div className="flex flex-row justify-center">
-              <span className="font-bold text-xl ml-20">Books</span>
+                <span className="font-bold text-xl ml-20">Books</span>
               </div>
               <div className="flex flex-col">
                 <div class="info ml-8">
