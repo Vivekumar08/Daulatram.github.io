@@ -65,6 +65,7 @@ import Seniority_list from "./Pages/Staff_Zone/Seniority_list";
 import Staff_Council_Committee from "./Pages/Staff_Zone/Staff_Council_Committee";
 import Roster from "./Pages/Staff_Zone/Roster";
 import Admin from "./Pages/Admin/Admin";
+import Sitemap from "./Pages/Sitemap";
 
 function App() {
   return (
@@ -83,8 +84,8 @@ function App() {
               </>
             }
             path="/"
-            ></Route>{" "}
-            {/* Admin */}
+          ></Route>{" "}
+          {/* Admin */}
           <Route
             element={
               <>
@@ -93,6 +94,8 @@ function App() {
             }
             path="/Admin"
           ></Route>{" "}
+
+          {/* About */}
           <Route
             element={
               <>
@@ -128,7 +131,7 @@ function App() {
           <Route
             element={
               <>
-                <Principal/>
+                <Principal />
               </>
             }
             path="/about/principal"
@@ -423,7 +426,7 @@ function App() {
           <Route
             element={
               <>
-                <Programoffered/>
+                <Programoffered />
               </>
             }
             path="/academics/departments/Botany/Programoffered"
@@ -431,7 +434,7 @@ function App() {
           <Route
             element={
               <>
-                <Botanystudachieve/>
+                <Botanystudachieve />
               </>
             }
             path="/academics/departments/Botany/Botanystudachieve"
@@ -439,7 +442,7 @@ function App() {
           <Route
             element={
               <>
-                <Bot_Publications/>
+                <Bot_Publications />
               </>
             }
             path="/academics/departments/Botany/Bot_Publications"
@@ -447,7 +450,7 @@ function App() {
           <Route
             element={
               <>
-                <Bot_research_fac/>
+                <Bot_research_fac />
               </>
             }
             path="/academics/departments/Botany/Research_Fac"
@@ -455,27 +458,28 @@ function App() {
           <Route
             element={
               <>
-                <Botany_Association/>
+                <Botany_Association />
               </>
             }
             path="/academics/departments/Botany/Botany_Association"
           ></Route>
 
-<Route
+          <Route
             element={
               <>
-                <Bot_Lab_Staff/>
+                <Bot_Lab_Staff />
               </>
             }
             path="/academics/departments/Botany/Botany_lab_Staff"
           ></Route>
-
-
-
-
-
-
-
+          <Route
+            element={
+              <>
+                <Sitemap />
+              </>
+            }
+            path="/Sitemap"
+          ></Route>
         </Routes>{" "}
         <Upperfooter /> {" "}
       </Router>{" "}
