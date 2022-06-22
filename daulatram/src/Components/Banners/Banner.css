@@ -1,4 +1,16 @@
 .Banner{
+    position: absolute;
     height: 280px;
     width: 100%;
+opacity: 0.5;
+
+}
+
+.name{
+    position: relative;
+    opacity: 1;
+}
+.caption{
+    font-weight: 300;
+    font-size: large;
 }
