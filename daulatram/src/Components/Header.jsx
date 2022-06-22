@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import Icons from "./Icons";
 
 function Header() {
   return (
@@ -49,7 +48,7 @@ function Header() {
               to="/Admin"
               className="text-lg hover:text-xl  font-semibold text-[#000080]  mt-4 ml-28"
             >
-              <span className=" bg-blue-500 rounded-lg pl-5 pr-5 p-2 text-white">
+              <span className=" bg-[#000080] rounded-lg pl-5 pr-5 p-2 text-white">
                 {" "}
                 Admin{" "}
               </span>
