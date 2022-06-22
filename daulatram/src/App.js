@@ -33,11 +33,9 @@ import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
 import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered";
 import Botanystudachieve from "./Pages/Academics/Departments/Botany/Botanystudachieve";
 import Bot_Publications from "./Pages/Academics/Departments/Botany/Bot_Publications";
-import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearch_Fac"
-import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association"
-import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff"
-
-
+import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearch_Fac";
+import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association";
+import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -78,7 +76,6 @@ function App() {
         <Navbar />
         <Icons />
         <Routes>
-
           <Route
             element={
               <>
@@ -86,8 +83,8 @@ function App() {
               </>
             }
             path="/"
-            ></Route>{" "}
-            {/* Admin */}
+          ></Route>{" "}
+          {/* Admin */}{" "}
           <Route
             element={
               <>
@@ -131,7 +128,7 @@ function App() {
           <Route
             element={
               <>
-                <Principal/>
+                <Principal />
               </>
             }
             path="/about/principal"
@@ -139,7 +136,7 @@ function App() {
           <Route
             element={
               <>
-                <Administration/>
+                <Administration />
               </>
             }
             path="/about/administration"
@@ -252,9 +249,8 @@ function App() {
             }
             path="/societies/extraCurricularActivities"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Admission */}
-          {/* *********************** */}
+          {/* *********************** */} {/* Admission */}{" "}
+          {/* *********************** */}{" "}
           <Route
             element={
               <>
@@ -335,9 +331,8 @@ function App() {
             }
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Staff Zone */}
-          {/* *********************** */}
+          {/* *********************** */} {/* Staff Zone */}{" "}
+          {/* *********************** */}{" "}
           <Route
             element={
               <>
@@ -378,9 +373,8 @@ function App() {
             }
             path="/StaffZone/Roster"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Socieites */}
-          {/* *********************** */}
+          {/* *********************** */} {/* Socieites */}{" "}
+          {/* *********************** */}{" "}
           <Route
             element={
               <>
@@ -388,7 +382,7 @@ function App() {
               </>
             }
             path="/societies/enablingUnit"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -413,8 +407,8 @@ function App() {
               </>
             }
             path="/research/publications"
-          ></Route>
-          {/* Botany */}
+          ></Route>{" "}
+          {/* Botany */}{" "}
           <Route
             element={
               <>
@@ -430,76 +424,65 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botanyfaculty"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Programoffered/>
+                <Programoffered />
               </>
             }
             path="/academics/departments/Botany/Programoffered"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Botanystudachieve/>
+                <Botanystudachieve />
               </>
             }
             path="/academics/departments/Botany/Botanystudachieve"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Bot_Publications/>
+                <Bot_Publications />
               </>
             }
             path="/academics/departments/Botany/Bot_Publications"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Bot_research_fac/>
+                <Bot_research_fac />
               </>
             }
             path="/academics/departments/Botany/Research_Fac"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Botany_Association/>
+                <Botany_Association />
               </>
             }
             path="/academics/departments/Botany/Botany_Association"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Time_table/>
+                <Time_table />
               </>
             }
             path="/student/timetable"
           ></Route>
-
-<Route
+          <Route
             element={
               <>
-                <Bot_Lab_Staff/>
+                <Bot_Lab_Staff />
               </>
             }
             path="/academics/departments/Botany/Botany_lab_Staff"
           ></Route>
-
-
-
-
-
-
-
         </Routes>{" "}
-        <Upperfooter /> {" "}
-        {/* <Chairperson_banner/> */}
-       
-
+        <Upperfooter /> {/* <Chairperson_banner/> */}
       </Router>{" "}
     </>
   );

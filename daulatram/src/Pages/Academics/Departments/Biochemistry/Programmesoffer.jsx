@@ -3,6 +3,7 @@ import Programbanner from "../../../../Components/Banners/Programbanner";
 import Departments from "../../../../Components/Sidebar/Departments";
 import ge from "../../../../Dummy_data/pdfs/GE_syllabus.pdf";
 import bsc from "../../../../Dummy_data/pdfs/bsc_biochemistry.pdf";
+import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
 
 function Programmesoffer() {
   return (
@@ -34,47 +35,7 @@ function Programmesoffer() {
               </a>
             </div>
             <div className=" flex  flex-col ml-5 mt-10  ">
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="./biochem/faculty">Faculty</a>
-              </span>
-              <span className="  bg-[#000080] rounded-lg p-2 flex w-[220px] flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
-                  <a href="/biochem/programmesoffer">Programmes Offered</a>
-                </span>
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="./biochem/association">Association</a>
-              </span>
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="./biochem/studentsachieve">Student's Achievements</a>
-              </span>
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="./biochem/events">Events</a>
-              </span>
-
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="./biochem/laboratorystaff">Laboratory Staff</a>
-              </span>
-
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px]flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="./biochem/publications">Publications</a>
-              </span>
-
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="./biochem/awards">Awards</a>
-              </span>
-
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="./biochem/research">Research</a>
-              </span>
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Time Table
-                </a>
-              </span>
-              <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Photo Gallery
-                </a>
-              </span>
+              <Biochemistry/>
             </div>
           </div>
         </div>

@@ -1,16 +1,17 @@
-.Banner{
-    position: absolute;
+.Banner {
+    position: relative;
     height: 280px;
     width: 100%;
-opacity: 0.5;
-
+    opacity: 0.8;
 }
 
-.name{
+.Priyanshu_lodu {
     position: relative;
     opacity: 1;
 }
-.caption{
+
+
+/* .caption {
     font-weight: 300;
     font-size: large;
-}
+} */
