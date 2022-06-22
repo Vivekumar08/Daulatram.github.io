@@ -1,6 +1,7 @@
 import React from "react";
 import Admission_side from "../../Components/Sidebar/Admission_side.";
-import guideline from '../../Dummy_data/pdfs/Admission/OBC_SC_ST_EWS_guidelines.pdf'
+import guideline from "../../Dummy_data/pdfs/Admission/OBC_SC_ST_EWS_guidelines.pdf";
+import { Link } from "react-router-dom";
 
 const Guidelines_Admission = () => {
   return (
@@ -12,8 +13,10 @@ const Guidelines_Admission = () => {
         <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
           Guidelines{" "}
         </span>
-        <div className="ml-2 text-lg text-white mt-28">
-          <span className="ml-5">Home</span>
+        <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+          <Link to={"/"}>
+            <span className="ml-5">Home</span>
+          </Link>
           <span className="ml-5">Admisssion</span>
         </div>
       </div>
@@ -23,11 +26,13 @@ const Guidelines_Admission = () => {
         </div>
         <div className="ml-3 mb-5">
           <div className="w-[1100px]">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">OBC SC ST EWS Guidelines</h2>
+            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+              OBC SC ST EWS Guidelines
+            </h2>
             <div class="wrapper3 mt-5 mb-5">
               <div class="card2">
                 <span className="font-bold text-xl ml-2">
-                OBC SC ST EWS Guidelines
+                  OBC SC ST EWS Guidelines
                 </span>
                 <div className="flex flex-col">
                   <div class="info">

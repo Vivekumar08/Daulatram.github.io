@@ -66,6 +66,7 @@ import Roster from "./Pages/Staff_Zone/Roster";
 import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
+import Sitemap from "./Pages/Sitemap";
 
 function App() {
   return (
@@ -93,6 +94,8 @@ function App() {
             }
             path="/Admin"
           ></Route>{" "}
+
+          {/* About */}
           <Route
             element={
               <>
@@ -480,10 +483,18 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botany_lab_Staff"
-          ></Route>{" "}
-        </Routes>{" "}
-        <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
-      </Router>{" "}
+          ></Route>
+          <Route
+            element={
+              <>
+                <Sitemap />
+              </>
+            }
+            path="/Sitemap"
+          ></Route>
+        </Routes > {" "}
+        < Upperfooter /> {/* <Chairperson_banner/> */}
+      </Router > {" "}
     </>
   );
 }

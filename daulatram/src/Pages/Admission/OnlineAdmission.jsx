@@ -1,7 +1,8 @@
 import React from "react";
 import Admission_side from "../../Components/Sidebar/Admission_side.";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {faArrowRight} from "@fortawesome/free-solid-svg-icons"
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const OnlineAdmission = () => {
   return (
@@ -13,8 +14,10 @@ const OnlineAdmission = () => {
         <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
           Online Admission{" "}
         </span>
-        <div className="ml-2 text-lg text-white mt-28">
-          <span className="ml-5">Home</span>
+        <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+          <Link to={"/"}>
+            <span className="ml-5">Home</span>
+          </Link>
           <span className="ml-5">Admisssion</span>
         </div>
       </div>
@@ -28,8 +31,15 @@ const OnlineAdmission = () => {
               Online Admission
             </h2>
             <h1 className="mt-12">
-            <FontAwesomeIcon icon={faArrowRight} className="text-blue-400" />
-            <a href="http://www.admissions.uod.ac.in/" target="_blank" className="text-blue-400  hover:pl-3"> http://www.admissions.uod.ac.in/</a>
+              <FontAwesomeIcon icon={faArrowRight} className="text-blue-400" />
+              <a
+                href="http://www.admissions.uod.ac.in/"
+                target="_blank"
+                className="text-blue-400  hover:pl-3"
+              >
+                {" "}
+                http://www.admissions.uod.ac.in/
+              </a>
             </h1>
             <p className="mt-2 ">
               All the rules and guidelines, as and when shared by University of

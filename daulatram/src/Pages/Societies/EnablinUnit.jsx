@@ -1,5 +1,6 @@
 import React from "react";
 import Societies_side from "../../Components/Sidebar/Socieities_side";
+import { Link } from "react-router-dom";
 
 export const EnablinUnit = () => {
   return (
@@ -12,7 +13,9 @@ export const EnablinUnit = () => {
           Societies{" "}
         </span>
         <div className="ml-2 text-lg text-white mt-28">
+          <Link to={"/"}>
           <span className="ml-5">Home</span>
+          </Link>
           <span className="ml-5">Societies</span>
         </div>
       </div>

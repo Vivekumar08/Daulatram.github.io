@@ -30,7 +30,7 @@ const NavLinks = () => {
               </span>
             </h1>
             <div>
-              <div className="absolute top-[275px] hidden group-hover:md:block hover:md:block">
+              <div className="absolute top-[330px] hidden group-hover:md:block hover:md:block">
                 <div className="py-3">
                   <div
                     className=" h-4 left-3 absolute 

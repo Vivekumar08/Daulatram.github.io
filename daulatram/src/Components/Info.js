@@ -13,21 +13,6 @@ export const StudentInfo = [{
         info: "Zebrafish Summer Internship 2022",
         link: "https://www.google.com"
     },
-    {
-        id: 4,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com"
-    },
-    {
-        id: 5,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com"
-    },
-    {
-        id: 6,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com"
-    },
 
 ];
 export const StaffInfo = [{
