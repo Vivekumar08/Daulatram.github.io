@@ -28,10 +28,6 @@ export const links = [
         link: "/about/administration",
       },
       {
-        name: "Annual Report",
-        link: "/about/Annual_Report",
-      },
-      {
         name: "Gallery",
         link: "/about/Gallery",
       },
@@ -141,7 +137,7 @@ export const links = [
     links: [
       {
         name: "Time Table & Academics Calendar",
-        link: "#",
+        link: "/student/timetable",
       },
       {
         name: "Attendance",

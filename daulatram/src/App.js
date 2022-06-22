@@ -18,6 +18,7 @@ import Founder from "./Pages/AboutUs/Founder";
 import Chairperson from "./Pages/AboutUs/Chairperson";
 import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
 import Principal from "./Pages/AboutUs/Principal";
+// import Chairperson_banner from './Components/Banners/Chairperson_banner'
 
 import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
 import Research_facilities from "./Pages/Academics/Departments/Biochemistry/Research_facilities";
@@ -63,6 +64,8 @@ import Notices from "./Pages/Staff_Zone/Notices";
 import Seniority_list from "./Pages/Staff_Zone/Seniority_list";
 import Staff_Council_Committee from "./Pages/Staff_Zone/Staff_Council_Committee";
 import Roster from "./Pages/Staff_Zone/Roster";
+import Administration from "./Pages/AboutUs/Administration";
+import Time_table from "./Pages/Student_zone/Time_table";
 
 function App() {
   return (
@@ -120,6 +123,14 @@ function App() {
               </>
             }
             path="/about/principal"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Administration/>
+              </>
+            }
+            path="/about/administration"
           ></Route>{" "}
           <Route
             element={
@@ -448,8 +459,19 @@ function App() {
             }
             path="/academics/departments/Botany/Botany_Association"
           ></Route>
+          <Route
+            element={
+              <>
+                <Time_table/>
+              </>
+            }
+            path="/student/timetable"
+          ></Route>
         </Routes>{" "}
         <Upperfooter /> {" "}
+        {/* <Chairperson_banner/> */}
+       
+
       </Router>{" "}
     </>
   );

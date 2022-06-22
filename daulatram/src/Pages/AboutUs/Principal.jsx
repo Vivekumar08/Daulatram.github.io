@@ -22,11 +22,11 @@ const Principal = () => {
                     Principal's Message
                     </h2>
 
-                    <figure className="flex p-4">
+                    <figure className="flex flex-col p-4">
               <img
                 src={princi1}
                 alt="princi"
-                className="rounded-3xl border-black border-2 h-[250px] mr-10 mt-16"
+                className="rounded-3xl border-black border-2 h-[280px] w-[380px] mr-10 mt-10 mb-4 ml-80"
                 width={250}
               />
 
@@ -41,11 +41,11 @@ exceedingly well in all walks of life. The intake capacity for undergraduate pro
               <span className="card-description text-justify text-lg font-medium ">
               The Program like Miss DRC talent hunt, Manjari, hostel night, creative writing in college magazine “Pramila”, sports meet etc. are some of the platforms where students can participate and showcase their talent. We have been organizing self-defence training camps and Yoga training camps for physical and mental well-being of students. This has been made possible through NSS, NCC, WDC and Sports departments of the college. The Equal Opportunity Cell looks after the academic and extracurricular activities of the differently abled students. Students are given the opportunity to make campus clean and green through various initiatives taken by Eco club and NSS such as tree plantations and Swachchata Abhiyan. The other initiatives under which students can participate and contribute are converting garden waste to manure, Paper recycling etc. The college houses several summer programs such as in-house skill development programs, life skill programs and exchange programs. They also have an opportunity to undertake research and convert their idea into reality through innovation projects and star innovation activities. The entire campus is Wi-Fi enabled. The Placement cell of college is very active where students are exposed to various career opportunities and can opt for various openings / internships in industry.
               </span>
-              <img
+              {/* <img
                 src={princi2}
                 alt="princi2"
                 className=" rounded-3xl h-[250px] border-black border-2 ml-10 mr-8 mt-16"
-              />
+              /> */}
             </figure>
             <div className="p-3 flex  m-2">
               <span className="text-lg text-justify font-medium ">
