@@ -3,7 +3,6 @@ background-color: rgb(255, 255, 255);
 display: flex;
 width: 100%;
 height: 430px;
-/* height: fit-content; */
 }
 
 
@@ -14,7 +13,6 @@ height: 430px;
     margin: 10px;
     padding: 15px;
     margin-left: 10px;
-    /* background-color: bisque; */
     opacity: 1;
     box-shadow: 10px;
     border-radius: 20px;
@@ -45,7 +43,6 @@ opacity: 0;
     box-shadow: inset;
     opacity: 0.3;
     transition: all .3s ease;
-    /* border-radius: 20px; */
     border: 4px solid darkred;
 }
 
