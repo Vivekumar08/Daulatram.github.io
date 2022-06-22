@@ -64,6 +64,7 @@ import Notices from "./Pages/Staff_Zone/Notices";
 import Seniority_list from "./Pages/Staff_Zone/Seniority_list";
 import Staff_Council_Committee from "./Pages/Staff_Zone/Staff_Council_Committee";
 import Roster from "./Pages/Staff_Zone/Roster";
+import Admin from "./Pages/Admin/Admin";
 
 function App() {
   return (
@@ -74,6 +75,7 @@ function App() {
         <Navbar />
         <Icons />
         <Routes>
+
           <Route
             element={
               <>
@@ -81,6 +83,15 @@ function App() {
               </>
             }
             path="/"
+            ></Route>{" "}
+            {/* Admin */}
+          <Route
+            element={
+              <>
+                <Admin />
+              </>
+            }
+            path="/Admin"
           ></Route>{" "}
           <Route
             element={

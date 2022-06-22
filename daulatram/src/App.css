@@ -7,8 +7,9 @@
 .main_header {
     background-color: white;
     display: flex;
-    height: 147px;
+    height: 170px;
     padding: 0px;
+    padding-top: 15px;
 }
 
 .logo {

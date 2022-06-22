@@ -30,27 +30,29 @@ const NavLinks = () => {
               </span>
             </h1>
             <div>
-              <div className="absolute top-[250px] hidden group-hover:md:block hover:md:block">
+              <div className="absolute top-[275px] hidden group-hover:md:block hover:md:block">
                 <div className="py-3">
                   <div
                     className=" h-4 left-3 absolute 
                     mt-1 bg-white rotate-45"
                   ></div>
                 </div>
-                <div className=" p-2 grid grid-cols-1 gap-4 bg-white rounded-md">
+                <div className=" p-2 grid grid-cols-1 bg-white rounded-md">
                   {link.links.map((slink) => (
-                    <div>
-                      <li className="text-md text-gray-500 capitalize rounded-sm outline-none hover:outline-red-400 ">
+                    <>
+                      <div>
                         <a
-                          href= {slink.link}
+                          href={slink.link}
                           target="_blank"
                           // rel="noreferrer"
-                          className="hover:text-red-600 m-2"
+                          className="hover:text-red-600 "
                         >
-                          {slink.name}
+                          <li className="text-md m-1 p-1 text-gray-500 capitalize rounded-sm outline-none hover:text-red-600 hover:outline-red-400 ">
+                            {slink.name}
+                          </li>
                         </a>
-                      </li>
-                    </div>
+                      </div>
+                    </>
                   ))}
                 </div>
               </div>
