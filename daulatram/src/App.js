@@ -34,6 +34,7 @@ import Botanystudachieve from "./Pages/Academics/Departments/Botany/Botanystudac
 import Bot_Publications from "./Pages/Academics/Departments/Botany/Bot_Publications";
 import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearch_Fac"
 import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association"
+import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff"
 
 
 
@@ -448,6 +449,22 @@ function App() {
             }
             path="/academics/departments/Botany/Botany_Association"
           ></Route>
+
+<Route
+            element={
+              <>
+                <Bot_Lab_Staff/>
+              </>
+            }
+            path="/academics/departments/Botany/Botany_lab_Staff"
+          ></Route>
+
+
+
+
+
+
+
         </Routes>{" "}
         <Upperfooter /> {" "}
       </Router>{" "}
