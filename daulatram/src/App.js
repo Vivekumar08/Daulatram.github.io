@@ -18,6 +18,7 @@ import Founder from "./Pages/AboutUs/Founder";
 import Chairperson from "./Pages/AboutUs/Chairperson";
 import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
 import Principal from "./Pages/AboutUs/Principal";
+// import Chairperson_banner from './Components/Banners/Chairperson_banner'
 
 import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
 import Research_facilities from "./Pages/Academics/Departments/Biochemistry/Research_facilities";
@@ -32,11 +33,9 @@ import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
 import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered";
 import Botanystudachieve from "./Pages/Academics/Departments/Botany/Botanystudachieve";
 import Bot_Publications from "./Pages/Academics/Departments/Botany/Bot_Publications";
-import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearch_Fac"
-import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association"
-import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff"
-
-
+import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearch_Fac";
+import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association";
+import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -64,6 +63,8 @@ import Notices from "./Pages/Staff_Zone/Notices";
 import Seniority_list from "./Pages/Staff_Zone/Seniority_list";
 import Staff_Council_Committee from "./Pages/Staff_Zone/Staff_Council_Committee";
 import Roster from "./Pages/Staff_Zone/Roster";
+import Administration from "./Pages/AboutUs/Administration";
+import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
 import Sitemap from "./Pages/Sitemap";
 
@@ -76,7 +77,6 @@ function App() {
         <Navbar />
         <Icons />
         <Routes>
-
           <Route
             element={
               <>
@@ -85,7 +85,7 @@ function App() {
             }
             path="/"
           ></Route>{" "}
-          {/* Admin */}
+          {/* Admin */}{" "}
           <Route
             element={
               <>
@@ -135,6 +135,14 @@ function App() {
               </>
             }
             path="/about/principal"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Administration />
+              </>
+            }
+            path="/about/administration"
           ></Route>{" "}
           <Route
             element={
@@ -244,9 +252,8 @@ function App() {
             }
             path="/societies/extraCurricularActivities"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Admission */}
-          {/* *********************** */}
+          {/* *********************** */} {/* Admission */}{" "}
+          {/* *********************** */}{" "}
           <Route
             element={
               <>
@@ -327,9 +334,8 @@ function App() {
             }
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Staff Zone */}
-          {/* *********************** */}
+          {/* *********************** */} {/* Staff Zone */}{" "}
+          {/* *********************** */}{" "}
           <Route
             element={
               <>
@@ -370,9 +376,8 @@ function App() {
             }
             path="/StaffZone/Roster"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Socieites */}
-          {/* *********************** */}
+          {/* *********************** */} {/* Socieites */}{" "}
+          {/* *********************** */}{" "}
           <Route
             element={
               <>
@@ -380,7 +385,7 @@ function App() {
               </>
             }
             path="/societies/enablingUnit"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -405,8 +410,8 @@ function App() {
               </>
             }
             path="/research/publications"
-          ></Route>
-          {/* Botany */}
+          ></Route>{" "}
+          {/* Botany */}{" "}
           <Route
             element={
               <>
@@ -422,7 +427,7 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botanyfaculty"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -430,7 +435,7 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Programoffered"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -438,7 +443,7 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botanystudachieve"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -446,7 +451,7 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Bot_Publications"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -454,7 +459,7 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Research_Fac"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -462,8 +467,15 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botany_Association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Time_table />
+              </>
+            }
+            path="/student/timetable"
           ></Route>
-
           <Route
             element={
               <>
@@ -480,9 +492,9 @@ function App() {
             }
             path="/Sitemap"
           ></Route>
-        </Routes>{" "}
-        <Upperfooter /> {" "}
-      </Router>{" "}
+        </Routes > {" "}
+        < Upperfooter /> {/* <Chairperson_banner/> */}
+      </Router > {" "}
     </>
   );
 }

@@ -18,15 +18,15 @@ const Mission = () => {
             <Sidebar />
           </div>
           <div className="w-[1100px]">
-            <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center mr-10  ">
               College Profile Mission and Vision
             </h2>
 
-            <figure className="flex p-4">
+            <figure className="flex flex-col p-4 ">
               <img
                 src={about1}
                 alt="images"
-                className="rounded-3xl border-black border-2 h-[250px] mr-10"
+                className="rounded-3xl border-black border-2 h-[280px] w-[380px] mr-10 ml-80 mb-2"
                 width={250}
               />
 
@@ -69,11 +69,11 @@ const Mission = () => {
                 students on rolls, about 180 teaching staff and 75 non-teaching
                 staff.
               </span>
-              <img
+              {/* <img
                 src={about2}
                 alt="images"
                 className=" rounded-3xl h-[250px] border-black border-2 ml-10 mr-8"
-              />
+              /> */}
             </figure>
             <div className="p-3 flex  m-2">
               <span className="text-lg text-justify font-medium ">

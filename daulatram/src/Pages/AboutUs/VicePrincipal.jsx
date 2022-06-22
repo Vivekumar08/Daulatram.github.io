@@ -19,11 +19,11 @@ const VicePrincipal = () => {
               Vice-Principal's Message
             </h2>
 
-            <figure className="flex pl-4 pr-4 pb-2 ">
+            <figure className="flex flex-col pl-4 pr-4 pb-2 ">
               <img
                 src={VP}
                 alt="Vice-Principal"
-                className="rounded-3xl border-black border-2 h-[220px] ml-6"
+                className="rounded-3xl border-black border-2 h-[280px] w-[370px] ml-80 mb-4"
                 width={220}
               />
 

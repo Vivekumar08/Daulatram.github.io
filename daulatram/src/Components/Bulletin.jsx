@@ -2,7 +2,7 @@ import React,{useState} from 'react';
 import { StudentInfo } from './Info';
 
 const Bulletin = () => {
-  const [Studentinfo,setInfo] = useState(StudentInfo)
+  // const [Studentinfo,setInfo] = useState(StudentInfo)
   return (
     <>
     <div className=' flex' >
@@ -10,13 +10,13 @@ const Bulletin = () => {
         <div className='triangle bg-blue-200 '></div>
         <div className='w-full bg-blue-200 pt-1'>
           <span >
-          {Studentinfo.map((curElem) => {
-              const { id, info, link } = curElem;
+          {StudentInfo.map((curElem) => {
+              // const { id, info, link } = curElem;
               return (
                 <>
-                  <a href={link} target="_blank" rel="norefferer" className='ml-8 hover:font-semibold hover:text-green-600'>
-                    <span className="inline flex-row  text-sm ml-2 mr-2  transition duration-75">
-                      {info}
+                  <a href={curElem.link} target="_blank" rel="norefferer" className='ml-8 hover:font-semibold hover:text-green-600'>
+                    <span className="  text-sm ml-2 mr-2  transition duration-75">
+                      {curElem.info}
                     </span>
                   </a>
                 </>

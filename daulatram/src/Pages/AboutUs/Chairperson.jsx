@@ -1,6 +1,6 @@
 import React from 'react'
 import Sidebar from "../../Components/Sidebar/Sidebar";
-import Chairperson_banner from '../../Components/Banners/Founder_banner';
+import Chairperson_banner from '../../Components/Banners/Chairperson_banner';
 import chairman from "../../Dummy_data/ImgPages/About/Chairman.jpeg";
 import Founder_banner from '../../Components/Banners/Founder_banner';
 
@@ -21,11 +21,11 @@ const Chairperson = () => {
                     Chairperson's Message
                     </h2>
 
-            <figure className="flex p-4 ">
+            <figure className="flex flex-col p-4 ">
               <img 
                 src={chairman}
                 alt="chairman"
-                className="rounded-3xl border-black border-2 h-[180px] ml-6"
+                className="rounded-3xl border-black border-2 h-[280px] w-[380px] ml-80 mb-4"
                 width={180}
               />
 

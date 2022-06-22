@@ -20,13 +20,13 @@ const Founder = () => {
                     Founder
                     </h2>
 
-            <figure className="flex p-4 ">
+            <figure className="flex flex-col p-4 ">
               <img 
                 src={founder}
                 alt="founder"
-                className="rounded-3xl border-black border-2 h-[250px] ml-20"
-                // height={350}
-                width={250}
+                className="rounded-3xl border-black border-2 h-[280px] w-[380px] ml-80"
+                 height={450}
+                width={380}
               />
 
               <span className=" card-description text-lg text-justify font-medium m-50 p-9">

@@ -19,12 +19,12 @@ function Bot_Publications() {
               Publications
             </h2>
             </div>
-          <div class="wrapper2 mt-5 mb-5">
+          <div class="wrapper2 mt-4 mb-5">
           <div class="card1">
               <div className="">
-                <span className=" text-2xl font-bold justify-center ml-12">Publications</span>
+                <span className=" text-2xl font-bold justify-center ml-7">Publications</span>
               </div>
-              <div class="info ml-24">
+              <div class="info ml-16 mt-2">
                 <h1 className="font-bold  ">Description</h1>
                 <p className='ml-1'>
                 Research
