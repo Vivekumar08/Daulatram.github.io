@@ -58,7 +58,7 @@ export const links = [
       },
       {
         name: "Resources",
-        link: "/academics/Resources",
+        link: "/academics/resources",
       },
       {
         name: "Training Programs",
@@ -141,6 +141,7 @@ export const links = [
       },
       {
         name: "Attendance",
+        link: "/student/attendence",
         link: "/Student_Zone/Attendance",
       },
       {

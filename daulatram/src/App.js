@@ -66,7 +66,12 @@ import Roster from "./Pages/Staff_Zone/Roster";
 import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
+<<<<<<< HEAD
+import Attendence from "./Pages/Student_zone/Attendence";
+=======
 import Sitemap from "./Pages/Sitemap";
+import Resources from "./Pages/Academics/Resources";
+>>>>>>> ec2aff87b9c5ec7c646516ae7fa3abd3ab2ce73d
 
 function App() {
   return (
@@ -94,8 +99,7 @@ function App() {
             }
             path="/Admin"
           ></Route>{" "}
-
-          {/* About */}
+          {/* About */}{" "}
           <Route
             element={
               <>
@@ -418,7 +422,7 @@ function App() {
                 <About />
               </>
             }
-            path="/academics/departments/Botany"
+            path="/academics/departments/Botany/"
           ></Route>{" "}
           <Route
             element={
@@ -443,6 +447,14 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botanystudachieve"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Resources />
+              </>
+            }
+            path="/academics/resources"
           ></Route>{" "}
           <Route
             element={
@@ -476,6 +488,17 @@ function App() {
             }
             path="/student/timetable"
           ></Route>
+           <Route
+            element={
+              <>
+                <Attendence/>
+              </>
+            }
+            path="/student/attendence"
+          ></Route>
+
+<Route
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -483,7 +506,7 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botany_lab_Staff"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -491,10 +514,14 @@ function App() {
               </>
             }
             path="/Sitemap"
-          ></Route>
-        </Routes > {" "}
-        < Upperfooter /> {/* <Chairperson_banner/> */}
-      </Router > {" "}
+          ></Route>{" "}
+        </Routes>{" "}
+        <Upperfooter /> {" "}
+        {/* <Chairperson_banner/> */}
+       {/* <Attendence/> */}
+
+        <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
+      </Router>{" "}
     </>
   );
 }
