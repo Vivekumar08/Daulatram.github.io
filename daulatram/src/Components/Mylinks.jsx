@@ -238,23 +238,27 @@ export const links = [
       },
     ],
   },
-  {
-    name: "Societies",
-    links: [
-      {
-        name: "Enabling Unit",
-        link: "/societies/enablingUnit",
-      },
-      {
-        name: "Extra-Curricular",
-        link: "/societies/extraCurricularActivities",
-      },
-      {
-        name: "Memesis-Drammatic Society",
-        link: "/societies/dramaScociety",
-      },
-    ],
-  },
+  // {
+  //   name: "Societies",
+  //   links: [
+  //     {
+  //       name: "Enabling Unit",
+  //       link: "/societies/enablingUnit",
+  //     },
+  //     {
+  //       name: "Extra-Curricular",
+  //       link: "/societies/extraCurricularActivities",
+  //     },
+  //     {
+  //       name: "Memesis-Drammatic Society",
+  //       link: "/societies/dramaScociety",
+  //     },
+  //   ],
+  // },
+  
+];
+
+export const useful =[
   {
     name: "Accreditation",
     links: [
@@ -313,7 +317,7 @@ export const links = [
       },
     ],
   },
-];
+]
 
 export const about = [
   {

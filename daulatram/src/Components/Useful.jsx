@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import { links } from "./Mylinks";
+import { useful } from "./Mylinks";
 
-const NavLinks = () => {
+const Useful = () => {
   const [heading, setHeading] = useState("");
   const [subHeading, setSubHeading] = useState("");
   return (
     <>
-      {links.map((link) => (
+      {useful.map((link) => (
         <div className="z-10">
           <div className=" text-left md:cursor-pointer group ">
             <h1
@@ -70,4 +70,4 @@ const NavLinks = () => {
   );
 };
 
-export default NavLinks;
+export default Useful;
