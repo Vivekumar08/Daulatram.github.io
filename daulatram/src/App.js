@@ -94,8 +94,7 @@ function App() {
             }
             path="/Admin"
           ></Route>{" "}
-
-          {/* About */}
+          {/* About */}{" "}
           <Route
             element={
               <>
@@ -418,7 +417,7 @@ function App() {
                 <About />
               </>
             }
-            path="/academics/departments/Botany/About"
+            path="/academics/departments/Botany/"
           ></Route>{" "}
           <Route
             element={
@@ -483,7 +482,7 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botany_lab_Staff"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -491,10 +490,10 @@ function App() {
               </>
             }
             path="/Sitemap"
-          ></Route>
-        </Routes > {" "}
-        < Upperfooter /> {/* <Chairperson_banner/> */}
-      </Router > {" "}
+          ></Route>{" "}
+        </Routes>{" "}
+        <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
+      </Router>{" "}
     </>
   );
 }

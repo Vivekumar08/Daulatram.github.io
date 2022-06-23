@@ -3,12 +3,12 @@ import React from 'react'
 function Botany() {
   return (
     <div>
-      <a href="/academics/departments/Botany/about">
+      <a href="/academics/departments/Botany/">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           About The Deparment
         </span>
       </a>
-      <a href="/academics/departments/Botany/faculty">
+      <a href="/academics/departments/Botany/Research_Fac">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Faculty
         </span>
