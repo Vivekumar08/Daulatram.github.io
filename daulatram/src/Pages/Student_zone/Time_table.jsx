@@ -1,15 +1,23 @@
-import React from 'react'
+import React,{useState} from 'react'
 import Princi_banner from '../../Components/Banners/Princi_banner'
 import "./Time_table.css"
 import Sidebar from "../../Components/Sidebar/Sidebar";
 
+class DownloadLink extends React.Component {
+  render() {
+      return (
+          <a href={this.props.src} download>{this.props.children}</a>
+      )
+  }
+}
 const data = [
-  { TT: "Semesters 2021-22", one: "B.Sc(H) Mathematics", two: "B.A(H) History", three: "B.A.(H) Sanskrit", four: "	Commerce",five: " B.A.(H)Psychology" },
-  { TT: "Semesters 2021-22", one: "B.A.(H)Economics", two: "B.A.(H)English", three: "Physical Education", four: "B.A.(H) Pol.Sci",five: " 	B.A.(H) Hindi" },
-  { TT: "Semesters 2021-22", one: "B.Sc Life Science", two: "B.Sc(H) Botany", three: "B.Sc(H) Chemistry", four: "B.Sc(H) Physics",five: "	B.Sc(H) Bio-Chemistry " },
-  { TT: "Semesters 2021-22", one: "B.A(H) Philosophy", two: "B.A.(P)", three: "	NHE", four: "	B.Sc(H)Zoology",five: " Music" },
+  { TT: "Semesters 2021-22", one: "B.Sc(H) Mathematics",onesrc:"/Student_zone/Time_tables/Maths.xlsx", two: "B.A(H) History",twosrc:"/Student_zone/Time_tables/History.docx", three: "B.A.(H) Sanskrit",threesrc:" ", four: "	Commerce", foursrc:"/Student_zone/Time_tables/Commerce.xlsx",five: " B.A.(H)Psychology",fivesrc:"/Student_zone/Time_tables/Psychology.xlsx" },
+  { TT: "Semesters 2021-22", one: "B.A.(H)Economics",onesrc:"", two: "B.A.(H)English",twosrc:" /Student_zone/Time_tables/English.docx", three: "Physical Education",threesrc:"", four: "B.A.(H) Pol.Sci",foursrc:"",five: " B.A.(H) Hindi" ,fivesrc:" /Student_zone/Time_tables/HINDI.xlsx"},
+  { TT: "Semesters 2021-22", one: "B.Sc Life Science",onesrc:"/Student_zone/Time_tables/Life-science.xlsx", two: "B.Sc(H) Botany",twosrc:"/Student_zone/Time_tables/Botany.xlsx", three: "B.Sc(H) Chemistry",threesrc:"/Student_zone/Time_tables/Chemistry.xlsx", four: "B.Sc(H) Physics",five: "	B.Sc(H) Bio-Chemistry ",fivesrc:"/Student_zone/Time_tables/Biochemistry.xlsx" },
+  { TT: "Semesters 2021-22", one: "B.A(H) Philosophy",onesrc:"/Student_zone/Time_tables/Philosophy.docx", two: "B.A.(P)",twosrc:"/Student_zone/Time_tables/BAProgram.xlsx", three: "	NHE",threesrc:"/Student_zone/Time_tables/NHE.docx", four: "	B.Sc(H)Zoology",foursrc:"/Student_zone/Time_tables/Zoology.xlsx",five: " Music" },
 ]
 const Time_table = () => {
+
   return (
 
        <>
@@ -29,11 +37,13 @@ const Time_table = () => {
           <th>4</th>
           <th>5</th>
         </tr>
-        {data.map((val, key) => {
+        {data.map((val,key) => {
+        //  const { TT, one, onesrc, two,twosrc,three,threesrc,four,foursrc,five,fivesrc } = curElem;
+
           return (
             <tr key={key}>
               <td>{val.TT}</td>
-              <td><a href="">{val.one}</a></td>
+              <td> <DownloadLink src={val.onesrc}>{val.one}</DownloadLink></td>
               <td><a href="">{val.two}</a></td>
               <td><a href="">{val.three}</a></td>
               <td><a href="">{val.four}</a></td>

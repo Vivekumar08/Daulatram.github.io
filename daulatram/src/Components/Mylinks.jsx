@@ -141,7 +141,7 @@ export const links = [
       },
       {
         name: "Attendance",
-        link: "#",
+        link: "/student/attendence",
       },
       {
         name: "Internal Assesments",

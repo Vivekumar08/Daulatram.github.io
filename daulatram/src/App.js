@@ -68,6 +68,7 @@ import Roster from "./Pages/Staff_Zone/Roster";
 import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
+import Attendence from "./Pages/Student_zone/Attendence";
 
 function App() {
   return (
@@ -479,6 +480,14 @@ function App() {
             }
             path="/student/timetable"
           ></Route>
+           <Route
+            element={
+              <>
+                <Attendence/>
+              </>
+            }
+            path="/student/attendence"
+          ></Route>
 
 <Route
             element={
@@ -498,7 +507,7 @@ function App() {
         </Routes>{" "}
         <Upperfooter /> {" "}
         {/* <Chairperson_banner/> */}
-       
+       {/* <Attendence/> */}
 
       </Router>{" "}
     </>
