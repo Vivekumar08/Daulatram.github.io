@@ -67,6 +67,7 @@ import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
 import Sitemap from "./Pages/Sitemap";
+import Resources from "./Pages/Academics/Resources";
 
 function App() {
   return (
@@ -442,6 +443,14 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/Botanystudachieve"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Resources />
+              </>
+            }
+            path="/academics/resources"
           ></Route>{" "}
           <Route
             element={
