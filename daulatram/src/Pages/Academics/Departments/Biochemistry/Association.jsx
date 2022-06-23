@@ -5,6 +5,7 @@ import association1 from "../../../../Dummy_data//ImgPages/Biochemistry/associat
 import association2 from "../../../../Dummy_data//ImgPages/Biochemistry/association2.jpg";
 import association3 from "../../../../Dummy_data//ImgPages/Biochemistry/association3.jpg";
 import association4 from "../../../../Dummy_data//ImgPages/Biochemistry/association4.jpg";
+import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
 
 function Association() {
   return (
@@ -21,6 +22,21 @@ function Association() {
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Association
           </h2>
+<div>
+          <div
+                  style={{
+                    backgroundImage:
+                      "url(/images/ImgPages/Biochemistry/association1.jpg)",
+                      width: "800px",
+                      height: "420px",
+                  
+
+                  }}
+                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"
+                  
+                ></div>
+
+
           <div className="flex pr-4 pl-4 pb-2">
             <span className=" card-description text-lg text-justify font-medium ">
               The Biochemistry Association of Daulat Ram College takes immense
@@ -31,18 +47,7 @@ function Association() {
             </span>
           </div>
           <div className=" mt-4 ml-4 flex flex-row pr-2 ">
-          <div
-                  style={{
-                    backgroundImage:
-                      "url(/images/ImgPages/Biochemistry/association1.jpg)",
-                    width: "2000px",
-                    height: "320px",
-                  
-
-                  }}
-                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-4 rounded-3xl border-2 border-black"
-                  
-                ></div>
+          
             <span className=" card-description text-lg text-justify font-medium ">
               The annual Fresher’s party is hosted by the 2nd and 3rd year
               students at the start of a new session to welcome new students
@@ -61,103 +66,51 @@ function Association() {
             </span>
           </div>
 
-          <div className=" mt-4 ml-5 flex flex-row mb-4  ">
+          
           <div
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Biochemistry/association2.jpg)",
-                    width: "3500px",
-                    height: "320px",
+                      width: "800px",
+                      height: "450px",
                   
 
                   }}
-                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-4 rounded-3xl border-2 border-black"
-                  
+                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"                  
                 ></div>
+
+
+
             <div
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Biochemistry/association3.jpg)",
-                    width: "3500px",
-                    height: "320px",
+                      width: "800px",
+                      height: "450px",
                   
 
                   }}
-                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-4 rounded-3xl border-2 border-black"
-                  
+                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"                  
                 ></div>
             <div
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Biochemistry/association4.jpg)",
-                    width: "3500px",
-                    height: "320px",
+                      width: "800px",
+                      height: "450px",
                   
 
                   }}
-                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-4 rounded-3xl border-2 border-black"
-                  
+                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"                  
                 ></div>
-          </div>
-          <div className="p-3 grid grid-cols-4 mr-2 ml-2 ">
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500"
-                ><a href="./biochem/faculty">
-                  Faculty
-                </a>
-                </span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/programmesoffer">
-                  Programmes Offered
-                </a>
-                </span>
-                
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/studentsachieve">
-                  Student's Achievements
-                </a>
-                </span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/events">
-                  Events
-                </a>
-                </span>
-
-            <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/laboratorystaff">
-                  Laboratory Staff
-                </a>
-                </span>
-
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/publications">
-                  Publications
-                </a>
-                </span>
-
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/awards">
-                 Awards
-                </a>
-                </span>
-
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="./biochem/research">
-                  Research
-                </a>
-                </span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Time Table
-                </a>
-                </span>
-                <span className=" mr-2 bg-blue-600 rounded-lg p-2 flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-500">
-                <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
-                  Photo Gallery
-                </a>
-                </span>
-
-              </div>
+                </div>
+          
+          
         </div>
+        
+        <div className=" flex  flex-col ml-1 mr-16 mt-24">
+                <Biochemistry/>
+                </div>
       </div>
     </div>
   );

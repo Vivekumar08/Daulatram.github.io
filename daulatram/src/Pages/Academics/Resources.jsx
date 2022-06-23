@@ -1,62 +1,26 @@
 import React from "react";
-import Research_banner from "../../Components/Banners/Research_banner";
-import Research_side from "../../Components/Sidebar/Research_side";
+import ResourcesBanner from "../../Components/Banners/ResourcesBanner";
+import Sidebar from "../../Components/Sidebar/DeptSidebar";
 
-const Research_Facilities = () => {
+const Resources = () => {
   return (
     <>
-      <Research_banner />
+      <ResourcesBanner />
 
       <div className="flex flex-row">
         <div className="w-[350px] mb-2">
-          <Research_side />
+          <Sidebar />
         </div>
         <div className="w-[1100px]">
           <div className="flex justify-center items-center flex-col">
             <div>
               <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-                Research and Facilities Centres
+                Resources
               </h2>
             </div>
           </div>
           <div className="text-justify p-3 m-2 ml-4">
-            <figure className="flex flex-col">
-              <h1 className="font-bold text-2xl">Library and Reading Room</h1>
-              <p>
-                Library and Reading Room facilities are open only to students
-                and staff of the college. The College Library possesses an
-                excellent collection of books, journals/periodicals. The Library
-                is open from 9 a.m. to 5 p.m. Monday to Friday. For the purpose
-                of issuing, books are categorized into three sections: General
-                Section, Reserved Section and Reference Section. The library is
-                well equipped with latest technical facilities alongside a
-                developed Braille Section with a software of Brail (Angel:
-                Talking Digital Pocket Daisy Player, E-Book Reader, MP3 Player,
-                Radio cum voice Recorder) for the benefit of reading, writing
-                and listening to provide equal opportunity to differently-abled
-                students.
-              </p>
-            </figure>
-            <br />
-            <h1 className="font-bold text-2xl">Laboratories</h1>
-            <p>
-              The College has well equipped and well managed laboratories for
-              all the Science courses offered, viz. Bio-Chemistry, Botany,
-              Chemistry, Mathematics, Physics and Zoology. The Departments of
-              Nutrition & Health Education and Psychology also have separate
-              well equipped labs.
-            </p>
-            <br />
-            <h1 className="font-bold text-2xl">Computer Labs</h1>
-            <p>
-              The College has well equipped Computer Labs with Pentium machines
-              with the latest configuration. The Labs have connectivity with the
-              Delhi University intranet with access to the internet. The main
-              computer lab has 38 computers and there is an additional computer
-              lab for Commerce and Maths students having 25 computers with an
-              internet facility.
-            </p>
-            <br />
+           
             <h1 className="font-bold text-2xl">Psychology Resource Centre</h1>
             <p>
               The Psychology Resource Centre (PRC) addresses the psycho-social
@@ -155,6 +119,15 @@ const Research_Facilities = () => {
               organised regularly which helps to train the students and
               community members from time to time.
             </p>
+            <div
+                style={{
+                  backgroundImage: "url(/images/academics/recycling.png)",
+                  width: "100%",
+                  height: "250px",
+                }}
+                className="bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
+              ></div>
+        
             <br />
           </div>
         </div>
@@ -163,4 +136,4 @@ const Research_Facilities = () => {
   );
 };
 
-export default Research_Facilities;
+export default Resources;

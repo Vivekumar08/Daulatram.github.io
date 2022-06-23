@@ -58,7 +58,7 @@ export const links = [
       },
       {
         name: "Resources",
-        link: "/academics/Resources",
+        link: "/academics/resources",
       },
       {
         name: "Training Programs",
@@ -137,71 +137,72 @@ export const links = [
     links: [
       {
         name: "Time Table & Academics Calendar",
-        link: "/student/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
       },
       {
         name: "Attendance",
         link: "/student/attendence",
+        link: "/Student_Zone/Attendance",
       },
       {
         name: "Internal Assesments",
-        link: "#",
+        link: "/Student_Zone/Internal_Assesments",
       },
       {
         name: "Examination Form And Datesheet",
-        link: "#",
+        link: "/Student_Zone/Examination_Form_&_Database",
       },
       {
         name: "Hostel",
-        link: "#",
+        link: "/Student_Zone/Hostel",
       },
       {
         name: "Forms",
-        link: "#",
+        link: "/Student_Zone/Forms",
       },
       {
         name: "Fee Payment Portal",
-        link: "#",
+        link: "/Student_Zone/Fee_Payment_Portal",
       },
       {
         name: "Scholarship",
-        link: "#",
+        link: "/Student_Zone/Scholarship",
       },
       {
         name: "Student's Union",
-        link: "#",
+        link: "/Student_Zone/Student_Union",
       },
       {
         name: "Placement Cell",
-        link: "#",
+        link: "/Student_Zone/Placement_Cell",
       },
       {
         name: "Students Facilities",
-        link: "#",
+        link: "/Student_Zone/Students_Facilities",
       },
       {
         name: "E-Resources",
-        link: "#",
+        link: "/Student_Zone/E_Resources",
       },
       {
         name: "ICC",
-        link: "#",
+        link: "/Student_Zone/ICC",
       },
       {
         name: "Anti-Ragging Helplines",
-        link: "#",
+        link: "/Student_Zone/Anti_Ragging_Helpline",
       },
       {
         name: "Equal Opportunities Cell",
-        link: "#",
+        link: "/Student_Zone/Equal_Opportunities_Cell",
       },
       {
         name: "Grievance Redressal",
-        link: "#",
+        link: "/Student_Zone/Grievance_Redressal",
       },
       {
         name: "Complaints/Suggestions",
-        link: "#",
+        link: "/Student_Zone/Complainst_&_Suggetions",
       },
     ],
   },
@@ -563,8 +564,9 @@ export const admisn = [
   },
 ];
 
-export const staff =[{
-  name: "Staff Zone",
+export const staff = [
+  {
+    name: "Staff Zone",
     links: [
       {
         name: "Staff Council Committee",
@@ -594,5 +596,82 @@ export const staff =[{
         name: "Feedback",
         link: "/StaffZone/Feedback",
       },
-    ]
-}]
+    ],
+  },
+];
+
+export const Student = [
+  {
+    name: "Students Zone",
+    links: [
+      {
+        name: "Time Table & Academics Calendar",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
+      },
+      {
+        name: "Attendance",
+        link: "/Student_Zone/Attendance",
+      },
+      {
+        name: "Internal Assesments",
+        link: "/Student_Zone/Internal_Assesments",
+      },
+      {
+        name: "Examination Form And Datesheet",
+        link: "/Student_Zone/Examination_Form_&_Database",
+      },
+      {
+        name: "Hostel",
+        link: "/Student_Zone/Hostel",
+      },
+      {
+        name: "Forms",
+        link: "/Student_Zone/Forms",
+      },
+      {
+        name: "Fee Payment Portal",
+        link: "/Student_Zone/Fee_Payment_Portal",
+      },
+      {
+        name: "Scholarship",
+        link: "/Student_Zone/Scholarship",
+      },
+      {
+        name: "Student's Union",
+        link: "/Student_Zone/Student_Union",
+      },
+      {
+        name: "Placement Cell",
+        link: "/Student_Zone/Placement_Cell",
+      },
+      {
+        name: "Students Facilities",
+        link: "/Student_Zone/Students_Facilities",
+      },
+      {
+        name: "E-Resources",
+        link: "/Student_Zone/E_Resources",
+      },
+      {
+        name: "ICC",
+        link: "/Student_Zone/ICC",
+      },
+      {
+        name: "Anti-Ragging Helplines",
+        link: "/Student_Zone/Anti_Ragging_Helpline",
+      },
+      {
+        name: "Equal Opportunities Cell",
+        link: "/Student_Zone/Equal_Opportunities_Cell",
+      },
+      {
+        name: "Grievance Redressal",
+        link: "/Student_Zone/Grievance_Redressal",
+      },
+      {
+        name: "Complaints/Suggestions",
+        link: "/Student_Zone/Complainst_&_Suggetions",
+      },
+    ],
+  },
+];
