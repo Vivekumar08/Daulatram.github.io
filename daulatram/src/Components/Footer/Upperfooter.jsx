@@ -19,7 +19,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/about/Gallery"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Gallery
@@ -28,7 +28,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Contact_us"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Contact Us
@@ -37,7 +37,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Public_Notice"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Public Notice
@@ -46,7 +46,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/RTI"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       RTI
@@ -55,7 +55,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/StaffZone/Feedback"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Feedback
@@ -65,7 +65,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Tender"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Tender
@@ -74,7 +74,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Grievances"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Grievances
@@ -83,7 +83,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Job_Opportunities"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Job Opportunities
@@ -92,7 +92,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Anti_Sexual_Harrasement"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Anti-Sexual Harrasement
@@ -101,7 +101,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="ST_SC_OBC_Complaints"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       ST-SC-OBC Complaints
@@ -125,6 +125,8 @@ function Upperfooter() {
                     <span className="mr-3">-</span>
                     <a
                       href="https://drcaa.org/"
+                      target="_blank"
+                      rel="noreferrer"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       https://drcaa.org/{" "}

@@ -549,7 +549,7 @@ export const admisn = [
         link: "/admission/helpdesk",
       },
       {
-        name: "OBC/SC/ST/EWS Complaints",
+        name: "OBC/SC/ST/EWS Guidelines",
         link: "/admission/OBC_SC_ST_EWS_Complaints",
       },
       {

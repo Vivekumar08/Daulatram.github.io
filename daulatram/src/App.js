@@ -69,6 +69,7 @@ import Admin from "./Pages/Admin/Admin";
 import Attendence from "./Pages/Student_zone/Attendence";
 import Sitemap from "./Pages/Sitemap";
 import Resources from "./Pages/Academics/Resources";
+import Contact from "./Pages/Footer/Contact";
 
 function App() {
   return (
@@ -335,7 +336,8 @@ function App() {
             }
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
-          {/* *********************** */} {/* Staff Zone */}{" "}
+          {/* *********************** */} 
+          {/* Staff Zone */}{" "}
           {/* *********************** */}{" "}
           <Route
             element={
@@ -377,7 +379,8 @@ function App() {
             }
             path="/StaffZone/Roster"
           ></Route>{" "}
-          {/* *********************** */} {/* Socieites */}{" "}
+          {/* *********************** */}
+          {/* Socieites */}{" "}
           {/* *********************** */}{" "}
           <Route
             element={
@@ -395,7 +398,9 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>{" "}
+          {/* *********************** */}
           {/* Research And Facilities */}{" "}
+          {/* *********************** */}
           <Route
             element={
               <>
@@ -512,12 +517,20 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
+{/* *********************** */}
+{/* Footer */}
+{/* *********************** */}
+          <Route
+            element={
+              <>
+                <Contact />
+              </>
+            }
+            path="/Contact_us"
+          ></Route>{" "}
+
         </Routes>{" "}
         <Upperfooter /> {" "}
-        {/* <Chairperson_banner/> */}
-        {/* <Attendence/> */}
-
-        <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}
     </>
   );
