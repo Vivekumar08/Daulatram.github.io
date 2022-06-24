@@ -66,12 +66,9 @@ import Roster from "./Pages/Staff_Zone/Roster";
 import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
-<<<<<<< HEAD
 import Attendence from "./Pages/Student_zone/Attendence";
-=======
 import Sitemap from "./Pages/Sitemap";
 import Resources from "./Pages/Academics/Resources";
->>>>>>> ec2aff87b9c5ec7c646516ae7fa3abd3ab2ce73d
 
 function App() {
   return (
