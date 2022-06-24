@@ -9,20 +9,10 @@ th{
     background-color: #b5b5b3;
     
 }
-/* 
-.main{
-    position: relative;
-    margin-top: 20px;
-    margin-left: 12px;
-} */
 
 .small{
-    /* position: absolute; */
-    /* margin-top: 22px; */
-    /* margin-left:100px ; */
     border-radius: 5px;
     color: white;
-    margin-left: 9%;
     width: 73%;
     background-color: #000080;
 }

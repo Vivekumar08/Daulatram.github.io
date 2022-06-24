@@ -95,25 +95,35 @@ const Time_table = () => {
                   <td>{val.TT}</td>
                   <td>
                     {" "}
-                    <DownloadLink className="table" src={val.onesrc}>
-                      {val.one}
-                    </DownloadLink>
+                    <span className="hover:text-red-600  ">
+                      <DownloadLink src={val.onesrc}>{val.one}</DownloadLink>
+                    </span>
                   </td>
                   <td>
-                    {" "}
-                    <DownloadLink src={val.twosrc}>{val.two}</DownloadLink>
+                    <span className="hover:text-red-600  ">
+                      {" "}
+                      <DownloadLink src={val.twosrc}>{val.two}</DownloadLink>
+                    </span>
                   </td>
                   <td>
-                    {" "}
-                    <DownloadLink src={val.threesrc}>{val.three}</DownloadLink>
+                    <span className="hover:text-red-600  ">
+                      {" "}
+                      <DownloadLink src={val.threesrc}>
+                        {val.three}
+                      </DownloadLink>
+                    </span>
                   </td>
                   <td>
-                    {" "}
-                    <DownloadLink src={val.foursrc}>{val.four}</DownloadLink>
+                    <span className="hover:text-red-600  ">
+                      {" "}
+                      <DownloadLink src={val.foursrc}>{val.four}</DownloadLink>
+                    </span>
                   </td>
                   <td>
-                    {" "}
-                    <DownloadLink src={val.fivesrc}>{val.five}</DownloadLink>
+                    <span className="hover:text-red-600  ">
+                      {" "}
+                      <DownloadLink src={val.fivesrc}>{val.five}</DownloadLink>
+                    </span>
                   </td>
                 </tr>
               );

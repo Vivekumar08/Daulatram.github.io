@@ -1,5 +1,5 @@
 .btn {
-    background-color: #000080; /* Green */
+    background-color: #000080; 
     border: none;
     color: white;
     padding: 10px 20px;
@@ -7,7 +7,7 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-    border-radius: 9px;
+    border-radius: 10px;
   }
 
   td:hover{
@@ -17,5 +17,5 @@
   .btn:hover{
     background-color: white;
     color: #000080;
-    border:1px solid #000080;
+    border:2px groove #000080;
   }

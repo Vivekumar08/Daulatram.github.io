@@ -27,7 +27,7 @@ const Internal = () => {
                 <th>About</th>
                 <th>PDF</th>
               </tr>
-              <tr>
+              <tr className="h-20">
                 <td>1</td>
                 <td>Internal Assessment For The First Year(May-Jun 2022)</td>
                 <td>
@@ -38,7 +38,7 @@ const Internal = () => {
                   </a>{" "}
                 </td>
               </tr>
-              <tr>
+              <tr className="h-20">
                 <td>2</td>
                 <td>Internal Assessment For The Second Year</td>
                 <td>
@@ -48,10 +48,10 @@ const Internal = () => {
                   </a>{" "}
                 </td>
               </tr>
-              <tr>
+              <tr className="h-20">
                 <td>3</td>
                 <td>Internal Assessment For The Third Year</td>
-                <td>
+                <td className="w-56">
                   {" "}
                   <a href="../Student_Zone/Internal_Assesments/Third_year">
                     <button className="btn">Click Here</button>
