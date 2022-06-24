@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./style.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,7 +10,7 @@ function Upperfooter() {
       <footer className="footer  bg-[#000080] text-white">
         <div className="flex  flex-col">
           <div className="flex flex-col ">
-            <div className=" h-96 mt-10 ">
+            <div className=" h-[95%] mt-10 ">
               <div className="flex  justify-evenly">
                 <ul className="w-[20%]">
                   <h4 className="mb-5 relative font-bold text-2xl">
@@ -33,6 +32,15 @@ function Upperfooter() {
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Contact Us
+                    </a>
+                  </li>
+                  <li className="pb-2">
+                    <span className="mr-3">-</span>
+                    <a
+                      href="#"
+                      className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
+                    >
+                      Public Notice
                     </a>
                   </li>
                   <li className="pb-2">

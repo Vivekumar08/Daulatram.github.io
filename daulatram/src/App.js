@@ -485,16 +485,16 @@ function App() {
             }
             path="/student/timetable"
           ></Route>
-           <Route
+          <Route
             element={
               <>
-                <Attendence/>
+                <Attendence />
               </>
             }
             path="/student/attendence"
           ></Route>
 
-<Route
+          <Route
           ></Route>{" "}
           <Route
             element={
@@ -515,7 +515,7 @@ function App() {
         </Routes>{" "}
         <Upperfooter /> {" "}
         {/* <Chairperson_banner/> */}
-       {/* <Attendence/> */}
+        {/* <Attendence/> */}
 
         <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
       </Router>{" "}
