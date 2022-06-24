@@ -2,6 +2,7 @@ import React,{useState} from 'react'
 import Princi_banner from '../../Components/Banners/Princi_banner'
 import "./Time_table.css"
 import Sidebar from "../../Components/Sidebar/Sidebar";
+import Timebanner from '../../Components/Banners/Timebanner';
 
 class DownloadLink extends React.Component {
   render() {
@@ -22,7 +23,7 @@ const Time_table = () => {
 
        <>
         <div className="">
-          <Princi_banner />
+          <Timebanner/>
         </div>
         <div className="Table_App flex">
         <div className="w-[350px]">
@@ -43,11 +44,11 @@ const Time_table = () => {
           return (
             <tr key={key}>
               <td>{val.TT}</td>
-              <td> <DownloadLink src={val.onesrc}>{val.one}</DownloadLink></td>
-              <td><a href="">{val.two}</a></td>
-              <td><a href="">{val.three}</a></td>
-              <td><a href="">{val.four}</a></td>
-              <td><a href="">{val.five}</a></td>
+              <td> <DownloadLink className="table" src={val.onesrc}>{val.one}</DownloadLink></td>
+              <td> <DownloadLink src={val.twosrc}>{val.two}</DownloadLink></td>
+              <td> <DownloadLink src={val.threesrc}>{val.three}</DownloadLink></td>
+              <td> <DownloadLink src={val.foursrc}>{val.four}</DownloadLink></td>
+              <td> <DownloadLink src={val.fivesrc}>{val.five}</DownloadLink></td>
               </tr>
           )
         })}

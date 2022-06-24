@@ -70,6 +70,12 @@ import Attendence from "./Pages/Student_zone/Attendence";
 import Sitemap from "./Pages/Sitemap";
 import Resources from "./Pages/Academics/Resources";
 import Contact from "./Pages/Footer/Contact";
+import Internal from "./Pages/Student_zone/Internal";
+import First_year from "./Pages/Student_zone/Internals/First_year/First_year";
+import Second_year from "./Pages/Student_zone/Internals/Second_year/Second_year";
+import Third_year from "./Pages/Student_zone/Internals/Third_year/Third_year";
+
+
 
 function App() {
   return (
@@ -488,7 +494,7 @@ function App() {
                 <Time_table />
               </>
             }
-            path="/student/timetable"
+            path="/Student_Zone/Time_Table_&_Academic_Calendar"
           ></Route>
           <Route
             element={
@@ -496,7 +502,42 @@ function App() {
                 <Attendence />
               </>
             }
-            path="/student/attendence"
+            path="/Student_Zone/Attendance"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Internal/>
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments"
+          ></Route>
+
+          <Route
+            element={
+              <>
+                <First_year/>
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments/First_year"
+          ></Route>
+
+          <Route
+            element={
+              <>
+                <Second_year/>
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments/Second_year"
+          ></Route>
+
+          <Route
+            element={
+              <>
+                <Third_year/>
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments/Third_year"
           ></Route>
 
           <Route

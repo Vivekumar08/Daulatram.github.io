@@ -28,3 +28,8 @@ th {
     /* color: red; */
     /* font-size: 16px; */
   /* } */
+
+td:hover{
+  color: brown;
+  font-style: oblique;
+  }
