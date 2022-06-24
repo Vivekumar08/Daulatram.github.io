@@ -1,5 +1,6 @@
 import React from 'react'
-import Princi_banner from '../../Components/Banners/Princi_banner'
+import Attendencebanner from '../../Components/Banners/Attendencebanner';
+// import Princi_banner from '../../Components/Banners/Princi_banner'
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import "./Attendence.css"
 
@@ -8,7 +9,7 @@ const Attendence = () => {
   return (
 <>
 <div className="">
-          <Princi_banner />
+          <Attendencebanner/>
         </div>
         <div className='flex '>
         <div className="w-[350px] flex flex-row">

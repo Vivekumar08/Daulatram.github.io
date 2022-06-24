@@ -1,0 +1,21 @@
+.btn {
+    background-color: #000080; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 9px;
+  }
+
+  td:hover{
+    color: black;
+    font-style: normal;
+  }
+  .btn:hover{
+    background-color: white;
+    color: #000080;
+    border:1px solid #000080;
+  }
