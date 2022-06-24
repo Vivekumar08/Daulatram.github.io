@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { links } from "./Mylinks";
 
 const NavLinks = () => {
@@ -41,14 +42,14 @@ const NavLinks = () => {
                   {link.links.map((slink) => (
                     <>
                       <div>
-                        <a
-                          href={slink.link}
+                        <Link
+                          to={slink.link}
                           className="hover:text-white"
                         >
                           <li className="text-md m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
                             {slink.name}
                           </li>
-                        </a>
+                        </Link>
                       </div>
                     </>
                   ))}

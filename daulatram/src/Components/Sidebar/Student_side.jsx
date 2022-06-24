@@ -3,7 +3,7 @@ import { Student } from "../Mylinks";
 
 function Student_side() {
   return (
-    <div className="mt-[20%] bg-gray-200 rounded-lg">
+    <div className="mt-[20%] bg-gray-200 w-[350px] rounded-lg">
       {Student.map((link) => (
         <>
           <div className="bg-[#000080]  flex justify-center mb-4 text-white pt-2 pb-2 pl-4 pr-4 rounded-lg font-bold text-3xl">

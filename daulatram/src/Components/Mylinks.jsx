@@ -141,7 +141,6 @@ export const links = [
       },
       {
         name: "Attendance",
-        // link: "/student/attendence",
         link: "/Student_Zone/Attendance",
       },
       {
@@ -163,6 +162,10 @@ export const links = [
       {
         name: "Fee Payment Portal",
         link: "/Student_Zone/Fee_Payment_Portal",
+      },
+      {
+        name: "Student Notice",
+        link: "/Student_Zone/Student_Notice",
       },
       {
         name: "Scholarship",
@@ -635,6 +638,10 @@ export const Student = [
       {
         name: "Fee Payment Portal",
         link: "/Student_Zone/Fee_Payment_Portal",
+      },
+      {
+        name: "Student Notice",
+        link: "/Student_Zone/Student_Notice",
       },
       {
         name: "Scholarship",
