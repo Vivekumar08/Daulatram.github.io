@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const onlineAdmission = new mongoose.Schema({
+const helpdeskAdmission = new mongoose.Schema({
     
     Link:{
         type:String,
@@ -13,5 +13,5 @@ const onlineAdmission = new mongoose.Schema({
 })
 
 
-const online_Admission = mongoose.model('ONLINE_ADMISSION',onlineAdmission);
-module.exports=online_Admission;
+const helpdesk = mongoose.model('HELPDESK',helpdeskAdmission);
+module.exports=helpdesk;

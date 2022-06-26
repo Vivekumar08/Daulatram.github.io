@@ -12,6 +12,10 @@ app.use(cors());
 app.use(express.json());
 
 require('./models/adminSchema');
+require('./models/Admission/helpdeskAdmission');
+require('./models/Admission/onlineAdmission');
+// require('./router/Admission_api/Admission_api');
+
 app.use(require('./router/api'));
 
 const port = process.env.PORT || 5000;
