@@ -78,6 +78,48 @@ const OnlineAdmission = () => {
                 )}
               </span>
             </div>
+            {auth ? (
+              <>
+                <form
+                  method="post"
+                  className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+                >
+                  <div className="mb-3">
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      placeholder="Enter Link"
+                      className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <textarea
+                      name=""
+                      id=""
+                      cols="10"
+                      rows="5"
+                      className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                      placeholder="Enter Caption"
+                    ></textarea>
+                  </div>
+                  <div class="md:flex md:items-center">
+                    {/* <div class="md:w-1/3"></div> */}
+                    <div class="md:w-2/3 ">
+                      <button
+                        class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                        type="button"
+                        // onClick={handleSubmit}
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>
