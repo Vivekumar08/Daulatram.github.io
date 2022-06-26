@@ -77,12 +77,16 @@ router.get('/admission', async (req, res,) => {
 router.post('/admission_online', async (req, res) => {
   const { Link, Caption } = req.body
   if (!Link || !Caption) {
-      return res.status(400).json({ error: "Fill the Admission Details Properly" })
+    return res.status(400).json({ error: "Fill the Admission Details Properly" })
   }
   const user = new Adminssion(req.body );
   await user.save();
   console.log("Details Saved Successfully")
   return res.status(200).json({ message: "Details Saved Successfully " })
+})
+router.delete('/deleteAdmission/:id', async (req, res) => {
+  const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
 })
 
 router.post('/helpdesk_admission', async (req, res) => {

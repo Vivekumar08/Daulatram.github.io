@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Admission_side from "../../Components/Sidebar/Admission_side.";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,11 +6,16 @@ import {
   faTrashCan,
   faPen,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthProvider";
 
 const OnlineAdmission = () => {
-  const { auth } = useContext(AuthContext);
+  const userRef = useRef();
+  // const errRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const { auth, setAuth } = useContext(AuthContext);
   const [data, setData] = useState([]);
 
   const fetchdata = async () => {
@@ -21,6 +26,53 @@ const OnlineAdmission = () => {
   useEffect(() => {
     fetchdata();
   }, []);
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(
+      `http://localhost:5000/deleteAdmission/${id}`,
+      {
+        method: "DELETE",
+        // headers: {
+        //   "Content-Type": "application/json",
+        // },
+      }
+    );
+    const data = await response.json();
+    if (data || response.status===200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(link, caption);
+    const response = await fetch("http://localhost:5000/admission_online", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        Link: link,
+        Caption: caption,
+      }),
+    });
+    const data = await response.json();
+    if (!data) {
+      setErrMsg("No Server Response");
+    } else if (response.status === 401) {
+      setErrMsg("Missing Username or Password");
+    } else if (response.status === 402) {
+      setErrMsg("Unauthorized");
+    } else {
+      setCaption("");
+      setLink("");
+      setAuth(true);
+      fetchdata();
+    }
+  };
 
   return (
     <div className=" flex flex-col">
@@ -47,52 +99,53 @@ const OnlineAdmission = () => {
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Online Admission
             </h2>
-            <div className="flex flex-row">
-              {data.map((datas) => (
-                <>
-                  <div className="flex flex-col">
-                    <li className="mt-12 list-none" key={datas._id}>
-                      <FontAwesomeIcon
-                        icon={faArrowRight}
-                        className="text-blue-400"
-                      />
-                      <a
-                        href={datas.Link}
-                        target="_blank"
-                        className="text-blue-400  hover:pl-3"
-                      >
-                        {" "}
-                        {datas.Link}
-                      </a>
-                    </li>
-                    <p className="mt-2 ">
-                      {datas.Caption}
-                    </p>
-                  </div>
-                </>
-              ))}
-
-              <span className="ml-auto">
-                {auth ? (
-                  <>
+            {data.map((datas) => (
+              <>
+                <div className="flex flex-row">
+                  <li className="mt-12 list-none" key={datas._id}>
                     <div className="flex flex-col">
-                      <FontAwesomeIcon
-                        icon={faPen}
-                        size="lg"
-                        className="mt-8 ml-auto cursor-pointer mr-16 hover:text-blue-600"
-                      ></FontAwesomeIcon>
-                      <FontAwesomeIcon
-                        icon={faTrashCan}
-                        size="lg"
-                        className="mt-6 cursor-pointer ml-auto mr-16 hover:text-red-500"
-                      ></FontAwesomeIcon>
+                      <span>
+                        <FontAwesomeIcon
+                          icon={faArrowRight}
+                          className="text-blue-400"
+                        />
+                        <a
+                          href={datas.Link}
+                          target="_blank"
+                          className="text-blue-400  hover:pl-3"
+                        >
+                          {" "}
+                          {datas.Link}
+                        </a>
+                      </span>
+                      <p className="mt-2 ">{datas.Caption}</p>
                     </div>
-                  </>
-                ) : (
-                  ""
-                )}
-              </span>
-            </div>
+                  </li>
+
+                  <span className="ml-auto">
+                    {auth ? (
+                      <>
+                        <div className="flex flex-col">
+                          {/* <FontAwesomeIcon
+                            icon={faPen}
+                            size="lg"
+                            className="mt-8 ml-auto cursor-pointer mr-16 hover:text-blue-600"
+                          ></FontAwesomeIcon> */}
+                          <FontAwesomeIcon
+                            icon={faTrashCan}
+                            size="lg"
+                            className="mt-16 cursor-pointer ml-auto mr-16 hover:text-red-500"
+                            onClick={() => del(datas._id)}
+                          ></FontAwesomeIcon>
+                        </div>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                </div>
+              </>
+            ))}
             {auth ? (
               <>
                 <form
@@ -102,18 +155,24 @@ const OnlineAdmission = () => {
                   <div className="mb-3">
                     <input
                       type="text"
-                      name=""
-                      id=""
+                      name="Link"
+                      // id=""
+                      ref={userRef}
+                      onChange={(e) => setLink(e.target.value)}
+                      value={link}
                       placeholder="Enter Link"
                       className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                     />
                   </div>
                   <div className="mb-3">
                     <textarea
-                      name=""
-                      id=""
+                      name="Caption"
+                      // id=""
                       cols="10"
                       rows="5"
+                      ref={userRef}
+                      onChange={(e) => setCaption(e.target.value)}
+                      value={caption}
                       className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                       placeholder="Enter Caption"
                     ></textarea>
@@ -124,7 +183,7 @@ const OnlineAdmission = () => {
                       <button
                         class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                         type="button"
-                        // onClick={handleSubmit}
+                        onClick={handleSubmit}
                       >
                         Add
                       </button>

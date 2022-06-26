@@ -41,7 +41,7 @@ function Faculty() {
           <div className="flex flex-row">
             <div>
               <span className="font-bold text-xl ml-2">Current Faculty</span>
-              <div class="wrapper mt-5 mb-5 ">
+              <div class="wrapper1 mt-5 mb-5 ">
                 <div class="card">
                   <img src={sn} />
                   <div class="info">
@@ -73,7 +73,7 @@ function Faculty() {
                   </div>
                 </div>
               </div>
-              <div class="wrapper mt-6 mb-5">
+              <div class="wrapper1 mt-6 mb-5">
                 <div class="card">
                   <img src={nd} />
                   <div class="info">
@@ -155,9 +155,8 @@ function Faculty() {
               </div>
             </div>
             <div className=" flex  flex-col mt-8">
-            <Biochemistry/>
-
-                </div>
+              <Biochemistry />
+            </div>
           </div>
         </div>
       </div>
