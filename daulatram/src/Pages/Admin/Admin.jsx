@@ -2,8 +2,10 @@ import React, { useContext, useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
+import {useNavigate} from 'react-router-dom'
 
 const Admin = () => {
+  const navigate = useNavigate()
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
@@ -35,14 +37,15 @@ const Admin = () => {
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
-    } else if (response.status === 400) {
-      setErrMsg("Missing Username or Password");
     } else if (response.status === 401) {
+      setErrMsg("Missing Username or Password");
+    } else if (response.status === 402) {
       setErrMsg("Unauthorized");
     } else {
       setUser("");
       setPwd("");
       setAuth(true);
+      navigate('/')
     }
   };
 

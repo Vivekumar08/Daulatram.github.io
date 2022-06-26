@@ -78,6 +78,7 @@ import Third_year from "./Pages/Student_zone/Internals/Third_year/Third_year";
 
 
 function App() {
+
   return (
     <>
       <Router>
@@ -342,7 +343,7 @@ function App() {
             }
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
-          {/* *********************** */} 
+          {/* *********************** */}
           {/* Staff Zone */}{" "}
           {/* *********************** */}{" "}
           <Route
@@ -507,7 +508,7 @@ function App() {
           <Route
             element={
               <>
-                <Internal/>
+                <Internal />
               </>
             }
             path="/Student_Zone/Internal_Assesments"
@@ -516,7 +517,7 @@ function App() {
           <Route
             element={
               <>
-                <First_year/>
+                <First_year />
               </>
             }
             path="/Student_Zone/Internal_Assesments/First_year"
@@ -525,7 +526,7 @@ function App() {
           <Route
             element={
               <>
-                <Second_year/>
+                <Second_year />
               </>
             }
             path="/Student_Zone/Internal_Assesments/Second_year"
@@ -534,7 +535,7 @@ function App() {
           <Route
             element={
               <>
-                <Third_year/>
+                <Third_year />
               </>
             }
             path="/Student_Zone/Internal_Assesments/Third_year"
@@ -558,9 +559,9 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
-{/* *********************** */}
-{/* Footer */}
-{/* *********************** */}
+          {/* *********************** */}
+          {/* Footer */}
+          {/* *********************** */}
           <Route
             element={
               <>

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 // const nodemailer = require("nodemailer");
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 // const jwt = require("jsonwebtoken")
 const User = require('../models/adminSchema');
 
@@ -14,6 +14,7 @@ router.get('/getdata', async (req, res,) => {
 
 router.post('/NewAdmin', async (req, res) => {
   try {
+    const salt = await bcrypt.genSalt()
     const { Username, Password } = req.body;
     console.log(req.body);
 
@@ -21,7 +22,9 @@ router.post('/NewAdmin', async (req, res) => {
       return res.status(400).json({ error: "Fill the complete form" });
     }
 
-    const user = new User(req.body);
+    const hashedPassword = await bcrypt.hash(Password,salt)
+
+    const user = new User({Username:Username,Password:hashedPassword});
     await user.save();
     console.log("Form filled Successfully")
     return res.status(200).json({ message: "Form filled Successfully " })
@@ -31,25 +34,28 @@ router.post('/NewAdmin', async (req, res) => {
 });
 router.post('/AdminLogin', async (req, res) => {
   try {
-      const { Username, Password  } = req.body
-      console.log(req.body);
-      if (!Username || !Password) {
-          return res.status(400).json({ error: "Fill the Admin Login Form Properly" })
-      }
-      const UserLogin = await User.findOne({ Username:Username })
-      if (UserLogin) {
-          const isMatch = await bcrypt.compare(Password, UserLogin.password);
-          if (!isMatch) {
-              res.status(400).json({ error: "Invalid Credentials" })
-          } else {
-              res.json({ message: "user Signin Sucessfully" })
-              await UserLogin.save()
-          }
+    const { Username, Password } = req.body
+    console.log(req.body);
+    if (!Username || !Password) {
+      return res.status(400).json({ error: "Fill the Admin Login Form Properly" })
+    }
+    const UserLogin = await User.findOne({ Username: Username })
+    if (UserLogin) {
+      const isMatch = await bcrypt.compare(Password, UserLogin.Password);
+      if (!isMatch) {
+        console.log("Invalid Credentials")
+        res.status(402).json({ error: "Invalid Credentials" })
       } else {
-          res.status(401).json({ error: "Login Unsuccessful" })
+        console.log("Signin Successfull")
+        res.status(200).json({ message: "user Signin Sucessfully" })
+        await UserLogin.save()
       }
+    } else {
+      console.log("Login Failed")
+      res.status(401).json({ error: "Login Failed" })
+    }
   } catch (err) {
-      console.log(err);
+    console.log(err);
   }
 
 })
