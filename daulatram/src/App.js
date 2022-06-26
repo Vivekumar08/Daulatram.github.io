@@ -66,9 +66,23 @@ import Roster from "./Pages/Staff_Zone/Roster";
 import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
+import Attendence from "./Pages/Student_zone/Attendence";
 import Sitemap from "./Pages/Sitemap";
+import Resources from "./Pages/Academics/Resources";
+import Contact from "./Pages/Footer/Contact";
+import Internal from "./Pages/Student_zone/Internal";
+import First_year from "./Pages/Student_zone/Internals/First_year/First_year";
+import Second_year from "./Pages/Student_zone/Internals/Second_year/Second_year";
+import Third_year from "./Pages/Student_zone/Internals/Third_year/Third_year";
+import Hostel from "./Pages/Student_zone/Hostel";
+import Forms from "./Pages/Student_zone/Forms";
+import Student_facilities from "./Pages/Student_zone/Student_facilities";
+import Eresources from "./Pages/Student_zone/Eresources";
+import Antiragging from "./Pages/Student_zone/Antiragging";
+
 
 function App() {
+
   return (
     <>
       <Router>
@@ -333,7 +347,8 @@ function App() {
             }
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
-          {/* *********************** */} {/* Staff Zone */}{" "}
+          {/* *********************** */}
+          {/* Staff Zone */}{" "}
           {/* *********************** */}{" "}
           <Route
             element={
@@ -375,7 +390,8 @@ function App() {
             }
             path="/StaffZone/Roster"
           ></Route>{" "}
-          {/* *********************** */} {/* Socieites */}{" "}
+          {/* *********************** */}
+          {/* Socieites */}{" "}
           {/* *********************** */}{" "}
           <Route
             element={
@@ -393,7 +409,9 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>{" "}
+          {/* *********************** */}
           {/* Research And Facilities */}{" "}
+          {/* *********************** */}
           <Route
             element={
               <>
@@ -446,6 +464,14 @@ function App() {
           <Route
             element={
               <>
+                <Resources />
+              </>
+            }
+            path="/academics/resources"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Bot_Publications />
               </>
             }
@@ -473,7 +499,94 @@ function App() {
                 <Time_table />
               </>
             }
-            path="/student/timetable"
+            path="/Student_Zone/Time_Table_&_Academic_Calendar"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Attendence />
+              </>
+            }
+            path="/Student_Zone/Attendance"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Internal />
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments"
+          ></Route>
+
+          <Route
+            element={
+              <>
+                <First_year />
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments/First_year"
+          ></Route>
+
+          <Route
+            element={
+              <>
+                <Second_year />
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments/Second_year"
+          ></Route>
+
+          <Route
+            element={
+              <>
+                <Third_year />
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments/Third_year"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Hostel/>
+              </>
+            }
+            path="/Student_Zone/Hostel"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Forms/>
+              </>
+            }
+            path="/Student_Zone/Forms"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Student_facilities/>
+              </>
+            }
+            path="/Student_Zone/Students_Facilities"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Eresources/>
+              </>
+            }
+            path="/Student_Zone/E_Resources"
+          ></Route>
+
+          <Route
+            element={
+              <>
+                <Antiragging/>
+              </>
+            }
+            path="/Student_Zone/Anti_Ragging_Helpline"
+          ></Route>
+
+          <Route
           ></Route>{" "}
           <Route
             element={
@@ -491,8 +604,20 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
+          {/* *********************** */}
+          {/* Footer */}
+          {/* *********************** */}
+          <Route
+            element={
+              <>
+                <Contact />
+              </>
+            }
+            path="/Contact_us"
+          ></Route>{" "}
+
         </Routes>{" "}
-        <Upperfooter /> {/* <Chairperson_banner/> */}{" "}
+        <Upperfooter /> {" "}
       </Router>{" "}
     </>
   );

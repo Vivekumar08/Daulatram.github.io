@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { links } from "./Mylinks";
 
 const NavLinks = () => {
@@ -37,20 +38,18 @@ const NavLinks = () => {
                     mt-1 bg-white rotate-45"
                   ></div>
                 </div>
-                <div className=" p-2 grid grid-cols-1 bg-white rounded-md">
+                <div className="  grid grid-cols-1 bg-white rounded-lg">
                   {link.links.map((slink) => (
                     <>
                       <div>
-                        <a
-                          href={slink.link}
-                          target="_blank"
-                          // rel="noreferrer"
-                          className="hover:text-red-600 "
+                        <Link
+                          to={slink.link}
+                          className="hover:text-white"
                         >
-                          <li className="text-md m-1 p-1 text-gray-500 capitalize rounded-sm outline-none hover:text-red-600 hover:outline-red-400 ">
+                          <li className="text-md m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
                             {slink.name}
                           </li>
-                        </a>
+                        </Link>
                       </div>
                     </>
                   ))}

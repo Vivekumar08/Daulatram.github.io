@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavLinks from "./NavLinks";
+import Useful from "./Useful";
 const Nav = () => {
   const [open, setOpen] = useState(false);
   return (
@@ -18,6 +19,12 @@ const Nav = () => {
             </Link>
           </li>
           <NavLinks />
+          <li>
+            <Link to="/Societies" className="py-4 font-bold px-2 uppercase inline-block">
+              Societies
+            </Link>
+          </li>
+          <Useful />
 
         </ul>
         {/* Mobile nav */}

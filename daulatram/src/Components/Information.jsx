@@ -21,7 +21,7 @@ function Information() {
         {/* content/body/messages */}
         <div className="flex flex-row w-auto h-[500px] mb-5 mt-8 justify-between ml-24 mr-24 ">
           <div className=" bg-[#d3d3d3] w-[20em] rounded-lg text-lg font-semibold">
-            <span className="bg-[#273E47] rounded-t-lg flex flex-row justify-center  text-white pb-4  px-4 ">
+            <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center  text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Students</span>
             </span>
             {Studentinfo.map((curElem) => {
@@ -38,7 +38,7 @@ function Information() {
             })}
           </div>
           <div className=" bg-[#d9d9d9] w-[20em] rounded-lg text-lg font-semibold">
-            <span className="bg-[#273E47] rounded-t-lg flex flex-row justify-center text-white pb-4  px-4 ">
+            <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Staff</span>
             </span>
             {Staffinfo.map((curElem) => {
@@ -55,7 +55,7 @@ function Information() {
             })}
           </div>
           <div className=" bg-[#d9d9d9] w-[20em] rounded-lg text-lg font-semibold">
-            <span className="bg-[#273E47] rounded-t-lg flex flex-row justify-center text-white pb-4  px-4 ">
+            <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Public</span>
             </span>
             {Publicinfo.map((curElem) => {

@@ -1,0 +1,20 @@
+.main_txt{
+    animation:blinking 1.5s infinite;
+font-size: 30px;
+align-items: center;
+position: relative;
+/* left: 17px; */
+padding: 60px;
+/* top: 300px; */
+margin-bottom: 200px;
+}
+@keyframes blinking{
+    0%{   color:red;   }
+    20%{  color:transparent;  }
+    30%{  color: red; }
+    60%{   color:transparent; }
+    70%{  color: red; }
+    100%{  color:transparent;  }
+   
+    }
+

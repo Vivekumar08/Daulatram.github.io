@@ -58,7 +58,7 @@ export const links = [
       },
       {
         name: "Resources",
-        link: "/academics/Resources",
+        link: "/academics/resources",
       },
       {
         name: "Training Programs",
@@ -164,6 +164,10 @@ export const links = [
         link: "/Student_Zone/Fee_Payment_Portal",
       },
       {
+        name: "Student Notice",
+        link: "/Student_Zone/Student_Notice",
+      },
+      {
         name: "Scholarship",
         link: "/Student_Zone/Scholarship",
       },
@@ -238,23 +242,27 @@ export const links = [
       },
     ],
   },
-  {
-    name: "Societies",
-    links: [
-      {
-        name: "Enabling Unit",
-        link: "/societies/enablingUnit",
-      },
-      {
-        name: "Extra-Curricular",
-        link: "/societies/extraCurricularActivities",
-      },
-      {
-        name: "Memesis-Drammatic Society",
-        link: "/societies/dramaScociety",
-      },
-    ],
-  },
+  // {
+  //   name: "Societies",
+  //   links: [
+  //     {
+  //       name: "Enabling Unit",
+  //       link: "/societies/enablingUnit",
+  //     },
+  //     {
+  //       name: "Extra-Curricular",
+  //       link: "/societies/extraCurricularActivities",
+  //     },
+  //     {
+  //       name: "Memesis-Drammatic Society",
+  //       link: "/societies/dramaScociety",
+  //     },
+  //   ],
+  // },
+  
+];
+
+export const useful =[
   {
     name: "Accreditation",
     links: [
@@ -313,7 +321,7 @@ export const links = [
       },
     ],
   },
-];
+]
 
 export const about = [
   {
@@ -544,7 +552,7 @@ export const admisn = [
         link: "/admission/helpdesk",
       },
       {
-        name: "OBC/SC/ST/EWS Complaints",
+        name: "OBC/SC/ST/EWS Guidelines",
         link: "/admission/OBC_SC_ST_EWS_Complaints",
       },
       {
@@ -630,6 +638,10 @@ export const Student = [
       {
         name: "Fee Payment Portal",
         link: "/Student_Zone/Fee_Payment_Portal",
+      },
+      {
+        name: "Student Notice",
+        link: "/Student_Zone/Student_Notice",
       },
       {
         name: "Scholarship",

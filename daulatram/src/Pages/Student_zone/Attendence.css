@@ -1,0 +1,19 @@
+
+table{
+    background-color: aliceblue;
+    color: #000800;
+
+}
+
+th{
+    background-color: #b5b5b3;
+    
+}
+
+.small{
+    border-radius: 5px;
+    color: white;
+    width: 73%;
+    background-color: #000080;
+}
+

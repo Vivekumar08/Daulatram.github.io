@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
+  const { auth } = useContext(AuthContext);
   return (
     <>
       <div className="m-5 flex flex-row justify-between bg-[#fff]">
@@ -43,17 +47,30 @@ function Header() {
             </div>
           </div>
         </div>
-        <div className="mt-2 mr-12">
-          <Link
-            to="/Admin"
-            className="text-lg   font-semibold text-[#000080]  "
-          >
-            <span className=" bg-[#000080] hover:bg-blue-600 rounded-lg pl-10 pr-10 p-2 text-white">
+        {auth ? (
+          <div className="mt-2 mr-12">
+            <p className=" text-lg w-[150px] bg-gray-300 p-2 rounded-sm  text-Black">
               {" "}
-              Admin{" "}
-            </span>
-          </Link>
-        </div>
+              <span className="justify-center items-center flex flex-row">
+                Hi, <FontAwesomeIcon icon={faUserCircle} size="lg" className="ml-2 mr-1 text-[#000080]"></FontAwesomeIcon> {" "}Admin
+              </span>{" "}
+            </p>
+          </div>
+        ) : (
+          <>
+            <div className="mt-2 mr-12">
+              <Link
+                to="/Admin"
+                className="text-lg   font-semibold text-[#000080]  "
+              >
+                <button className=" bg-[#000080] hover:bg-blue-600 rounded-lg pl-10 pr-10 p-2 text-white">
+                  {" "}
+                  Admin{" "}
+                </button>
+              </Link>
+            </div>
+          </>
+        )}
       </div>
       {/* </div> */}
     </>

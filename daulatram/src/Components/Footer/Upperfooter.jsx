@@ -1,6 +1,5 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "./style.css"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
@@ -11,7 +10,7 @@ function Upperfooter() {
       <footer className="footer  bg-[#000080] text-white">
         <div className="flex  flex-col">
           <div className="flex flex-col ">
-            <div className=" h-96 mt-10 ">
+            <div className=" h-[95%] mt-10 ">
               <div className="flex  justify-evenly">
                 <ul className="w-[20%]">
                   <h4 className="mb-5 relative font-bold text-2xl">
@@ -20,7 +19,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/about/Gallery"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Gallery
@@ -29,7 +28,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Contact_us"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Contact Us
@@ -38,7 +37,16 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Public_Notice"
+                      className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
+                    >
+                      Public Notice
+                    </a>
+                  </li>
+                  <li className="pb-2">
+                    <span className="mr-3">-</span>
+                    <a
+                      href="/RTI"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       RTI
@@ -47,7 +55,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/StaffZone/Feedback"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Feedback
@@ -57,7 +65,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Tender"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Tender
@@ -66,7 +74,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Grievances"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Grievances
@@ -75,7 +83,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Job_Opportunities"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Job Opportunities
@@ -84,7 +92,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="/Anti_Sexual_Harrasement"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Anti-Sexual Harrasement
@@ -93,7 +101,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="#"
+                      href="ST_SC_OBC_Complaints"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       ST-SC-OBC Complaints
@@ -117,6 +125,8 @@ function Upperfooter() {
                     <span className="mr-3">-</span>
                     <a
                       href="https://drcaa.org/"
+                      target="_blank"
+                      rel="noreferrer"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       https://drcaa.org/{" "}
