@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import Admission_side from "../../Components/Sidebar/Admission_side.";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRight,
+  faTrashCan,
+  faPen,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import AuthContext from "../../Context/AuthProvider";
 
 const OnlineAdmission = () => {
+  const { auth } = useContext(AuthContext);
   return (
     <div className=" flex flex-col">
       <div
@@ -30,21 +36,48 @@ const OnlineAdmission = () => {
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Online Admission
             </h2>
-            <h1 className="mt-12">
-              <FontAwesomeIcon icon={faArrowRight} className="text-blue-400" />
-              <a
-                href="http://www.admissions.uod.ac.in/"
-                target="_blank"
-                className="text-blue-400  hover:pl-3"
-              >
-                {" "}
-                http://www.admissions.uod.ac.in/
-              </a>
-            </h1>
-            <p className="mt-2 ">
-              All the rules and guidelines, as and when shared by University of
-              Delhi, shall be applicable.
-            </p>
+            <div className="flex flex-row">
+              <div className="flex flex-col">
+                <h1 className="mt-12">
+                  <FontAwesomeIcon
+                    icon={faArrowRight}
+                    className="text-blue-400"
+                  />
+                  <a
+                    href="http://www.admissions.uod.ac.in/"
+                    target="_blank"
+                    className="text-blue-400  hover:pl-3"
+                  >
+                    {" "}
+                    http://www.admissions.uod.ac.in/
+                  </a>
+                </h1>
+                <p className="mt-2 ">
+                  All the rules and guidelines, as and when shared by University
+                  of Delhi, shall be applicable.
+                </p>
+              </div>
+              <span className="ml-auto">
+                {auth ? (
+                  <>
+                    <div className="flex flex-col">
+                      <FontAwesomeIcon
+                        icon={faPen}
+                        size="lg"
+                        className="mt-8 ml-auto cursor-pointer mr-16 hover:text-blue-600"
+                      ></FontAwesomeIcon>
+                      <FontAwesomeIcon
+                        icon={faTrashCan}
+                        size="lg"
+                        className="mt-6 cursor-pointer ml-auto mr-16 hover:text-red-500"
+                      ></FontAwesomeIcon>
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
+              </span>
+            </div>
           </div>
         </div>
       </div>
