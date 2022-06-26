@@ -68,6 +68,12 @@ router.delete('/delete/:id', async (req, res) => {
   res.send(delete_user + "User deleted")
 })
 
+router.get('/admission', async (req, res,) => {
+  // res.send(`Hello World from the server`);
+  const details = await Adminssion.find()
+  res.status(200).json(details)
+});
+
 router.post('/admission_online', async (req, res) => {
   const { Link, Caption } = req.body
   if (!Link || !Caption) {

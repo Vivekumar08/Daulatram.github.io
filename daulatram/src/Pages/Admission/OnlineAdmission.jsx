@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Admission_side from "../../Components/Sidebar/Admission_side.";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,6 +11,17 @@ import AuthContext from "../../Context/AuthProvider";
 
 const OnlineAdmission = () => {
   const { auth } = useContext(AuthContext);
+  const [data, setData] = useState([]);
+
+  const fetchdata = async () => {
+    const response = await fetch("http://localhost:5000/admission");
+    setData(await response.json());
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
   return (
     <div className=" flex flex-col">
       <div
@@ -37,26 +48,30 @@ const OnlineAdmission = () => {
               Online Admission
             </h2>
             <div className="flex flex-row">
-              <div className="flex flex-col">
-                <h1 className="mt-12">
-                  <FontAwesomeIcon
-                    icon={faArrowRight}
-                    className="text-blue-400"
-                  />
-                  <a
-                    href="http://www.admissions.uod.ac.in/"
-                    target="_blank"
-                    className="text-blue-400  hover:pl-3"
-                  >
-                    {" "}
-                    http://www.admissions.uod.ac.in/
-                  </a>
-                </h1>
-                <p className="mt-2 ">
-                  All the rules and guidelines, as and when shared by University
-                  of Delhi, shall be applicable.
-                </p>
-              </div>
+              {data.map((datas) => (
+                <>
+                  <div className="flex flex-col">
+                    <li className="mt-12 list-none" key={datas._id}>
+                      <FontAwesomeIcon
+                        icon={faArrowRight}
+                        className="text-blue-400"
+                      />
+                      <a
+                        href={datas.Link}
+                        target="_blank"
+                        className="text-blue-400  hover:pl-3"
+                      >
+                        {" "}
+                        {datas.Link}
+                      </a>
+                    </li>
+                    <p className="mt-2 ">
+                      {datas.Caption}
+                    </p>
+                  </div>
+                </>
+              ))}
+
               <span className="ml-auto">
                 {auth ? (
                   <>

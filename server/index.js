@@ -17,6 +17,7 @@ require('./models/Admission/onlineAdmission');
 // require('./router/Admission_api/Admission_api');
 
 app.use(require('./router/api'));
+// app.use(require('./router/Admission_api/Admission_api'));
 
 const port = process.env.PORT || 5000;
 
