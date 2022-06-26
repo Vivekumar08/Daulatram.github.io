@@ -1,0 +1,19 @@
+.res{
+    padding: 12px;
+    font-size: 30px;
+    /* margin-top: 10px; */
+}
+
+.res:hover{
+color: blue;
+font-size: 31px;
+}
+
+.heading{
+    position: absolute;
+    padding: 10px;
+    margin-left:700px;
+    font-size: 35px;
+    margin-top: 30px;
+}
+

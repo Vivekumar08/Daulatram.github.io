@@ -74,7 +74,11 @@ import Internal from "./Pages/Student_zone/Internal";
 import First_year from "./Pages/Student_zone/Internals/First_year/First_year";
 import Second_year from "./Pages/Student_zone/Internals/Second_year/Second_year";
 import Third_year from "./Pages/Student_zone/Internals/Third_year/Third_year";
-
+import Hostel from "./Pages/Student_zone/Hostel";
+import Forms from "./Pages/Student_zone/Forms";
+import Student_facilities from "./Pages/Student_zone/Student_facilities";
+import Eresources from "./Pages/Student_zone/Eresources";
+import Antiragging from "./Pages/Student_zone/Antiragging";
 
 
 function App() {
@@ -538,6 +542,47 @@ function App() {
               </>
             }
             path="/Student_Zone/Internal_Assesments/Third_year"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Hostel/>
+              </>
+            }
+            path="/Student_Zone/Hostel"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Forms/>
+              </>
+            }
+            path="/Student_Zone/Forms"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Student_facilities/>
+              </>
+            }
+            path="/Student_Zone/Students_Facilities"
+          ></Route>
+          <Route
+            element={
+              <>
+                <Eresources/>
+              </>
+            }
+            path="/Student_Zone/E_Resources"
+          ></Route>
+
+          <Route
+            element={
+              <>
+                <Antiragging/>
+              </>
+            }
+            path="/Student_Zone/Anti_Ragging_Helpline"
           ></Route>
 
           <Route
