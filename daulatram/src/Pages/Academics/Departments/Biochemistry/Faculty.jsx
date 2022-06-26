@@ -40,8 +40,8 @@ function Faculty() {
           </div>
           <div className="flex flex-row">
             <div>
-              <span className="font-bold text-xl ml-6">Current Faculty</span>
-              <div class="wrapper mt-5 mb-5">
+              <span className="font-bold text-xl ml-2">Current Faculty</span>
+              <div class="wrapper mt-5 mb-5 ">
                 <div class="card">
                   <img src={sn} />
                   <div class="info">
@@ -154,7 +154,7 @@ function Faculty() {
                 </div>
               </div>
             </div>
-            <div className=" flex  flex-col ml-20 mt-8">
+            <div className=" flex  flex-col mt-8">
             <Biochemistry/>
 
                 </div>

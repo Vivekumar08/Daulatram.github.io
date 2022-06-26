@@ -1,12 +1,12 @@
 .wrapper {
     display: flex;
-    width: 90%;
+    width: 77%;
     justify-content: space-around;
     margin-left: 10px;
 }
 
 .card {
-    width: 250px;
+    width: 270px;
     height: 300px;
     border-radius: 15px;
     padding: 1.5rem;
@@ -94,7 +94,7 @@
     color: white;
 }
 
-.wrapper4 {
+.wrapper5 {
     display: flex;
-    margin-left: 28px;
+    margin-left: 25px;
 }

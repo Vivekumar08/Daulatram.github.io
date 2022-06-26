@@ -8,7 +8,7 @@ function Botany() {
           About The Deparment
         </span>
       </a>
-      <a href="/academics/departments/Botany/Research_Fac">
+      <a href="/academics/departments/Botany/Botanyfaculty">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Faculty
         </span>
@@ -34,7 +34,7 @@ function Botany() {
         Events
       </span>
       </a>
-      <a href="/academics/departments/Botany/laboratorystaff">
+      <a href="/academics/departments/Botany/Botany_lab_Staff">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Laboratory Staff
         </span>
@@ -52,7 +52,7 @@ function Botany() {
         </span>
       </a>
 
-      <a href="/academics/departments/Botany/research">
+      <a href="/academics/departments/Botany/Research_Fac">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
           Research
         </span>
