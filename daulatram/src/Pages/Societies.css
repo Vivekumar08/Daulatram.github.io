@@ -1,0 +1,105 @@
+/* BEGIN CARD DESIGN */
+.main_head{
+    font-size: 50px;
+    font-weight: bolder;
+    color: #000080;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.hero {
+    display: inline-block;
+    position: relative;
+    width: 350px;
+    min-width: 350px;
+    height: 350px;
+    border-radius: 30px;
+    overflow:hidden;
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+    margin: 30px;
+    margin-left: 100px;
+  }
+  
+  .hero-profile-img {
+    height: 70%;
+    width: 100%;
+  }
+  
+  .hero-description-bk {
+    background-image: linear-gradient(0deg , #3f5efb, #fc466b);
+    border-radius: 30px;
+    position: absolute;
+    top: 55%;
+    left: -5px;
+    height: 65%;
+    width: 108%;
+    transform: skew(19deg, -9deg);
+  }
+  
+  .second .hero-description-bk {
+    background-image: linear-gradient(-20deg , #bb7413, #e7d25c)
+  }
+  
+  .hero-logo {
+    height: 80px;
+    width: 80px;
+    border-radius: 20px;
+    background-color: #fff;
+    position: absolute;
+    bottom: 30%;
+    left: 30px;
+    overflow:hidden;
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
+  }
+  
+  .hero-logo img {
+    height: 100%;
+  }
+  
+  .hero-description {
+    position: absolute;
+    color: #fff;
+    font-weight: 900;
+    left: 50px;
+    bottom: 24%;
+  }
+  
+  .hero-btn {
+    position: absolute;
+    color: #fff;
+    right: 120px;
+    bottom: 5%;
+    padding: 10px 20px;
+    border: 1px solid #fff;
+  }
+  
+  .hero-btn a {
+    color: #fff;
+  }
+  
+  .hero-date {
+    position: absolute;
+    color: #fff;
+    left: 30px;
+    bottom: 10%;
+  }
+  /* END CARD DESIGN */
+  
+  body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    background-color: #eee;
+    min-height: 100vh;
+  }
+  .btn i:before {
+    width: 14px;
+    height: 14px;
+    position: fixed;
+    color: #fff;
+    background: #0077B5;
+    padding: 10px;
+    border-radius: 50%;
+    top:5px;
+    right:5px;
+  }
