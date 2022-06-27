@@ -421,7 +421,7 @@ export const dept = [
       },
       {
         name: "Chemistry",
-        link: "./",
+        link: "/academics/departments/Chemistry/",
       },
       {
         name: "Commerce",
