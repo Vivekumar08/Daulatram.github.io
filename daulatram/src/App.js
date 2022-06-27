@@ -79,6 +79,8 @@ import Forms from "./Pages/Student_zone/Forms";
 import Student_facilities from "./Pages/Student_zone/Student_facilities";
 import Eresources from "./Pages/Student_zone/Eresources";
 import Antiragging from "./Pages/Student_zone/Antiragging";
+import Societies from "./Pages/Societies";
+// import Socities1 from "./Pages/Socities1";
 
 import Chem_About from "./Pages/Academics/Departments/Chemistry/Chem_About";
 import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
@@ -108,6 +110,14 @@ function App() {
               </>
             }
             path="/Admin"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Societies />
+              </>
+            }
+            path="/Societies"
           ></Route>{" "}
           {/* About */}{" "}
           <Route

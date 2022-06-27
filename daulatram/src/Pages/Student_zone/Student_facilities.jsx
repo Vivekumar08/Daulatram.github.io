@@ -9,7 +9,7 @@ const Student_facilities = () => {
       </div>
 
       <div className="flex ">
-        <div className="w-[350px] flex flex-row">
+        <div className="w-[350px]">
           <Student_side />
         </div>
 

@@ -62,7 +62,7 @@ function Botanyfaculty() {
             </h2>
             <div className="flex flex-col">
               <span className="font-bold text-xl ml-7">Current Faculty</span>
-              <div class="wrapper mt-5 mb-8">
+              <div class="wrapper1 mt-5 mb-8">
                 <div class="card">
                   <img src={ng} />
                   <div class="info">
@@ -94,7 +94,7 @@ function Botanyfaculty() {
                   </div>
                 </div>
               </div>
-              <div class="wrapper mt-5 mb-8">
+              <div class="wrapper1 mt-5 mb-8">
                 <div class="card">
                   <img src={mb} />
                   <div class="info">
@@ -128,7 +128,7 @@ function Botanyfaculty() {
                 </div>
               </div>
 
-              <div class="wrapper mt-5 mb-8">
+              <div class="wrapper1 mt-5 mb-8">
                 <div class="card">
                   <img src={vd} />
                   <div class="info">
@@ -161,7 +161,7 @@ function Botanyfaculty() {
                   </div>
                 </div>
               </div>
-              <div class="wrapper mt-5 mb-8">
+              <div class="wrapper1 mt-5 mb-8">
                 <div class="card">
                   <img src={pk} />
                   <div class="info">
@@ -212,7 +212,7 @@ function Botanyfaculty() {
               Superannuated Faculty
             </span>
 
-            <div class="wrapper mt-4 mb-10 ">
+            <div class="wrapper1 mt-4 mb-10 ">
               <div class="card">
                 <img src={ss} />
                 <div class="info">
@@ -278,7 +278,7 @@ function Botanyfaculty() {
               </div>
             </div>
           </div>
-        <div className=" flex  flex-col mr-16  mt-36">
+        <div className=" flex  flex-col mr-16 mt-36">
           <Botany />
         </div>
         </div>

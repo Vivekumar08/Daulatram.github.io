@@ -4,6 +4,9 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 // const jwt = require("jsonwebtoken")
 const User = require('../models/adminSchema');
+const Adminssion = require('../models/Admission/onlineAdmission');
+const helpdesk = require('../models/Admission/helpdeskAdmission');
+
 
 
 router.get('/getdata', async (req, res,) => {
@@ -63,6 +66,38 @@ router.post('/AdminLogin', async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
   const delete_user = await User.findOneAndDelete({ _id: req.params.id });
   res.send(delete_user + "User deleted")
+})
+
+router.get('/admission', async (req, res,) => {
+  // res.send(`Hello World from the server`);
+  const details = await Adminssion.find()
+  res.status(200).json(details)
+});
+
+router.post('/admission_online', async (req, res) => {
+  const { Link, Caption } = req.body
+  if (!Link || !Caption) {
+    return res.status(400).json({ error: "Fill the Admission Details Properly" })
+  }
+  const user = new Adminssion(req.body );
+  await user.save();
+  console.log("Details Saved Successfully")
+  return res.status(200).json({ message: "Details Saved Successfully " })
+})
+router.delete('/deleteAdmission/:id', async (req, res) => {
+  const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post('/helpdesk_admission', async (req, res) => {
+  const { Link, Caption } = req.body
+  if (!Link || !Caption) {
+      return res.status(400).json({ error: "Fill the Admission Details Properly" })
+  }
+  const user = new helpdesk(req.body );
+  await user.save();
+  console.log("Details Saved Successfully")
+  return res.status(200).json({ message: "Details Saved Successfully " })
 })
 
 module.exports = router;

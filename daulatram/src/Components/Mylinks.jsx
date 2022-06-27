@@ -244,20 +244,8 @@ export const links = [
   },
   // {
   //   name: "Societies",
-  //   links: [
-  //     {
-  //       name: "Enabling Unit",
-  //       link: "/societies/enablingUnit",
-  //     },
-  //     {
-  //       name: "Extra-Curricular",
-  //       link: "/societies/extraCurricularActivities",
-  //     },
-  //     {
-  //       name: "Memesis-Drammatic Society",
-  //       link: "/societies/dramaScociety",
-  //     },
-  //   ],
+  //   links: "/Societies"
+      
   // },
   
 ];

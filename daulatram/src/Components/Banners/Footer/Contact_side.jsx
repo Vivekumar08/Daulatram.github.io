@@ -21,13 +21,7 @@ const Contact_side = () => {
           </div>
         </div>
       </div>
-      <div>
-        <div>
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-5 flex flex-row justify-center items-center ">
-            Contact Information
-          </h2>
-        </div>
-      </div>
+      
     </>
   );
 };
