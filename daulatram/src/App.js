@@ -86,6 +86,8 @@ import Societies from "./Pages/Societies";
 import Chem_About from "./Pages/Academics/Departments/Chemistry/Chem_About";
 import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
 import Chemprogramoffered from "./Pages/Academics/Departments/Chemistry/Chemprogramoffered";
+import Chemevents from "./Pages/Academics/Departments/Chemistry/Chemevents";
+
 
 // import Socities1 from "./Pages/Socities1";
 import Student_Notice from "./Pages/Student_Notice";
@@ -663,6 +665,14 @@ function App() {
               </>
             }
             path="/academics/departments/Chemistry/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemevents />
+              </>
+            }
+            path="/academics/departments/Chemistry/Events"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
