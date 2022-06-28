@@ -86,11 +86,15 @@ import Societies from "./Pages/Societies";
 import Chem_About from "./Pages/Academics/Departments/Chemistry/Chem_About";
 import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
 import Chemprogramoffered from "./Pages/Academics/Departments/Chemistry/Chemprogramoffered";
+import Chemevents from "./Pages/Academics/Departments/Chemistry/Chemevents";
+
 
 // import Socities1 from "./Pages/Socities1";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
 import Public_Notice from "./Pages/Public_Notice";
+import RTI from "./Pages/RTI/RTI";
+
 import Undergraduate from "./Pages/Academics/Undergraduate";
 import Teacher from "./Pages/Academics/teacher"
 import Trainingp from "./Pages/Academics/trainingp";
@@ -670,6 +674,14 @@ function App() {
             }
             path="/Public_Notice"
           ></Route>{" "}
+           <Route
+            element={
+              <>
+                <RTI/>
+              </>
+            }
+            path="/RTI"
+          ></Route>{" "}
           <Route> </Route>{" "}
           <Route
             element={
@@ -721,6 +733,14 @@ function App() {
               </>
             }
             path="/academics/departments/Chemistry/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemevents />
+              </>
+            }
+            path="/academics/departments/Chemistry/Events"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
