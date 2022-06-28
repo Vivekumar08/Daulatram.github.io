@@ -88,7 +88,7 @@ import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
 import Chemprogramoffered from "./Pages/Academics/Departments/Chemistry/Chemprogramoffered";
 import Chemevents from "./Pages/Academics/Departments/Chemistry/Chemevents";
 import Chemstudachieve from "./Pages/Academics/Departments/Chemistry/Chemstudachieve";
-
+import Chempublications from "./Pages/Academics/Departments/Chemistry/Chempublications";
 // import Socities1 from "./Pages/Socities1";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
@@ -101,7 +101,8 @@ import Trainingp from "./Pages/Academics/trainingp";
 import AcadCal from "./Pages/Academics/AcadCal";
 import CAcadCal from "./Pages/Academics/CAcadCal";
 import Addoncourses from "./Pages/Academics/Addoncourses";
-import Chempublications from "./Pages/Academics/Departments/Chemistry/Chempublications";
+
+import Tender from "./Pages/Tender/Tender";
 
 function App() {
   return (
@@ -705,6 +706,14 @@ function App() {
               </>
             }
             path="/Contact_us"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Tender />
+              </>
+            }
+            path="/Tender"
           ></Route>{" "}
           {/* Chemistry */}{" "}
           <Route
