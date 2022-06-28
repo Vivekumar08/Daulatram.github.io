@@ -101,6 +101,7 @@ import Trainingp from "./Pages/Academics/trainingp";
 import AcadCal from "./Pages/Academics/AcadCal";
 import CAcadCal from "./Pages/Academics/CAcadCal";
 import Addoncourses from "./Pages/Academics/Addoncourses";
+import Tender from "./Pages/Tender/Tender";
 function App() {
   return (
     <>
@@ -708,6 +709,14 @@ function App() {
               </>
             }
             path="/Contact_us"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Tender />
+              </>
+            }
+            path="/Tender"
           ></Route>{" "}
           {/* Chemistry */}{" "}
           <Route
