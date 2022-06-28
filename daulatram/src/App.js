@@ -45,7 +45,8 @@ import { EnablinUnit } from "./Pages/Societies/EnablinUnit";
 import ExtraCurricular from "./Pages/Societies/ExtraCurricular";
 import Memesis from "./Pages/Societies/Memesis";
 
-import Research_Facilities from "./Pages/Research/Research_Facilities";
+// import Research_Facilities from "./Pages/Research/Research_Facilities";
+import Research_fac from "./Pages/Research/Research_Facilities/Research_fac";
 import Publications_res from "./Pages/Research/Publications_res";
 
 import Admission_committee from "./Pages/Admission/Admission_committee";
@@ -425,7 +426,7 @@ function App() {
           <Route
             element={
               <>
-                <Research_Facilities />
+                <Research_fac />
               </>
             }
             path="/research/research_facilities"

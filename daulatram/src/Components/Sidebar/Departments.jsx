@@ -1,5 +1,7 @@
 import React from "react";
 import { dept } from "../Mylinks";
+import {Link} from 'react-router-dom'
+
 
 function Departments() {
   return (
@@ -14,12 +16,12 @@ function Departments() {
               <div className="flex flex-col divide-y divide-solid divide-black">
                 {link.names.map((slink) => (
                   <li className="ml-4 mb-2  p-3 rounded-lg hover:pl-4 hover:bg-white   mr-6">
-                    <a href={slink.link} className=" hover:text-blue-600 ">
+                    <Link to={slink.link} className=" hover:text-blue-600 ">
                       <p className="text-black text-justify font-semibold mt-2 ">
                         - {""}
                         {slink.name}
                       </p>
-                    </a>
+                    </Link>
                     {/* <hr className="" /> */}
                   </li>
                 ))}
