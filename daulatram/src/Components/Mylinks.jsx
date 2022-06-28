@@ -41,7 +41,7 @@ export const links = [
         link: "/academics/departments",
       },
       {
-        name: "Teacher-In-Charges",
+        name: "Teachers-In-Charges",
         link: "/academics/Teacher_in_charge",
       },
       {
@@ -65,7 +65,7 @@ export const links = [
         link: "/academics/Training_program",
       },
       {
-        name: "Academic Calendar",
+        name: "University Academic Calendar",
         link: "/academics/Academic_calendar",
       },
       {
