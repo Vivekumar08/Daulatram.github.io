@@ -105,6 +105,7 @@ import CAcadCal from "./Pages/Academics/CAcadCal";
 import Addoncourses from "./Pages/Academics/Addoncourses";
 
 import Tender from "./Pages/Tender/Tender";
+import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
 
 function App() {
   return (
@@ -769,15 +770,19 @@ function App() {
           <Route
             element={
               <>
-                <Chemfacilities/>
+                <Chemfacilities />
               </>
             }
             path="/academics/departments/Chemistry/Facilities"
           ></Route>{" "}
-
-
-
-
+          <Route
+            element={
+              <>
+                <Chemassociation />
+              </>
+            }
+            path="/academics/departments/Chemistry/association"
+          ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
       </Router>{" "}

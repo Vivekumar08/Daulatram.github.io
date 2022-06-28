@@ -18,7 +18,7 @@ const Biochemistry = () => {
           Programmes Offered
         </span>
       </a>
-      <a href="/academics/departments/biochem/association">
+      <a href="/academics/departments/Chemistry/association">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Association
         </span>
@@ -35,7 +35,7 @@ const Biochemistry = () => {
       </span>
       </a>
 
-      <a href="/academics/departments/biochem/laboratorystaff">
+      <a href="/academics/departments/Chemistry/laboratorystaff">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Laboratory Staff
         </span>
@@ -47,7 +47,7 @@ const Biochemistry = () => {
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/awards">
+      <a href="/academics/departments/Chemistry/awards">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Awards
         </span>
