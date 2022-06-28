@@ -85,6 +85,9 @@ import Societies from "./Pages/Societies";
 
 import Chem_About from "./Pages/Academics/Departments/Chemistry/Chem_About";
 import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
+import Student_Notice from "./Pages/Student_Notice";
+import Staff_Notice from "./Pages/Staff_Notice";
+import Public_Notice from "./Pages/Public_Notice";
 
 function App() {
   return (
@@ -369,14 +372,7 @@ function App() {
             }
             path="/StaffZone/Feedback"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Notices />
-              </>
-            }
-            path="/StaffZone/Notices"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -590,6 +586,30 @@ function App() {
             }
             path="/Student_Zone/Anti_Ragging_Helpline"
           ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Student_Notice />
+              </>
+            }
+            path="/Student_Zone/Student_Notice"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Staff_Notice />
+              </>
+            }
+            path="/StaffZone/Notices"
+          ></Route>{" "}
+            <Route
+            element={
+              <>
+                <Public_Notice/>
+              </>
+            }
+            path="/Public_Notice"
+          ></Route>{" "}
           <Route> </Route>{" "}
           <Route
             element={
@@ -636,6 +656,7 @@ function App() {
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter />{" "}
+        {/* <Public_Notice/> */}
       </Router>{" "}
     </>
   );
