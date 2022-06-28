@@ -81,10 +81,13 @@ import Student_facilities from "./Pages/Student_zone/Student_facilities";
 import Eresources from "./Pages/Student_zone/Eresources";
 import Antiragging from "./Pages/Student_zone/Antiragging";
 import Societies from "./Pages/Societies";
-// import Socities1 from "./Pages/Socities1";
 
+// Chemistry
 import Chem_About from "./Pages/Academics/Departments/Chemistry/Chem_About";
 import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
+import Chemprogramoffered from "./Pages/Academics/Departments/Chemistry/Chemprogramoffered";
+
+// import Socities1 from "./Pages/Socities1";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
 import Public_Notice from "./Pages/Public_Notice";
@@ -115,7 +118,7 @@ function App() {
             }
             path="/Admin"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Societies />
@@ -372,7 +375,6 @@ function App() {
             }
             path="/StaffZone/Feedback"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -586,7 +588,7 @@ function App() {
             }
             path="/Student_Zone/Anti_Ragging_Helpline"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Student_Notice />
@@ -602,10 +604,10 @@ function App() {
             }
             path="/StaffZone/Notices"
           ></Route>{" "}
-            <Route
+          <Route
             element={
               <>
-                <Public_Notice/>
+                <Public_Notice />
               </>
             }
             path="/Public_Notice"
@@ -654,9 +656,16 @@ function App() {
             }
             path="/academics/departments/Chemistry/Faculty"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemprogramoffered />
+              </>
+            }
+            path="/academics/departments/Chemistry/Programoffered"
+          ></Route>{" "}
         </Routes>{" "}
-        <Upperfooter />{" "}
-        {/* <Public_Notice/> */}
+        <Upperfooter /> {/* <Public_Notice/> */}{" "}
       </Router>{" "}
     </>
   );
