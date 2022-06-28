@@ -17,7 +17,7 @@ const Staff_Noticebanner = () => {
             <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
-            <span className="ml-5">Student's zone</span>
+            <span className="ml-5">Staff Notice</span>
           </div>
         </div>
       </div>
