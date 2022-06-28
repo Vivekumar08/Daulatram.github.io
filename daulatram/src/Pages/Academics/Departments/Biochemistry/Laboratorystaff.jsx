@@ -21,9 +21,9 @@ const Laboratorystaff = () => {
             LABORATORY STAFF
           </h2>
           <div className="flex flex-row">
-            <div >
+            <div>
               <div className="table_section">
-                <table>
+                <table className="mt-1 ml-5 mr-5">
                   <thead>
                     <tr>
                       <th>Name </th>
@@ -87,10 +87,9 @@ const Laboratorystaff = () => {
               </div>
             </div>
 
-        <div className=" flex  flex-col ml-2 ">
-        <Biochemistry/>
-          
-          </div>
+            <div className=" flex  flex-col ml-2 ">
+              <Biochemistry />
+            </div>
           </div>
         </div>
       </div>
