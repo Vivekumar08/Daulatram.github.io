@@ -88,6 +88,7 @@ import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
 import Public_Notice from "./Pages/Public_Notice";
+import RTI from "./Pages/RTI/RTI";
 
 function App() {
   return (
@@ -609,6 +610,14 @@ function App() {
               </>
             }
             path="/Public_Notice"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <RTI/>
+              </>
+            }
+            path="/RTI"
           ></Route>{" "}
           <Route> </Route>{" "}
           <Route
