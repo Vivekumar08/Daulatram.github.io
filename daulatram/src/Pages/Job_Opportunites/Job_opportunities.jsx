@@ -10,8 +10,8 @@ const Job_opportunities = () => {
       </div>
 
       <div className="flex ">
-        <div className="w-[350px] flex flex-row">{/* <Sidebar /> */}</div>
-        <div className="w-[1100px]">
+        {/* <div className="w-[350px] flex flex-row"><Sidebar /></div> */}
+        <div className="w-[1100px] ml-auto mr-auto ">
           <div className="flex-col">
             <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center uppercase ">
               || Teaching Vacancy ||
