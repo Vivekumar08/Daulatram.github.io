@@ -18,52 +18,52 @@ const Biochemistry = () => {
           Programmes Offered
         </span>
       </a>
-      <a href="/academics/departments/biochem/association">
+      <a href="/academics/departments/Chemistry/association">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Association
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/studentsachieve">
+      <a href="/academics/departments/Chemistry/Students'_achievements">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Student's Achievements
         </span>{" "}
       </a>
       <a href="/academics/departments/Chemistry/Events">
-      <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
+      <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
         Events
       </span>
       </a>
 
-      <a href="/academics/departments/biochem/laboratorystaff">
+      <a href="/academics/departments/Chemistry/laboratorystaff">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Laboratory Staff
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/publications">
+      <a href="/academics/departments/Chemistry/Publications">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Publications
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/awards">
+      <a href="/academics/departments/Chemistry/awards">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Awards
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/research">
+      <a href="/academics/departments/Chemistry/Facilities">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Research
         </span>
       </a>
-      <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+      <a href="#">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Time Table
         </span>
       </a>
-      <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+      <a href="#">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Photo Gallery
         </span>
