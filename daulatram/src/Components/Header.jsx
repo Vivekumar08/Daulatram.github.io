@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 import AuthContext from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { faChevronDown, faChevronUp, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 function Header() {
-  const { auth } = useContext(AuthContext);
+  const { auth, setAuth } = useContext(AuthContext);
+  const [logout, setLogout] = useState(false);
   return (
     <>
       <div className="m-5 flex flex-row justify-between bg-[#fff]">
@@ -48,14 +50,46 @@ function Header() {
           </div>
         </div>
         {auth ? (
-          <div className="mt-2 mr-12">
-            <p className=" text-lg w-[150px] bg-gray-300 p-2 rounded-sm  text-Black">
-              {" "}
-              <span className="justify-center items-center flex flex-row">
-                Hi, <FontAwesomeIcon icon={faUserCircle} size="lg" className="ml-2 mr-1 text-[#000080]"></FontAwesomeIcon> {" "}Admin
-              </span>{" "}
-            </p>
-          </div>
+          <>
+            <div className="flex flex-col">
+              <div className="mt-2 mr-12">
+                <p className=" text-lg w-[160px] bg-gray-300 p-2 rounded-md  text-Black">
+                  {" "}
+                  <span className="justify-center items-center flex flex-row ml-2">
+                    Hi,{" "}
+                    <FontAwesomeIcon
+                      icon={faUserCircle}
+                      size="lg"
+                      className="ml-2 mr-1 text-[#000080]"
+                    ></FontAwesomeIcon>{" "}
+                    Admin
+                    {logout?(
+
+                      
+                      <FontAwesomeIcon
+                      icon={faChevronDown}
+                      className="pl-4 mr-2 cursor-pointer"
+                      onClick={() => setLogout(!logout)}
+                      />
+                      ):(
+                        
+                        <FontAwesomeIcon
+                        icon={faChevronUp}
+                        className="pl-4 mr-2 cursor-pointer"
+                        onClick={() => setLogout(!logout)}
+                        />
+                      )
+                  }
+                  </span>{" "}
+                </p>
+                {logout && (
+                  <div className="flex justify-center transition duration-500 mt-1 rounded-md hover:bg-blue-600 bg-[#000080] p-2 text-xl cursor-pointer" onClick={() => setAuth(!auth) }>
+                    <span  className="   text-white">Logout</span>
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
         ) : (
           <>
             <div className="mt-2 mr-12">

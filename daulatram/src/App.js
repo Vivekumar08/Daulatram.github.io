@@ -93,7 +93,12 @@ import Chemevents from "./Pages/Academics/Departments/Chemistry/Chemevents";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
 import Public_Notice from "./Pages/Public_Notice";
-
+import Undergraduate from "./Pages/Academics/Undergraduate";
+import Teacher from "./Pages/Academics/teacher"
+import Trainingp from "./Pages/Academics/trainingp";
+import AcadCal from "./Pages/Academics/AcadCal";
+import CAcadCal from "./Pages/Academics/CAcadCal";
+import Addoncourses from "./Pages/Academics/Addoncourses";
 function App() {
   return (
     <>
@@ -229,6 +234,59 @@ function App() {
             exact
             path="/academics/departments/biochem/laboratorystaff"
           ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Teacher />
+              </>
+            }
+            path="/academics/Teacher_in_charge"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Undergraduate />
+              </>
+            }
+            path="/academics/UG_courses"
+            
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Addoncourses />
+              </>
+            }
+            path="/academics/Add_on_courses"
+            
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <AcadCal />
+              </>
+            }
+            path="/academics/Academic_calendar"
+            
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <CAcadCal />
+              </>
+            }
+            path="/academics/College_Calendar"
+            
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Trainingp />
+              </>
+            }
+            path="/academics/Training_program"
+          ></Route>{" "}
+         
           <Route
             element={
               <>
