@@ -33,7 +33,7 @@ const Student_Notice = () => {
                       {mon}
                     </span>
                   </div>
-                  <span className="text-lg">{info}</span>
+                  <span className="text-xl">{info}</span>
                 </div>
               );
             })}

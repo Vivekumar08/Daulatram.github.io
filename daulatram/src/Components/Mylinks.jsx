@@ -684,11 +684,11 @@ export const Notices = [
       },
       {
         name: "Staff Notice",
-        link: "/Student_Zone/Attendance",
+        link: "/StaffZone/Notices",
       },
       {
         name: "Public Notice",
-        link: "/Student_Zone/Internal_Assesments",
+        link: "/Public_Notice",
       },
     ],
   },

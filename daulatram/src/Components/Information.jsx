@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-// import {Link} from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import { StudentInfo } from "./Info"; //first step
 import { StaffInfo } from "./Info";
 import { PublicInfo } from "./Info";
@@ -28,11 +28,11 @@ function Information() {
               const { id, info, link,date } = curElem;
               return (
                 <>
-                  <a href={link} target="_blank" rel="norefferer">
+                  <Link to={link} target="_blank" rel="norefferer">
                     <span className=" information flex flex-col hover:font-semibold hover:text-blue-600 hover:text-base ml-4 text-sm mb-4 mt-4">
                       {info}
                     </span>
-                  </a>
+                  </Link>
                 </>
               );
             })}
@@ -45,11 +45,11 @@ function Information() {
               const { id, info, link } = curElem;
               return (
                 <>
-                  <a href={link} target="_blank" rel="norefferer">
+                  <Link to={link} target="_blank" rel="norefferer">
                     <span className=" information flex flex-col ml-4 hover:font-semibold hover:text-blue-600 hover:text-base text-sm mb-4 mt-4">
                       {info}
                     </span>
-                  </a>
+                  </Link>
                 </>
               );
             })}
@@ -62,11 +62,11 @@ function Information() {
               const { id, info, link } = curElem;
               return (
                 <>
-                  <a href={link} target="_blank" rel="noreferrer">
+                  <Link to={link} target="_blank" rel="noreferrer">
                     <span className=" information flex flex-col ml-4 text-sm mb-4 hover:font-semibold hover:text-blue-600 hover:text-base mt-4">
                       {info}
                     </span>
-                  </a>
+                  </Link>
                 </>
               );
             })}
