@@ -25,7 +25,7 @@ function Information() {
               <span className="mt-3">Notice for Students</span>
             </span>
             {Studentinfo.map((curElem) => {
-              const { id, info, link } = curElem;
+              const { id, info, link,date } = curElem;
               return (
                 <>
                   <a href={link} target="_blank" rel="norefferer">
