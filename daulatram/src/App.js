@@ -45,7 +45,8 @@ import { EnablinUnit } from "./Pages/Societies/EnablinUnit";
 import ExtraCurricular from "./Pages/Societies/ExtraCurricular";
 import Memesis from "./Pages/Societies/Memesis";
 
-import Research_Facilities from "./Pages/Research/Research_Facilities";
+// import Research_Facilities from "./Pages/Research/Research_Facilities";
+import Research_fac from "./Pages/Research/Research_Facilities/Research_fac";
 import Publications_res from "./Pages/Research/Publications_res";
 
 import Admission_committee from "./Pages/Admission/Admission_committee";
@@ -84,6 +85,9 @@ import Societies from "./Pages/Societies";
 
 import Chem_About from "./Pages/Academics/Departments/Chemistry/Chem_About";
 import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
+import Student_Notice from "./Pages/Student_Notice";
+import Staff_Notice from "./Pages/Staff_Notice";
+import Public_Notice from "./Pages/Public_Notice";
 
 function App() {
   return (
@@ -368,14 +372,7 @@ function App() {
             }
             path="/StaffZone/Feedback"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Notices />
-              </>
-            }
-            path="/StaffZone/Notices"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -423,7 +420,7 @@ function App() {
           <Route
             element={
               <>
-                <Research_Facilities />
+                <Research_fac />
               </>
             }
             path="/research/research_facilities"
@@ -589,6 +586,30 @@ function App() {
             }
             path="/Student_Zone/Anti_Ragging_Helpline"
           ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Student_Notice />
+              </>
+            }
+            path="/Student_Zone/Student_Notice"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Staff_Notice />
+              </>
+            }
+            path="/StaffZone/Notices"
+          ></Route>{" "}
+            <Route
+            element={
+              <>
+                <Public_Notice/>
+              </>
+            }
+            path="/Public_Notice"
+          ></Route>{" "}
           <Route> </Route>{" "}
           <Route
             element={
@@ -635,6 +656,7 @@ function App() {
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter />{" "}
+        {/* <Public_Notice/> */}
       </Router>{" "}
     </>
   );

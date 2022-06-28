@@ -60,13 +60,15 @@ router.post('/AdminLogin', async (req, res) => {
   } catch (err) {
     console.log(err);
   }
-
+  
 })
 
 router.delete('/delete/:id', async (req, res) => {
   const delete_user = await User.findOneAndDelete({ _id: req.params.id });
   res.send(delete_user + "User deleted")
 })
+
+// Admission
 
 router.get('/admission', async (req, res,) => {
   // res.send(`Hello World from the server`);
@@ -89,15 +91,26 @@ router.delete('/deleteAdmission/:id', async (req, res) => {
   res.status(200).json(delete_user + "User deleted")
 })
 
+// Helpdesk
+
+router.get('/helpdesk', async (req, res,) => {
+  const details = await helpdesk.find()
+  res.status(200).json(details)
+});
+
 router.post('/helpdesk_admission', async (req, res) => {
   const { Link, Caption } = req.body
   if (!Link || !Caption) {
-      return res.status(400).json({ error: "Fill the Admission Details Properly" })
+    return res.status(400).json({ error: "Fill the Helpdesk Details Properly" })
   }
   const user = new helpdesk(req.body );
   await user.save();
   console.log("Details Saved Successfully")
   return res.status(200).json({ message: "Details Saved Successfully " })
+})
+router.delete('/deleteHelpdesk/:id', async (req, res) => {
+  const delete_user = await helpdesk.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
 })
 
 module.exports = router;
