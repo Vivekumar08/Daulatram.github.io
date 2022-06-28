@@ -24,7 +24,7 @@ const Biochemistry = () => {
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/studentsachieve">
+      <a href="/academics/departments/Chemistry/Students'_achievements">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Student's Achievements
         </span>{" "}
@@ -58,12 +58,12 @@ const Biochemistry = () => {
           Research
         </span>
       </a>
-      <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+      <a href="#">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Time Table
         </span>
       </a>
-      <a href="https://drive.google.com/file/d/1GagyR2UNzjijUt-JLiLxulvspvfLdEZF/view?usp=sharing">
+      <a href="#">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Photo Gallery
         </span>
