@@ -55,235 +55,234 @@ function Botanyfaculty() {
         <div className="w-[350px]">
           <Departments />
         </div>
-      
-          <div className="w-[1100px]">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              Faculty
-            </h2>
-            <div className="flex flex-col">
-              <span className="font-bold text-xl ml-7">Current Faculty</span>
-              <div class="wrapper1 mt-5 mb-8">
-                <div class="card">
-                  <img src={ng} />
-                  <div class="info">
-                    <h1> Prof. Nidhi Gautam </h1>
-                    <p>Assistant Professor</p>
-                    <a href={ngp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src={rp} />
-                  <div class="info">
-                    <h1>Prof. Rama Pasricha</h1>
-                    <p>Assistant Professor (Level XII)</p>
-                    <a href={rpp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src={rk} />
-                  <div class="info">
-                    <h1>Prof. Rekha Kathal</h1>
-                    <p>Associate Professor</p>
-                    <a href={rkp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="wrapper1 mt-5 mb-8">
-                <div class="card">
-                  <img src={mb} />
-                  <div class="info">
-                    <h1>Dr. Meenam Bhatia</h1>
-                    <p> Associate Professor</p>
-                    <a href={mbp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
 
-                <div class="card">
-                  <img src={sg} />
-                  <div class="info">
-                    <h1> Dr. Sunita George </h1>
-                    <p>Assistant Professor</p>
-                    <a href={sgp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src={ms} />
-                  <div class="info">
-                    <h1>Dr. Meenakshi Sharma</h1>
-                    <p>Assistant Professor (Level XII)</p>
-                    <a href={msp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="wrapper1 mt-5 mb-8">
-                <div class="card">
-                  <img src={vd} />
-                  <div class="info">
-                    <h1>Dr. Vidhi Chaudhary</h1>
-                    <p>Assistant Professor</p>
-                    <a href={vdp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src={ml} />
-                  <div class="info">
-                    <h1>Dr. Leleeka Mayanglambam</h1>
-                    <p> Assistant Professor</p>
-                    <a href={mlp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-
-                <div class="card">
-                  <img src={ay} />
-                  <div class="info">
-                    <h1> Dr. Aradhana Yadav</h1>
-                    <p>Assistant Professor</p>
-                    <a href={ayp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-              <div class="wrapper1 mt-5 mb-8">
-                <div class="card">
-                  <img src={pk} />
-                  <div class="info">
-                    <h1>Dr. Pratibha Kumari</h1>
-                    <p>Assistant Professor (Level XII)</p>
-                    <a href={pkp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src={sd} />
-                  <div class="info">
-                    <h1>Dr. Shagun Danda</h1>
-                    <p>Assistant Professor</p>
-                    <a href={sdp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-                <div class="card">
-                  <img src={agt} />
-                  <div class="info">
-                    <h1>Dr. Asmita Gupta</h1>
-                    <p> Assistant Professor</p>
-                    <a href={agpp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="wrapper4 mt-5 mb-9 ">
-                <div class="card ">
-                  <img src={kk} />
-                  <div class="info">
-                    <h1> Dr. Kamlesh Kumari</h1>
-                    <p>Assistant Professor (Ad hoc)</p>
-                    <a href={kkp}>
-                      <button>View CV</button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <span className="font-bold text-xl ml-6 mt-20 mb-9">
-              Superannuated Faculty
-            </span>
-
-            <div class="wrapper1 mt-4 mb-10 ">
+        <div className="w-[1100px]">
+          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            Faculty
+          </h2>
+          <div className="flex flex-col">
+            <span className="font-bold text-xl ml-7">Current Faculty</span>
+            <div class="wrapper1 mt-5 mb-8">
               <div class="card">
-                <img src={ss} />
+                <img src={ng} />
                 <div class="info">
-                  <h1> Dr. Sunita Sinha</h1>
-                  <p>Senior Reader</p>
-                  <a href={ssp}>
+                  <h1> Prof. Nidhi Gautam </h1>
+                  <p>Assistant Professor</p>
+                  <a href={ngp}>
                     <button>View CV</button>
                   </a>
                 </div>
               </div>
-              <div class="card ">
-                <img src={rm} />
+              <div class="card">
+                <img src={rp} />
                 <div class="info">
-                  <h1>Dr. Rajeshwari Madhwan</h1>
-                  <p>Associate Professor</p>
-                  <a href={rmp}>
+                  <h1>Prof. Rama Pasricha</h1>
+                  <p>Assistant Professor (Level XII)</p>
+                  <a href={rpp}>
                     <button>View CV</button>
                   </a>
                 </div>
               </div>
-              <div class="card ">
-                <img src={npm} />
+              <div class="card">
+                <img src={rk} />
                 <div class="info">
-                  <h1>Dr. Neelam Pari Malkani</h1>
+                  <h1>Prof. Rekha Kathal</h1>
                   <p>Associate Professor</p>
-                  <a href={npp}>
+                  <a href={rkp}>
                     <button>View CV</button>
                   </a>
                 </div>
               </div>
             </div>
-            <div class="wrapper mt-4 mb-8">
-              <div class="card ">
-                <img src={spt} />
+            <div class="wrapper1 mt-5 mb-8">
+              <div class="card">
+                <img src={mb} />
                 <div class="info">
-                  <h1>Dr. Sudha Prakash</h1>
-                  <p>Reader</p>
-                  <a href={spp}>
+                  <h1>Dr. Meenam Bhatia</h1>
+                  <p> Associate Professor</p>
+                  <a href={mbp}>
                     <button>View CV</button>
                   </a>
                 </div>
               </div>
 
               <div class="card">
-                <img src={sdj} />
+                <img src={sg} />
                 <div class="info">
-                  <h1> Dr. Subhashni Dewan</h1>
-                  <p>Associate Professor</p>
-                  <a href={"#"}>
+                  <h1> Dr. Sunita George </h1>
+                  <p>Assistant Professor</p>
+                  <a href={sgp}>
                     <button>View CV</button>
                   </a>
                 </div>
               </div>
-              <div class="card ">
-                <img src={kn} />
+              <div class="card">
+                <img src={ms} />
                 <div class="info">
-                  <h1>Dr. Kanan Nanda</h1>
-                  <p>Principal (2007-10)</p>
-                  <a href={"#"}>
+                  <h1>Dr. Meenakshi Sharma</h1>
+                  <p>Assistant Professor (Level XII)</p>
+                  <a href={msp}>
+                    <button>View CV</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="wrapper1 mt-5 mb-8">
+              <div class="card">
+                <img src={vd} />
+                <div class="info">
+                  <h1>Dr. Vidhi Chaudhary</h1>
+                  <p>Assistant Professor</p>
+                  <a href={vdp}>
+                    <button>View CV</button>
+                  </a>
+                </div>
+              </div>
+              <div class="card">
+                <img src={ml} />
+                <div class="info">
+                  <h1>Dr. Leleeka Mayanglambam</h1>
+                  <p> Assistant Professor</p>
+                  <a href={mlp}>
+                    <button>View CV</button>
+                  </a>
+                </div>
+              </div>
+
+              <div class="card">
+                <img src={ay} />
+                <div class="info">
+                  <h1> Dr. Aradhana Yadav</h1>
+                  <p>Assistant Professor</p>
+                  <a href={ayp}>
+                    <button>View CV</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <div class="wrapper1 mt-5 mb-8">
+              <div class="card">
+                <img src={pk} />
+                <div class="info">
+                  <h1>Dr. Pratibha Kumari</h1>
+                  <p>Assistant Professor (Level XII)</p>
+                  <a href={pkp}>
+                    <button>View CV</button>
+                  </a>
+                </div>
+              </div>
+              <div class="card">
+                <img src={sd} />
+                <div class="info">
+                  <h1>Dr. Shagun Danda</h1>
+                  <p>Assistant Professor</p>
+                  <a href={sdp}>
+                    <button>View CV</button>
+                  </a>
+                </div>
+              </div>
+              <div class="card">
+                <img src={agt} />
+                <div class="info">
+                  <h1>Dr. Asmita Gupta</h1>
+                  <p> Assistant Professor</p>
+                  <a href={agpp}>
+                    <button>View CV</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="wrapper4 mt-5 mb-9 ">
+              <div class="card ">
+                <img src={kk} />
+                <div class="info">
+                  <h1> Dr. Kamlesh Kumari</h1>
+                  <p>Assistant Professor (Ad hoc)</p>
+                  <a href={kkp}>
                     <button>View CV</button>
                   </a>
                 </div>
               </div>
             </div>
           </div>
+
+          <span className="font-bold text-xl ml-6 mt-20 mb-9">
+            Superannuated Faculty
+          </span>
+
+          <div class="wrapper1 mt-4 mb-10 ">
+            <div class="card">
+              <img src={ss} />
+              <div class="info">
+                <h1> Dr. Sunita Sinha</h1>
+                <p>Senior Reader</p>
+                <a href={ssp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card ">
+              <img src={rm} />
+              <div class="info">
+                <h1>Dr. Rajeshwari Madhwan</h1>
+                <p>Associate Professor</p>
+                <a href={rmp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card ">
+              <img src={npm} />
+              <div class="info">
+                <h1>Dr. Neelam Pari Malkani</h1>
+                <p>Associate Professor</p>
+                <a href={npp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="wrapper mt-4 mb-8">
+            <div class="card ">
+              <img src={spt} />
+              <div class="info">
+                <h1>Dr. Sudha Prakash</h1>
+                <p>Reader</p>
+                <a href={spp}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+
+            <div class="card">
+              <img src={sdj} />
+              <div class="info">
+                <h1> Dr. Subhashni Dewan</h1>
+                <p>Associate Professor</p>
+                <a href={"#"}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+            <div class="card ">
+              <img src={kn} />
+              <div class="info">
+                <h1>Dr. Kanan Nanda</h1>
+                <p>Principal (2007-10)</p>
+                <a href={"#"}>
+                  <button>View CV</button>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className=" flex  flex-col mr-16 mt-36">
           <Botany />
         </div>
-        </div>
       </div>
-  
+    </div>
   );
 }
 

@@ -26,8 +26,8 @@ function Chem_About() {
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Chemistry/Aboutchem.jpg)",
-                    width: "700px",
-                    height: "300px",
+                    width: "400px",
+                    height: "370px",
                   }}
                   className="bg-center ml-auto mr-auto bg-no-repeat mt-[3%] bg-cover h-10  rounded-3xl border-2 border-black"
                   // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
