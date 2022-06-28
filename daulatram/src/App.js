@@ -83,9 +83,10 @@ import Antiragging from "./Pages/Student_zone/Antiragging";
 import Societies from "./Pages/Societies";
 // import Socities1 from "./Pages/Socities1";
 
+import Chem_About from "./Pages/Academics/Departments/Chemistry/Chem_About";
+import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
 
 function App() {
-
   return (
     <>
       <Router>
@@ -358,8 +359,7 @@ function App() {
             }
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Staff Zone */}{" "}
+          {/* *********************** */} {/* Staff Zone */}{" "}
           {/* *********************** */}{" "}
           <Route
             element={
@@ -401,8 +401,7 @@ function App() {
             }
             path="/StaffZone/Roster"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Socieites */}{" "}
+          {/* *********************** */} {/* Socieites */}{" "}
           {/* *********************** */}{" "}
           <Route
             element={
@@ -420,9 +419,8 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Research And Facilities */}{" "}
-          {/* *********************** */}
+          {/* *********************** */} {/* Research And Facilities */}{" "}
+          {/* *********************** */}{" "}
           <Route
             element={
               <>
@@ -511,7 +509,7 @@ function App() {
               </>
             }
             path="/Student_Zone/Time_Table_&_Academic_Calendar"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -519,7 +517,7 @@ function App() {
               </>
             }
             path="/Student_Zone/Attendance"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -527,8 +525,7 @@ function App() {
               </>
             }
             path="/Student_Zone/Internal_Assesments"
-          ></Route>
-
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -536,8 +533,7 @@ function App() {
               </>
             }
             path="/Student_Zone/Internal_Assesments/First_year"
-          ></Route>
-
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -545,8 +541,7 @@ function App() {
               </>
             }
             path="/Student_Zone/Internal_Assesments/Second_year"
-          ></Route>
-
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -554,51 +549,48 @@ function App() {
               </>
             }
             path="/Student_Zone/Internal_Assesments/Third_year"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Hostel/>
+                <Hostel />
               </>
             }
             path="/Student_Zone/Hostel"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Forms/>
+                <Forms />
               </>
             }
             path="/Student_Zone/Forms"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Student_facilities/>
+                <Student_facilities />
               </>
             }
             path="/Student_Zone/Students_Facilities"
-          ></Route>
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Eresources/>
+                <Eresources />
               </>
             }
             path="/Student_Zone/E_Resources"
-          ></Route>
-
+          ></Route>{" "}
           <Route
             element={
               <>
-                <Antiragging/>
+                <Antiragging />
               </>
             }
             path="/Student_Zone/Anti_Ragging_Helpline"
-          ></Route>
-
-          <Route
           ></Route>{" "}
+          <Route> </Route>{" "}
           <Route
             element={
               <>
@@ -615,9 +607,8 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
-          {/* *********************** */}
-          {/* Footer */}
-          {/* *********************** */}
+          {/* *********************** */} {/* Footer */}{" "}
+          {/* *********************** */}{" "}
           <Route
             element={
               <>
@@ -626,9 +617,25 @@ function App() {
             }
             path="/Contact_us"
           ></Route>{" "}
-
+          {/* Chemistry */}{" "}
+          <Route
+            element={
+              <>
+                <Chem_About />
+              </>
+            }
+            path="/academics/departments/Chemistry/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemfaculty />
+              </>
+            }
+            path="/academics/departments/Chemistry/Faculty"
+          ></Route>{" "}
         </Routes>{" "}
-        <Upperfooter /> {" "}
+        <Upperfooter />{" "}
       </Router>{" "}
     </>
   );
