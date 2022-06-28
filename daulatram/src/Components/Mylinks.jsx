@@ -245,12 +245,11 @@ export const links = [
   // {
   //   name: "Societies",
   //   links: "/Societies"
-      
+
   // },
-  
 ];
 
-export const useful =[
+export const useful = [
   {
     name: "Accreditation",
     links: [
@@ -309,7 +308,7 @@ export const useful =[
       },
     ],
   },
-]
+];
 
 export const about = [
   {
@@ -670,6 +669,26 @@ export const Student = [
       {
         name: "Complaints/Suggestions",
         link: "/Student_Zone/Complainst_&_Suggetions",
+      },
+    ],
+  },
+];
+
+export const Notices = [
+  {
+    name: "Notice Board",
+    links: [
+      {
+        name: "Students Notice",
+        link: "/Student_Zone/Student_Notice",
+      },
+      {
+        name: "Staff Notice",
+        link: "/Student_Zone/Attendance",
+      },
+      {
+        name: "Public Notice",
+        link: "/Student_Zone/Internal_Assesments",
       },
     ],
   },
