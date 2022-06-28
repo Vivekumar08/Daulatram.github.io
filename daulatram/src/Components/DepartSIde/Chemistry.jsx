@@ -13,7 +13,7 @@ const Biochemistry = () => {
           Faculty
         </span>
       </a>
-      <a href="/academics/departments/biochem/programmesoffer">
+      <a href="/academics/departments/Chemistry/Programoffered">
         <span className="  bg-[#000080] rounded-lg p-2 flex w-[220px] flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Programmes Offered
         </span>
