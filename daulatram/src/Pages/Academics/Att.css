@@ -1,6 +1,6 @@
 .btn {
     background-color: #000080; 
-    border: none;
+    border: 2px groove #000080;
     color: white;
     padding: 10px 20px;
     text-align: center;

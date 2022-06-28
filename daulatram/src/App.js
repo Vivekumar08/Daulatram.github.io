@@ -106,6 +106,7 @@ import Addoncourses from "./Pages/Academics/Addoncourses";
 
 import Tender from "./Pages/Tender/Tender";
 import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
+import Job_opportunities from "./Pages/Job_Opportunites/Job_opportunities";
 
 function App() {
   return (
@@ -717,6 +718,14 @@ function App() {
               </>
             }
             path="/Tender"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Job_opportunities />
+              </>
+            }
+            path="/Job_Opportunities"
           ></Route>{" "}
           {/* Chemistry */}{" "}
           <Route
