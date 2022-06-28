@@ -14,9 +14,9 @@ const Research_data = (props ) => {
         <h1 className="font-bold flex-shrink pr-4 text-2xl">{props.tittle}</h1>
         <div class="flex-grow h-px bg-gray-400"></div>
         {visible ? (
-          <FontAwesomeIcon icon={faChevronDown} className="pl-4" />
-        ) : (
           <FontAwesomeIcon icon={faChevronUp} className="pl-4" />
+        ) : (
+          <FontAwesomeIcon icon={faChevronDown} className="pl-4" />
         )}
       </div>
       {visible && <p>{props.para}</p> }

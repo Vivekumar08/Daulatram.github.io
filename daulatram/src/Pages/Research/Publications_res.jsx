@@ -12,7 +12,7 @@ function Publications_res() {
           <Research_side />
         </div>
         <div className="ml-3 mb-5">
-          <div className="w-[1100px]">
+          <div className="md:w-[1100px] ">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Publications
             </h2>

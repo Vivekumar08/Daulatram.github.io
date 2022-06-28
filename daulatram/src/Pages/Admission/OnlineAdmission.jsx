@@ -11,7 +11,7 @@ import AuthContext from "../../Context/AuthProvider";
 
 const OnlineAdmission = () => {
   const userRef = useRef();
-  // const errRef = useRef();
+  const errRef = useRef();
   const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -39,7 +39,7 @@ const OnlineAdmission = () => {
       }
     );
     const data = await response.json();
-    if (data || response.status===200) {
+    if (data || response.status === 200) {
       fetchdata();
     } else {
       setErrMsg("Unable to Delete");
@@ -62,10 +62,8 @@ const OnlineAdmission = () => {
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
-    } else if (response.status === 401) {
-      setErrMsg("Missing Username or Password");
-    } else if (response.status === 402) {
-      setErrMsg("Unauthorized");
+    } else if (response.status === 400) {
+      setErrMsg("Fill Complete Details");
     } else {
       setCaption("");
       setLink("");
@@ -126,11 +124,6 @@ const OnlineAdmission = () => {
                     {auth ? (
                       <>
                         <div className="flex flex-col">
-                          {/* <FontAwesomeIcon
-                            icon={faPen}
-                            size="lg"
-                            className="mt-8 ml-auto cursor-pointer mr-16 hover:text-blue-600"
-                          ></FontAwesomeIcon> */}
                           <FontAwesomeIcon
                             icon={faTrashCan}
                             size="lg"
@@ -146,12 +139,17 @@ const OnlineAdmission = () => {
                 </div>
               </>
             ))}
-            {auth ? (
+            {auth && (
               <>
                 <form
                   method="post"
                   className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
                 >
+                  <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                      {errMsg}
+                    </p>
+                  </h2>
                   <div className="mb-3">
                     <input
                       type="text"
@@ -191,8 +189,6 @@ const OnlineAdmission = () => {
                   </div>
                 </form>
               </>
-            ) : (
-              ""
             )}
           </div>
         </div>
