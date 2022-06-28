@@ -30,7 +30,7 @@ const Biochemistry = () => {
         </span>{" "}
       </a>
       <a href="/academics/departments/Chemistry/Events">
-      <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-900">
+      <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
         Events
       </span>
       </a>
@@ -41,7 +41,7 @@ const Biochemistry = () => {
         </span>
       </a>
 
-      <a href="/academics/departments/biochem/publications">
+      <a href="/academics/departments/Chemistry/Publications">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Publications
         </span>

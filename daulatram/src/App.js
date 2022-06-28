@@ -101,6 +101,7 @@ import Trainingp from "./Pages/Academics/trainingp";
 import AcadCal from "./Pages/Academics/AcadCal";
 import CAcadCal from "./Pages/Academics/CAcadCal";
 import Addoncourses from "./Pages/Academics/Addoncourses";
+import Chempublications from "./Pages/Academics/Departments/Chemistry/Chempublications";
 
 function App() {
   return (
@@ -670,10 +671,10 @@ function App() {
             }
             path="/Public_Notice"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
-                <RTI/>
+                <RTI />
               </>
             }
             path="/RTI"
@@ -745,6 +746,14 @@ function App() {
               </>
             }
             path="/academics/departments/Chemistry/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chempublications />
+              </>
+            }
+            path="/academics/departments/Chemistry/Publications"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
