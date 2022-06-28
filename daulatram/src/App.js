@@ -93,6 +93,8 @@ import Chemstudachieve from "./Pages/Academics/Departments/Chemistry/Chemstudach
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
 import Public_Notice from "./Pages/Public_Notice";
+import RTI from "./Pages/RTI/RTI";
+
 import Undergraduate from "./Pages/Academics/Undergraduate";
 import Teacher from "./Pages/Academics/teacher";
 import Trainingp from "./Pages/Academics/trainingp";
@@ -667,6 +669,14 @@ function App() {
               </>
             }
             path="/Public_Notice"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <RTI/>
+              </>
+            }
+            path="/RTI"
           ></Route>{" "}
           <Route> </Route>{" "}
           <Route

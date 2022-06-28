@@ -9,7 +9,7 @@
     font-size: 16px;
     border-radius: 10px;
   }
-
+  
   td:hover{
     color: black;
     font-style: normal;
@@ -20,7 +20,7 @@
     border:2px groove #000080;
   }
   .stop{
-    height: 1%;
+    /* height: 1%; */
     white-space: nowrap;
   }
   .row{

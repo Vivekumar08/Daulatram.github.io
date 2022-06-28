@@ -17,7 +17,7 @@ const Facilities = () => {
             <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               FACILITIES
             </h2>
-            <h3 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h3 className="text-4xl font-bold mb-5 mt-5 flex flex-row justify-center items-center ">
               Library and Reading Room
             </h3>
             <figure className="flex p-4">
@@ -104,7 +104,7 @@ const Facilities = () => {
               <h3 className="text-4xl font-bold mb-5 mt-[4%] flex flex-row justify-center items-center ">
                 Teachers Study Room
               </h3>
-              <figure className="flex p-3">
+              <figure className="flex  mb-5">
                 <span className=" card-description text-lg text-justify font-medium ">
                   The college has a well-maintained teacher’s study room
                   adjacent to library which is equipped with computer facility
