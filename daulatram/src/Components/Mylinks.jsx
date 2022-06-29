@@ -383,7 +383,7 @@ export const acade = [
         link: "/academics/Training_program",
       },
       {
-        name: "Academic Calendar",
+        name: "University Academic Calendar",
         link: "/academics/Academic_calendar",
       },
       {
