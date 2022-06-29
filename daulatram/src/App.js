@@ -113,7 +113,7 @@ import Com_about from "./Pages/Academics/Departments/Commerce/Com_about";
 import Com_faculty from "./Pages/Academics/Departments/Commerce/Com_faculty";
 import Com_programoffer from "./Pages/Academics/Departments/Commerce/Com_programoffer";
 import Com_events from "./Pages/Academics/Departments/Commerce/Com_events";
-
+import Com_studachieve from "./Pages/Academics/Departments/Commerce/Com_studachieve"
 function App() {
   return (
     <>
@@ -831,6 +831,20 @@ function App() {
             }
             path="/academics/departments/Commerce/Events"
           ></Route>{" "}
+
+          <Route
+            element={
+              <>
+                <Com_studachieve/>
+              </>
+            }
+            path="/academics/departments/Commerce/Students'_achievements"
+          ></Route>{" "}
+
+
+
+
+
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
       </Router>{" "}
