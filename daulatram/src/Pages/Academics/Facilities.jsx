@@ -17,7 +17,7 @@ const Facilities = () => {
             <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               FACILITIES
             </h2>
-            <h3 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h3 className="text-4xl ml-3 font-bold mb-5 mt-[5%] flex flex-row justify-left items-center ">
               Library and Reading Room
             </h3>
             <figure className="flex p-4">
@@ -36,7 +36,7 @@ const Facilities = () => {
                 handicapped.
               </span>
             </figure>
-            <h4 className="text-4xl font-bold mb-5 mt-[2%] flex flex-row justify-center items-center ">
+            <h4 className="text-4xl font-bold ml-3 mb-5 mt-[2%] flex flex-row justify-left items-center ">
               Terms and Conditions
             </h4>
             <figure className="ml-3">
@@ -101,7 +101,7 @@ const Facilities = () => {
                   from 9 a.m. to 5 p.m.
                 </p>
               </span>
-              <h3 className="text-4xl font-bold mb-5 mt-[4%] flex flex-row justify-center items-center ">
+              <h3 className="text-4xl font-bold mb-5 mt-[4%] ml-3 flex flex-row justify-left items-center ">
                 Teachers Study Room
               </h3>
               <figure className="flex p-3">
