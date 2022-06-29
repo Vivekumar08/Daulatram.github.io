@@ -108,11 +108,9 @@ import Tender from "./Pages/Tender/Tender";
 import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
 import Job_opportunities from "./Pages/Job_Opportunites/Job_opportunities";
 
-
-
-
 // Commerce
 import Com_about from "./Pages/Academics/Departments/Commerce/Com_about";
+import Com_faculty from "./Pages/Academics/Departments/Commerce/Com_faculty";
 
 function App() {
   return (
@@ -798,7 +796,7 @@ function App() {
             }
             path="/academics/departments/Chemistry/association"
           ></Route>{" "}
-          {/* Commerce */}
+          {/* Commerce */}{" "}
           <Route
             element={
               <>
@@ -806,6 +804,14 @@ function App() {
               </>
             }
             path="/academics/departments/Commerce/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_faculty />
+              </>
+            }
+            path="/academics/departments/Commerce/Faculty"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
