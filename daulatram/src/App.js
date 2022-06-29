@@ -111,6 +111,8 @@ import Job_opportunities from "./Pages/Job_Opportunites/Job_opportunities";
 // Commerce
 import Com_about from "./Pages/Academics/Departments/Commerce/Com_about";
 import Com_faculty from "./Pages/Academics/Departments/Commerce/Com_faculty";
+import Com_programoffer from "./Pages/Academics/Departments/Commerce/Com_programoffer";
+import Com_events from "./Pages/Academics/Departments/Commerce/Com_events";
 
 function App() {
   return (
@@ -812,6 +814,22 @@ function App() {
               </>
             }
             path="/academics/departments/Commerce/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_programoffer />
+              </>
+            }
+            path="/academics/departments/Commerce/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_events />
+              </>
+            }
+            path="/academics/departments/Commerce/Events"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
