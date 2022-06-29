@@ -10,6 +10,7 @@ module.exports = {
       },
       'animation': {
         'text': 'text 5s ease infinite',
+        "run": 'run 15s ease-in infinite'
       },
       'keyframes': {
         'text': {
@@ -22,6 +23,17 @@ module.exports = {
             'background-position': 'right center'
           }
         },
+        'run': {
+          '0%': {
+            'transform': "translateY(0%)"
+          },
+          // '50%': {
+            //   'top': "50%"
+            // },
+            '100%': {
+            'transform': "translateY(-1000%)",
+          },
+        }
       }
     },
     listStyleType: {
