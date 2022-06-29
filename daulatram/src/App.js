@@ -121,6 +121,7 @@ import Bcomprog from "./Pages/Academics/Departments/Commerce/Bcomprog";
 //Economics
 import Eco_about from "./Pages/Academics/Departments/Economics/Eco_about";
 import Eco_faculty from "./Pages/Academics/Departments/Economics/Eco_faculty";
+import Eco_programoffered from "./Pages/Academics/Departments/Economics/Eco_programoffered";
 
 function App() {
   return (
@@ -887,6 +888,14 @@ function App() {
               </>
             }
             path="/academics/departments/Economics/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_programoffered />
+              </>
+            }
+            path="/academics/departments/Economics/Programoffered"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
