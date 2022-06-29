@@ -122,6 +122,7 @@ import Bcomprog from "./Pages/Academics/Departments/Commerce/Bcomprog";
 import Eco_about from "./Pages/Academics/Departments/Economics/Eco_about";
 import Eco_faculty from "./Pages/Academics/Departments/Economics/Eco_faculty";
 import Eco_programoffered from "./Pages/Academics/Departments/Economics/Eco_programoffered";
+import Eco_events from "./Pages/Academics/Departments/Economics/Eco_events";
 
 function App() {
   return (
@@ -896,6 +897,14 @@ function App() {
               </>
             }
             path="/academics/departments/Economics/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_events />
+              </>
+            }
+            path="/academics/departments/Economics/Events"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
