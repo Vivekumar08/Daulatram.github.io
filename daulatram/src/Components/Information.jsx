@@ -19,7 +19,7 @@ function Information() {
         </div>
         {/* content/body/messages */}
         <div className="flex md:flex-row flex-col w-auto   mb-5 mt-8 justify-between ml-24 mr-24 ">
-          <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[600px] text-lg font-semibold mb-5 ">
+          <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[600px] text-lg font-semibold mb-5 hover:animate-none ">
             <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center  text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Students</span>
             </span>
@@ -27,8 +27,8 @@ function Information() {
               const { id, info, link, date } = curElem;
               return (
                 <>
-                  <Link to={link} target="_blank" rel="norefferer">
-                    <span className=" information flex flex-col hover:font-semibold hover:text-blue-600 hover:text-base ml-4 text-sm mb-4 mt-4 ">
+                  <Link to={link} target="_blank" rel="norefferer" className="">
+                    <span className=" information flex flex-col hover:font-semibold hover:text-blue-600 hover:text-base ml-4 text-sm mb-4 mt-4  ">
                       {info}
                     </span>
                   </Link>
