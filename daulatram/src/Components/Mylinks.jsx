@@ -412,7 +412,7 @@ export const dept = [
       },
       {
         name: "Commerce",
-        link: "./",
+        link: "/academics/departments/Commerce",
       },
       {
         name: "Economics",

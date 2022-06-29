@@ -13,7 +13,7 @@ function DepartBanner() {
       >
         <div className="name">
           <span className="flex flex-row text-[#000080] text-6xl  justify-center pt-14">
-            Botany
+            Commerce
           </span>
           <div className=" pl-5 text-xl text-[#000080] bg-gray-400 pt-3 pb-3 mt-28">
             <span className="ml-5">Home</span>
