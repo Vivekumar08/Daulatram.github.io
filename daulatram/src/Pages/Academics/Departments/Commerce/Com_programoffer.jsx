@@ -10,7 +10,7 @@ import ba from "../../../../Dummy_data/ImgPages/Commerce/BA_Prog_Commerce.pdf"
 
 function Com_programoffer() {
   return (
-{/* <div className=" flex flex-col">
+ <div className=" flex flex-col">
       <div className="">
         <Commercebanner />
       </div>
@@ -35,6 +35,7 @@ function Com_programoffer() {
                 <p>
                   Syllabus of Course
                 </p>
+                <br />
                 <a href={bcomh}>
                   <button>View</button>
                 </a>
@@ -47,12 +48,10 @@ function Com_programoffer() {
               <div class="info">
                 <h1 className="font-bold ">Description</h1>
                 <p>
-                  B.Sc. Programme in Life Sciences is designed to afford a
-                  skeletal structure within which the programme can be developed
-                  to suit the need of the hour.
+                  Syllabus of Course
                 </p>
-
-                <a href={lifesc}>
+<br />
+                <a href={"/academics/departments/Commerce/Programoffered/Bcomprog"}>
                   <button>View</button>
                 </a>
               </div>
@@ -61,7 +60,7 @@ function Com_programoffer() {
               <div className="flex flex-col">
                 <div>
                   <span className=" text-2xl font-bold ">
-                    Course Structure B.sc (Hons) Botany
+                    B.A Prog. Commerce (ESB)
                     <br />
                   </span>
                 </div>
@@ -69,22 +68,23 @@ function Com_programoffer() {
               <div class="info">
                 <h1 className="font-bold">Description</h1>
                 <p>
-                Course Structure of B.Sc. (Hons) Botany
+                Syllabus of course
 
                 </p>
-                <a href={structure}>
+                <br />
+                <a href={"#"}>
                   <button>View</button>
                 </a>
               </div>
             </div>
             </div>
           <div className=" flex  flex-col  mt-10">
-          <Botany/>
+          <Commerce/>
         </div>
           </div>
         </div>
       </div>
-    </div> */}
+    </div> 
   )
 }
 

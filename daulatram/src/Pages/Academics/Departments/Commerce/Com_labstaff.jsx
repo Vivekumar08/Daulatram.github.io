@@ -53,7 +53,7 @@ function Com_labstaff() {
             </table>
           </div>
         </div>
-      <div className=" flex  flex-col mr-16 mt-32">
+      <div className=" flex  flex-col mr-16 mt-28">
         <Commerce />
       </div>
       </div>

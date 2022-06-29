@@ -116,6 +116,7 @@ import Com_events from "./Pages/Academics/Departments/Commerce/Com_events";
 import Com_studachieve from "./Pages/Academics/Departments/Commerce/Com_studachieve";
 import Com_publications from "./Pages/Academics/Departments/Commerce/Com_publications";
 import Com_labstaff from "./Pages/Academics/Departments/Commerce/Com_labstaff";
+import Bcomprog from "./Pages/Academics/Departments/Commerce/Bcomprog";
 
 function App() {
   return (
@@ -857,6 +858,14 @@ function App() {
               </>
             }
             path="/academics/departments/Commerce/laboratorystaff"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Bcomprog />
+              </>
+            }
+            path="/academics/departments/Commerce/Programoffered/Bcomprog"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
