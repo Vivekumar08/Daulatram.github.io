@@ -23,7 +23,7 @@ function Com_studachieve() {
             <div class="wrapper2  mt-5 mb-5">
               <div class="card1">
                 <div className="">
-                  <span className=" text-2xl font-bold">Achievements</span>
+                  <span className=" text-2xl ml-8 font-bold">Achievements</span>
                 </div>
                 <div class="info">
                   <h1 className="font-bold">Description</h1>
