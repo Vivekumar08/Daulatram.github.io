@@ -416,7 +416,7 @@ export const dept = [
       },
       {
         name: "Economics",
-        link: "./",
+        link: "/academics/departments/Economics",
       },
       {
         name: "English",

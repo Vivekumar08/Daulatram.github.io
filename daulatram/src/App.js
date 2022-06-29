@@ -118,6 +118,12 @@ import Com_publications from "./Pages/Academics/Departments/Commerce/Com_publica
 import Com_labstaff from "./Pages/Academics/Departments/Commerce/Com_labstaff";
 import Bcomprog from "./Pages/Academics/Departments/Commerce/Bcomprog";
 
+//Economics
+import Eco_about from "./Pages/Academics/Departments/Economics/Eco_about"
+
+
+
+
 function App() {
   return (
     <>
@@ -867,6 +873,18 @@ function App() {
             }
             path="/academics/departments/Commerce/Programoffered/Bcomprog"
           ></Route>{" "}
+ {/* Economics */}{" "}
+ <Route
+ element={
+   <>
+     <Eco_about/>
+   </>
+ }
+ path="/academics/departments/Economics/"
+></Route>{" "}
+
+
+
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
       </Router>{" "}
