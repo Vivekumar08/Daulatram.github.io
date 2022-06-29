@@ -123,6 +123,7 @@ import Eco_about from "./Pages/Academics/Departments/Economics/Eco_about";
 import Eco_faculty from "./Pages/Academics/Departments/Economics/Eco_faculty";
 import Eco_programoffered from "./Pages/Academics/Departments/Economics/Eco_programoffered";
 import Eco_events from "./Pages/Academics/Departments/Economics/Eco_events";
+import Eco_publications from "./Pages/Academics/Departments/Economics/Eco_publications";
 
 function App() {
   return (
@@ -905,6 +906,14 @@ function App() {
               </>
             }
             path="/academics/departments/Economics/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_publications />
+              </>
+            }
+            path="/academics/departments/Economics/Publications"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
