@@ -129,7 +129,7 @@ import Eco_photogallery from "./Pages/Academics/Departments/Economics/Eco_photog
 
 // English
 import Eng_about from "./Pages/Academics/Departments/English/Eng_about";
-
+import Eng_faculty from "./Pages/Academics/Departments/English/Eng_faculty";
 
 
 function App() {
@@ -947,6 +947,14 @@ function App() {
             </>
           }
           path="/academics/departments/English/"
+        ></Route>{" "}
+          <Route
+          element={
+            <>
+              <Eng_faculty/>
+            </>
+          }
+          path="/academics/departments/English/Faculty"
         ></Route>{" "}
 
 
