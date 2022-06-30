@@ -1,6 +1,6 @@
-.wrapper1 {
-    display: flex;
-    /* width: %; */
-    /* justify-content: space-around; */
-    margin-right: 15px;
-}
+    .wrapper1 {
+        display: flex;
+        /* width: %; */
+        /* justify-content: space-around; */
+        margin-right: 15px;
+    }
