@@ -131,6 +131,7 @@ import Eco_photogallery from "./Pages/Academics/Departments/Economics/Eco_photog
 import Eng_about from "./Pages/Academics/Departments/English/Eng_about";
 import Eng_faculty from "./Pages/Academics/Departments/English/Eng_faculty";
 import Eng_programoffered from "./Pages/Academics/Departments/English/Eng_programoffered";
+import Eng_Studachieve from "./Pages/Academics/Departments/English/Eng_Studachieve";
 
 function App() {
   return (
@@ -938,7 +939,7 @@ function App() {
             }
             path="/academics/departments/Economics/photogallery"
           ></Route>{" "}
-          {/* English */}
+          {/* English */}{" "}
           <Route
             element={
               <>
@@ -962,6 +963,14 @@ function App() {
               </>
             }
             path="/academics/departments/English/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_Studachieve />
+              </>
+            }
+            path="/academics/departments/English/Students'_achievements"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
