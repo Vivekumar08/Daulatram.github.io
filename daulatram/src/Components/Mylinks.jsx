@@ -420,7 +420,7 @@ export const dept = [
       },
       {
         name: "English",
-        link: "./",
+        link: "/academics/departments/English",
       },
       {
         name: "Hindi",

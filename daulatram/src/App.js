@@ -127,6 +127,11 @@ import Eco_publications from "./Pages/Academics/Departments/Economics/Eco_public
 import Eco_association from "./Pages/Academics/Departments/Economics/Eco_association";
 import Eco_photogallery from "./Pages/Academics/Departments/Economics/Eco_photogallery";
 
+// English
+import Eng_about from "./Pages/Academics/Departments/English/Eng_about";
+
+
+
 function App() {
   return (
     <>
@@ -933,6 +938,21 @@ function App() {
             }
             path="/academics/departments/Economics/photogallery"
           ></Route>{" "}
+          {/* English */}
+
+          <Route
+          element={
+            <>
+              <Eng_about />
+            </>
+          }
+          path="/academics/departments/English/"
+        ></Route>{" "}
+
+
+
+
+
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
       </Router>{" "}
