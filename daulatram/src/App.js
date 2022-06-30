@@ -127,6 +127,14 @@ import Eco_publications from "./Pages/Academics/Departments/Economics/Eco_public
 import Eco_association from "./Pages/Academics/Departments/Economics/Eco_association";
 import Eco_photogallery from "./Pages/Academics/Departments/Economics/Eco_photogallery";
 
+// English
+import Eng_about from "./Pages/Academics/Departments/English/Eng_about";
+import Eng_faculty from "./Pages/Academics/Departments/English/Eng_faculty";
+import Eng_programoffered from "./Pages/Academics/Departments/English/Eng_programoffered";
+import Eng_Studachieve from "./Pages/Academics/Departments/English/Eng_Studachieve";
+import Eng_association from "./Pages/Academics/Departments/English/Eng_association";
+import Eng_photogallery from "./Pages/Academics/Departments/English/Eng_photogallery";
+
 function App() {
   return (
     <>
@@ -932,6 +940,55 @@ function App() {
               </>
             }
             path="/academics/departments/Economics/photogallery"
+          ></Route>{" "}
+          {/* English */}{" "}
+          <Route
+            element={
+              <>
+                <Eng_about />
+              </>
+            }
+            path="/academics/departments/English/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_faculty />
+              </>
+            }
+            path="/academics/departments/English/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_programoffered />
+              </>
+            }
+            path="/academics/departments/English/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_Studachieve />
+              </>
+            }
+            path="/academics/departments/English/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_association />
+              </>
+            }
+            path="/academics/departments/English/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_photogallery />
+              </>
+            }
+            path="/academics/departments/English/photogallery"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
