@@ -134,6 +134,7 @@ import Eng_programoffered from "./Pages/Academics/Departments/English/Eng_progra
 import Eng_Studachieve from "./Pages/Academics/Departments/English/Eng_Studachieve";
 import Eng_association from "./Pages/Academics/Departments/English/Eng_association";
 import Eng_photogallery from "./Pages/Academics/Departments/English/Eng_photogallery";
+import Eng_publications from "./Pages/Academics/Departments/English/Eng_publications";
 
 function App() {
   return (
@@ -989,6 +990,14 @@ function App() {
               </>
             }
             path="/academics/departments/English/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_publications />
+              </>
+            }
+            path="/academics/departments/English/Publications"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
