@@ -63,7 +63,7 @@ function Economics() {
           Time Table
         </span>
       </a>
-      <a href="#">
+      <a href="/academics/departments/Economics/photogallery">
         <span className=" mr-2 bg-[#000080] rounded-lg p-2 w-[220px] flex flex-row justify-center mb-2 mt-2 text-white hover:bg-blue-700">
           Photo Gallery
         </span>

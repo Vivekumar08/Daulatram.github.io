@@ -20,7 +20,7 @@ function Chemevents() {
         
 
         <div className="flex flex-row">
-          <div>
+          
             <div className="mr-5">
               <div>
                 <div>
@@ -159,7 +159,7 @@ function Chemevents() {
 
 
             </div>
-          </div>
+          
           <div className=" flex  flex-col ml-4 mt-10 ">
             <Chemistry/>
           </div>
