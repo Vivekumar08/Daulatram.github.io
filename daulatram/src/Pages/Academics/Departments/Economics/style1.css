@@ -12,7 +12,7 @@
     justify-content: center;
 }
 
-img {
+.carousel__item img {
     /* height: 500px;
     width: 900px; */
     border: black;
@@ -111,7 +111,7 @@ img {
     3%,
     11.1111111111% {
         transform: translateY(100%) scale(0.7);
-        opacity: 0.4;
+        opacity: 0.8;
         visibility: visible;
     }
     14.1111111111%,
@@ -123,7 +123,7 @@ img {
     25.2222222222%,
     33.3333333333% {
         transform: translateY(-100%) scale(0.7);
-        opacity: 0.4;
+        opacity: 0.8;
         visibility: visible;
     }
     36.3333333333% {
@@ -147,7 +147,7 @@ img {
     3%,
     11.1111111111% {
         transform: translateY(100%) scale(0.7);
-        opacity: 0.4;
+        opacity: 0.8;
         visibility: visible;
     }
     14.1111111111%,
@@ -159,7 +159,7 @@ img {
     25.2222222222%,
     33.3333333333% {
         transform: translateY(-100%) scale(0.7);
-        opacity: 0.4;
+        opacity: 0.8;
         visibility: visible;
     }
     36.3333333333% {
