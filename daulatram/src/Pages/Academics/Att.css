@@ -1,6 +1,6 @@
 .btn {
     background-color: #000080; 
-    border: none;
+    border: 2px groove #000080;
     color: white;
     padding: 10px 20px;
     text-align: center;
@@ -9,7 +9,7 @@
     font-size: 16px;
     border-radius: 10px;
   }
-
+  
   td:hover{
     color: black;
     font-style: normal;
@@ -20,7 +20,7 @@
     border:2px groove #000080;
   }
   .stop{
-    height: 1%;
+    /* height: 1%; */
     white-space: nowrap;
   }
   .row{

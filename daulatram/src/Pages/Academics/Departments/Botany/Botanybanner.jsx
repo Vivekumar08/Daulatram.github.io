@@ -11,7 +11,7 @@ function DepartBanner() {
           height: "280px",
         }}
       >
-        <div className="Priyanshu_lodu">
+        <div className="name">
           <span className="flex flex-row text-[#000080] text-6xl  justify-center pt-14">
             Botany
           </span>

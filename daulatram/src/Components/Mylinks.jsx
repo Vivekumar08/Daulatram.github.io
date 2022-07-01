@@ -28,10 +28,6 @@ export const links = [
         link: "/about/administration",
       },
       {
-        name: "Annual Report",
-        link: "/",
-      },
-      {
         name: "Gallery",
         link: "/about/Gallery",
       },
@@ -119,8 +115,8 @@ export const links = [
         link: "/admission/helpdesk",
       },
       {
-        name: "OBC/SC/ST/EWS Guidelines",
-        link: "/admission/OBC_SC_ST_EWS_Guidelines",
+        name: "OBC/SC/ST/EWS Complaints",
+        link: "/admission/OBC_SC_ST_EWS_Complaints",
       },
       {
         name: "Admission Grievance Committee",
@@ -131,13 +127,13 @@ export const links = [
         link: "/admission/AntiRaggingGuidelines",
       },
       {
-        name: "FAQs For Admissions",
+        name: "FAQS For Admissions",
         link: "/admission/FAQs_Admission",
       },
     ],
   },
   {
-    name: "Student ZOne",
+    name: "Students ZOne",
     links: [
       {
         name: "Time Table & Academics Calendar",
@@ -344,7 +340,7 @@ export const about = [
       },
       {
         name: "Annual Report",
-        link: "/",
+        link: "/about/Annual_Report",
       },
       {
         name: "Gallery",
@@ -387,7 +383,7 @@ export const acade = [
         link: "/academics/Training_program",
       },
       {
-        name: "Academic Calendar",
+        name: "University Academic Calendar",
         link: "/academics/Academic_calendar",
       },
       {
@@ -416,11 +412,11 @@ export const dept = [
       },
       {
         name: "Commerce",
-        link: "./",
+        link: "/academics/departments/Commerce",
       },
       {
         name: "Economics",
-        link: "./",
+        link: "/academics/departments/Economics",
       },
       {
         name: "English",
@@ -544,7 +540,7 @@ export const admisn = [
       },
       {
         name: "OBC/SC/ST/EWS Guidelines",
-        link: "/admission/OBC_SC_ST_EWS_Guidelines",
+        link: "/admission/OBC_SC_ST_EWS_Complaints",
       },
       {
         name: "Admission Grievance Committee",
@@ -555,7 +551,7 @@ export const admisn = [
         link: "/admission/AntiRaggingGuidlines",
       },
       {
-        name: "FAQs For Admissions",
+        name: "FAQS For Admissions",
         link: "/admission/FAQs_Admission",
       },
     ],
@@ -600,7 +596,7 @@ export const staff = [
 
 export const Student = [
   {
-    name: "Student Zone",
+    name: "Students Zone",
     links: [
       {
         name: "Time Table & Academics Calendar",
@@ -683,15 +679,15 @@ export const Notices = [
     name: "Notice Board",
     links: [
       {
-        name: "Student Notices",
+        name: "Students Notice",
         link: "/Student_Zone/Student_Notice",
       },
       {
-        name: "Staff Notices",
+        name: "Staff Notice",
         link: "/StaffZone/Notices",
       },
       {
-        name: "Public Notices",
+        name: "Public Notice",
         link: "/Public_Notice",
       },
     ],
