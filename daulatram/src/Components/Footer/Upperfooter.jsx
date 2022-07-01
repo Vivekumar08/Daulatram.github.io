@@ -18,103 +18,103 @@ function Upperfooter() {
                   </h4>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/about/Gallery"
+                    <Link
+                      to="/about/Gallery"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Gallery
-                    </a>
+                    </Link>
                   </li>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/Contact_us"
+                    <Link
+                      to="/Contact_us"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Contact Us
-                    </a>
+                    </Link>
                   </li>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/Public_Notice"
+                    <Link
+                      to="/Public_Notice"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Public Notice
-                    </a>
+                    </Link>
                   </li>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/RTI"
+                    <Link
+                      to="/RTI"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       RTI
-                    </a>
+                    </Link>
                   </li>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/StaffZone/Feedback"
+                    <Link
+                      to="/StaffZone/Feedback"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Feedback
-                    </a>
+                    </Link>
                   </li>
 
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/Tender"
+                    <Link
+                      to="/Tender"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Tender
-                    </a>
+                    </Link>
                   </li>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/Grievances"
+                    <Link
+                      to="/Grievances"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Grievances
-                    </a>
+                    </Link>
                   </li>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/Job_Opportunities"
+                    <Link
+                      to="/Job_Opportunities"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Job Opportunities
-                    </a>
+                    </Link>
                   </li>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/Anti_Sexual_Harrasement"
+                    <Link
+                      to="/Anti_Sexual_Harrasement"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       Anti-Sexual Harrasement
-                    </a>
+                    </Link>
                   </li>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="ST_SC_OBC_Complaints"
+                    <Link
+                      to="ST_SC_OBC_Complaints"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                     >
                       ST-SC-OBC Complaints
-                    </a>
+                    </Link>
                   </li>
                   <li className="pb-2">
                     <span className="mr-3">-</span>
-                    <a
-                      href="/Sitemap"
+                    <Link
+                      to="/Sitemap"
                       className="hover:text-white hover:font-semibold  text-[#d3d3d3] hover:px-2"
                     >
                       Sitemap
-                    </a>
+                    </Link>
                   </li>
                 </ul>
                 <ul className="mb-4 ml-4 ">
@@ -124,7 +124,7 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <a
-                      href="https://drcaa.org/"
+                      to="https://drcaa.org/"
                       target="_blank"
                       rel="noreferrer"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
@@ -142,7 +142,7 @@ function Upperfooter() {
                   <div className="email-id">
                     <p className="">
                       <a
-                        href="mailto: daulatramcollegedu@gmail.com ? Subject: Query Regarding to Daulat Ram Collge"
+                        to="mailto: daulatramcollegedu@gmail.com ? Subject: Query Regarding to Daulat Ram Collge"
                         target="_blank"
                         rel="noreferrer"
                         className="hover:text-white hover:font-semibold text-[#d3d3d3]"

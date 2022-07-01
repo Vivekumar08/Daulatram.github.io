@@ -18,7 +18,7 @@ const Student_Notice = () => {
         <div className="ml-3 mb-5">
           <div className="w-[1100px]">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-5 flex flex-row justify-center items-center ">
-              Student Notices
+              Student Notice
             </h2>
             {Studentinfo.map((curElem) => {
               const { id, info, link, day, mon } = curElem;
@@ -32,7 +32,7 @@ const Student_Notice = () => {
                       {mon}
                     </span>
                   </div>
-                  <span className="text-lg">{info}</span>
+                  <span className="text-xl">{info}</span>
                 </div>
               );
             })}
