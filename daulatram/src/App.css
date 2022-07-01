@@ -272,10 +272,9 @@
 
 }
 
-.row1 {
-    width: 85%;
+.row {
+    width: 70%;
     margin: 2rem auto;
-    /* margin-right: 2.5rem; */
     margin-top: 4rem;
 }
 

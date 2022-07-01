@@ -252,7 +252,7 @@ function Eng_about() {
             </div>
           </div>
         </div>
-        <div className=" flex  flex-col mr-16 mt-32">
+        <div className=" flex  flex-col mr-16 mt-12">
           <English />
         </div>
       </div>

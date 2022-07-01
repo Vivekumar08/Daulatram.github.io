@@ -81,13 +81,13 @@ const Contact = () => {
             </div>
             <div className="text-[#000] flex flex-row items-start justify-center">
               <div className="mb-5 mr-5 font-bold text-md w-72">
-                Section Officer(Offg.):
+                Section Officer (Offg.):
               </div>
               <span className="text-lg w-2/3">Mr. B.S. Negi</span>
             </div>
             <div className="text-[#000] flex flex-row items-start justify-center">
               <div className="mb-5 mr-5 font-bold text-md w-72">
-                Section Officer(Accounts):
+                Section Officer (Accounts):
               </div>
               <span className="text-lg w-2/3">Mr. Rakesh</span>
             </div>

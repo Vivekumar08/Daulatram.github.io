@@ -3,7 +3,7 @@ import Botanybanner from "../Botany/Botanybanner.jsx";
 import Departments from "../../../../Components/Sidebar/Departments";
 import structure from "../../../../Dummy_data/ImgPages/Botany/bsc(lifescience).pdf";
 import bscbo from "../../../../Dummy_data/ImgPages/Botany/bschonsbotany.pdf";
-import lifesc from "../../../../Dummy_data/ImgPages/Botany/2.pdf";
+import lifesc from "../../../../Dummy_data/ImgPages/Botany/CoursestructureBsc(hons)botany.pdf";
 import Botany from "../../../../Components/DepartSIde/Botany.jsx";
 function Programoffered() {
   return (

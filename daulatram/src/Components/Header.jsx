@@ -2,12 +2,10 @@ import React, { useContext } from "react";
 import AuthContext from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp, faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
-  const { auth, setAuth } = useContext(AuthContext);
-  const [logout, setLogout] = useState(false);
+  const { auth } = useContext(AuthContext);
   return (
     <>
       <div className="m-5 flex flex-row justify-between bg-[#fff]">
@@ -34,15 +32,15 @@ function Header() {
                 </div>
               </div>
             </Link>
-            <div className="text-[#F80CA7] text-xl flex flex-wrap justify-center font-bold ">
+            <div className="text-[#932660] text-xl flex flex-wrap justify-center font-bold ">
               <div>
-                NIRF RANK: 26 <span style={{ color: "black" }}>| </span>
+                NIRF RANK: 26 <span style={{ color: "black" }}>{" "}| </span>
               </div>
               <div>
-                NAAC GRADE 'A' <span style={{ color: "black" }}>| </span>
+              {" "}NAAC GRADE 'A' <span style={{ color: "black" }}>{" "}| </span>
               </div>
               <div>
-                INDIA TODAY RANK (SCIENCE:7 COMMERCE:13 HUMANITIES:15 ){" "}
+              {" "}INDIA TODAY RANK (SCIENCE: 7 COMMERCE: 13 HUMANITIES: 15){" "}
                 <span style={{ color: "black" }}>| </span>
               </div>
               <div>DBT STAR COLLEGE</div>
@@ -67,14 +65,14 @@ function Header() {
 
                       
                       <FontAwesomeIcon
-                      icon={faChevronDown}
+                      icon={faChevronUp}
                       className="pl-4 mr-2 cursor-pointer"
                       onClick={() => setLogout(!logout)}
                       />
                       ):(
                         
                         <FontAwesomeIcon
-                        icon={faChevronUp}
+                        icon={faChevronDown}
                         className="pl-4 mr-2 cursor-pointer"
                         onClick={() => setLogout(!logout)}
                         />
