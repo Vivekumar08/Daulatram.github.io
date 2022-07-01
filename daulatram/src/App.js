@@ -61,6 +61,8 @@ import Bulletins_Admission from "./Pages/Admission/Bulletins_Admission";
 import Anti_Ragging from "./Pages/Admission/Anti_Ragging";
 import Feedback from "./Pages/Staff_Zone/Feedback";
 import Notices from "./Pages/Staff_Zone/Notices";
+import Ethics from "./Pages/Staff_Zone/Ethics"
+import FormsS from "./Pages/Staff_Zone/FormsS"
 import Seniority_list from "./Pages/Staff_Zone/Seniority_list";
 import Staff_Council_Committee from "./Pages/Staff_Zone/Staff_Council_Committee";
 import Roster from "./Pages/Staff_Zone/Roster";
@@ -466,6 +468,22 @@ function App() {
               </>
             }
             path="/StaffZone/Feedback"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Ethics />
+              </>
+            }
+            path="/StaffZone/Ethics"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <FormsS />
+              </>
+            }
+            path="/StaffZone/Forms"
           ></Route>{" "}
           <Route
             element={
@@ -1007,4 +1025,3 @@ function App() {
 }
 
 export default App;
-``;
