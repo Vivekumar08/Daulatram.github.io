@@ -24,7 +24,6 @@ const Res_fac_data = (props) => {
     const data = await response.json();
     if (data || response.status === 200) {
         // navigate('/research/research_facilities')
-        setAuth(true)
         window.location.reload()
     } else {
       setErrMsg("Unable to Delete");
