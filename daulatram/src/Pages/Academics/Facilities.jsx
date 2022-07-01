@@ -104,7 +104,7 @@ const Facilities = () => {
               <h3 className="text-4xl font-bold mb-5 mt-[4%] ml-3 flex flex-row justify-left items-center ">
                 Teachers Study Room
               </h3>
-              <figure className="flex p-3">
+              <figure className="flex ml-3 mb-5">
                 <span className=" card-description text-lg text-justify font-medium ">
                   The college has a well-maintained teacher’s study room
                   adjacent to library which is equipped with computer facility

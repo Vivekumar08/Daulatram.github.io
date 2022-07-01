@@ -98,6 +98,7 @@ import AcadCal from "./Pages/Academics/AcadCal";
 import CAcadCal from "./Pages/Academics/CAcadCal";
 import Addoncourses from "./Pages/Academics/Addoncourses";
 import Ethics from "./Pages/Staff_Zone/Ethics";
+import FormsS from"./Pages/Staff_Zone/FormsS.jsx"
 function App() {
   return (
     <>
@@ -449,6 +450,14 @@ function App() {
               </>
             }
             path="/StaffZone/Staff_Council_committee"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <FormsS />
+              </>
+            }
+            path="/StaffZone/Forms"
           ></Route>{" "}
           <Route
             element={
