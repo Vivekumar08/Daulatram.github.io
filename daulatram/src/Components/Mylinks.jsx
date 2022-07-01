@@ -339,10 +339,6 @@ export const about = [
         link: "/about/administration",
       },
       {
-        name: "Annual Report",
-        link: "/about/Annual_Report",
-      },
-      {
         name: "Gallery",
         link: "/about/Gallery",
       },
