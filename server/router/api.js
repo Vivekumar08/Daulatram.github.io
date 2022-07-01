@@ -8,6 +8,7 @@ const User = require('../models/adminSchema');
 const Adminssion = require('../models/Admission/onlineAdmission');
 const helpdesk = require('../models/Admission/helpdeskAdmission');
 const File = require("../models/Research/Research_fac_Schema");
+const Soc = require('../models/Societies/Societies_Schema');
 
 
 // SET STORAGE
@@ -204,4 +205,52 @@ router.get('/research_download/:id', async (req, res) => {
   }
 });
 
+// Societies
+router.delete('/delete_Socities/:id', async (req, res) => {
+  const delete_user = await Soc.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.get('/Socitie', async (req, res) => {
+  try {
+    const files = await Soc.find({});
+    const sortedByCreationDate = files.sort(
+      (a, b) => b.createdAt - a.createdAt
+    );
+    res.send(sortedByCreationDate);
+  } catch (error) {
+    res.status(400).send('Error while getting list of files. Try again later.');
+  }
+});
+
+router.post(
+  '/Soc',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      // console.log(title,
+      //   description,
+      //   // path,
+      //   // mimetype
+      //   )
+      const file = new Soc({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
 module.exports = router;

@@ -33,7 +33,7 @@
     top: 55%;
     left: -5px;
     height: 65%;
-    width: 108%;
+    width: 109%;
     transform: skew(19deg, -9deg);
   }
   
@@ -61,14 +61,14 @@
     position: absolute;
     color: #fff;
     font-weight: 900;
-    left: 50px;
-    bottom: 24%;
+    /* left: 50px; */
+    /* bottom: 24%; */
   }
   
   .hero-btn {
     position: absolute;
     color: #fff;
-    right: 120px;
+    /* right: 120px; */
     bottom: 5%;
     padding: 10px 20px;
     border: 1px solid #fff;
