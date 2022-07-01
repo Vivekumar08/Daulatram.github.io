@@ -21,84 +21,34 @@ export const StudentInfo = [{
 },
 
 ];
-export const StaffInfo = [
-    {
-        id: 1,
-        info: " Staff Zebrafish Summer Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 2,
-        info: "Staff  Zebrafish winter Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 3,
-        info: " Staff Zebrafish Summer Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 3,
-        info: "Zebrafish Summer Staff  Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 4,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 5,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 6,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 7,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 8,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 9,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
-    {
-        id: 10,
-        info: "Zebrafish Summer Internship 2022",
-        link: "https://www.google.com",
-        day: "11",
-        mon:"Nov",
-    },
+export const StaffInfo = [{
+    id: 1,
+    info: " Staff Zebrafish Summer Internship 2022",
+    link: "https://www.google.com",
+    day: "11",
+    mon:"Nov",
+},
+{
+    id: 2,
+    info: "Staff  Zebrafish winter Internship 2022",
+    link: "https://www.google.com",
+    day: "11",
+    mon:"Nov",
+},
+{
+    id: 3,
+    info: " Staff Zebrafish Summer Internship 2022",
+    link: "https://www.google.com",
+    day: "11",
+    mon:"Nov",
+},
+{
+    id: 3,
+    info: "Zebrafish Summer Staff  Internship 2022",
+    link: "https://www.google.com",
+    day: "11",
+    mon:"Nov",
+},
 
 ];
 export const PublicInfo = [{

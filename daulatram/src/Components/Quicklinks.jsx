@@ -20,7 +20,7 @@ function Quicklinks() {
           </span >
         </div> 
         
-        <div className="row1 ">
+        <div className="row ">
           <div className="col">
             <a href="#"  className="gallery_item gallery_item-1 flex flex-col justify-center items-center cursor-pointer">
 

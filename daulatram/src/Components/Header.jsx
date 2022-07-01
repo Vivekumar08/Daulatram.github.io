@@ -2,12 +2,10 @@ import React, { useContext } from "react";
 import AuthContext from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp, faUserCircle } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+import { faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 function Header() {
-  const { auth, setAuth } = useContext(AuthContext);
-  const [logout, setLogout] = useState(false);
+  const { auth } = useContext(AuthContext);
   return (
     <>
       <div className="m-5 flex flex-row justify-between bg-[#fff]">

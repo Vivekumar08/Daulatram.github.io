@@ -387,7 +387,7 @@ export const acade = [
         link: "/academics/Training_program",
       },
       {
-        name: "University Academic Calendar",
+        name: "Academic Calendar",
         link: "/academics/Academic_calendar",
       },
       {
@@ -416,11 +416,11 @@ export const dept = [
       },
       {
         name: "Commerce",
-        link: "/academics/departments/Commerce",
+        link: "./",
       },
       {
         name: "Economics",
-        link: "/academics/departments/Economics",
+        link: "./",
       },
       {
         name: "English",

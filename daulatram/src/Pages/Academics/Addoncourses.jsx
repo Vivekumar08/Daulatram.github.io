@@ -1,7 +1,6 @@
 import React from 'react'
 import Sidebar from "../../Components/Sidebar/DeptSidebar";
 import Banner from "../../Components/Banners/foreign";
-import Maintanence from '../../Components/UnderMaintanence/Maintanence';
 
 
 
@@ -20,7 +19,6 @@ const Addoncourses = () => {
           <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
         Centre for Foreign Languages (Add-On Courses)
         </h2>
-        <Maintanence/>
         </div>
         
     </div>

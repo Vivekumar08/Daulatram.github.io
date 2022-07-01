@@ -86,23 +86,19 @@ import Societies from "./Pages/Societies";
 import Chem_About from "./Pages/Academics/Departments/Chemistry/Chem_About";
 import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
 import Chemprogramoffered from "./Pages/Academics/Departments/Chemistry/Chemprogramoffered";
-import Chemevents from "./Pages/Academics/Departments/Chemistry/Chemevents";
-import Chemstudachieve from "./Pages/Academics/Departments/Chemistry/Chemstudachieve";
-import Chempublications from "./Pages/Academics/Departments/Chemistry/Chempublications";
-import Chemfacilities from "./Pages/Academics/Departments/Chemistry/Chemfacilities";
 
 // import Socities1 from "./Pages/Socities1";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
 import Public_Notice from "./Pages/Public_Notice";
-import RTI from "./Pages/RTI/RTI";
-
 import Undergraduate from "./Pages/Academics/Undergraduate";
-import Teacher from "./Pages/Academics/teacher";
+import Teacher from "./Pages/Academics/teacher"
 import Trainingp from "./Pages/Academics/trainingp";
 import AcadCal from "./Pages/Academics/AcadCal";
 import CAcadCal from "./Pages/Academics/CAcadCal";
 import Addoncourses from "./Pages/Academics/Addoncourses";
+import Ethics from "./Pages/Staff_Zone/Ethics";
+import FormsS from"./Pages/Staff_Zone/FormsS.jsx"
 
 import Tender from "./Pages/Tender/Tender";
 import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
@@ -271,7 +267,7 @@ function App() {
             exact
             path="/academics/departments/biochem/laboratorystaff"
           ></Route>{" "}
-          <Route
+           <Route
             element={
               <>
                 <Teacher />
@@ -279,13 +275,14 @@ function App() {
             }
             path="/academics/Teacher_in_charge"
           ></Route>{" "}
-          <Route
+           <Route
             element={
               <>
                 <Undergraduate />
               </>
             }
             path="/academics/UG_courses"
+            
           ></Route>{" "}
           <Route
             element={
@@ -294,6 +291,7 @@ function App() {
               </>
             }
             path="/academics/Add_on_courses"
+            
           ></Route>{" "}
           <Route
             element={
@@ -302,6 +300,7 @@ function App() {
               </>
             }
             path="/academics/Academic_calendar"
+            
           ></Route>{" "}
           <Route
             element={
@@ -310,6 +309,7 @@ function App() {
               </>
             }
             path="/academics/College_Calendar"
+            
           ></Route>{" "}
           <Route
             element={
@@ -319,6 +319,7 @@ function App() {
             }
             path="/academics/Training_program"
           ></Route>{" "}
+         
           <Route
             element={
               <>
@@ -482,6 +483,22 @@ function App() {
               </>
             }
             path="/StaffZone/Staff_Council_committee"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <FormsS />
+              </>
+            }
+            path="/StaffZone/Forms"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Ethics />
+              </>
+            }
+            path="/StaffZone/Ethics"
           ></Route>{" "}
           <Route
             element={
@@ -704,14 +721,6 @@ function App() {
             }
             path="/Public_Notice"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <RTI />
-              </>
-            }
-            path="/RTI"
-          ></Route>{" "}
           <Route> </Route>{" "}
           <Route
             element={
@@ -739,22 +748,6 @@ function App() {
             }
             path="/Contact_us"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Tender />
-              </>
-            }
-            path="/Tender"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Job_opportunities />
-              </>
-            }
-            path="/Job_Opportunities"
-          ></Route>{" "}
           {/* Chemistry */}{" "}
           <Route
             element={
@@ -780,6 +773,7 @@ function App() {
             }
             path="/academics/departments/Chemistry/Programoffered"
           ></Route>{" "}
+
           <Route
             element={
               <>
@@ -999,6 +993,7 @@ function App() {
             }
             path="/academics/departments/English/Publications"
           ></Route>{" "}
+
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
       </Router>{" "}
