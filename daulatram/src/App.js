@@ -99,6 +99,39 @@ import CAcadCal from "./Pages/Academics/CAcadCal";
 import Addoncourses from "./Pages/Academics/Addoncourses";
 import Ethics from "./Pages/Staff_Zone/Ethics";
 import FormsS from"./Pages/Staff_Zone/FormsS.jsx"
+
+import Tender from "./Pages/Tender/Tender";
+import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
+import Job_opportunities from "./Pages/Job_Opportunites/Job_opportunities";
+
+// Commerce
+import Com_about from "./Pages/Academics/Departments/Commerce/Com_about";
+import Com_faculty from "./Pages/Academics/Departments/Commerce/Com_faculty";
+import Com_programoffer from "./Pages/Academics/Departments/Commerce/Com_programoffer";
+import Com_events from "./Pages/Academics/Departments/Commerce/Com_events";
+import Com_studachieve from "./Pages/Academics/Departments/Commerce/Com_studachieve";
+import Com_publications from "./Pages/Academics/Departments/Commerce/Com_publications";
+import Com_labstaff from "./Pages/Academics/Departments/Commerce/Com_labstaff";
+import Bcomprog from "./Pages/Academics/Departments/Commerce/Bcomprog";
+
+//Economics
+import Eco_about from "./Pages/Academics/Departments/Economics/Eco_about";
+import Eco_faculty from "./Pages/Academics/Departments/Economics/Eco_faculty";
+import Eco_programoffered from "./Pages/Academics/Departments/Economics/Eco_programoffered";
+import Eco_events from "./Pages/Academics/Departments/Economics/Eco_events";
+import Eco_publications from "./Pages/Academics/Departments/Economics/Eco_publications";
+import Eco_association from "./Pages/Academics/Departments/Economics/Eco_association";
+import Eco_photogallery from "./Pages/Academics/Departments/Economics/Eco_photogallery";
+
+// English
+import Eng_about from "./Pages/Academics/Departments/English/Eng_about";
+import Eng_faculty from "./Pages/Academics/Departments/English/Eng_faculty";
+import Eng_programoffered from "./Pages/Academics/Departments/English/Eng_programoffered";
+import Eng_Studachieve from "./Pages/Academics/Departments/English/Eng_Studachieve";
+import Eng_association from "./Pages/Academics/Departments/English/Eng_association";
+import Eng_photogallery from "./Pages/Academics/Departments/English/Eng_photogallery";
+import Eng_publications from "./Pages/Academics/Departments/English/Eng_publications";
+
 function App() {
   return (
     <>
@@ -740,6 +773,227 @@ function App() {
             }
             path="/academics/departments/Chemistry/Programoffered"
           ></Route>{" "}
+
+          <Route
+            element={
+              <>
+                <Chemevents />
+              </>
+            }
+            path="/academics/departments/Chemistry/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemstudachieve />
+              </>
+            }
+            path="/academics/departments/Chemistry/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chempublications />
+              </>
+            }
+            path="/academics/departments/Chemistry/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemfacilities />
+              </>
+            }
+            path="/academics/departments/Chemistry/Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemassociation />
+              </>
+            }
+            path="/academics/departments/Chemistry/association"
+          ></Route>{" "}
+          {/* Commerce */}{" "}
+          <Route
+            element={
+              <>
+                <Com_about />
+              </>
+            }
+            path="/academics/departments/Commerce/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_faculty />
+              </>
+            }
+            path="/academics/departments/Commerce/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_programoffer />
+              </>
+            }
+            path="/academics/departments/Commerce/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_events />
+              </>
+            }
+            path="/academics/departments/Commerce/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_studachieve />
+              </>
+            }
+            path="/academics/departments/Commerce/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_publications />
+              </>
+            }
+            path="/academics/departments/Commerce/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_labstaff />
+              </>
+            }
+            path="/academics/departments/Commerce/laboratorystaff"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Bcomprog />
+              </>
+            }
+            path="/academics/departments/Commerce/Programoffered/Bcomprog"
+          ></Route>{" "}
+          {/* Economics */}{" "}
+          <Route
+            element={
+              <>
+                <Eco_about />
+              </>
+            }
+            path="/academics/departments/Economics/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_faculty />
+              </>
+            }
+            path="/academics/departments/Economics/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_programoffered />
+              </>
+            }
+            path="/academics/departments/Economics/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_events />
+              </>
+            }
+            path="/academics/departments/Economics/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_publications />
+              </>
+            }
+            path="/academics/departments/Economics/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_association />
+              </>
+            }
+            path="/academics/departments/Economics/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_photogallery />
+              </>
+            }
+            path="/academics/departments/Economics/photogallery"
+          ></Route>{" "}
+          {/* English */}{" "}
+          <Route
+            element={
+              <>
+                <Eng_about />
+              </>
+            }
+            path="/academics/departments/English/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_faculty />
+              </>
+            }
+            path="/academics/departments/English/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_programoffered />
+              </>
+            }
+            path="/academics/departments/English/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_Studachieve />
+              </>
+            }
+            path="/academics/departments/English/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_association />
+              </>
+            }
+            path="/academics/departments/English/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_photogallery />
+              </>
+            }
+            path="/academics/departments/English/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_publications />
+              </>
+            }
+            path="/academics/departments/English/Publications"
+          ></Route>{" "}
+
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
       </Router>{" "}
@@ -748,3 +1002,4 @@ function App() {
 }
 
 export default App;
+``;

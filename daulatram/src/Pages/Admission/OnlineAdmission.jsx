@@ -121,7 +121,7 @@ const OnlineAdmission = () => {
                   </li>
 
                   <span className="ml-auto">
-                    {auth ? (
+                    {auth && (
                       <>
                         <div className="flex flex-col">
                           <FontAwesomeIcon
@@ -132,8 +132,6 @@ const OnlineAdmission = () => {
                           ></FontAwesomeIcon>
                         </div>
                       </>
-                    ) : (
-                      ""
                     )}
                   </span>
                 </div>

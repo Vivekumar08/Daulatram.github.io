@@ -339,10 +339,6 @@ export const about = [
         link: "/about/administration",
       },
       {
-        name: "Annual Report",
-        link: "/about/Annual_Report",
-      },
-      {
         name: "Gallery",
         link: "/about/Gallery",
       },
@@ -420,7 +416,7 @@ export const dept = [
       },
       {
         name: "English",
-        link: "./",
+        link: "/academics/departments/English",
       },
       {
         name: "Hindi",
