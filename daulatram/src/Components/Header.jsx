@@ -34,15 +34,15 @@ function Header() {
                 </div>
               </div>
             </Link>
-            <div className="text-[#F80CA7] text-xl flex flex-wrap justify-center font-bold ">
+            <div className="text-[#932660] text-xl flex flex-wrap justify-center font-bold ">
               <div>
-                NIRF RANK: 26 <span style={{ color: "black" }}>| </span>
+                NIRF RANK: 26 <span style={{ color: "black" }}>{" "}| </span>
               </div>
               <div>
-                NAAC GRADE 'A' <span style={{ color: "black" }}>| </span>
+              {" "}NAAC GRADE 'A' <span style={{ color: "black" }}>{" "}| </span>
               </div>
               <div>
-                INDIA TODAY RANK (SCIENCE:7 COMMERCE:13 HUMANITIES:15 ){" "}
+              {" "}INDIA TODAY RANK (SCIENCE: 7 COMMERCE: 13 HUMANITIES: 15){" "}
                 <span style={{ color: "black" }}>| </span>
               </div>
               <div>DBT STAR COLLEGE</div>
