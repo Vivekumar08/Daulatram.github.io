@@ -1,4 +1,4 @@
-/* BEGIN CARD DESIGN */
+/* FACULTY DESIGN */
 
 .main_head {
     font-size: 50px;
@@ -8,25 +8,25 @@
     margin-bottom: 30px;
 }
 
-.hero {
+.fac {
     display: inline-block;
     position: relative;
-    width: 350px;
-    min-width: 350px;
-    height: 350px;
+    width: 150px;
+    min-width: 230px;
+    height: 270px;
     border-radius: 30px;
     overflow: hidden;
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
-    margin: 30px;
-    margin-left: 100px;
+    margin: 8px;
+    margin-left: 1px;
 }
 
-.hero-profile-img {
+.Fac-img {
     height: 70%;
     width: 100%;
 }
 
-.hero-description-bk {
+.fac-description-bk {
     background-image: linear-gradient(0deg, #3f5efb, #fc466b);
     border-radius: 30px;
     position: absolute;
@@ -37,7 +37,8 @@
     transform: skew(19deg, -9deg);
 }
 
-.hero-logo {
+
+/* .hero-logo {
     height: 80px;
     width: 80px;
     border-radius: 20px;
@@ -45,15 +46,15 @@
     position: absolute;
     bottom: 30%;
     left: 30px;
-    overflow: hidden;
+    overflow:hidden;
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
-}
-
-.hero-logo img {
+  }
+  
+  .hero-logo img {
     height: 100%;
-}
+  } */
 
-.hero-description {
+.Fac-description {
     position: absolute;
     color: #fff;
     font-weight: 900;
@@ -61,24 +62,17 @@
     bottom: 24%;
 }
 
-.hero-btn {
+.fac-btn {
     position: absolute;
     color: #fff;
-    right: 120px;
+    margin-left: 30%;
     bottom: 5%;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border: 1px solid #fff;
 }
 
-.hero-btn a {
+.fac-btn a {
     color: #fff;
-}
-
-.hero-date {
-    position: absolute;
-    color: #fff;
-    left: 30px;
-    bottom: 10%;
 }
 
 
