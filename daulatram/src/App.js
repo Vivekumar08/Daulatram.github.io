@@ -29,7 +29,7 @@ import Events from "./Pages/Academics/Departments/Biochemistry/Events";
 
 // botany
 import About from "./Pages/Academics/Departments/Botany/About";
-import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
+import Botanyfaculty from "./Pages/Academics/Departments/Botany/Bot_fac";
 import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered";
 import Botanystudachieve from "./Pages/Academics/Departments/Botany/Botanystudachieve";
 import Bot_Publications from "./Pages/Academics/Departments/Botany/Bot_Publications";
