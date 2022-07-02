@@ -60,4 +60,65 @@ export const biochems = [{
     },
 ];
 
-export const botony_side = [{}]
+export const botony_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Botany/"
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Botany/Botanyfaculty"
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Botany/programoffered"
+    },
+    {
+        id: 4,
+        title: "Association",
+        link: "/academics/departments/Botany/Botany_Association"
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Botany/Botanystudachieve"
+    },
+    {
+        id: 6,
+        title: "Events",
+        link: "/academics/departments/Botany/events"
+    },
+    {
+        id: 7,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Botany/Botany_lab_Staff"
+    },
+    {
+        id: 8,
+        title: "Publications",
+        link: "/academics/departments/Botany/Bot_Publications"
+    },
+    {
+        id: 9,
+        title: "Awards",
+        link: "/academics/departments/Botany/awards"
+    },
+    {
+        id: 10,
+        title: "Research",
+        link: "/academics/departments/Botany/Research_Fac"
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Botany/timetable"
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Botany/photogallery"
+
+    }
+]
