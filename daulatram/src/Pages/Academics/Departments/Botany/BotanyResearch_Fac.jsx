@@ -1,6 +1,7 @@
 import React from "react";
 import Botanybanner from "./Botanybanner.jsx";
 import Departments from "../../../../Components/Sidebar/Departments";
+import Botany from "../../../../Components/DepartSIde/Botany.jsx";
 
 function Research_Fac() {
   return (
@@ -9,11 +10,11 @@ function Research_Fac() {
         <Botanybanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+      <div className=" flex flex-col  mt-12 ml-2">
+          <Botany />
         </div>
-        <div>
-          <div className="w-[1100px]">
+        
+          <div className="w-full mr-16">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Research and Facilities
             </h2>
@@ -138,7 +139,7 @@ function Research_Fac() {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 }
 

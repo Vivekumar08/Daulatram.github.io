@@ -21,7 +21,25 @@
     margin-left: 1px;
 }
 
+.fac1 {
+    display: inline-block;
+    position: relative;
+    width: 180px;
+    min-width: 270px;
+    height: 270px;
+    border-radius: 30px;
+    overflow: hidden;
+    box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
+    margin: 8px;
+    margin-left: 20px;
+}
+
 .Fac-img {
+    height: 70%;
+    width: 100%;
+}
+
+.Fac-img1 {
     height: 70%;
     width: 100%;
 }
@@ -60,6 +78,14 @@
     font-weight: 900;
     left: 50px;
     bottom: 24%;
+}
+
+.Fac-description1 {
+    position: absolute;
+    color: #fff;
+    font-weight: 900;
+    left: 50px;
+    bottom: 10%;
 }
 
 .fac-btn {
