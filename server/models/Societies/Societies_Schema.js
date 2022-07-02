@@ -1,16 +1,15 @@
 const mongoose = require('mongoose');
 
-const Research_fac_Schema = mongoose.Schema(
+const Societies_Schema = mongoose.Schema(
   {
     title: {
       type: String,
       required: true,
       trim: true
     },
-    description: {
+    link: {
       type: String,
       required: true,
-      trim: true
     },
     file_path: {
       type: String,
@@ -26,6 +25,6 @@ const Research_fac_Schema = mongoose.Schema(
   }
 );
 
-const Research = mongoose.model('Research', Research_fac_Schema);
+const Soc = mongoose.model('Soc', Societies_Schema);
 
-module.exports = Research;
+module.exports = Soc;
