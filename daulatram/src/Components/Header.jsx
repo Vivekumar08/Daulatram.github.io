@@ -2,7 +2,11 @@ import React, { useContext } from "react";
 import AuthContext from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown, faChevronUp, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faChevronDown,
+  faChevronUp,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 function Header() {
@@ -28,24 +32,24 @@ function Header() {
                     <strong>Daulat Ram College</strong>
                   </span>
                 </div>
-                <div className="mb-5 font-bold text-3xl flex flex-col items-center justify-center">
+                <div className=" font-bold text-3xl flex flex-col items-center justify-center">
                   <span> University of Delhi </span>
                   <span>Star College, Estb. 1960</span>
                 </div>
               </div>
             </Link>
-            <div className="text-[#F80CA7] text-xl flex flex-wrap justify-center font-bold ">
+            <div className="text-[#F80CA7] text-xl flex flex-wrap justify-center font-bold mt-5 ">
               <div>
-                NIRF RANK: 26 <span style={{ color: "black" }}>| </span>
+                {"NIRF RANK: 26 "}<span style={{ color: "black" }}>{" | "}</span>
               </div>
-              <div>
-                NAAC GRADE 'A' <span style={{ color: "black" }}>| </span>
+              <div className="ml-1">
+              {"NAAC GRADE 'A' "} <span style={{ color: "black" }}> | </span>
               </div>
-              <div>
+              <div className="ml-1">
                 INDIA TODAY RANK (SCIENCE:7 COMMERCE:13 HUMANITIES:15 ){" "}
                 <span style={{ color: "black" }}>| </span>
               </div>
-              <div>DBT STAR COLLEGE</div>
+              <div className="ml-1">DBT STAR COLLEGE</div>
             </div>
           </div>
         </div>
@@ -63,28 +67,27 @@ function Header() {
                       className="ml-2 mr-1 text-[#000080]"
                     ></FontAwesomeIcon>{" "}
                     Admin
-                    {logout?(
-
-                      
+                    {logout ? (
                       <FontAwesomeIcon
-                      icon={faChevronDown}
-                      className="pl-4 mr-2 cursor-pointer"
-                      onClick={() => setLogout(!logout)}
+                        icon={faChevronDown}
+                        className="pl-4 mr-2 cursor-pointer"
+                        onClick={() => setLogout(!logout)}
                       />
-                      ):(
-                        
-                        <FontAwesomeIcon
+                    ) : (
+                      <FontAwesomeIcon
                         icon={faChevronUp}
                         className="pl-4 mr-2 cursor-pointer"
                         onClick={() => setLogout(!logout)}
-                        />
-                      )
-                  }
+                      />
+                    )}
                   </span>{" "}
                 </p>
                 {logout && (
-                  <div className="flex justify-center transition duration-500 mt-1 rounded-md hover:bg-blue-600 bg-[#000080] p-2 text-xl cursor-pointer" onClick={() => setAuth(!auth) }>
-                    <span  className="   text-white">Logout</span>
+                  <div
+                    className="flex justify-center transition duration-500 mt-1 rounded-md hover:bg-blue-600 bg-[#000080] p-2 text-xl cursor-pointer"
+                    onClick={() => setAuth(!auth)}
+                  >
+                    <span className="   text-white">Logout</span>
                   </div>
                 )}
               </div>

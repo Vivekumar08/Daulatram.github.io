@@ -1,9 +1,99 @@
-import React from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Admission_side from "../../Components/Sidebar/Admission_side.";
+import Bulletin from "../../Dummy_data/pdfs/Admission/UGCF_2022.pdf";
 import guideline from "../../Dummy_data/pdfs/Admission/OBC_SC_ST_EWS_guidelines.pdf";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 
-const Guidelines_Admission = () => {
+const Bulletins_Admission = () => {
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("http://localhost:5000/guidelines_admission");
+    setData1(await response.json());
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(
+      `http://localhost:5000/delete_admission_guidelines/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("link", link);
+        formData.append("title", caption);
+
+        setErrMsg("");
+        console.log(formData);
+        await axios.post(`http://localhost:5000/guidelines_add`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        setCaption("");
+        setLink("");
+        setFile("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        // setErrMsg("Please select a file to add.");
+        setErrMsg("Please enter all the field values.");
+      }
+      // } else {
+      // }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
     <div className=" flex flex-col">
       <div
@@ -11,7 +101,7 @@ const Guidelines_Admission = () => {
         style={{ backgroundImage: "url(/images/img1.jpg)" }}
       >
         <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-          Guidelines{" "}
+          SC/ST/OBC/EWS Guidelines{" "}
         </span>
         <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
           <Link to={"/"}>
@@ -27,30 +117,148 @@ const Guidelines_Admission = () => {
         <div className="ml-3 mb-5">
           <div className="w-[1100px]">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              OBC SC ST EWS Guidelines
+            SC/ST/OBC/EWS Guidelines
             </h2>
-            <div class="wrapper3 mt-5 mb-5">
-              <div class="card2">
-                <span className="font-bold text-xl ml-2">
-                  OBC SC ST EWS Guidelines
-                </span>
-                <div className="flex flex-col">
-                  <div class="info">
-                    <p className="ml-14">OBC SC ST EWS Guidelines</p>
-
-                    <br />
-                    <a href={guideline}>
-                      <button className="ml-16">View</button>
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                    </a>
-                  </div>
-                </div>
-              </div>
+            <div class="flex justify-evenly w-full mt-5 mb-5">
+              {data1 &&
+                data1.map((curElem) => {
+                  const { _id, title, file_path, link } = curElem;
+                  var path_pic = file_path;
+                  var path2 = path_pic.replace(/\\/g, "/");
+                  var path = path2.slice(19);
+                  return (
+                    <>
+                      <div class="card2 " key={_id}>
+                        <span className="  font-bold text-xl ml-8">{link}</span>
+                        <div className="flex flex-col ml-10 w-full">
+                          <div class="info2 ml-4 w-full">
+                            <p className="text-justify">{title}</p>
+                            <br />
+                            <a href={path} className="">
+                              <button className="w-[80%]">View</button>
+                              <br />
+                              <br />
+                              <br />
+                            </a>
+                              {auth && (
+                                <>
+                                  <div className="flex flex-col w-full">
+                                    <FontAwesomeIcon
+                                      icon={faTrashCan}
+                                      size="lg"
+                                      className=" cursor-pointer ml-auto  hover:text-red-500"
+                                      onClick={() => del(_id)}
+                                    ></FontAwesomeIcon>
+                                  </div>
+                                </>
+                              )}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })}
             </div>
+            {auth && (
+              <>
+                <form
+                  method="post"
+                  className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+                >
+                  <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                      {errMsg}
+                    </p>
+                  </h2>
+                  <div className="mb-3">
+                    <input
+                      type="text"
+                      name="Link"
+                      // id=""
+                      ref={userRef}
+                      onChange={(e) => setLink(e.target.value)}
+                      value={link}
+                      placeholder="Enter Text Here"
+                      className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    />
+                  </div>
+                  <div className="mb-3">
+                    <textarea
+                      name="Caption"
+                      // id=""
+                      cols="10"
+                      rows="5"
+                      ref={userRef}
+                      onChange={(e) => setCaption(e.target.value)}
+                      value={caption}
+                      className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                      placeholder="Description"
+                    ></textarea>
+                  </div>
+                  <div class="md:flex flex-col md:items-center">
+                    {/* <div class="md:w-1/3"></div> */}
+                    <div className="upload-section flex h-[200px] mb-[10px] w-full">
+                      <Dropzone
+                        onDrop={onDrop}
+                        onDragEnter={() => updateBorder("over")}
+                        onDragLeave={() => updateBorder("leave")}
+                      >
+                        {({ getRootProps, getInputProps }) => (
+                          <div
+                            {...getRootProps({
+                              className:
+                                "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                            })}
+                            ref={dropRef}
+                          >
+                            <input {...getInputProps()} />
+                            <p>
+                              Drag and drop a file OR click here to select a
+                              file
+                            </p>
+                            {file && (
+                              <div>
+                                <strong>Selected file:</strong> {file.name}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </Dropzone>
+                      {previewSrc ? (
+                        isPreviewAvailable ? (
+                          <div className="image-preview ml-[5%] w-full">
+                            <img
+                              className="preview-image w-full h-full block mb-[10px]"
+                              src={previewSrc}
+                              alt="Preview"
+                            />
+                          </div>
+                        ) : (
+                          <div className="preview-message flex justify-center items-center ml-[5%]">
+                            <p>No preview available for this file</p>
+                          </div>
+                        )
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>
+                            Image preview will be shown here after selection
+                          </p>
+                        </div>
+                      )}
+                    </div>
+                    <div class="md:w-2/3 ">
+                      <button
+                        class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                        type="button"
+                        onClick={handleSubmit}
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              </>
+            )}
           </div>
         </div>
       </div>
@@ -58,4 +266,4 @@ const Guidelines_Admission = () => {
   );
 };
 
-export default Guidelines_Admission;
+export default Bulletins_Admission;

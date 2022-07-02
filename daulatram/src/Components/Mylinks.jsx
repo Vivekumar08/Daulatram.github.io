@@ -551,7 +551,7 @@ export const admisn = [
         link: "/admission/AntiRaggingGuidlines",
       },
       {
-        name: "FAQS For Admissions",
+        name: "FAQs For Admissions",
         link: "/admission/FAQs_Admission",
       },
     ],

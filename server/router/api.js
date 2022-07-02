@@ -9,6 +9,8 @@ const Adminssion = require('../models/Admission/onlineAdmission');
 const helpdesk = require('../models/Admission/helpdeskAdmission');
 const File = require("../models/Research/Research_fac_Schema");
 const Soc = require('../models/Societies/Societies_Schema');
+const Bulletin = require('../models/Admission/AdmissionBulletin_Schema');
+const Guidelines = require('../models/Admission/Admission_guidelines_Schema');
 
 
 // SET STORAGE
@@ -24,7 +26,7 @@ const upload = multer({
   }),
   limits: {
     // max file size 1MB = 1000000 bytes
-    fileSize: 1000000
+    fileSize: 100000000
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)) {
@@ -121,6 +123,81 @@ router.delete('/deleteAdmission/:id', async (req, res) => {
   const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
   res.status(200).json(delete_user + "User deleted")
 })
+
+// Bulletin
+
+router.get('/guidelines_admission', async (req, res,) => {
+  const details = await Guidelines.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_admission_guidelines/:id', async (req, res) => {
+  const delete_user = await Guidelines.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/guidelines_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Guidelines({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
+// Bulletin
+
+router.get('/bulletin', async (req, res,) => {
+  const details = await Bulletin.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_admissionbulletin/:id', async (req, res) => {
+  const delete_user = await Bulletin.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/bulletin_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Bulletin({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
 
 // Helpdesk
 
@@ -230,11 +307,6 @@ router.post(
     try {
       const { title, link } = req.body;
       const { path, mimetype } = req.file;
-      // console.log(title,
-      //   description,
-      //   // path,
-      //   // mimetype
-      //   )
       const file = new Soc({
         title,
         link,
@@ -253,4 +325,5 @@ router.post(
     }
   }
 );
+
 module.exports = router;
