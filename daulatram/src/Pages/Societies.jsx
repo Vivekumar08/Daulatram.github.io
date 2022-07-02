@@ -131,7 +131,7 @@ const Societies = () => {
                   <div class="hero-description ml-28">
                     <p>{title}</p>
                   </div>
-                  <a href={link}>
+                  <a href={link} target="_blank">
                     <div class="hero-btn ml-28">Learn More</div>
                   </a>
                 </div>
