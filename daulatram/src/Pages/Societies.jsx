@@ -2,20 +2,16 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import "./Societies.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
-import { SocietiesInfo } from "./SocietiesInfo";
 import AuthContext from "../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 
 const Societies = () => {
-  const [Info, setSocietiesInfo] = useState(SocietiesInfo);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
   const dropRef = useRef();
   const [link, setLink] = useState("");
-  const [pic, setPic] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [previewSrc, setPreviewSrc] = useState("");
@@ -104,27 +100,6 @@ const Societies = () => {
         </h1>
       </div>
 
-
-      {Info.map((currElem) => {
-        const { id, info, img, link } = currElem;
-        return (
-          <div class="first hero">
-            <img class="hero-profile-img" src={img} alt="" />
-            <div class="hero-description-bk"></div>
-           
-            <div class="hero-description">
-              <p>{info}</p>
-            </div>
-            
-            <a href={link}>
-              <div class="hero-btn">Learn More</div>
-            </a>
-          </div>
-        );
-      })}
-
-     
-
       {data1 &&
         data1.map((currElem) => {
           const { _id, title, file_path, link } = currElem;
@@ -150,7 +125,7 @@ const Societies = () => {
               </div>
               <div className="">
                 <div className="">
-                  <div class="hero-description ml-28">
+                  <div class="hero-description ml-16">
                     <p>{title}</p>
                   </div>
                   <a href={link} target="_blank">
