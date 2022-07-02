@@ -13,17 +13,18 @@ const Laboratorystaff = () => {
       </div>
 
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
-        </div>
-        <div className="w-[1100px]">
+      <div className=" flex  flex-col mt-12 ml-2 ">
+              <Biochemistry/>
+
+              </div>
+        <div className="w-full ml-2">
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             LABORATORY STAFF
           </h2>
-          <div className="flex flex-row">
-            <div>
+          <div className="flex flex-col justify-center">
+            <div className="justify-center">
               <div className="table_section">
-                <table className="mt-1 ml-5 mr-5">
+                <table className="mt-1 ml-auto mr-auto ">
                   <thead>
                     <tr>
                       <th>Name </th>
@@ -87,9 +88,9 @@ const Laboratorystaff = () => {
               </div>
             </div>
 
-            <div className=" flex  flex-col ml-2 ">
+            {/* <div className=" flex  flex-col ml-2 ">
               <Biochemistry />
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

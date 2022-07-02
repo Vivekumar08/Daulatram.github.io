@@ -12,10 +12,14 @@ function Programmesoffer() {
         <Programbanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
+        {/* <div className="w-[350px]">
           <Departments />
-        </div>
-        <div className="w-[1100px]">
+        </div> */}
+         <div className=" flex  flex-col mt-12 ml-2  ">
+              <Biochemistry/>
+            </div>
+        
+        <div className=" w-full mr-16">
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center">
             Program Offered
           </h2>
@@ -34,9 +38,9 @@ function Programmesoffer() {
                 </span>
               </a>
             </div>
-            <div className=" flex  flex-col ml-5 mt-10  ">
+            {/* <div className=" flex  flex-col ml-5 mt-10  ">
               <Biochemistry/>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
