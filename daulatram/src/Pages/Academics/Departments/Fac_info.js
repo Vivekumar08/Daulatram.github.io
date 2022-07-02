@@ -70,7 +70,7 @@ export const Fac_info = [{
         Fac_name: "Dr. K. Nirmala ",
         Designation: "Associate Professor",
         filter: "Superannuated",
-        img: "/images/ImgPages/Biochemistry/Sarita_Nanda.jpg",
+        img: "/images/ImgPages/female_user.png",
         cv: "/images/ImgPages/Biochemistry/K_Nirmala_cv.pdf",
     },
     {
@@ -78,7 +78,7 @@ export const Fac_info = [{
         Fac_name: "Dr. Sunita Joshi",
         Designation: "Associate Professor",
         filter: "Superannuated",
-        img: "/images/ImgPages/Biochemistry/Sarita_Nanda.jpg",
+        img: "/images/ImgPages/female_user.png",
         cv: "/images/ImgPages/Biochemistry/Sunita_joshi_cv.pdf",
     },
 
