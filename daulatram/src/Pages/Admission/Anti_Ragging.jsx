@@ -1,27 +1,44 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import Admission_side from "../../Components/Sidebar/Admission_side.";
+import Bulletin from "../../Dummy_data/pdfs/Admission/UGCF_2022.pdf";
+import guideline from "../../Dummy_data/pdfs/Admission/OBC_SC_ST_EWS_guidelines.pdf";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faArrowRight,
-  faTrashCan,
-  faPen,
-} from "@fortawesome/free-solid-svg-icons";
-import { Link, Navigate } from "react-router-dom";
+import { faArrowRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
-import Ragging from "../../Dummy_data/pdfs/Admission/Antiragging_Affidavit.pdf";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 
 const Anti_Ragging = () => {
+  const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
+  const dropRef = useRef();
   const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
-  const [data, setData] = useState([]);
 
   const fetchdata = async () => {
     const response = await fetch("http://localhost:5000/Anti_Ragging");
-    setData(await response.json());
+    setData1(await response.json());
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
   };
 
   useEffect(() => {
@@ -34,9 +51,6 @@ const Anti_Ragging = () => {
       `http://localhost:5000/deleteAntiRagging/${id}`,
       {
         method: "DELETE",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
       }
     );
     const data = await response.json();
@@ -49,27 +63,34 @@ const Anti_Ragging = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(link, caption);
-    const response = await fetch("http://localhost:5000/admission_Anti_Ragging", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        Link: link,
-        Caption: caption,
-      }),
-    });
-    const data = await response.json();
-    if (!data) {
-      setErrMsg("No Server Response");
-    } else if (response.status === 400) {
-      setErrMsg("Fill Complete Details");
-    } else {
-      setCaption("");
-      setLink("");
-      setAuth(true);
-      fetchdata();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("link", link);
+        formData.append("title", caption);
+
+        setErrMsg("");
+        console.log(formData);
+        await axios.post(`http://localhost:5000/admission_Anti_Ragging`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        setCaption("");
+        setLink("");
+        setFile("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        // setErrMsg("Please select a file to add.");
+        setErrMsg("Please enter all the field values.");
+      }
+      // } else {
+      // }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
     }
   };
 
@@ -80,7 +101,7 @@ const Anti_Ragging = () => {
         style={{ backgroundImage: "url(/images/img1.jpg)" }}
       >
         <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-          Online Admission{" "}
+          SC/ST/OBC/EWS Guidelines{" "}
         </span>
         <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
           <Link to={"/"}>
@@ -96,12 +117,17 @@ const Anti_Ragging = () => {
         <div className="ml-3 mb-5">
           <div className="w-[1100px]">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              Online Admission
+            SC/ST/OBC/EWS Guidelines
             </h2>
-            {data.map((datas) => (
+            {data1 && data1.map((curElem) => {
+              const { _id, title, file_path, link } = curElem;
+              var path_pic = file_path;
+              var path2 = path_pic.replace(/\\/g, "/");
+              var path = path2.slice(19);
+              return(
               <>
-                <div className="flex flex-row">
-                  <li className="mt-12 list-none" key={datas._id}>
+                <div className="flex flex-row mb-5 ml-5">
+                  <li className="mt-12 list-none" key={_id}>
                     <div className="flex flex-col ">
                       <h1 className="mt-5">
                         <FontAwesomeIcon
@@ -109,13 +135,14 @@ const Anti_Ragging = () => {
                           className="text-blue-400"
                         />
                         <a
-                          href={datas.Link}
+                          href={path}
                           target="_blank"
                           className="text-blue-400  hover:pl-3"
                         >
                           {" "}
-                          {datas.Caption}{" "}
+                          {link}{" "}
                         </a>
+                        <p>{title}</p>
                       </h1>
                     </div>
                   </li>
@@ -136,7 +163,7 @@ const Anti_Ragging = () => {
                   </span>
                 </div>
               </>
-            ))}
+            )})}
             {auth && (
               <>
                 <form
@@ -156,7 +183,7 @@ const Anti_Ragging = () => {
                       ref={userRef}
                       onChange={(e) => setLink(e.target.value)}
                       value={link}
-                      placeholder="Enter Link"
+                      placeholder="Enter Text Here"
                       className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                     />
                   </div>
@@ -170,11 +197,60 @@ const Anti_Ragging = () => {
                       onChange={(e) => setCaption(e.target.value)}
                       value={caption}
                       className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
-                      placeholder="Enter Caption"
+                      placeholder="Description"
                     ></textarea>
                   </div>
-                  <div class="md:flex md:items-center">
+                  <div class="md:flex flex-col md:items-center">
                     {/* <div class="md:w-1/3"></div> */}
+                    <div className="upload-section flex h-[200px] mb-[10px] w-full">
+                      <Dropzone
+                        onDrop={onDrop}
+                        onDragEnter={() => updateBorder("over")}
+                        onDragLeave={() => updateBorder("leave")}
+                      >
+                        {({ getRootProps, getInputProps }) => (
+                          <div
+                            {...getRootProps({
+                              className:
+                                "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                            })}
+                            ref={dropRef}
+                          >
+                            <input {...getInputProps()} />
+                            <p>
+                              Drag and drop a file OR click here to select a
+                              file
+                            </p>
+                            {file && (
+                              <div>
+                                <strong>Selected file:</strong> {file.name}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </Dropzone>
+                      {previewSrc ? (
+                        isPreviewAvailable ? (
+                          <div className="image-preview ml-[5%] w-full">
+                            <img
+                              className="preview-image w-full h-full block mb-[10px]"
+                              src={previewSrc}
+                              alt="Preview"
+                            />
+                          </div>
+                        ) : (
+                          <div className="preview-message flex justify-center items-center ml-[5%]">
+                            <p>No preview available for this file</p>
+                          </div>
+                        )
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>
+                            Image preview will be shown here after selection
+                          </p>
+                        </div>
+                      )}
+                    </div>
                     <div class="md:w-2/3 ">
                       <button
                         class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"

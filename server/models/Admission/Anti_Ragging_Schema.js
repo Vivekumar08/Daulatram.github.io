@@ -1,17 +1,31 @@
 const mongoose = require('mongoose');
 
-const Anti_Ragging_Schema = new mongoose.Schema({
-    
-    Link:{
-        type:String,
-        required:true
+const Anti_Ragging_Schema = mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true
     },
-    Caption:{
-        type:String,
-        required:true
+    link: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    file_path: {
+      type: String,
+      required: true
+    },
+    file_mimetype: {
+      type: String,
+      required: true
     }
-})
+  },
+  {
+    timestamps: true
+  }
+);
 
+const Ragging = mongoose.model('Ragging', Anti_Ragging_Schema);
 
-const Ragging = mongoose.model('Ragging',Anti_Ragging_Schema);
-module.exports=Ragging;
+module.exports = Ragging;

@@ -133,16 +133,32 @@ router.get('/Anti_Ragging', async (req, res,) => {
   res.status(200).json(details)
 });
 
-router.post('/admission_Anti_Ragging', async (req, res) => {
-  const { Link, Caption } = req.body
-  if (!Link || !Caption) {
-    return res.status(400).json({ error: "Fill the Admission Details Properly" })
+router.post(
+  '/admission_Anti_Ragging',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Ragging({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
   }
-  const user = new Ragging(req.body);
-  await user.save();
-  console.log("Details Saved Successfully")
-  return res.status(200).json({ message: "Details Saved Successfully " })
-})
+);
+
 router.delete('/deleteAntiRagging/:id', async (req, res) => {
   const delete_user = await Ragging.findOneAndDelete({ _id: req.params.id });
   res.status(200).json(delete_user + "User deleted")
