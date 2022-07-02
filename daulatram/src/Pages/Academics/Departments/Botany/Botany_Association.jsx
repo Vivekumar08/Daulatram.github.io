@@ -13,8 +13,8 @@ function Botany_Association() {
       <div className=" flex  flex-col mt-12 ml-2">
               <Botany />
             </div>
-        <div>
-          <div className="w-full mr-16">
+        <div className="ml-auto mr-auto">
+          <div className="w-full ml-auto mr-auto">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Association
             </h2>
