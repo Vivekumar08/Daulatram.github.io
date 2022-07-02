@@ -1,0 +1,86 @@
+export const Fac_info = [{
+        id: 1,
+        Fac_name: "Prof. Sarita Nanda ",
+        Designation: "Vice Principal",
+        filter: "Current",
+        img: "/images/ImgPages/Biochemistry/Sarita_Nanda.jpg",
+        cv: "/images/ImgPages/Biochemistry/Sarita_cv.pdf",
+    },
+    {
+        id: 2,
+        Fac_name: "Dr. Padamshree",
+        Designation: "Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Biochemistry/padmshree.jpg",
+        cv: "/images/ImgPages/Biochemistry/padam_cv.pdf",
+    },
+
+    {
+        id: 3,
+        Fac_name: "Dr. Anita Garg Mangla",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Biochemistry/anita_mangla.jpg",
+        cv: "/images/ImgPages/Biochemistry/Anita_M.pdf",
+    },
+    {
+        id: 4,
+        Fac_name: "Dr. Neeru Dhamija",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Biochemistry/neeru.jpg",
+        cv: "/images/ImgPages/Biochemistry/neeru_cv.pd",
+    },
+    {
+        id: 5,
+        Fac_name: "Dr. Leena Vij ",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Biochemistry/leena.jpg",
+        cv: "/images/ImgPages/Biochemistry/Leena_cv.pdf",
+    },
+    {
+        id: 6,
+        Fac_name: "Dr. Radhika Gupta",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Biochemistry/Radhika.jpg",
+        cv: "/images/ImgPages/Biochemistry/Radhika_cv.pdf",
+    },
+    {
+        id: 7,
+        Fac_name: "Dr. Anita Goel",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Biochemistry/anita_g.jpg",
+        cv: "/images/ImgPages/Biochemistry/Anita_g_cv.pdf",
+    },
+    {
+        id: 8,
+        Fac_name: "Dr. Neeraj Dohare",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Biochemistry/neeraj.jpg",
+        cv: "/images/ImgPages/Biochemistry/Neeraj_cv.pdf",
+    },
+
+
+    {
+        id: 1,
+        Fac_name: "Dr. K. Nirmala ",
+        Designation: "Associate Professor",
+        filter: "Superannuated",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Biochemistry/K_Nirmala_cv.pdf",
+    },
+    {
+        id: 1,
+        Fac_name: "Dr. Sunita Joshi",
+        Designation: "Associate Professor",
+        filter: "Superannuated",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Biochemistry/Sunita_joshi_cv.pdf",
+    },
+
+
+];

@@ -20,7 +20,7 @@ import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
 import Principal from "./Pages/AboutUs/Principal";
 // import Chairperson_banner from './Components/Banners/Chairperson_banner'
 
-import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
+import Bio_faculty from "./Pages/Academics/Departments/Biochemistry/Bio_faculty";
 import Research_facilities from "./Pages/Academics/Departments/Biochemistry/Research_facilities";
 import Studentsachieve from "./Pages/Academics/Departments/Biochemistry/Studentsachieve";
 import Awards from "./Pages/Academics/Departments/Biochemistry/Awards";
@@ -61,8 +61,8 @@ import Bulletins_Admission from "./Pages/Admission/Bulletins_Admission";
 import Anti_Ragging from "./Pages/Admission/Anti_Ragging";
 import Feedback from "./Pages/Staff_Zone/Feedback";
 import Notices from "./Pages/Staff_Zone/Notices";
-import Ethics from "./Pages/Staff_Zone/Ethics"
-import FormsS from "./Pages/Staff_Zone/FormsS"
+import Ethics from "./Pages/Staff_Zone/Ethics";
+import FormsS from "./Pages/Staff_Zone/FormsS";
 import Seniority_list from "./Pages/Staff_Zone/Seniority_list";
 import Staff_Council_Committee from "./Pages/Staff_Zone/Staff_Council_Committee";
 import Roster from "./Pages/Staff_Zone/Roster";
@@ -232,7 +232,7 @@ function App() {
           <Route
             element={
               <>
-                <Faculty />
+                <Bio_faculty />
               </>
             }
             path="/academics/departments/biochem/faculty"
@@ -469,7 +469,7 @@ function App() {
             }
             path="/StaffZone/Feedback"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Ethics />

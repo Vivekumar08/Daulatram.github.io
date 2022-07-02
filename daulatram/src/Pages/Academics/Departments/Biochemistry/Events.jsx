@@ -10,17 +10,20 @@ function Events() {
         <DepartBanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[900px]">
+        {/* <div className="w-[900px]">
           <Departments />
+        </div> */}
+        <div className=" flex  flex-col mt-12 ml-2 ">
+          <Biochemistry />
         </div>
         <div className="ml-3 ">
-          <div className="w-[1100px]">
+          <div className="w-full ml-2">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Events
             </h2>
           </div>
           <div className="flex flex-row">
-            <div className="mr-5">
+            <div className="mr-12">
               <div>
                 <p className="text-1xl ml-4 font-bold text-xl">Year 2020-21</p>
               </div>
@@ -31,9 +34,8 @@ function Events() {
                     to 21st August 2020 titled E-skill development program on
                     enhanced learning through ICT tools.
                   </strong>
-                  <br />
                 </li>
-                <br />
+
                 <p>
                   The objective of the SDP was to introduce the latest ICT tools
                   to students as this year due to Covid 19 all the classes are
@@ -50,7 +52,7 @@ function Events() {
                     development program on enhanced learning through ICT tools.
                   </strong>
                 </li>
-                <br />
+
                 <p>
                   The objective of the SDP was to introduce the latest ICT tools
                   to students as this year due to Covid 19 all the classes are
@@ -133,10 +135,10 @@ function Events() {
                 </li>
               </ol>
             </div>
-            <div className=" flex  flex-col mr-16 ">
+            {/* <div className=" flex  flex-col mr-16 ">
             <Biochemistry/>
 
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
