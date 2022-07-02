@@ -11,6 +11,7 @@ const File = require("../models/Research/Research_fac_Schema");
 const Soc = require('../models/Societies/Societies_Schema');
 const Bulletin = require('../models/Admission/AdmissionBulletin_Schema');
 const Guidelines = require('../models/Admission/Admission_guidelines_Schema');
+const Ragging = require('../models/Admission/Anti_Ragging_Schema');
 
 
 // SET STORAGE
@@ -124,7 +125,30 @@ router.delete('/deleteAdmission/:id', async (req, res) => {
   res.status(200).json(delete_user + "User deleted")
 })
 
-// Bulletin
+// Ragging
+
+router.get('/Anti_Ragging', async (req, res,) => {
+  // res.send(`Hello World from the server`);
+  const details = await Ragging.find()
+  res.status(200).json(details)
+});
+
+router.post('/admission_Anti_Ragging', async (req, res) => {
+  const { Link, Caption } = req.body
+  if (!Link || !Caption) {
+    return res.status(400).json({ error: "Fill the Admission Details Properly" })
+  }
+  const user = new Ragging(req.body);
+  await user.save();
+  console.log("Details Saved Successfully")
+  return res.status(200).json({ message: "Details Saved Successfully " })
+})
+router.delete('/deleteAntiRagging/:id', async (req, res) => {
+  const delete_user = await Ragging.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
+})
+
+// Guidelines
 
 router.get('/guidelines_admission', async (req, res,) => {
   const details = await Guidelines.find()

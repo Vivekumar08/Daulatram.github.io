@@ -422,6 +422,14 @@ function App() {
           <Route
             element={
               <>
+                <Anti_Ragging />
+              </>
+            }
+            path="/admission/AntiRaggingGuidlines"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <OnlineAdmission />
               </>
             }
