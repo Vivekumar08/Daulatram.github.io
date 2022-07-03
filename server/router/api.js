@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 const multer = require('multer');
 const fs = require("fs")
-const {promisify} = require("util")
+const { promisify } = require("util")
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 // const jwt = require("jsonwebtoken")
@@ -165,9 +165,9 @@ router.post(
 router.delete('/deleteAntiRagging/:id', async (req, res) => {
   // console.log(Ragging)
   const delete_user = await Ragging.findByIdAndDelete({ _id: req.params.id }
-    );
-    await unlinkAsync(delete_user.file_path)
-    res.status(200).json(delete_user + "User deleted")
+  );
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
 })
 
 // Guidelines
@@ -178,6 +178,7 @@ router.get('/guidelines_admission', async (req, res,) => {
 });
 router.delete('/delete_admission_guidelines/:id', async (req, res) => {
   const delete_user = await Guidelines.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
   res.status(200).json(delete_user + "User deleted")
 })
 
@@ -215,6 +216,7 @@ router.get('/bulletin', async (req, res,) => {
 });
 router.delete('/delete_admissionbulletin/:id', async (req, res) => {
   const delete_user = await Bulletin.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
   res.status(200).json(delete_user + "User deleted")
 })
 
@@ -270,6 +272,7 @@ router.delete('/deleteHelpdesk/:id', async (req, res) => {
 // Research
 router.delete('/delete_research_fac/:id', async (req, res) => {
   const delete_user = await File.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
   res.status(200).json(delete_user + "User deleted")
 })
 
@@ -331,6 +334,7 @@ router.get('/research_download/:id', async (req, res) => {
 // Societies
 router.delete('/delete_Socities/:id', async (req, res) => {
   const delete_user = await Soc.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
   res.status(200).json(delete_user + "User deleted")
 })
 
