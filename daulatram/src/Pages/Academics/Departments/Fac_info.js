@@ -80,6 +80,7 @@ export const Fac_info = [{
         cv: "/images/ImgPages/Biochemistry/Sunita_joshi_cv.pdf",
     },
 ]
+
 export const Bot_fac_info = [{
         id: 12,
         Fac_name: "Prof. Nidhi Gautam",
@@ -88,7 +89,6 @@ export const Bot_fac_info = [{
         img: "/images/ImgPages/Botany/Nidhi_Gautam.jpg",
         cv: "/images/ImgPages/Botany/NidhiG_CV.pdf",
     },
-
     {
         id: 13,
         Fac_name: "Prof. Rama Pasricha",
@@ -307,4 +307,126 @@ export const Bot_association_info = [{
 
 
 
+]
+export const Chem_fac_info = [{
+        id: 38,
+        Fac_name: "Dr. Shuchi Sharma",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Suchi.jpg",
+        cv: "/images/ImgPages/Chemistry/Shuchi.pdf",
+    },
+    {
+        id: 39,
+        Fac_name: "Dr. Archana Gupta",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Archana.jpg",
+        cv: "/images/ImgPages/Chemistry/ARCHANA.pdf",
+    },
+
+    {
+        id: 40,
+        Fac_name: "Prof. Priti Malhotra",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/preeti_m.jpg",
+        cv: "/images/ImgPages/Chemistry/Priti_m.pdf",
+    },
+    {
+        id: 41,
+        Fac_name: "Dr. Asha",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 42,
+        Fac_name: "Dr. Darshan Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Darshan.jpg",
+        cv: "/images/ImgPages/Chemistry/DARSHAN.pdf",
+    },
+    {
+        id: 43,
+        Fac_name: "Dr. Ritu Gupta",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Ritu.jpg",
+        cv: "/images/ImgPages/Chemistry/Ritu.pdf",
+    },
+    {
+        id: 44,
+        Fac_name: "Dr. Avneet Kaur",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Avneet.jpg",
+        cv: "/images/ImgPages/Chemistry/Avneet.pdf",
+    },
+    {
+        id: 45,
+        Fac_name: "Dr. Arti Jain",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Arti.jpg",
+        cv: "/images/ImgPages/Chemistry/ARTI.pdf",
+    },
+    {
+        id: 46,
+        Fac_name: "Dr. Aditi Puri",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Aditi.jpg",
+        cv: "/images/ImgPages/Chemistry/Aditi.pdf",
+    },
+    {
+        id: 47,
+        Fac_name: "Dr. Anamika Debnath",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Anamika.png",
+        cv: "/images/ImgPages/Chemistry/Anamika.pdf",
+    },
+    {
+        id: 48,
+        Fac_name: "Dr. Anuradha",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/anuradha.jpeg",
+        cv: "/images/ImgPages/Chemistry/Anuradha.pdf",
+    },
+    {
+        id: 49,
+        Fac_name: "Dr. Preeti Chadha",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/preeti.jpg",
+        cv: "/images/ImgPages/Chemistry/preeti.pdf",
+    },
+    {
+        id: 50,
+        Fac_name: "Dr. Divya Mathur",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Divya.jpg",
+        cv: "/images/ImgPages/Chemistry/Divya.pdf",
+    },
+    {
+        id: 51,
+        Fac_name: "Dr. Gauri Ahuja",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Chemistry/Gauri.jpg",
+        cv: "/images/ImgPages/Chemistry/GAURI.pdf",
+    },
+    {
+        id: 52,
+        Fac_name: "Dr. Arif Ahamad",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/male.png",
+        cv: "#",
+    },
 ]
