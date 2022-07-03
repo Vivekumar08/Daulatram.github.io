@@ -25,7 +25,7 @@ function Research_facilities() {
           <div className="flex flex-row">
             <div>
               <div class="wrapper2 mt-5 mb-5">
-                <div class="card1">
+                <div class="card2">
                   <div className="flex flex-row">
                     <div>
                       <span className=" text-2xl font-bold mr-5">
@@ -46,7 +46,7 @@ function Research_facilities() {
                     <br />
                   </div>
                 </div>
-                <div class="card1">
+                <div class="card2">
                   <div className="">
                     <span className=" text-2xl font-bold">
                       Resources Centers & Resource Facilities
@@ -71,7 +71,7 @@ function Research_facilities() {
                     <br />
                   </div>
                 </div>
-                <div class="card1">
+                <div class="card2">
                   <span className=" text-2xl font-bold">
                     Grant & Research Guidance
                   </span>

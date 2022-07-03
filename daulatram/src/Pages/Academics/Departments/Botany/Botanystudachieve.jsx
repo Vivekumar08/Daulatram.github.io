@@ -22,9 +22,9 @@ function Botanystudachieve() {
 
             <div className="flex flex-row justify-between ">
               <div class="wrapper2  mt-5 mb-5">
-                <div class="card1">
+                <div class="card2">
                   <div className="">
-                    <span className=" text-2xl mr-5 ml-5 font-bold">
+                    <span className=" text-2xl mr-5 ml-10 font-bold">
                       Achievements
                     </span>
                   </div>
@@ -40,7 +40,7 @@ function Botanystudachieve() {
                     </p>
                     <br />
                     <a href={pdf}>
-                      <button className="w-full ml-8">View</button>
+                      <button className="w-full ">View</button>
                       <br />
                     </a>
                     <br />

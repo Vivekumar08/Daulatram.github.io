@@ -22,7 +22,7 @@ function Bot_Publications() {
             </div>
             <div className="flex flex-row justify-between ">
               <div class="wrapper2 mt-4 mb-5">
-                <div class="card1">
+                <div class="card2">
                   <div className="">
                     <span className=" text-2xl font-bold justify-center ml-7">
                       Publications
@@ -36,7 +36,7 @@ function Bot_Publications() {
                     </p>
                     <br />
                     <a href={pb1}>
-                      <button className="ml-4">View</button>
+                      <button className="w-full">View</button>
                       <br />
                     </a>
                     <br />

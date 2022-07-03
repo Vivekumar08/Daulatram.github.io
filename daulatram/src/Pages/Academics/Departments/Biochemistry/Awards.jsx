@@ -25,15 +25,15 @@ function Awards() {
                   <span className="font-bold text-2xl ml-16">Awards</span>
                   <div className="flex flex-col">
                     <div class="info">
-                      <p className="ml-14">Faculty/ Non Teaching Staff</p>
+                      <p className="ml-10">Faculty/ Non Teaching Staff</p>
 
                       <br />
                       <a href={Awds}>
-                        <button className="ml-16">View</button>
+                        <button className="w-full ml-4">View</button>
                         <br />
                         <br />
                         <br />
-                        <br />
+                        
                         
                       </a>
                     </div>
