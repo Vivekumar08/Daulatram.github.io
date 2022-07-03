@@ -122,3 +122,66 @@ export const botony_side = [{
 
     }
 ]
+
+export const chemistry_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Chemistry/"
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Chemistry/Faculty"
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Chemistry/Programoffered"
+    },
+    {
+        id: 4,
+        title: "Association",
+        link: "/academics/departments/Chemistry/association"
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Chemistry/Students'_achievements"
+    },
+    {
+        id: 6,
+        title: "Events",
+        link: "/academics/departments/Chemistry/Events"
+    },
+    {
+        id: 7,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Chemistry/laboratorystaff"
+    },
+    {
+        id: 8,
+        title: "Publications",
+        link: "/academics/departments/Chemistry/Publications"
+    },
+    {
+        id: 9,
+        title: "Awards",
+        link: "/academics/departments/Chemistry/awards"
+    },
+    {
+        id: 10,
+        title: "Research",
+        link: "/academics/departments/Chemistry/Facilities"
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Chemistry/timetable"
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Chemistry/photogallery"
+
+    }
+]

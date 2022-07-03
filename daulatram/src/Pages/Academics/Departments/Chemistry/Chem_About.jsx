@@ -11,10 +11,10 @@ function Chem_About() {
         <Chembanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+      <div className=" flex  flex-col mt-12 ml-2 ">
+          <Chemistry/>
         </div>
-        <div className="w-[1100px]">
+        <div className="w-full mr-16">
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             About the department
           </h2>
@@ -95,7 +95,7 @@ function Chem_About() {
                   various jobs through job oriented skills .
                 </span>
               </div>
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
+              <div className="pr-3 pl-3 flex mr-1 mb-5 ml-2">
                 <span className="text-lg text-justify font-medium ">
                   Year after year the majority of Daulat Ram College Chemistry
                   students graduate with high grades and some of them also get
@@ -113,9 +113,7 @@ function Chem_About() {
             </div>
           </div>
         </div>
-        <div className=" flex  flex-col mr-16 mt-32">
-          <Chemistry/>
-        </div>
+
       </div>
     </div>
   );

@@ -14,17 +14,17 @@ function Chemprogramoffered() {
         <Chembanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+      <div className=" flex  flex-col  ml-2 mt-12">
+              <Chemistry />
         </div>
-        <div className="w-[1100px]">
+        <div className="w-full mr-auto ml-auto">
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Program offered
           </h2>
 
           <div className="flex flex-col">
             <div class="wrapper2 mt-5 mb-5">
-              <div class="card1">
+              <div class="card2">
                 <div className="">
                   <span className=" text-2xl font-bold">
                     B. Sc Hons Chemistry 23July 2019
@@ -41,7 +41,7 @@ function Chemprogramoffered() {
                   </a>
                 </div>
               </div>
-              <div class="card1">
+              <div class="card2">
                 <span className=" text-2xl font-bold">
                   B.Sc Life Science 18 July 2019
                 </span>
@@ -57,8 +57,8 @@ function Chemprogramoffered() {
                 </div>
               </div>
             </div>
-            <div class="wrapper2 mt-5 mb-5">
-              <div class="card1">
+            <div class="wrapper2 mt-5 mb-10">
+              <div class="card2">
                 <div className="flex flex-col">
                   <div>
                     <span className=" text-2xl font-bold ">
@@ -74,7 +74,7 @@ function Chemprogramoffered() {
                   </a>
                 </div>
               </div>
-              <div class="card1">
+              <div class="card2">
                 <span className=" text-2xl font-bold">
                   B.Sc. Hons. Chemistry Syllabus LOCF
                 </span>
@@ -91,9 +91,7 @@ function Chemprogramoffered() {
 
             </div>
           </div>
-            <div className=" flex  flex-col  mt-36 mr-16">
-              <Chemistry />
-        </div>
+            
       </div>
     </div>
   );
