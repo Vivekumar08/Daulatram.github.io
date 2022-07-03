@@ -14,6 +14,7 @@ const Soc = require('../models/Societies/Societies_Schema');
 const Bulletin = require('../models/Admission/AdmissionBulletin_Schema');
 const Guidelines = require('../models/Admission/Admission_guidelines_Schema');
 const Ragging = require('../models/Admission/Anti_Ragging_Schema');
+const Training = require('../models/Academics/Training_Schema')
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -228,6 +229,44 @@ router.post(
       const { title, link } = req.body;
       const { path, mimetype } = req.file;
       const file = new Bulletin({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
+// Academics Training
+
+router.get('/Training_', async (req, res,) => {
+  const details = await Training.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_academicsTraings/:id', async (req, res) => {
+  const delete_user = await Training.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/Academics_Training_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Training({
         title,
         link,
         file_path: path,
