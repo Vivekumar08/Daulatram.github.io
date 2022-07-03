@@ -796,10 +796,123 @@ export const Eco_fac_info = [{
         cv: "/images/ImgPages/Economics/Ashok_cv.pdf",
     },
 
+]
 
 
 
+export const Eng_fac_info = [{
+        id: 96,
+        Fac_name: "Mrs. Sangeeta Gupta",
+        Designation: "Senior Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Sangeeta_eng.jpg",
+        cv: "/images/ImgPages/English/Sangeeta_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Dr. Deepshikha Mahanta Bortamuly",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Deepshikha_eng.png",
+        cv: "/images/ImgPages/English/Deepshikha_eng_cv.pdf",
+    },
 
+    {
+        id: 98,
+        Fac_name: "Ms. Haritha P.",
+        Designation: "Assitant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Haritha_eng.png",
+        cv: "/images/ImgPages/English/Haritha_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Dr. Prastavana Mohan",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Prastavana_eng.jpg",
+        cv: "/images/ImgPages/English/Prastavana_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Dr. Sakshi Wason",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Sakshi_eng.png",
+        cv: "/images/ImgPages/English/Sakshi_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Ms. Saneya",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Saneya_eng.png",
+        cv: "/images/ImgPages/English/Saneya_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Ms. Vandana",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Vandana_eng.jpg",
+        cv: "/images/ImgPages/English/Vandana_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Ms. Violina Borah",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Violina_eng.jpg",
+        cv: "/images/ImgPages/English/Violina_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Ms. Trisha Mitra",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Trisha_eng.jpg",
+        cv: "/images/ImgPages/English/Trisha_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Mr. Owais Farooq",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Owais_eng.png",
+        cv: "/images/ImgPages/English/Owais_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Ms. Kiran Yadav",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Kiran_eng.png",
+        cv: "/images/ImgPages/English/Kiran_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Ms. Richa Dawar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Richa_eng.jpg",
+        cv: "/images/ImgPages/English/Richa_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Ms. Rashmi Yadav",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Rashmi_eng.jpg",
+        cv: "/images/ImgPages/English/Rashmi_eng_cv.pdf",
+    },
+    {
+        id: 97,
+        Fac_name: "Mr. Kehru L",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/English/Kaihru_eng.jpg",
+        cv: "/images/ImgPages/English/Kaihru_eng_cv.pdf",
+    },
 
 
 
