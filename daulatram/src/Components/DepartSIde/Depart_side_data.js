@@ -185,3 +185,65 @@ export const chemistry_side = [{
 
     }
 ]
+export const commerce_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Commerce/"
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Commerce/Faculty"
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Commerce/Programoffered"
+    },
+    {
+        id: 4,
+        title: "Association",
+        link: "/academics/departments/Commerce/association"
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Commerce/Students'_achievements"
+    },
+    {
+        id: 6,
+        title: "Events",
+        link: "/academics/departments/Commerce/Events"
+    },
+    {
+        id: 7,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Commerce/laboratorystaff"
+    },
+    {
+        id: 8,
+        title: "Publications",
+        link: "/academics/departments/Commerce/Publications"
+    },
+    {
+        id: 9,
+        title: "Awards",
+        link: "/academics/departments/Commerce/awards"
+    },
+    {
+        id: 10,
+        title: "Research",
+        link: "/academics/departments/Commerce/Facilities"
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Commerce/timetable"
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Commerce/photogallery"
+
+    }
+]
