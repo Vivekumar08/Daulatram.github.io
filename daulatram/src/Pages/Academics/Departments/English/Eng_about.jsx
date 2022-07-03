@@ -9,10 +9,10 @@ function Eng_about() {
         <Engbanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+      <div className=" flex  flex-col mt-12 ml-2">
+          <English />
         </div>
-        <div className="w-[1100px]">
+        <div className="w-full mr-16">
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             About the department
           </h2>
@@ -252,9 +252,7 @@ function Eng_about() {
             </div>
           </div>
         </div>
-        <div className=" flex  flex-col mr-16 mt-32">
-          <English />
-        </div>
+        
       </div>
     </div>
   );

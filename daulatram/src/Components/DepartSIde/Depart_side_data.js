@@ -309,3 +309,65 @@ export const Eco_side = [{
 
     }
 ]
+export const Eng_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/English/"
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/English/Faculty"
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/English/Programoffered"
+    },
+    {
+        id: 4,
+        title: "Association",
+        link: "/academics/departments/English/association"
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/English/Students'_achievements"
+    },
+    {
+        id: 6,
+        title: "Events",
+        link: "/academics/departments/English/Events"
+    },
+    {
+        id: 7,
+        title: "Laboratory Staff",
+        link: "/academics/departments/English/laboratorystaff"
+    },
+    {
+        id: 8,
+        title: "Publications",
+        link: "/academics/departments/English/Publications"
+    },
+    {
+        id: 9,
+        title: "Awards",
+        link: "/academics/departments/English/awards"
+    },
+    {
+        id: 10,
+        title: "Research",
+        link: "/academics/departments/English/Facilities"
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/English/timetable"
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/English/photogallery"
+
+    }
+]
