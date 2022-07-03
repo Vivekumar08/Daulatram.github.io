@@ -247,3 +247,65 @@ export const commerce_side = [{
 
     }
 ]
+export const Eco_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Economics/"
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Economics/Faculty"
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Economics/Programoffered"
+    },
+    {
+        id: 4,
+        title: "Association",
+        link: "/academics/departments/Economics/association"
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Economics/Students'_achievements"
+    },
+    {
+        id: 6,
+        title: "Events",
+        link: "/academics/departments/Economics/Events"
+    },
+    {
+        id: 7,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Economics/laboratorystaff"
+    },
+    {
+        id: 8,
+        title: "Publications",
+        link: "/academics/departments/Economics/Publications"
+    },
+    {
+        id: 9,
+        title: "Awards",
+        link: "/academics/departments/Economics/awards"
+    },
+    {
+        id: 10,
+        title: "Research",
+        link: "/academics/departments/Economics/Facilities"
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Economics/timetable"
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Economics/photogallery"
+
+    }
+]
