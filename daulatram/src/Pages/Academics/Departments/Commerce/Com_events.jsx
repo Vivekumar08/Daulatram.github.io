@@ -10,7 +10,7 @@ function Com_Events() {
         <Commercebanner />
       </div>
       <div className="flex flex-row">
-      <div className=" flex  flex-col mt-12 ml-2">
+        <div className=" flex  flex-col mt-12 ml-2">
           <Commerce />
         </div>
         <div className="w-full mr-16">
@@ -62,16 +62,12 @@ function Com_Events() {
                     // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                   ></div>
                 </figure>
-
-
-
               </li>
               <li>
                 <strong> National webinar -</strong> National Webinar held on
                 4th July 2020 conducted on Google Meet Platform on the topic
                 entitled "Mentoring Teachers for Effective Online Teaching" with
                 Mr. Rajiv Jain, as Resource Person
-
                 <figure className="flex pr-4 pl-4 pb-2">
                   <div
                     style={{
@@ -84,10 +80,6 @@ function Com_Events() {
                     // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                   ></div>
                 </figure>
-
-
-
-
               </li>
               <li>
                 <strong> Natinal Webinar -</strong> Dr. Indu Jain with Dr.
@@ -114,8 +106,6 @@ function Com_Events() {
                 Classroom & Other ICT Tools: A Comprehensive Practical Approach”
                 organized by the Department of Commerce, Daulat Ram College
                 during 21st – 23rd July, 2020.
-
-
                 <figure className="flex pr-4 pl-4 pb-2">
                   <div
                     style={{
@@ -168,9 +158,9 @@ function Com_Events() {
                 annual fest COMVISION 2019 held on 17th January 2019.
               </li>
               <li>
-                <strong>Farewell party</strong>- The outgoing batch of students of our Department
-                pose together as they bid adieu to their college on the occasion
-                of Farewell 2018-19.
+                <strong>Farewell party</strong>- The outgoing batch of students
+                of our Department pose together as they bid adieu to their
+                college on the occasion of Farewell 2018-19.
               </li>
               <li>
                 <strong> Natinal Webinar -</strong> Dr. Indu Jain with Dr.
@@ -196,7 +186,6 @@ function Com_Events() {
             </ol>
           </div>
         </div>
-
       </div>
     </div>
   );

@@ -1,10 +1,9 @@
 
 import React, { useState } from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
-import Chemistry from "../../../../Components/DepartSIde/Chemistry";
 import Commercebanner from "../Commerce/Commercebanner.jsx";
 import Commerce from "../../../../Components/DepartSIde/Commerce";
-import Botanybanner from "../Botany/Botanybanner.jsx";
+
 
 import { Com_fac_info } from "../Fac_info";
 const Com_faculty = () => {
