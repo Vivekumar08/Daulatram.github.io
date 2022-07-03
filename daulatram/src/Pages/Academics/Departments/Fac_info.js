@@ -241,7 +241,7 @@ export const Bot_fac_info = [{
 
 ]
 export const Com_fac_info = [{
-        id: 12,
+        id: 31,
         Fac_name: " Mrs. Meeta Mathur",
         Designation: "Associate Professor",
         filter: "Current",
@@ -249,7 +249,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/meeta_com.pdf",
     },
     {
-        id: 13,
+        id: 32,
         Fac_name: "Dr. Kalpana Vaish",
         Designation: "Associate Professor",
         filter: "Current",
@@ -265,7 +265,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Sunita_com.pdf",
     },
     {
-        id: 15,
+        id: 33,
         Fac_name: "Dr. Gurmeet Kaur",
         Designation: "Associate Professor",
         filter: "Current",
@@ -274,7 +274,7 @@ export const Com_fac_info = [{
     },
 
     {
-        id: 16,
+        id: 34,
         Fac_name: "Dr. Manisha Jaiswal",
         Designation: "Associate Professor",
         filter: "Current",
@@ -283,7 +283,7 @@ export const Com_fac_info = [{
     },
 
     {
-        id: 17,
+        id: 35,
         Fac_name: "Dr. Reema Popli Dehal",
         Designation: "Associate Professor",
         filter: "Current",
@@ -291,7 +291,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Reema_com.pdf",
     },
     {
-        id: 18,
+        id: 36,
         Fac_name: "Dr. Tonika Rana",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -299,7 +299,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/tonika_com.pdf",
     },
     {
-        id: 19,
+        id: 37,
         Fac_name: "Dr. Gunjan Gupta",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -308,7 +308,7 @@ export const Com_fac_info = [{
     },
 
     {
-        id: 20,
+        id: 38,
         Fac_name: "Ms. Richa Kaur",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -316,7 +316,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Richa_com.pdf",
     },
     {
-        id: 21,
+        id: 39,
         Fac_name: "Ms. Mansi Kanojia",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -324,7 +324,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/mansi_com.pdf",
     },
     {
-        id: 22,
+        id: 40,
         Fac_name: "Dr. Isha Goel",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -332,7 +332,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Isha_Goel.pdf",
     },
     {
-        id: 23,
+        id: 41,
         Fac_name: "Ms. Shuchita Verma",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -340,7 +340,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/shuchita_com.pdf",
     },
     {
-        id: 24,
+        id: 42,
         Fac_name: "Ms. Deepika Jindal",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -349,7 +349,7 @@ export const Com_fac_info = [{
     },
 
     {
-        id: 25,
+        id: 43,
         Fac_name: "Ms. Raman Arora ",
         Designation: "Assistant Reader",
         filter: "Current",
@@ -357,7 +357,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Raman_com.pdf",
     },
     {
-        id: 26,
+        id: 44,
         Fac_name: "Dr. Meenakshi Paliwal",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -365,7 +365,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Raman_com.pdf",
     },
     {
-        id: 27,
+        id: 45,
         Fac_name: "Ms. Roopshikha",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -373,7 +373,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Minakshi_com.pdf",
     },
     {
-        id: 28,
+        id: 46,
         Fac_name: "Ms.Preeti Singh",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -381,7 +381,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Preeti_com.pdf",
     },
     {
-        id: 29,
+        id: 47,
         Fac_name: "Ms. Isha Bhatt",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -389,7 +389,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/isha_bhatt.pdf",
     },
     {
-        id: 30,
+        id: 48,
         Fac_name: "Dr. Megha Jain",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -397,7 +397,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/megha_com.pdf",
     },
     {
-        id: 31,
+        id: 49,
         Fac_name: "Ms. Hritanshu Jeph",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -405,7 +405,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Hritanshu_com.pdf",
     },
     {
-        id: 32,
+        id: 50,
         Fac_name: "Ms. Soumya Sharma",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -413,7 +413,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Soumya_com.pdf",
     },
     {
-        id: 33,
+        id: 51,
         Fac_name: "Dr. Renu Yadav",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -421,7 +421,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Renu_com.pdf",
     },
     {
-        id: 34,
+        id: 52,
         Fac_name: "Dr. Anubha Godara",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -429,7 +429,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Anubha_com.pdf",
     },
     {
-        id: 35,
+        id: 53,
         Fac_name: "Ms. Tripti Goel",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -438,7 +438,7 @@ export const Com_fac_info = [{
     },
 
     {
-        id: 36,
+        id: 54,
         Fac_name: "Dr. Madhu Agrawal",
         Designation: "Associate Professor",
         filter: "Superannuated",
@@ -446,7 +446,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Madhu_com.pdf",
     },
     {
-        id: 37,
+        id: 55,
         Fac_name: "Mrs. Sushma Arora",
         Designation: "Associate Professor",
         filter: "Superannuated",
@@ -454,7 +454,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Sushma_com.pdf",
     },
     {
-        id: 38,
+        id: 56,
         Fac_name: "Dr. Indu Jain",
         Designation: "Associate Professor",
         filter: "Superannuated",
@@ -462,7 +462,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Indu_com.pdf",
     },
     {
-        id: 39,
+        id: 57,
         Fac_name: "Mrs. Sarita Jain",
         Designation: "Associate Professor",
         filter: "Superannuated",
@@ -470,7 +470,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Sarita_com.pdf",
     },
     {
-        id: 40,
+        id: 58,
         Fac_name: "Prof. Kavita Sharma",
         Designation: "Professor",
         filter: "Superannuated",
@@ -478,7 +478,7 @@ export const Com_fac_info = [{
         cv: "/images/ImgPages/Commerce/Kavita_com.pdf",
     },
     {
-        id: 41,
+        id: 59,
         Fac_name: "Prof. Shirin Rathore",
         Designation: "Professor",
         filter: "Superannuated",
@@ -486,7 +486,7 @@ export const Com_fac_info = [{
         cv: "#",
     },
     {
-        id: 42,
+        id: 60,
         Fac_name: "Dr. Malti Gupta",
         Designation: "Associate Professor",
         filter: "Superannuated",
@@ -494,7 +494,7 @@ export const Com_fac_info = [{
         cv: "#",
     },
     {
-        id: 43,
+        id: 61,
         Fac_name: "Dr. Bimla Gautam",
         Designation: "Associate Professor",
         filter: "Superannuated",
@@ -505,7 +505,7 @@ export const Com_fac_info = [{
 ]
 
 export const Bot_association_info = [{
-        id: 31,
+        id: 62,
         Fac_name: "Mr. Suresh Kumar",
         Designation: "Laboratory Asistant",
         filter: "Current",
@@ -514,7 +514,7 @@ export const Bot_association_info = [{
 
     },
     {
-        id: 32,
+        id: 63,
         Fac_name: "MR. Ramesh Nagar",
         Designation: "Laboratory Asistant",
         filter: "Current",
@@ -523,7 +523,7 @@ export const Bot_association_info = [{
 
     },
     {
-        id: 33,
+        id: 64,
         Fac_name: "Mr. Satish Kumar Chauhan",
         Designation: "Laboratory Asistant",
         filter: "Current",
@@ -532,7 +532,7 @@ export const Bot_association_info = [{
 
     },
     {
-        id: 34,
+        id: 65,
         Fac_name: "Mr. Mahendra Pal",
         Designation: "Laboratory Asistant",
         filter: "Current",
@@ -541,7 +541,7 @@ export const Bot_association_info = [{
 
     },
     {
-        id: 35,
+        id: 66,
         Fac_name: "Mr. Rambir Mann",
         Designation: "Laboratory Asistant",
         filter: "Current",
@@ -550,7 +550,7 @@ export const Bot_association_info = [{
 
     },
     {
-        id: 36,
+        id: 67,
         Fac_name: "Mr. Niraj",
         Designation: "Laboratory Asistant",
         filter: "Current",
@@ -559,7 +559,7 @@ export const Bot_association_info = [{
 
     },
     {
-        id: 37,
+        id: 68,
         Fac_name: "Ms. Gitanjali",
         Designation: "Laboratory Asistant",
         filter: "Current",
@@ -573,7 +573,7 @@ export const Bot_association_info = [{
 
 ]
 export const Chem_fac_info = [{
-        id: 38,
+        id: 69,
         Fac_name: "Dr. Shuchi Sharma",
         Designation: "Associate Professor",
         filter: "Current",
@@ -581,7 +581,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/Shuchi.pdf",
     },
     {
-        id: 39,
+        id: 70,
         Fac_name: "Dr. Archana Gupta",
         Designation: "Associate Professor",
         filter: "Current",
@@ -590,7 +590,7 @@ export const Chem_fac_info = [{
     },
 
     {
-        id: 40,
+        id: 71,
         Fac_name: "Prof. Priti Malhotra",
         Designation: "Associate Professor",
         filter: "Current",
@@ -598,7 +598,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/Priti_m.pdf",
     },
     {
-        id: 41,
+        id: 72,
         Fac_name: "Dr. Asha",
         Designation: "Associate Professor",
         filter: "Current",
@@ -606,7 +606,7 @@ export const Chem_fac_info = [{
         cv: "#",
     },
     {
-        id: 42,
+        id: 73,
         Fac_name: "Dr. Darshan Singh",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -614,7 +614,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/DARSHAN.pdf",
     },
     {
-        id: 43,
+        id: 74,
         Fac_name: "Dr. Ritu Gupta",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -622,7 +622,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/Ritu.pdf",
     },
     {
-        id: 44,
+        id: 75,
         Fac_name: "Dr. Avneet Kaur",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -630,7 +630,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/Avneet.pdf",
     },
     {
-        id: 45,
+        id: 76,
         Fac_name: "Dr. Arti Jain",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -638,7 +638,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/ARTI.pdf",
     },
     {
-        id: 46,
+        id: 77,
         Fac_name: "Dr. Aditi Puri",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -646,7 +646,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/Aditi.pdf",
     },
     {
-        id: 47,
+        id: 78,
         Fac_name: "Dr. Anamika Debnath",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -654,7 +654,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/Anamika.pdf",
     },
     {
-        id: 48,
+        id: 79,
         Fac_name: "Dr. Anuradha",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -662,7 +662,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/Anuradha.pdf",
     },
     {
-        id: 49,
+        id: 80,
         Fac_name: "Dr. Preeti Chadha",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -670,7 +670,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/preeti.pdf",
     },
     {
-        id: 50,
+        id: 81,
         Fac_name: "Dr. Divya Mathur",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -678,7 +678,7 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/Divya.pdf",
     },
     {
-        id: 51,
+        id: 82,
         Fac_name: "Dr. Gauri Ahuja",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -686,11 +686,124 @@ export const Chem_fac_info = [{
         cv: "/images/ImgPages/Chemistry/GAURI.pdf",
     },
     {
-        id: 52,
+        id: 83,
         Fac_name: "Dr. Arif Ahamad",
         Designation: "Assistant Professor",
         filter: "Current",
         img: "/images/ImgPages/male.png",
         cv: "#",
     },
+]
+
+
+
+
+
+export const Eco_fac_info = [{
+        id: 84,
+        Fac_name: "Dr. Malini Sharma",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Malini.jpg",
+        cv: "/images/ImgPages/Economics/Malini_cv.pdf",
+    },
+    {
+        id: 85,
+        Fac_name: "Ms. Pooja Khanna",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Pooja_k.jpg",
+        cv: "/images/ImgPages/Economics/Pooja_k_cv.pdf",
+    },
+    {
+        id: 86,
+        Fac_name: "Ms. Ritu Khanna",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Ritu.jpg",
+        cv: "#",
+    },
+    {
+        id: 87,
+        Fac_name: "Dr. Rita Rani",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Rita.png",
+        cv: "/images/ImgPages/Economics/Rita_cv.pdf",
+    },
+    {
+        id: 88,
+        Fac_name: "Ms. Pooja Sharma",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Pooja_s.jpg",
+        cv: "/images/ImgPages/Economics/Pooja_s_cv.pdf",
+    },
+    {
+        id: 89,
+        Fac_name: "Ms. Shikha Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Sikha.png",
+        cv: "/images/ImgPages/Economics/Shikha_cv.pdf",
+    },
+    {
+        id: 90,
+        Fac_name: "Ms. Sumeet Goyal",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Sumeet.png",
+        cv: "/images/ImgPages/Economics/Sumeet_cv.pdf",
+    },
+    {
+        id: 91,
+        Fac_name: "Ms. Priyanka Yadav",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Priyanka.png",
+        cv: "/images/ImgPages/Economics/Priyanka_cv.pdf",
+    },
+    {
+        id: 92,
+        Fac_name: "Ms. Saachi Bhutani",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Pooja_k.jpg",
+        cv: "/images/ImgPages/Economics/Pooja_k_cv.pdf",
+    },
+    {
+        id: 93,
+        Fac_name: "Ms. Aisha Ahmed",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Saachi.png",
+        cv: "/images/ImgPages/Economics/Saachi_cv.pdf",
+    },
+    {
+        id: 94,
+        Fac_name: "Mr. Nitish Kashyap",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Nitish.png",
+        cv: "/images/ImgPages/Economics/Nitish_cv.pdf",
+    },
+    {
+        id: 95,
+        Fac_name: "Mr. Ashok Kumar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Economics/Ashok.png",
+        cv: "/images/ImgPages/Economics/Ashok_cv.pdf",
+    },
+
+
+
+
+
+
+
+
+
+
+
 ]
