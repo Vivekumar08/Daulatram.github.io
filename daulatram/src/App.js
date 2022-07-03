@@ -137,6 +137,7 @@ import Eng_Studachieve from "./Pages/Academics/Departments/English/Eng_Studachie
 import Eng_association from "./Pages/Academics/Departments/English/Eng_association";
 import Eng_photogallery from "./Pages/Academics/Departments/English/Eng_photogallery";
 import Eng_publications from "./Pages/Academics/Departments/English/Eng_publications";
+import NotFound from "./Pages/NotFound";
 
 function App() {
   return (
@@ -1024,6 +1025,14 @@ function App() {
               </>
             }
             path="/academics/departments/English/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <NotFound />
+              </>
+            }
+            path='*'
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
