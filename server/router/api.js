@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const multer = require('multer');
+const fs = require("fs")
+const {promisify} = require("util")
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 // const jwt = require("jsonwebtoken")
@@ -13,6 +15,7 @@ const Bulletin = require('../models/Admission/AdmissionBulletin_Schema');
 const Guidelines = require('../models/Admission/Admission_guidelines_Schema');
 const Ragging = require('../models/Admission/Anti_Ragging_Schema');
 
+const unlinkAsync = promisify(fs.unlink)
 
 // SET STORAGE
 const upload = multer({
@@ -160,8 +163,11 @@ router.post(
 );
 
 router.delete('/deleteAntiRagging/:id', async (req, res) => {
-  const delete_user = await Ragging.findOneAndDelete({ _id: req.params.id });
-  res.status(200).json(delete_user + "User deleted")
+  // console.log(Ragging)
+  const delete_user = await Ragging.findByIdAndDelete({ _id: req.params.id }
+    );
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
 })
 
 // Guidelines
@@ -290,7 +296,7 @@ router.post(
         description,
         // path,
         // mimetype
-        )
+      )
       const file = new File({
         title,
         description,
