@@ -17,7 +17,10 @@ function Programbanner() {
             <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
-            <span className="ml-5">About Us</span>
+            <span className="ml-5">Academics</span>
+            <Link to={"/academics/departments"}>
+              <span className="ml-5">Departments</span>
+            </Link>
           </div>
         </div>
       </div>

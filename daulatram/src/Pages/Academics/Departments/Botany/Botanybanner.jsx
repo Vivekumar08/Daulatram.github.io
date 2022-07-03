@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 function DepartBanner() {
   return (
@@ -16,9 +17,14 @@ function DepartBanner() {
             Botany
           </span>
           <div className=" pl-5 text-xl text-[#000080] bg-gray-400 pt-3 pb-3 mt-28">
-            <span className="ml-5">Home</span>
+          <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
             <span className="ml-5">Academics</span>
-            <span className="ml-5">Departments</span>
+          {/* <span className="ml-5">  <a href="/academics/departments">Departments</a></span> */}
+          <Link to={"/academics/departments"}>
+              <span className="ml-5">Departments</span>
+            </Link>
           </div>
         </div>
       </div>
