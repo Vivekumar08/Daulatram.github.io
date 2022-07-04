@@ -22,7 +22,7 @@ const Roster = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/bulletin");
+    const response = await fetch("http://localhost:5000/Staff_Roster");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const Roster = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_admissionbulletin/${id}`,
+      `http://localhost:5000/delete_Staff_Roster/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +72,7 @@ const Roster = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/bulletin_add`, formData, {
+        await axios.post(`http://localhost:5000/Staff_Roster_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -127,11 +127,11 @@ const Roster = () => {
                   var path = path2.slice(19);
                   return (
                     <>
-                      <div class="card2 " key={_id}>
-                        <span className="  font-bold text-xl ml-8">{link}</span>
+                      <div class="card2 mb-10" key={_id}>
+                        <span className="  font-bold text-xl ml-6 w-[250px]">{link}</span>
                         <div className="flex flex-col ml-10 w-full">
-                          <div class="info2 ml-4 w-full">
-                            <p className="text-justify">{title}</p>
+                          <div class="info2 ml-4 w-full ">
+                            <p className="text-justify mr-16">{title}</p>
                             <br />
                             <a href={path} className="">
                               <button className="w-[80%]">View</button>
