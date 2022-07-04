@@ -70,7 +70,7 @@ function Hindi_programoffered() {
                 </div>
                 <div class="info">
                   <h1 className="font-bold flex justify-center">Description</h1>
-                  <p>Syllabus</p>
+                  <p className="flex justify-center">Syllabus</p>
                   <br />
                   <a href={bcomprog}>
                     <button className="w-full">View</button>

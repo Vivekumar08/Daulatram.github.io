@@ -143,6 +143,7 @@ import NotFound from "./Pages/NotFound";
 import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
 import Hindi_fac from "./Pages/Academics/Departments/Hindi/Hindi_fac";
 import Hindi_programoffered from "./Pages/Academics/Departments/Hindi/Hindi_programoffered";
+import Hindi_events from "./Pages/Academics/Departments/Hindi/Hindi_events";
 
 function App() {
   return (
@@ -1031,6 +1032,7 @@ function App() {
             }
             path="/academics/departments/English/Publications"
           ></Route>{" "}
+          {/* Hindi */}
           <Route
             element={
               <>
@@ -1056,6 +1058,14 @@ function App() {
               </>
             }
             path="/academics/departments/Hindi/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_events />
+              </>
+            }
+            path="/academics/departments/Hindi/Events"
           ></Route>{" "}
           <Route
             element={
