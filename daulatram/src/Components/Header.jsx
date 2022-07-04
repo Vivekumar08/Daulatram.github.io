@@ -69,13 +69,13 @@ function Header() {
                     Admin
                     {logout ? (
                       <FontAwesomeIcon
-                        icon={faChevronDown}
+                        icon={faChevronUp}
                         className="pl-4 mr-2 cursor-pointer"
                         onClick={() => setLogout(!logout)}
                       />
                     ) : (
                       <FontAwesomeIcon
-                        icon={faChevronUp}
+                        icon={faChevronDown}
                         className="pl-4 mr-2 cursor-pointer"
                         onClick={() => setLogout(!logout)}
                       />
@@ -165,13 +165,13 @@ function Header() {
                     Admin
                     {logout ? (
                       <FontAwesomeIcon
-                        icon={faChevronDown}
+                        icon={faChevronUp}
                         className="pl-4 mr-2 cursor-pointer"
                         onClick={() => setLogout(!logout)}
                       />
                     ) : (
                       <FontAwesomeIcon
-                        icon={faChevronUp}
+                        icon={faChevronDown}
                         className="pl-4 mr-2 cursor-pointer"
                         onClick={() => setLogout(!logout)}
                       />
