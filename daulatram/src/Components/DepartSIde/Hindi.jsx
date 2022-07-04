@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import { Hindi_side } from "./Depart_side_data";
 
 const Hindi = () => {
-  const [data, setData] = useState(Hist_side);
+  const [data, setData] = useState(Hindi_side);
 
   return (
     <div>
