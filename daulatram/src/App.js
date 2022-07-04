@@ -155,1120 +155,997 @@ import Hist_about from "./Pages/Academics/Departments/History/Hist_about";
 import Hist_fac from "./Pages/Academics/Departments/History/Hist_fac";
 
 function App() {
-    return ( <
-        >
-        <
-        Router >
-        <
-        Bulletin / >
-        <
-        Header / >
-        <
-        Navbar / >
-        <
-        Icons / >
-        <
-        Routes >
-        <
-        Route element = { <
-            >
-            <
-            Home / >
-            <
-            />
-        }
-        path = "/" >
-        < /Route>{" "} { /* Admin */ } { " " } <
-        Route element = { <
-            >
-            <
-            Admin / >
-            <
-            />
-        }
-        path = "/Admin" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Societies / >
-            <
-            />
-        }
-        path = "/Societies" >
-        < /Route>{" "} { /* About */ } { " " } <
-        Route element = { <
-            >
-            <
-            Mission / >
-            <
-            />
-        }
-        path = "/about/mission" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Founder / >
-            <
-            />
-        }
-        path = "/about/founder" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Chairperson / >
-            <
-            />
-        }
-        path = "/about/chairperson" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            VicePrincipal / >
-            <
-            />
-        }
-        path = "/about/vicePrincipal" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Principal / >
-            <
-            />
-        }
-        path = "/about/principal" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Administration / >
-            <
-            />
-        }
-        path = "/about/administration" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Department / >
-            <
-            />
-        }
-        path = "/academics/departments" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Bio_faculty / >
-            <
-            />
-        }
-        path = "/academics/departments/biochem/faculty" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Biochem / >
-            <
-            />
-        }
-        exact path = "/academics/departments/biochem" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Programmesoffer / >
-            <
-            />
-        }
-        exact path = "/academics/departments/biochem/programmesoffer" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Association / >
-            <
-            />
-        }
-        exact path = "/academics/departments/biochem/association" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Laboratorystaff / >
-            <
-            />
-        }
-        exact path = "/academics/departments/biochem/laboratorystaff" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Teacher / >
-            <
-            />
-        }
-        path = "/academics/Teacher_in_charge" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Undergraduate / >
-            <
-            />
-        }
-        path = "/academics/UG_courses" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Addoncourses / >
-            <
-            />
-        }
-        path = "/academics/Add_on_courses" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            AcadCal / >
-            <
-            />
-        }
-        path = "/academics/Academic_calendar" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            CAcadCal / >
-            <
-            />
-        }
-        path = "/academics/College_Calendar" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Trainingp / >
-            <
-            />
-        }
-        path = "/academics/Training_program" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Facilities / >
-            <
-            />
-        }
-        path = "/academics/facilities" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Research_facilities / >
-            <
-            />
-        }
-        path = "/academics/departments/biochem/research" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Studentsachieve / >
-            <
-            />
-        }
-        path = "/academics/departments/biochem/studentsachieve" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Awards / >
-            <
-            />
-        }
-        path = "/academics/departments/biochem/awards" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Publications / >
-            <
-            />
-        }
-        path = "/academics/departments/biochem/publications" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Events / >
-            <
-            />
-        }
-        path = "/academics/departments/biochem/events" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            ExtraCurricular / >
-            <
-            />
-        }
-        path = "/societies/extraCurricularActivities" >
-        < /Route>{" "}
-        // Admission
-        <
-        Route element = { <
-            >
-            <
-            Admission_committee / >
-            <
-            />
-        }
-        path = "/admission/committee" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            FAQs_Admission / >
-            <
-            />
-        }
-        path = "/admission/FAQs_Admission" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Admission_Grievence_comm / >
-            <
-            />
-        }
-        path = "/admission/Admission_Grievance_Committee" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            GE_Option / >
-            <
-            />
-        }
-        path = "/admission/GEoption" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Fee_Structure / >
-            <
-            />
-        }
-        path = "/admission/feeStructure" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Anti_Ragging / >
-            <
-            />
-        }
-        path = "/admission/AntiRaggingGuidlines" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            OnlineAdmission / >
-            <
-            />
-        }
-        path = "/admission/Online_Admission" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Helpdesk / >
-            <
-            />
-        }
-        path = "/admission/helpdesk" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Bulletins_Admission / >
-            <
-            />
-        }
-        path = "/admission/Admission_Bulletin" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Anti_Ragging / >
-            <
-            />
-        }
-        path = "/admission/AntiRaggingGuidelines" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Guidelines_Admission / >
-            <
-            />
-        }
-        path = "/admission/OBC_SC_ST_EWS_Complaints" >
-        < /Route>{" "}
-        // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Staff Zone */} //{" "}
-        { /* ** ** ** ** ** ** ** ** ** ** ** * */ } { " " } <
-        Route element = { <
-            >
-            <
-            Feedback / >
-            <
-            />
-        }
-        path = "/StaffZone/Feedback" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Ethics / >
-            <
-            />
-        }
-        path = "/StaffZone/Ethics" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            FormsS / >
-            <
-            />
-        }
-        path = "/StaffZone/Forms" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Seniority_list / >
-            <
-            />
-        }
-        path = "/StaffZone/Seniority_List" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Staff_Council_Committee / >
-            <
-            />
-        }
-        path = "/StaffZone/Staff_Council_committee" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Roster / >
-            <
-            />
-        }
-        path = "/StaffZone/Roster" >
-        < /Route>{" "}
-        // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Socieites */} //{" "}
-        { /* ** ** ** ** ** ** ** ** ** ** ** * */ } { " " } <
-        Route element = { <
-            >
-            <
-            EnablinUnit / >
-            <
-            />
-        }
-        path = "/societies/enablingUnit" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Memesis / >
-            <
-            />
-        }
-        path = "/societies/dramaScociety" >
-        < /Route>{" "}
-        // {/* ** ** ** ** ** ** ** ** ** ** ** * */} //{" "}
-        { /* Research And Facilities */ } //{" "}
-        { /* ** ** ** ** ** ** ** ** ** ** ** * */ } { " " } <
-        Route element = { <
-            >
-            <
-            Research_fac / >
-            <
-            />
-        }
-        path = "/research/research_facilities" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Publications_res / >
-            <
-            />
-        }
-        path = "/research/publications" >
-        < /Route>{" "}
-        // {/* Botany */}{" "}
-        <
-        Route element = { <
-            >
-            <
-            About / >
-            <
-            />
-        }
-        path = "/academics/departments/Botany/" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Botanyfaculty / >
-            <
-            />
-        }
-        path = "/academics/departments/Botany/Botanyfaculty" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Programoffered / >
-            <
-            />
-        }
-        path = "/academics/departments/Botany/Programoffered" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Botanystudachieve / >
-            <
-            />
-        }
-        path = "/academics/departments/Botany/Botanystudachieve" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Resources / >
-            <
-            />
-        }
-        path = "/academics/resources" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Bot_Publications / >
-            <
-            />
-        }
-        path = "/academics/departments/Botany/Bot_Publications" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Bot_research_fac / >
-            <
-            />
-        }
-        path = "/academics/departments/Botany/Research_Fac" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Botany_Association / >
-            <
-            />
-        }
-        path = "/academics/departments/Botany/Botany_Association" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Time_table / >
-            <
-            />
-        }
-        path = "/Student_Zone/Time_Table_&_Academic_Calendar" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Attendence / >
-            <
-            />
-        }
-        path = "/Student_Zone/Attendance" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Internal / >
-            <
-            />
-        }
-        path = "/Student_Zone/Internal_Assesments" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            First_year / >
-            <
-            />
-        }
-        path = "/Student_Zone/Internal_Assesments/First_year" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Second_year / >
-            <
-            />
-        }
-        path = "/Student_Zone/Internal_Assesments/Second_year" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Third_year / >
-            <
-            />
-        }
-        path = "/Student_Zone/Internal_Assesments/Third_year" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hostel / >
-            <
-            />
-        }
-        path = "/Student_Zone/Hostel" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Forms / >
-            <
-            />
-        }
-        path = "/Student_Zone/Forms" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Student_facilities / >
-            <
-            />
-        }
-        path = "/Student_Zone/Students_Facilities" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eresources / >
-            <
-            />
-        }
-        path = "/Student_Zone/E_Resources" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Antiragging / >
-            <
-            />
-        }
-        path = "/Student_Zone/Anti_Ragging_Helpline" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Student_Notice / >
-            <
-            />
-        }
-        path = "/Student_Zone/Student_Notice" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Staff_Notice / >
-            <
-            />
-        }
-        path = "/StaffZone/Notices" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Public_Notice / >
-            <
-            />
-        }
-        path = "/Public_Notice" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            RTI / >
-            <
-            />
-        }
-        path = "/RTI" >
-        < /Route>{" "} <
-        Route > < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Bot_Lab_Staff / >
-            <
-            />
-        }
-        path = "/academics/departments/Botany/Botany_lab_Staff" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Sitemap / >
-            <
-            />
-        }
-        path = "/Sitemap" >
-        < /Route>{" "}
-        // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */} //{" "}
-        { /* ** ** ** ** ** ** ** ** ** ** ** * */ } { " " } <
-        Route element = { <
-            >
-            <
-            Contact / >
-            <
-            />
-        }
-        path = "/Contact_us" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Tender / >
-            <
-            />
-        }
-        path = "/Tender" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Job_opportunities / >
-            <
-            />
-        }
-        path = "/Job_Opportunities" >
-        < /Route>{" "} { /* Chemistry */ } { " " } <
-        Route element = { <
-            >
-            <
-            Chem_About / >
-            <
-            />
-        }
-        path = "/academics/departments/Chemistry/" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Chemfaculty / >
-            <
-            />
-        }
-        path = "/academics/departments/Chemistry/Faculty" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Chemprogramoffered / >
-            <
-            />
-        }
-        path = "/academics/departments/Chemistry/Programoffered" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Chemevents / >
-            <
-            />
-        }
-        path = "/academics/departments/Chemistry/Events" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Chemstudachieve / >
-            <
-            />
-        }
-        path = "/academics/departments/Chemistry/Students'_achievements" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Chempublications / >
-            <
-            />
-        }
-        path = "/academics/departments/Chemistry/Publications" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Chemfacilities / >
-            <
-            />
-        }
-        path = "/academics/departments/Chemistry/Facilities" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Chemassociation / >
-            <
-            />
-        }
-        path = "/academics/departments/Chemistry/association" >
-        < /Route>{" "}
-        // {/* Commerce */}{" "}
-        <
-        Route element = { <
-            >
-            <
-            Com_about / >
-            <
-            />
-        }
-        path = "/academics/departments/Commerce/" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Com_faculty / >
-            <
-            />
-        }
-        path = "/academics/departments/Commerce/Faculty" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Com_programoffer / >
-            <
-            />
-        }
-        path = "/academics/departments/Commerce/Programoffered" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Com_events / >
-            <
-            />
-        }
-        path = "/academics/departments/Commerce/Events" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Com_studachieve / >
-            <
-            />
-        }
-        path = "/academics/departments/Commerce/Students'_achievements" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Com_publications / >
-            <
-            />
-        }
-        path = "/academics/departments/Commerce/Publications" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Com_labstaff / >
-            <
-            />
-        }
-        path = "/academics/departments/Commerce/laboratorystaff" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Bcomprog / >
-            <
-            />
-        }
-        path = "/academics/departments/Commerce/Programoffered/Bcomprog" >
-        < /Route>{" "}
-        // {/* Economics */}{" "}
-        <
-        Route element = { <
-            >
-            <
-            Eco_about / >
-            <
-            />
-        }
-        path = "/academics/departments/Economics/" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eco_faculty / >
-            <
-            />
-        }
-        path = "/academics/departments/Economics/Faculty" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eco_programoffered / >
-            <
-            />
-        }
-        path = "/academics/departments/Economics/Programoffered" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eco_events / >
-            <
-            />
-        }
-        path = "/academics/departments/Economics/Events" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eco_publications / >
-            <
-            />
-        }
-        path = "/academics/departments/Economics/Publications" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eco_association / >
-            <
-            />
-        }
-        path = "/academics/departments/Economics/association" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eco_photogallery / >
-            <
-            />
-        }
-        path = "/academics/departments/Economics/photogallery" >
-        < /Route>{" "}
-        // {/* English */}{" "}
-        <
-        Route element = { <
-            >
-            <
-            Eng_about / >
-            <
-            />
-        }
-        path = "/academics/departments/English/" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eng_faculty / >
-            <
-            />
-        }
-        path = "/academics/departments/English/Faculty" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eng_programoffered / >
-            <
-            />
-        }
-        path = "/academics/departments/English/Programoffered" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eng_Studachieve / >
-            <
-            />
-        }
-        path = "/academics/departments/English/Students'_achievements" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eng_association / >
-            <
-            />
-        }
-        path = "/academics/departments/English/association" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eng_photogallery / >
-            <
-            />
-        }
-        path = "/academics/departments/English/photogallery" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Eng_publications / >
-            <
-            />
-        }
-        path = "/academics/departments/English/Publications" >
-        < /Route>{" "} { /* Hindi */ } { " " } <
-        Route element = { <
-            >
-            <
-            Hindi_about / >
-            <
-            />
-        }
-        path = "/academics/departments/Hindi/" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hindi_fac / >
+  return (
+    <>
+      <Router>
+        <Bulletin />
+        <Header />
+        <Navbar />
+        <Icons />
+        <Routes>
+          <Route
+            element={
+              <>
+                <Home />
+              </>
+            }
+            path="/"
+          ></Route>{" "}
+          {/* Admin */}{" "}
+          <Route
+            element={
+              <>
+                <Admin />
+              </>
+            }
+            path="/Admin"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Societies />
+              </>
+            }
+            path="/Societies"
+          ></Route>{" "}
+          {/* About */}{" "}
+          <Route
+            element={
+              <>
+                <Mission />
+              </>
+            }
+            path="/about/mission"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Founder />
+              </>
+            }
+            path="/about/founder"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chairperson />
+              </>
+            }
+            path="/about/chairperson"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <VicePrincipal />
+              </>
+            }
+            path="/about/vicePrincipal"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Principal />
+              </>
+            }
+            path="/about/principal"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Administration />
+              </>
+            }
+            path="/about/administration"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Department />
+              </>
+            }
+            path="/academics/departments"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Bio_faculty />
+              </>
+            }
+            path="/academics/departments/biochem/faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Biochem />
+              </>
+            }
+            exact
+            path="/academics/departments/biochem"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Programmesoffer />
+              </>
+            }
+            exact
+            path="/academics/departments/biochem/programmesoffer"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Association />
+              </>
+            }
+            exact
+            path="/academics/departments/biochem/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Laboratorystaff />
+              </>
+            }
+            exact
+            path="/academics/departments/biochem/laboratorystaff"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Teacher />
+              </>
+            }
+            path="/academics/Teacher_in_charge"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Undergraduate />
+              </>
+            }
+            path="/academics/UG_courses"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Addoncourses />
+              </>
+            }
+            path="/academics/Add_on_courses"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <AcadCal />
+              </>
+            }
+            path="/academics/Academic_calendar"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <CAcadCal />
+              </>
+            }
+            path="/academics/College_Calendar"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Trainingp />
+              </>
+            }
+            path="/academics/Training_program"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Facilities />
+              </>
+            }
+            path="/academics/facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Research_facilities />
+              </>
+            }
+            path="/academics/departments/biochem/research"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Studentsachieve />
+              </>
+            }
+            path="/academics/departments/biochem/studentsachieve"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Awards />
+              </>
+            }
+            path="/academics/departments/biochem/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Publications />
+              </>
+            }
+            path="/academics/departments/biochem/publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Events />
+              </>
+            }
+            path="/academics/departments/biochem/events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <ExtraCurricular />
+              </>
+            }
+            path="/societies/extraCurricularActivities"
+          ></Route>{" "}
+          // Admission
+          <Route
+            element={
+              <>
+                <Admission_committee />
+              </>
+            }
+            path="/admission/committee"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <FAQs_Admission />
+              </>
+            }
+            path="/admission/FAQs_Admission"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Admission_Grievence_comm />
+              </>
+            }
+            path="/admission/Admission_Grievance_Committee"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <GE_Option />
+              </>
+            }
+            path="/admission/GEoption"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Fee_Structure />
+              </>
+            }
+            path="/admission/feeStructure"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Anti_Ragging />
+              </>
+            }
+            path="/admission/AntiRaggingGuidlines"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <OnlineAdmission />
+              </>
+            }
+            path="/admission/Online_Admission"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Helpdesk />
+              </>
+            }
+            path="/admission/helpdesk"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Bulletins_Admission />
+              </>
+            }
+            path="/admission/Admission_Bulletin"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Anti_Ragging />
+              </>
+            }
+            path="/admission/AntiRaggingGuidelines"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Guidelines_Admission />
+              </>
+            }
+            path="/admission/OBC_SC_ST_EWS_Complaints"
+          ></Route>{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Staff Zone */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
+          <Route
+            element={
+              <>
+                <Feedback />
+              </>
+            }
+            path="/StaffZone/Feedback"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Ethics />
+              </>
+            }
+            path="/StaffZone/Ethics"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <FormsS />
+              </>
+            }
+            path="/StaffZone/Forms"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Seniority_list />
+              </>
+            }
+            path="/StaffZone/Seniority_List"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Staff_Council_Committee />
+              </>
+            }
+            path="/StaffZone/Staff_Council_committee"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Roster />
+              </>
+            }
+            path="/StaffZone/Roster"
+          ></Route>{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Socieites */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
+          <Route
+            element={
+              <>
+                <EnablinUnit />
+              </>
+            }
+            path="/societies/enablingUnit"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Memesis />
+              </>
+            }
+            path="/societies/dramaScociety"
+          ></Route>{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} //{" "}
+          {/* Research And Facilities */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
+          <Route
+            element={
+              <>
+                <Research_fac />
+              </>
+            }
+            path="/research/research_facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Publications_res />
+              </>
+            }
+            path="/research/publications"
+          ></Route>{" "}
+          // {/* Botany */}{" "}
+          <Route
+            element={
+              <>
+                <About />
+              </>
+            }
+            path="/academics/departments/Botany/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Botanyfaculty />
+              </>
+            }
+            path="/academics/departments/Botany/Botanyfaculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Programoffered />
+              </>
+            }
+            path="/academics/departments/Botany/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Botanystudachieve />
+              </>
+            }
+            path="/academics/departments/Botany/Botanystudachieve"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Resources />
+              </>
+            }
+            path="/academics/resources"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Bot_Publications />
+              </>
+            }
+            path="/academics/departments/Botany/Bot_Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Bot_research_fac />
+              </>
+            }
+            path="/academics/departments/Botany/Research_Fac"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Botany_Association />
+              </>
+            }
+            path="/academics/departments/Botany/Botany_Association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Time_table />
+              </>
+            }
+            path="/Student_Zone/Time_Table_&_Academic_Calendar"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Attendence />
+              </>
+            }
+            path="/Student_Zone/Attendance"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Internal />
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <First_year />
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments/First_year"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Second_year />
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments/Second_year"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Third_year />
+              </>
+            }
+            path="/Student_Zone/Internal_Assesments/Third_year"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hostel />
+              </>
+            }
+            path="/Student_Zone/Hostel"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Forms />
+              </>
+            }
+            path="/Student_Zone/Forms"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Student_facilities />
+              </>
+            }
+            path="/Student_Zone/Students_Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eresources />
+              </>
+            }
+            path="/Student_Zone/E_Resources"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Antiragging />
+              </>
+            }
+            path="/Student_Zone/Anti_Ragging_Helpline"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Student_Notice />
+              </>
+            }
+            path="/Student_Zone/Student_Notice"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Staff_Notice />
+              </>
+            }
+            path="/StaffZone/Notices"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Public_Notice />
+              </>
+            }
+            path="/Public_Notice"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <RTI />
+              </>
+            }
+            path="/RTI"
+          ></Route>{" "}
+          <Route> </Route>{" "}
+          <Route
+            element={
+              <>
+                <Bot_Lab_Staff />
+              </>
+            }
+            path="/academics/departments/Botany/Botany_lab_Staff"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Sitemap />
+              </>
+            }
+            path="/Sitemap"
+          ></Route>{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
+          <Route
+            element={
+              <>
+                <Contact />
+              </>
+            }
+            path="/Contact_us"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Tender />
+              </>
+            }
+            path="/Tender"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Job_opportunities />
+              </>
+            }
+            path="/Job_Opportunities"
+          ></Route>{" "}
+          {/* Chemistry */}{" "}
+          <Route
+            element={
+              <>
+                <Chem_About />
+              </>
+            }
+            path="/academics/departments/Chemistry/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemfaculty />
+              </>
+            }
+            path="/academics/departments/Chemistry/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemprogramoffered />
+              </>
+            }
+            path="/academics/departments/Chemistry/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemevents />
+              </>
+            }
+            path="/academics/departments/Chemistry/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemstudachieve />
+              </>
+            }
+            path="/academics/departments/Chemistry/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chempublications />
+              </>
+            }
+            path="/academics/departments/Chemistry/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemfacilities />
+              </>
+            }
+            path="/academics/departments/Chemistry/Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chemassociation />
+              </>
+            }
+            path="/academics/departments/Chemistry/association"
+          ></Route>{" "}
+          // {/* Commerce */}{" "}
+          <Route
+            element={
+              <>
+                <Com_about />
+              </>
+            }
+            path="/academics/departments/Commerce/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_faculty />
+              </>
+            }
+            path="/academics/departments/Commerce/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_programoffer />
+              </>
+            }
+            path="/academics/departments/Commerce/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_events />
+              </>
+            }
+            path="/academics/departments/Commerce/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_studachieve />
+              </>
+            }
+            path="/academics/departments/Commerce/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_publications />
+              </>
+            }
+            path="/academics/departments/Commerce/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_labstaff />
+              </>
+            }
+            path="/academics/departments/Commerce/laboratorystaff"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Bcomprog />
+              </>
+            }
+            path="/academics/departments/Commerce/Programoffered/Bcomprog"
+          ></Route>{" "}
+          // {/* Economics */}{" "}
+          <Route
+            element={
+              <>
+                <Eco_about />
+              </>
+            }
+            path="/academics/departments/Economics/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_faculty />
+              </>
+            }
+            path="/academics/departments/Economics/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_programoffered />
+              </>
+            }
+            path="/academics/departments/Economics/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_events />
+              </>
+            }
+            path="/academics/departments/Economics/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_publications />
+              </>
+            }
+            path="/academics/departments/Economics/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_association />
+              </>
+            }
+            path="/academics/departments/Economics/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_photogallery />
+              </>
+            }
+            path="/academics/departments/Economics/photogallery"
+          ></Route>{" "}
+          // {/* English */}{" "}
+          <Route
+            element={
+              <>
+                <Eng_about />
+              </>
+            }
+            path="/academics/departments/English/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_faculty />
+              </>
+            }
+            path="/academics/departments/English/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_programoffered />
+              </>
+            }
+            path="/academics/departments/English/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_Studachieve />
+              </>
+            }
+            path="/academics/departments/English/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_association />
+              </>
+            }
+            path="/academics/departments/English/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_photogallery />
+              </>
+            }
+            path="/academics/departments/English/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_publications />
+              </>
+            }
+            path="/academics/departments/English/Publications"
+          ></Route>{" "}
+          {/* Hindi */}{" "}
+          <Route
+            element={
+              <>
+                <Hindi_about />
+              </>
+            }
+            path="/academics/departments/Hindi/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_fac />
 
-            <
-            Hindi_fac / >
-            <
-            />
-        }
-        path = "/academics/departments/Hindi/Faculty" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hindi_programoffered / >
-            <
-            />
-        }
-        path = "/academics/departments/Hindi/Programoffered" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hindi_events / >
-            <
-            />
-        }
-        path = "/academics/departments/Hindi/Events" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hindi_studachieve / >
-            <
-            />
-        }
-        path = "/academics/departments/Hindi/Students'_achievements" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hindi_publications / >
-            <
-            />
-        }
-        path = "/academics/departments/Hindi/Publications" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hindi_awards / >
-            <
-            />
-        }
-        path = "/academics/departments/Hindi/awards" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hindi_association / >
-            <
-            />
-        }
-        path = "/academics/departments/Hindi/association" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hindi_magazine / >
-            <
-            />
-        }
-        path = "/academics/departments/Hindi/newsletter_magazines_hindi" >
-        < /Route>{" "} { /* History */ } { " " } <
-        Route element = { <
-            >
-            <
-            Hist_about / >
-            <
-            />
-        }
-        path = "/academics/departments/History/" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            Hist_fac / >
-            <
-            />
-        }
-        path = "/academics/departments/History/Faculty" >
-        < /Route>{" "} <
-        Route element = { <
-            >
-            <
-            NotFound / >
-            <
-            />
-        }
-        path = "*" >
-        < /Route>{" "} <
-        /Routes>{" "} <
-        Upperfooter / > { /* <Public_Notice/> */ } { " " } <
-        /Router>{" "} <
-        />
-    );
+                <Hindi_fac />
+              </>
+            }
+            path="/academics/departments/Hindi/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_programoffered />
+              </>
+            }
+            path="/academics/departments/Hindi/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_events />
+              </>
+            }
+            path="/academics/departments/Hindi/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_studachieve />
+              </>
+            }
+            path="/academics/departments/Hindi/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_publications />
+              </>
+            }
+            path="/academics/departments/Hindi/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_awards />
+              </>
+            }
+            path="/academics/departments/Hindi/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_association />
+              </>
+            }
+            path="/academics/departments/Hindi/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_magazine />
+              </>
+            }
+            path="/academics/departments/Hindi/newsletter_magazines_hindi"
+          ></Route>{" "}
+          {/* History */}{" "}
+          <Route
+            element={
+              <>
+                <Hist_about />
+              </>
+            }
+            path="/academics/departments/History/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_fac />
+              </>
+            }
+            path="/academics/departments/History/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <NotFound />
+              </>
+            }
+            path="*"
+          ></Route>{" "}
+        </Routes>{" "}
+        <Upperfooter /> {/* <Public_Notice/> */}{" "}
+      </Router>{" "}
+    </>
+  );
 }
 
 export default App;
