@@ -144,6 +144,7 @@ import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
 import Hindi_fac from "./Pages/Academics/Departments/Hindi/Hindi_fac";
 import Hindi_programoffered from "./Pages/Academics/Departments/Hindi/Hindi_programoffered";
 import Hindi_events from "./Pages/Academics/Departments/Hindi/Hindi_events";
+import Hindi_studachieve from "./Pages/Academics/Departments/Hindi/Hindi_studachieve"
 
 function App() {
   return (
@@ -1067,6 +1068,22 @@ function App() {
             }
             path="/academics/departments/Hindi/Events"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_studachieve />
+              </>
+            }
+            path="/academics/departments/Hindi/Students'_achievements"
+          ></Route>{" "}
+
+
+
+
+
+
+
+
           <Route
             element={
               <>
