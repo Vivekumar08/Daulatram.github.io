@@ -424,7 +424,7 @@ export const dept = [
       },
       {
         name: "Hindi",
-        link: "./",
+        link: "/academics/departments/Hindi/",
       },
       {
         name: "History",

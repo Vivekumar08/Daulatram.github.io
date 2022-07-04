@@ -138,6 +138,9 @@ import Eng_association from "./Pages/Academics/Departments/English/Eng_associati
 import Eng_photogallery from "./Pages/Academics/Departments/English/Eng_photogallery";
 import Eng_publications from "./Pages/Academics/Departments/English/Eng_publications";
 
+// Hindi
+import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
+
 function App() {
   return (
     <>
@@ -1024,6 +1027,14 @@ function App() {
               </>
             }
             path="/academics/departments/English/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_about />
+              </>
+            }
+            path="/academics/departments/Hindi/"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
