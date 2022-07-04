@@ -14,14 +14,14 @@ function Student_side() {
             {Student.map((link) => (
               <div className="flex flex-col divide-y divide-solid divide-black">
                 {link.links.map((slink) => (
-                  <li className="ml-4 mb-2  p-3 rounded-lg hover:pl-4 hover:bg-white   mr-6">
-                    <Link to={slink.link} className=" hover:text-blue-600 ">
+                  <Link to={slink.link} className=" ml-4 mb-2  p-2 mr-6 rounded-lg hover:bg-white hover:pl-4">
+                    <li className="hover:bg-white">
                       <p className="text-black text-justify font-semibold mt-2 ">
                         - {""}
                         {slink.name}
                       </p>
-                    </Link>
-                  </li>
+                    </li>
+                  </Link>
                 ))}
               </div>
             ))}
