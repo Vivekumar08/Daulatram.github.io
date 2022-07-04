@@ -144,7 +144,11 @@ import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
 import Hindi_fac from "./Pages/Academics/Departments/Hindi/Hindi_fac";
 import Hindi_programoffered from "./Pages/Academics/Departments/Hindi/Hindi_programoffered";
 import Hindi_events from "./Pages/Academics/Departments/Hindi/Hindi_events";
-import Hindi_studachieve from "./Pages/Academics/Departments/Hindi/Hindi_studachieve"
+import Hindi_studachieve from "./Pages/Academics/Departments/Hindi/Hindi_studachieve";
+import Hindi_publications from "./Pages/Academics/Departments/Hindi/Hindi_publications";
+import Hindi_awards from "./Pages/Academics/Departments/Hindi/Hindi_awards"
+import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_association"
+import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine"
 
 function App() {
   return (
@@ -1033,7 +1037,7 @@ function App() {
             }
             path="/academics/departments/English/Publications"
           ></Route>{" "}
-          {/* Hindi */}
+          {/* Hindi */}{" "}
           <Route
             element={
               <>
@@ -1076,6 +1080,40 @@ function App() {
             }
             path="/academics/departments/Hindi/Students'_achievements"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_publications />
+              </>
+            }
+            path="/academics/departments/Hindi/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_awards />
+              </>
+            }
+            path="/academics/departments/Hindi/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_association />
+              </>
+            }
+            path="/academics/departments/Hindi/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_magazine />
+              </>
+            }
+            path="/academics/departments/Hindi/newsletter_magazines_hindi"
+          ></Route>{" "}
+
+
 
 
 
