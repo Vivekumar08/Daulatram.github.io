@@ -371,3 +371,65 @@ export const Eng_side = [{
 
     }
 ]
+export const Hindi_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Hindi/"
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Hindi/Faculty"
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Hindi/Programoffered"
+    },
+    {
+        id: 4,
+        title: "Association",
+        link: "/academics/departments/Hindi/association"
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Hindi/Students'_achievements"
+    },
+    {
+        id: 6,
+        title: "Events",
+        link: "/academics/departments/Hindi/Events"
+    },
+    {
+        id: 7,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Hindi/laboratorystaff"
+    },
+    {
+        id: 8,
+        title: "Publications",
+        link: "/academics/departments/Hindi/Publications"
+    },
+    {
+        id: 9,
+        title: "Awards",
+        link: "/academics/departments/Hindi/awards"
+    },
+    {
+        id: 10,
+        title: "Newsletter & Magazines",
+        link: "/academics/departments/Hindi/newsletter_magazines"
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Hindi/timetable"
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Hindi/photogallery"
+
+    }
+]
