@@ -17,6 +17,7 @@ const Ragging = require('../models/Admission/Anti_Ragging_Schema');
 const Training = require('../models/Academics/Training_Schema')
 const U_Acad_Cal = require('../models/Academics/U_Acad_Cal_Schema')
 const C_Acad_Cal = require('../models/Academics/C_Acad_Cal_Schema')
+const Teacher = require('../models/Academics/Teacher_Schema')
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -269,6 +270,43 @@ router.post(
       const { title, link } = req.body;
       const { path, mimetype } = req.file;
       const file = new Training({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+// Teacher-In Charge
+
+router.get('/Teacher_In_Charge', async (req, res,) => {
+  const details = await Teacher.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_Teacher_In_Charge/:id', async (req, res) => {
+  const delete_user = await Teacher.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/Teacher_In_Charge_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Teacher({
         title,
         link,
         file_path: path,

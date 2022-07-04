@@ -22,7 +22,7 @@ const teacher = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/C_Acad_Cal");
+    const response = await fetch("http://localhost:5000/Teacher_In_Charge");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const teacher = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_C_Acad_Cal/${id}`,
+      `http://localhost:5000/delete_Teacher_In_Charge/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +72,7 @@ const teacher = () => {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/C_Acad_Cal_add`,
+          `http://localhost:5000/Teacher_In_Charge_add`,
           formData,
           {
             headers: {
