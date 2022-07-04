@@ -19,6 +19,7 @@ const U_Acad_Cal = require('../models/Academics/U_Acad_Cal_Schema')
 const C_Acad_Cal = require('../models/Academics/C_Acad_Cal_Schema')
 const Teacher = require('../models/Academics/Teacher_Schema')
 const Feedback = require('../models/StaffZone/Feedback_Form_Schema')
+const Roster = require('../models/StaffZone/Roster_Schema')
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -237,6 +238,43 @@ router.post(
   }
 );
 
+// Staff Roster
+
+router.get('/Staff_Roster', async (req, res,) => {
+  const details = await Roster.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_Staff_Roster/:id', async (req, res) => {
+  const delete_user = await Roster.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/Staff_Roster_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Roster({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
 // Bulletin
 
 router.get('/bulletin', async (req, res,) => {
