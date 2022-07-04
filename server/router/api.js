@@ -131,6 +131,28 @@ router.delete('/deleteAdmission/:id', async (req, res) => {
   const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
   res.status(200).json(delete_user + "User deleted")
 })
+// Feedback Form Staff Zone
+
+router.get('/feedback', async (req, res,) => {
+  // res.send(`Hello World from the server`);
+  const details = await Adminssion.find()
+  res.status(200).json(details)
+});
+
+router.post('/StaffZone_feedback', async (req, res) => {
+  const { Link, Caption,text } = req.body
+  if (!Link || !Caption) {
+    return res.status(400).json({ error: "Fill the Admission Details Properly" })
+  }
+  const user = new Adminssion(req.body);
+  await user.save();
+  console.log("Details Saved Successfully")
+  return res.status(200).json({ message: "Details Saved Successfully " })
+})
+router.delete('/deletefeedback/:id', async (req, res) => {
+  const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
+})
 
 // Ragging
 
