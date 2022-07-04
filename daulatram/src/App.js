@@ -152,6 +152,7 @@ import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine";
 
 // History
 import Hist_about from "./Pages/Academics/Departments/History/Hist_about";
+import Hist_fac from "./Pages/Academics/Departments/History/Hist_fac";
 
 function App() {
   return (
@@ -392,8 +393,7 @@ function App() {
             }
             path="/societies/extraCurricularActivities"
           ></Route>{" "}
-          //  Admission 
-          
+          // Admission
           <Route
             element={
               <>
@@ -482,8 +482,8 @@ function App() {
             }
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Staff Zone */}{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Staff Zone */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -532,8 +532,8 @@ function App() {
             }
             path="/StaffZone/Roster"
           ></Route>{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Socieites */}{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Socieites */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -550,9 +550,9 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
-          // {/* Research And Facilities */}{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} //{" "}
+          {/* Research And Facilities */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -771,8 +771,8 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */}{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -1116,7 +1116,7 @@ function App() {
             }
             path="/academics/departments/Hindi/newsletter_magazines_hindi"
           ></Route>{" "}
-          {/* History */}
+          {/* History */}{" "}
           <Route
             element={
               <>
@@ -1124,6 +1124,14 @@ function App() {
               </>
             }
             path="/academics/departments/History/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_fac />
+              </>
+            }
+            path="/academics/departments/History/Faculty"
           ></Route>{" "}
           <Route
             element={

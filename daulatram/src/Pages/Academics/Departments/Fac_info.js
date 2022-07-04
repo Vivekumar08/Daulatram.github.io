@@ -1048,3 +1048,73 @@ export const Hindi_fac_info = [{
 
 
 ]
+export const Hist_fac_info = [{
+        id: 124,
+        Fac_name: "Mrs. Sneh Lata",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Sneh_hist.png",
+        cv: "/images/ImgPages/History/Sneh_hist_cv.pdf",
+    },
+    {
+        id: 125,
+        Fac_name: "Dr. Smarika Nawani",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Smarika_hist.jpg",
+        cv: "/images/ImgPages/History/Smarika_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Mrs. Menka Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Menka_hist.jpg",
+        cv: "/images/ImgPages/History/Menka_hist_cv.pdf",
+    },
+    {
+        id: 127,
+        Fac_name: "Mr. Pravash K Ch.",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Pravash_hist.png",
+        cv: "/images/ImgPages/History/Pravash_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Mr. Deepak Naorem",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Deepak_hist.png",
+        cv: "/images/ImgPages/History/Deepak_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Dr. Nikhil Gangwar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Nikhil_hist.png",
+        cv: "/images/ImgPages/History/Nikhil_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Ms. Ruby Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Rubi_hist.jpg",
+        cv: "/images/ImgPages/History/Rubi_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Ms. Sana Bano",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Sana_hist.png",
+        cv: "/images/ImgPages/History/Sana_hist_cv.pdf",
+    },
+
+
+
+
+
+]

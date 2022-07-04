@@ -24,7 +24,7 @@ function Hist_about() {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/History/History_depart_img.JPG)",
-                      width: "600px",
+                      width: "700px",
                       height: "450px",
                     }}
                     className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"
