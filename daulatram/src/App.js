@@ -1032,17 +1032,18 @@ function App() {
           <Route
             element={
               <>
-<<<<<<< HEAD
                 <Hindi_about />
               </>
             }
             path="/academics/departments/Hindi/"
-=======
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <NotFound />
               </>
             }
             path='*'
->>>>>>> 024ce4a8de2af26a455ae9f201067886a652005b
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
