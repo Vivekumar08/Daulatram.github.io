@@ -26,6 +26,9 @@ const Anti_Ragging = () => {
     const response = await fetch("http://localhost:5000/Anti_Ragging");
     setData1(await response.json());
   };
+  useEffect(() => {
+    fetchdata();
+  }, []);
 
   const onDrop = (files) => {
     const [uploadedFile] = files;
@@ -41,9 +44,7 @@ const Anti_Ragging = () => {
     );
   };
 
-  useEffect(() => {
-    fetchdata();
-  }, []);
+  
 
   const del = async (id) => {
     console.log(id);
@@ -80,8 +81,7 @@ const Anti_Ragging = () => {
         });
         setCaption("");
         setLink("");
-        setFile("");
-        setAuth(true);
+        // setAuth(true);
         fetchdata();
       } else {
         // setErrMsg("Please select a file to add.");
@@ -101,7 +101,7 @@ const Anti_Ragging = () => {
         style={{ backgroundImage: "url(/images/img1.jpg)" }}
       >
         <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-          SC/ST/OBC/EWS Guidelines{" "}
+          Anti-Ragging Guidelines{" "}
         </span>
         <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
           <Link to={"/"}>
@@ -117,7 +117,7 @@ const Anti_Ragging = () => {
         <div className="ml-3 mb-5">
           <div className="w-[1100px]">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            SC/ST/OBC/EWS Guidelines
+            Anti-Ragging Guidelines
             </h2>
             {data1 && data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
@@ -155,7 +155,7 @@ const Anti_Ragging = () => {
                             icon={faTrashCan}
                             size="lg"
                             className="mt-16 cursor-pointer ml-auto mr-16 hover:text-red-500"
-                            onClick={() => del(datas._id)}
+                            onClick={() => del(_id)}
                           ></FontAwesomeIcon>
                         </div>
                       </>

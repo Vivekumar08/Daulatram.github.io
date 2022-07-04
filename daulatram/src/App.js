@@ -137,6 +137,7 @@ import Eng_Studachieve from "./Pages/Academics/Departments/English/Eng_Studachie
 import Eng_association from "./Pages/Academics/Departments/English/Eng_association";
 import Eng_photogallery from "./Pages/Academics/Departments/English/Eng_photogallery";
 import Eng_publications from "./Pages/Academics/Departments/English/Eng_publications";
+import NotFound from "./Pages/NotFound";
 
 // Hindi
 import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
@@ -1031,10 +1032,17 @@ function App() {
           <Route
             element={
               <>
+<<<<<<< HEAD
                 <Hindi_about />
               </>
             }
             path="/academics/departments/Hindi/"
+=======
+                <NotFound />
+              </>
+            }
+            path='*'
+>>>>>>> 024ce4a8de2af26a455ae9f201067886a652005b
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
