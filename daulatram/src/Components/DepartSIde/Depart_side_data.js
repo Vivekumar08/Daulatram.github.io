@@ -419,7 +419,7 @@ export const Hindi_side = [{
     {
         id: 10,
         title: "Newsletter & Magazines",
-        link: "/academics/departments/Hindi/newsletter_magazines"
+        link: "/academics/departments/Hindi/newsletter_magazines_hindi"
     },
     {
         id: 11,
