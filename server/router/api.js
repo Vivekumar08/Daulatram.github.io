@@ -16,6 +16,7 @@ const Guidelines = require('../models/Admission/Admission_guidelines_Schema');
 const Ragging = require('../models/Admission/Anti_Ragging_Schema');
 const Training = require('../models/Academics/Training_Schema')
 const U_Acad_Cal = require('../models/Academics/U_Acad_Cal_Schema')
+const C_Acad_Cal = require('../models/Academics/C_Acad_Cal_Schema')
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -285,6 +286,44 @@ router.post(
     }
   }
 );
+// College Academics Calendar
+
+router.get('/C_Acad_Cal', async (req, res,) => {
+  const details = await C_Acad_Cal.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_C_Acad_Cal/:id', async (req, res) => {
+  const delete_user = await C_Acad_Cal.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/C_Acad_Cal_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new C_Acad_Cal({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
 // University Academics Calendar
 
 router.get('/U_Acad_Cal', async (req, res,) => {
