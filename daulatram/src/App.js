@@ -141,7 +141,7 @@ import NotFound from "./Pages/NotFound";
 
 // Hindi
 import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
-
+import Hindi_fac from "./Pages/Academics/Departments/Hindi/Hindi_fac";
 function App() {
   return (
     <>
@@ -1032,17 +1032,58 @@ function App() {
           <Route
             element={
               <>
-<<<<<<< HEAD
                 <Hindi_about />
               </>
             }
             path="/academics/departments/Hindi/"
-=======
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_fac/>
+              </>
+            }
+            path="/academics/departments/Hindi/Faculty"
+          ></Route>{" "}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <Route
+            element={
+              <>
                 <NotFound />
               </>
             }
-            path='*'
->>>>>>> 024ce4a8de2af26a455ae9f201067886a652005b
+            path="*"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
