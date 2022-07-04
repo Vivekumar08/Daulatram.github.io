@@ -18,6 +18,7 @@ const Training = require('../models/Academics/Training_Schema')
 const U_Acad_Cal = require('../models/Academics/U_Acad_Cal_Schema')
 const C_Acad_Cal = require('../models/Academics/C_Acad_Cal_Schema')
 const Teacher = require('../models/Academics/Teacher_Schema')
+const Feedback = require('../models/StaffZone/Feedback_Form_Schema')
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -129,6 +130,30 @@ router.post('/admission_online', async (req, res) => {
 })
 router.delete('/deleteAdmission/:id', async (req, res) => {
   const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
+})
+
+
+// Feedback Form Staff Zone
+
+router.get('/feedback', async (req, res,) => {
+  // res.send(`Hello World from the server`);
+  const details = await Feedback.find()
+  res.status(200).json(details)
+});
+
+router.post('/StaffZone_feedback', async (req, res) => {
+  const { Link, Caption,text } = req.body
+  if (!Link || !Caption) {
+    return res.status(400).json({ error: "Fill the Admission Details Properly" })
+  }
+  const user = new Feedback(req.body);
+  await user.save();
+  console.log("Details Saved Successfully")
+  return res.status(200).json({ message: "Details Saved Successfully " })
+})
+router.delete('/deletefeedback/:id', async (req, res) => {
+  const delete_user = await Feedback.findOneAndDelete({ _id: req.params.id });
   res.status(200).json(delete_user + "User deleted")
 })
 
