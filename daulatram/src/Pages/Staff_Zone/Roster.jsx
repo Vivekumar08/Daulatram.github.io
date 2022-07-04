@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import Admission_side from "../../Components/Sidebar/Admission_side.";
-import Bulletin from "../../Dummy_data/pdfs/Admission/UGCF_2022.pdf";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import Staff_side from "../../Components/Sidebar/Staff_side";
 
 const Roster = () => {
   const [data1, setData1] = useState();
@@ -111,7 +110,7 @@ const Roster = () => {
       </div>
       <div className="flex flex-row">
         <div className="w-[350px]">
-          <Admission_side />
+          <Staff_side />
         </div>
         <div className="ml-3 mb-5">
           <div className="w-[1100px]">
