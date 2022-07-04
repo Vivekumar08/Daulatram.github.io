@@ -1055,9 +1055,6 @@ function App() {
             element={
               <>
                 <Hindi_fac />
-
-
-                <Hindi_fac />
               </>
             }
             path="/academics/departments/Hindi/Faculty"
@@ -1149,93 +1146,10 @@ function App() {
                 <Hist_publications />
               </>
             }
-            path="/academics/departments/History/Publications"
-          ></Route>{" "}
+            path="/academics/departments/History/Publications">
+          </Route>{" "}
 
-
-
-
-
-
-
-                <Hindi_fac />
-              </>
-            }
-            path="/academics/departments/Hindi/Faculty"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hindi_programoffered />
-              </>
-            }
-            path="/academics/departments/Hindi/Programoffered"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hindi_events />
-              </>
-            }
-            path="/academics/departments/Hindi/Events"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hindi_studachieve />
-              </>
-            }
-            path="/academics/departments/Hindi/Students'_achievements"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hindi_publications />
-              </>
-            }
-            path="/academics/departments/Hindi/Publications"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hindi_awards />
-              </>
-            }
-            path="/academics/departments/Hindi/awards"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hindi_association />
-              </>
-            }
-            path="/academics/departments/Hindi/association"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hindi_magazine />
-              </>
-            }
-            path="/academics/departments/Hindi/newsletter_magazines_hindi"
-          ></Route>{" "}
-          {/* History */}{" "}
-          <Route
-            element={
-              <>
-                <Hist_about />
-              </>
-            }
-            path="/academics/departments/History/"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hist_fac />
-              </>
-            }
-            path="/academics/departments/History/Faculty"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
