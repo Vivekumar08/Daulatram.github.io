@@ -153,7 +153,8 @@ import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine";
 // History
 import Hist_about from "./Pages/Academics/Departments/History/Hist_about";
 import Hist_fac from "./Pages/Academics/Departments/History/Hist_fac";
-
+import Hist_programoffered from "./Pages/Academics/Departments/History/Hist_programoffered";
+import Hist_publications from  "./Pages/Academics/Departments/History/Hist_publications";
 function App() {
   return (
     <>
@@ -1054,6 +1055,108 @@ function App() {
             element={
               <>
                 <Hindi_fac />
+
+
+                <Hindi_fac />
+              </>
+            }
+            path="/academics/departments/Hindi/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_programoffered />
+              </>
+            }
+            path="/academics/departments/Hindi/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_events />
+              </>
+            }
+            path="/academics/departments/Hindi/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_studachieve />
+              </>
+            }
+            path="/academics/departments/Hindi/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_publications />
+              </>
+            }
+            path="/academics/departments/Hindi/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_awards />
+              </>
+            }
+            path="/academics/departments/Hindi/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_association />
+              </>
+            }
+            path="/academics/departments/Hindi/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_magazine />
+              </>
+            }
+            path="/academics/departments/Hindi/newsletter_magazines_hindi"
+          ></Route>{" "}
+          {/* History */}{" "}
+          <Route
+            element={
+              <>
+                <Hist_about />
+              </>
+            }
+            path="/academics/departments/History/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_fac />
+              </>
+            }
+            path="/academics/departments/History/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_programoffered />
+              </>
+            }
+            path="/academics/departments/History/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_publications />
+              </>
+            }
+            path="/academics/departments/History/Publications"
+          ></Route>{" "}
+
+
+
+
+
+
 
                 <Hindi_fac />
               </>
