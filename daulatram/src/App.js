@@ -1112,16 +1112,6 @@ function App() {
             }
             path="/academics/departments/Hindi/newsletter_magazines_hindi"
           ></Route>{" "}
-
-
-
-
-
-
-
-
-
-
           <Route
             element={
               <>
