@@ -826,7 +826,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Haritha_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 99,
         Fac_name: "Dr. Prastavana Mohan",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -834,7 +834,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Prastavana_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 100,
         Fac_name: "Dr. Sakshi Wason",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -842,7 +842,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Sakshi_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 101,
         Fac_name: "Ms. Saneya",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -850,7 +850,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Saneya_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 101,
         Fac_name: "Ms. Vandana",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -858,7 +858,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Vandana_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 102,
         Fac_name: "Ms. Violina Borah",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -866,7 +866,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Violina_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 103,
         Fac_name: "Ms. Trisha Mitra",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -874,7 +874,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Trisha_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 104,
         Fac_name: "Mr. Owais Farooq",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -882,7 +882,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Owais_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 105,
         Fac_name: "Ms. Kiran Yadav",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -890,7 +890,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Kiran_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 106,
         Fac_name: "Ms. Richa Dawar",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -898,7 +898,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Richa_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 107,
         Fac_name: "Ms. Rashmi Yadav",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -906,7 +906,7 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Rashmi_eng_cv.pdf",
     },
     {
-        id: 97,
+        id: 108,
         Fac_name: "Mr. Kehru L",
         Designation: "Assistant Professor",
         filter: "Current",
@@ -914,6 +914,134 @@ export const Eng_fac_info = [{
         cv: "/images/ImgPages/English/Kaihru_eng_cv.pdf",
     },
 
+
+
+
+
+
+]
+
+export const Hindi_fac_info = [{
+        id: 109,
+        Fac_name: "Dr. Seema Rani",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Seema_hindi.jpeg",
+        cv: "/images/ImgPages/Hindi/Seema_hindi_cv.pdf",
+    },
+    {
+        id: 110,
+        Fac_name: "Dr. Sunita Durangal",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Sunita_hindi.jpeg",
+        cv: "/images/ImgPages/Hindi/Sunita_hindi_cv.pdf",
+    },
+
+    {
+        id: 111,
+        Fac_name: "Dr. Anita Minz",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Anita_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Anita_hindi_cv.pdf",
+    },
+    {
+        id: 112,
+        Fac_name: "Dr. Jyoti Sharma",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Jyoti_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Jyoti_hindi_cv.pdf",
+    },
+    {
+        id: 113,
+        Fac_name: "Dr. Santosh Sain",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Santosh_Sain_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Santosh_Sain_hindi_cv.pdf",
+    },
+    {
+        id: 114,
+        Fac_name: "Dr. Neetu Gupta",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Neetu_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Neetu_hindi_cv.pdf",
+    },
+    {
+        id: 115,
+        Fac_name: "Dr. Kusum Lata",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/KusumLata_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/KusumLata_hindi_cv.pdf",
+    },
+    {
+        id: 116,
+        Fac_name: "Dr. Priyanka Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Priyanka_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Priyanka_hindi_cv.pdf",
+    },
+    {
+        id: 117,
+        Fac_name: "Dr. Neera Jalchhatri",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Neera_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Neera_hindi_cv.pdf",
+    },
+    {
+        id: 118,
+        Fac_name: "Dr. Sangya Upadhyaya",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Sangya_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Sangya_hindi_cv.pdf",
+    },
+    {
+        id: 119,
+        Fac_name: "Dr. Santosh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Santosh_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Santosh_hindi_cv.pdf",
+    },
+    {
+        id: 120,
+        Fac_name: "Dr. Meenakshi",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Meenakshi_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Meenakshi_hindi_cv.pdf",
+    },
+    {
+        id: 121,
+        Fac_name: "Dr. Manish Kumar Choudhary",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Manish_hindi.png",
+        cv: "/images/ImgPages/Hindi/Manish_hindi_cv.pdf",
+    },
+    {
+        id: 122,
+        Fac_name: "Dr. Samla Devi",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Hindi/Samla_hindi.jpg",
+        cv: "/images/ImgPages/Hindi/Samla_hindi_cv.pdf",
+    },
+    {
+        id: 123,
+        Fac_name: "Dr. Swarna Prabha",
+        Designation: "Associate Professor",
+        filter: "Superannuated",
+        img: "/images/ImgPages/Hindi/Swarna_hindi.png",
+        cv: "/images/ImgPages/Hindi/Swarna_hindi_cv.pdf",
+    },
 
 
 
