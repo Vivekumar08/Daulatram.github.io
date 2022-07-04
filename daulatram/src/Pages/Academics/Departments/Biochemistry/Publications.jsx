@@ -10,11 +10,12 @@ function Publications() {
         <DepartBanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[800px]">
-          <Departments />
-        </div>
+      <div className=" flex  flex-col mt-12 ml-2 ">
+              <Biochemistry/>
+
+              </div>
         <div>
-          <div className="w-[1100px]">
+          <div className="w-full ml-2">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Publications
             </h2>
@@ -22,7 +23,7 @@ function Publications() {
           <div className="flex flex-row">
             <div>
               <div>
-                <ol className="list-decimal mt-2 ml-10 mr-4 text-justify mb-4">
+                <ol className="list-decimal mt-2 ml-10 mr-20 text-justify mb-4">
                   <li>
                     Manisha Gupta, Babbar, Simran, Goel Anita, Gupta Radhika,
                     Dohare Neeraj And Nanda Sarita Pollution Controlling Ability
@@ -196,9 +197,7 @@ function Publications() {
                 </ol>
               </div>
             </div>
-            <div className=" flex  flex-col ml-2 mr-16">
-              <Biochemistry />
-            </div>
+            
           </div>
         </div>
       </div>

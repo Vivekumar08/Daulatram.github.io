@@ -10,11 +10,11 @@ function Botany_Association() {
         <Botanybanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
-        </div>
-        <div>
-          <div className="w-[1100px]">
+      <div className=" flex  flex-col mt-12 ml-2">
+              <Botany />
+            </div>
+        <div className="ml-auto mr-auto">
+          <div className="w-full ml-auto mr-auto">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Association
             </h2>
@@ -121,9 +121,7 @@ function Botany_Association() {
               </div>
               {/* </div> */}
             </div>
-            <div className=" flex mr-16 mt-8 flex-col">
-              <Botany />
-            </div>
+            
           </div>
         </div>
       </div>

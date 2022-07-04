@@ -1,5 +1,5 @@
 import React from "react";
-import tac from "../Academics/Flier-InternshipinZebrafishmodelsystem June22.pdf";
+import tac from "../Academics/FlierInternshipinZebrafishmodelsystemJune22.pdf";
 import Banner from "../../Components/Banners/training";
 
 const Job_opportunities = () => {

@@ -20,7 +20,7 @@ import VicePrincipal from "./Pages/AboutUs/VicePrincipal";
 import Principal from "./Pages/AboutUs/Principal";
 // import Chairperson_banner from './Components/Banners/Chairperson_banner'
 
-import Faculty from "./Pages/Academics/Departments/Biochemistry/Faculty";
+import Bio_faculty from "./Pages/Academics/Departments/Biochemistry/Bio_faculty";
 import Research_facilities from "./Pages/Academics/Departments/Biochemistry/Research_facilities";
 import Studentsachieve from "./Pages/Academics/Departments/Biochemistry/Studentsachieve";
 import Awards from "./Pages/Academics/Departments/Biochemistry/Awards";
@@ -29,7 +29,7 @@ import Events from "./Pages/Academics/Departments/Biochemistry/Events";
 
 // botany
 import About from "./Pages/Academics/Departments/Botany/About";
-import Botanyfaculty from "./Pages/Academics/Departments/Botany/Botanyfaculty";
+import Botanyfaculty from "./Pages/Academics/Departments/Botany/Bot_fac";
 import Programoffered from "./Pages/Academics/Departments/Botany/Programoffered";
 import Botanystudachieve from "./Pages/Academics/Departments/Botany/Botanystudachieve";
 import Bot_Publications from "./Pages/Academics/Departments/Botany/Bot_Publications";
@@ -61,8 +61,8 @@ import Bulletins_Admission from "./Pages/Admission/Bulletins_Admission";
 import Anti_Ragging from "./Pages/Admission/Anti_Ragging";
 import Feedback from "./Pages/Staff_Zone/Feedback";
 import Notices from "./Pages/Staff_Zone/Notices";
-import Ethics from "./Pages/Staff_Zone/Ethics"
-import FormsS from "./Pages/Staff_Zone/FormsS"
+import Ethics from "./Pages/Staff_Zone/Ethics";
+import FormsS from "./Pages/Staff_Zone/FormsS";
 import Seniority_list from "./Pages/Staff_Zone/Seniority_list";
 import Staff_Council_Committee from "./Pages/Staff_Zone/Staff_Council_Committee";
 import Roster from "./Pages/Staff_Zone/Roster";
@@ -137,6 +137,18 @@ import Eng_Studachieve from "./Pages/Academics/Departments/English/Eng_Studachie
 import Eng_association from "./Pages/Academics/Departments/English/Eng_association";
 import Eng_photogallery from "./Pages/Academics/Departments/English/Eng_photogallery";
 import Eng_publications from "./Pages/Academics/Departments/English/Eng_publications";
+import NotFound from "./Pages/NotFound";
+
+// Hindi
+import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
+import Hindi_fac from "./Pages/Academics/Departments/Hindi/Hindi_fac";
+import Hindi_programoffered from "./Pages/Academics/Departments/Hindi/Hindi_programoffered";
+import Hindi_events from "./Pages/Academics/Departments/Hindi/Hindi_events";
+import Hindi_studachieve from "./Pages/Academics/Departments/Hindi/Hindi_studachieve";
+import Hindi_publications from "./Pages/Academics/Departments/Hindi/Hindi_publications";
+import Hindi_awards from "./Pages/Academics/Departments/Hindi/Hindi_awards"
+import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_association"
+import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine"
 
 function App() {
   return (
@@ -232,7 +244,7 @@ function App() {
           <Route
             element={
               <>
-                <Faculty />
+                <Bio_faculty />
               </>
             }
             path="/academics/departments/biochem/faculty"
@@ -422,6 +434,14 @@ function App() {
           <Route
             element={
               <>
+                <Anti_Ragging />
+              </>
+            }
+            path="/admission/AntiRaggingGuidlines"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <OnlineAdmission />
               </>
             }
@@ -469,7 +489,7 @@ function App() {
             }
             path="/StaffZone/Feedback"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Ethics />
@@ -1016,6 +1036,99 @@ function App() {
               </>
             }
             path="/academics/departments/English/Publications"
+          ></Route>{" "}
+          {/* Hindi */}{" "}
+          <Route
+            element={
+              <>
+                <Hindi_about />
+              </>
+            }
+            path="/academics/departments/Hindi/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_fac />
+
+                <Hindi_fac />
+              </>
+            }
+            path="/academics/departments/Hindi/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_programoffered />
+              </>
+            }
+            path="/academics/departments/Hindi/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_events />
+              </>
+            }
+            path="/academics/departments/Hindi/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_studachieve />
+              </>
+            }
+            path="/academics/departments/Hindi/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_publications />
+              </>
+            }
+            path="/academics/departments/Hindi/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_awards />
+              </>
+            }
+            path="/academics/departments/Hindi/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_association />
+              </>
+            }
+            path="/academics/departments/Hindi/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_magazine />
+              </>
+            }
+            path="/academics/departments/Hindi/newsletter_magazines_hindi"
+          ></Route>{" "}
+
+
+
+
+
+
+
+
+
+
+          <Route
+            element={
+              <>
+                <NotFound />
+              </>
+            }
+            path="*"
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}

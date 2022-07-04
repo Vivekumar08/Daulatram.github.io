@@ -11,39 +11,35 @@ function Awards() {
         <DepartBanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+        <div className=" flex  flex-col mt-12 ml-2 ">
+          <Biochemistry />
         </div>
-        <div className="ml-3 ">
-          <div className="w-[1100px]">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+        <div className=" mt-16 ml-auto mr-auto ">
+          <div className="w-full  ml-2">
+            <h2 className="text-4xl uppercase font-bold mb-5  flex flex-row justify-center items-center ">
               Awards
             </h2>
-          </div>
+            <div className="flex flex-row ">
+              <div class="wrapper3 mt-5 mb-5">
+                <div class="card2">
+                  <span className="font-bold text-2xl ml-16">Awards</span>
+                  <div className="flex flex-col">
+                    <div class="info">
+                      <p className="ml-10">Faculty/ Non Teaching Staff</p>
 
-          <div className="flex flex-row">
-            <div class="wrapper3 mt-5 mb-5">
-              <div class="card2">
-                <span className="font-bold text-2xl ml-16">Awards</span>
-                <div className="flex flex-col">
-                  <div class="info">
-                    <p className="ml-14">Faculty/ Non Teaching Staff</p>
-
-                    <br />
-                    <a href={Awds}>
-                      <button className="ml-16">View</button>
                       <br />
-                      <br />
-                      <br />
-                      <br />
-                      <br />
-                    </a>
+                      <a href={Awds}>
+                        <button className="w-full ml-4">View</button>
+                        <br />
+                        <br />
+                        <br />
+                        
+                        
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className=" flex  flex-col  mt-8">
-              <Biochemistry/>
             </div>
           </div>
         </div>

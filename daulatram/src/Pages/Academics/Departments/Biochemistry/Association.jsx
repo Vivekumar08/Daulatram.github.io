@@ -15,11 +15,15 @@ function Association() {
       </div>
 
       <div className="flex flex-row">
-        <div className="w-[350px]">
+        {/* <div className="w-[350px]">
           <Departments />
-        </div>
-        <div className="w-[1100px]">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+        </div> */}
+        <div className=" flex  flex-col mt-12 ml-2 ">
+              <Biochemistry/>
+
+              </div>
+        <div className="w-full m-16">
+          <h2 className="text-4xl uppercase font-bold mb-5  flex flex-row justify-center items-center ">
             Association
           </h2>
 <div>
@@ -108,9 +112,9 @@ function Association() {
           
         </div>
         
-        <div className=" flex  flex-col ml-1 mr-16 mt-24">
+        {/* <div className=" flex  flex-col ml-1 mr-16 mt-24">
                 <Biochemistry/>
-                </div>
+                </div> */}
       </div>
     </div>
   );

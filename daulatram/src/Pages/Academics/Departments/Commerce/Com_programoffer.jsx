@@ -15,76 +15,82 @@ function Com_programoffer() {
         <Commercebanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+      <div className=" flex  flex-col mt-12 ml-2">
+          <Commerce />
         </div>
-        <div>
-          <div className="w-[1100px]">
+        <div className="w-full mr-16">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Program Offered
             </h2>
-          </div>
+         
  <div className="flex flex-row">
           <div class="wrapper2 mt-5 mb-5">
-          <div class="card1">
+          <div class="card2">
               <div className="">
-                <span className=" text-2xl font-bold">B.Com (Hons)</span>
+                <span className=" text-2xl font-bold ml-12">B.Com (Hons)</span>
               </div>
               <div class="info">
-                <h1 className="font-bold">Description</h1>
+                <h1 className="font-bold flex justify-center">Description</h1>
+                
                 <p>
                   Syllabus of Course
                 </p>
                 <br />
                 <a href={bcomh}>
-                  <button>View</button>
+                  <button className='w-full'>View</button>
                 </a>
+                <br />
+                <br /><br />
               </div>
             </div>
-            <div class="card1">
-              <span className=" text-2xl font-bold">
+            <div class="card2">
+              <span className=" text-2xl ml-12 font-bold">
                 B.Com (Prog.)
               </span>
               <div class="info">
-                <h1 className="font-bold ">Description</h1>
+                <h1 className="font-bold flex justify-center ">Description</h1>
                 <p>
                   Syllabus of Course
                 </p>
 <br />
                 <a href={"/academics/departments/Commerce/Programoffered/Bcomprog"}>
-                  <button>View</button>
+                  <button className='w-full'>View</button>
                 </a>
+                <br /><br />
+                <br />
               </div>
             </div>
-            <div class="card1">
+            <div class="card2">
               <div className="flex flex-col">
                 <div>
-                  <span className=" text-2xl font-bold ">
+                  <span className=" text-2xl mr-5 font-bold ">
                     B.A Prog. Commerce (ESB)
                     <br />
                   </span>
                 </div>
               </div>
               <div class="info">
-                <h1 className="font-bold">Description</h1>
+                <h1 className="font-bold flex justify-center">Description</h1>
                 <p>
                 Syllabus of course
 
                 </p>
                 <br />
                 <a href={"#"}>
-                  <button>View</button>
+                  <button className='w-full'>View</button>
                 </a>
+                <br />
+                <br />
+                <br />
               </div>
             </div>
             </div>
-          <div className=" flex  flex-col  mt-10">
-          <Commerce/>
-        </div>
+         
           </div>
         </div>
       </div>
-    </div> 
+      </div>
+  
   )
 }
 

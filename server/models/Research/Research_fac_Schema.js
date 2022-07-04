@@ -14,11 +14,11 @@ const Research_fac_Schema = mongoose.Schema(
     },
     file_path: {
       type: String,
-      // required: true
+      required: true
     },
     file_mimetype: {
       type: String,
-      // required: true
+      required: true
     }
   },
   {

@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const multer = require('multer');
+const fs = require("fs")
+const { promisify } = require("util")
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 // const jwt = require("jsonwebtoken")
@@ -8,7 +10,16 @@ const User = require('../models/adminSchema');
 const Adminssion = require('../models/Admission/onlineAdmission');
 const helpdesk = require('../models/Admission/helpdeskAdmission');
 const File = require("../models/Research/Research_fac_Schema");
+const Soc = require('../models/Societies/Societies_Schema');
+const Bulletin = require('../models/Admission/AdmissionBulletin_Schema');
+const Guidelines = require('../models/Admission/Admission_guidelines_Schema');
+const Ragging = require('../models/Admission/Anti_Ragging_Schema');
+const Training = require('../models/Academics/Training_Schema')
+const U_Acad_Cal = require('../models/Academics/U_Acad_Cal_Schema')
+const C_Acad_Cal = require('../models/Academics/C_Acad_Cal_Schema')
+const Teacher = require('../models/Academics/Teacher_Schema')
 
+const unlinkAsync = promisify(fs.unlink)
 
 // SET STORAGE
 const upload = multer({
@@ -23,7 +34,7 @@ const upload = multer({
   }),
   limits: {
     // max file size 1MB = 1000000 bytes
-    fileSize: 1000000
+    fileSize: 100000000
   },
   fileFilter(req, file, cb) {
     if (!file.originalname.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)) {
@@ -121,6 +132,275 @@ router.delete('/deleteAdmission/:id', async (req, res) => {
   res.status(200).json(delete_user + "User deleted")
 })
 
+// Ragging
+
+router.get('/Anti_Ragging', async (req, res,) => {
+  // res.send(`Hello World from the server`);
+  const details = await Ragging.find()
+  res.status(200).json(details)
+});
+
+router.post(
+  '/admission_Anti_Ragging',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Ragging({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
+router.delete('/deleteAntiRagging/:id', async (req, res) => {
+  // console.log(Ragging)
+  const delete_user = await Ragging.findByIdAndDelete({ _id: req.params.id }
+  );
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+// Guidelines
+
+router.get('/guidelines_admission', async (req, res,) => {
+  const details = await Guidelines.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_admission_guidelines/:id', async (req, res) => {
+  const delete_user = await Guidelines.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/guidelines_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Guidelines({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
+// Bulletin
+
+router.get('/bulletin', async (req, res,) => {
+  const details = await Bulletin.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_admissionbulletin/:id', async (req, res) => {
+  const delete_user = await Bulletin.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/bulletin_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Bulletin({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
+// Academics Training
+
+router.get('/Training_', async (req, res,) => {
+  const details = await Training.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_academicsTraings/:id', async (req, res) => {
+  const delete_user = await Training.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/Academics_Training_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Training({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+// Teacher-In Charge
+
+router.get('/Teacher_In_Charge', async (req, res,) => {
+  const details = await Teacher.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_Teacher_In_Charge/:id', async (req, res) => {
+  const delete_user = await Teacher.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/Teacher_In_Charge_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Teacher({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+// College Academics Calendar
+
+router.get('/C_Acad_Cal', async (req, res,) => {
+  const details = await C_Acad_Cal.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_C_Acad_Cal/:id', async (req, res) => {
+  const delete_user = await C_Acad_Cal.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/C_Acad_Cal_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new C_Acad_Cal({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
+// University Academics Calendar
+
+router.get('/U_Acad_Cal', async (req, res,) => {
+  const details = await U_Acad_Cal.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_U_Acad_Cal/:id', async (req, res) => {
+  const delete_user = await U_Acad_Cal.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/U_Acad_Cal_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new U_Acad_Cal({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
+
 // Helpdesk
 
 router.get('/helpdesk', async (req, res,) => {
@@ -146,6 +426,7 @@ router.delete('/deleteHelpdesk/:id', async (req, res) => {
 // Research
 router.delete('/delete_research_fac/:id', async (req, res) => {
   const delete_user = await File.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
   res.status(200).json(delete_user + "User deleted")
 })
 
@@ -172,7 +453,7 @@ router.post(
         description,
         // path,
         // mimetype
-        )
+      )
       const file = new File({
         title,
         description,
@@ -203,5 +484,50 @@ router.get('/research_download/:id', async (req, res) => {
     res.status(400).send('Error while downloading file. Try again later.');
   }
 });
+
+// Societies
+router.delete('/delete_Socities/:id', async (req, res) => {
+  const delete_user = await Soc.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.get('/Socitie', async (req, res) => {
+  try {
+    const files = await Soc.find({});
+    const sortedByCreationDate = files.sort(
+      (a, b) => b.createdAt - a.createdAt
+    );
+    res.send(sortedByCreationDate);
+  } catch (error) {
+    res.status(400).send('Error while getting list of files. Try again later.');
+  }
+});
+
+router.post(
+  '/Soc',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Soc({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
 
 module.exports = router;

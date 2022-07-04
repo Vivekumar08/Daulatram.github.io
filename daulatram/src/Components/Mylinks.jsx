@@ -400,7 +400,7 @@ export const dept = [
     names: [
       {
         name: "Biochemistry",
-        link: "/academics/departments/biochem",
+        link: "/academics/departments/biochem/",
       },
       {
         name: "Botany",
@@ -412,19 +412,19 @@ export const dept = [
       },
       {
         name: "Commerce",
-        link: "/academics/departments/Commerce",
+        link: "/academics/departments/Commerce/",
       },
       {
         name: "Economics",
-        link: "/academics/departments/Economics",
+        link: "/academics/departments/Economics/",
       },
       {
         name: "English",
-        link: "/academics/departments/English",
+        link: "/academics/departments/English/",
       },
       {
         name: "Hindi",
-        link: "./",
+        link: "/academics/departments/Hindi/",
       },
       {
         name: "History",
@@ -551,7 +551,7 @@ export const admisn = [
         link: "/admission/AntiRaggingGuidlines",
       },
       {
-        name: "FAQS For Admissions",
+        name: "FAQs For Admissions",
         link: "/admission/FAQs_Admission",
       },
     ],
