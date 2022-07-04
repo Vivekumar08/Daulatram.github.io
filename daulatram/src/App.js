@@ -1039,33 +1039,12 @@ function App() {
           ></Route>{" "}
           <Route
             element={
-              <>
+            
                 <Hindi_fac/>
               </>
             }
             path="/academics/departments/Hindi/Faculty"
           ></Route>{" "}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1084,6 +1063,11 @@ function App() {
               </>
             }
             path="*"
+                <NotFound />
+              </>
+            }
+            path='*'
+
           ></Route>{" "}
         </Routes>{" "}
         <Upperfooter /> {/* <Public_Notice/> */}{" "}
