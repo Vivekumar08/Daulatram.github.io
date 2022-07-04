@@ -71,7 +71,6 @@ const trainingp = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        console.log(formData);
         await axios.post(
           `http://localhost:5000/Academics_Training_add`,
           formData,
@@ -83,7 +82,7 @@ const trainingp = () => {
         );
         setCaption("");
         setLink("");
-        setFile("");
+        setFile(null);
         setAuth(true);
         fetchdata();
       } else {
@@ -111,41 +110,6 @@ const trainingp = () => {
             <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               TRAINING PROGRAMS
             </h2>
-            {/* {data1 &&
-                data1.map((curElem) => {
-                  
-                  return (
-                    <>
-                      <div class="card2 " key={_id}>
-                        <span className="  font-bold text-xl ml-8">{link}</span>
-                        <div className="flex flex-col ml-10 w-full">
-                          <div class="info2 ml-4 w-full">
-                            <p className="text-justify">{title}</p>
-                            <br />
-                            <a href={path} className="">
-                              <button className="w-[80%]">View</button>
-                              <br />
-                              <br />
-                              <br />
-                            </a>
-                            {auth && (
-                              <>
-                                <div className="flex flex-col w-full">
-                                  <FontAwesomeIcon
-                                    icon={faTrashCan}
-                                    size="lg"
-                                    className=" cursor-pointer ml-auto  hover:text-red-500"
-                                    onClick={() => del(_id)}
-                                  ></FontAwesomeIcon>
-                                </div>
-                              </>
-                            )}
-                            </div>
-                            </div>
-                            </div>
-                            </>
-                            );
-                          })} */}
             <div className="main flex-col">
               <table className="table-fixed mt-1 ">
                 <tr className="h-20 text-lg">
@@ -169,11 +133,7 @@ const trainingp = () => {
                           </td>
                           <td>
                             {" "}
-                            <a
-                              href={path}
-                              target="_blank"
-                              rel="noreferrer"
-                            >
+                            <a href={path} target="_blank" rel="noreferrer">
                               {" "}
                               <button className="btn">Click Here</button>
                             </a>{" "}
