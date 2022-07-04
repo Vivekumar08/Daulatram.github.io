@@ -1116,6 +1116,7 @@ function App() {
             }
             path="/academics/departments/Hindi/newsletter_magazines_hindi"
           ></Route>{" "}
+
           {/* History */}
           <Route
             element={
@@ -1125,6 +1126,7 @@ function App() {
             }
             path="/academics/departments/History/"
           ></Route>{" "}
+
           <Route
             element={
               <>
