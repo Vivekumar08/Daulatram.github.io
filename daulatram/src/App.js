@@ -1055,9 +1055,6 @@ function App() {
             element={
               <>
                 <Hindi_fac />
-
-
-                <Hindi_fac />
               </>
             }
             path="/academics/departments/Hindi/Faculty"
