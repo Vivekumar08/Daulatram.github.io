@@ -146,9 +146,12 @@ import Hindi_programoffered from "./Pages/Academics/Departments/Hindi/Hindi_prog
 import Hindi_events from "./Pages/Academics/Departments/Hindi/Hindi_events";
 import Hindi_studachieve from "./Pages/Academics/Departments/Hindi/Hindi_studachieve";
 import Hindi_publications from "./Pages/Academics/Departments/Hindi/Hindi_publications";
-import Hindi_awards from "./Pages/Academics/Departments/Hindi/Hindi_awards"
-import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_association"
-import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine"
+import Hindi_awards from "./Pages/Academics/Departments/Hindi/Hindi_awards";
+import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_association";
+import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine";
+
+// History
+import Hist_about from "./Pages/Academics/Departments/History/Hist_about";
 
 function App() {
   return (
@@ -389,8 +392,8 @@ function App() {
             }
             path="/societies/extraCurricularActivities"
           ></Route>{" "}
-          {/* *********************** */} {/* Admission */}{" "}
-          {/* *********************** */}{" "}
+          //  Admission 
+          
           <Route
             element={
               <>
@@ -479,8 +482,8 @@ function App() {
             }
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
-          {/* *********************** */} {/* Staff Zone */}{" "}
-          {/* *********************** */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Staff Zone */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -529,8 +532,8 @@ function App() {
             }
             path="/StaffZone/Roster"
           ></Route>{" "}
-          {/* *********************** */} {/* Socieites */}{" "}
-          {/* *********************** */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Socieites */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -547,8 +550,9 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>{" "}
-          {/* *********************** */} {/* Research And Facilities */}{" "}
-          {/* *********************** */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
+          // {/* Research And Facilities */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -565,7 +569,7 @@ function App() {
             }
             path="/research/publications"
           ></Route>{" "}
-          {/* Botany */}{" "}
+          // {/* Botany */}{" "}
           <Route
             element={
               <>
@@ -767,8 +771,8 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
-          {/* *********************** */} {/* Footer */}{" "}
-          {/* *********************** */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -858,7 +862,7 @@ function App() {
             }
             path="/academics/departments/Chemistry/association"
           ></Route>{" "}
-          {/* Commerce */}{" "}
+          // {/* Commerce */}{" "}
           <Route
             element={
               <>
@@ -923,7 +927,7 @@ function App() {
             }
             path="/academics/departments/Commerce/Programoffered/Bcomprog"
           ></Route>{" "}
-          {/* Economics */}{" "}
+          // {/* Economics */}{" "}
           <Route
             element={
               <>
@@ -980,7 +984,7 @@ function App() {
             }
             path="/academics/departments/Economics/photogallery"
           ></Route>{" "}
-          {/* English */}{" "}
+          // {/* English */}{" "}
           <Route
             element={
               <>
@@ -1112,6 +1116,17 @@ function App() {
             }
             path="/academics/departments/Hindi/newsletter_magazines_hindi"
           ></Route>{" "}
+
+          {/* History */}
+          <Route
+            element={
+              <>
+                <Hist_about />
+              </>
+            }
+            path="/academics/departments/History/"
+          ></Route>{" "}
+
           <Route
             element={
               <>

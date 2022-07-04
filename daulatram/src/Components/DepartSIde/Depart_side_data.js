@@ -433,3 +433,65 @@ export const Hindi_side = [{
 
     }
 ]
+export const Hist_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/History/"
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/History/Faculty"
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/History/Programoffered"
+    },
+    {
+        id: 4,
+        title: "Association",
+        link: "/academics/departments/History/association"
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/History/Students'_achievements"
+    },
+    {
+        id: 6,
+        title: "Events",
+        link: "/academics/departments/History/Events"
+    },
+    {
+        id: 7,
+        title: "Laboratory Staff",
+        link: "/academics/departments/History/laboratorystaff"
+    },
+    {
+        id: 8,
+        title: "Publications",
+        link: "/academics/departments/History/Publications"
+    },
+    {
+        id: 9,
+        title: "Awards",
+        link: "/academics/departments/History/awards"
+    },
+    {
+        id: 10,
+        title: "Newsletter & Magazines",
+        link: "/academics/departments/History/newsletter_magazines_History"
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/History/timetable"
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/History/photogallery"
+
+    }
+]
