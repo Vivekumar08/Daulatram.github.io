@@ -156,6 +156,7 @@ import Hist_fac from "./Pages/Academics/Departments/History/Hist_fac";
 import Hist_programoffered from "./Pages/Academics/Departments/History/Hist_programoffered";
 import Hist_publications from  "./Pages/Academics/Departments/History/Hist_publications";
 import Hist_awards from  "./Pages/Academics/Departments/History/Hist_awards";
+import Hist_association from  "./Pages/Academics/Departments/History/Hist_association";
 
 function App() {
   return (
@@ -1157,6 +1158,14 @@ function App() {
               </>
             }
             path="/academics/departments/History/awards">
+          </Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_association />
+              </>
+            }
+            path="/academics/departments/History/association">
           </Route>{" "}
 
           
