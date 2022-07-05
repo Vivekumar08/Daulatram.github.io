@@ -172,6 +172,7 @@ import Math_association from "./Pages/Academics/Departments/Mathematics/Math_ass
 // Music
 import Music_about from "./Pages/Academics/Departments/Music/Music_about";
 import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
+import Forgot from "./Pages/Admin/Forgot";
 
 function App() {
   return (
@@ -198,6 +199,14 @@ function App() {
               </>
             }
             path="/Admin"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Forgot />
+              </>
+            }
+            path="/forgot"
           ></Route>{" "}
           <Route
             element={
