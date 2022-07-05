@@ -557,3 +557,65 @@ export const Math_side = [{
 
     }
 ]
+export const Music_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Music/"
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Music/Faculty"
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Music/Programoffered"
+    },
+    {
+        id: 4,
+        title: "Association",
+        link: "/academics/departments/Music/association"
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Music/Students'_achievements"
+    },
+    {
+        id: 6,
+        title: "Events",
+        link: "/academics/departments/Music/Events"
+    },
+    {
+        id: 7,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Music/laboratorystaff"
+    },
+    {
+        id: 8,
+        title: "Publications",
+        link: "/academics/departments/Music/Publications"
+    },
+    {
+        id: 9,
+        title: "Awards",
+        link: "/academics/departments/Music/awards"
+    },
+    {
+        id: 10,
+        title: "Facilities",
+        link: "/academics/departments/Music/Facilities"
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Music/timetable"
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Music/photogallery"
+
+    }
+]
