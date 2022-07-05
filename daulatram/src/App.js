@@ -163,6 +163,7 @@ import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
 import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
 import Math_fac from "./Pages/Academics/Departments/Mathematics/Math_fac";
 import Math_programoffered from "./Pages/Academics/Departments/Mathematics/Math_programoffered";
+import Math_events from "./Pages/Academics/Departments/Mathematics/Math_events";
 
 function App() {
   return (
@@ -1206,6 +1207,19 @@ function App() {
             }
             path="/academics/departments/Mathematics/Programoffered"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_events />
+              </>
+            }
+            path="/academics/departments/Mathematics/Events"
+          ></Route>{" "}
+
+
+
+
+
           <Route
             element={
               <>
