@@ -540,11 +540,11 @@ export const Math_side = [{
         title: "Awards",
         link: "/academics/departments/Mathematics/awards"
     },
-    // {
-    //     id: 10,
-    //     title: "Newsletter & Magazines",
-    //     link: "/academics/departments/Mathematics/newsletter_magazines_Mathematics"
-    // },
+    {
+        id: 10,
+        title: "Facilities",
+        link: "/academics/departments/Mathematics/Facilities"
+    },
     {
         id: 11,
         title: "Time Table",

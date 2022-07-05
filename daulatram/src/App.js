@@ -165,6 +165,9 @@ import Math_fac from "./Pages/Academics/Departments/Mathematics/Math_fac";
 import Math_programoffered from "./Pages/Academics/Departments/Mathematics/Math_programoffered";
 import Math_events from "./Pages/Academics/Departments/Mathematics/Math_events";
 import Math_studachieve from "./Pages/Academics/Departments/Mathematics/Math_studachieve";
+import Math_publication from "./Pages/Academics/Departments/Mathematics/Math_publication";
+import Math_facilities from "./Pages/Academics/Departments/Mathematics/Math_facilities";
+import Math_association from "./Pages/Academics/Departments/Mathematics/Math_association";
 
 function App() {
   return (
@@ -1224,11 +1227,30 @@ function App() {
             }
             path="/academics/departments/Mathematics/Students'_achievements"
           ></Route>{" "}
-
-
-
-
-
+          <Route
+            element={
+              <>
+                <Math_publication />
+              </>
+            }
+            path="/academics/departments/Mathematics/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_facilities />
+              </>
+            }
+            path="/academics/departments/Mathematics/Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_association />
+              </>
+            }
+            path="/academics/departments/Mathematics/association"
+          ></Route>{" "}
           <Route
             element={
               <>
