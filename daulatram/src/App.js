@@ -154,10 +154,14 @@ import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine";
 import Hist_about from "./Pages/Academics/Departments/History/Hist_about";
 import Hist_fac from "./Pages/Academics/Departments/History/Hist_fac";
 import Hist_programoffered from "./Pages/Academics/Departments/History/Hist_programoffered";
-import Hist_publications from  "./Pages/Academics/Departments/History/Hist_publications";
-import Hist_awards from  "./Pages/Academics/Departments/History/Hist_awards";
-import Hist_association from  "./Pages/Academics/Departments/History/Hist_association";
-import Hist_events from   "./Pages/Academics/Departments/History/Hist_events";
+import Hist_publications from "./Pages/Academics/Departments/History/Hist_publications";
+import Hist_awards from "./Pages/Academics/Departments/History/Hist_awards";
+import Hist_association from "./Pages/Academics/Departments/History/Hist_association";
+import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
+
+// Mathemtics
+import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
+
 function App() {
   return (
     <>
@@ -1149,34 +1153,41 @@ function App() {
                 <Hist_publications />
               </>
             }
-            path="/academics/departments/History/Publications">
-          </Route>{" "}
+            path="/academics/departments/History/Publications"
+          ></Route>{" "}
           <Route
             element={
               <>
                 <Hist_awards />
               </>
             }
-            path="/academics/departments/History/awards">
-          </Route>{" "}
+            path="/academics/departments/History/awards"
+          ></Route>{" "}
           <Route
             element={
               <>
                 <Hist_association />
               </>
             }
-            path="/academics/departments/History/association">
-          </Route>{" "}
+            path="/academics/departments/History/association"
+          ></Route>{" "}
           <Route
             element={
               <>
                 <Hist_events />
               </>
             }
-            path="/academics/departments/History/Events">
-          </Route>{" "}
-
-          
+            path="/academics/departments/History/Events"
+          ></Route>{" "}
+          // Mathemtics
+          <Route
+            element={
+              <>
+                <Math_about />
+              </>
+            }
+            path="/academics/departments/Mathematics/"
+          ></Route>{" "}
           <Route
             element={
               <>

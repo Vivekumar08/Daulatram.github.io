@@ -478,11 +478,11 @@ export const Hist_side = [{
         title: "Awards",
         link: "/academics/departments/History/awards"
     },
-    {
-        id: 10,
-        title: "Newsletter & Magazines",
-        link: "/academics/departments/History/newsletter_magazines_History"
-    },
+    // {
+    //     id: 10,
+    //     title: "Newsletter & Magazines",
+    //     link: "/academics/departments/History/newsletter_magazines_History"
+    // },
     {
         id: 11,
         title: "Time Table",
@@ -492,6 +492,68 @@ export const Hist_side = [{
         id: 12,
         title: "Photo Gallery",
         link: "/academics/departments/History/photogallery"
+
+    }
+]
+export const Math_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Mathematics/"
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Mathematics/Faculty"
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Mathematics/Programoffered"
+    },
+    {
+        id: 4,
+        title: "Association",
+        link: "/academics/departments/Mathematics/association"
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Mathematics/Students'_achievements"
+    },
+    {
+        id: 6,
+        title: "Events",
+        link: "/academics/departments/Mathematics/Events"
+    },
+    {
+        id: 7,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Mathematics/laboratorystaff"
+    },
+    {
+        id: 8,
+        title: "Publications",
+        link: "/academics/departments/Mathematics/Publications"
+    },
+    {
+        id: 9,
+        title: "Awards",
+        link: "/academics/departments/Mathematics/awards"
+    },
+    // {
+    //     id: 10,
+    //     title: "Newsletter & Magazines",
+    //     link: "/academics/departments/Mathematics/newsletter_magazines_Mathematics"
+    // },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Mathematics/timetable"
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Mathematics/photogallery"
 
     }
 ]
