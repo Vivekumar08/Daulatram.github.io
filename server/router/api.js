@@ -61,6 +61,49 @@ router.get('/getdata', async (req, res,) => {
   const details = await User.find()
   res.status(200).json(details)
 });
+router.get('/resetData', async (req, res,) => {
+  const details = await User.findOne({
+    resetPasswordToken: req.query.resetPasswordToken,
+    resetPasswordExpires: { $gt: Date.now(), },
+  })
+  if (!details) {
+    console.log('password reset link is invalid or has expired')
+    res.json('password reset link is invalid or has expired')
+  } else {
+    res.status(200).json(
+      {
+        username: details.Username,
+        message: 'password reset link a-ok'
+      }
+    )
+  }
+});
+
+router.put('/updatePasswordViaEmail', async (req, res,) => {
+  try {
+    const details = await User.findOne({
+      Username: req.body.Username
+    })
+    if (details) {
+      const salt = await bcrypt.genSalt()
+
+      console.log('User exists in the database')
+      const hashedPassword = await bcrypt.hash(Password, salt)
+      const user = await details.update({ Password: hashedPassword, resetPasswordToken:null,resetPasswordExpires:null });
+      const data = await user.save();
+      if(data){
+        console.log('password updated');
+        res.status(200).json({message:"password updated"})
+      }
+  
+    } else {
+      console.log('no user exists in db to update')
+      res.status(404).json('no user exists in db to update')
+    }
+  } catch (err) {
+    console.log("External err")
+  }
+});
 
 router.post('/NewAdmin', async (req, res) => {
   try {
@@ -96,7 +139,7 @@ router.post('/forgotEmail', async (req, res) => {
       const token = crypto.randomBytes(20).toString('hex')
       user.update({
         resetPasswordToken: token,
-        resetPasswordExpires: Date.now() + 3600000,
+        resetPasswordExpires: Date.now() + 600000,
       });
 
       const transporter = nodemailer.createTransport({
@@ -115,6 +158,7 @@ router.post('/forgotEmail', async (req, res) => {
           "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n"
           + 'Please click on the following link, or paste this into your browser to complete the process within on hour of receiving it:\n\n'
           + `http://localhost:3000/reset${token}\n\n`
+          + `This link is valid only upto 10 mins\n\n`
           + 'If you did not request this, please ignore this email and your password will remain unchanged'
       };
 
