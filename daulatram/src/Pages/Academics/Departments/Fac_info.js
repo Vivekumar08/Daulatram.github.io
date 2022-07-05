@@ -1196,3 +1196,35 @@ export const Math_fac_info = [{
 
 
 ]
+
+
+
+export const Music_fac_info = [{
+        id: 136,
+        Fac_name: "Dr Deepti Bansal",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Music/Deepti_music_cv.pdf",
+    },
+    {
+        id: 137,
+        Fac_name: "Dr. Sumita Chakravorty",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Music/Sumita_music_cv.pdf",
+    },
+    {
+        id: 138,
+        Fac_name: "Dr. Sapna Raina Kachroo",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Music/Sapna_music_cv.pdf",
+    },
+
+
+
+
+
+
+
+]
