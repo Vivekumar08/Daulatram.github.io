@@ -62,16 +62,16 @@ router.get('/getdata', async (req, res,) => {
 router.post('/NewAdmin', async (req, res) => {
   try {
     const salt = await bcrypt.genSalt()
-    const { Username, Password } = req.body;
+    const { Username, Email, Password } = req.body;
     console.log(req.body);
 
-    if (!Username || !Password) {
+    if (!Username || !Email || !Password) {
       return res.status(400).json({ error: "Fill the complete form" });
     }
 
     const hashedPassword = await bcrypt.hash(Password, salt)
 
-    const user = new User({ Username: Username, Password: hashedPassword });
+    const user = new User({ Username: Username,Email:Email, Password: hashedPassword });
     await user.save();
     console.log("Form filled Successfully")
     return res.status(200).json({ message: "Form filled Successfully " })
