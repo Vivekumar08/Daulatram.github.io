@@ -161,6 +161,7 @@ import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
 
 // Mathemtics
 import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
+import Math_fac from "./Pages/Academics/Departments/Mathematics/Math_fac";
 
 function App() {
   return (
@@ -1179,7 +1180,7 @@ function App() {
             }
             path="/academics/departments/History/Events"
           ></Route>{" "}
-          // Mathemtics
+// Mathematics
           <Route
             element={
               <>
@@ -1188,6 +1189,19 @@ function App() {
             }
             path="/academics/departments/Mathematics/"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_fac />
+              </>
+            }
+            path="/academics/departments/Mathematics/Faculty"
+          ></Route>{" "}
+
+
+
+
+
           <Route
             element={
               <>

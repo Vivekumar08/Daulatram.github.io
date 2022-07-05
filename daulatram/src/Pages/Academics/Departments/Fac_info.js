@@ -1118,3 +1118,81 @@ export const Hist_fac_info = [{
 
 
 ]
+export const Math_fac_info = [{
+        id: 127,
+        Fac_name: "Dr. Seema Khurana",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Seema_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Seema_math_cv.pdf",
+    },
+    {
+        id: 128,
+        Fac_name: "Mr. Virendra Kumar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Virendra_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Virendra_math_cv.pdf",
+    },
+    {
+        id: 129,
+        Fac_name: "Mr. Naresh Kumar Kodam",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Naresh_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Naresh_math_cv.pdf",
+    },
+    {
+        id: 130,
+        Fac_name: "Dr. Poonam Mantry",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Poonam_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Poonam_math_cv.pdf",
+    },
+    {
+        id: 132,
+        Fac_name: "Dr. Neha Bhatia",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Neha_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Neha_math_cv.pdf",
+    },
+    {
+        id: 132,
+        Fac_name: "Dr. Vikas Dhaka",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Vikas_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Vikas_math_cv.pdf",
+    },
+    {
+        id: 133,
+        Fac_name: "Mr. Monu Kumar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Monu_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Monu_math_cv.pdf",
+    },
+    {
+        id: 134,
+        Fac_name: "Ms. Jyoti Sharma",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Jyoti_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Jyoti_math_cv.pdf",
+    },
+    {
+        id: 135,
+        Fac_name: "Ms. Rekha Meena",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Rekha_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Rekha_math_cv.pdf",
+    },
+
+
+
+
+
+]
