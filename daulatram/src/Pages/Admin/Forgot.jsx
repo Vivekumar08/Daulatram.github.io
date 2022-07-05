@@ -23,7 +23,7 @@ const Forgot = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user, email);
+    console.log(email);
     const response = await fetch("http://localhost:5000/forgotEmail", {
       method: "POST",
       headers: {
@@ -38,10 +38,14 @@ const Forgot = () => {
       setErrMsg("No Server Response");
     } else if (response.status === 401) {
       setErrMsg("Email not in database");
-    }  else {
+    } else if (response.status === 400) {
+      setErrMsg("Please filled Email");
+    } else {
       setEmail("");
+      window.alert("Email has been sent, Please check your inbox");
+
       setAuth(true);
-      navigate("/Admin");
+      //   navigate("/Admin");
     }
   };
 
