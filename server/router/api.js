@@ -10,6 +10,7 @@ const User = require('../models/adminSchema');
 const Adminssion = require('../models/Admission/onlineAdmission');
 const helpdesk = require('../models/Admission/helpdeskAdmission');
 const File = require("../models/Research/Research_fac_Schema");
+const Publications = require("../models/Research/Publications_Schema");
 const Soc = require('../models/Societies/Societies_Schema');
 const Bulletin = require('../models/Admission/AdmissionBulletin_Schema');
 const Guidelines = require('../models/Admission/Admission_guidelines_Schema');
@@ -537,6 +538,67 @@ router.post(
 );
 
 router.get('/research_download/:id', async (req, res) => {
+  try {
+    const file = await File.findById(req.params.id);
+    res.set({
+      'Content-Type': file.file_mimetype
+    });
+    res.sendFile(path.join(__dirname, '..', file.file_path));
+  } catch (error) {
+    res.status(400).send('Error while downloading file. Try again later.');
+  }
+});
+// Publications
+router.delete('/delete_Publications_res/:id', async (req, res) => {
+  const delete_user = await Publications.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.get('/Publications_res', async (req, res) => {
+  try {
+    const files = await Publications.find({});
+    const sortedByCreationDate = files.sort(
+      (a, b) => b.createdAt - a.createdAt
+    );
+    res.send(sortedByCreationDate);
+  } catch (error) {
+    res.status(400).send('Error while getting list of files. Try again later.');
+  }
+});
+
+router.post(
+  '/Publications_res_upload',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, description } = req.body;
+      const { path, mimetype } = req.file;
+      console.log(title,
+        description,
+        // path,
+        // mimetype
+      )
+      const file = new Publications({
+        title,
+        description,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+
+router.get('/Publications_res_download/:id', async (req, res) => {
   try {
     const file = await File.findById(req.params.id);
     res.set({
