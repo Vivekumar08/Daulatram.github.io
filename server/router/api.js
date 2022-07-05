@@ -74,7 +74,7 @@ router.post('/NewAdmin', async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(Password, salt)
 
-    const user = new User({ Username: Username,Email:Email, Password: hashedPassword });
+    const user = new User({ Username: Username, Email: Email, Password: hashedPassword });
     await user.save();
     console.log("Form filled Successfully")
     return res.status(200).json({ message: "Form filled Successfully " })
@@ -83,28 +83,24 @@ router.post('/NewAdmin', async (req, res) => {
   }
 });
 
-router.post('/forgotEmail', async(req,res)=>{
-  const { Email } = req.body
-  try{
-    if(Email === ''){
-      res.status(400).send('email required');
+router.post('/forgotEmail', async (req, res) => {
+  try {
+    const { Email } = req.body
+    if (!Email) {
+      return res.status(400).json('email required');
     }
-    const user = await User.findOne({$where:{Email:Email}})
-    if(!user){
-      res.status(401).send('email not in database')
-    }else{
+    const user = await User.findOne({ Email: Email })
+    if (!user) {
+      return res.status(401).json('email not in the database')
+    } else {
       const token = crypto.randomBytes(20).toString('hex')
       user.update({
-        resetPasswordToken:token,
+        resetPasswordToken: token,
         resetPasswordExpires: Date.now() + 3600000,
       });
 
       const transporter = nodemailer.createTransport({
         service: "gmail",
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        requireTLS: true,
         auth: {
           user: `${process.env.EMAIL_ADDRESS}`, // generated ethereal user
           pass: `${process.env.EMAIL_PSSWD}`, // generated ethereal password
@@ -112,28 +108,28 @@ router.post('/forgotEmail', async(req,res)=>{
       });
 
       const mailOptions = {
-        from:`${process.env.EMAIL_ADDRESS}`,
-        to:`${Email}`,
-        Subject:"Link to Reset Password",
+        from: ` "Recovery Email for Daulatram Admin" <${process.env.EMAIL_ADDRESS}>`,
+        to: `${Email}`,
+        Subject: "Link to Reset Password",
         text:
-        "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n"
-        +'Please click on the following link, or paste this into your browser to complete the process within on hour of receiving it:\n\n'
-        +`http://localhost:3000/reset${token}\n\n`
-        +'If you did not request this, please ignore this email and your password will remain unchanged'
+          "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n"
+          + 'Please click on the following link, or paste this into your browser to complete the process within on hour of receiving it:\n\n'
+          + `http://localhost:3000/reset${token}\n\n`
+          + 'If you did not request this, please ignore this email and your password will remain unchanged'
       };
 
       console.log("Sending email.....")
 
-      transporter.sendMail(mailOptions,(err,response)=>{
-        if(err){
-          console.log("There was an error: ",err)
-        }else{
-          console.log("There you Go: ",response)
-          res.status(200).json('Recovery email sent')
+      transporter.sendMail(mailOptions, (err, response) => {
+        if (err) {
+          console.log("There was an error: ", err)
+        } else {
+          console.log("There you Go: ", response)
+          return res.status(200).json('Recovery email sent')
         }
       })
     }
-  }catch(err){
+  } catch (err) {
     console.log(" External err")
 
   }
@@ -205,7 +201,7 @@ router.get('/feedback', async (req, res,) => {
 });
 
 router.post('/StaffZone_feedback', async (req, res) => {
-  const { Link, Caption,text } = req.body
+  const { Link, Caption, text } = req.body
   if (!Link || !Caption) {
     return res.status(400).json({ error: "Fill the Admission Details Properly" })
   }
