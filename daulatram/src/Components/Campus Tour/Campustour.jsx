@@ -1,5 +1,5 @@
 import React from "react";
-import sample from "../Campus Tour/sample.mp4";
+import sample from "../Campus Tour/Virtual_Tour_Video.mp4";
 import "./campus_tour.css";
 function Campustour() {
   return (
