@@ -5,6 +5,9 @@ const fs = require("fs")
 const { promisify } = require("util")
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto')
+require('dotenv').config()
+const nodemailer = require('nodemailer')
 // const jwt = require("jsonwebtoken")
 const User = require('../models/adminSchema');
 const Adminssion = require('../models/Admission/onlineAdmission');
@@ -79,6 +82,63 @@ router.post('/NewAdmin', async (req, res) => {
     console.log(err)
   }
 });
+
+router.post('/forgotEmail', async(req,res)=>{
+  const { Email } = req.body
+  try{
+    if(Email === ''){
+      res.status(400).send('email required');
+    }
+    const user = await User.findOne({$where:{Email:Email}})
+    if(!user){
+      res.status(401).send('email not in database')
+    }else{
+      const token = crypto.randomBytes(20).toString('hex')
+      user.update({
+        resetPasswordToken:token,
+        resetPasswordExpires: Date.now() + 3600000,
+      });
+
+      const transporter = nodemailer.createTransport({
+        service: "gmail",
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        requireTLS: true,
+        auth: {
+          user: `${process.env.EMAIL_ADDRESS}`, // generated ethereal user
+          pass: `${process.env.EMAIL_PSSWD}`, // generated ethereal password
+        },
+      });
+
+      const mailOptions = {
+        from:`${process.env.EMAIL_ADDRESS}`,
+        to:`${Email}`,
+        Subject:"Link to Reset Password",
+        text:
+        "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n"
+        +'Please click on the following link, or paste this into your browser to complete the process within on hour of receiving it:\n\n'
+        +`http://localhost:3000/reset${token}\n\n`
+        +'If you did not request this, please ignore this email and your password will remain unchanged'
+      };
+
+      console.log("Sending email.....")
+
+      transporter.sendMail(mailOptions,(err,response)=>{
+        if(err){
+          console.log("There was an error: ",err)
+        }else{
+          console.log("There you Go: ",response)
+          res.status(200).json('Recovery email sent')
+        }
+      })
+    }
+  }catch(err){
+    console.log(" External err")
+
+  }
+})
+
 router.post('/AdminLogin', async (req, res) => {
   try {
     const { Username, Password } = req.body
