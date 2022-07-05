@@ -68,7 +68,7 @@ const Publications_res = () => {
         // if (file) {
         const formData = new FormData();
         formData.append("file", file);
-        formData.append("link", link);
+        formData.append("description", link);
         formData.append("title", caption);
 
         setErrMsg("");
@@ -109,7 +109,7 @@ const Publications_res = () => {
             <div class="grid grid-cols-3 w-full mt-5 mb-5">
               {data1 &&
                 data1.map((curElem) => {
-                  const { _id, title, file_path, link } = curElem;
+                  const { _id, title, file_path, description } = curElem;
                   var path_pic = file_path;
                   var path2 = path_pic.replace(/\\/g, "/");
                   var path = path2.slice(19);
@@ -117,7 +117,7 @@ const Publications_res = () => {
                     <>
                       <div class="card2 mb-10" key={_id}>
                         <span className="  font-bold text-xl ml-6 w-[250px]">
-                          {link}
+                          {description}
                         </span>
                         <div className="flex flex-col ml-10 w-full">
                           <div class="info2 ml-4 w-full ">
