@@ -169,6 +169,9 @@ import Math_publication from "./Pages/Academics/Departments/Mathematics/Math_pub
 import Math_facilities from "./Pages/Academics/Departments/Mathematics/Math_facilities";
 import Math_association from "./Pages/Academics/Departments/Mathematics/Math_association";
 
+// Music
+import Music_about from "./Pages/Academics/Departments/Music/Music_about";
+
 function App() {
   return (
     <>
@@ -1250,6 +1253,15 @@ function App() {
               </>
             }
             path="/academics/departments/Mathematics/association"
+          ></Route>{" "}
+          {/* Music */}
+          <Route
+            element={
+              <>
+                <Music_about />
+              </>
+            }
+            path="/academics/departments/Music/"
           ></Route>{" "}
           <Route
             element={
