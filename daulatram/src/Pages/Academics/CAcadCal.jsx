@@ -5,7 +5,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import Banner from "../../Components/Banners/Banner";
+import Banner from "../../Components/Banners/acal";
 import DeptSidebar from "../../Components/Sidebar/DeptSidebar";
 
 const CAcadCal = () => {
