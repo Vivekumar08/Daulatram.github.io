@@ -1231,6 +1231,7 @@ export const Music_fac_info = [{
 export const Nhe_fac_info = [{
         id: 139,
         Fac_name: "Dr Pooja Jain",
+        Designation: "Associate Professor",
         filter: "Current",
         img: "/images/ImgPages/NHE/Pooja_NHE.png",
         cv: "/images/ImgPages/NHE/Pooja_NHE_cv.pdf",
@@ -1242,9 +1243,61 @@ export const Nhe_fac_info = [{
         img: "/images/ImgPages/NHE/Priyanka_NHE.png",
         cv: "/images/ImgPages/NHE/Priyanka_NHE_cv.pdf",
     },
-
-
-
-
-
+]
+export const Philosophy_fac_info = [{
+        id: 141,
+        Fac_name: "Dr. V. Sujata Raju",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/male.png",
+        cv: "#",
+    },
+    {
+        id: 142,
+        Fac_name: "Dr. Sonia Mehta",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 143,
+        Fac_name: "Dr. Monica Prabhakar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 144,
+        Fac_name: "Dr. Vidhu Jain",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 145,
+        Fac_name: "Dr. Shweta Satyam",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 146,
+        Fac_name: "Dr. Tarang Kapoor",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/male.png",
+        cv: "#",
+    },
+    {
+        id: 147,
+        Fac_name: "Ms. Shyamalima B.",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
 ]

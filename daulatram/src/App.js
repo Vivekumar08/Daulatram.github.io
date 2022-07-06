@@ -181,6 +181,7 @@ import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
 import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
 // Philosophy
 import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
+import Philosophy_fac from "./Pages/Academics/Departments/Philosophy/Philosophy_fac";
 
 function App() {
   return (
@@ -1331,6 +1332,24 @@ function App() {
             }
             path="/academics/departments/Philosophy/"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_fac />
+              </>
+            }
+            path="/academics/departments/Philosophy/Faculty"
+          ></Route>{" "}
+
+
+
+
+
+
+
+
+
+
           <Route
             element={
               <>
