@@ -105,13 +105,13 @@ const trainingp = () => {
         <div className="w-[350px] flex flex-row">
           <DeptSidebar />
         </div>
-        <div className="ml-3 mb-5">
+        
           <div className="w-[1100px]">
-            <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
               TRAINING PROGRAMS
             </h2>
             <div className="main flex-col">
-              <table className="table-fixed mt-1 ">
+              <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1 ">
                 <tr className="h-20 text-lg">
                   <th className="row text-lg">S.no</th>
                   <th className="text-lg">About</th>
@@ -256,7 +256,7 @@ const trainingp = () => {
                 </form>
               </>
             )}
-          </div>
+          
         </div>
       </div>
     </div>
