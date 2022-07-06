@@ -1228,3 +1228,23 @@ export const Music_fac_info = [{
 
 
 ]
+export const Nhe_fac_info = [{
+        id: 139,
+        Fac_name: "Dr Pooja Jain",
+        filter: "Current",
+        img: "/images/ImgPages/NHE/Pooja_NHE.png",
+        cv: "/images/ImgPages/NHE/Pooja_NHE_cv.pdf",
+    },
+    {
+        id: 140,
+        Fac_name: "Ms. Priyanka Verma",
+        filter: "Current",
+        img: "/images/ImgPages/NHE/Priyanka_NHE.png",
+        cv: "/images/ImgPages/NHE/Priyanka_NHE_cv.pdf",
+    },
+
+
+
+
+
+]

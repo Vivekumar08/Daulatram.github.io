@@ -175,6 +175,11 @@ import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
 import Forgot from "./Pages/Admin/Forgot";
 import ResetPassword from "./Pages/Admin/ResetPassword";
 
+// NHE
+import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
+import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
+import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
+
 function App() {
   return (
     <>
@@ -1273,7 +1278,7 @@ function App() {
             }
             path="/academics/departments/Mathematics/association"
           ></Route>{" "}
-          {/* Music */}
+          {/* Music */}{" "}
           <Route
             element={
               <>
@@ -1290,6 +1295,33 @@ function App() {
             }
             path="/academics/departments/Music/Faculty"
           ></Route>{" "}
+          {/* NHE */}{" "}
+          <Route
+            element={
+              <>
+                <Nhe_about />
+              </>
+            }
+            path="/academics/departments/NHE/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Nhe_fac />
+              </>
+            }
+            path="/academics/departments/NHE/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Nhe_programoffered />
+              </>
+            }
+            path="/academics/departments/NHE/Programoffered"
+          ></Route>{" "}
+
+
 
 
 
