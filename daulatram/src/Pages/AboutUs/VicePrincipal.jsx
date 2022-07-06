@@ -15,7 +15,7 @@ const VicePrincipal = () => {
             <Sidebar />
           </div>
           <div className="w-[1100px]">
-            <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Vice-Principal's Message
             </h2>
 
@@ -23,11 +23,11 @@ const VicePrincipal = () => {
               <img
                 src={VP}
                 alt="Vice-Principal"
-                className="rounded-3xl border-black border-2 h-[280px] w-[370px] ml-80 mb-4"
+                className="rounded-3xl border-black border-2h-[250px] w-[300px] md:h-[300px] md:w-[380px] ml-2 md:ml-80 mb-4"
                 width={220}
               />
 
-              <span className=" card-description text-lg text-justify font-medium  pr-4 pl-4 pt-2">
+              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg  pr-4 pl-4 pt-2">
                 Students you should be assured that you are about to be admitted
                 to Daulat Ram College, which is a renowned affiliated college of
                 Delhi University. The college imparts holistic education to
@@ -44,7 +44,7 @@ const VicePrincipal = () => {
               </span>
             </figure>
             <figure className="flex pl-4 pr-4">
-              <span className="card-description text-justify text-lg font-medium ml-4 ">
+              <span className="card-description leading-14 font- medium text-justify text-base md:text-lg ml-4 ">
                 You can register yourself to any of these courses which are
                 launched from time to time by various departments. You can also
                 enroll for National Service Scheme (NSS), for community services
@@ -97,7 +97,7 @@ const VicePrincipal = () => {
               </span>
             </figure>
             <figure className="flex p-4 ">
-              <span className=" card-description text-lg text-justify font-medium  p-4">
+              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg  p-4">
                 <b> - Prof. Sarita Nanda</b>
               </span>
             </figure>
