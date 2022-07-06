@@ -1,621 +1,699 @@
 export const biochems = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/biochem/"
+        link: "/academics/departments/biochem/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/biochem/faculty"
+        link: "/academics/departments/biochem/faculty",
     },
     {
         id: 3,
         title: "Programmes Offerd",
-        link: "/academics/departments/biochem/programmesoffer"
+        link: "/academics/departments/biochem/programmesoffer",
     },
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/biochem/association"
+        title: "Events",
+        link: "/academics/departments/biochem/events",
     },
     {
         id: 5,
         title: "Student's Achievements",
-        link: "/academics/departments/biochem/studentsachieve"
+        link: "/academics/departments/biochem/studentsachieve",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/biochem/events"
+        title: "Publications",
+        link: "/academics/departments/biochem/publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/biochem/laboratorystaff"
+        title: "Awards",
+        link: "/academics/departments/biochem/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/biochem/publications"
+        title: "Research",
+        link: "/academics/departments/biochem/research",
     },
+
     {
         id: 9,
-        title: "Awards",
-        link: "/academics/departments/biochem/awards"
+        title: "Laboratory Staff",
+        link: "/academics/departments/biochem/laboratorystaff",
     },
+
     {
         id: 10,
-        title: "Research",
-        link: "/academics/departments/biochem/research"
+        title: "Association",
+        link: "/academics/departments/biochem/association",
     },
+
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/biochem/timetable"
+        link: "/academics/departments/biochem/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/biochem/photogallery"
+        link: "/academics/departments/biochem/photogallery",
     },
 ];
 
 export const botony_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/Botany/"
+        link: "/academics/departments/Botany/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/Botany/Botanyfaculty"
+        link: "/academics/departments/Botany/Botanyfaculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/Botany/programoffered"
+        link: "/academics/departments/Botany/programoffered",
     },
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/Botany/Botany_Association"
+        title: "Events",
+        link: "/academics/departments/Botany/events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/Botany/Botanystudachieve"
+        link: "/academics/departments/Botany/Botanystudachieve",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/Botany/events"
+        title: "Publications",
+        link: "/academics/departments/Botany/Bot_Publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/Botany/Botany_lab_Staff"
+        title: "Awards",
+        link: "/academics/departments/Botany/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/Botany/Bot_Publications"
+        title: "Research",
+        link: "/academics/departments/Botany/Research_Fac",
     },
     {
         id: 9,
-        title: "Awards",
-        link: "/academics/departments/Botany/awards"
+        title: "Laboratory Staff",
+        link: "/academics/departments/Botany/Botany_lab_Staff",
     },
+
     {
         id: 10,
-        title: "Research",
-        link: "/academics/departments/Botany/Research_Fac"
+        title: "Association",
+        link: "/academics/departments/Botany/Botany_Association",
     },
+
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Botany/timetable"
+        link: "/academics/departments/Botany/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/Botany/photogallery"
-
-    }
-]
+        link: "/academics/departments/Botany/photogallery",
+    },
+];
 
 export const chemistry_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/Chemistry/"
+        link: "/academics/departments/Chemistry/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/Chemistry/Faculty"
+        link: "/academics/departments/Chemistry/Faculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/Chemistry/Programoffered"
+        link: "/academics/departments/Chemistry/Programoffered",
     },
+
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/Chemistry/association"
+        title: "Events",
+        link: "/academics/departments/Chemistry/Events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/Chemistry/Students'_achievements"
+        link: "/academics/departments/Chemistry/Students'_achievements",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/Chemistry/Events"
+        title: "Publications",
+        link: "/academics/departments/Chemistry/Publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/Chemistry/laboratorystaff"
+        title: "Awards",
+        link: "/academics/departments/Chemistry/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/Chemistry/Publications"
+        title: "Facilities",
+        link: "/academics/departments/Chemistry/Facilities",
     },
-    {
-        id: 9,
-        title: "Awards",
-        link: "/academics/departments/Chemistry/awards"
-    },
+    //   {
+    //     id: 9,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/Chemistry/laboratorystaff",
+    //   },
+
     {
         id: 10,
-        title: "Research",
-        link: "/academics/departments/Chemistry/Facilities"
+        title: "Association",
+        link: "/academics/departments/Chemistry/association",
     },
+
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Chemistry/timetable"
+        link: "/academics/departments/Chemistry/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/Chemistry/photogallery"
-
-    }
-]
+        link: "/academics/departments/Chemistry/photogallery",
+    },
+];
 export const commerce_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/Commerce/"
+        link: "/academics/departments/Commerce/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/Commerce/Faculty"
+        link: "/academics/departments/Commerce/Faculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/Commerce/Programoffered"
+        link: "/academics/departments/Commerce/Programoffered",
     },
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/Commerce/association"
+        title: "Events",
+        link: "/academics/departments/Commerce/Events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/Commerce/Students'_achievements"
+        link: "/academics/departments/Commerce/Students'_achievements",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/Commerce/Events"
+        title: "Publications",
+        link: "/academics/departments/Commerce/Publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/Commerce/laboratorystaff"
+        title: "Awards",
+        link: "/academics/departments/Commerce/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/Commerce/Publications"
+        title: "Facilities",
+        link: "/academics/departments/Commerce/Facilities",
     },
     {
         id: 9,
-        title: "Awards",
-        link: "/academics/departments/Commerce/awards"
+        title: "Laboratory Staff",
+        link: "/academics/departments/Commerce/laboratorystaff",
     },
     {
         id: 10,
-        title: "Research",
-        link: "/academics/departments/Commerce/Facilities"
+        title: "Association",
+        link: "/academics/departments/Commerce/association",
     },
+
+
+
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Commerce/timetable"
+        link: "/academics/departments/Commerce/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/Commerce/photogallery"
-
-    }
-]
+        link: "/academics/departments/Commerce/photogallery",
+    },
+];
 export const Eco_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/Economics/"
+        link: "/academics/departments/Economics/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/Economics/Faculty"
+        link: "/academics/departments/Economics/Faculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/Economics/Programoffered"
+        link: "/academics/departments/Economics/Programoffered",
     },
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/Economics/association"
+        title: "Events",
+        link: "/academics/departments/Economics/Events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/Economics/Students'_achievements"
+        link: "/academics/departments/Economics/Students'_achievements",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/Economics/Events"
+        title: "Publications",
+        link: "/academics/departments/Economics/Publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/Economics/laboratorystaff"
+        title: "Awards",
+        link: "/academics/departments/Economics/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/Economics/Publications"
+        title: "Facilities",
+        link: "/academics/departments/Economics/Facilities",
     },
     {
         id: 9,
-        title: "Awards",
-        link: "/academics/departments/Economics/awards"
+        title: "Association",
+        link: "/academics/departments/Economics/association",
     },
-    {
-        id: 10,
-        title: "Research",
-        link: "/academics/departments/Economics/Facilities"
-    },
+
+    //   {
+    //     id: 10,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/Economics/laboratorystaff",
+    //   },
+
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Economics/timetable"
+        link: "/academics/departments/Economics/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/Economics/photogallery"
-
-    }
-]
+        link: "/academics/departments/Economics/photogallery",
+    },
+];
 export const Eng_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/English/"
+        link: "/academics/departments/English/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/English/Faculty"
+        link: "/academics/departments/English/Faculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/English/Programoffered"
+        link: "/academics/departments/English/Programoffered",
     },
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/English/association"
+        title: "Events",
+        link: "/academics/departments/English/Events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/English/Students'_achievements"
+        link: "/academics/departments/English/Students'_achievements",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/English/Events"
+        title: "Publications",
+        link: "/academics/departments/English/Publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/English/laboratorystaff"
+        title: "Awards",
+        link: "/academics/departments/English/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/English/Publications"
+        title: "Facilities",
+        link: "/academics/departments/English/Facilities",
     },
     {
         id: 9,
-        title: "Awards",
-        link: "/academics/departments/English/awards"
+        title: "Association",
+        link: "/academics/departments/English/association",
     },
-    {
-        id: 10,
-        title: "Research",
-        link: "/academics/departments/English/Facilities"
-    },
+
+    //   {
+    //     id: 10,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/English/laboratorystaff",
+    //   },
+
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/English/timetable"
+        link: "/academics/departments/English/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/English/photogallery"
-
-    }
-]
+        link: "/academics/departments/English/photogallery",
+    },
+];
 export const Hindi_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/Hindi/"
+        link: "/academics/departments/Hindi/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/Hindi/Faculty"
+        link: "/academics/departments/Hindi/Faculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/Hindi/Programoffered"
+        link: "/academics/departments/Hindi/Programoffered",
     },
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/Hindi/association"
+        title: "Events",
+        link: "/academics/departments/Hindi/Events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/Hindi/Students'_achievements"
+        link: "/academics/departments/Hindi/Students'_achievements",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/Hindi/Events"
+        title: "Publications",
+        link: "/academics/departments/Hindi/Publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/Hindi/laboratorystaff"
+        title: "Awards",
+        link: "/academics/departments/Hindi/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/Hindi/Publications"
+        title: "Facilities",
+        link: "/academics/departments/Hindi/Facilities",
     },
     {
         id: 9,
-        title: "Awards",
-        link: "/academics/departments/Hindi/awards"
+        title: "Association",
+        link: "/academics/departments/Hindi/association",
     },
+
     {
         id: 10,
-        title: "Newsletter & Magazines",
-        link: "/academics/departments/Hindi/newsletter_magazines_hindi"
+        title: "Time Table",
+        link: "/academics/departments/Hindi/timetable",
     },
     {
         id: 11,
-        title: "Time Table",
-        link: "/academics/departments/Hindi/timetable"
+        title: "Photo Gallery",
+        link: "/academics/departments/Hindi/photogallery",
     },
+
     {
         id: 12,
-        title: "Photo Gallery",
-        link: "/academics/departments/Hindi/photogallery"
-
-    }
-]
+        title: "Newsletter & Magazines",
+        link: "/academics/departments/Hindi/newsletter_magazines_History"
+    },
+];
 export const Hist_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/History/"
+        link: "/academics/departments/History/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/History/Faculty"
+        link: "/academics/departments/History/Faculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/History/Programoffered"
+        link: "/academics/departments/History/Programoffered",
     },
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/History/association"
+        title: "Events",
+        link: "/academics/departments/History/Events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/History/Students'_achievements"
+        link: "/academics/departments/History/Students'_achievements",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/History/Events"
+        title: "Publications",
+        link: "/academics/departments/History/Publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/History/laboratorystaff"
+        title: "Awards",
+        link: "/academics/departments/History/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/History/Publications"
+        title: "Facilities",
+        link: "/academics/departments/History/Facilities",
     },
     {
         id: 9,
-        title: "Awards",
-        link: "/academics/departments/History/awards"
+        title: "Association",
+        link: "/academics/departments/History/association",
     },
-    // {
+
+    //   {
     //     id: 10,
-    //     title: "Newsletter & Magazines",
-    //     link: "/academics/departments/History/newsletter_magazines_History"
-    // },
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/History/laboratorystaff",
+    //   },
+
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/History/timetable"
+        link: "/academics/departments/History/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/History/photogallery"
-
-    }
-]
+        link: "/academics/departments/History/photogallery",
+    },
+];
 export const Math_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/Mathematics/"
+        link: "/academics/departments/Mathematics/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/Mathematics/Faculty"
+        link: "/academics/departments/Mathematics/Faculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/Mathematics/Programoffered"
+        link: "/academics/departments/Mathematics/Programoffered",
     },
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/Mathematics/association"
+        title: "Events",
+        link: "/academics/departments/Mathematics/Events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/Mathematics/Students'_achievements"
+        link: "/academics/departments/Mathematics/Students'_achievements",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/Mathematics/Events"
+        title: "Publications",
+        link: "/academics/departments/Mathematics/Publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/Mathematics/laboratorystaff"
+        title: "Awards",
+        link: "/academics/departments/Mathematics/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/Mathematics/Publications"
+        title: "Facilities",
+        link: "/academics/departments/Mathematics/Facilities",
     },
     {
         id: 9,
-        title: "Awards",
-        link: "/academics/departments/Mathematics/awards"
+        title: "Association",
+        link: "/academics/departments/Mathematics/association",
     },
-    {
-        id: 10,
-        title: "Facilities",
-        link: "/academics/departments/Mathematics/Facilities"
-    },
+
+    //   {
+    //     id: 10,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/Mathematics/laboratorystaff",
+    //   },
+
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Mathematics/timetable"
+        link: "/academics/departments/Mathematics/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/Mathematics/photogallery"
+        link: "/academics/departments/Mathematics/photogallery",
+    },
+];
+export const Nhe_side = [{
 
-    }
-]
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/NHE/",
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/NHE/Faculty",
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/NHE/Programoffered",
+    },
+    {
+        id: 4,
+        title: "Events",
+        link: "/academics/departments/NHE/Events",
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/NHE/Students'_achievements",
+    },
+    {
+        id: 6,
+        title: "Publications",
+        link: "/academics/departments/NHE/Publications",
+    },
+    {
+        id: 7,
+        title: "Awards",
+        link: "/academics/departments/NHE/awards",
+    },
+    {
+        id: 8,
+        title: "Facilities",
+        link: "/academics/departments/NHE/Facilities",
+    },
+    {
+        id: 9,
+        title: "Association",
+        link: "/academics/departments/NHE/association",
+    },
+
+    //   {
+    //     id: 10,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/NHE/laboratorystaff",
+    //   },
+
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/NHE/timetable",
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/NHE/photogallery",
+    },
+];
 export const Music_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/Music/"
+        link: "/academics/departments/Music/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/Music/Faculty"
+        link: "/academics/departments/Music/Faculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/Music/Programoffered"
+        link: "/academics/departments/Music/Programoffered",
     },
     {
         id: 4,
-        title: "Association",
-        link: "/academics/departments/Music/association"
+        title: "Events",
+        link: "/academics/departments/Music/Events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/Music/Students'_achievements"
+        link: "/academics/departments/Music/Students'_achievements",
     },
     {
         id: 6,
-        title: "Events",
-        link: "/academics/departments/Music/Events"
+        title: "Publications",
+        link: "/academics/departments/Music/Publications",
     },
     {
         id: 7,
-        title: "Laboratory Staff",
-        link: "/academics/departments/Music/laboratorystaff"
+        title: "Awards",
+        link: "/academics/departments/Music/awards",
     },
     {
         id: 8,
-        title: "Publications",
-        link: "/academics/departments/Music/Publications"
+        title: "Facilities",
+        link: "/academics/departments/Music/Facilities",
     },
     {
         id: 9,
-        title: "Awards",
-        link: "/academics/departments/Music/awards"
+        title: "Association",
+        link: "/academics/departments/Music/association",
     },
-    {
-        id: 10,
-        title: "Facilities",
-        link: "/academics/departments/Music/Facilities"
-    },
+
+    //   {
+    //     id: 10,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/Music/laboratorystaff",
+    //   },
+
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Music/timetable"
+        link: "/academics/departments/Music/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/Music/photogallery"
-
-    }
-]
+        link: "/academics/departments/Music/photogallery",
+    },
+];
