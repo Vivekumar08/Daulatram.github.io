@@ -187,6 +187,7 @@ import Philosophy_publications from "./Pages/Academics/Departments/Philosophy/Ph
 import Philosophy_association from "./Pages/Academics/Departments/Philosophy/Philosophy_association";
 // Physical Education
 import PhysicalEdu_about from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_about";
+import PhysicalEdu_programoffered from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_programoffered";
 
 
 
@@ -1385,6 +1386,14 @@ function App() {
               </>
             }
             path="/academics/departments/Physical_Education/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <PhysicalEdu_programoffered />
+              </>
+            }
+            path="/academics/departments/Physical_Education/Programoffered"
           ></Route>{" "}
 
 
