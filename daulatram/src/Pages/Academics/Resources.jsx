@@ -1,29 +1,28 @@
 import React from "react";
-import Banner from "../../Components/Banners/ResourcesBanner";
+import ResourcesBanner from "../../Components/Banners/ResourcesBanner";
 import Sidebar from "../../Components/Sidebar/DeptSidebar";
 
 const Resources = () => {
   return (
     <>
-      <div className=" flex flex-col">
-        <div className="">
-          <Banner />
-      </div>
-       <div className="flex flex-row">
-          <div className="w-[350px]">
-            <Sidebar />
+      <ResourcesBanner />
+
+      <div className="flex flex-row">
+        <div className="w-[350px] mb-2">
+          <Sidebar />
+        </div>
+        <div className="w-[1100px]">
+          <div className="flex justify-center items-center flex-col">
+            <div>
+              <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+                Resources
+              </h2>
+            </div>
           </div>
-          <div className="w-[1100px] ">
-            <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-              RESOURCES
-            </h2>
-            
-          
           <div className="text-justify p-3 m-2 ml-4">
            
-            <h1 className="font-bold text-2xl md:text-3xl">Psychology Resource Centre</h1>
-            <br/>
-            <p className=" card-description leading-14 font- medium text-justify text-base md:text-lg ">
+            <h1 className="font-bold text-2xl">Psychology Resource Centre</h1>
+            <p>
               The Psychology Resource Centre (PRC) addresses the psycho-social
               needs of the students, teachers and non-teaching staﬀ, that is, to
               be aware of and eﬀectively manage with everyday life issues and
@@ -39,10 +38,9 @@ const Resources = () => {
               Centre, Positive Psychology Centre and Capacity Building Centre.
             </p>
             <br />
-            <h1 className="font-bold text-2xl md:text-3xl">Drosophila Resource Centre</h1>
-            
-             <br/>
-              <p className=" card-description leading-14 font- medium text-justify text-base md:text-lg ">
+            <h1 className="font-bold text-2xl">Drosophila Resource Centre</h1>
+            <div className="flex flex-col mb-5">
+              <p>
                 Drosophila Resource Centre was set up in Department of
                 Biochemistry almost 10 years ago. The centre is funded by DBT
                 Star College Project. It aims to teach the basic principles of
@@ -61,16 +59,15 @@ const Resources = () => {
               <div
                 style={{
                   backgroundImage: "url(/images/research/res1.png)",
-                  
-                  objectFit: "contain"
+                  width: "100%",
+                  height: "250px",
                 }}
-                className="w-200 h-32 md:w-480 md:h-48 bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
+                className="bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
               ></div>
-            <br/>
-            <h1 className="font-bold text-2xl md:text-3xl">Zebraﬁsh Lab Facility</h1>
-           
-              <br/>
-              <p className=" card-description leading-14 font- medium text-justify text-base md:text-lg ">
+            </div>
+            <h1 className="font-bold text-2xl">Zebraﬁsh Lab Facility</h1>
+            <div className="flex flex-col mb-5">
+              <p>
                 The zebraﬁsh lab facility was set up in October 2015, jointly by
                 Biochemistry department and Zoology department in collaboration
                 with CSIR-IGIB, Mathura Road, Delhi, and Sansriti Foundation
@@ -97,15 +94,14 @@ const Resources = () => {
               <div
                 style={{
                   backgroundImage: "url(/images/research/res2.png)",
-                 
-                  objectFit: "contain"
+                  width: "100%",
+                  height: "250px",
                 }}
-                className="w-200 h-32 md:w-480 md:h-48 bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
+                className="bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
               ></div>
-           <br/>
-            <h1 className="font-bold text-2xl md:text-3xl">Recycling Unit</h1>
-            <br/>
-            <p className=" card-description leading-14 font- medium text-justify text-base md:text-lg ">
+            </div>
+            <h1 className="font-bold text-2xl">Recycling Unit</h1>
+            <p>
               College aims to become a zero-discharge campus and hence, it has
               set up a recycling unit in its campus which houses a paper
               recycling machine for recycling used papers and leaves shredder
@@ -126,16 +122,16 @@ const Resources = () => {
             <div
                 style={{
                   backgroundImage: "url(/images/academics/recycling.png)",
-                  
+                  width: "100%",
+                  height: "250px",
                 }}
-                className="w-200 h-32 md:w-480 md:h-48 bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
+                className="bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
               ></div>
         
             <br />
-            </div>
+          </div>
         </div>
       </div>
-    </div>
     </>
   );
 };
