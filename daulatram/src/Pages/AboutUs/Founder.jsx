@@ -16,7 +16,7 @@ const Founder = () => {
             <Sidebar />
           </div>
           <div className="w-[1100px]">
-            <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className=" text-3xl md:text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
                     FOUNDER
                     </h2>
 
@@ -24,7 +24,7 @@ const Founder = () => {
               <img 
                 src={founder}
                 alt="founder"
-                className="rounded-3xl border-black border-2 h-[280px] w-[380px] md:h-[400px] md:w-[380px] ml-5 md:ml-80"
+                className="rounded-3xl border-black border-2 h-[250px] w-[300px] md:h-[300px] md:w-[380px] ml-2 md:ml-80"
                 
               />
 
