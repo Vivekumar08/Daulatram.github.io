@@ -57,6 +57,18 @@ const Societies = () => {
       setErrMsg("Unable to Delete");
     }
   };
+  function sortOn(property){
+    return function(a, b){
+        if(a[property] < b[property]){
+            return -1;
+        }else if(a[property] > b[property]){
+            return 1;
+        }else{
+            return 0;   
+        }
+    }
+}
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -101,7 +113,7 @@ const Societies = () => {
       </div>
 
       {data1 &&
-        data1.map((currElem) => {
+        data1.sort(sortOn("title")).map((currElem) => {
           const { _id, title, file_path, link } = currElem;
           var path_pic = file_path;
           var path2 = path_pic.replace(/\\/g, "/");
