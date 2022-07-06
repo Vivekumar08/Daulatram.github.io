@@ -5,4 +5,4 @@ mongoose.connect(uri, {
   useUnifiedTopology: true,
 }).then(() => {
   console.log(`connection successful`);
-}).catch((err) => console.log(`connection error`));
+}).catch((err) => console.log(`${err}`));

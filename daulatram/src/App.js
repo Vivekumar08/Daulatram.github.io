@@ -172,6 +172,8 @@ import Math_association from "./Pages/Academics/Departments/Mathematics/Math_ass
 // Music
 import Music_about from "./Pages/Academics/Departments/Music/Music_about";
 import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
+import Forgot from "./Pages/Admin/Forgot";
+import ResetPassword from "./Pages/Admin/ResetPassword";
 
 // NHE
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
@@ -219,6 +221,22 @@ function App() {
               </>
             }
             path="/Admin"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Forgot />
+              </>
+            }
+            path="/forgot"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <ResetPassword  />
+              </>
+            }
+            path="/reset/:Token"
           ></Route>{" "}
           <Route
             element={

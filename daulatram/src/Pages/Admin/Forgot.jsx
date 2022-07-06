@@ -4,13 +4,13 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 
-const Admin = () => {
+const Forgot = () => {
   const navigate = useNavigate();
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
   const [user, setUser] = useState("");
-  const [pwd, setPwd] = useState("");
+  const [email, setEmail] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -19,33 +19,33 @@ const Admin = () => {
 
   useEffect(() => {
     setErrMsg("");
-  }, [user, pwd]);
+  }, [email]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(user, pwd);
-    const response = await fetch("http://localhost:5000/AdminLogin", {
+    console.log(email);
+    const response = await fetch("http://localhost:5000/forgotEmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        Username: user,
-        Password: pwd,
+        Email: email,
       }),
     });
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
     } else if (response.status === 401) {
-      setErrMsg("Missing Username or Password");
-    } else if (response.status === 402) {
-      setErrMsg("Unauthorized");
+      setErrMsg("Email not in database");
+    } else if (response.status === 400) {
+      setErrMsg("Please filled Email");
     } else {
-      setUser("");
-      setPwd("");
+      setEmail("");
+      window.alert("Email has been sent, Please check your inbox");
+
       setAuth(true);
-      navigate("/");
+      //   navigate("/Admin");
     }
   };
 
@@ -58,54 +58,46 @@ const Admin = () => {
               {errMsg}
             </p>
           </h2>
-          <div class="md:w-1/3"></div>
-          <h2 className="text-4xl uppercase font-bold ml-10 mb-16 mt-[0] flex flex-row justify-center items-center ">
+          {/* <div class="md:w-1/3"></div> */}
+          <h2 className="text-2xl uppercase font-bold ml-10 mb-6 mt-[0] flex flex-row justify-center items-center ">
             <FontAwesomeIcon icon={faUser} className="mr-5"></FontAwesomeIcon>
-            Admin
+            Reset Password
           </h2>
         </span>
-        <div class="md:flex md:items-center mb-6">
+        <div class="md:flex md:items-center text-justify mb-10">
+          <div class="md:w-2/3"></div>
+          <p>
+            Enter your admin email address and we will send you a password reset
+            link.
+          </p>
+        </div>
+        <div class="md:flex md:items-center mb-3">
           <div class="md:w-1/3">
             <label
               class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-              htmlFor="full-name"
+              htmlFor="email"
             >
-              Username
+              Email
             </label>
           </div>
           <div class="md:w-2/3">
             <input
               class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
-              id="full-name"
-              type="text"
-              autoComplete="off"
+              id="email"
+              type="email"
+              placeholder="XYZ@gmail.com"
               ref={userRef}
-              onChange={(e) => setUser(e.target.value)}
-              value={user}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
               required
             />
           </div>
         </div>
-        <div class="md:flex md:items-center mb-6">
-          <div class="md:w-1/3">
-            <label
-              class="block text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4"
-              htmlFor="password"
-            >
-              Password
-            </label>
-          </div>
+
+        <div class="md:flex md:items-center mb-10">
+          <div class="md:w-1/3"></div>
           <div class="md:w-2/3">
-            <input
-              class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
-              id="password"
-              type="password"
-              placeholder="******************"
-              ref={userRef}
-              onChange={(e) => setPwd(e.target.value)}
-              value={pwd}
-              required
-            />
+            <p>Verify Your account</p>
           </div>
         </div>
         <div class="md:flex md:items-center">
@@ -116,16 +108,13 @@ const Admin = () => {
               type="button"
               onClick={handleSubmit}
             >
-              Login
+              Send Email
             </button>
           </div>
         </div>
-        <Link to="/forgot">
-          <div className="justify-end flex mt-3 text-blue-500  hover:scale-105 ">Forgot Password?</div>
-        </Link>
       </form>
     </>
   );
 };
 
-export default Admin;
+export default Forgot;
