@@ -16,11 +16,11 @@ const adminSchema = new mongoose.Schema({
     },
     resetPasswordToken: {
         type: String,
-        required: true
+        default: ""
     },
     resetPasswordExpires: {
         type: String,
-        required: true
+        default: ""
     }
 })
 
