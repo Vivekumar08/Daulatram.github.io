@@ -64,15 +64,12 @@ router.get('/getdata', async (req, res,) => {
 });
 router.get('/resetData', async (req, res,) => {
   const tok = req.query.resetPasswordToken
-  // console.log(tok)
 
   const details = await User.findOne({
     resetPasswordToken: tok,
     // resetPasswordExpires: { $gt: Date.now(), },
 
   })
-  // console.log(details.resetPasswordToken)
-  // console.log(details)
   if (!details) {
     console.log('password reset link is invalid')
     res.status(400).json('password reset link is invalid')
