@@ -17,7 +17,7 @@ function Math_events() {
         <div className="ml-3 ">
           <div className="w-full mr-16">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              Students Achievements
+                Events
             </h2>
           </div>
           <div className="flex flex-row">

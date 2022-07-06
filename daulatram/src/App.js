@@ -175,6 +175,19 @@ import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
 import Forgot from "./Pages/Admin/Forgot";
 import ResetPassword from "./Pages/Admin/ResetPassword";
 
+// NHE
+import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
+import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
+import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
+// Philosophy
+import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
+import Philosophy_fac from "./Pages/Academics/Departments/Philosophy/Philosophy_fac";
+import Philosophy_programoffered from "./Pages/Academics/Departments/Philosophy/Philosophy_programoffered";
+import Philosophy_events from "./Pages/Academics/Departments/Philosophy/Philosophy_events";
+import Philosophy_studachieve from "./Pages/Academics/Departments/Philosophy/Philosophy_studachieve";
+import Philosophy_publications from "./Pages/Academics/Departments/Philosophy/Philosophy_publications";
+import Philosophy_association from "./Pages/Academics/Departments/Philosophy/Philosophy_association";
+
 function App() {
   return (
     <>
@@ -1273,7 +1286,7 @@ function App() {
             }
             path="/academics/departments/Mathematics/association"
           ></Route>{" "}
-          {/* Music */}
+          {/* Music */}{" "}
           <Route
             element={
               <>
@@ -1290,15 +1303,88 @@ function App() {
             }
             path="/academics/departments/Music/Faculty"
           ></Route>{" "}
-
-
-
-
-
-
-
-
-
+          {/* NHE */}{" "}
+          <Route
+            element={
+              <>
+                <Nhe_about />
+              </>
+            }
+            path="/academics/departments/NHE/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Nhe_fac />
+              </>
+            }
+            path="/academics/departments/NHE/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Nhe_programoffered />
+              </>
+            }
+            path="/academics/departments/NHE/Programoffered"
+          ></Route>{" "}
+          {/* Philosophy */}{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_about />
+              </>
+            }
+            path="/academics/departments/Philosophy/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_fac />
+              </>
+            }
+            path="/academics/departments/Philosophy/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_programoffered />
+              </>
+            }
+            path="/academics/departments/Philosophy/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_events />
+              </>
+            }
+            path="/academics/departments/Philosophy/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_studachieve />
+              </>
+            }
+            path="/academics/departments/Philosophy/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_publications />
+              </>
+            }
+            path="/academics/departments/Philosophy/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_association />
+              </>
+            }
+            path="/academics/departments/Philosophy/association"
+          ></Route>{" "}
           <Route
             element={
               <>
