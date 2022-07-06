@@ -65,31 +65,34 @@ router.get('/getdata', async (req, res,) => {
 router.get('/resetData', async (req, res,) => {
   const tok = req.query.resetPasswordToken
   // console.log(tok)
+
   const details = await User.findOne({
-    where:{resetPasswordToken: tok,
-      resetPasswordExpires: { $gt: Date.now(), },
-    }
+    resetPasswordToken: tok,
+    // resetPasswordExpires: { $gt: Date.now(), },
+
   })
+  // console.log(details.resetPasswordToken)
+  // console.log(details)
   if (!details) {
     console.log('password reset link is invalid')
     res.status(400).json('password reset link is invalid')
   } else {
-    // const exp = details.resetPasswordExpires
-    // const diff = exp - Date.now()
-    // console.log(diff)
+    const exp = details.resetPasswordExpires
+    const diff = exp - Date.now()
+    console.log(exp)
 
-    // if (diff > 0) {
+    if (diff > 0) {
       res.status(200).json(
         {
           username: details.Username,
           message: 'password reset link a-ok'
         }
       )
-    // } else {
-    //   console.log('password reset link has expired')
-    //   res.status(400).json('password reset link has expired')
+    } else {
+      console.log('password reset link has expired')
+      res.status(400).json('password reset link has expired')
 
-    // }
+    }
   }
 });
 
@@ -110,7 +113,7 @@ router.put('/updatePasswordViaEmail', async (req, res,) => {
       if (data) {
         console.log('password updated');
         res.status(200).json({ message: "password updated" })
-      }else{
+      } else {
         console.log("Password can't be update")
         res.status(403).json("Password can't be update")
       }
