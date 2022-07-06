@@ -177,6 +177,8 @@ import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
 import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
 import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
+// Philosophy
+import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
 
 function App() {
   return (
@@ -1302,17 +1304,15 @@ function App() {
             }
             path="/academics/departments/NHE/Programoffered"
           ></Route>{" "}
-
-
-
-
-
-
-
-
-
-
-
+          {/* Philosophy */}
+          <Route
+            element={
+              <>
+                <Philosophy_about />
+              </>
+            }
+            path="/academics/departments/Philosophy/"
+          ></Route>{" "}
           <Route
             element={
               <>
