@@ -6,6 +6,7 @@ const { promisify } = require("util")
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto')
+const url = require('url');
 require('dotenv').config()
 const nodemailer = require('nodemailer')
 // const jwt = require("jsonwebtoken")
@@ -62,46 +63,64 @@ router.get('/getdata', async (req, res,) => {
   res.status(200).json(details)
 });
 router.get('/resetData', async (req, res,) => {
+  const tok = req.query.resetPasswordToken
+  // console.log(tok)
   const details = await User.findOne({
-    resetPasswordToken: req.query.resetPasswordToken,
-    resetPasswordExpires: { $gt: Date.now(), },
+    where:{resetPasswordToken: tok,
+      resetPasswordExpires: { $gt: Date.now(), },
+    }
   })
   if (!details) {
-    console.log('password reset link is invalid or has expired')
-    res.json('password reset link is invalid or has expired')
+    console.log('password reset link is invalid')
+    res.status(400).json('password reset link is invalid')
   } else {
-    res.status(200).json(
-      {
-        username: details.Username,
-        message: 'password reset link a-ok'
-      }
-    )
+    // const exp = details.resetPasswordExpires
+    // const diff = exp - Date.now()
+    // console.log(diff)
+
+    // if (diff > 0) {
+      res.status(200).json(
+        {
+          username: details.Username,
+          message: 'password reset link a-ok'
+        }
+      )
+    // } else {
+    //   console.log('password reset link has expired')
+    //   res.status(400).json('password reset link has expired')
+
+    // }
   }
 });
 
 router.put('/updatePasswordViaEmail', async (req, res,) => {
   try {
+    console.log(req.body)
+    const { Username, Password } = req.body;
+
     const details = await User.findOne({
-      Username: req.body.Username
+      Username: Username
     })
     if (details) {
       const salt = await bcrypt.genSalt()
 
       console.log('User exists in the database')
       const hashedPassword = await bcrypt.hash(Password, salt)
-      const user = await details.update({ Password: hashedPassword, resetPasswordToken:null,resetPasswordExpires:null });
-      const data = await user.save();
-      if(data){
+      const data = await details.updateOne({ Password: hashedPassword, resetPasswordToken: null, resetPasswordExpires: null });
+      if (data) {
         console.log('password updated');
-        res.status(200).json({message:"password updated"})
+        res.status(200).json({ message: "password updated" })
+      }else{
+        console.log("Password can't be update")
+        res.status(403).json("Password can't be update")
       }
-  
+
     } else {
       console.log('no user exists in db to update')
       res.status(404).json('no user exists in db to update')
     }
   } catch (err) {
-    console.log("External err")
+    console.log(err)
   }
 });
 
@@ -137,41 +156,45 @@ router.post('/forgotEmail', async (req, res) => {
       return res.status(401).json('email not in the database')
     } else {
       const token = crypto.randomBytes(20).toString('hex')
-      user.update({
+      const up = await user.updateOne({
         resetPasswordToken: token,
-        resetPasswordExpires: Date.now() + 600000,
+        resetPasswordExpires: Date.now() + 3600000,
       });
+      if (up) {
 
-      const transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-          user: `${process.env.EMAIL_ADDRESS}`, // generated ethereal user
-          pass: `${process.env.EMAIL_PSSWD}`, // generated ethereal password
-        },
-      });
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: `${process.env.EMAIL_ADDRESS}`, // generated ethereal user
+            pass: `${process.env.EMAIL_PSSWD}`, // generated ethereal password
+          },
+        });
 
-      const mailOptions = {
-        from: ` "Recovery Email for Daulatram Admin" <${process.env.EMAIL_ADDRESS}>`,
-        to: `${Email}`,
-        Subject: "Link to Reset Password",
-        text:
-          "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n"
-          + 'Please click on the following link, or paste this into your browser to complete the process within on hour of receiving it:\n\n'
-          + `http://localhost:3000/reset${token}\n\n`
-          + `This link is valid only upto 10 mins\n\n`
-          + 'If you did not request this, please ignore this email and your password will remain unchanged'
-      };
+        const mailOptions = {
+          from: ` "Recovery Email for Daulatram Admin" <${process.env.EMAIL_ADDRESS}>`,
+          to: `${Email}`,
+          Subject: "Link to Reset Password",
+          text:
+            "You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n"
+            + 'Please click on the following link, or paste this into your browser to complete the process within 10 mins of receiving it:\n\n'
+            + `http://localhost:3000/reset/${token}\n\n`
+            + `This link is valid only upto 10 mins\n\n`
+            + 'If you did not request this, please ignore this email and your password will remain unchanged'
+        };
 
-      console.log("Sending email.....")
+        console.log("Sending email.....")
 
-      transporter.sendMail(mailOptions, (err, response) => {
-        if (err) {
-          console.log("There was an error: ", err)
-        } else {
-          console.log("There you Go: ", response)
-          return res.status(200).json('Recovery email sent')
-        }
-      })
+        transporter.sendMail(mailOptions, (err, response) => {
+          if (err) {
+            console.log("There was an error: ", err)
+          } else {
+            console.log("There you Go: ", response)
+            return res.status(200).json('Recovery email sent')
+          }
+        })
+      } else {
+        console.log("Unable to give token ")
+      }
     }
   } catch (err) {
     console.log(" External err")
