@@ -697,3 +697,66 @@ export const Music_side = [{
         link: "/academics/departments/Music/photogallery",
     },
 ];
+export const Philosophy_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Philosophy/",
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Philosophy/Faculty",
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Philosophy/Programoffered",
+    },
+    {
+        id: 4,
+        title: "Events",
+        link: "/academics/departments/Philosophy/Events",
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Philosophy/Students'_achievements",
+    },
+    {
+        id: 6,
+        title: "Publications",
+        link: "/academics/departments/Philosophy/Publications",
+    },
+    {
+        id: 7,
+        title: "Awards",
+        link: "/academics/departments/Philosophy/awards",
+    },
+    {
+        id: 8,
+        title: "Facilities",
+        link: "/academics/departments/Philosophy/Facilities",
+    },
+    {
+        id: 9,
+        title: "Association",
+        link: "/academics/departments/Philosophy/association",
+    },
+
+    //   {
+    //     id: 10,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/Philosophy/laboratorystaff",
+    //   },
+
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Philosophy/timetable",
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Philosophy/photogallery",
+    },
+];
