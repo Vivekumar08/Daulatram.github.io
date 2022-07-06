@@ -364,3 +364,39 @@
 a:hover img{
     transform: scale(1.1);
 }
+
+/* bulletin_content */
+.bar_content {
+    display: block; /* Important to give the content a width */
+  
+    width: 95%;
+    transform: translateX(100%); /* Animation start out of the screen */
+  
+    /* Add the animation */
+    animation: move 30s linear infinite /* infinite make reapeat the animation indefinitely */;
+  }
+  
+  /* Create the animation */
+  @keyframes move {
+    to { transform: translateX(-100%); }
+  }
+
+/* bulletin_content */
+.marquee{
+    /* margin: 0 auto; */
+    white-space: nowrap;
+    /* overflow: hidden; */
+    position: absolute;
+    display: inline-block;
+    /* Add the animation */
+    animation: move 30s linear infinite /* infinite make reapeat the animation indefinitely */;
+}
+.marquee span {
+    display: inline-block; /* Important to give the content a width */
+  }
+  
+  /* Create the animation */
+  @keyframes move {
+    0% { transform: translate3d(100%,0,0); }
+    100% { transform: translate3d(-85%,0,0); }
+  }
