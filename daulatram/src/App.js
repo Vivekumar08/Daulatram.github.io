@@ -184,7 +184,7 @@ import Philosophy_programoffered from "./Pages/Academics/Departments/Philosophy/
 import Philosophy_events from "./Pages/Academics/Departments/Philosophy/Philosophy_events";
 import Philosophy_studachieve from "./Pages/Academics/Departments/Philosophy/Philosophy_studachieve";
 import Philosophy_publications from "./Pages/Academics/Departments/Philosophy/Philosophy_publications";
-
+import Philosophy_association from "./Pages/Academics/Departments/Philosophy/Philosophy_association";
 
 function App() {
   return (
@@ -1359,13 +1359,14 @@ function App() {
             }
             path="/academics/departments/Philosophy/Publications"
           ></Route>{" "}
-
-
-
-
-
-
-
+          <Route
+            element={
+              <>
+                <Philosophy_association />
+              </>
+            }
+            path="/academics/departments/Philosophy/association"
+          ></Route>{" "}
           <Route
             element={
               <>
