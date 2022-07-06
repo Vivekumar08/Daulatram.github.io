@@ -17,7 +17,7 @@ const Chairperson = () => {
             <Sidebar />
           </div>
           <div className="w-[1100px]">
-            <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
                     Chairperson's Message
                     </h2>
 
@@ -25,11 +25,11 @@ const Chairperson = () => {
               <img 
                 src={chairman}
                 alt="chairman"
-                className="rounded-3xl border-black border-2 h-[280px] w-[380px] ml-80 mb-4"
+                className="rounded-3xl border-black border-2 h-[250px] w-[300px] md:h-[300px] md:w-[380px] ml-2 md:ml-80 mb-4"
                 width={180}
               />
 
-              <span className=" card-description text-lg text-justify font-medium m-50 pr-4 pl-4 pt-2">
+              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg m-50 pr-4 pl-4 pt-2">
               Daulat Ram College is a premium college for women in Delhi University, founded by the individualistic educationist,
                Late Shri Daulat Ram Gupta in 1960. The institute, a large constituent college of University of Delhi, originally started as
                 ‘Pramila College’ and was renamed as Daulat Ram College in 1964 as it grew into a full-fledged extended college of University of Delhi.
@@ -39,7 +39,7 @@ const Chairperson = () => {
               
             </figure>
             <figure className="flex p-2">
-              <span className="card-description text-justify text-lg font-medium ml-4 ">
+              <span className="card-description leading-14 font- medium text-justify text-base md:text-lg ml-6 ">
                 At present the college has 18 departments, over 3546 students on rolls, 185 teaching staff and 71 non-teaching staff. 
                 The courses in Science were introduced in 1968 which led to the construction of the Science Block and Science laboratories. 
                 The Commerce and M.A. courses as well as new Courses in B.A. (Hons.) and B.A. Programme were added simultaneously. 
@@ -67,7 +67,7 @@ const Chairperson = () => {
             <figure className="flex p-4 ">
               
 
-              <span className=" card-description text-lg text-justify font-medium  p-4">
+              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg  p-4">
     
                  <b> - Prof. Mukund Gupta</b>
                 </span>
