@@ -1048,3 +1048,256 @@ export const Hindi_fac_info = [{
 
 
 ]
+export const Hist_fac_info = [{
+        id: 124,
+        Fac_name: "Mrs. Sneh Lata",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Sneh_hist.png",
+        cv: "/images/ImgPages/History/Sneh_hist_cv.pdf",
+    },
+    {
+        id: 125,
+        Fac_name: "Dr. Smarika Nawani",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Smarika_hist.jpg",
+        cv: "/images/ImgPages/History/Smarika_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Mrs. Menka Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Menka_hist.jpg",
+        cv: "/images/ImgPages/History/Menka_hist_cv.pdf",
+    },
+    {
+        id: 127,
+        Fac_name: "Mr. Pravash K Ch.",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Pravash_hist.png",
+        cv: "/images/ImgPages/History/Pravash_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Mr. Deepak Naorem",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Deepak_hist.png",
+        cv: "/images/ImgPages/History/Deepak_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Dr. Nikhil Gangwar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Nikhil_hist.png",
+        cv: "/images/ImgPages/History/Nikhil_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Ms. Ruby Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Rubi_hist.jpg",
+        cv: "/images/ImgPages/History/Rubi_hist_cv.pdf",
+    },
+    {
+        id: 126,
+        Fac_name: "Ms. Sana Bano",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/History/Sana_hist.png",
+        cv: "/images/ImgPages/History/Sana_hist_cv.pdf",
+    },
+
+
+
+
+
+]
+export const Math_fac_info = [{
+        id: 127,
+        Fac_name: "Dr. Seema Khurana",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Seema_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Seema_math_cv.pdf",
+    },
+    {
+        id: 128,
+        Fac_name: "Mr. Virendra Kumar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Virendra_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Virendra_math_cv.pdf",
+    },
+    {
+        id: 129,
+        Fac_name: "Mr. Naresh Kumar Kodam",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Naresh_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Naresh_math_cv.pdf",
+    },
+    {
+        id: 130,
+        Fac_name: "Dr. Poonam Mantry",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Poonam_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Poonam_math_cv.pdf",
+    },
+    {
+        id: 132,
+        Fac_name: "Dr. Neha Bhatia",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Neha_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Neha_math_cv.pdf",
+    },
+    {
+        id: 132,
+        Fac_name: "Dr. Vikas Dhaka",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Vikas_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Vikas_math_cv.pdf",
+    },
+    {
+        id: 133,
+        Fac_name: "Mr. Monu Kumar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Monu_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Monu_math_cv.pdf",
+    },
+    {
+        id: 134,
+        Fac_name: "Ms. Jyoti Sharma",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Jyoti_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Jyoti_math_cv.pdf",
+    },
+    {
+        id: 135,
+        Fac_name: "Ms. Rekha Meena",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Mathematics/Rekha_math.jpg",
+        cv: "/images/ImgPages/Mathematics/Rekha_math_cv.pdf",
+    },
+
+
+
+
+
+]
+
+
+
+export const Music_fac_info = [{
+        id: 136,
+        Fac_name: "Dr Deepti Bansal",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Music/Deepti_music_cv.pdf",
+    },
+    {
+        id: 137,
+        Fac_name: "Dr. Sumita Chakravorty",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Music/Sumita_music_cv.pdf",
+    },
+    {
+        id: 138,
+        Fac_name: "Dr. Sapna Raina Kachroo",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Music/Sapna_music_cv.pdf",
+    },
+
+
+
+
+
+
+
+]
+export const Nhe_fac_info = [{
+        id: 139,
+        Fac_name: "Dr Pooja Jain",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/NHE/Pooja_NHE.png",
+        cv: "/images/ImgPages/NHE/Pooja_NHE_cv.pdf",
+    },
+    {
+        id: 140,
+        Fac_name: "Ms. Priyanka Verma",
+        filter: "Current",
+        img: "/images/ImgPages/NHE/Priyanka_NHE.png",
+        cv: "/images/ImgPages/NHE/Priyanka_NHE_cv.pdf",
+    },
+]
+export const Philosophy_fac_info = [{
+        id: 141,
+        Fac_name: "Dr. V. Sujata Raju",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/male.png",
+        cv: "#",
+    },
+    {
+        id: 142,
+        Fac_name: "Dr. Sonia Mehta",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 143,
+        Fac_name: "Dr. Monica Prabhakar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 144,
+        Fac_name: "Dr. Vidhu Jain",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 145,
+        Fac_name: "Dr. Shweta Satyam",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 146,
+        Fac_name: "Dr. Tarang Kapoor",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/male.png",
+        cv: "#",
+    },
+    {
+        id: 147,
+        Fac_name: "Ms. Shyamalima B.",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+]

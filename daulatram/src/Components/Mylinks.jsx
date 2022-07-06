@@ -428,47 +428,47 @@ export const dept = [
       },
       {
         name: "History",
-        link: "./",
+        link: "/academics/departments/History/",
       },
       {
         name: "Mathematics",
-        link: "./",
+        link: "/academics/departments/Mathematics/",
       },
       {
         name: "Music",
-        link: "./",
+        link: "/academics/departments/Music/",
       },
       {
         name: "NHE",
-        link: "./",
+        link: "/academics/departments/NHE/",
       },
       {
         name: "Philosophy",
-        link: "./",
+        link: "/academics/departments/Philosophy/",
       },
       {
         name: "Physical Education",
-        link: "./",
+        link: "/academics/departments/Physical_Education/",
       },
       {
         name: "Physics",
-        link: "./",
+        link: "/academics/departments/Physics",
       },
       {
         name: "Political Science",
-        link: "./",
+        link: "/academics/departments/Political_Science",
       },
       {
         name: "Psychology",
-        link: "./",
+        link: "/academics/departments/Psychology",
       },
       {
         name: "Sanskrit",
-        link: "./",
+        link: "/academics/departments/Sanskrit",
       },
       {
         name: "Zoology",
-        link: "./",
+        link: "/academics/departments/Zoology",
       },
     ],
   },

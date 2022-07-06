@@ -18,6 +18,8 @@ const Training = require('../models/Academics/Training_Schema')
 const U_Acad_Cal = require('../models/Academics/U_Acad_Cal_Schema')
 const C_Acad_Cal = require('../models/Academics/C_Acad_Cal_Schema')
 const Teacher = require('../models/Academics/Teacher_Schema')
+const Feedback = require('../models/StaffZone/Feedback_Form_Schema')
+const Roster = require('../models/StaffZone/Roster_Schema')
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -132,6 +134,30 @@ router.delete('/deleteAdmission/:id', async (req, res) => {
   res.status(200).json(delete_user + "User deleted")
 })
 
+
+// Feedback Form Staff Zone
+
+router.get('/feedback', async (req, res,) => {
+  // res.send(`Hello World from the server`);
+  const details = await Feedback.find()
+  res.status(200).json(details)
+});
+
+router.post('/StaffZone_feedback', async (req, res) => {
+  const { Link, Caption,text } = req.body
+  if (!Link || !Caption) {
+    return res.status(400).json({ error: "Fill the Admission Details Properly" })
+  }
+  const user = new Feedback(req.body);
+  await user.save();
+  console.log("Details Saved Successfully")
+  return res.status(200).json({ message: "Details Saved Successfully " })
+})
+router.delete('/deletefeedback/:id', async (req, res) => {
+  const delete_user = await Feedback.findOneAndDelete({ _id: req.params.id });
+  res.status(200).json(delete_user + "User deleted")
+})
+
 // Ragging
 
 router.get('/Anti_Ragging', async (req, res,) => {
@@ -212,6 +238,43 @@ router.post(
   }
 );
 
+// Staff Roster
+
+router.get('/Staff_Roster', async (req, res,) => {
+  const details = await Roster.find()
+  res.status(200).json(details)
+});
+router.delete('/delete_Staff_Roster/:id', async (req, res) => {
+  const delete_user = await Roster.findOneAndDelete({ _id: req.params.id });
+  await unlinkAsync(delete_user.file_path)
+  res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+  '/Staff_Roster_add',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, link } = req.body;
+      const { path, mimetype } = req.file;
+      const file = new Roster({
+        title,
+        link,
+        file_path: path,
+        file_mimetype: mimetype
+      });
+      await file.save();
+      res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
 // Bulletin
 
 router.get('/bulletin', async (req, res,) => {

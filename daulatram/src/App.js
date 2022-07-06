@@ -146,9 +146,45 @@ import Hindi_programoffered from "./Pages/Academics/Departments/Hindi/Hindi_prog
 import Hindi_events from "./Pages/Academics/Departments/Hindi/Hindi_events";
 import Hindi_studachieve from "./Pages/Academics/Departments/Hindi/Hindi_studachieve";
 import Hindi_publications from "./Pages/Academics/Departments/Hindi/Hindi_publications";
-import Hindi_awards from "./Pages/Academics/Departments/Hindi/Hindi_awards"
-import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_association"
-import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine"
+import Hindi_awards from "./Pages/Academics/Departments/Hindi/Hindi_awards";
+import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_association";
+import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine";
+
+// History
+import Hist_about from "./Pages/Academics/Departments/History/Hist_about";
+import Hist_fac from "./Pages/Academics/Departments/History/Hist_fac";
+import Hist_programoffered from "./Pages/Academics/Departments/History/Hist_programoffered";
+import Hist_publications from "./Pages/Academics/Departments/History/Hist_publications";
+import Hist_awards from "./Pages/Academics/Departments/History/Hist_awards";
+import Hist_association from "./Pages/Academics/Departments/History/Hist_association";
+import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
+
+// Mathemtics
+import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
+import Math_fac from "./Pages/Academics/Departments/Mathematics/Math_fac";
+import Math_programoffered from "./Pages/Academics/Departments/Mathematics/Math_programoffered";
+import Math_events from "./Pages/Academics/Departments/Mathematics/Math_events";
+import Math_studachieve from "./Pages/Academics/Departments/Mathematics/Math_studachieve";
+import Math_publication from "./Pages/Academics/Departments/Mathematics/Math_publication";
+import Math_facilities from "./Pages/Academics/Departments/Mathematics/Math_facilities";
+import Math_association from "./Pages/Academics/Departments/Mathematics/Math_association";
+
+// Music
+import Music_about from "./Pages/Academics/Departments/Music/Music_about";
+import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
+
+// NHE
+import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
+import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
+import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
+// Philosophy
+import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
+import Philosophy_fac from "./Pages/Academics/Departments/Philosophy/Philosophy_fac";
+import Philosophy_programoffered from "./Pages/Academics/Departments/Philosophy/Philosophy_programoffered";
+import Philosophy_events from "./Pages/Academics/Departments/Philosophy/Philosophy_events";
+import Philosophy_studachieve from "./Pages/Academics/Departments/Philosophy/Philosophy_studachieve";
+import Philosophy_publications from "./Pages/Academics/Departments/Philosophy/Philosophy_publications";
+import Philosophy_association from "./Pages/Academics/Departments/Philosophy/Philosophy_association";
 
 function App() {
   return (
@@ -389,8 +425,7 @@ function App() {
             }
             path="/societies/extraCurricularActivities"
           ></Route>{" "}
-          {/* *********************** */} {/* Admission */}{" "}
-          {/* *********************** */}{" "}
+          // Admission
           <Route
             element={
               <>
@@ -479,8 +514,8 @@ function App() {
             }
             path="/admission/OBC_SC_ST_EWS_Complaints"
           ></Route>{" "}
-          {/* *********************** */} {/* Staff Zone */}{" "}
-          {/* *********************** */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Staff Zone */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -529,8 +564,8 @@ function App() {
             }
             path="/StaffZone/Roster"
           ></Route>{" "}
-          {/* *********************** */} {/* Socieites */}{" "}
-          {/* *********************** */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Socieites */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -547,8 +582,9 @@ function App() {
             }
             path="/societies/dramaScociety"
           ></Route>{" "}
-          {/* *********************** */} {/* Research And Facilities */}{" "}
-          {/* *********************** */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} //{" "}
+          {/* Research And Facilities */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -565,7 +601,7 @@ function App() {
             }
             path="/research/publications"
           ></Route>{" "}
-          {/* Botany */}{" "}
+          // {/* Botany */}{" "}
           <Route
             element={
               <>
@@ -767,8 +803,8 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
-          {/* *********************** */} {/* Footer */}{" "}
-          {/* *********************** */}{" "}
+          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
               <>
@@ -858,7 +894,7 @@ function App() {
             }
             path="/academics/departments/Chemistry/association"
           ></Route>{" "}
-          {/* Commerce */}{" "}
+          // {/* Commerce */}{" "}
           <Route
             element={
               <>
@@ -923,7 +959,7 @@ function App() {
             }
             path="/academics/departments/Commerce/Programoffered/Bcomprog"
           ></Route>{" "}
-          {/* Economics */}{" "}
+          // {/* Economics */}{" "}
           <Route
             element={
               <>
@@ -980,7 +1016,7 @@ function App() {
             }
             path="/academics/departments/Economics/photogallery"
           ></Route>{" "}
-          {/* English */}{" "}
+          // {/* English */}{" "}
           <Route
             element={
               <>
@@ -1050,8 +1086,6 @@ function App() {
             element={
               <>
                 <Hindi_fac />
-
-                <Hindi_fac />
               </>
             }
             path="/academics/departments/Hindi/Faculty"
@@ -1112,16 +1146,227 @@ function App() {
             }
             path="/academics/departments/Hindi/newsletter_magazines_hindi"
           ></Route>{" "}
-
-
-
-
-
-
-
-
-
-
+          {/* History */}{" "}
+          <Route
+            element={
+              <>
+                <Hist_about />
+              </>
+            }
+            path="/academics/departments/History/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_fac />
+              </>
+            }
+            path="/academics/departments/History/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_programoffered />
+              </>
+            }
+            path="/academics/departments/History/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_publications />
+              </>
+            }
+            path="/academics/departments/History/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_awards />
+              </>
+            }
+            path="/academics/departments/History/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_association />
+              </>
+            }
+            path="/academics/departments/History/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_events />
+              </>
+            }
+            path="/academics/departments/History/Events"
+          ></Route>{" "}
+          // Mathematics
+          <Route
+            element={
+              <>
+                <Math_about />
+              </>
+            }
+            path="/academics/departments/Mathematics/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_fac />
+              </>
+            }
+            path="/academics/departments/Mathematics/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_programoffered />
+              </>
+            }
+            path="/academics/departments/Mathematics/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_events />
+              </>
+            }
+            path="/academics/departments/Mathematics/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_studachieve />
+              </>
+            }
+            path="/academics/departments/Mathematics/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_publication />
+              </>
+            }
+            path="/academics/departments/Mathematics/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_facilities />
+              </>
+            }
+            path="/academics/departments/Mathematics/Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_association />
+              </>
+            }
+            path="/academics/departments/Mathematics/association"
+          ></Route>{" "}
+          {/* Music */}{" "}
+          <Route
+            element={
+              <>
+                <Music_about />
+              </>
+            }
+            path="/academics/departments/Music/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Music_fac />
+              </>
+            }
+            path="/academics/departments/Music/Faculty"
+          ></Route>{" "}
+          {/* NHE */}{" "}
+          <Route
+            element={
+              <>
+                <Nhe_about />
+              </>
+            }
+            path="/academics/departments/NHE/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Nhe_fac />
+              </>
+            }
+            path="/academics/departments/NHE/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Nhe_programoffered />
+              </>
+            }
+            path="/academics/departments/NHE/Programoffered"
+          ></Route>{" "}
+          {/* Philosophy */}{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_about />
+              </>
+            }
+            path="/academics/departments/Philosophy/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_fac />
+              </>
+            }
+            path="/academics/departments/Philosophy/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_programoffered />
+              </>
+            }
+            path="/academics/departments/Philosophy/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_events />
+              </>
+            }
+            path="/academics/departments/Philosophy/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_studachieve />
+              </>
+            }
+            path="/academics/departments/Philosophy/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_publications />
+              </>
+            }
+            path="/academics/departments/Philosophy/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_association />
+              </>
+            }
+            path="/academics/departments/Philosophy/association"
+          ></Route>{" "}
           <Route
             element={
               <>
