@@ -14,11 +14,11 @@ const Undergraduate = () => {
                 <Sidebar />
               </div>
               <div className="w-[1100px]">
-                <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+                <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
                   UNDERGRADUATE COURSES
                 </h2>
                 
-                <figure className="ml-80 mt-10 ">
+                <figure className="ml-5 md:ml-80 mt-10 ">
                   <span className=" list-inside card-description text-justify text-lg font-medium ">
                     <li>
                     B.A. (Programme)

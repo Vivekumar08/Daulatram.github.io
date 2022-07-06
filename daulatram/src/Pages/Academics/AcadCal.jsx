@@ -108,7 +108,7 @@ const AcadCal = () => {
         <div className="ml-3 mb-5">
           <div className="w-[1100px]">
             <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            NIVERSITY ACADEMIC CALENDAR
+            UNIVERSITY ACADEMIC CALENDAR
             </h2>
             <div className="main flex-col">
               <table className="table-fixed mt-1 ">
