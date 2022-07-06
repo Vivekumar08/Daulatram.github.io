@@ -183,6 +183,7 @@ import Philosophy_fac from "./Pages/Academics/Departments/Philosophy/Philosophy_
 import Philosophy_programoffered from "./Pages/Academics/Departments/Philosophy/Philosophy_programoffered";
 import Philosophy_events from "./Pages/Academics/Departments/Philosophy/Philosophy_events";
 import Philosophy_studachieve from "./Pages/Academics/Departments/Philosophy/Philosophy_studachieve";
+import Philosophy_publications from "./Pages/Academics/Departments/Philosophy/Philosophy_publications";
 
 
 function App() {
@@ -1349,6 +1350,14 @@ function App() {
               </>
             }
             path="/academics/departments/Philosophy/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philosophy_publications />
+              </>
+            }
+            path="/academics/departments/Philosophy/Publications"
           ></Route>{" "}
 
 
