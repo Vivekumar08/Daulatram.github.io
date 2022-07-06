@@ -101,12 +101,11 @@ const Publications_res = () => {
         <div className="w-[350px]">
         <Research_side />
         </div>
-        <div className="ml-3 mb-5">
           <div className="w-[1100px]">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
             Publications
             </h2>
-            <div class="grid grid-cols-3 w-full mt-5 mb-5">
+            <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
               {data1 &&
                 data1.map((curElem) => {
                   const { _id, title, file_path, description } = curElem;
@@ -266,7 +265,7 @@ const Publications_res = () => {
               </>
             )}
           </div>
-        </div>
+        
       </div>
     </div>
   );
