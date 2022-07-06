@@ -16,20 +16,19 @@ const Founder = () => {
             <Sidebar />
           </div>
           <div className="w-[1100px]">
-            <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-                    Founder
+            <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+                    FOUNDER
                     </h2>
 
             <figure className="flex flex-col p-4 ">
               <img 
                 src={founder}
                 alt="founder"
-                className="rounded-3xl border-black border-2 h-[280px] w-[380px] ml-80"
-                 height={450}
-                width={380}
+                className="rounded-3xl border-black border-2 h-[280px] w-[380px] md:h-[400px] md:w-[380px] ml-5 md:ml-80"
+                
               />
 
-              <span className=" card-description text-lg text-justify font-medium m-50 p-9">
+              <span className="card-description leading-14 font- medium text-justify text-base md:text-lg m-50 p-9">
               The college was founded by Late Shri Daulat Ram Gupta in 1960 and served as the first Chairman of the college.
               </span>
             </figure>
