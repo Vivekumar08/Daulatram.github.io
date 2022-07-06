@@ -760,3 +760,66 @@ export const Philosophy_side = [{
         link: "/academics/departments/Philosophy/photogallery",
     },
 ];
+export const PhysicalEdu_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Physical_Education/",
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Physical_Education/Faculty",
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Physical_Education/Programoffered",
+    },
+    {
+        id: 4,
+        title: "Events",
+        link: "/academics/departments/Physical_Education/Events",
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Physical_Education/Students'_achievements",
+    },
+    {
+        id: 6,
+        title: "Publications",
+        link: "/academics/departments/Physical_Education/Publications",
+    },
+    {
+        id: 7,
+        title: "Awards",
+        link: "/academics/departments/Physical_Education/awards",
+    },
+    {
+        id: 8,
+        title: "Facilities",
+        link: "/academics/departments/Physical_Education/Facilities",
+    },
+    {
+        id: 9,
+        title: "Association",
+        link: "/academics/departments/Physical_Education/association",
+    },
+
+    //   {
+    //     id: 10,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/Physical_Education/laboratorystaff",
+    //   },
+
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Physical_Education/timetable",
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Physical_Education/photogallery",
+    },
+];
