@@ -8,20 +8,20 @@ import {
 import AuthContext from "../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import { Navigate } from "react-router-dom";
 
 const Res_fac_data = (props) => {
   const [visible, setVisible] = useState(false);
+  const errRef = useRef();
   const dropRef = useRef();
   const [previewSrc, setPreviewSrc] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [file, setFile] = useState("");
-  const [img, setImg] = useState();
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
 
   const { auth, setAuth } = useContext(AuthContext);
 
   var path_pic = props.pic;
-  const arr_img = [];
   // console.log(path_pic.file_path);
 
   const del = async (id) => {
@@ -32,29 +32,32 @@ const Res_fac_data = (props) => {
         method: "POST",
       }
     );
-    const data = await response.json();
-    if (data || response.status === 200) {
+    await response.json();
+    if ( response.status === 200) {
       // navigate('/research/research_facilities')
       window.location.reload();
-    } else {
-      setErrMsg("Unable to Delete");
+      setErrMsg("");
+    } else if (response.status === 400) {
+      setErrMsg("First Delete all the images related to this section");
     }
   };
-  const dele = async (id) => {
+  const dele = async (id, pid, file_path1) => {
     console.log(id);
-    const response = await fetch(
+    console.log(file_path1);
+    const response = await axios.post(
       `http://localhost:5000/delete_img_research_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
       {
         method: "POST",
       }
     );
-    const data = await response.json();
-    if (data || response.status === 200) {
-      // navigate('/research/research_facilities')
-      window.location.reload();
-    } else {
-      setErrMsg("Unable to Delete");
-    }
+    // const data = await response.json();
+    // if (data || response.status === 200) {
+    // Navigate("/research/research_facilities");
+    window.location.reload();
+    // } else {
+    // setErrMsg("Unable to Delete");
+    // }
   };
   const onDrop = (files) => {
     const [uploadedFile] = files;
@@ -97,7 +100,7 @@ const Res_fac_data = (props) => {
         );
         // const data = await response.json();
         setAuth(true);
-        fetchdata();
+        window.location.reload();
       } else {
         setErrMsg("Please select a file to add.");
         //   setErrMsg("Please enter all the field values.");
@@ -141,6 +144,11 @@ const Res_fac_data = (props) => {
           )}
         </span>
       </div>
+      <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+          {errMsg}
+        </p>
+      </h2>
       {visible && <p>{props.para}</p>}
       {visible && (
         <>
@@ -165,7 +173,9 @@ const Res_fac_data = (props) => {
                           icon={faTrashCan}
                           size="3x"
                           className=" cursor-pointer ml-5  hover:text-red-500"
-                          onClick={() => dele(elem._id)}
+                          onClick={() =>
+                            dele(props.id, elem._id, elem.file_path1)
+                          }
                         ></FontAwesomeIcon>
                       </div>
                     </>
