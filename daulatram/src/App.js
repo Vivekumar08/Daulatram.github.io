@@ -190,11 +190,9 @@ import Philosophy_association from "./Pages/Academics/Departments/Philosophy/Phi
 // Physical Education
 import PhysicalEdu_about from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_about";
 import PhysicalEdu_programoffered from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_programoffered";
-import PhysicalEdu_fac from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_fac"
-
-
-
-
+import PhysicalEdu_fac from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_fac";
+// Physics
+import Physics_about from "./Pages/Academics/Departments/Physics/Physics_about";
 
 function App() {
   return (
@@ -233,7 +231,7 @@ function App() {
           <Route
             element={
               <>
-                <ResetPassword  />
+                <ResetPassword />
               </>
             }
             path="/reset/:Token"
@@ -1393,10 +1391,7 @@ function App() {
             }
             path="/academics/departments/Philosophy/association"
           ></Route>{" "}
-
-
-// Physical Education
-
+          // Physical Education
           <Route
             element={
               <>
@@ -1421,21 +1416,15 @@ function App() {
             }
             path="/academics/departments/Physical_Education/Faculty"
           ></Route>{" "}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+          {/* Physics */}{" "}
+          <Route
+            element={
+              <>
+                <Physics_about />
+              </>
+            }
+            path="/academics/departments/Physics/"
+          ></Route>{" "}
           <Route
             element={
               <>

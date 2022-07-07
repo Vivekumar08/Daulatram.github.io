@@ -823,3 +823,66 @@ export const PhysicalEdu_side = [{
         link: "/academics/departments/Physical_Education/photogallery",
     },
 ];
+export const Physics_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Physics/",
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Physics/Faculty",
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Physics/Programoffered",
+    },
+    {
+        id: 4,
+        title: "Events",
+        link: "/academics/departments/Physics/Events",
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Physics/Students'_achievements",
+    },
+    {
+        id: 6,
+        title: "Publications",
+        link: "/academics/departments/Physics/Publications",
+    },
+    {
+        id: 7,
+        title: "Awards",
+        link: "/academics/departments/Physics/awards",
+    },
+    {
+        id: 8,
+        title: "Facilities",
+        link: "/academics/departments/Physics/Facilities",
+    },
+
+    {
+        id: 9,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Physics/laboratorystaff",
+    },
+
+    {
+        id: 10,
+        title: "Association",
+        link: "/academics/departments/Physics/association",
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Physics/timetable",
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Physics/photogallery",
+    },
+];
