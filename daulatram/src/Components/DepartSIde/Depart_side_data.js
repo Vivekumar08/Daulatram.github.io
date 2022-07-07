@@ -895,3 +895,75 @@ export const Physics_side = [{
 
 
 ];
+export const Pol_Scie_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Political_Science/",
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Political_Science/Faculty",
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Political_Science/Programoffered",
+    },
+    {
+        id: 4,
+        title: "Events",
+        link: "/academics/departments/Political_Science/Events",
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Political_Science/Students'_achievements",
+    },
+    {
+        id: 6,
+        title: "Publications",
+        link: "/academics/departments/Political_Science/Publications",
+    },
+    {
+        id: 7,
+        title: "Awards",
+        link: "/academics/departments/Political_Science/awards",
+    },
+    {
+        id: 8,
+        title: "Facilities",
+        link: "/academics/departments/Political_Science/Facilities",
+    },
+
+    // {
+    //     id: 9,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/Political_Science/laboratorystaff",
+    // },
+
+    {
+        id: 10,
+        title: "Association",
+        link: "/academics/departments/Political_Science/association",
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Political_Science/timetable",
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Political_Science/photogallery",
+    },
+    // {
+    //     id: 13,
+    //     title: "Newsletters & Magazines",
+    //     link: "/academics/departments/Political_Science/newsletter_magazines",
+    // },
+
+
+
+
+];
