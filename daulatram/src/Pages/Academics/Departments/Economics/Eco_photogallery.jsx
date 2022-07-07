@@ -74,7 +74,7 @@ function Eco_photogallery() {
               <div class="carousel__item">
                 <img
                   src="/images/ImgPages/Economics/Image8.jpg"
-                  className="  mt-[3%]   w-[450px] h-[370px] rounded-2xl border-2 border-[#000]"
+                  className="  mt-[3%]   w-[450px] h-[370px] rounded-2xl border-2 border-black"
                 />
               </div>
               <div class="carousel__item">
