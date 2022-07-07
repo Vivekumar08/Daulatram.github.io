@@ -1502,19 +1502,78 @@ export const Pol_Sci_fac_info = [{
 
     },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+]
+export const Psycho_fac_info = [{
+        id: 167,
+        Fac_name: "Prof. Rajni Sahni",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Psychology/rajni_psy_cv.pdf",
+    },
+    {
+        id: 168,
+        Fac_name: "Prof. Meetu Khosla",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Psychology/meetu_psy_cv.pdf",
+    },
+    {
+        id: 169,
+        Fac_name: "Dr. Pooja V. Anand",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Psychology/pooja_psy_cv.pdf",
+    },
+    {
+        id: 170,
+        Fac_name: "Lt. Dr. Suparna Jain",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Psychology/suparna_psy_cv.pdf",
+    },
+    {
+        id: 171,
+        Fac_name: "Dr. Sandhyarani H.",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Psychology/sandhya_psy_cv.pdf",
+    },
+    {
+        id: 172,
+        Fac_name: "Dr. Kshitija Wason",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Psychology/kshitija_psy_cv.pdf",
+    },
+    {
+        id: 171,
+        Fac_name: "Dr. Deepesh Rathore",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/male.png",
+        cv: "/images/ImgPages/Psychology/deepesh_psy_cv.pdf",
+    },
+    {
+        id: 171,
+        Fac_name: "Ms. Binusha Joycell",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Psychology/binusha_psy_cv.pdf",
+    },
+    {
+        id: 171,
+        Fac_name: "Dr. Rakhi Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Psychology/rakhi_psy_cv.pdf",
+    },
 
 ]
