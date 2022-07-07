@@ -205,6 +205,11 @@ import Physics_news_magazines from "./Pages/Academics/Departments/Physics/Physic
 
 // Political Science
 import Pol_Sci_about from "./Pages/Academics/Departments/Political_Science/Pol_Sci_about";
+import Pol_Sci_fac from "./Pages/Academics/Departments/Political_Science/Pol_Sci_fac";
+import Pol_Sci_programoffered from "./Pages/Academics/Departments/Political_Science/Pol_Sci_programoffered";
+import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Science/Pol_Sci_publications";
+import Pol_Sci_association from "./Pages/Academics/Departments/Political_Science/Pol_Sci_association";
+import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_Sci_events";
 
 function App() {
   return (
@@ -1517,6 +1522,46 @@ function App() {
               </>
             }
             path="/academics/departments/Political_Science/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Pol_Sci_fac />
+              </>
+            }
+            path="/academics/departments/Political_Science/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Pol_Sci_programoffered />
+              </>
+            }
+            path="/academics/departments/Political_Science/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Pol_Sci_publications />
+              </>
+            }
+            path="/academics/departments/Political_Science/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Pol_Sci_association />
+              </>
+            }
+            path="/academics/departments/Political_Science/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Pol_Sci_events />
+              </>
+            }
+            path="/academics/departments/Political_Science/Events"
           ></Route>{" "}
           <Route
             element={

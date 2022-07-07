@@ -1370,3 +1370,151 @@ export const Physics_fac_info = [{
     },
 
 ]
+
+
+export const Pol_Sci_fac_info = [{
+        id: 155,
+        Fac_name: "Prof. Suranjita Ray",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Political_Science/Suranjita_pol.jpeg",
+        cv: "/images/ImgPages/Political_Science/Suranjita_pol_cv.pdf",
+    },
+    {
+
+        id: 156,
+        Fac_name: "Mrs. Geetanjali Kumar",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Political_Science/geetanjali_pol.jpeg",
+        cv: "/images/ImgPages/Political_Science/Geetanjali_pole_cv.pdf",
+    },
+
+    {
+
+        id: 157,
+        Fac_name: "Dr. Moitree B.",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Political_Science/Moitree_pol_cv.pdf",
+
+
+    },
+    {
+
+        id: 158,
+        Fac_name: "Dr. Shachi Chawla",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Political_Science/shachi_pol.jpeg",
+        cv: "/images/ImgPages/Political_Science/Shachi_pol_cv.pdf",
+
+
+    },
+
+    {
+
+        id: 159,
+        Fac_name: "Dr. Vandana Tripathi",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Political_Science/vandana_pol.jpeg",
+        cv: "/images/ImgPages/Political_Science/Vandana_pol_cv.pdf",
+
+
+    },
+    {
+
+        id: 160,
+        Fac_name: "Mrs. Manjula Rath",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Political_Science/Manjula_pol_cv.pdf",
+
+
+    },
+    {
+
+        id: 161,
+        Fac_name: "Dr. Rekha Rani",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Political_Science/Rekha_pol.jpeg",
+        cv: "/images/ImgPages/Political_Science/Rekha_pol_cv.pdf",
+
+
+    },
+    {
+
+        id: 162,
+        Fac_name: "Mrs. Smita Yadav",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Political_Science/smita_pol.jpeg",
+        cv: "/images/ImgPages/Political_Science/Smita_pol_cv.pdf",
+
+
+    },
+    {
+
+        id: 163,
+        Fac_name: "Dr. Madhu Damani",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Political_Science/madhu_pol.jpeg",
+        cv: "/images/ImgPages/Political_Science/Madhu_pol_cv.pdf",
+
+
+    },
+    {
+
+        id: 164,
+        Fac_name: "Dr. Shivali Aggarwal",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Political_Science/shivali_pol.jpeg",
+        cv: "/images/ImgPages/Political_Science/Shivali_pol_cv.pdf",
+
+
+    },
+    {
+
+        id: 165,
+        Fac_name: "Dr. Deepak Bhaskar",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/male.png",
+        cv: "#",
+
+
+    },
+    {
+
+        id: 166,
+        Fac_name: "Dr. Arti",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Political_Science/Arti_pol.jpeg",
+        cv: "/images/ImgPages/Political_Science/Arti_pol_cv.pdf",
+
+
+    },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+]
