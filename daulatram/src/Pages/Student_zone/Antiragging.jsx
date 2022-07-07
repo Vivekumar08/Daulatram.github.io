@@ -19,12 +19,12 @@ const Antiragging = () => {
           <Student_side />
         </div>
         <div className="w-[1100px]">
-          <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="text-2xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
           Anti-ragging Helplines
           </h2>
           <div className="main flex-col ">
             {/* <div className='w-[200px] small  mt-20 p-3'>Internal Assesments</div> */}
-            <table>
+            <table className=' leading-5 w-80 h-40 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1'>
               <tr>
                 <th>S.no</th>
                 <th>About</th>
