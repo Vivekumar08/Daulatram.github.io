@@ -79,7 +79,7 @@ router.get('/resetData', async (req, res,) => {
   } else {
     const exp = details.resetPasswordExpires
     const diff = exp - Date.now()
-    console.log(exp)
+    // console.log(exp)
 
     if (diff > 0) {
       res.status(200).json(
@@ -89,7 +89,7 @@ router.get('/resetData', async (req, res,) => {
         }
       )
     } else {
-      console.log('password reset link has expired')
+      // console.log('password reset link has expired')
       res.status(400).json('password reset link has expired')
 
     }
@@ -98,7 +98,7 @@ router.get('/resetData', async (req, res,) => {
 
 router.put('/updatePasswordViaEmail', async (req, res,) => {
   try {
-    console.log(req.body)
+    // console.log(req.body)
     const { Username, Password } = req.body;
 
     const details = await User.findOne({
@@ -107,23 +107,23 @@ router.put('/updatePasswordViaEmail', async (req, res,) => {
     if (details) {
       const salt = await bcrypt.genSalt()
 
-      console.log('User exists in the database')
+      // console.log('User exists in the database')
       const hashedPassword = await bcrypt.hash(Password, salt)
       const data = await details.updateOne({ Password: hashedPassword, resetPasswordToken: null, resetPasswordExpires: null });
       if (data) {
-        console.log('password updated');
+        // console.log('password updated');
         res.status(200).json({ message: "password updated" })
       } else {
-        console.log("Password can't be update")
+        // console.log("Password can't be update")
         res.status(403).json("Password can't be update")
       }
 
     } else {
-      console.log('no user exists in db to update')
+      // console.log('no user exists in db to update')
       res.status(404).json('no user exists in db to update')
     }
   } catch (err) {
-    console.log(err)
+    console.log("err")
   }
 });
 
@@ -141,10 +141,10 @@ router.post('/NewAdmin', async (req, res) => {
 
     const user = new User({ Username: Username, Email: Email, Password: hashedPassword });
     await user.save();
-    console.log("Form filled Successfully")
+    // console.log("Form filled Successfully")
     return res.status(200).json({ message: "Form filled Successfully " })
   } catch (err) {
-    console.log(err)
+    console.log("err")
   }
 });
 
@@ -615,17 +615,18 @@ router.delete('/deleteHelpdesk/:id', async (req, res) => {
 
 // Research
 router.post('/delete_research_fac/:id', async (req, res) => {
-  const delete_user = await File.findOneAndDelete({ _id: req.params.id });
+  const delete_user = await File.findOne({ _id: req.params.id });
   const arr = delete_user.img_data.file_path
   if (arr.length === 0) {
-    console.log(delete_user.img_data.file_path)
+    await delete_user.deleteOne({ _id: req.params.id })
+    // console.log(delete_user.img_data.file_path)
     res.status(200).json(delete_user + "User deleted")
   } else {
     res.status(400).json( "First Delete all the images related to this section" )
   }
 })
 router.post('/delete_img_research_fac/:id', async (req, res) => {
-  console.log(req.body.file_path1)
+  // console.log(req.body.file_path1)
   const delete_user = await File.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
   await unlinkAsync(req.body.file_path1)
   res.status(200).json(delete_user + "User deleted")
@@ -648,7 +649,7 @@ router.post(
   '/research_upload',
   async (req, res) => {
     try {
-      console.log(req.body)
+      // console.log(req.body)
       const { title, description } = req.body;
       const file = new File({
         title: title,
@@ -657,7 +658,7 @@ router.post(
       await file.save();
       res.send('file uploaded successfully.');
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       res.status(400).send("Error occur while uploading data");
     }
   }
@@ -675,7 +676,7 @@ router.post(
         res.status(200).send('file uploaded successfully.');
       }
     } catch (error) {
-      console.log(error)
+      // console.log(error)
       res.status(400).send('Error while uploading file. Try again later.');
     }
   },
@@ -723,11 +724,6 @@ router.post(
     try {
       const { title, description } = req.body;
       const { path, mimetype } = req.file;
-      console.log(title,
-        description,
-        // path,
-        // mimetype
-      )
       const file = new Publications({
         title,
         description,

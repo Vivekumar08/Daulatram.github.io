@@ -38,6 +38,7 @@ const Res_fac_data = (props) => {
       window.location.reload();
       setErrMsg("");
     } else if (response.status === 400) {
+      window.location.reload();
       setErrMsg("First Delete all the images related to this section");
     }
   };
