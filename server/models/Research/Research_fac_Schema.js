@@ -5,26 +5,25 @@ const Research_fac_Schema = mongoose.Schema(
     title: {
       type: String,
       required: true,
-      trim: true
     },
     description: {
       type: String,
       required: true,
-      trim: true
     },
-    file_path: {
-      file_path1:{
-        type: String,
-        // required: true
-        default: ''
-      },
-    },
-    file_mimetype: {
-      file_mimetype1:{
-        type: String,
-        // required: true
-        default: ''
-      },
+    img_data: {
+
+      file_path: [
+        {
+          file_path1: {
+            type: String,
+            default: null
+          },
+          file_mimetype1: {
+            type: String,
+            default: null
+          },
+        }
+      ]
     }
   },
   {
