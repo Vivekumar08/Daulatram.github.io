@@ -114,9 +114,9 @@ const Anti_Ragging = () => {
         <div className="w-[350px]">
           <Admission_side />
         </div>
-        <div className="ml-3 mb-5">
+       
           <div className="w-[1100px]">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
             Anti-Ragging Guidelines
             </h2>
             {data1 && data1.map((curElem) => {
@@ -132,17 +132,17 @@ const Anti_Ragging = () => {
                       <h1 className="mt-5">
                         <FontAwesomeIcon
                           icon={faArrowRight}
-                          className="text-blue-400"
+                          className="ml-3 font-medium text-justify text-base md:text-lg text-center md:text-left text-blue-400"
                         />
                         <a
                           href={path}
                           target="_blank"
-                          className="text-blue-400  hover:pl-3"
+                          className="ml-1 font-medium text-justify text-base md:text-lg text-center md:text-left text-blue-400 hover:pl-3"
                         >
                           {" "}
                           {link}{" "}
                         </a>
-                        <p>{title}</p>
+                        <p className="mt-2 ml-3 leading-14 font-medium text-justify text-base md:text-lg">{title}</p>
                       </h1>
                     </div>
                   </li>
@@ -267,7 +267,7 @@ const Anti_Ragging = () => {
           </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 
