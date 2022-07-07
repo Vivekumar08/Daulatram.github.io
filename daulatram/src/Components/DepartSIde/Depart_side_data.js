@@ -967,3 +967,75 @@ export const Pol_Scie_side = [{
 
 
 ];
+export const Psycho_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Psychology/",
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Psychology/Faculty",
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Psychology/Programoffered",
+    },
+    {
+        id: 4,
+        title: "Events",
+        link: "/academics/departments/Psychology/Events",
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Psychology/Students'_achievements",
+    },
+    {
+        id: 6,
+        title: "Publications",
+        link: "/academics/departments/Psychology/Publications",
+    },
+    {
+        id: 7,
+        title: "Awards",
+        link: "/academics/departments/Psychology/awards",
+    },
+    {
+        id: 8,
+        title: "Facilities",
+        link: "/academics/departments/Psychology/Facilities",
+    },
+
+    // {
+    //     id: 9,
+    //     title: "Laboratory Staff",
+    //     link: "/academics/departments/Psychology/laboratorystaff",
+    // },
+
+    {
+        id: 10,
+        title: "Association",
+        link: "/academics/departments/Psychology/association",
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Psychology/timetable",
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Psychology/photogallery",
+    },
+    // {
+    //     id: 13,
+    //     title: "Newsletters & Magazines",
+    //     link: "/academics/departments/Psychology/newsletter_magazines",
+    // },
+
+
+
+
+];
