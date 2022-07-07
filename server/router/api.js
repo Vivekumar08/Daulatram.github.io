@@ -619,6 +619,13 @@ router.delete('/delete_research_fac/:id', async (req, res) => {
   await unlinkAsync(delete_user.file_path)
   res.status(200).json(delete_user + "User deleted")
 })
+router.post('/delete_img_research_fac/:id', async (req, res) => {
+  const {file_path1} = req.body
+  const delete_user = await File.updateOne({ _id: req.params.id },{$pull:{file_path:{file_path1:file_path1}}},false,true);
+    await unlinkAsync(delete_user.file_path.file_path1)
+    res.status(200).json(delete_user + "User deleted")
+
+})
 
 router.get('/research', async (req, res) => {
   try {
@@ -634,24 +641,45 @@ router.get('/research', async (req, res) => {
 
 router.post(
   '/research_upload',
-  upload.single('file'),
+  // upload.single('file'),
   async (req, res) => {
     try {
       const { title, description } = req.body;
-      const { path, mimetype } = req.file;
-      console.log(title,
-        description,
-        // path,
-        // mimetype
-      )
+      // const { path, mimetype } = req.file;
       const file = new File({
         title,
         description,
-        file_path: path,
-        file_mimetype: mimetype
+        // file_path: path,
+        // file_mimetype: mimetype
       });
       await file.save();
       res.send('file uploaded successfully.');
+    } catch (error) {
+      res.status(400).send('Error while uploading file. Try again later.');
+    }
+  },
+  (error, req, res, next) => {
+    if (error) {
+      res.status(402).send(error.message);
+    }
+  }
+);
+router.post(
+  '/research_data_upload/:id',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const dat = await File.findOneAndDelete({ _id: req.params.id });
+      if (dat) {
+
+        const { path, mimetype } = req.file;
+        const file = new dat({
+          file_path:{file_path1: path},
+          file_mimetype: {file_mimetype1: mimetype}
+        });
+        await file.save();
+        res.send('file uploaded successfully.');
+      }
     } catch (error) {
       res.status(400).send('Error while uploading file. Try again later.');
     }
