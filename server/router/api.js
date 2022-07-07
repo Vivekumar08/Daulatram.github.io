@@ -620,10 +620,11 @@ router.delete('/delete_research_fac/:id', async (req, res) => {
   res.status(200).json(delete_user + "User deleted")
 })
 router.post('/delete_img_research_fac/:id', async (req, res) => {
-  const {file_path1} = req.body
-  const delete_user = await File.updateOne({ _id: req.params.id },{$pull:{file_path:{file_path1:file_path1}}},false,true);
-    await unlinkAsync(delete_user.file_path.file_path1)
-    res.status(200).json(delete_user + "User deleted")
+  const { file_path1 } = req.body
+  const delete_user = await File.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: file_path1 } } }, false, true);
+  console.log(delete_user.img_data.file_path.file_path1)
+  // await unlinkAsync(delete_user.img_data.file_path.file_path1)
+  res.status(200).json(delete_user + "User deleted")
 
 })
 
@@ -641,46 +642,41 @@ router.get('/research', async (req, res) => {
 
 router.post(
   '/research_upload',
-  // upload.single('file'),
   async (req, res) => {
     try {
+      console.log(req.body)
       const { title, description } = req.body;
-      // const { path, mimetype } = req.file;
       const file = new File({
-        title,
-        description,
-        // file_path: path,
-        // file_mimetype: mimetype
+        title: title,
+        description: description,
       });
       await file.save();
       res.send('file uploaded successfully.');
     } catch (error) {
-      res.status(400).send('Error while uploading file. Try again later.');
-    }
-  },
-  (error, req, res, next) => {
-    if (error) {
-      res.status(402).send(error.message);
+      console.log(error)
+      res.status(400).send("Error occur while uploading data");
     }
   }
 );
 router.post(
-  '/research_data_upload/:id',
+  '/research_img_upload/:id',
   upload.single('file'),
   async (req, res) => {
     try {
-      const dat = await File.findOneAndDelete({ _id: req.params.id });
+      const { path, mimetype } = req.file;
+      // console.log(path,mimetype)
+      const dat = await File.findOneAndUpdate({ _id: req.params.id }, { $push: {"img_data.file_path":{file_path1: path , file_mimetype1:mimetype}}});
+      // console.log(dat)
       if (dat) {
 
-        const { path, mimetype } = req.file;
-        const file = new dat({
-          file_path:{file_path1: path},
-          file_mimetype: {file_mimetype1: mimetype}
-        });
-        await file.save();
-        res.send('file uploaded successfully.');
+        //   const file = new dat({
+        //     file_path: path,
+        //     file_mimetype: mimetype
+        //   });
+        res.status(200).send('file uploaded successfully.');
       }
     } catch (error) {
+      console.log(error)
       res.status(400).send('Error while uploading file. Try again later.');
     }
   },

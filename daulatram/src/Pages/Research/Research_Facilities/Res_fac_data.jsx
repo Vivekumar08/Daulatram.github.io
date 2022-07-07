@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronUp,
@@ -11,18 +11,25 @@ import axios from "axios";
 
 const Res_fac_data = (props) => {
   const [visible, setVisible] = useState(false);
+  const dropRef = useRef();
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [file, setFile] = useState("");
+  const [img, setImg] = useState();
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+
   const { auth, setAuth } = useContext(AuthContext);
 
   var path_pic = props.pic;
-  var path2 = path_pic.replace(/\\/g, "/");
-  var path = path2.slice(19);
+  const arr_img = [];
+  // console.log(path_pic.file_path);
 
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
       `http://localhost:5000/delete_research_fac/${id}`,
       {
-        method: "DELETE",
+        method: "POST",
       }
     );
     const data = await response.json();
@@ -33,34 +40,68 @@ const Res_fac_data = (props) => {
       setErrMsg("Unable to Delete");
     }
   };
+  const dele = async (id) => {
+    console.log(id);
+    const response = await fetch(
+      `http://localhost:5000/delete_img_research_fac/${id}`,
+      {
+        method: "POST",
+      }
+    );
+    const data = await response.json();
+    if (data || response.status === 200) {
+      // navigate('/research/research_facilities')
+      window.location.reload();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
+
+  const handleSubmit = async (id) => {
+    // id.preventDefault();
     try {
-      // if (link.trim() !== "" && caption.trim() !== "") {
-      // if (file) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("title", link);
-        formData.append("description", caption);
+      if (file) {
+        console.log(file);
+        // console.log(e);
 
         setErrMsg("");
-        console.log(formData);
         const response = await axios.post(
-          `http://localhost:5000/research_upload/${e}`,
-          formData,
+          `http://localhost:5000/research_img_upload/${id}`,
+          { file: file },
           {
             headers: {
               "Content-Type": "multipart/form-data",
             },
           }
         );
+        // const data = await response.json();
         setAuth(true);
         fetchdata();
-      // } else {
-      //   // setErrMsg("Please select a file to add.");
-      //   setErrMsg("Please enter all the field values.");
-      // }
+      } else {
+        setErrMsg("Please select a file to add.");
+        //   setErrMsg("Please enter all the field values.");
+      }
       // } else {
       // }
     } catch (err) {
@@ -101,74 +142,102 @@ const Res_fac_data = (props) => {
         </span>
       </div>
       {visible && <p>{props.para}</p>}
-      {props.pic && visible && (
-        <img
-          src={path}
-          style={{
-            width: "100%",
-            height: "250px",
-          }}
-          className="bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
-        />
+      {visible && (
+        <>
+          {path_pic.file_path.map((elem) => {
+            var path2 = elem.file_path1.replace(/\\/g, "/");
+            var path = path2.slice(19);
+            return (
+              <>
+                <div className="flex justify-center items-center">
+                  <img
+                    src={path}
+                    style={{
+                      width: "700px",
+                      height: "400px",
+                    }}
+                    className="bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
+                  />
+                  {auth && (
+                    <>
+                      <div className="flex flex-col">
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
+                          size="3x"
+                          className=" cursor-pointer ml-5  hover:text-red-500"
+                          onClick={() => dele(elem._id)}
+                        ></FontAwesomeIcon>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </>
+            );
+          })}
+        </>
       )}
-      <form
-        method="POST"
-        className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
-      >
-        <div className="upload-section flex h-[200px] mb-[10px] w-full">
-          <Dropzone
-            onDrop={onDrop}
-            onDragEnter={() => updateBorder("over")}
-            onDragLeave={() => updateBorder("leave")}
+      {auth && visible && (
+        <>
+          <form
+            method="POST"
+            className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
           >
-            {({ getRootProps, getInputProps }) => (
-              <div
-                {...getRootProps({
-                  className:
-                    "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
-                })}
-                ref={dropRef}
+            <div className="upload-section flex h-[200px] mb-[10px] w-full">
+              <Dropzone
+                onDrop={onDrop}
+                onDragEnter={() => updateBorder("over")}
+                onDragLeave={() => updateBorder("leave")}
               >
-                <input {...getInputProps()} />
-                <p>Drag and drop a file OR click here to select a file</p>
-                {file && (
-                  <div>
-                    <strong>Selected file:</strong> {file.name}
+                {({ getRootProps, getInputProps }) => (
+                  <div
+                    {...getRootProps({
+                      className:
+                        "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                    })}
+                    ref={dropRef}
+                  >
+                    <input {...getInputProps()} />
+                    <p>Drag and drop a file OR click here to select a file</p>
+                    {file && (
+                      <div>
+                        <strong>Selected file:</strong> {file.name}
+                      </div>
+                    )}
                   </div>
                 )}
-              </div>
-            )}
-          </Dropzone>
-          {previewSrc ? (
-            isPreviewAvailable ? (
-              <div className="image-preview ml-[5%] w-full">
-                <img
-                  className="preview-image w-full h-full block mb-[10px]"
-                  src={previewSrc}
-                  alt="Preview"
-                />
-              </div>
-            ) : (
-              <div className="preview-message flex justify-center items-center ml-[5%]">
-                <p>No preview available for this file</p>
-              </div>
-            )
-          ) : (
-            <div className="preview-message flex justify-center items-center ml-[5%]">
-              <p>Image preview will be shown here after selection</p>
+              </Dropzone>
+              {previewSrc ? (
+                isPreviewAvailable ? (
+                  <div className="image-preview ml-[5%] w-full">
+                    <img
+                      className="preview-image w-full h-full block mb-[10px]"
+                      src={previewSrc}
+                      alt="Preview"
+                    />
+                  </div>
+                ) : (
+                  <div className="preview-message flex justify-center items-center ml-[5%]">
+                    <p>No preview available for this file</p>
+                  </div>
+                )
+              ) : (
+                <div className="preview-message flex justify-center items-center ml-[5%]">
+                  <p>Image preview will be shown here after selection</p>
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        <div class="md:w-2/3 ">
-          <button
-            class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-            type="button"
-            onClick={handleSubmit}
-          >
-            Add Image
-          </button>
-        </div>
-      </form>
+            <div class="md:w-2/3 ">
+              <button
+                class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                type="button"
+                onClick={() => handleSubmit(props.id)}
+              >
+                Add Image
+              </button>
+            </div>
+          </form>
+        </>
+      )}
     </figure>
   );
 };

@@ -4,7 +4,6 @@ import Research_side from "../../../Components/Sidebar/Research_side";
 import { res_data } from "./data";
 import Research_data from "./Research_data";
 import AuthContext from "../../../Context/AuthProvider";
-import Dropzone from "react-dropzone";
 import Res_fac_data from "./Res_fac_data";
 import axios from "axios";
 
@@ -13,13 +12,9 @@ const Research_fac = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
-  const dropRef = useRef();
   const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [previewSrc, setPreviewSrc] = useState("");
-  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
-  const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
@@ -27,31 +22,12 @@ const Research_fac = () => {
     setData1(await response.json());
   };
 
-  const onDrop = (files) => {
-    const [uploadedFile] = files;
-    setFile(uploadedFile);
-
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setPreviewSrc(fileReader.result);
-    };
-    fileReader.readAsDataURL(uploadedFile);
-    setIsPreviewAvailable(
-      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
-    );
-  };
-
+  
   useEffect(() => {
     fetchdata();
   }, []);
 
-  const updateBorder = (dragState) => {
-    if (dragState === "over") {
-      dropRef.current.style.border = "2px solid #000";
-    } else if (dragState === "leave") {
-      dropRef.current.style.border = "2px dashed #e9ebeb";
-    }
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,24 +35,24 @@ const Research_fac = () => {
       if (link.trim() !== "" && caption.trim() !== "") {
       // if (file) {
         const formData = new FormData();
-        formData.append("file", file);
-        formData.append("title", link);
-        formData.append("description", caption);
+        // formData.append("file", file);
+        // formData.append("title", link);
+        // formData.append("description", caption);
+        console.log(link, caption);
+        console.log(formData);
 
         setErrMsg("");
-        console.log(formData);
         const response = await axios.post(
           `http://localhost:5000/research_upload`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
+          {title:link,description:caption},
+          // {
+          //   headers: {
+          //     "Content-Type": "multipart/form-data",
+          //   },
+          // }
         );
         setCaption("");
         setLink("");
-        setFile("");
         setAuth(true);
         fetchdata();
       } else {
@@ -121,7 +97,7 @@ const Research_fac = () => {
               })}
             {data1 &&
               data1.map((curElem) => {
-                const { _id, title, description, file_path } = curElem;
+                const { _id, title, description, img_data } = curElem;
                 return (
                   <>
                     <Res_fac_data 
@@ -129,7 +105,7 @@ const Research_fac = () => {
                     id={_id}
                     tittle={title}
                     para={description}
-                    pic={file_path} 
+                    pic={img_data} 
                     />
                   </>
                 );
