@@ -30,13 +30,13 @@ const Forms = () => {
         <div className="w-[280px]">
           <Sidebar />
         </div>
-        <div className="ml-3 mb-5">
-          <div className=" md:w-[1100px]">
-            <h2 className="text-4xl font-bold mb-3 mt-[5%] flex flex-row justify-center items-center ">
+       
+          <div className=" w-[1100px]">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               FORMS
             </h2>
             {/* <div className=" "> */}
-              <table className="mt-1   ml-auto mr-auto">
+              <table className="w-96 h-48 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1">
                 <tr>
                   <th>S.no</th>
                   <th>About</th>
@@ -225,7 +225,7 @@ const Forms = () => {
             {/* </div> */}
           </div>
         </div>
-      </div>
+      
     </>
   );
 };
