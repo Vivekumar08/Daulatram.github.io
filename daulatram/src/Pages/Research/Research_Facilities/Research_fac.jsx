@@ -173,59 +173,14 @@ const Research_fac = () => {
                 </div>
                 <div class="md:flex flex-col md:items-center">
                   {/* <div class="md:w-1/3"></div> */}
-                  <div className="upload-section flex h-[200px] mb-[10px] w-full">
-                    <Dropzone
-                      onDrop={onDrop}
-                      onDragEnter={() => updateBorder("over")}
-                      onDragLeave={() => updateBorder("leave")}
-                    >
-                      {({ getRootProps, getInputProps }) => (
-                        <div
-                          {...getRootProps({
-                            className:
-                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
-                          })}
-                          ref={dropRef}
-                        >
-                          <input {...getInputProps()} />
-                          <p>
-                            Drag and drop a file OR click here to select a file
-                          </p>
-                          {file && (
-                            <div>
-                              <strong>Selected file:</strong> {file.name}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </Dropzone>
-                    {previewSrc ? (
-                      isPreviewAvailable ? (
-                        <div className="image-preview ml-[5%] w-full">
-                          <img
-                            className="preview-image w-full h-full block mb-[10px]"
-                            src={previewSrc}
-                            alt="Preview"
-                          />
-                        </div>
-                      ) : (
-                        <div className="preview-message flex justify-center items-center ml-[5%]">
-                          <p>No preview available for this file</p>
-                        </div>
-                      )
-                    ) : (
-                      <div className="preview-message flex justify-center items-center ml-[5%]">
-                        <p>Image preview will be shown here after selection</p>
-                      </div>
-                    )}
-                  </div>
+                  
                   <div class="md:w-2/3 ">
                     <button
                       class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                       type="button"
                       onClick={handleSubmit}
                     >
-                      Add
+                      Add 
                     </button>
                   </div>
                 </div>
