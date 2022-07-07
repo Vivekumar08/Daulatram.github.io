@@ -203,6 +203,9 @@ import Physics_labstaff from "./Pages/Academics/Departments/Physics/Physics_labs
 import Physics_association from "./Pages/Academics/Departments/Physics/Physics_association";
 import Physics_news_magazines from "./Pages/Academics/Departments/Physics/Physics_news_magazines";
 
+// Political Science
+import Pol_Sci_about from "./Pages/Academics/Departments/Political_Science/Pol_Sci_about";
+
 function App() {
   return (
     <>
@@ -1450,8 +1453,6 @@ function App() {
             }
             path="/academics/departments/Physics/Programoffered"
           ></Route>{" "}
-
-
           <Route
             element={
               <>
@@ -1508,11 +1509,15 @@ function App() {
             }
             path="/academics/departments/Physics/newsletter_magazines"
           ></Route>{" "}
-
-
-
-
-
+          // Political Science
+          <Route
+            element={
+              <>
+                <Pol_Sci_about />
+              </>
+            }
+            path="/academics/departments/Political_Science/"
+          ></Route>{" "}
           <Route
             element={
               <>
