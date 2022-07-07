@@ -1301,3 +1301,72 @@ export const Philosophy_fac_info = [{
         cv: "#",
     },
 ]
+
+
+
+export const Physics_fac_info = [{
+        id: 148,
+        Fac_name: "Prof. Savita Roy",
+        Designation: "Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "/images/ImgPages/Physics/Savita_physics_cv.pdf",
+    },
+
+
+    {
+
+        id: 149,
+        Fac_name: "Dr. Omwati Rana",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Physics/Omwati_physics.png",
+        cv: "/images/ImgPages/Physics/Omwati_physics_cv.pdf",
+    },
+    {
+
+        id: 150,
+        Fac_name: "Dr. Onkar Mangla",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Physics/Onkar_physics.png",
+        cv: "/images/ImgPages/Physics/Onkar_physics_cv.pdf",
+    },
+    {
+
+        id: 151,
+        Fac_name: "Dr. Neeru Sehdev",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Physics/Neeru_physics.png",
+        cv: "/images/ImgPages/Physics/Neeru_physics_cv.pdf",
+    },
+    {
+
+        id: 152,
+        Fac_name: "Dr. Shefali Jain",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Physics/Shefali_physics.png",
+        cv: "/images/ImgPages/Physics/Shefali_physics_cv.pdf",
+    },
+    {
+
+        id: 153,
+        Fac_name: "Ms. Jyoti Chauhan",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Physics/Jyoti_physics.png",
+        cv: "/images/ImgPages/Physics/Jyoti_physics_cv.pdf",
+    },
+    {
+
+        id: 154,
+        Fac_name: "Dr. Disha Wadhawan",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Physics/Disha_physics.png",
+        cv: "/images/ImgPages/Physics/Disha_physics_cv.pdf",
+    },
+
+]

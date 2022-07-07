@@ -193,6 +193,10 @@ import PhysicalEdu_programoffered from "./Pages/Academics/Departments/Physical_E
 import PhysicalEdu_fac from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_fac";
 // Physics
 import Physics_about from "./Pages/Academics/Departments/Physics/Physics_about";
+import Physics_fac from "./Pages/Academics/Departments/Physics/Physics_fac";
+import Physics_programoffered from "./Pages/Academics/Departments/Physics/Physics_programoffered";
+import Physics_events from "./Pages/Academics/Departments/Physics/Physics_events";
+import Physics_studachieve from "./Pages/Academics/Departments/Physics/Physics_studachieve";
 
 function App() {
   return (
@@ -1425,6 +1429,45 @@ function App() {
             }
             path="/academics/departments/Physics/"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_fac />
+              </>
+            }
+            path="/academics/departments/Physics/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_programoffered />
+              </>
+            }
+            path="/academics/departments/Physics/Programoffered"
+          ></Route>{" "}
+
+
+          <Route
+            element={
+              <>
+                <Physics_events />
+              </>
+            }
+            path="/academics/departments/Physics/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_studachieve />
+              </>
+            }
+            path="/academics/departments/Physics/Students'_achievements"
+          ></Route>{" "}
+
+
+
+
+
           <Route
             element={
               <>
