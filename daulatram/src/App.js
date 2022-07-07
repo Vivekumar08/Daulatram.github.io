@@ -197,6 +197,11 @@ import Physics_fac from "./Pages/Academics/Departments/Physics/Physics_fac";
 import Physics_programoffered from "./Pages/Academics/Departments/Physics/Physics_programoffered";
 import Physics_events from "./Pages/Academics/Departments/Physics/Physics_events";
 import Physics_studachieve from "./Pages/Academics/Departments/Physics/Physics_studachieve";
+import Physics_publications from "./Pages/Academics/Departments/Physics/Physics_publications";
+import Physics_facilities from "./Pages/Academics/Departments/Physics/Physics_facilities";
+import Physics_labstaff from "./Pages/Academics/Departments/Physics/Physics_labstaff";
+import Physics_association from "./Pages/Academics/Departments/Physics/Physics_association";
+import Physics_news_magazines from "./Pages/Academics/Departments/Physics/Physics_news_magazines";
 
 function App() {
   return (
@@ -1462,6 +1467,46 @@ function App() {
               </>
             }
             path="/academics/departments/Physics/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_publications />
+              </>
+            }
+            path="/academics/departments/Physics/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_facilities />
+              </>
+            }
+            path="/academics/departments/Physics/Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_labstaff />
+              </>
+            }
+            path="/academics/departments/Physics/laboratorystaff"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_association />
+              </>
+            }
+            path="/academics/departments/Physics/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_news_magazines />
+              </>
+            }
+            path="/academics/departments/Physics/newsletter_magazines"
           ></Route>{" "}
 
 

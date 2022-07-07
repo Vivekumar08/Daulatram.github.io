@@ -885,4 +885,13 @@ export const Physics_side = [{
         title: "Photo Gallery",
         link: "/academics/departments/Physics/photogallery",
     },
+    {
+        id: 13,
+        title: "Newsletters & Magazines",
+        link: "/academics/departments/Physics/newsletter_magazines",
+    },
+
+
+
+
 ];
