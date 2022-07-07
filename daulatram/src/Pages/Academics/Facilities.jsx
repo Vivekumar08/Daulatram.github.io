@@ -21,7 +21,7 @@ const Facilities = () => {
               Library and Reading Room
             </h3>
             <figure className="flex p-4">
-              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
                 Library and Reading Room facilities are open only to students
                 and staﬀ of the college. The College Library possesses an
                 excellent collection of more than 1,20,000 books and journals/

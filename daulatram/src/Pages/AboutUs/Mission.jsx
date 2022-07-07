@@ -30,7 +30,7 @@ const Mission = () => {
                 
               />
 
-              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
                 Daulat Ram College is a premier educational institution in Delhi
                 founded by an educationist late Shri Daulat Ram Gupta in 1960.
                 It is a prestigious women’s college engaged in imparting liberal
