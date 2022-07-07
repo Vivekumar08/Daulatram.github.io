@@ -43,15 +43,52 @@ const Pol_Sci_events = () => {
                 </>
               );
             })}
-
-
-
-
-
-
-
-
-            
+            <div>
+              <h2 className="text-2xl ml-4 mt-5 font-bold mb-3">
+                Face Yoga Event with Mansi 2020
+              </h2>
+              {/* </div> */}
+              {/* <div class="box"> */}
+                <div class="carousel">
+                  <div class="carousel__item">
+                    <img
+                      src="/images/ImgPages/Political_Science/face1.jpeg"
+                      className="  mt-[3%]   w-[450px] h-[370px] rounded-2xl border-2 border-black"
+                    />
+                  </div>
+                  <div class="carousel__item">
+                    <img
+                      src="/images/ImgPages/Political_Science/face2.jpeg"
+                      className="  mt-[3%]   w-[450px] h-[370px] rounded-2xl border-2 border-black"
+                    />
+                  </div>
+                  <div class="carousel__item">
+                    <img
+                      src="/images/ImgPages/Political_Science/face3.jpeg"
+                      className="  mt-[3%]   w-[450px] h-[370px] rounded-2xl border-2 border-black"
+                    />
+                  </div>
+                  <div class="carousel__item">
+                    <img
+                      src="/images/ImgPages/Political_Science/face4.jpeg"
+                      className="  mt-[3%]   w-[450px] h-[370px] rounded-2xl border-2 border-black"
+                    />
+                  </div>
+                  <div class="carousel__item">
+                    <img
+                      src="/images/ImgPages/Political_Science/face5.jpeg"
+                      className="  mt-[3%]   w-[450px] h-[370px] rounded-2xl border-2 border-black"
+                    />
+                  </div>
+                  <div class="carousel__item">
+                    <img
+                      src="/images/ImgPages/Political_Science/face6.jpeg"
+                      className="  mt-[3%]   w-[450px] h-[370px] rounded-2xl border-2 border-black"
+                    />
+                  </div>
+                </div>
+              </div>
+            {/* </div> */}
           </div>
         </div>
       </div>
