@@ -614,16 +614,20 @@ router.delete('/deleteHelpdesk/:id', async (req, res) => {
 })
 
 // Research
-router.delete('/delete_research_fac/:id', async (req, res) => {
+router.post('/delete_research_fac/:id', async (req, res) => {
   const delete_user = await File.findOneAndDelete({ _id: req.params.id });
-  await unlinkAsync(delete_user.file_path)
-  res.status(200).json(delete_user + "User deleted")
+  const arr = delete_user.img_data.file_path
+  if (arr.length === 0) {
+    console.log(delete_user.img_data.file_path)
+    res.status(200).json(delete_user + "User deleted")
+  } else {
+    res.status(400).json( "First Delete all the images related to this section" )
+  }
 })
 router.post('/delete_img_research_fac/:id', async (req, res) => {
-  const { file_path1 } = req.body
-  const delete_user = await File.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: file_path1 } } }, false, true);
-  console.log(delete_user.img_data.file_path.file_path1)
-  // await unlinkAsync(delete_user.img_data.file_path.file_path1)
+  console.log(req.body.file_path1)
+  const delete_user = await File.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+  await unlinkAsync(req.body.file_path1)
   res.status(200).json(delete_user + "User deleted")
 
 })
@@ -665,14 +669,9 @@ router.post(
     try {
       const { path, mimetype } = req.file;
       // console.log(path,mimetype)
-      const dat = await File.findOneAndUpdate({ _id: req.params.id }, { $push: {"img_data.file_path":{file_path1: path , file_mimetype1:mimetype}}});
+      const dat = await File.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.file_path": { file_path1: path, file_mimetype1: mimetype } } });
       // console.log(dat)
       if (dat) {
-
-        //   const file = new dat({
-        //     file_path: path,
-        //     file_mimetype: mimetype
-        //   });
         res.status(200).send('file uploaded successfully.');
       }
     } catch (error) {
