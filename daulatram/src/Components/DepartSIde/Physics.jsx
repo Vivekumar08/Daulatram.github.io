@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { biochems } from "./Depart_side_data";
+import { Physics_side } from "./Depart_side_data";
 
-const Biochemistry = () => {
-  const [data, setData] = useState(biochems);
+const Physics = () => {
+  const [data, setData] = useState(Physics_side);
 
   return (
     <div>
@@ -23,4 +23,4 @@ const Biochemistry = () => {
   );
 };
 
-export default Biochemistry;
+export default Physics;

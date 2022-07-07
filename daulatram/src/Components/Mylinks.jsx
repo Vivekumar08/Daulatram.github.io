@@ -452,23 +452,23 @@ export const dept = [
       },
       {
         name: "Physics",
-        link: "/academics/departments/Physics",
+        link: "/academics/departments/Physics/",
       },
       {
         name: "Political Science",
-        link: "/academics/departments/Political_Science",
+        link: "/academics/departments/Political_Science/",
       },
       {
         name: "Psychology",
-        link: "/academics/departments/Psychology",
+        link: "/academics/departments/Psychology/",
       },
       {
         name: "Sanskrit",
-        link: "/academics/departments/Sanskrit",
+        link: "/academics/departments/Sanskrit/",
       },
       {
         name: "Zoology",
-        link: "/academics/departments/Zoology",
+        link: "/academics/departments/Zoology/",
       },
     ],
   },
