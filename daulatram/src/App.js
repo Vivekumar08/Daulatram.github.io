@@ -211,6 +211,9 @@ import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Scienc
 import Pol_Sci_association from "./Pages/Academics/Departments/Political_Science/Pol_Sci_association";
 import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_Sci_events";
 
+// Psychology
+import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about";
+
 function App() {
   return (
     <>
@@ -1562,6 +1565,15 @@ function App() {
               </>
             }
             path="/academics/departments/Political_Science/Events"
+          ></Route>{" "}
+          {/* Psychology */}{" "}
+          <Route
+            element={
+              <>
+                <Psycho_about />
+              </>
+            }
+            path="/academics/departments/Psychology/"
           ></Route>{" "}
           <Route
             element={
