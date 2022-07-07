@@ -113,9 +113,9 @@ const Bulletins_Admission = () => {
         <div className="w-[350px]">
           <Admission_side />
         </div>
-        <div className="ml-3 mb-5">
+  
           <div className="w-[1100px]">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Admission Bulletin
             </h2>
             <div class="flex justify-evenly w-full mt-5 mb-5">
@@ -127,7 +127,7 @@ const Bulletins_Admission = () => {
                   var path = path2.slice(19);
                   return (
                     <>
-                      <div class="card2 " key={_id}>
+                      <div class="card2 ml-2 " key={_id}>
                         <span className="  font-bold text-xl ml-8">{link}</span>
                         <div className="flex flex-col ml-10 w-full">
                           <div class="info2 ml-4 w-full">
@@ -261,7 +261,7 @@ const Bulletins_Admission = () => {
           </div>
         </div>
       </div>
-    </div>
+   
   );
 };
 

@@ -84,9 +84,9 @@ const Helpdesk = () => {
         <div className="w-[350px]">
           <Admission_side />
         </div>
-        <div className="ml-3 mb-5">
+        
           <div className="w-[1100px]">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Helpdesk
             </h2>
             {data.map((datas) => (
@@ -94,16 +94,16 @@ const Helpdesk = () => {
                 <div className="flex flex-row">
                   <li className=" list-none" key={datas._id}>
                     <div className="flex flex-col">
-                      <p className="mt-12 ">{datas.Caption}</p>
+                      <p className="mt-2 ml-3 leading-14 font-medium text-justify text-base md:text-lg ">{datas.Caption}</p>
                       <h1 className="mt-2">
                         <FontAwesomeIcon
                           icon={faArrowRight}
-                          className="text-blue-400"
+                          className="ml-3 font-medium text-justify text-base md:text-lg text-center md:text-left text-blue-400"
                         />
                         <a
                           href={datas.Link}
                           target="_blank"
-                          className="text-blue-400  hover:pl-3"
+                          className="ml-1 font-medium text-justify text-base md:text-lg text-center md:text-left text-blue-400  hover:pl-3"
                         >
                           {" "}
                           {datas.Link}
@@ -184,7 +184,7 @@ const Helpdesk = () => {
           </div>
         </div>
       </div>
-    </div>
+   
   );
 };
 

@@ -94,7 +94,7 @@ const OnlineAdmission = () => {
         </div>
       
           <div className="w-[1100px]">
-            <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Online Admission
             </h2>
             {data.map((datas) => (
