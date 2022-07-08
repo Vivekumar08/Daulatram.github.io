@@ -220,6 +220,7 @@ import Sans_fac from "./Pages/Academics/Departments/Sanskrit/Sans_fac";
 import Sans_programoffered from "./Pages/Academics/Departments/Sanskrit/Sans_programoffered";
 import Sans_events from "./Pages/Academics/Departments/Sanskrit/Sans_events";
 import Sans_studachieve from "./Pages/Academics/Departments/Sanskrit/Sans_studachieve";
+import Sans_publications from "./Pages/Academics/Departments/Sanskrit/Sans_publications";
 
 function App() {
   return (
@@ -1630,6 +1631,14 @@ function App() {
               </>
             }
             path="/academics/departments/Sanskrit/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Sans_publications />
+              </>
+            }
+            path="/academics/departments/Sanskrit/Publications"
           ></Route>{" "}
 
 
