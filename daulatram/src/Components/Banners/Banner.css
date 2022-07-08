@@ -1,7 +1,9 @@
 .Banner {
-    height: 280px;
+    background: url("../../../public/images/img1.jpg") no-repeat center center;
+    /* height: 280px; */
     width: 100%;
     opacity: 0.8;
+    background-size: cover;
 }
 
 .name {

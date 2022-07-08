@@ -1,14 +1,11 @@
-import React from 'react'
+import React from "react";
 import "./Banner.css";
 import { Link } from "react-router-dom";
 
 const Formsbanner = () => {
   return (
-<>
-<div
-        className="Banner"
-        style={{ backgroundImage: "url(/images/img1.jpg)" }}
-      >
+    <>
+      <div className="Banner">
         <div className="name">
           <span className="  flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
             Forms{" "}
@@ -21,8 +18,8 @@ const Formsbanner = () => {
           </div>
         </div>
       </div>
+    </>
+  );
+};
 
-</>  )
-}
-
-export default Formsbanner
+export default Formsbanner;
