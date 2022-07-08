@@ -214,7 +214,8 @@ import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_
 // Psychology
 import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about";
 import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
-
+// Sanskriti
+import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
 
 function App() {
   return (
@@ -1577,7 +1578,6 @@ function App() {
             }
             path="/academics/departments/Psychology/"
           ></Route>{" "}
-
           <Route
             element={
               <>
@@ -1586,11 +1586,15 @@ function App() {
             }
             path="/academics/departments/Psychology/Faculty"
           ></Route>{" "}
-
-
-
-
-
+          {/* Sanskriti */}{" "}
+          <Route
+            element={
+              <>
+                <Sans_about />
+              </>
+            }
+            path="/academics/departments/Sanskrit/"
+          ></Route>{" "}
           <Route
             element={
               <>
