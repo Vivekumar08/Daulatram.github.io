@@ -217,6 +217,7 @@ import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 // Sanskriti
 import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
 import Sans_fac from "./Pages/Academics/Departments/Sanskrit/Sans_fac";
+import Sans_programoffered from "./Pages/Academics/Departments/Sanskrit/Sans_programoffered";
 
 function App() {
   return (
@@ -1603,6 +1604,14 @@ function App() {
               </>
             }
             path="/academics/departments/Sanskrit/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Sans_programoffered />
+              </>
+            }
+            path="/academics/departments/Sanskrit/Programoffered"
           ></Route>{" "}
           <Route
             element={
