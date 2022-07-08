@@ -489,7 +489,21 @@ router.delete('/delete_StudentZone_forms/:id', async (req, res) => {
   await unlinkAsync(delete_user.file_path)
   res.status(200).json(delete_user + "User deleted")
 })
+router.post('/StudentZone_forms_add_link', async (req, res) => {
+  try{
 
+    const { title, link, file } = req.body
+    if (!title || !link) {
+      return res.status(400).json({ error: "Fill the Admission Details Properly" })
+    }
+    const user = new Student_forms({ title, link, file_path: file, file_mimetype: 'text/link' });
+    await user.save();
+    console.log("Details Saved Successfully")
+    return res.status(200).json({ message: "Details Saved Successfully " })
+  }catch(err){
+    console.log(err)
+  }
+})
 router.post(
   '/StudentZone_forms_add',
   upload.single('file'),
@@ -660,7 +674,7 @@ router.post('/delete_research_fac/:id', async (req, res) => {
     // console.log(delete_user.img_data.file_path)
     res.status(200).json(delete_user + "User deleted")
   } else {
-    res.status(400).json( "First Delete all the images related to this section" )
+    res.status(400).json("First Delete all the images related to this section")
   }
 })
 router.post('/delete_img_research_fac/:id', async (req, res) => {
