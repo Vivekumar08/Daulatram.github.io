@@ -222,6 +222,7 @@ import Sans_events from "./Pages/Academics/Departments/Sanskrit/Sans_events";
 import Sans_studachieve from "./Pages/Academics/Departments/Sanskrit/Sans_studachieve";
 import Sans_publications from "./Pages/Academics/Departments/Sanskrit/Sans_publications";
 import Sans_awards from "./Pages/Academics/Departments/Sanskrit/Sans_awards";
+import Sans_association from "./Pages/Academics/Departments/Sanskrit/Sans_association";
 
 function App() {
   return (
@@ -1648,6 +1649,14 @@ function App() {
               </>
             }
             path="/academics/departments/Sanskrit/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Sans_association />
+              </>
+            }
+            path="/academics/departments/Sanskrit/association"
           ></Route>{" "}
 
 
