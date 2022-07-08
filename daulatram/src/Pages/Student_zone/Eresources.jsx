@@ -1,14 +1,14 @@
-import React from 'react'
-import Student_side from '../../Components/Sidebar/Student_side'
-import "./Eresources.css"
-import Eresourcesbanner from '../../Components/Banners/Eresourcesbanner'
+import React from "react";
+import Student_side from "../../Components/Sidebar/Student_side";
+import "./Eresources.css";
+import Eresourcesbanner from "../../Components/Banners/Eresourcesbanner";
 
 const Eresources = () => {
   return (
-<>
-<div className="">
+    <>
+      <div className="">
         {/* <Studentfacbanner/> */}
-        <Eresourcesbanner/>
+        <Eresourcesbanner />
       </div>
 
       <div className="flex ">
@@ -17,39 +17,29 @@ const Eresources = () => {
         </div>
         <div className="w-[1100px]">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-          E-Resources
+            E-Resources
           </h2>
 
-<div className=' md:ml-16 card-description leading-14 font-medium text-justify text-base md:text-2xl'>
-        
-
-            <li className='res'>
-                <a href=" https://swayam.gov.in/"> Swayam Portal</a>
+          <div className=" md:ml-16 card-description leading-14 font-medium text-justify text-base md:text-2xl">
+            <li className="res">
+              <a href=" https://swayam.gov.in/"> Swayam Portal</a>
             </li>
-            <li className='res'>
-                <a href="https://www.inflibnet.ac.in/"> Inflibnet</a>
-            </li >
-
-            <li className='res'>
-                <a href=" http://crl.du.ac.in/subjectportal/">
-                DUCC Library
-                </a>
+            <li className="res">
+              <a href="https://www.inflibnet.ac.in/"> Inflibnet</a>
             </li>
 
-            <li className='res'>
-                <a href="https://epgp.inflibnet.ac.in/">
-               E-Pathshala 
-                </a>
+            <li className="res">
+              <a href=" http://crl.du.ac.in/subjectportal/">DUCC Library</a>
             </li>
-        
 
+            <li className="res">
+              <a href="https://epgp.inflibnet.ac.in/">E-Pathshala</a>
+            </li>
+          </div>
         </div>
+      </div>
+    </>
+  );
+};
 
-        </div>
-        </div>
-
-</>
-    )
-}
-
-export default Eresources
+export default Eresources;

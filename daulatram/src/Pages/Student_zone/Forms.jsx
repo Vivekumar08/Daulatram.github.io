@@ -75,6 +75,14 @@ const forms = () => {
     }
   };
 
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {

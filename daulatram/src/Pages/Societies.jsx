@@ -57,18 +57,25 @@ const Societies = () => {
       setErrMsg("Unable to Delete");
     }
   };
-  function sortOn(property){
-    return function(a, b){
-        if(a[property] < b[property]){
-            return -1;
-        }else if(a[property] > b[property]){
-            return 1;
-        }else{
-            return 0;   
-        }
-    }
-}
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
 
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -105,7 +112,6 @@ const Societies = () => {
 
   return (
     <>
-    
       <div className="main_head">
         <h1>
           <span>Societies</span>
@@ -243,7 +249,6 @@ const Societies = () => {
           </form>
         </>
       )}
-
     </>
   );
 };
