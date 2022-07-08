@@ -1577,3 +1577,53 @@ export const Psycho_fac_info = [{
     },
 
 ]
+
+export const Sans_fac_info = [{
+        id: 172,
+        Fac_name: "Dr. Shashi Sharma",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Sanskrit/Shashi_sans.jpg",
+        cv: "/images/ImgPages/Sanskrit/Shashi_sans_cv.pdf",
+    },
+    {
+        id: 173,
+        Fac_name: "Dr. Sharda Gautam",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Sanskrit/Sharda_sans.jpg",
+        cv: "/images/ImgPages/Sanskrit/Sharda_sans_cv.pdf",
+    },
+    {
+        id: 174,
+        Fac_name: "Dr. Kamna Vimal ",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Sanskrit/Kamna_sans.jpg",
+        cv: "/images/ImgPages/Sanskrit/Kamna_sans_cv.pdf",
+    },
+    {
+        id: 175,
+        Fac_name: "Dr. Sushma Devi",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Sanskrit/Sushma_sans.jpg",
+        cv: "/images/ImgPages/Sanskrit/Sushma_sans_cv.pdf",
+    },
+    {
+        id: 176,
+        Fac_name: "Dr. Ravi Kumar Meena ",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Sanskrit/Ravi_sans_cv.jpg",
+        cv: "/images/ImgPages/Sanskrit/Ravi_sans_cv.pdf",
+    },
+    {
+        id: 177,
+        Fac_name: "Dr. Rosy Sharma ",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+]

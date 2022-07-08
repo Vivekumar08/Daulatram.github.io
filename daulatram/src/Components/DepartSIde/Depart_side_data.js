@@ -1042,68 +1042,68 @@ export const Psycho_side = [{
 export const Sans_side = [{
         id: 1,
         title: "About The Department",
-        link: "/academics/departments/Psychology/",
+        link: "/academics/departments/Sanskrit/",
     },
     {
         id: 2,
         title: "Faculty",
-        link: "/academics/departments/Psychology/Faculty",
+        link: "/academics/departments/Sanskrit/Faculty",
     },
     {
         id: 3,
         title: "Programmes Offer",
-        link: "/academics/departments/Psychology/Programoffered",
+        link: "/academics/departments/Sanskrit/Programoffered",
     },
     {
         id: 4,
         title: "Events",
-        link: "/academics/departments/Psychology/Events",
+        link: "/academics/departments/Sanskrit/Events",
     },
     {
         id: 5,
         title: "Students' Achievements",
-        link: "/academics/departments/Psychology/Students'_achievements",
+        link: "/academics/departments/Sanskrit/Students'_achievements",
     },
     {
         id: 6,
         title: "Publications",
-        link: "/academics/departments/Psychology/Publications",
+        link: "/academics/departments/Sanskrit/Publications",
     },
     {
         id: 7,
         title: "Awards",
-        link: "/academics/departments/Psychology/awards",
+        link: "/academics/departments/Sanskrit/awards",
     },
     {
         id: 8,
         title: "Facilities",
-        link: "/academics/departments/Psychology/Facilities",
+        link: "/academics/departments/Sanskrit/Facilities",
     },
 
     // {
     //     id: 9,
     //     title: "Laboratory Staff",
-    //     link: "/academics/departments/Psychology/laboratorystaff",
+    //     link: "/academics/departments/Sanskrit/laboratorystaff",
     // },
 
     {
         id: 10,
         title: "Association",
-        link: "/academics/departments/Psychology/association",
+        link: "/academics/departments/Sanskrit/association",
     },
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Psychology/timetable",
+        link: "/academics/departments/Sanskrit/timetable",
     },
     {
         id: 12,
         title: "Photo Gallery",
-        link: "/academics/departments/Psychology/photogallery",
+        link: "/academics/departments/Sanskrit/photogallery",
     },
     // {
     //     id: 13,
     //     title: "Newsletters & Magazines",
-    //     link: "/academics/departments/Psychology/newsletter_magazines",
+    //     link: "/academics/departments/Sanskrit/newsletter_magazines",
     // },
 ];
