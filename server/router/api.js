@@ -486,21 +486,24 @@ router.get('/StudentZone_forms', async (req, res,) => {
 });
 router.delete('/delete_StudentZone_forms/:id', async (req, res) => {
   const delete_user = await Student_forms.findOneAndDelete({ _id: req.params.id });
+  if (delete_user.file_mimetype === 'text/link') {
+    res.status(200).json(delete_user + "User deleted")
+  }
   await unlinkAsync(delete_user.file_path)
   res.status(200).json(delete_user + "User deleted")
 })
 router.post('/StudentZone_forms_add_link', async (req, res) => {
-  try{
-
-    const { title, link, file } = req.body
-    if (!title || !link) {
+  try {
+    console.log(req.body)
+    const { file, link, title } = req.body
+    if (!title || !link || !file) {
       return res.status(400).json({ error: "Fill the Admission Details Properly" })
     }
     const user = new Student_forms({ title, link, file_path: file, file_mimetype: 'text/link' });
     await user.save();
     console.log("Details Saved Successfully")
     return res.status(200).json({ message: "Details Saved Successfully " })
-  }catch(err){
+  } catch (err) {
     console.log(err)
   }
 })

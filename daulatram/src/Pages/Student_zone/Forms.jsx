@@ -8,6 +8,7 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 import Formsbanner from "../../Components/Banners/Formsbanner";
 import Student_side from "../../Components/Sidebar/Student_side";
+import { queryByTitle } from "@testing-library/react";
 
 const forms = () => {
   const [data1, setData1] = useState();
@@ -99,37 +100,31 @@ const forms = () => {
   };
   const handleSubmit1 = async (e) => {
     e.preventDefault();
-    try {
-      if (link.trim() !== "" && caption.trim() !== "") {
-        if (file) {
-          const formData = new FormData();
-          formData.append("file", file);
-          formData.append("link", link);
-          formData.append("title", caption);
-
-          setErrMsg("");
-          await axios.post(
-            `http://localhost:5000/StudentZone_forms_add_link`,
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          );
-          setCaption("");
-          setLink("");
-          setFile("");
-          setAuth(true);
-          fetchdata();
-        } else {
-          setErrMsg("Please enter all the field values.");
-        }
-      } else {
-        setErrMsg("Please Link a file to add.");
+    console.log(link, caption, file);
+    const response = await fetch(
+      "http://localhost:5000/StudentZone_forms_add_link",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          link: link,
+          title: caption,
+          file: file,
+        }),
       }
-    } catch (err) {
-      err.response && setErrMsg(err.response.data);
+    );
+    const data = await response.json();
+    if (!data) {
+      setErrMsg("No Server Response");
+    } else if (response.status === 400) {
+      setErrMsg("Fill Complete Details");
+    } else {
+      setCaption("");
+      setLink("");
+      setAuth(true);
+      fetchdata();
     }
   };
 
@@ -148,16 +143,16 @@ const forms = () => {
             TEACHERS-IN-CHARGE
           </h2>
           <div className="main flex-col  ">
-            <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1 ">
+            <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-auto md:mr-auto md:w-[900px] md:h-[180px] mt-1 ">
               <tr className="h-20 text-lg">
-                <th className="row text-lg">S.no</th>
+                <th className="row text-lg w-[10%]">S.no</th>
                 <th className="text-lg">About</th>
-                <th className="text-lg">PDF</th>
+                <th className="text-lg w-[25%]">PDF</th>
                 {auth && <th className="text-lg w-[15%]">Delete</th>}
               </tr>
               {data1 &&
                 data1.map((curElem) => {
-                  const { _id, title, file_path, link } = curElem;
+                  const { _id, title, file_path, link, file_mimetype } = curElem;
                   var path_pic = file_path;
                   var path2 = path_pic.replace(/\\/g, "/");
                   var path = path2.slice(19);
@@ -170,10 +165,17 @@ const forms = () => {
                         </td>
                         <td>
                           {" "}
+                          {file_mimetype === "text/link"?(<>
+                          <a href={file_path} target="_blank" rel="noreferrer">
+                            {" "}
+                            <button className="btn">Click Here</button>
+                          </a>{" "}
+                          </>):(<>
                           <a href={path} target="_blank" rel="noreferrer">
                             {" "}
                             <button className="btn">Click Here</button>
                           </a>{" "}
+                          </>)}
                         </td>
                         {auth && (
                           <>
