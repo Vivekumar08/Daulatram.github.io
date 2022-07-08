@@ -47,6 +47,18 @@ const forms = () => {
     fetchdata();
   }, []);
 
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
+
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
@@ -129,7 +141,7 @@ const forms = () => {
   };
 
   return (
-    <div className=" flex flex-col ">
+    <div className=" flex flex-col mb-16 ">
       <div className="">
         <Formsbanner />
       </div>
@@ -140,9 +152,9 @@ const forms = () => {
 
         <div className="w-[1100px] mb-5">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-            TEACHERS-IN-CHARGE
+            Forms
           </h2>
-          <div className="main flex-col  ">
+          <div className="main flex-col ">
             <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-auto md:mr-auto md:w-[900px] md:h-[180px] mt-1 ">
               <tr className="h-20 text-lg">
                 <th className="row text-lg w-[10%]">S.no</th>
@@ -151,8 +163,9 @@ const forms = () => {
                 {auth && <th className="text-lg w-[15%]">Delete</th>}
               </tr>
               {data1 &&
-                data1.map((curElem) => {
-                  const { _id, title, file_path, link, file_mimetype } = curElem;
+                data1.sort(sortOn("link")).map((curElem) => {
+                  const { _id, title, file_path, link, file_mimetype } =
+                    curElem;
                   var path_pic = file_path;
                   var path2 = path_pic.replace(/\\/g, "/");
                   var path = path2.slice(19);
@@ -165,17 +178,25 @@ const forms = () => {
                         </td>
                         <td>
                           {" "}
-                          {file_mimetype === "text/link"?(<>
-                          <a href={file_path} target="_blank" rel="noreferrer">
-                            {" "}
-                            <button className="btn">Click Here</button>
-                          </a>{" "}
-                          </>):(<>
-                          <a href={path} target="_blank" rel="noreferrer">
-                            {" "}
-                            <button className="btn">Click Here</button>
-                          </a>{" "}
-                          </>)}
+                          {file_mimetype === "text/link" ? (
+                            <>
+                              <a
+                                href={file_path}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                {" "}
+                                <button className="btn1">Click Here</button>
+                              </a>{" "}
+                            </>
+                          ) : (
+                            <>
+                              <a href={path} target="_blank" rel="noreferrer">
+                                {" "}
+                                <button className="btn1">Click Here</button>
+                              </a>{" "}
+                            </>
+                          )}
                         </td>
                         {auth && (
                           <>
@@ -199,7 +220,7 @@ const forms = () => {
             <>
               <form
                 method="post"
-                className="flex flex-col justify-center content-center max-w-sm mt-5 h-[75%] ml-auto mr-auto mb-5"
+                className="flex flex-col justify-center content-center max-w-sm mt-5 h-[55%] ml-auto mr-auto mb-16"
               >
                 <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-5 mr-auto flex flex-row justify-center items-center text-red-500">
                   <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
@@ -338,7 +359,7 @@ const forms = () => {
                           placeholder="link"
                           className=" bg-gray-200 appearance-none border-2 mb-3 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                         />
-                        <div class="md:w-2/3 mt-2 ">
+                        <div class="md:w-2/3 mt-2 mb-16 ">
                           <button
                             class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                             type="button"

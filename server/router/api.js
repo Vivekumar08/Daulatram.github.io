@@ -487,10 +487,13 @@ router.get('/StudentZone_forms', async (req, res,) => {
 router.delete('/delete_StudentZone_forms/:id', async (req, res) => {
   const delete_user = await Student_forms.findOneAndDelete({ _id: req.params.id });
   if (delete_user.file_mimetype === 'text/link') {
+    console.log(delete_user.file_mimetype)
+    res.status(200).json(delete_user + "User deleted")
+  }else{
+    console.log(delete_user.file_mimetype)
+    await unlinkAsync(delete_user.file_path)
     res.status(200).json(delete_user + "User deleted")
   }
-  await unlinkAsync(delete_user.file_path)
-  res.status(200).json(delete_user + "User deleted")
 })
 router.post('/StudentZone_forms_add_link', async (req, res) => {
   try {

@@ -105,12 +105,12 @@ const OnlineAdmission = () => {
                       <span>
                         <FontAwesomeIcon
                           icon={faArrowRight}
-                          className="ml-3 font-medium text-justify text-base md:text-lg text-center md:text-left text-blue-400"
+                          className="ml-3 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400"
                         />
                         <a
                           href={datas.Link}
                           target="_blank"
-                          className="ml-1 font-medium text-justify text-base md:text-lg text-center md:text-left text-blue-400  hover:pl-3"
+                          className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400  hover:pl-3"
                         >
                           {" "}
                           {datas.Link}
