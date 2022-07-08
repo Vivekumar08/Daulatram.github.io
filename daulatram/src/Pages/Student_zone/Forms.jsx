@@ -8,6 +8,7 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 import Formsbanner from "../../Components/Banners/Formsbanner";
 import Student_side from "../../Components/Sidebar/Student_side";
+import { queryByTitle } from "@testing-library/react";
 
 const forms = () => {
   const [data1, setData1] = useState();
@@ -99,39 +100,31 @@ const forms = () => {
   };
   const handleSubmit1 = async (e) => {
     e.preventDefault();
-    try {
-      if (link.trim() !== "" && caption.trim() !== "") {
-        if (file) {
-          const formData = new FormData();
-          formData.append("file", file);
-          formData.append("link", link);
-          formData.append("title", caption);
-
-          setErrMsg("");
-          await axios.post(
-            `http://localhost:5000/StudentZone_forms_add_link`,
-            formData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-              },
-            }
-          );
-          setCaption("");
-          setLink("");
-          setFile("");
-          setAuth(true);
-          fetchdata();
-        } else {
-          setErrMsg("Please enter all the field values.");
-        }
-      } else {
-        setErrMsg("Please Link a file to add.");
-      }
-    } catch (err) {
-      err.response && setErrMsg(err.response.data);
+    console.log(link, caption,file);
+    const response = await fetch("http://localhost:5000/StudentZone_forms_add_link", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        link: link,
+        title: caption,
+        file:file,
+      }),
+    });
+    const data = await response.json();
+    if (!data) {
+      setErrMsg("No Server Response");
+    } else if (response.status === 400) {
+      setErrMsg("Fill Complete Details");
+    } else {
+      setCaption("");
+      setLink("");
+      setAuth(true);
+      fetchdata();
     }
   };
+
 
   return (
     <div className=" flex flex-col ">
