@@ -218,6 +218,7 @@ import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
 import Sans_fac from "./Pages/Academics/Departments/Sanskrit/Sans_fac";
 import Sans_programoffered from "./Pages/Academics/Departments/Sanskrit/Sans_programoffered";
+import Sans_events from "./Pages/Academics/Departments/Sanskrit/Sans_events";
 
 function App() {
   return (
@@ -1613,6 +1614,20 @@ function App() {
             }
             path="/academics/departments/Sanskrit/Programoffered"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Sans_events />
+              </>
+            }
+            path="/academics/departments/Sanskrit/Events"
+          ></Route>{" "}
+
+
+
+
+
+
           <Route
             element={
               <>
