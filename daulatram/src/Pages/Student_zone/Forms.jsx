@@ -1,91 +1,361 @@
-import React from 'react'
-import Formsbanner from '../../Components/Banners/Formsbanner';
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
+// import "./toggle.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import Formsbanner from "../../Components/Banners/Formsbanner";
 import Student_side from "../../Components/Sidebar/Student_side";
-import "./Att.css";
-import clearance_form from "../Student_zone/Student_Clearance_Form.pdf";
-import refund_form from "../Student_zone/Student_Fee_Refund_form.pdf"
 
-const Forms = () => {
+const forms = () => {
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [check, setCheck] = useState(false);
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("http://localhost:5000/StudentZone_forms");
+    setData1(await response.json());
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(
+      `http://localhost:5000/delete_StudentZone_forms/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("link", link);
+        formData.append("title", caption);
+
+        setErrMsg("");
+        await axios.post(
+          `http://localhost:5000/StudentZone_forms_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        setFile(null);
+        setAuth(true);
+        fetchdata();
+      } else {
+        // setErrMsg("Please select a file to add.");
+        setErrMsg("Please enter all the field values.");
+      }
+      // } else {
+      // }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+  const handleSubmit1 = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        if (file) {
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("link", link);
+          formData.append("title", caption);
+
+          setErrMsg("");
+          await axios.post(
+            `http://localhost:5000/StudentZone_forms_add_link`,
+            formData,
+            {
+              headers: {
+                "Content-Type": "multipart/form-data",
+              },
+            }
+          );
+          setCaption("");
+          setLink("");
+          setFile("");
+          setAuth(true);
+          fetchdata();
+        } else {
+          setErrMsg("Please enter all the field values.");
+        }
+      } else {
+        setErrMsg("Please Link a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
-<>
-<div className="">
-        <Formsbanner/>
+    <div className=" flex flex-col ">
+      <div className="">
+        <Formsbanner />
       </div>
-
-      <div className="flex ">
+      <div className="flex flex-row">
         <div className="w-[350px] flex flex-row">
           <Student_side />
         </div>
-        <div className="w-[1100px]">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Forms
+
+        <div className="w-[1100px] mb-5">
+          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
+            TEACHERS-IN-CHARGE
           </h2>
-          <div className="main flex-col ">
-            {/* <div className='w-[200px] small  mt-20 p-3'>Internal Assesments</div> */}
-            <table className="text-xs md:text-base leading-5 w-80 h-40 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1">
-              <tr>
-                <th>S.no</th>
-                <th>About</th>
-                <th>Forms</th>
+          <div className="main flex-col  ">
+            <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1 ">
+              <tr className="h-20 text-lg">
+                <th className="row text-lg">S.no</th>
+                <th className="text-lg">About</th>
+                <th className="text-lg">PDF</th>
+                {auth && <th className="text-lg w-[15%]">Delete</th>}
               </tr>
-              <tr className="h-20">
-                <td>1</td>
-                <td>Fee For 2nd Year Student</td>
-                <td>
-                  {" "}
-                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfiQCrP10qQBdk6npKnEfrOxYhUugXDgCylj0WXvZO-wH4qYA/viewform">
-                    {" "}
-                    <button className="btn">Click Here</button>
-                  </a>{" "}
-                </td>
-              </tr>
-              <tr className="h-20">
-                <td>2</td>
-                <td>Fee For 3rd Year Student</td>
-                <td>
-                  {" "}
-                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSfl_dI5NZKAQcTu87wbRBsPyD-_DzdaYKmkWgtj6z0RAS587w/viewform">
-                    <button className="btn">Click Here</button>
-                  </a>{" "}
-                </td>
-              </tr>
-              <tr className="h-20">
-                <td>3</td>
-                <td>Student Document Verification</td>
-                <td className="w-56">
-                  {" "}
-                  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdEJYt-OfQYqgcc3rO5xLx4t73061rFD4UEZc23WXkFy6bMWw/viewform">
-                    <button className="btn">Click Here</button>
-                  </a>{" "}
-                </td>
-              </tr>
-              <tr className="h-20">
-                <td>4</td>
-                <td>Student Clearance Form</td>
-                <td className="w-56">
-                  {" "}
-                  <a href={clearance_form} target="_blank" rel="noreferrer">
-                    <button className="btn">Click Here</button>
-                  </a>{" "}
-                </td>
-              </tr>
-              <tr className="h-20">
-                <td>5</td>
-                <td>Fee Refund Form</td>
-                <td className="w-56">
-                  {" "}
-                  <a href={refund_form} target="_blank" rel="noreferrer">
-                    <button className="btn">Click Here</button>
-                  </a>{" "}
-                </td>
-              </tr>
+              {data1 &&
+                data1.map((curElem) => {
+                  const { _id, title, file_path, link } = curElem;
+                  var path_pic = file_path;
+                  var path2 = path_pic.replace(/\\/g, "/");
+                  var path = path2.slice(19);
+                  return (
+                    <>
+                      <tr className=" ">
+                        <td className="text-lg  overlay ">{link}</td>
+                        <td className="text-lg  overlay">
+                          <strong>{title} </strong>
+                        </td>
+                        <td>
+                          {" "}
+                          <a href={path} target="_blank" rel="noreferrer">
+                            {" "}
+                            <button className="btn">Click Here</button>
+                          </a>{" "}
+                        </td>
+                        {auth && (
+                          <>
+                            <td className="flex h-full overlay ">
+                              <FontAwesomeIcon
+                                icon={faTrashCan}
+                                size="2xl"
+                                className=" cursor-pointer ml-auto mr-auto mt-[25%]  hover:text-red-500"
+                                onClick={() => del(_id)}
+                              ></FontAwesomeIcon>
+                            </td>
+                          </>
+                        )}
+                      </tr>
+                    </>
+                  );
+                })}
             </table>
           </div>
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm mt-5 h-[75%] ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-5 mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Link"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setLink(e.target.value)}
+                    value={link}
+                    placeholder="Enter S.No. here"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="About"
+                  ></textarea>
+                </div>
+                <div class="flex flex-col">
+                  <div>
+                    <label
+                      htmlFor="checked-toggle"
+                      class="inline-flex relative items-center cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        value={check}
+                        id="checked-toggle"
+                        class="sr-only peer"
+                        onChange={() => setCheck(!check)}
+                      />
+                      <div class="w-11 h-6  bg-gray-200 rounded-full peer  dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <p className="ml-3">
+                        Toggle to switch between File and Link
+                      </p>
+                    </label>
+                  </div>
+                  {check ? (
+                    <>
+                      <div className="flex flex-col">
+                        <span class="ml-3  text-md font-medium text-gray-900">
+                          File
+                        </span>
+                        <div class="md:flex flex-col ">
+                          {/* <div class="md:w-1/3"></div> */}
+                          <div className="upload-section flex h-[200px]  mb-[10px] w-full">
+                            <Dropzone
+                              onDrop={onDrop}
+                              onDragEnter={() => updateBorder("over")}
+                              onDragLeave={() => updateBorder("leave")}
+                            >
+                              {({ getRootProps, getInputProps }) => (
+                                <div
+                                  {...getRootProps({
+                                    className:
+                                      "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                                  })}
+                                  ref={dropRef}
+                                >
+                                  <input {...getInputProps()} />
+                                  <p>
+                                    Drag and drop a file OR click here to select
+                                    a file
+                                  </p>
+                                  {file && (
+                                    <div>
+                                      <strong>Selected file:</strong>{" "}
+                                      {file.name}
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </Dropzone>
+                            {previewSrc ? (
+                              isPreviewAvailable ? (
+                                <div className="image-preview ml-[5%] w-full">
+                                  <img
+                                    className="preview-image w-full h-full block mb-[10px]"
+                                    src={previewSrc}
+                                    alt="Preview"
+                                  />
+                                </div>
+                              ) : (
+                                <div className="preview-message flex justify-center items-center ml-[5%]">
+                                  <p>No preview available for this file</p>
+                                </div>
+                              )
+                            ) : (
+                              <div className="preview-message flex justify-center items-center ml-[5%]">
+                                <p>
+                                  Image preview will be shown here after
+                                  selection
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                          <div class="md:w-2/3 ">
+                            <button
+                              class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                              type="button"
+                              onClick={handleSubmit}
+                            >
+                              Add
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex flex-col">
+                        {/* <div className=""> */}
+                        <span class="ml-3  text-md font-medium text-gray-900">
+                          Link
+                        </span>
+                        <input
+                          type="text"
+                          name="Link"
+                          // id=""
+                          ref={userRef}
+                          onChange={(e) => setFile(e.target.value)}
+                          value={file}
+                          placeholder="link"
+                          className=" bg-gray-200 appearance-none border-2 mb-3 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                        />
+                        <div class="md:w-2/3 mt-2 ">
+                          <button
+                            class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                            type="button"
+                            onClick={handleSubmit1}
+                          >
+                            Add
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
+    </div>
+  );
+};
 
-</>
-    )
-}
-
-export default Forms
+export default forms;
