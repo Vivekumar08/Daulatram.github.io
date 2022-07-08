@@ -216,6 +216,7 @@ import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about"
 import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 // Sanskriti
 import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
+import Sans_fac from "./Pages/Academics/Departments/Sanskrit/Sans_fac";
 
 function App() {
   return (
@@ -1594,6 +1595,14 @@ function App() {
               </>
             }
             path="/academics/departments/Sanskrit/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Sans_fac />
+              </>
+            }
+            path="/academics/departments/Sanskrit/Faculty"
           ></Route>{" "}
           <Route
             element={
