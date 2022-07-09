@@ -228,6 +228,7 @@ import Sans_association from "./Pages/Academics/Departments/Sanskrit/Sans_associ
 import Zoo_about from "./Pages/Academics/Departments/Zoology/Zoo_about";
 import Zoo_fac from "./Pages/Academics/Departments/Zoology/Zoo_fac";
 import Zoo_programoffered from "./Pages/Academics/Departments/Zoology/Zoo_programoffered";
+import Zoo_events from "./Pages/Academics/Departments/Zoology/Zoo_events";
 function App() {
   return (
     <>
@@ -1686,6 +1687,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_events />
+              </>
+            }
+            path="/academics/departments/Zoology/Events"
           ></Route>{" "}
 
 
