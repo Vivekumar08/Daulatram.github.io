@@ -229,6 +229,11 @@ import Zoo_about from "./Pages/Academics/Departments/Zoology/Zoo_about";
 import Zoo_fac from "./Pages/Academics/Departments/Zoology/Zoo_fac";
 import Zoo_programoffered from "./Pages/Academics/Departments/Zoology/Zoo_programoffered";
 import Zoo_events from "./Pages/Academics/Departments/Zoology/Zoo_events";
+import Zoo_studachieve from "./Pages/Academics/Departments/Zoology/Zoo_studachieve";
+
+
+
+
 function App() {
   return (
     <>
@@ -1695,6 +1700,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_studachieve />
+              </>
+            }
+            path="/academics/departments/Zoology/Students'_achievements"
           ></Route>{" "}
 
 
