@@ -224,6 +224,19 @@ import Sans_publications from "./Pages/Academics/Departments/Sanskrit/Sans_publi
 import Sans_awards from "./Pages/Academics/Departments/Sanskrit/Sans_awards";
 import Sans_association from "./Pages/Academics/Departments/Sanskrit/Sans_association";
 
+// Zoology
+import Zoo_about from "./Pages/Academics/Departments/Zoology/Zoo_about";
+import Zoo_fac from "./Pages/Academics/Departments/Zoology/Zoo_fac";
+import Zoo_programoffered from "./Pages/Academics/Departments/Zoology/Zoo_programoffered";
+import Zoo_events from "./Pages/Academics/Departments/Zoology/Zoo_events";
+import Zoo_studachieve from "./Pages/Academics/Departments/Zoology/Zoo_studachieve";
+import Zoo_facilities from "./Pages/Academics/Departments/Zoology/Zoo_facilities";
+import Zoo_association from "./Pages/Academics/Departments/Zoology/Zoo_association";
+import Zoo_labstaff from "./Pages/Academics/Departments/Zoology/Zoo_labstaff";
+
+
+
+
 function App() {
   return (
     <>
@@ -1658,7 +1671,63 @@ function App() {
             }
             path="/academics/departments/Sanskrit/association"
           ></Route>{" "}
-
+          {/* Zoology */}
+          <Route
+            element={
+              <>
+                <Zoo_about />
+              </>
+            }
+            path="/academics/departments/Zoology/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_fac />
+              </>
+            }
+            path="/academics/departments/Zoology/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_programoffered />
+              </>
+            }
+            path="/academics/departments/Zoology/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_events />
+              </>
+            }
+            path="/academics/departments/Zoology/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_studachieve />
+              </>
+            }
+            path="/academics/departments/Zoology/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_facilities />
+              </>
+            }
+            path="/academics/departments/Zoology/Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_labstaff />
+              </>
+            }
+            path="/academics/departments/Zoology/laboratorystaff"
+          ></Route>{" "}
 
 
 

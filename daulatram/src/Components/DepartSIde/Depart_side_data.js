@@ -1107,3 +1107,71 @@ export const Sans_side = [{
     //     link: "/academics/departments/Sanskrit/newsletter_magazines",
     // },
 ];
+export const Zoo_side = [{
+        id: 1,
+        title: "About The Department",
+        link: "/academics/departments/Zoology/",
+    },
+    {
+        id: 2,
+        title: "Faculty",
+        link: "/academics/departments/Zoology/Faculty",
+    },
+    {
+        id: 3,
+        title: "Programmes Offer",
+        link: "/academics/departments/Zoology/Programoffered",
+    },
+    {
+        id: 4,
+        title: "Events",
+        link: "/academics/departments/Zoology/Events",
+    },
+    {
+        id: 5,
+        title: "Students' Achievements",
+        link: "/academics/departments/Zoology/Students'_achievements",
+    },
+    {
+        id: 6,
+        title: "Publications",
+        link: "/academics/departments/Zoology/Publications",
+    },
+    {
+        id: 7,
+        title: "Awards",
+        link: "/academics/departments/Zoology/awards",
+    },
+    {
+        id: 8,
+        title: "Research & Facilities",
+        link: "/academics/departments/Zoology/Facilities",
+    },
+
+    {
+        id: 9,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Zoology/laboratorystaff",
+    },
+
+    {
+        id: 10,
+        title: "Association",
+        link: "/academics/departments/Zoology/association",
+    },
+    {
+        id: 11,
+        title: "Time Table",
+        link: "/academics/departments/Zoology/timetable",
+    },
+    {
+        id: 12,
+        title: "Photo Gallery",
+        link: "/academics/departments/Zoology/photogallery",
+    },
+    // {
+    //     id: 13,
+    //     title: "Newsletters & Magazines",
+    //     link: "/academics/departments/Zoology/newsletter_magazines",
+    // },
+];
