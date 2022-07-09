@@ -1144,15 +1144,15 @@ export const Zoo_side = [{
     },
     {
         id: 8,
-        title: "Facilities",
+        title: "Research & Facilities",
         link: "/academics/departments/Zoology/Facilities",
     },
 
-    // {
-    //     id: 9,
-    //     title: "Laboratory Staff",
-    //     link: "/academics/departments/Zoology/laboratorystaff",
-    // },
+    {
+        id: 9,
+        title: "Laboratory Staff",
+        link: "/academics/departments/Zoology/laboratorystaff",
+    },
 
     {
         id: 10,
