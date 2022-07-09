@@ -224,6 +224,9 @@ import Sans_publications from "./Pages/Academics/Departments/Sanskrit/Sans_publi
 import Sans_awards from "./Pages/Academics/Departments/Sanskrit/Sans_awards";
 import Sans_association from "./Pages/Academics/Departments/Sanskrit/Sans_association";
 
+// Zoology
+import Zoo_about from "./Pages/Academics/Departments/Zoology/Zoo_about";
+
 function App() {
   return (
     <>
@@ -1658,12 +1661,15 @@ function App() {
             }
             path="/academics/departments/Sanskrit/association"
           ></Route>{" "}
-
-
-
-
-
-
+          {/* Zoology */}
+          <Route
+            element={
+              <>
+                <Zoo_about />
+              </>
+            }
+            path="/academics/departments/Zoology/"
+          ></Route>{" "}
           <Route
             element={
               <>
