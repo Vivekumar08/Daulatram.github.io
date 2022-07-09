@@ -29,25 +29,25 @@ function Zoo_labstaff() {
           <div className="flex flex-row justify-between">
             <div className="flex flex-row w-full justify-center gap-4 mt-16 ">
               <a href={ajay}>
-                <span className=" mr-2 bg-blue-900 w-[250px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
+                <span className=" mr-2 bg-blue-900 w-[215px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
                   <span>Ajay Kumar</span>
                   <span>(View CV)</span>
                 </span>
               </a>
               <a href={amar}>
-                <span className=" mr-2 bg-blue-900 w-[250px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
+                <span className=" mr-2 bg-blue-900 w-[215px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
                   <span>Amar Singh Gurung</span>
                   <span>(View CV)</span>
                 </span>
               </a>
               <a href={anil}>
-                <span className=" mr-2 bg-blue-900 w-[250px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
+                <span className=" mr-2 bg-blue-900 w-[215px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
                   <span>Anil</span>
                   <span>(View CV)</span>
                 </span>
               </a>
               <a href={mukesh}>
-                <span className=" mr-2 bg-blue-900 w-[250px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
+                <span className=" mr-2 bg-blue-900 w-[215px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
                   <span>Mukesh</span>
                   <span>(View CV)</span>
                 </span>
@@ -56,19 +56,19 @@ function Zoo_labstaff() {
               <div className="flex flex-row justify-between">
               <div className="flex flex-row w-full justify-center gap-4 mt-8 ">
               <a href={pardeep}>
-                <span className=" mr-2 bg-blue-900 w-[250px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
+                <span className=" mr-2 bg-blue-900 w-[215px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
                   <span>PardeepKumar</span>
                   <span>(View CV)</span>
                 </span>
               </a>
               <a href={puneet}>
-                <span className=" mr-2 bg-blue-900 w-[250px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
+                <span className=" mr-2 bg-blue-900 w-[215px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
                   <span>Puneet Kumar</span>
                   <span>(View CV)</span>
                 </span>
               </a>
               <a href={vikas}>
-                <span className=" mr-2 bg-blue-900 w-[250px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
+                <span className=" mr-2 bg-blue-900 w-[215px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
                   <span>Vikas</span>
                   <span>(View CV)</span>
                 </span>
