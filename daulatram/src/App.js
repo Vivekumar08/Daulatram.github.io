@@ -226,6 +226,7 @@ import Sans_association from "./Pages/Academics/Departments/Sanskrit/Sans_associ
 
 // Zoology
 import Zoo_about from "./Pages/Academics/Departments/Zoology/Zoo_about";
+import Zoo_fac from "./Pages/Academics/Departments/Zoology/Zoo_fac";
 
 function App() {
   return (
@@ -1670,6 +1671,19 @@ function App() {
             }
             path="/academics/departments/Zoology/"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_fac />
+              </>
+            }
+            path="/academics/departments/Zoology/Faculty"
+          ></Route>{" "}
+
+
+
+
+
           <Route
             element={
               <>
