@@ -1627,3 +1627,104 @@ export const Sans_fac_info = [{
         cv: "#",
     },
 ]
+
+export const Zoo_fac_info = [{
+        id: 178,
+        Fac_name: "Dr. Anju Jain",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 179,
+        Fac_name: "Ms. Rohini Arya",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 180,
+        Fac_name: "Dr. Meenakshi Thakur",
+        Designation: "Associate Professor",
+        filter: "Current",
+        img: "/images/ImgPages/female_user.png",
+        cv: "#",
+    },
+    {
+        id: 181,
+        Fac_name: "Ms. Anna Senrung",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Zoology/Anna_zoo.png",
+        cv: "/images/ImgPages/Zoology/Anna_zoo.pdf",
+    },
+    {
+        id: 182,
+        Fac_name: "Dr. Jyoti Taneja",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Zoology/Jyoti_t_zoo.png",
+        cv: "/images/ImgPages/Zoology/Jyoti_t_zoo.pdf",
+    },
+    {
+        id: 183,
+        Fac_name: "Dr. Madhu",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Zoology/Madhu_zoo.png",
+        cv: "/images/ImgPages/Zoology/Madhu_zoo.pdf",
+    },
+
+    {
+        id: 184,
+        Fac_name: "Dr. Sonika Sharma",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Zoology/Sonika_zoo.png",
+        cv: "/images/ImgPages/Zoology/Sonika_zoo.pdf",
+    },
+    {
+        id: 185,
+        Fac_name: "Dr. Sunita K Yadav",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Zoology/Sunita_zoo.png",
+        cv: "/images/ImgPages/Zoology/Sunita_zoo.pdf",
+    },
+    {
+        id: 186,
+        Fac_name: "Dr. Jyoti Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Zoology/Jyoti_zoo.png",
+        cv: "/images/ImgPages/Zoology/Jyoti_zoo.pdf",
+    },
+    {
+        id: 187,
+        Fac_name: "Dr. Neha Niharika",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Zoology/Neha_zoo.png",
+        cv: "/images/ImgPages/Zoology/Neha_zoo.pdf",
+    },
+    {
+        id: 188,
+        Fac_name: "Dr. Jyotsna Singh",
+        Designation: "Assistant Professor",
+        filter: "Current",
+        img: "/images/ImgPages/Zoology/Jyotsna_zoo.png",
+        cv: "/images/ImgPages/Zoology/Jyotsna_zoo.pdf",
+    },
+
+
+
+
+
+
+
+
+
+
+]
