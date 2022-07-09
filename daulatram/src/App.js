@@ -231,6 +231,7 @@ import Zoo_programoffered from "./Pages/Academics/Departments/Zoology/Zoo_progra
 import Zoo_events from "./Pages/Academics/Departments/Zoology/Zoo_events";
 import Zoo_studachieve from "./Pages/Academics/Departments/Zoology/Zoo_studachieve";
 import Zoo_facilities from "./Pages/Academics/Departments/Zoology/Zoo_facilities";
+import Zoo_association from "./Pages/Academics/Departments/Zoology/Zoo_association";
 
 
 
@@ -1717,6 +1718,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_association />
+              </>
+            }
+            path="/academics/departments/Zoology/association"
           ></Route>{" "}
 
 
