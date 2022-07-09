@@ -38,8 +38,8 @@
     opacity: 0;
     filter: drop-shadow(0 2px 2px #555);
     will-change: transform, opacity;
-    -webkit-animation: carousel-animate-vertical 27s linear infinite;
-    animation: carousel-animate-vertical 27s linear infinite;
+    -webkit-animation: carousel-animate-vertical 30s linear infinite;
+    animation: carousel-animate-vertical 30s linear infinite;
 }
 
 .carousel__item:nth-child(1) {

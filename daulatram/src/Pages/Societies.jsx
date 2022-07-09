@@ -2,20 +2,16 @@ import React, { useState, useRef, useEffect, useContext } from "react";
 import "./Societies.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-
-import { SocietiesInfo } from "./SocietiesInfo";
 import AuthContext from "../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 
 const Societies = () => {
-  const [Info, setSocietiesInfo] = useState(SocietiesInfo);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
   const dropRef = useRef();
   const [link, setLink] = useState("");
-  const [pic, setPic] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [previewSrc, setPreviewSrc] = useState("");
@@ -61,6 +57,25 @@ const Societies = () => {
       setErrMsg("Unable to Delete");
     }
   };
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
+
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -104,7 +119,7 @@ const Societies = () => {
       </div>
 
       {data1 &&
-        data1.map((currElem) => {
+        data1.sort(sortOn("title")).map((currElem) => {
           const { _id, title, file_path, link } = currElem;
           var path_pic = file_path;
           var path2 = path_pic.replace(/\\/g, "/");
@@ -128,10 +143,10 @@ const Societies = () => {
               </div>
               <div className="">
                 <div className="">
-                  <div class="hero-description ml-28">
+                  <div class="hero-description ml-16">
                     <p>{title}</p>
                   </div>
-                  <a href={link}>
+                  <a href={link} target="_blank">
                     <div class="hero-btn ml-28">Learn More</div>
                   </a>
                 </div>

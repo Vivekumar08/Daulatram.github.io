@@ -11,40 +11,42 @@ function Botanystudachieve() {
         <Botanybanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+        <div className=" flex  flex-col mt-12 ml-2">
+          <Botany />
         </div>
-        <div>
-          <div className="w-[1100px]">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+        <div className="mr-auto ml-auto">
+          <div className="w-full mr-16">
+            <h2 className="text-4xl uppercase font-bold mb-5 mt-16 flex flex-row justify-center items-center ">
               Students Achievements
             </h2>
-          </div>
-          <div className="flex flex-row justify-between ">
-            <div class="wrapper2  mt-5 mb-5">
-              <div class="card1">
-                <div className="">
-                  <span className=" text-2xl font-bold">Achievements</span>
-                </div>
-                <div class="info">
-                  <h1 className="font-bold">Description</h1>
-                  <p>
-                    1. Awards
+
+            <div className="flex flex-row justify-between ">
+              <div class="wrapper2  mt-5 mb-5">
+                <div class="card2">
+                  <div className="">
+                    <span className=" text-2xl mr-5 ml-10 font-bold">
+                      Achievements
+                    </span>
+                  </div>
+                  <div class="info">
+                    <h1 className="font-bold flex justify-center">
+                      Description
+                    </h1>
+                    <p className="flex text-justify">
+                      1. Awards
+                      <br />
+                      2. Student's Progression
+                      <br />
+                    </p>
                     <br />
-                    2. Student's Progression
+                    <a href={pdf}>
+                      <button className="w-full ">View</button>
+                      <br />
+                    </a>
                     <br />
-                  </p>
-                  <br />
-                  <a href={pdf}>
-                    <button>View</button>
-                    <br />
-                  </a>
-                  <br />
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className=" flex  flex-col   mt-4">
-              <Botany />
             </div>
           </div>
         </div>

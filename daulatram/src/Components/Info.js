@@ -19,6 +19,20 @@ export const StudentInfo = [{
     day: "11",
     mon:"Nov",
 },
+{
+    id: 4,
+    info: "Zebrafish Summer Internship 2022",
+    link: "https://www.google.com",
+    day: "11",
+    mon:"Nov",
+},
+{
+    id: 5,
+    info: "Zebrafish Summer Internship 2022",
+    link: "https://www.google.com",
+    day: "11",
+    mon:"Nov",
+},
 
 ];
 export const StaffInfo = [

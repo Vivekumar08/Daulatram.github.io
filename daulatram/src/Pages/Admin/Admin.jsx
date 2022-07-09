@@ -2,10 +2,10 @@ import React, { useContext, useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
-import {useNavigate} from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
 
 const Admin = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
@@ -45,7 +45,7 @@ const Admin = () => {
       setUser("");
       setPwd("");
       setAuth(true);
-      navigate('/')
+      navigate("/");
     }
   };
 
@@ -120,6 +120,9 @@ const Admin = () => {
             </button>
           </div>
         </div>
+        <Link to="/forgot">
+          <div className="justify-end flex mt-3 text-blue-500  hover:scale-105 ">Forgot Password?</div>
+        </Link>
       </form>
     </>
   );

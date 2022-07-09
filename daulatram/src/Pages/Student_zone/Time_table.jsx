@@ -75,10 +75,10 @@ const Time_table = () => {
           <Student_side />
         </div>
         <div className="w-[1100px]">
-          <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Time Table & Academics Calendar
           </h2>
-          <table className="ml-auto mr-auto">
+          <table className=" ml-auto mr-auto">
             <tr>
               <th>TT for Sem-I</th>
               <th>1</th>

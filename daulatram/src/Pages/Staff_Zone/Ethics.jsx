@@ -12,26 +12,26 @@ const Ethics = () => {
           < Sidebar/>
         </div>
         <div className="w-[1100px]">
-          <div className="flex justify-center items-center flex-col">
-            <div>
-              <h1 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          
+            
+              <h1 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
               Professional Code of Ethics
               </h1>
-            </div>
-          </div>
+            
+          
           <div className="text-justify p-3 m-2 ml-4">
           
-          <h1 className="text-3xl ml-2 font-bold mb-5 mt-[5%] flex flex-row justify-left items-center ">
+          <h1 className="text-2xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-left items-center ">
           I. Teachers and their Responsibilities
             </h1>
             <figure className="flex p-4">
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
               Whoever adopts teaching as a profession assumes the obligation to conduct · himself / herself in accordance with the ideal of the profession. A teacher is constantly under the scrutiny of her/his students and the society at large. Therefore, every teacher should see that there is no incompatibility between her/his precepts and practice. The national ideals of education which have already been set forth and which she/he should seek to inculcate among students must be her/his own ideals. The profession further requires that the teacher should be calm, patient and communicative by temperament and amiable in disposition.
 
               </span>
             </figure>
             <figure className="flex p-4">
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
               Teacher should:
 
                 <li className="  ml-7">
@@ -84,13 +84,13 @@ const Ethics = () => {
                 </li>
                 </span>
             </figure>
-                <h1 className="text-3xl ml-2 font-bold mb-5 mt-[5%] flex flex-row justify-left items-center ">
+                <h1 className="text-2xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-left items-center ">
                 II. Teachers and Students
 
             </h1>
 
             <figure className="flex p-4">
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
               Teacher should:
                 <li className="ml-7">
                 {" "}
@@ -145,13 +145,13 @@ const Ethics = () => {
 
               </span>
             </figure>
-            <h1 className="text-3xl ml-2 font-bold mb-5 mt-[5%] flex flex-row justify-left items-center ">
+            <h1 className="text-2xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-left items-center ">
             III. Teachers and Colleagues
 
             </h1>
 
             <figure className="flex p-4">
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
               Teacher should:
                 <li className="ml-7">
                 {" "}
@@ -175,13 +175,13 @@ const Ethics = () => {
                
               </span>
             </figure>
-            <h1 className="text-3xl ml-2 font-bold mb-5 mt-[5%] flex flex-row justify-left items-center ">
+            <h1 className="text-2xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-left items-center ">
             IV. Teachers and Authorities
 
             </h1>
 
             <figure className="flex p-4">
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
               Teacher should:
                 <li className="ml-7">
                 {" "}
@@ -225,13 +225,13 @@ const Ethics = () => {
                 
               </span>
             </figure>
-            <h1 className="text-3xl ml-2 font-bold mb-5 mt-[5%] flex flex-row justify-left items-center ">
+            <h1 className="text-2xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-left items-center ">
             V. Teachers and Non-Teaching Staff
 
             </h1>
 
             <figure className="flex p-4">
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
               Teacher should:
                 <li className="ml-7">
                 {" "}
@@ -247,23 +247,23 @@ const Ethics = () => {
 
               </span>
             </figure>
-            <h1 className="text-3xl ml-2 font-bold mb-5 mt-[5%] flex flex-row justify-left items-center ">
+            <h1 className="text-2xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-left items-center ">
             VI. Teachers and Guardians
 
             </h1>
 
             <figure className="flex p-4">
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
               Teacher should try to see through teachers' bodies and organisations that institutions maintain contact with the guardians, their students, send reports of their performance to the guardians whenever necessary and meet the guardians in meetings convened for the purpose for mutual exchange of ideas and for the benefit of the institution.
                 </span>
             </figure>
-            <h1 className="text-3xl ml-2 font-bold mb-5 mt-[5%] flex flex-row justify-left items-center ">
+            <h1 className="text-2xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-left items-center ">
             VII. Teachers and Society
 
             </h1>
 
             <figure className="flex p-4">
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
               Teacher should:
                 <li className="ml-7">
                 {" "}

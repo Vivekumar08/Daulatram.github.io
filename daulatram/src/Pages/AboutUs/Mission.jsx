@@ -18,7 +18,7 @@ const Mission = () => {
             <Sidebar />
           </div>
           <div className="w-[1100px]">
-            <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center mr-10  ">
+            <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               College Profile Mission and Vision
             </h2>
 
@@ -26,11 +26,11 @@ const Mission = () => {
               <img
                 src={about1}
                 alt="images"
-                className="rounded-3xl border-black border-2 h-[280px] w-[380px] mr-10 ml-80 mb-2"
-                width={250}
+                className="rounded-3xl border-black border-2 h-[250px] w-[300px] mr-10  md:h-[300px] md:w-[380px] ml-2 md:ml-80 mb-2"
+                
               />
 
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
                 Daulat Ram College is a premier educational institution in Delhi
                 founded by an educationist late Shri Daulat Ram Gupta in 1960.
                 It is a prestigious women’s college engaged in imparting liberal
@@ -49,7 +49,7 @@ const Mission = () => {
               </span>
             </figure>
             <figure className="flex p-4">
-              <span className="card-description text-justify text-lg font-medium ">
+              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg ">
                 The courses in science were introduced in 1968 which led to the
                 construction of the science block and well-equipped science
                 laboratories. The commerce and M.A. courses in many subjects, as
@@ -76,7 +76,7 @@ const Mission = () => {
               /> */}
             </figure>
             <div className="p-3 flex  m-2">
-              <span className="text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg ">
                 The college has a well-equipped computerized library, facility
                 for gymnastics, table tennis, athletics and other games and
                 holds leading positions both in academics and sports. Recently a

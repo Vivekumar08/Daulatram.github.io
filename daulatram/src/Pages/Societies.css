@@ -1,12 +1,12 @@
 /* BEGIN CARD DESIGN */
-.main_head{
+
+.main_head {
     font-size: 50px;
     font-weight: bolder;
     color: #000080;
     text-align: center;
     margin-bottom: 30px;
 }
-
 
 .hero {
     display: inline-block;
@@ -15,19 +15,19 @@
     min-width: 350px;
     height: 350px;
     border-radius: 30px;
-    overflow:hidden;
+    overflow: hidden;
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.3);
     margin: 30px;
     margin-left: 100px;
-  }
-  
-  .hero-profile-img {
+}
+
+.hero-profile-img {
     height: 70%;
     width: 100%;
-  }
-  
-  .hero-description-bk {
-    background-image: linear-gradient(0deg , #3f5efb, #fc466b);
+}
+
+.hero-description-bk {
+    background-image: linear-gradient(0deg, #3f5efb, #fc466b);
     border-radius: 30px;
     position: absolute;
     top: 55%;
@@ -35,13 +35,9 @@
     height: 65%;
     width: 109%;
     transform: skew(19deg, -9deg);
-  }
-  
-  .second .hero-description-bk {
-    background-image: linear-gradient(-20deg , #bb7413, #e7d25c)
-  }
-  
-  .hero-logo {
+}
+
+.hero-logo {
     height: 80px;
     width: 80px;
     border-radius: 20px;
@@ -49,22 +45,23 @@
     position: absolute;
     bottom: 30%;
     left: 30px;
-    overflow:hidden;
+    overflow: hidden;
     box-shadow: 5px 5px 30px rgba(0, 0, 0, 0.7);
-  }
-  
-  .hero-logo img {
+}
+
+.hero-logo img {
     height: 100%;
-  }
-  
-  .hero-description {
+}
+
+.hero-description {
     position: absolute;
     color: #fff;
     font-weight: 900;
-    /* left: 50px; */
-    /* bottom: 24%; */
-  }
-  
+    left: 50px;
+    bottom: 24%;
+}
+
+
   .hero-btn {
     position: absolute;
     color: #fff;
@@ -72,21 +69,23 @@
     bottom: 5%;
     padding: 10px 20px;
     border: 1px solid #fff;
-  }
-  
-  .hero-btn a {
+}
+
+.hero-btn a {
     color: #fff;
-  }
-  
-  .hero-date {
+}
+
+.hero-date {
     position: absolute;
     color: #fff;
     left: 30px;
     bottom: 10%;
-  }
-  /* END CARD DESIGN */
-  
-  .btn i:before {
+}
+
+
+/* END CARD DESIGN */
+
+.btn i:before {
     width: 14px;
     height: 14px;
     position: fixed;
@@ -94,6 +93,6 @@
     background: #0077B5;
     padding: 10px;
     border-radius: 50%;
-    top:5px;
-    right:5px;
-  }
+    top: 5px;
+    right: 5px;
+}

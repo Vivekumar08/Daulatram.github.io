@@ -10,10 +10,12 @@ function Chemevents() {
         <Chembanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+      <div className=" flex  flex-col  ml-2 mt-12">
+          <Chemistry />
         </div>
-        <div className="w-[1100px]">
+
+
+          <div className="w-full mr-auto ml-auto">
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Events
           </h2>
@@ -160,9 +162,6 @@ function Chemevents() {
 
             </div>
           
-          <div className=" flex  flex-col ml-4 mt-10 ">
-            <Chemistry/>
-          </div>
         </div>
       </div>
     </div>

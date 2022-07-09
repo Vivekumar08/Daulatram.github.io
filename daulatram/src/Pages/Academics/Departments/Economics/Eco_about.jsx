@@ -10,10 +10,10 @@ function Eco_about() {
         <Ecobanner />
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+      <div className=" flex  flex-col ml-2 mt-12">
+          <Economics />
         </div>
-        <div className="w-[1100px]">
+        <div className="w-full mr-16">
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             About the department
           </h2>
@@ -112,9 +112,7 @@ function Eco_about() {
             </div>
           </div>
         </div>
-        <div className=" flex  flex-col mr-16 mt-32">
-          <Economics />
-        </div>
+        
       </div>
     </div>
   );

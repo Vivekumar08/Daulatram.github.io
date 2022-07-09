@@ -13,15 +13,15 @@ const Facilities = () => {
           <div className="w-[350px]">
             <Sidebar />
           </div>
-          <div className="w-[1100px]">
-            <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <div className="w-[1100px] ">
+            <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
               FACILITIES
             </h2>
-            <h3 className="text-4xl font-bold mb-5 mt-5 flex flex-row justify-center items-center ">
+            <h3 className="text-2xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-center items-center text-center ">
               Library and Reading Room
             </h3>
             <figure className="flex p-4">
-              <span className=" card-description text-lg text-justify font-medium ">
+              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
                 Library and Reading Room facilities are open only to students
                 and staﬀ of the college. The College Library possesses an
                 excellent collection of more than 1,20,000 books and journals/
@@ -36,11 +36,11 @@ const Facilities = () => {
                 handicapped.
               </span>
             </figure>
-            <h4 className="text-4xl font-bold mb-5 mt-[2%] flex flex-row justify-center items-center ">
+            <h4 className="text-2xl md:text-3xl  font-bold mb-5 mt-5 flex flex-row justify-center items-center text-center ">
               Terms and Conditions
             </h4>
             <figure className="ml-3">
-              <span className="card-description text-justify text-lg font-medium ">
+              <span className="card-description leading-14 text-justify text-base md:text-lg font-medium ">
                 <li>
                   Before leaving the counter, the member should ensure that the
                   book lent to them is in sound condition. If not, it should
@@ -101,11 +101,11 @@ const Facilities = () => {
                   from 9 a.m. to 5 p.m.
                 </p>
               </span>
-              <h3 className="text-4xl font-bold mb-5 mt-[4%] flex flex-row justify-center items-center ">
+              <h3 className="text-2xl md:text-3xl  font-bold mb-5 mt-5 flex flex-row justify-center items-center text-center ">
                 Teachers Study Room
               </h3>
               <figure className="flex  mb-5">
-                <span className=" card-description text-lg text-justify font-medium ">
+                <span className=" card-description leading-14 text-justify text-base md:text-lg font-medium ">
                   The college has a well-maintained teacher’s study room
                   adjacent to library which is equipped with computer facility
                   and lockers. The study area is Wi-Fi enabled, promoting easy

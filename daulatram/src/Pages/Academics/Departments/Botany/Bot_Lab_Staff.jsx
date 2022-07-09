@@ -1,100 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
+import DepartBanner from "../../../../Components/Banners/DepartBanner";
+import Botany from "../../../../Components/DepartSIde/Botany";
 import Botanybanner from "../Botany/Botanybanner.jsx";
-import Departments from "../../../../Components/Sidebar/Departments";
-import rameshk from "../../../../Dummy_data/ImgPages/Botany/1_Mr_Ramesh_Nagar.JPG";
-import sureshk from "../../../../Dummy_data/ImgPages/Botany/2_Mr_Suresh_Kumar.jpg";
-import satishk from "../../../../Dummy_data/ImgPages/Botany/3_Mr_Satish_Kumar_Chauhan.jpg";
-import mahendra from "../../../../Dummy_data/ImgPages/Botany/4_Mr_Mahendra_Pal.JPG";
-import rambir from "../../../../Dummy_data/ImgPages/Botany/5_Mr_Rambir_Mann.jpg";
-import neeraj from "../../../../Dummy_data/ImgPages/Botany/6_Mr_Neeraj.jpg";
-import geetanjali from "../../../../Dummy_data/ImgPages/Botany/7_Ms_Geetanjali.jpg";
-import "./botlabstaff.css";
-function Bot_Lab_Staff() {
+
+import { Bot_association_info } from "../Fac_info";
+const Bot_Lab_Staff = () => {
+  const [Info, setFac_info] = useState(Bot_association_info);
+
   return (
-    <div className=" flex flex-col">
-      <div className="">
-        <Botanybanner />
-      </div>
-      <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Departments />
+    <>
+      <div className=" flex flex-col">
+        <div className="">
+          <DepartBanner />
         </div>
-        <div>
-          <div className="w-[1100px]">
+        <div className="flex flex-row">
+          <div className="ml-2 mt-12">
+            <Botany />
+          </div>
+          <div className=" ml-5 w-full">
+            <div className="  ">
+              <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+                Laboratory Staff
+              </h2>
+            </div>
+
+            {Info.map((currElem) => {
+              const { id, Fac_name,filter, Designation, img, Date_of_joining } = currElem;
+              return (
+                <>
+                  {filter== "Current" && (
+                    <>
+                      <div class="first1 fac1 " key={id}>
+                        <img class="Fac-img1" src={img} alt="" />
+                        <div class="fac-description-bk"></div>
+
+                        <div class="Fac-description1">
+                          <p>{Fac_name}</p>
+                          <p className="font-medium"> {Designation}</p>
+                          <p>{Date_of_joining}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </>
+              );
+            })}
+            {/* <div className="  ">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              Lab Staff
+              Superannuated Laboratory Staff
             </h2>
-          </div>
-          <div className="flex flex-col">
-            <div class="wrapper mt-5 mb-8">
-              <div class="card">
-                <img src={rameshk} />
-                <div class="info">
-                  <h1> 1- Mr. Suresh Kumar </h1>
-                  <p>Laboratory Assistant</p>
-                  <p>Date of Joining- 21/12/1988</p>
-                </div>
-              </div>
-              <div class="card">
-                <img src={sureshk} />
-                <div class="info">
-                  <h1>2- MR. Ramesh Nagar</h1>
-                  <p>Laboratory Assistant</p>
-                  <p>Date of joining- 29/03/1993</p>
-                </div>
-              </div>
-              <div class="card">
-                <img src={satishk} />
-                <div class="info">
-                  <h1>3- Mr. Satish Kumar Chauhan</h1>
-                  <p>Laboratory Assistant</p>
-                  <p>Date of joining-12/06/2006</p>
-                </div>
-              </div>
-            </div>
-            <div class="wrapper mt-5 mb-8">
-              <div class="card">
-                <img src={mahendra} />
-                <div class="info">
-                  <h1> 4- Mr. Mahendra Pal </h1>
-                  <p>Laboratory Assistant</p>
-                  <p>Date of Joining-12/06/2006</p>
-                </div>
-              </div>
-              <div class="card">
-                <img src={rambir} />
-                <div class="info">
-                  <h1>5- Mr. Rambir Mann</h1>
-                  <p>Chowkidar</p>
-                  <p>Date of joining-18/06/2009</p>
-                </div>
-              </div>
-              <div class="card">
-                <img src={neeraj} />
-                <div class="info">
-                  <h1>6- Mr. Niraj</h1>
-                  <p>Laboratory Assistant</p>
-                  <p>Date of joining-12/09/2019</p>
-                </div>
-              </div>
-            </div>
-            <div class="wrapper5 mt-5 mb-9 ">
-              <div class="card ">
-                <img src={geetanjali} />
-                <div class="info">
-                  <h1> 7- Ms. Gitanjali</h1>
-                  <p>Laboratory Assistant</p>
-                  <p>Date of joining-12/09/2019</p>
-                </div>
-              </div>
-        
-            </div>
+          </div> */}
+            {Info.map((currElem) => {
+              const { id, Fac_name,filter, Designation, img, Date_of_joining } = currElem;
+              return (
+                <>
+                  {filter== "Superannuated" && (
+                    <>
+                      <div class="first1 fac1 " key={id}>
+                        <img class="Fac-img1" src={img} alt="" />
+                        <div class="fac-description-bk"></div>
+
+                        <div class="Fac-description1">
+                          <p>{Fac_name}</p>
+                          <p className="font-medium"> {Designation}</p>
+                          <p>{Date_of_joining}</p>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </>
+              );
+            })}
           </div>
         </div>
       </div>
-         
-    </div>
+    </>
   );
-}
+};
 
 export default Bot_Lab_Staff;

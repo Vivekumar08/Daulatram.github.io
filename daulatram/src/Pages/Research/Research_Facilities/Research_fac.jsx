@@ -4,7 +4,6 @@ import Research_side from "../../../Components/Sidebar/Research_side";
 import { res_data } from "./data";
 import Research_data from "./Research_data";
 import AuthContext from "../../../Context/AuthProvider";
-import Dropzone from "react-dropzone";
 import Res_fac_data from "./Res_fac_data";
 import axios from "axios";
 
@@ -13,13 +12,9 @@ const Research_fac = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
-  const dropRef = useRef();
   const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [previewSrc, setPreviewSrc] = useState("");
-  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
-  const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
@@ -27,31 +22,12 @@ const Research_fac = () => {
     setData1(await response.json());
   };
 
-  const onDrop = (files) => {
-    const [uploadedFile] = files;
-    setFile(uploadedFile);
-
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setPreviewSrc(fileReader.result);
-    };
-    fileReader.readAsDataURL(uploadedFile);
-    setIsPreviewAvailable(
-      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
-    );
-  };
-
+  
   useEffect(() => {
     fetchdata();
   }, []);
 
-  const updateBorder = (dragState) => {
-    if (dragState === "over") {
-      dropRef.current.style.border = "2px solid #000";
-    } else if (dragState === "leave") {
-      dropRef.current.style.border = "2px dashed #e9ebeb";
-    }
-  };
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,24 +35,24 @@ const Research_fac = () => {
       if (link.trim() !== "" && caption.trim() !== "") {
       // if (file) {
         const formData = new FormData();
-        formData.append("file", file);
-        formData.append("title", link);
-        formData.append("description", caption);
+        // formData.append("file", file);
+        // formData.append("title", link);
+        // formData.append("description", caption);
+        console.log(link, caption);
+        console.log(formData);
 
         setErrMsg("");
-        console.log(formData);
         const response = await axios.post(
           `http://localhost:5000/research_upload`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
+          {title:link,description:caption},
+          // {
+          //   headers: {
+          //     "Content-Type": "multipart/form-data",
+          //   },
+          // }
         );
         setCaption("");
         setLink("");
-        setFile("");
         setAuth(true);
         fetchdata();
       } else {
@@ -101,7 +77,7 @@ const Research_fac = () => {
         <div className="w-[1100px]">
           <div className="flex justify-center items-center flex-col">
             <div>
-              <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+              <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
                 Research and Facilities Centres
               </h2>
             </div>
@@ -121,7 +97,7 @@ const Research_fac = () => {
               })}
             {data1 &&
               data1.map((curElem) => {
-                const { _id, title, description, file_path } = curElem;
+                const { _id, title, description, img_data } = curElem;
                 return (
                   <>
                     <Res_fac_data 
@@ -129,7 +105,7 @@ const Research_fac = () => {
                     id={_id}
                     tittle={title}
                     para={description}
-                    pic={file_path} 
+                    pic={img_data} 
                     />
                   </>
                 );
@@ -173,59 +149,14 @@ const Research_fac = () => {
                 </div>
                 <div class="md:flex flex-col md:items-center">
                   {/* <div class="md:w-1/3"></div> */}
-                  <div className="upload-section flex h-[200px] mb-[10px] w-full">
-                    <Dropzone
-                      onDrop={onDrop}
-                      onDragEnter={() => updateBorder("over")}
-                      onDragLeave={() => updateBorder("leave")}
-                    >
-                      {({ getRootProps, getInputProps }) => (
-                        <div
-                          {...getRootProps({
-                            className:
-                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
-                          })}
-                          ref={dropRef}
-                        >
-                          <input {...getInputProps()} />
-                          <p>
-                            Drag and drop a file OR click here to select a file
-                          </p>
-                          {file && (
-                            <div>
-                              <strong>Selected file:</strong> {file.name}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </Dropzone>
-                    {previewSrc ? (
-                      isPreviewAvailable ? (
-                        <div className="image-preview ml-[5%] w-full">
-                          <img
-                            className="preview-image w-full h-full block mb-[10px]"
-                            src={previewSrc}
-                            alt="Preview"
-                          />
-                        </div>
-                      ) : (
-                        <div className="preview-message flex justify-center items-center ml-[5%]">
-                          <p>No preview available for this file</p>
-                        </div>
-                      )
-                    ) : (
-                      <div className="preview-message flex justify-center items-center ml-[5%]">
-                        <p>Image preview will be shown here after selection</p>
-                      </div>
-                    )}
-                  </div>
+                  
                   <div class="md:w-2/3 ">
                     <button
                       class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                       type="button"
                       onClick={handleSubmit}
                     >
-                      Add
+                      Add 
                     </button>
                   </div>
                 </div>

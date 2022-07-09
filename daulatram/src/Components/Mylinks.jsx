@@ -400,7 +400,7 @@ export const dept = [
     names: [
       {
         name: "Biochemistry",
-        link: "/academics/departments/biochem",
+        link: "/academics/departments/biochem/",
       },
       {
         name: "Botany",
@@ -412,63 +412,63 @@ export const dept = [
       },
       {
         name: "Commerce",
-        link: "/academics/departments/Commerce",
+        link: "/academics/departments/Commerce/",
       },
       {
         name: "Economics",
-        link: "/academics/departments/Economics",
+        link: "/academics/departments/Economics/",
       },
       {
         name: "English",
-        link: "/academics/departments/English",
+        link: "/academics/departments/English/",
       },
       {
         name: "Hindi",
-        link: "./",
+        link: "/academics/departments/Hindi/",
       },
       {
         name: "History",
-        link: "./",
+        link: "/academics/departments/History/",
       },
       {
         name: "Mathematics",
-        link: "./",
+        link: "/academics/departments/Mathematics/",
       },
       {
         name: "Music",
-        link: "./",
+        link: "/academics/departments/Music/",
       },
       {
         name: "NHE",
-        link: "./",
+        link: "/academics/departments/NHE/",
       },
       {
         name: "Philosophy",
-        link: "./",
+        link: "/academics/departments/Philosophy/",
       },
       {
         name: "Physical Education",
-        link: "./",
+        link: "/academics/departments/Physical_Education/",
       },
       {
         name: "Physics",
-        link: "./",
+        link: "/academics/departments/Physics/",
       },
       {
         name: "Political Science",
-        link: "./",
+        link: "/academics/departments/Political_Science/",
       },
       {
         name: "Psychology",
-        link: "./",
+        link: "/academics/departments/Psychology/",
       },
       {
         name: "Sanskrit",
-        link: "./",
+        link: "/academics/departments/Sanskrit/",
       },
       {
         name: "Zoology",
-        link: "./",
+        link: "/academics/departments/Zoology/",
       },
     ],
   },
@@ -551,7 +551,7 @@ export const admisn = [
         link: "/admission/AntiRaggingGuidlines",
       },
       {
-        name: "FAQS For Admissions",
+        name: "FAQs For Admissions",
         link: "/admission/FAQs_Admission",
       },
     ],

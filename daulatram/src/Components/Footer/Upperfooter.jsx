@@ -7,7 +7,7 @@ import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 function Upperfooter() {
   return (
     <>
-      <footer className="footer  bg-[#000080] text-white">
+      <footer className="footer mt-5  bg-[#000080] text-white">
         <div className="flex  flex-col">
           <div className="flex flex-col ">
             <div className=" h-[95%] mt-10 ">

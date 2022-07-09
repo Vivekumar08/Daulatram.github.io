@@ -11,7 +11,7 @@ const FAQs_Admission = () => {
         style={{ backgroundImage: "url(/images/img1.jpg)" }}
       >
         <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-          FAQ<span className="lowercase">s</span> Admisssion{" "}
+          FAQ<span className="lowercase mr-5">s</span>{" "} Admisssion{" "}
         </span>
         <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
           <Link to={"/"}>
@@ -27,7 +27,7 @@ const FAQs_Admission = () => {
         <div className="ml-3 mb-5">
           <div className="w-[1100px]">
             <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              FAQs Admission
+              FAQ <span className="lowercase mr-3">s</span> Admission
             </h2>
             <Maintanence />
           </div>

@@ -11,19 +11,23 @@ function Studentsachieve() {
           <DepartBanner />
         </div>
         <div className="flex flex-row">
-          <div className="w-[350px]">
+          {/* <div className="w-[350px]">
             <Departments />
-          </div>
+          </div> */}
+          <div className=" flex  flex-col ml-2 mt-12 ">
+              <Biochemistry/>
+
+              </div>
           <div className="ml-3 ">
-            <div className="w-[1100px]">
+            <div className="w-full mr-16">
               <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
                 Students Achievements
               </h2>
             </div>
             <div className="flex flex-row">
               <div>
-                <div className="mr-5">
-                  <div>
+                <div className="mr-5 ml-4">
+                  
                     <div>
                       <h2 className="text-3xl ml-4 font-bold underline mb-6">
                         Awards
@@ -89,14 +93,14 @@ function Studentsachieve() {
                   </div>
                 </div>
               </div>
-              <div className=" flex  flex-col ml-4 mr-16 mt-10 ">
+              {/* <div className=" flex  flex-col ml-4 mr-16 mt-10 ">
               <Biochemistry/>
 
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
-      </div>
+    
     </>
   );
 }
