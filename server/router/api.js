@@ -820,12 +820,12 @@ router.post(
       if (dat){
         console.log(dat)
         // const data = await dat.updateOne( { "img_data.file_path":{_id: pid} },{ $push: { "img_data.file_path": { file_path2: path, file_mimetype2: mimetype } } })
-        if(data){
-          res.status(200).send('file uploaded successfully.');
-        } else{
+        // if(data){
+        //   res.status(200).send('file uploaded successfully.');
+        // } else{
           
-          res.status(400).send('Unable to Update');
-        }
+        //   res.status(400).send('Unable to Update');
+        // }
       }else{
         res.status(401).send('No data found');
 
