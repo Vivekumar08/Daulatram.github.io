@@ -13,7 +13,7 @@ function Physics_labstaff() {
         </div>
         <div className="w-full mr-16">
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Association
+            Laboratory Staff
           </h2>
           <div>
             <h2 className="text-2xl ml-4 font-bold mb-6">
