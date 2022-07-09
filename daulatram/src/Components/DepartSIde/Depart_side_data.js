@@ -1144,7 +1144,7 @@ export const Zoo_side = [{
     },
     {
         id: 8,
-        title: "Facilities",
+        title: "Research & Facilities",
         link: "/academics/departments/Zoology/Facilities",
     },
 
