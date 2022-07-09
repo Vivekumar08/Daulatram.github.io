@@ -232,6 +232,7 @@ import Zoo_events from "./Pages/Academics/Departments/Zoology/Zoo_events";
 import Zoo_studachieve from "./Pages/Academics/Departments/Zoology/Zoo_studachieve";
 import Zoo_facilities from "./Pages/Academics/Departments/Zoology/Zoo_facilities";
 import Zoo_association from "./Pages/Academics/Departments/Zoology/Zoo_association";
+import Zoo_labstaff from "./Pages/Academics/Departments/Zoology/Zoo_labstaff";
 
 
 
@@ -1722,10 +1723,10 @@ function App() {
           <Route
             element={
               <>
-                <Zoo_association />
+                <Zoo_labstaff />
               </>
             }
-            path="/academics/departments/Zoology/association"
+            path="/academics/departments/Zoology/laboratorystaff"
           ></Route>{" "}
 
 
