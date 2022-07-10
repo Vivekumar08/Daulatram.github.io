@@ -14,14 +14,35 @@ function Sidebar() {
             {about.map((link) => (
               <div className="flex flex-col divide-y divide-solid divide-black">
                 {link.links.map((slink) => (
-                  <Link to={slink.link} className=" ml-4 mb-2  p-2 mr-6 rounded-lg hover:bg-white hover:pl-4 ">
-                    <li className=" hover:bg-white">
-                      <p className="text-black font-semibold mt-2 ">
-                        - {""}
-                        {slink.name}
-                      </p>
-                    </li>
-                  </Link>
+                  <>
+                    {slink.name != "Annual Report" && (
+                      <Link
+                        to={slink.link}
+                        className=" ml-4 mb-2  p-2 mr-6 rounded-lg hover:bg-white hover:pl-4 "
+                      >
+                        <li className=" hover:bg-white">
+                          <p className="text-black font-semibold mt-2 ">
+                            - {""}
+                            {slink.name}
+                          </p>
+                        </li>
+                      </Link>
+                    )}
+                    {slink.name === "Annual Report" && (
+                      <a
+                        href={slink.link}
+                        target="_blank"
+                        className=" ml-4 mb-2  p-2 mr-6 rounded-lg hover:bg-white hover:pl-4 "
+                      >
+                        <li className=" hover:bg-white">
+                          <p className="text-black font-semibold mt-2 ">
+                            - {""}
+                            {slink.name}
+                          </p>
+                        </li>
+                      </a>
+                    )}
+                  </>
                 ))}
               </div>
             ))}

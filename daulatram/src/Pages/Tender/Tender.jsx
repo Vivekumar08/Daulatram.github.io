@@ -13,7 +13,7 @@ const Tender = () => {
       </div>
       <div className="flex flex-col mb-5 ml-8 gap-3">
         <h2 className="text-4xl uppercase font-bold mb-5 mt-5 flex flex-row justify-start items-center ">
-          Lastest Tenders
+          Latest Tenders
         </h2>
         {info.map((curElem) => (
           <a

@@ -18,7 +18,7 @@ function Department() {
             </div>
             <div className="w-[1100px]">
               {dept.map((names) => (
-                <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+                <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center uppercase items-center ">
                   {names.name}
                 </h2>
               ))}
