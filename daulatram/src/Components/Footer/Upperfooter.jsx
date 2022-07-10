@@ -173,8 +173,10 @@ function Upperfooter() {
               <p className="text-gray-200 bg-[#1E1F29] text-center h-12 pt-3">
                 © All Rights Reserved
                 <Link to="/" className="ml-3">
-                  DAULAT RAM COLLEGE
+                  DAULAT RAM COLLEGE, <span className="ml-2 mr-2">|</span>
                 </Link>
+              {/* Created by: DarkWeb Dreamers (CICians) */}
+              Created by: CIC (Vivek Kumar, Riya Kumari, Ishika Rai, Priyanshu Sisodiya)
               </p>
             </div>
           </div>

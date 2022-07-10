@@ -42,14 +42,24 @@ const NavLinks = () => {
                   {link.links.map((slink) => (
                     <>
                       <div>
-                        <Link
-                          to={slink.link}
-                          className="hover:text-white"
-                        >
-                          <li className="text-md m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
-                            {slink.name}
-                          </li>
-                        </Link>
+                        {slink.name != "Annual Report" && (
+                          <Link to={slink.link} className="hover:text-white">
+                            <li className="text-md m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
+                              {slink.name}
+                            </li>
+                          </Link>
+                        )}
+                        {slink.name === "Annual Report" && (
+                          <a
+                            href={slink.link}
+                            target="_blank"
+                            className="hover:text-white"
+                          >
+                            <li className="text-md m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
+                              {slink.name}
+                            </li>
+                          </a>
+                        )}
                       </div>
                     </>
                   ))}
