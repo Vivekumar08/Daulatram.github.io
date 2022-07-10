@@ -24,7 +24,6 @@ const Bio_fac_data = (props) => {
     fetchdata();
   }, []);
 
-
   const onDropPdf = (files) => {
     const [uploadedFile] = files;
     setPdf(uploadedFile);
@@ -56,14 +55,6 @@ const Bio_fac_data = (props) => {
                   <>
                     <img class="Fac-img" src={path} key={elem._id} alt="" />
                     <div class="fac-description-bk"></div>
-                    <div className="flex flex-col w-full">
-                      <FontAwesomeIcon
-                        icon={faTrash}
-                        size="lg"
-                        className=" cursor-pointer ml-auto  hover:text-red-500"
-                        onClick={() => props.delete(props.id)}
-                      ></FontAwesomeIcon>
-                    </div>
                     <div class="Fac-description">
                       <p>{props.description}</p>
                       <p className="font-medium">{props.title}</p>
@@ -90,6 +81,18 @@ const Bio_fac_data = (props) => {
                 </>
               );
             })}
+            {auth ? (
+              ""
+            ) : (
+              <div className="flex flex-col w-full  ml-auto">
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  size="lg"
+                  className=" cursor-pointer text-white  absolute right-10 bottom-5 hover:text-black"
+                  onClick={() => props.delete(props.id)}
+                />
+              </div>
+            )}
           </div>
           {props.img_data.pdf_path.map((elem) => {
             return (

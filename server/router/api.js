@@ -780,28 +780,32 @@ router.get('/research_download/:id', async (req, res) => {
 // Biochemistry Faculty
 router.post('/delete_bio_faculty/:id', async (req, res) => {
   const delete_user = await Bio_Faculty.findOne({ _id: req.params.id });
-  const arr = delete_user.img_data.file_path
-  if (arr.length === 0) {
-    await delete_user.deleteOne({ _id: req.params.id })
-    // console.log(delete_user.img_data.file_path)
-    res.status(200).json(delete_user + "User deleted")
+  const pdf = delete_user.img_data.pdf_path
+  const img = delete_user.img_data.file_path
+  // console.log()
+  if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+    if (img[0].file_path1) {
+      await delete_user.deleteOne({ _id: req.params.id })
+      await unlinkAsync(img[0].file_path1)
+      // console.log(pdf[0].pdf_path1)
+      // console.log(img[0].file_path1)
+      res.status(200).json(delete_user + "User deleted")
+    } else {
+      console.log("Unsuccessfully deleted")
+    }
   } else {
-    res.status(400).json("First Delete all the images related to this section")
+    await delete_user.deleteOne({ _id: req.params.id })
+    await unlinkAsync(img[0].file_path1)
+    await unlinkAsync(pdf[0].pdf_path1)
+    // console.log(img[0].file_path1)
+    // console.log(pdf[0].pdf_path1)
+    res.status(200).json("File Deleted")
   }
 })
-// router.post('/delete_img_research_fac/:id', async (req, res) => {
-//   const delete_user = await File.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
-//   await unlinkAsync(req.body.file_path1)
-//   res.status(200).json(delete_user + "User deleted")
-
-// })
 
 router.get('/bio_faculty', async (req, res) => {
   try {
     const files = await Bio_Faculty.find({});
-    // const sortedByCreationDate = files.sort(
-    //   (a, b) => b.createdAt - a.createdAt
-    // );
     res.json(files);
   } catch (error) {
     res.status(400).send('Error while getting list of files. Try again later.');
@@ -813,12 +817,12 @@ router.post(
   async (req, res) => {
     try {
       const { path, mimetype } = req.file;
-      console.log(path,mimetype)
-      const dat=await Bio_Faculty.findOneAndUpdate( {_id:req.params.id}, {$set: { "img_data.pdf_path": { pdf_path1: path, pdf_mimetype1: mimetype,value:true }} })
-      if (dat){
+      console.log(path, mimetype)
+      const dat = await Bio_Faculty.findOneAndUpdate({ _id: req.params.id }, { $set: { "img_data.pdf_path": { pdf_path1: path, pdf_mimetype1: mimetype, value: true } } })
+      if (dat) {
         // console.log(dat)
-          res.status(200).send('file uploaded successfully.');
-      }else{
+        res.status(200).send('file uploaded successfully.');
+      } else {
         res.status(401).send('Unable to upload CV, No data found');
 
       }
@@ -840,14 +844,14 @@ router.post(
   upload.single('file'),
   async (req, res) => {
     try {
-      const { title, description ,filter} = req.body
+      const { title, description, filter } = req.body
       const { path, mimetype } = req.file
       const file = new Bio_Faculty({
         title: title,
         description: description,
         filter: filter,
         "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
-        "img_data.pdf_path": { value:false}
+        "img_data.pdf_path": { value: false }
       });
       await file.save();
       res.send('file uploaded successfully.');
