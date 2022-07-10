@@ -127,20 +127,7 @@ const Societies = () => {
           return (
             <div class="first hero" key={_id}>
               <img class="hero-profile-img" src={path} alt="" />
-              <div class="hero-description-bk">
-                {auth && (
-                  <>
-                    <div className="flex flex-col">
-                      <FontAwesomeIcon
-                        icon={faTrashCan}
-                        size="lg"
-                        className="mt-6 cursor-pointer ml-auto mr-16 hover:text-red-500"
-                        onClick={() => del(_id)}
-                      ></FontAwesomeIcon>
-                    </div>
-                  </>
-                )}
-              </div>
+              <div class="hero-description-bk"></div>
               <div className="">
                 <div className="">
                   <div class="hero-description ml-16">
@@ -151,6 +138,18 @@ const Societies = () => {
                   </a>
                 </div>
               </div>
+              {auth && (
+                <>
+                  <div className="flex flex-col">
+                    <FontAwesomeIcon
+                      icon={faTrashCan}
+                      size="lg"
+                      className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
+                      onClick={() => del(_id)}
+                    ></FontAwesomeIcon>
+                  </div>
+                </>
+              )}
             </div>
           );
         })}
