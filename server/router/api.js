@@ -26,21 +26,23 @@ const Teacher = require('../models/Academics/Teacher_Schema')
 const Feedback = require('../models/StaffZone/Feedback_Form_Schema')
 const Roster = require('../models/StaffZone/Roster_Schema')
 const Student_forms = require('../models/StudentZone/StudentZone_foms_Schema')
-const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema')
+const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema');
+const { trusted } = require('mongoose');
 
 const unlinkAsync = promisify(fs.unlink)
 
 // SET STORAGE
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, '../daulatram/public/images/uploads');
+  },
+  filename(req, file, cb) {
+    cb(null, `${new Date().getTime()}_${file.originalname}`);
+    // cb(null, file.fieldname + '-' + Date.now());
+  }
+})
 const upload = multer({
-  storage: multer.diskStorage({
-    destination(req, file, cb) {
-      cb(null, '../daulatram/public/images/uploads');
-    },
-    filename(req, file, cb) {
-      cb(null, `${new Date().getTime()}_${file.originalname}`);
-      // cb(null, file.fieldname + '-' + Date.now());
-    }
-  }),
+  storage: storage,
   limits: {
     // max file size 1MB = 1000000 bytes
     fileSize: 100000000
@@ -57,15 +59,7 @@ const upload = multer({
   }
 });
 const multi_upload = multer({
-  storage: multer.diskStorage({
-    destination(req, file, cb) {
-      cb(null, '../daulatram/public/images/uploads');
-    },
-    filename(req, file, cb) {
-      cb(null, `${new Date().getTime()}_${file.originalname}`);
-      // cb(null, file.fieldname + '-' + Date.now());
-    }
-  }),
+  storage: storage,
   limits: {
     // max file size 1MB = 1000000 bytes
     fileSize: 100000000
@@ -80,7 +74,7 @@ const multi_upload = multer({
     }
     cb(undefined, true);
   }
-}).array('uploadedFiles', 2);
+});
 
 
 
@@ -786,97 +780,75 @@ router.get('/research_download/:id', async (req, res) => {
 // Biochemistry Faculty
 router.post('/delete_bio_faculty/:id', async (req, res) => {
   const delete_user = await Bio_Faculty.findOne({ _id: req.params.id });
-  const arr = delete_user.img_data.file_path
-  if (arr.length === 0) {
-    await delete_user.deleteOne({ _id: req.params.id })
-    // console.log(delete_user.img_data.file_path)
-    res.status(200).json(delete_user + "User deleted")
+  const pdf = delete_user.img_data.pdf_path
+  const img = delete_user.img_data.file_path
+  // console.log()
+  if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+    if (img[0].file_path1) {
+      await delete_user.deleteOne({ _id: req.params.id })
+      await unlinkAsync(img[0].file_path1)
+      res.status(200).json(delete_user + "User deleted")
+    } else {
+      console.log("Unsuccessfully deleted")
+    }
   } else {
-    res.status(400).json("First Delete all the images related to this section")
+    await delete_user.deleteOne({ _id: req.params.id })
+    await unlinkAsync(img[0].file_path1)
+    await unlinkAsync(pdf[0].pdf_path1)
+    res.status(200).json("File Deleted")
   }
 })
-// router.post('/delete_img_research_fac/:id', async (req, res) => {
-//   const delete_user = await File.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
-//   await unlinkAsync(req.body.file_path1)
-//   res.status(200).json(delete_user + "User deleted")
-
-// })
 
 router.get('/bio_faculty', async (req, res) => {
   try {
     const files = await Bio_Faculty.find({});
-    const sortedByCreationDate = files.sort(
-      (a, b) => b.createdAt - a.createdAt
-    );
-    res.send(sortedByCreationDate);
+    res.json(files);
   } catch (error) {
     res.status(400).send('Error while getting list of files. Try again later.');
   }
 });
-
-// router.post(
-//   '/bio_faculty_upload',
-//   async (req, res) => {
-//     try {
-//       // console.log(req.body)
-//       const { title, description } = req.body;
-//       const file = new Bio_Faculty({
-//         title: title,
-//         description: description,
-//       });
-//       await file.save();
-//       res.send('file uploaded successfully.');
-//     } catch (error) {
-//       // console.log(error)
-//       res.status(400).send("Error occur while uploading data");
-//     }
-//   }
-// );
 router.post(
-  '/bio_faculty_file_upload/:id',
-  (req, res) => {
-    multi_upload(req, res, function (err) {
-      if (err instanceof multer.MulterError) {
-        // A Multer error occurred when uploading.
-        res.status(500).send({ error: { message: `Multer uploading error: ${err.message}` } }).end();
-        return;
-      } else if (err) {
-        // An unknown error occurred when uploading.
-        if (err.name == 'ExtensionError') {
-          res.status(413).send({ error: { message: err.message } }).end();
-        } else {
-          res.status(500).send({ error: { message: `unknown uploading error: ${err.message}` } }).end();
-        }
-        return;
-      }
-
-      // Everything went fine.
-      // show file `req.files`
-      // show body `req.body`
-      res.status(200).end('Your files uploaded.');
-    })
-  },
+  '/bio_faculty_cv_upload/:id',
+  upload.single('file'),
   async (req, res) => {
     try {
-      const { title, description } = req.body;
       const { path, mimetype } = req.file;
-      const dat = await Bio_Faculty.findOneAndUpdate({ _id: req.params.id }, { $push: { title, description, "img_data.file_path": { file_path1: path, file_mimetype1: mimetype } } });
+      console.log(path, mimetype)
+      const data = await Bio_Faculty.findOneAndUpdate({ _id: req.params.id }, { $set: { "img_data.pdf_path": { pdf_path1: path, pdf_mimetype1: mimetype, value: true } } })
+      if (data) {
+        // console.log(dat)
+        res.status(200).send('file uploaded successfully.');
+      } else {
+        res.status(401).send('Unable to upload CV, No data found');
 
+      }
+      // console.log(dat)
+    } catch (error) {
+      console.log(error)
+      res.status(402).send('Error while uploading file. Try again later.');
+    }
+  }
+);
+
+router.post(
+  '/bio_faculty_file_upload',
+  upload.single('file'),
+  async (req, res) => {
+    try {
+      const { title, description, filter } = req.body
+      const { path, mimetype } = req.file
       const file = new Bio_Faculty({
-        title,
-        description,
-        file_path: path,
-        file_mimetype: mimetype
+        title: title,
+        description: description,
+        filter: filter,
+        "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+        "img_data.pdf_path": { value: false }
       });
-      await dat.save();
+      await file.save();
       res.send('file uploaded successfully.');
     } catch (error) {
-      res.status(400).send('Error while uploading file. Try again later.');
-    }
-  },
-  (error, req, res, next) => {
-    if (error) {
-      res.status(402).send(error.message);
+      // console.log(error)
+      res.status(400).send("Error occur while uploading data");
     }
   }
 );
