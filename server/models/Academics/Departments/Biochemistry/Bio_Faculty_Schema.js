@@ -10,6 +10,10 @@ const Bio_Faculty_Schema = mongoose.Schema(
       type: String,
       required: true,
     },
+    filter: {
+      type: String,
+      required: true,
+    },
     img_data: {
 
       file_path: [
@@ -22,13 +26,21 @@ const Bio_Faculty_Schema = mongoose.Schema(
             type: String,
             default: null
           },
-          file_path2: {
+        }
+      ],
+      pdf_path: [
+        {
+          pdf_path1: {
+            type: String,
+            default: "../daulatram/public/images/uploads"
+          },
+          pdf_mimetype1: {
             type: String,
             default: null
           },
-          file_mimetype2: {
+          value: {
             type: String,
-            default: null
+            default: 'application/pdf'
           },
         }
       ],

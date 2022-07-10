@@ -26,7 +26,8 @@ const Teacher = require('../models/Academics/Teacher_Schema')
 const Feedback = require('../models/StaffZone/Feedback_Form_Schema')
 const Roster = require('../models/StaffZone/Roster_Schema')
 const Student_forms = require('../models/StudentZone/StudentZone_foms_Schema')
-const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema')
+const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema');
+const { trusted } = require('mongoose');
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -798,10 +799,10 @@ router.post('/delete_bio_faculty/:id', async (req, res) => {
 router.get('/bio_faculty', async (req, res) => {
   try {
     const files = await Bio_Faculty.find({});
-    const sortedByCreationDate = files.sort(
-      (a, b) => b.createdAt - a.createdAt
-    );
-    res.send(sortedByCreationDate);
+    // const sortedByCreationDate = files.sort(
+    //   (a, b) => b.createdAt - a.createdAt
+    // );
+    res.json(files);
   } catch (error) {
     res.status(400).send('Error while getting list of files. Try again later.');
   }
@@ -813,26 +814,17 @@ router.post(
     try {
       const { path, mimetype } = req.file;
       console.log(path,mimetype)
-      const {pid} = req.body
-      console.log(req.body)
-      // console.log(path,mimetype)
-      const dat = await Bio_Faculty.findOne({ _id: req.params.id });
+      const dat=await Bio_Faculty.findOneAndUpdate( {_id:req.params.id}, {$set: { "img_data.pdf_path": { pdf_path1: path, pdf_mimetype1: mimetype,value:true }} })
       if (dat){
-        console.log(dat)
-        // const data = await dat.updateOne( { "img_data.file_path":{_id: pid} },{ $push: { "img_data.file_path": { file_path2: path, file_mimetype2: mimetype } } })
-        // if(data){
-        //   res.status(200).send('file uploaded successfully.');
-        // } else{
-          
-        //   res.status(400).send('Unable to Update');
-        // }
+        // console.log(dat)
+          res.status(200).send('file uploaded successfully.');
       }else{
-        res.status(401).send('No data found');
+        res.status(401).send('Unable to upload CV, No data found');
 
       }
       // console.log(dat)
     } catch (error) {
-      // console.log(error)
+      console.log(error)
       res.status(402).send('Error while uploading file. Try again later.');
     }
   },
@@ -848,13 +840,14 @@ router.post(
   upload.single('file'),
   async (req, res) => {
     try {
-      const { title, description } = req.body
+      const { title, description ,filter} = req.body
       const { path, mimetype } = req.file
-      console.log(req.body)
       const file = new Bio_Faculty({
         title: title,
         description: description,
-        "img_data.file_path": { file_path1: path, file_mimetype1: mimetype }
+        filter: filter,
+        "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+        "img_data.pdf_path": { value:false}
       });
       await file.save();
       res.send('file uploaded successfully.');

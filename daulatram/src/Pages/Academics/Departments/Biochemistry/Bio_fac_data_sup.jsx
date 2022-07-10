@@ -5,7 +5,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Dropzone from "react-dropzone";
 
-const Bio_fac_data = (props) => {
+const Bio_fac_data_sup = (props) => {
   const [data1, setData1] = useState();
 
   const dropRef = useRef();
@@ -45,7 +45,7 @@ const Bio_fac_data = (props) => {
 
   return (
     <>
-      {props.filter == "Current" && (
+      {props.filter == "Superannuated" && (
         <div className="flex flex-col">
           <div class="first fac ">
             {props.img_data.file_path &&
@@ -142,18 +142,10 @@ const Bio_fac_data = (props) => {
             );
           })}
 
-          {/* </> */}
-
-          {/* // </div> */}
-          {/* // } */}
-          {/* ) */}
-          {/* } */}
-          {/* </> */}
-          {/* ))} */}
         </div>
       )}
     </>
   );
 };
 
-export default Bio_fac_data;
+export default Bio_fac_data_sup;

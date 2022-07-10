@@ -9,6 +9,7 @@ import axios from "axios";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
 import Bio_fac_data from "./Bio_fac_data";
+import Bio_fac_data_sup from "./Bio_fac_data_sup";
 
 const Bio_faculty = () => {
   const [data1, setData1] = useState();
@@ -16,6 +17,7 @@ const Bio_faculty = () => {
   const errRef = useRef();
   const dropRefImg = useRef();
   const dropRef = useRef();
+  const [filter, setFilter] = useState("Current");
   const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
@@ -44,7 +46,7 @@ const Bio_faculty = () => {
     fileReader.readAsDataURL(uploadedFile);
     setIsPreviewAvailableImg(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
   };
-  
+
   useEffect(() => {
     fetchdata();
   }, []);
@@ -57,20 +59,64 @@ const Bio_faculty = () => {
     }
   };
 
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(
+      `http://localhost:5000/delete_bio_faculty/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+
+  const handleSubmit_cv = async (id, pdf) => {
+    console.log(id);
+    try {
+      console.log(pdf);
+      if (pdf) {
+        // setErrMsg("");
+        await axios.post(
+          `http://localhost:5000/bio_faculty_cv_upload/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        // setAuth(true);
+        // fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     // setFile({imag,pdf} );
     // console.log(data);
     try {
       if (link.trim() !== "" && caption.trim() !== "") {
-        console.log(imag);
         if (imag) {
           // setErrMsg("");
-          console.log(link, caption, imag, pdf);
+          console.log(link, caption, imag, filter);
           const data = await axios.post(
             `http://localhost:5000/bio_faculty_file_upload`,
             // { method: "POST" },
-            { title: caption, description: link, file: imag },
+            { title: caption, description: link, file: imag, filter: filter },
             {
               headers: {
                 "Content-Type": "multipart/form-data",
@@ -79,7 +125,7 @@ const Bio_faculty = () => {
           );
           setCaption("");
           setLink("");
-          // setAuth(true);
+          setAuth(true);
           fetchdata();
         } else {
           setErrMsg("Please select a file to add.");
@@ -111,11 +157,57 @@ const Bio_faculty = () => {
           <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
-                const { _id, title, description, img_data } = curElem;
+                const { _id, title, description, img_data, filter } = curElem;
                 // console.log(curElem);
                 return (
                   <>
-                    <Bio_fac_data key={_id} id={_id} title={title} description={description} img_data={img_data} />
+                    <Bio_fac_data
+                      key={_id}
+                      id={_id}
+                      title={title}
+                      description={description}
+                      img_data={img_data}
+                      filter={filter}
+                      delete={del}
+                      cv={handleSubmit_cv}
+                    />
+                  </>
+                );
+              })}
+          </div>
+          {data1 &&
+            data1.map((curElem) => {
+              const {  filter } = curElem;
+              // console.log(curElem);
+              return (
+                <>{filter ==="Superannuated"&&
+
+                  <div className="  ">
+                    <h2 className="text-2xl uppercase font-bold m-1 flex  items-center ">
+                      Superannuated
+                    </h2>
+                  </div>
+                  }
+                </>
+              );
+            })}
+          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
+            {data1 &&
+              data1.map((curElem) => {
+                const { _id, title, description, img_data, filter } = curElem;
+                // console.log(curElem);
+                return (
+                  <>
+                    <Bio_fac_data_sup
+                      key={_id}
+                      id={_id}
+                      title={title}
+                      description={description}
+                      img_data={img_data}
+                      filter={filter}
+                      delete={del}
+                      cv={handleSubmit_cv}
+                    />
                   </>
                 );
               })}
@@ -157,6 +249,26 @@ const Bio_faculty = () => {
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                     placeholder="Designation"
                   ></textarea>
+                </div>
+                <div className="mb-3">
+                  <select
+                    value={filter}
+                    onChange={(e) => setFilter(e.target.value)}
+                    className="mb-3 mt-3 bg-gray-200 cursor-pointer border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  >
+                    <option
+                      value="Current"
+                      className="p-2 text-lg acctive:text-white  block px-4 py-2  "
+                    >
+                      Current
+                    </option>
+                    <option
+                      value="Supernnuated"
+                      className="p-2 text-lg acctive:text-white  block px-4 py-2 "
+                    >
+                      Superannuated
+                    </option>
+                  </select>
                 </div>
                 <div class="md:flex flex-col md:items-center">
                   {/* <div class="md:w-1/3"></div> */}
