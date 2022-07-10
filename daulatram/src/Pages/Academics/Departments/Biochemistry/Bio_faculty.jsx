@@ -1,7 +1,4 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import "./Bio_fac.css";
@@ -22,10 +19,7 @@ const Bio_faculty = () => {
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [previewSrcImg, setPreviewSrcImg] = useState("");
-  const [previewSrc, setPreviewSrc] = useState("");
   const [isPreviewAvailableImg, setIsPreviewAvailableImg] = useState(false);
-  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
-  const [pdf, setPdf] = useState(null);
   const [imag, setImg] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
@@ -180,7 +174,7 @@ const Bio_faculty = () => {
               const {  filter } = curElem;
               // console.log(curElem);
               return (
-                <>{filter ==="Superannuated"&&
+                <>{filter ==="Supernnuated"&&
 
                   <div className="  ">
                     <h2 className="text-2xl uppercase font-bold m-1 flex  items-center ">
@@ -212,9 +206,7 @@ const Bio_faculty = () => {
                 );
               })}
           </div>
-          {auth ? (
-            ""
-          ) : (
+          {auth && (
             <>
               <form
                 method="post"

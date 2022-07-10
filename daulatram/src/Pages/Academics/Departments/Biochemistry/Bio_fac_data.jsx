@@ -81,9 +81,7 @@ const Bio_fac_data = (props) => {
                 </>
               );
             })}
-            {auth ? (
-              ""
-            ) : (
+            {auth && (
               <div className="flex flex-col w-full  ml-auto">
                 <FontAwesomeIcon
                   icon={faTrash}
