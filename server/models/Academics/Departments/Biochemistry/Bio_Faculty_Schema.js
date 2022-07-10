@@ -36,11 +36,11 @@ const Bio_Faculty_Schema = mongoose.Schema(
           },
           pdf_mimetype1: {
             type: String,
-            default: null
+            default: 'application/pdf'
           },
           value: {
             type: String,
-            default: 'application/pdf'
+            default: null
           },
         }
       ],

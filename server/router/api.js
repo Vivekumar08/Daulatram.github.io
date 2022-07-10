@@ -787,8 +787,6 @@ router.post('/delete_bio_faculty/:id', async (req, res) => {
     if (img[0].file_path1) {
       await delete_user.deleteOne({ _id: req.params.id })
       await unlinkAsync(img[0].file_path1)
-      // console.log(pdf[0].pdf_path1)
-      // console.log(img[0].file_path1)
       res.status(200).json(delete_user + "User deleted")
     } else {
       console.log("Unsuccessfully deleted")
@@ -797,8 +795,6 @@ router.post('/delete_bio_faculty/:id', async (req, res) => {
     await delete_user.deleteOne({ _id: req.params.id })
     await unlinkAsync(img[0].file_path1)
     await unlinkAsync(pdf[0].pdf_path1)
-    // console.log(img[0].file_path1)
-    // console.log(pdf[0].pdf_path1)
     res.status(200).json("File Deleted")
   }
 })
@@ -818,8 +814,8 @@ router.post(
     try {
       const { path, mimetype } = req.file;
       console.log(path, mimetype)
-      const dat = await Bio_Faculty.findOneAndUpdate({ _id: req.params.id }, { $set: { "img_data.pdf_path": { pdf_path1: path, pdf_mimetype1: mimetype, value: true } } })
-      if (dat) {
+      const data = await Bio_Faculty.findOneAndUpdate({ _id: req.params.id }, { $set: { "img_data.pdf_path": { pdf_path1: path, pdf_mimetype1: mimetype, value: true } } })
+      if (data) {
         // console.log(dat)
         res.status(200).send('file uploaded successfully.');
       } else {
@@ -830,11 +826,6 @@ router.post(
     } catch (error) {
       console.log(error)
       res.status(402).send('Error while uploading file. Try again later.');
-    }
-  },
-  (error, req, res, next) => {
-    if (error) {
-      res.status(402).send(error.message);
     }
   }
 );
