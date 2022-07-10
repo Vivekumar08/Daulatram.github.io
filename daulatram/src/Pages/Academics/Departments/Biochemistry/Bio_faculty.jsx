@@ -64,7 +64,7 @@ const Bio_faculty = () => {
     const response = await fetch(
       `http://localhost:5000/delete_bio_faculty/${id}`,
       {
-        method: "DELETE",
+        method: "POST",
       }
     );
     const data = await response.json();
@@ -94,8 +94,8 @@ const Bio_faculty = () => {
         );
         setCaption("");
         setLink("");
-        // setAuth(true);
-        // fetchdata();
+        setAuth(true);
+        fetchdata();
       } else {
         setErrMsg("Please select a file to add.");
       }
