@@ -1,10 +1,15 @@
-import React from "react";
+import React ,{useEffect}from "react";
 import DeptSidebar from "../../Components/Sidebar/DeptSidebar";
 import DeptBanner from "../../Components/Banners/DeptBanner";
 import "./card.css";
 import { dept } from "../../Components/Mylinks";
+import { Link } from "react-router-dom";
 
 function Department() {
+  useEffect(() => {
+    document.title="Departments"
+  }, [])
+  
   return (
     <>
       <>
@@ -28,7 +33,7 @@ function Department() {
                   <div className="scene ml-20">
                     {names.names.map((name) => (
                       <>
-                        <a href={name.link}>
+                        <Link to={name.link}>
                           <div className="flip">
                             <div className="front text-2xl">
                               <h1 className="text-shadow mt-20 ml-6">
@@ -39,7 +44,7 @@ function Department() {
                               <h2 className="mt-14 ml-6">{name.name}</h2>
                             </div>
                           </div>
-                        </a>
+                        </Link>
                       </>
                     ))}
                   </div>
