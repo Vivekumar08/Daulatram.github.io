@@ -27,11 +27,7 @@ const Feedback = require('../models/StaffZone/Feedback_Form_Schema')
 const Roster = require('../models/StaffZone/Roster_Schema')
 const Student_forms = require('../models/StudentZone/StudentZone_foms_Schema')
 const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema');
-<<<<<<< HEAD
 const Com_Faculty = require('../models/Academics/Departments/Commerce/Com_fac_Schema');
-const { trusted } = require('mongoose');
-=======
->>>>>>> 86fa62c72e115040a9f57008aa7ca0a03bef1628
 
 const unlinkAsync = promisify(fs.unlink)
 
