@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Chemistry from "../../../../Components/DepartSIde/Chemistry";
-import Botanybanner from "../Botany/Botanybanner.jsx";
+import Chembanner from "../Chemistry/Chembanner.jsx";
 
 import { Chem_fac_info } from "../Fac_info";
 const Chemfaculty = () => {
@@ -12,7 +12,7 @@ const Chemfaculty = () => {
     <>
       <div className=" flex flex-col">
         <div className="">
-          <DepartBanner />
+          <Chembanner />
         </div>
         <div className="flex flex-row">
           <div className="ml-2 mt-12">
