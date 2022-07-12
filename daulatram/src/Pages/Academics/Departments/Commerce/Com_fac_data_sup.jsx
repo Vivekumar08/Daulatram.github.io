@@ -5,7 +5,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Dropzone from "react-dropzone";
 
-const Bio_fac_data_sup = (props) => {
+const Com_fac_data_sup = (props) => {
   const [data1, setData1] = useState();
 
   const dropRef = useRef();
@@ -14,7 +14,7 @@ const Bio_fac_data_sup = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/bio_faculty");
+    const response = await fetch("http://localhost:5000/com_faculty");
     setData1(await response.json());
   };
 
@@ -91,7 +91,7 @@ const Bio_fac_data_sup = (props) => {
           {props.img_data.pdf_path.map((elem) => {
             return (
               <>
-                {auth&&elem.value === "false" && (
+                {auth&& elem.value === "false" && (
                   <>
                     {/* // <div key={props.id}> */}
 
@@ -144,4 +144,4 @@ const Bio_fac_data_sup = (props) => {
   );
 };
 
-export default Bio_fac_data_sup;
+export default Com_fac_data_sup;

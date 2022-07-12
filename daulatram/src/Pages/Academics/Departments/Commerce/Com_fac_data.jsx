@@ -5,16 +5,18 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Dropzone from "react-dropzone";
 
-const Bio_fac_data_sup = (props) => {
+const Com_fac_data = (props) => {
   const [data1, setData1] = useState();
 
   const dropRef = useRef();
   const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [pdf, setPdf] = useState(null);
+  const [pdf_path, setPdf_path] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/bio_faculty");
+    const response = await fetch("http://localhost:5000/com_faculty");
     setData1(await response.json());
   };
 
@@ -42,7 +44,7 @@ const Bio_fac_data_sup = (props) => {
 
   return (
     <>
-      {props.filter == "Supernnuated" && (
+      {props.filter == "Current" && (
         <div className="flex flex-col">
           <div class="first fac ">
             {props.img_data.file_path &&
@@ -61,6 +63,8 @@ const Bio_fac_data_sup = (props) => {
                 );
               })}
 
+            {/* <> */}
+            {/* </> */}
 
             {props.img_data.pdf_path.map((elem) => {
               const path2 = elem.pdf_path1.replace(/\\/g, "/");
@@ -144,4 +148,4 @@ const Bio_fac_data_sup = (props) => {
   );
 };
 
-export default Bio_fac_data_sup;
+export default Com_fac_data;
