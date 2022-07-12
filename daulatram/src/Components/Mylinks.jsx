@@ -28,6 +28,10 @@ export const links = [
         link: "/about/administration",
       },
       {
+        name: "Annual Report",
+        link: "https://sites.google.com/dr.du.ac.in/drc-annual-reports/home",
+      },
+      {
         name: "Gallery",
         link: "/about/Gallery",
       },
@@ -340,7 +344,7 @@ export const about = [
       },
       {
         name: "Annual Report",
-        link: "/about/Annual_Report",
+        link: "https://sites.google.com/dr.du.ac.in/drc-annual-reports/home",
       },
       {
         name: "Gallery",
