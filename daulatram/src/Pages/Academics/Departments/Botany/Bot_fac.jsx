@@ -11,7 +11,7 @@ const Bot_fac = () => {
     <>
       <div className=" flex flex-col">
         <div className="">
-          <DepartBanner />
+          <Botanybanner />
         </div>
         <div className="flex flex-row">
           <div className="ml-2 mt-12">
