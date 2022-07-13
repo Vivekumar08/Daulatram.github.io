@@ -45,7 +45,8 @@ const Chem_Faculty = require('../models/Academics/Departments/Chemistry/Chem_Fac
 const Psychology_Faculty = require('../models/Academics/Departments/Psychology/Psychology_Faculty_Schema');
 const Zoology_Faculty = require('../models/Academics/Departments/Zoology/Zoology_Faculty_Schema');
 // const Sanskrit_Faculty = require('../models/Academics/Departments/Psychology/Sanskrit_Faculty_Schema');
-
+const Bot_ProgramOffered = require("../models/Academics/Departments/Botany/Bot_ProgramsOffered_Schema")
+const Bot_Awards = require("../models/Academics/Departments/Botchemistry/Awards_Schema")
 
 
 
@@ -516,6 +517,80 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Bio_Awards({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Botany Program Offered
+
+router.get('/Bot_ProgramOffered', async(req, res, ) => {
+    const details = await Bot_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Bot_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await Bot_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Bot_ProgramOffered_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Bot_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Botany Awards
+
+router.get('/Bot_Awards', async(req, res, ) => {
+    const details = await Bot_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Bot_Awards/:id', async(req, res) => {
+    const delete_user = await Bot_Awards.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Bot_Awards_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Bot_Awards({
                 title,
                 link,
                 file_path: path,

@@ -5,9 +5,12 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import './awards.css'
 import Botanybanner from "../Botany/Botanybanner.jsx";
 import Botany from "../../../../Components/DepartSIde/Botany.jsx";
-const Programmesoffer = () => {
+
+
+const Awards = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -21,7 +24,7 @@ const Programmesoffer = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Bot_ProgramOffered");
+    const response = await fetch("http://localhost:5000/Bot_Awards");
     setData1(await response.json());
   };
 
@@ -46,7 +49,7 @@ const Programmesoffer = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Bot_ProgramOffered/${id}`,
+      `http://localhost:5000/delete_Bot_Awards/${id}`,
       {
         method: "DELETE",
       }
@@ -71,7 +74,7 @@ const Programmesoffer = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Bot_ProgramOffered_add`, formData, {
+        await axios.post(`http://localhost:5000/Bot_Awards_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -103,7 +106,7 @@ const Programmesoffer = () => {
 
         <div className="w-full mr-auto ml-auto">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Program Offered
+            Awards
           </h2>
           <div class="flex justify-evenly w-full mt-5 mb-5">
             {data1 &&
@@ -117,7 +120,7 @@ const Programmesoffer = () => {
                     <div class="card2 ml-2 " key={_id}>
                       <span className="  font-bold text-lg w-[75%] ">{link}</span>
                       <div className="flex flex-col ml-4 w-full">
-                        <div class="info2 ml-4 w-full">
+                        <div class="info2  w-full">
                           <p className="text-justify ">{title}</p>
                           <br />
                           <a href={path} className="">
@@ -246,4 +249,4 @@ const Programmesoffer = () => {
   );
 };
 
-export default Programmesoffer;
+export default Awards;
