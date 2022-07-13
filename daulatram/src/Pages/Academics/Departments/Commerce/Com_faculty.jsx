@@ -58,9 +58,9 @@ const Com_faculty = () => {
               );
             })}
             <div className="  ">
-              {/* <h2 className="text-2xl uppercase font-bold m-1 mt-5 flex  items-center ">
+              <h2 className="text-2xl uppercase font-bold m-1 mt-5 flex  items-center ">
                 Superannuated Faculty
-              </h2> */}
+              </h2>
             </div>
             {Info.map((currElem) => {
               const { id, Fac_name, Designation, filter, img, cv } = currElem;

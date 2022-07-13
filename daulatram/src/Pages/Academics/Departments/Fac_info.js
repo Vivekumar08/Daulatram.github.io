@@ -269,8 +269,8 @@ export const Com_fac_info = [{
         Fac_name: "Dr. Gurmeet Kaur",
         Designation: "Associate Professor",
         filter: "Current",
-        img: "/images/ImgPages/Botany/Meenam_Bhatia.jpg",
-        cv: "/images/ImgPages/Botany/Meenam_Bhatia_cv.pdf",
+        img: "/images/ImgPages/female_user.png",
+        cv: "",
     },
 
     {
