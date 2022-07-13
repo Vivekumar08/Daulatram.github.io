@@ -1,14 +1,14 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import Research_banner from "../../../Components/Banners/Research_banner";
 import Research_side from "../../../Components/Sidebar/Research_side";
-import { res_data } from "./data";
+// import { res_data } from "./data";
 import Research_data from "./Research_data";
 import AuthContext from "../../../Context/AuthProvider";
 import Res_fac_data from "./Res_fac_data";
 import axios from "axios";
 
 const Research_fac = () => {
-  const [data, setData] = useState(res_data);
+  // const [data, setData] = useState(res_data);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -83,7 +83,7 @@ const Research_fac = () => {
             </div>
           </div>
           <div className="text-justify p-3 m-2 ml-4">
-            {data &&
+            {/* {data &&
               data.map((curElem) => {
                 const { id, tittle, para, pic } = curElem;
                 return (
@@ -94,7 +94,7 @@ const Research_fac = () => {
                     pic={pic}
                   />
                 );
-              })}
+              })} */}
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, description, img_data } = curElem;

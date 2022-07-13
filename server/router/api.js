@@ -47,6 +47,7 @@ const Zoology_Faculty = require('../models/Academics/Departments/Zoology/Zoology
 // const Sanskrit_Faculty = require('../models/Academics/Departments/Psychology/Sanskrit_Faculty_Schema');
 const Bot_ProgramOffered = require("../models/Academics/Departments/Botany/Bot_ProgramsOffered_Schema")
 const Bot_Awards = require("../models/Academics/Departments/Botany/Awards_Schema")
+
 const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema")
 const Chem_Awards = require("../models/Academics/Departments/Chemistry/Awards_Schema")
 const Com_ProgramOffered = require("../models/Academics/Departments/Commerce/Com_ProgramsOffered_Schema")
@@ -57,6 +58,7 @@ const Eng_ProgramOffered = require("../models/Academics/Departments/English/Eng_
 const Eng_Awards = require("../models/Academics/Departments/English/Awards_Schema")
 const Hin_ProgramOffered = require("../models/Academics/Departments/Hindi/Hin_ProgramsOffered_Schema")
 const Hin_Awards = require("../models/Academics/Departments/Hindi/Awards_Schema")
+
 const unlinkAsync = promisify(fs.unlink)
 
 // SET STORAGE
