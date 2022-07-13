@@ -33,12 +33,18 @@ const Music_Faculty = require("../models/Academics/Departments/Music/Music_Facul
 const Bot_Faculty = require('../models/Academics/Departments/Botany/Bot_Faculty_Schema');
 const Math_Faculty = require("../models/Academics/Departments/Mathematics/Math_fac_schema");
 const Physics_Faculty = require('../models/Academics/Departments/Physics/Physics_Faculty_Schema');
+<<<<<<< HEAD
+const Political_Science_Faculty = require('../models/Academics/Departments/Political_Science/Political_Science_Faculty_Schema');
+
+const Chem_Faculty = require('../models/Academics/Departments/Chemistry/Chem_Faculty_Schema');
+=======
 
 const Political_Science_Faculty = require('../models/Academics/Departments/Political_Science/Political_Science_Faculty_Schema');
 
 
 const Chem_Faculty = require('../models/Academics/Departments/Chemistry/Chem_Faculty_Schema');
 
+>>>>>>> f28c97de1fbca3a069b2608918b480d85673a05b
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -1439,7 +1445,7 @@ router.post(
         try {
             const { title, description, filter } = req.body
             const { path, mimetype } = req.file
-            const file = new Physics_Faculty({
+            const file = new Political_Science_Faculty({
                 title: title,
                 description: description,
                 filter: filter,

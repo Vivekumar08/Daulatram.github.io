@@ -95,7 +95,7 @@ const Political_Science_fac_data = (props) => {
           {props.img_data.pdf_path.map((elem) => {
             return (
               <>
-                {elem.value === "false" && (
+                {auth&& elem.value === "false" && (
                   <>
                     {/* // <div key={props.id}> */}
 
