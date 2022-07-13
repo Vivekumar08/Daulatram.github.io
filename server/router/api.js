@@ -29,12 +29,22 @@ const Student_forms = require('../models/StudentZone/StudentZone_foms_Schema')
 const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema');
 const Com_Faculty = require('../models/Academics/Departments/Commerce/Com_fac_Schema');
 const Hist_Faculty = require("../models/Academics/Departments/History/Hist_Faculty_Schema");
+const Music_Faculty = require("../models/Academics/Departments/Music/Music_Faculty_Schema");
 const Bot_Faculty = require('../models/Academics/Departments/Botany/Bot_Faculty_Schema');
 const Math_Faculty = require("../models/Academics/Departments/Mathematics/Math_fac_schema");
 const Physics_Faculty = require('../models/Academics/Departments/Physics/Physics_Faculty_Schema');
+<<<<<<< HEAD
 const Political_Science_Faculty = require('../models/Academics/Departments/Political_Science/Political_Science_Faculty_Schema');
 
 const Chem_Faculty = require('../models/Academics/Departments/Chemistry/Chem_Faculty_Schema');
+=======
+
+const Political_Science_Faculty = require('../models/Academics/Departments/Political_Science/Political_Science_Faculty_Schema');
+
+
+const Chem_Faculty = require('../models/Academics/Departments/Chemistry/Chem_Faculty_Schema');
+
+>>>>>>> f28c97de1fbca3a069b2608918b480d85673a05b
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -849,6 +859,95 @@ router.get('/bio_faculty_download/:id', async(req, res) => {
         res.status(400).send('Error while downloading file. Try again later.');
     }
 });
+//Music
+
+router.post('/delete_Music_faculty/:id', async(req, res) => {
+    const delete_user = await Music_Faculty.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path
+    const img = delete_user.img_data.file_path
+        // console.log()
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id })
+            await unlinkAsync(img[0].file_path1)
+            res.status(200).json(delete_user + "User deleted")
+        } else {
+            console.log("Unsuccessfully deleted")
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id })
+        await unlinkAsync(img[0].file_path1)
+        await unlinkAsync(pdf[0].pdf_path1)
+        res.status(200).json("File Deleted")
+    }
+})
+
+router.get('/Music_faculty', async(req, res) => {
+    try {
+        const files = await Music_Faculty.find({});
+        res.json(files);
+    } catch (error) {
+        res.status(400).send('Error while getting list of files. Try again later.');
+    }
+});
+router.post(
+    '/Music_faculty_cv_upload/:id',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Music_Faculty.findOneAndUpdate({ _id: req.params.id }, { $set: { "img_data.pdf_path": { pdf_path1: path, pdf_mimetype1: mimetype, value: true } } })
+            if (data) {
+                // console.log(dat)
+                res.status(200).send('file uploaded successfully.');
+            } else {
+                res.status(401).send('Unable to upload CV, No data found');
+
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error)
+            res.status(402).send('Error while uploading file. Try again later.');
+        }
+    }
+);
+
+router.post(
+    '/Music_faculty_file_upload',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, description, filter } = req.body
+            const { path, mimetype } = req.file
+            const file = new Music_Faculty({
+                title: title,
+                description: description,
+                filter: filter,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false }
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+router.get('/Music_faculty_download/:id', async(req, res) => {
+    try {
+        const file = await Music_Faculty.findById(req.params.id);
+        res.set({
+            'Content-Type': file.file_mimetype
+        });
+        res.sendFile(path.join(__dirname, '..', file.file_path));
+    } catch (error) {
+        res.status(400).send('Error while downloading file. Try again later.');
+    }
+});
+
 // Chemistry Faculty
 router.post('/delete_chem_faculty/:id', async(req, res) => {
     const delete_user = await Chem_Faculty.findOne({ _id: req.params.id });
