@@ -841,6 +841,20 @@ router.get('/bio_faculty_download/:id', async(req, res) => {
         res.status(400).send('Error while downloading file. Try again later.');
     }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // Publications
 router.delete('/delete_Publications_res/:id', async(req, res) => {
     const delete_user = await Publications.findOneAndDelete({ _id: req.params.id });
