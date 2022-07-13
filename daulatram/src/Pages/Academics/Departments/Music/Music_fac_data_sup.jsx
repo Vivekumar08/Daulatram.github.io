@@ -5,18 +5,16 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Dropzone from "react-dropzone";
 
-const Physics_fac_data_sup = (props) => {
+const Music_fac_data_sup = (props) => {
   const [data1, setData1] = useState();
 
   const dropRef = useRef();
   const [previewSrc, setPreviewSrc] = useState("");
-  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [pdf, setPdf] = useState(null);
-  const [pdf_path, setPdf_path] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_faculty");
+    const response = await fetch("http://localhost:5000/Music_faculty");
     setData1(await response.json());
   };
 
@@ -93,7 +91,7 @@ const Physics_fac_data_sup = (props) => {
           {props.img_data.pdf_path.map((elem) => {
             return (
               <>
-                {auth && elem.value === "false" && (
+                {auth&&elem.value === "false" && (
                   <>
                     {/* // <div key={props.id}> */}
 
@@ -146,4 +144,4 @@ const Physics_fac_data_sup = (props) => {
   );
 };
 
-export default Physics_fac_data_sup;
+export default Music_fac_data_sup;

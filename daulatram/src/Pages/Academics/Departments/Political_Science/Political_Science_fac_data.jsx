@@ -5,7 +5,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Dropzone from "react-dropzone";
 
-const Physics_fac_data_sup = (props) => {
+const Political_Science_fac_data = (props) => {
   const [data1, setData1] = useState();
 
   const dropRef = useRef();
@@ -16,7 +16,7 @@ const Physics_fac_data_sup = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_faculty");
+    const response = await fetch("http://localhost:5000/Political_Science_faculty");
     setData1(await response.json());
   };
 
@@ -44,7 +44,7 @@ const Physics_fac_data_sup = (props) => {
 
   return (
     <>
-      {props.filter == "Supernnuated" && (
+      {props.filter == "Current" && (
         <div className="flex flex-col">
           <div class="first fac ">
             {props.img_data.file_path &&
@@ -63,6 +63,8 @@ const Physics_fac_data_sup = (props) => {
                 );
               })}
 
+            {/* <> */}
+            {/* </> */}
 
             {props.img_data.pdf_path.map((elem) => {
               const path2 = elem.pdf_path1.replace(/\\/g, "/");
@@ -93,7 +95,7 @@ const Physics_fac_data_sup = (props) => {
           {props.img_data.pdf_path.map((elem) => {
             return (
               <>
-                {auth && elem.value === "false" && (
+                {auth&& elem.value === "false" && (
                   <>
                     {/* // <div key={props.id}> */}
 
@@ -140,10 +142,11 @@ const Physics_fac_data_sup = (props) => {
               </>
             );
           })}
+
         </div>
       )}
     </>
   );
 };
 
-export default Physics_fac_data_sup;
+export default Political_Science_fac_data;

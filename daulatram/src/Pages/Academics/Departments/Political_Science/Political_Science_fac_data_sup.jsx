@@ -5,7 +5,7 @@ import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import Dropzone from "react-dropzone";
 
-const Physics_fac_data_sup = (props) => {
+const Political_Science_fac_data_sup = (props) => {
   const [data1, setData1] = useState();
 
   const dropRef = useRef();
@@ -16,7 +16,7 @@ const Physics_fac_data_sup = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_faculty");
+    const response = await fetch("http://localhost:5000/Political_Science_faculty");
     setData1(await response.json());
   };
 
@@ -146,4 +146,4 @@ const Physics_fac_data_sup = (props) => {
   );
 };
 
-export default Physics_fac_data_sup;
+export default Political_Science_fac_data_sup;
