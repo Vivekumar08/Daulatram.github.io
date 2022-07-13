@@ -6,7 +6,7 @@ function PolScibanner() {
       <div
         className="Banner"
         style={{
-          backgroundImage: "url(/images/img1.jpg)",
+          backgroundImage: "url(/images/img1.jpeg)",
           width: "100%",
           height: "280px",
         }}

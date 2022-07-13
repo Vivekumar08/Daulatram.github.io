@@ -29,6 +29,7 @@ const Student_forms = require('../models/StudentZone/StudentZone_foms_Schema')
 const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema');
 const Com_Faculty = require('../models/Academics/Departments/Commerce/Com_fac_Schema');
 const Hist_Faculty = require("../models/Academics/Departments/History/Hist_Faculty_Schema");
+const Math_Faculty = require("../models/Academics/Departments/Mathematics/Math_fac_schema");
 
 const unlinkAsync = promisify(fs.unlink)
 
