@@ -46,7 +46,7 @@ const Psychology_Faculty = require('../models/Academics/Departments/Psychology/P
 const Zoology_Faculty = require('../models/Academics/Departments/Zoology/Zoology_Faculty_Schema');
 // const Sanskrit_Faculty = require('../models/Academics/Departments/Psychology/Sanskrit_Faculty_Schema');
 const Bot_ProgramOffered = require("../models/Academics/Departments/Botany/Bot_ProgramsOffered_Schema")
-const Bot_Awards = require("../models/Academics/Departments/Botchemistry/Awards_Schema")
+const Bot_Awards = require("../models/Academics/Departments/Botany/Awards_Schema")
 
 
 
