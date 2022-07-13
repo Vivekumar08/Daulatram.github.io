@@ -39,7 +39,8 @@ const Eng_Faculty = require('../models/Academics/Departments/English/Eng_Faculty
 const Political_Science_Faculty = require('../models/Academics/Departments/Political_Science/Political_Science_Faculty_Schema');
 const NHE_Faculty = require('../models/Academics/Departments/NHE/NHE_Faculty_Schema');
 const Hin_Faculty = require('../models/Academics/Departments/Hindi/Hin_Faculty_Schema');
-
+const Bio_ProgramOffered = require("../models/Academics/Departments/Biochemistry/Bio_ProgramsOffered_Schema")
+const Bio_Awards = require("../models/Academics/Departments/Biochemistry/Awards_Schema")
 const Chem_Faculty = require('../models/Academics/Departments/Chemistry/Chem_Faculty_Schema');
 const Psychology_Faculty = require('../models/Academics/Departments/Psychology/Psychology_Faculty_Schema');
 const Zoology_Faculty = require('../models/Academics/Departments/Zoology/Zoology_Faculty_Schema');
@@ -441,6 +442,80 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Bulletin({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// BioChemistry Program Offered
+
+router.get('/Bio_ProgramOffered', async(req, res, ) => {
+    const details = await Bio_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Bio_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await Bio_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Bio_ProgramOffered_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Bio_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// BioChemistry Awards
+
+router.get('/Bio_Awards', async(req, res, ) => {
+    const details = await Bio_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Bio_Awards/:id', async(req, res) => {
+    const delete_user = await Bio_Awards.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Bio_Awards_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Bio_Awards({
                 title,
                 link,
                 file_path: path,
