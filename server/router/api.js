@@ -1346,7 +1346,7 @@ router.post(
         try {
             const { title, description, filter } = req.body
             const { path, mimetype } = req.file
-            const file = new Physics_Faculty({
+            const file = new Political_Science_Faculty({
                 title: title,
                 description: description,
                 filter: filter,
