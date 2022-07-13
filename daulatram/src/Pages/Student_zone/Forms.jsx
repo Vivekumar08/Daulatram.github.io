@@ -181,7 +181,7 @@ const forms = () => {
                     <>
                       <tr className=" ">
                         <td className="text-lg  overlay ">{link}</td>
-                        <td className="text-lg  overlay">
+                        <td className="text-lg overlay">
                           <strong>{title} </strong>
                         </td>
                         <td>

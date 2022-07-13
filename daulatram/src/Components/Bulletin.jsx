@@ -21,9 +21,9 @@ const Bulletin = () => {
                       href={curElem.link}
                       target="_blank"
                       rel="norefferer"
-                      className="  ml-8 hover:font-semibold hover:text-green-600"
+                      className="  ml-8 hover:font-normal hover:text-[#F80CA7]"
                     >
-                      <span className=" text-sm ml-2 mr-2 ">
+                      <span className=" text-md font-semibold  ml-2 mr-2 ">
                         {curElem.info}
                       </span>
                     </a>
