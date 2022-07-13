@@ -6,8 +6,8 @@
 }
 
 .card2 {
-    width: 350px;
-    height: 300px;
+    width: 250px; /*-100px */
+    height: 200px; /*-100px */
     border-radius: 15px;
     padding: 1.5rem;
     /* background: rgb(24, 131, 238); */
