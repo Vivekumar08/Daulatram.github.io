@@ -270,7 +270,7 @@ export const Com_fac_info = [{
         Designation: "Associate Professor",
         filter: "Current",
         img: "/images/ImgPages/female_user.png",
-        cv: "#",
+        cv: "",
     },
 
     {
