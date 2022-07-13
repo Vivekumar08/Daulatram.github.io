@@ -269,8 +269,8 @@ export const Com_fac_info = [{
         Fac_name: "Dr. Gurmeet Kaur",
         Designation: "Associate Professor",
         filter: "Current",
-        img: "/images/ImgPages/Botany/Meenam_Bhatia.jpg",
-        cv: "/images/ImgPages/Botany/Meenam_Bhatia_cv.pdf",
+        img: "/images/ImgPages/female_user.png",
+        cv: "",
     },
 
     {
@@ -320,7 +320,7 @@ export const Com_fac_info = [{
         Fac_name: "Ms. Mansi Kanojia",
         Designation: "Assistant Professor",
         filter: "Current",
-        img: "/images/ImgPages/Commerce/mansi_com",
+        img: "/images/ImgPages/Commerce/mansi_com.png",
         cv: "/images/ImgPages/Commerce/mansi_com.pdf",
     },
     {
@@ -361,16 +361,16 @@ export const Com_fac_info = [{
         Fac_name: "Dr. Meenakshi Paliwal",
         Designation: "Assistant Professor",
         filter: "Current",
-        img: "/images/ImgPages/Commerce/Raman_com.png",
-        cv: "/images/ImgPages/Commerce/Raman_com.pdf",
+        img: "/images/ImgPages/Commerce/Minakshi_com.png",
+        cv: "/images/ImgPages/Commerce/Minakshi_com.pdf",
     },
     {
         id: 45,
         Fac_name: "Ms. Roopshikha",
         Designation: "Assistant Professor",
         filter: "Current",
-        img: "/images/ImgPages/Commerce/Minakshi_com.png",
-        cv: "/images/ImgPages/Commerce/Minakshi_com.pdf",
+        img: "/images/ImgPages/Commerce/Roopshikha_com.png",
+        cv: "/images/ImgPages/Commerce/Roopshikha_com.pdf",
     },
     {
         id: 46,

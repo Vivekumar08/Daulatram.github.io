@@ -10,9 +10,7 @@ const Bio_fac_data_sup = (props) => {
 
   const dropRef = useRef();
   const [previewSrc, setPreviewSrc] = useState("");
-  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [pdf, setPdf] = useState(null);
-  const [pdf_path, setPdf_path] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
@@ -93,7 +91,7 @@ const Bio_fac_data_sup = (props) => {
           {props.img_data.pdf_path.map((elem) => {
             return (
               <>
-                {elem.value === "false" && (
+                {auth&&elem.value === "false" && (
                   <>
                     {/* // <div key={props.id}> */}
 
