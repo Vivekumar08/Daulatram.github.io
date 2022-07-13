@@ -1,21 +1,23 @@
+
 import React, { useState } from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
-import Botany from "../../../../Components/DepartSIde/Botany";
-import Botanybanner from "../Botany/Botanybanner.jsx";
-
-import { Bot_fac_info } from "../Fac_info";
-const Bot_fac = () => {
-  const [Info, setFac_info] = useState(Bot_fac_info);
+import Ecobanner from "../Economics/Ecobanner.jsx";
+import Economics from "../../../../Components/DepartSIde/Economics";
+import { Eco_fac_info } from "../Fac_info";
+const Eco_faculty = () => {
+  const [Info, setFac_info] = useState( Eco_fac_info);
 
   return (
     <>
       <div className=" flex flex-col">
         <div className="">
-          <Botanybanner />
+          <Ecobanner />
+
+
         </div>
         <div className="flex flex-row">
           <div className="ml-2 mt-12">
-            <Botany/>
+            <Economics/>
           </div>
           <div className=" ml-5 w-full">
             <div className="  ">
@@ -25,7 +27,7 @@ const Bot_fac = () => {
             </div>
             <div className="  ">
               <h2 className="text-2xl uppercase font-bold m-1 flex  items-center ">
-                Current Faculty
+                Economics Faculty
               </h2>
             </div>
             {Info.map((currElem) => {
@@ -54,9 +56,9 @@ const Bot_fac = () => {
               );
             })}
             <div className="  ">
-              <h2 className="text-2xl uppercase font-bold m-1 mt-5 flex  items-center ">
+              {/* <h2 className="text-2xl uppercase font-bold m-1 mt-5 flex  items-center ">
                 Superannuated Faculty
-              </h2>
+              </h2> */}
             </div>
             {Info.map((currElem) => {
               const { id, Fac_name, Designation, filter, img, cv } = currElem;
@@ -90,4 +92,5 @@ const Bot_fac = () => {
   );
 };
 
-export default Bot_fac;
+export default Eco_faculty;
+

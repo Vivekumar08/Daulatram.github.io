@@ -34,8 +34,12 @@ const Bot_Faculty = require('../models/Academics/Departments/Botany/Bot_Faculty_
 const Math_Faculty = require("../models/Academics/Departments/Mathematics/Math_fac_schema");
 const Physics_Faculty = require('../models/Academics/Departments/Physics/Physics_Faculty_Schema');
 const Chem_Faculty = require('../models/Academics/Departments/Chemistry/Chem_Faculty_Schema');
+const Eco_Faculty = require('../models/Academics/Departments/Economics/Eco_Faculty_Schema');
 const Political_Science_Faculty = require('../models/Academics/Departments/Political_Science/Political_Science_Faculty_Schema');
 const Psychology_Faculty = require('../models/Academics/Departments/Psychology/Psychology_Faculty_Schema');
+
+
+
 
 
 const unlinkAsync = promisify(fs.unlink)
@@ -939,7 +943,93 @@ router.get('/Music_faculty_download/:id', async(req, res) => {
         res.status(400).send('Error while downloading file. Try again later.');
     }
 });
+// Economics Faculty
+router.post('/delete_eco_faculty/:id', async(req, res) => {
+    const delete_user = await Eco_Faculty.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path
+    const img = delete_user.img_data.file_path
+        // console.log()
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id })
+            await unlinkAsync(img[0].file_path1)
+            res.status(200).json(delete_user + "User deleted")
+        } else {
+            console.log("Unsuccessfully deleted")
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id })
+        await unlinkAsync(img[0].file_path1)
+        await unlinkAsync(pdf[0].pdf_path1)
+        res.status(200).json("File Deleted")
+    }
+})
 
+router.get('/eco_faculty', async(req, res) => {
+    try {
+        const files = await Eco_Faculty.find({});
+        res.json(files);
+    } catch (error) {
+        res.status(400).send('Error while getting list of files. Try again later.');
+    }
+});
+router.post(
+    '/eco_faculty_cv_upload/:id',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Eco_Faculty.findOneAndUpdate({ _id: req.params.id }, { $set: { "img_data.pdf_path": { pdf_path1: path, pdf_mimetype1: mimetype, value: true } } })
+            if (data) {
+                // console.log(dat)
+                res.status(200).send('file uploaded successfully.');
+            } else {
+                res.status(401).send('Unable to upload CV, No data found');
+
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error)
+            res.status(402).send('Error while uploading file. Try again later.');
+        }
+    }
+);
+
+router.post(
+    '/eco_faculty_file_upload',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, description, filter } = req.body
+            const { path, mimetype } = req.file
+            const file = new Eco_Faculty({
+                title: title,
+                description: description,
+                filter: filter,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false }
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+router.get('/eco_faculty_download/:id', async(req, res) => {
+    try {
+        const file = await Eco_Faculty.findById(req.params.id);
+        res.set({
+            'Content-Type': file.file_mimetype
+        });
+        res.sendFile(path.join(__dirname, '..', file.file_path));
+    } catch (error) {
+        res.status(400).send('Error while downloading file. Try again later.');
+    }
+});
 // Chemistry Faculty
 router.post('/delete_chem_faculty/:id', async(req, res) => {
     const delete_user = await Chem_Faculty.findOne({ _id: req.params.id });
