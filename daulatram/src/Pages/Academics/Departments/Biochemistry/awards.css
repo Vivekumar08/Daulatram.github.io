@@ -11,7 +11,7 @@
     border-radius: 15px;
     padding: 1.5rem;
     /* background: rgb(24, 131, 238); */
-    background: linear-gradient(to right, #4364f7, #6fb1fc);
+    background: linear-gradient(to right, #1488CC,#2B32B2);
     position: relative;
     display: flex;
     align-items: flex-end;
@@ -52,7 +52,7 @@
     height: 100%;
     border-radius: 15px;
     /* background: rgba(0, 0, 0, 0.6); */
-    background: linear-gradient(to left, #4364f7, #6fb1fc);
+    background: linear-gradient(to left, #1488CC,#2B32B2);
     z-index: 2;
     transition: 0.69s;
     opacity: 0;
