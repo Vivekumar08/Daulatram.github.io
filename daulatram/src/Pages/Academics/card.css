@@ -58,7 +58,7 @@
   height: 180px;
   padding: 1em 1em;
   /* background: #313131; */
-  background: linear-gradient(to right, #4364f7, #6fb1fc);
+  background: linear-gradient(to right, #1488CC, #2B32B2);
   border-radius: 10px;
 }
 .flip > .front p,

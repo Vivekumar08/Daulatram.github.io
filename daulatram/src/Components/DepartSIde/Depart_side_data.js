@@ -10,7 +10,7 @@ export const biochems = [{
     },
     {
         id: 3,
-        title: "Programmes Offerd",
+        title: "Programs offered",
         link: "/academics/departments/biochem/programmesoffer",
     },
     {
@@ -75,7 +75,7 @@ export const botony_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Botany/programoffered",
     },
     {
@@ -139,7 +139,7 @@ export const chemistry_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Chemistry/Programoffered",
     },
 
@@ -203,7 +203,7 @@ export const commerce_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Commerce/Programoffered",
     },
     {
@@ -267,7 +267,7 @@ export const Eco_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Economics/Programoffered",
     },
     {
@@ -330,7 +330,7 @@ export const Eng_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/English/Programoffered",
     },
     {
@@ -393,7 +393,7 @@ export const Hindi_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Hindi/Programoffered",
     },
     {
@@ -456,7 +456,7 @@ export const Hist_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/History/Programoffered",
     },
     {
@@ -519,7 +519,7 @@ export const Math_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Mathematics/Programoffered",
     },
     {
@@ -583,7 +583,7 @@ export const Nhe_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/NHE/Programoffered",
     },
     {
@@ -646,7 +646,7 @@ export const Music_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Music/Programoffered",
     },
     {
@@ -709,7 +709,7 @@ export const Philosophy_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Philosophy/Programoffered",
     },
     {
@@ -772,7 +772,7 @@ export const PhysicalEdu_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Physical_Education/Programoffered",
     },
     {
@@ -835,7 +835,7 @@ export const Physics_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Physics/Programoffered",
     },
     {
@@ -907,7 +907,7 @@ export const Pol_Scie_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Political_Science/Programoffered",
     },
     {
@@ -979,7 +979,7 @@ export const Psycho_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Psychology/Programoffered",
     },
     {
@@ -1051,7 +1051,7 @@ export const Sans_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Sanskrit/Programoffered",
     },
     {
@@ -1119,7 +1119,7 @@ export const Zoo_side = [{
     },
     {
         id: 3,
-        title: "Programmes Offer",
+        title: "Programs offered",
         link: "/academics/departments/Zoology/Programoffered",
     },
     {
