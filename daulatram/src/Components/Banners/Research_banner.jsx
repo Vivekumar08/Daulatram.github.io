@@ -8,10 +8,10 @@ const Research_banner = () => {
         className="Banner"
         style={{ backgroundImage: "url(/images/img1.jpg)" }}
       >
-        <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
+        <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center outline-2 outline-black  pt-14">
           Research{" "}
         </span>
-        <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+        <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080]  mt-28 ">
           <Link to={"/"}>
             <span className="ml-5">Home</span>
           </Link>

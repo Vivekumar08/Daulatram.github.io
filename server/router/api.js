@@ -59,7 +59,7 @@ const upload = multer({
     }
 });
 
-
+// Admin
 router.get('/getdata', async(req, res, ) => {
     // res.send(`Hello World from the server`);
     const details = await User.find()
