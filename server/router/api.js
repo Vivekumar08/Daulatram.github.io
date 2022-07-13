@@ -48,8 +48,16 @@ const Zoology_Faculty = require('../models/Academics/Departments/Zoology/Zoology
 const Bot_ProgramOffered = require("../models/Academics/Departments/Botany/Bot_ProgramsOffered_Schema")
 const Bot_Awards = require("../models/Academics/Departments/Botany/Awards_Schema")
 
-
-
+const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema")
+const Chem_Awards = require("../models/Academics/Departments/Chemistry/Awards_Schema")
+const Com_ProgramOffered = require("../models/Academics/Departments/Commerce/Com_ProgramsOffered_Schema")
+const Com_Awards = require("../models/Academics/Departments/Commerce/Awards_Schema")
+const Eco_ProgramOffered = require("../models/Academics/Departments/Economics/Eco_ProgramsOffered_Schema")
+const Eco_Awards = require("../models/Academics/Departments/Economics/Awards_Schema")
+const Eng_ProgramOffered = require("../models/Academics/Departments/English/Eng_ProgramsOffered_Schema")
+const Eng_Awards = require("../models/Academics/Departments/English/Awards_Schema")
+const Hin_ProgramOffered = require("../models/Academics/Departments/Hindi/Hin_ProgramsOffered_Schema")
+const Hin_Awards = require("../models/Academics/Departments/Hindi/Awards_Schema")
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -508,15 +516,110 @@ router.delete('/delete_Bio_Awards/:id', async(req, res) => {
     await unlinkAsync(delete_user.file_path)
     res.status(200).json(delete_user + "User deleted")
 })
+// Commerce Program Offered
+
+router.get('/Com_ProgramOffered', async(req, res, ) => {
+    const details = await Com_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Com_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await Com_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
 
 router.post(
-    '/Bio_Awards_add',
+    '/Com_ProgramOffered_add',
     upload.single('file'),
     async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
-            const file = new Bio_Awards({
+            const file = new Com_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Commerce Awards
+
+router.get('/Com_Awards', async(req, res, ) => {
+    const details = await Com_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Com_Awards/:id', async(req, res) => {
+    const delete_user = await Com_Awards.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+// Chemistry Program Offered
+
+router.get('/Chem_ProgramOffered', async(req, res, ) => {
+    const details = await Chem_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Chem_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await Chem_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Chem_ProgramOffered_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Chem_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Chemistry Awards
+
+router.get('/Chem_Awards', async(req, res, ) => {
+    const details = await Chem_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Chem_Awards/:id', async(req, res) => {
+    const delete_user = await Chem_Awards.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+router.post(
+    '/Chem_Awards_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Chem_Awards({
                 title,
                 link,
                 file_path: path,
@@ -924,7 +1027,150 @@ router.get('/research_download/:id', async(req, res) => {
         res.status(400).send('Error while downloading file. Try again later.');
     }
 });
+// Economics Program Offered
 
+router.get('/Eco_ProgramOffered', async(req, res, ) => {
+    const details = await Eco_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eco_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await Eco_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eco_ProgramOffered_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eco_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Economics Awards
+
+router.get('/Eco_Awards', async(req, res, ) => {
+    const details = await Eco_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eco_Awards/:id', async(req, res) => {
+    const delete_user = await Eco_Awards.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+// English Program Offered
+
+router.get('/Eng_ProgramOffered', async(req, res, ) => {
+    const details = await Eng_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eng_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await Eng_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eng_ProgramOffered_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eng_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// English Awards
+
+router.get('/Eng_Awards', async(req, res, ) => {
+    const details = await Eng_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eng_Awards/:id', async(req, res) => {
+    const delete_user = await Eng_Awards.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+// Hindi Program Offered
+
+router.get('/Hin_ProgramOffered', async(req, res, ) => {
+    const details = await Hin_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hin_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await Hin_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Hin_ProgramOffered_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Hin_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Hindi Awards
+
+router.get('/Hin_Awards', async(req, res, ) => {
+    const details = await Hin_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hin_Awards/:id', async(req, res) => {
+    const delete_user = await Hin_Awards.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
 // Biochemistry Faculty
 router.post('/delete_bio_faculty/:id', async(req, res) => {
     const delete_user = await Bio_Faculty.findOne({ _id: req.params.id });
