@@ -849,7 +849,7 @@ router.get('/bio_faculty_download/:id', async(req, res) => {
 });
 // Chemistry Faculty
 router.post('/delete_chem_faculty/:id', async(req, res) => {
-    const delete_user = await Chem.findOne({ _id: req.params.id });
+    const delete_user = await Chem_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path
     const img = delete_user.img_data.file_path
         // console.log()
