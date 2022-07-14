@@ -205,6 +205,7 @@ import Physics_facilities from "./Pages/Academics/Departments/Physics/Physics_fa
 import Physics_labstaff from "./Pages/Academics/Departments/Physics/Physics_labstaff";
 import Physics_association from "./Pages/Academics/Departments/Physics/Physics_association";
 import Physics_news_magazines from "./Pages/Academics/Departments/Physics/Physics_news_magazines";
+import Physics_awards from "./Pages/Academics/Departments/Physics/Physics_awards";
 
 // Political Science
 import Pol_Sci_about from "./Pages/Academics/Departments/Political_Science/Pol_Sci_about";
@@ -701,8 +702,6 @@ function App() {
             }
             path="/academics/departments/Botany/awards"
           ></Route>{" "}
-
-
           <Route
             element={
               <>
@@ -1501,6 +1500,14 @@ function App() {
               </>
             }
             path="/academics/departments/Physics/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_awards />
+              </>
+            }
+            path="/academics/departments/Physics/awards"
           ></Route>{" "}
           <Route
             element={
