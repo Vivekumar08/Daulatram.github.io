@@ -13,6 +13,9 @@ const nodemailer = require('nodemailer')
 const User = require('../models/adminSchema');
 const Adminssion = require('../models/Admission/onlineAdmission');
 const Fee_Structure = require('../models/Admission/Fee_Structure_Schema');
+const Admission_FAQs = require('../models/Admission/Fee_Structure_Schema');
+const Admission_Grievance = require('../models/Admission/Admission_Grievance_Schema');
+const Admission_comm = require('../models/Admission/Admission_comm_Schema');
 const helpdesk = require('../models/Admission/helpdeskAdmission');
 const GE_Options = require('../models/Admission/GE_Options_Schema');
 const File = require("../models/Research/Research_fac_Schema");
@@ -1226,6 +1229,177 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new GE_Options({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Admission FAQs 
+
+router.get('/Admission_FAQs', async(req, res, ) => {
+    const details = await Admission_FAQs.find()
+    res.status(200).json(details)
+});
+router.delete('/deleteAdmission_FAQs/:id', async(req, res) => {
+    const delete_user = await Admission_FAQs.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === 'text/link') {
+        console.log(delete_user.file_mimetype)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        console.log(delete_user.file_mimetype)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    }
+})
+router.post('/Admission_FAQs_add_link', async(req, res) => {
+    try {
+        console.log(req.body)
+        const { file, link, title } = req.body
+        if (!title || !link || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        const user = new Admission_FAQs({ title, link, file_path: file, file_mimetype: 'text/link' });
+        await user.save();
+        console.log("Details Saved Successfully")
+        return res.status(200).json({ message: "Details Saved Successfully " })
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/Admission_FAQs_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Admission_FAQs({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Admission Committee 
+
+router.get('/Admission_comm', async(req, res, ) => {
+    const details = await Admission_comm.find()
+    res.status(200).json(details)
+});
+router.delete('/deleteAdmission_comm/:id', async(req, res) => {
+    const delete_user = await Admission_comm.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === 'text/link') {
+        console.log(delete_user.file_mimetype)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        console.log(delete_user.file_mimetype)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    }
+})
+router.post('/Admission_comm_add_link', async(req, res) => {
+    try {
+        console.log(req.body)
+        const { file, link, title } = req.body
+        if (!title || !link || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        const user = new Admission_comm({ title, link, file_path: file, file_mimetype: 'text/link' });
+        await user.save();
+        console.log("Details Saved Successfully")
+        return res.status(200).json({ message: "Details Saved Successfully " })
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/Admission_comm_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Admission_comm({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Admission Grievance Committee 
+
+router.get('/Admission_Grievance_comm', async(req, res, ) => {
+    const details = await Admission_Grievance.find()
+    res.status(200).json(details)
+});
+router.delete('/deleteAdmission_Grievance_comm/:id', async(req, res) => {
+    const delete_user = await Admission_Grievance.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === 'text/link') {
+        console.log(delete_user.file_mimetype)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        console.log(delete_user.file_mimetype)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    }
+})
+router.post('/Admission_Grievance_comm_add_link', async(req, res) => {
+    try {
+        console.log(req.body)
+        const { file, link, title } = req.body
+        if (!title || !link || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        const user = new Admission_Grievance({ title, link, file_path: file, file_mimetype: 'text/link' });
+        await user.save();
+        console.log("Details Saved Successfully")
+        return res.status(200).json({ message: "Details Saved Successfully " })
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/Admission_Grievance_comm_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Admission_Grievance({
                 title,
                 link,
                 file_path: path,
