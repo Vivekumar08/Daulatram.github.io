@@ -211,6 +211,7 @@ import Physics_awards from "./Pages/Academics/Departments/Physics/Physics_awards
 import Pol_Sci_about from "./Pages/Academics/Departments/Political_Science/Pol_Sci_about";
 import Pol_Sci_fac from "./Pages/Academics/Departments/Political_Science/Pol_Sci_fac";
 import Pol_Sci_programoffered from "./Pages/Academics/Departments/Political_Science/Pol_Sci_programoffered";
+import PolSci_awards from "./Pages/Academics/Departments/Political_Science/PolSci_awards";
 import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Science/Pol_Sci_publications";
 import Pol_Sci_association from "./Pages/Academics/Departments/Political_Science/Pol_Sci_association";
 import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_Sci_events";
@@ -1590,6 +1591,19 @@ function App() {
             }
             path="/academics/departments/Political_Science/Programoffered"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <PolSci_awards />
+              </>
+            }
+            path="/academics/departments/Political_Science/awards"
+          ></Route>{" "}
+
+
+
+
+
           <Route
             element={
               <>
