@@ -69,7 +69,7 @@ const Psychology_Awards = require("../models/Academics/Departments/Psychology/Ps
 const Sanskrit_ProgramOffered = require("../models/Academics/Departments/Sanskrit/Sanskrit_Programsoffered_Schema")
 const Sanskrit_Awards = require("../models/Academics/Departments/Sanskrit/Sanskrit_Awards_Schema")
 const Zoology_ProgramOffered = require("../models/Academics/Departments/Zoology/Zoology_Programsoffered_Schema")
-const Zoology_Awards = require("../models/Academics/Departments/Zoology/Zoology_Awards_Schema")
+const Zoology_Awards = require("../models/Academics/Departments/Zoology/Zoology_Awards_Schema");
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -301,47 +301,6 @@ router.post('/StaffZone_feedback', async(req, res) => {
 })
 router.delete('/deletefeedback/:id', async(req, res) => {
     const delete_user = await Feedback.findOneAndDelete({ _id: req.params.id });
-    res.status(200).json(delete_user + "User deleted")
-})
-
-// Ragging
-
-router.get('/Anti_Ragging', async(req, res, ) => {
-    // res.send(`Hello World from the server`);
-    const details = await Ragging.find()
-    res.status(200).json(details)
-});
-
-router.post(
-    '/admission_Anti_Ragging',
-    upload.single('file'),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Ragging({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype
-            });
-            await file.save();
-            res.send('file uploaded successfully.');
-        } catch (error) {
-            res.status(400).send('Error while uploading file. Try again later.');
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-
-router.delete('/deleteAntiRagging/:id', async(req, res) => {
-    // console.log(Ragging)
-    const delete_user = await Ragging.findByIdAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path)
     res.status(200).json(delete_user + "User deleted")
 })
 
@@ -1117,6 +1076,128 @@ router.post(
         }
     }
 );
+// Helpdesk 
+
+router.get('/Helpdesk', async(req, res, ) => {
+    const details = await helpdesk.find()
+    res.status(200).json(details)
+});
+router.delete('/deleteHelpdesk/:id', async(req, res) => {
+    try{
+        const delete_user = await helpdesk.findOneAndDelete({ _id: req.params.id });
+        if (delete_user.file_mimetype === 'text/link') {
+            console.log(delete_user.file_mimetype)
+            res.status(200).json(delete_user + "User deleted")
+        } else {
+            console.log(delete_user.file_mimetype)
+            await unlinkAsync(delete_user.file_path)
+            res.status(200).json(delete_user + "User deleted")
+        }
+    }catch(err){
+        console.log(err)
+    }
+})
+router.post('/helpdesk_admission_add_link', async(req, res) => {
+    try {
+        console.log(req.body)
+        const { file, link, title } = req.body
+        if (!title || !link || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        const user = new helpdesk({ title, link, file_path: file, file_mimetype: 'text/link' });
+        await user.save();
+        console.log("Details Saved Successfully")
+        return res.status(200).json({ message: "Details Saved Successfully " })
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/helpdesk_admission',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new helpdesk({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Ragging 
+
+router.get('/Anti_Ragging', async(req, res, ) => {
+    const details = await Ragging.find()
+    res.status(200).json(details)
+});
+router.delete('/deleteAntiRagging/:id', async(req, res) => {
+    try{
+        const delete_user = await Ragging.findOneAndDelete({ _id: req.params.id });
+        if (delete_user.file_mimetype === 'text/link') {
+            console.log(delete_user.file_mimetype)
+            res.status(200).json(delete_user + "User deleted")
+        } else {
+            console.log(delete_user.file_mimetype)
+            await unlinkAsync(delete_user.file_path)
+            res.status(200).json(delete_user + "User deleted")
+        }
+    }catch(err){
+        console.log(err)
+    }
+})
+router.post('/AntiRagging_add_link', async(req, res) => {
+    try {
+        console.log(req.body)
+        const { file, link, title } = req.body
+        if (!title || !link || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        const user = new Ragging({ title, link, file_path: file, file_mimetype: 'text/link' });
+        await user.save();
+        console.log("Details Saved Successfully")
+        return res.status(200).json({ message: "Details Saved Successfully " })
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/admission_Anti_Ragging',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Ragging({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Student-Zone Forms
 
 router.get('/StudentZone_forms', async(req, res, ) => {
@@ -1287,28 +1368,6 @@ router.post(
     }
 );
 
-
-// Helpdesk
-
-router.get('/helpdesk', async(req, res, ) => {
-    const details = await helpdesk.find()
-    res.status(200).json(details)
-});
-
-router.post('/helpdesk_admission', async(req, res) => {
-    const { Link, Caption } = req.body
-    if (!Link || !Caption) {
-        return res.status(400).json({ error: "Fill the Helpdesk Details Properly" })
-    }
-    const user = new helpdesk(req.body);
-    await user.save();
-    console.log("Details Saved Successfully")
-    return res.status(200).json({ message: "Details Saved Successfully " })
-})
-router.delete('/deleteHelpdesk/:id', async(req, res) => {
-    const delete_user = await helpdesk.findOneAndDelete({ _id: req.params.id });
-    res.status(200).json(delete_user + "User deleted")
-})
 
 // Research
 router.post('/delete_research_fac/:id', async(req, res) => {
