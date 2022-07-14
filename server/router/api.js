@@ -75,6 +75,8 @@ const Sanskrit_ProgramOffered = require("../models/Academics/Departments/Sanskri
 const Sanskrit_Awards = require("../models/Academics/Departments/Sanskrit/Sanskrit_Awards_Schema")
 const Zoology_ProgramOffered = require("../models/Academics/Departments/Zoology/Zoology_Programsoffered_Schema")
 const Zoology_Awards = require("../models/Academics/Departments/Zoology/Zoology_Awards_Schema");
+const Hist_ProgramOffered = require("../models/Academics/Departments/History/Hist_ProgramsOffered_Schema")
+const Hist_Awards = require("../models/Academics/Departments/History/Awards_Schema");
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -469,6 +471,81 @@ router.delete('/delete_Bio_Awards/:id', async(req, res) => {
         await unlinkAsync(delete_user.file_path)
         res.status(200).json(delete_user + "User deleted")
     })
+
+//history prog
+router.get('/Hist_ProgramOffered', async(req, res, ) => {
+    const details = await Hist_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hist_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await Hist_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Hist_ProgramOffered_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Hist_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// History Awards
+
+router.get('/Hist_Awards', async(req, res, ) => {
+    const details = await Hist_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hist_Awards/:id', async(req, res) => {
+        const delete_user = await Hist_Awards.findOneAndDelete({ _id: req.params.id });
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    })
+    router.post(
+        '/Hist_Awards_add',
+        upload.single('file'),
+        async(req, res) => {
+            try {
+                const { title, link } = req.body;
+                const { path, mimetype } = req.file;
+                const file = new Hist_Awards({
+                    title,
+                    link,
+                    file_path: path,
+                    file_mimetype: mimetype
+                });
+                await file.save();
+                res.send('file uploaded successfully.');
+            } catch (error) {
+                res.status(400).send('Error while uploading file. Try again later.');
+            }
+        },
+        (error, req, res, next) => {
+            if (error) {
+                res.status(402).send(error.message);
+            }
+        }
+    );
+
+
     // Commerce Program Offered
 
 router.get('/Com_ProgramOffered', async(req, res, ) => {
