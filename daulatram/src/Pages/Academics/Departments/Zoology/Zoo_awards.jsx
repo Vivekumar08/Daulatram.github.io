@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import Zoobanner from "./Zoobanner";
 import Zoology from "../../../../Components/DepartSIde/Zoology";
+import Zoobanner from "./Zoobanner";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,8 @@ import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 
-const Zoo_programoffered = () => {
+
+const Zoo_awards = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -22,7 +23,7 @@ const Zoo_programoffered = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Zoology_ProgramOffered");
+    const response = await fetch("http://localhost:5000/Zoology_Awards");
     setData1(await response.json());
   };
 
@@ -47,7 +48,7 @@ const Zoo_programoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Zoology_ProgramOffered/${id}`,
+      `http://localhost:5000/delete_Zoology_Awards/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +73,7 @@ const Zoo_programoffered = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Zoology_ProgramOffered_add`, formData, {
+        await axios.post(`http://localhost:5000/Zoology_Awards_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -104,7 +105,7 @@ const Zoo_programoffered = () => {
 
         <div className="w-full mr-auto ml-auto">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Program Offered
+            Awards
           </h2>
           <div class="flex justify-evenly w-full mt-5 mb-5">
             {data1 &&
@@ -118,7 +119,7 @@ const Zoo_programoffered = () => {
                     <div class="card2 ml-2 " key={_id}>
                       <span className="  font-bold text-lg w-[75%] ">{link}</span>
                       <div className="flex flex-col ml-4 w-full">
-                        <div class="info2 ml-4 w-full">
+                        <div class="info2  w-full">
                           <p className="text-justify ">{title}</p>
                           <br />
                           <a href={path} className="">
@@ -247,4 +248,4 @@ const Zoo_programoffered = () => {
   );
 };
 
-export default Zoo_programoffered;
+export default Zoo_awards;
