@@ -280,29 +280,6 @@ router.delete('/delete/:id', async(req, res) => {
     res.send(delete_user + "User deleted")
 })
 
-// Admission
-
-router.get('/admission', async(req, res, ) => {
-    // res.send(`Hello World from the server`);
-    const details = await Adminssion.find()
-    res.status(200).json(details)
-});
-
-router.post('/admission_online', async(req, res) => {
-    const { Link, Caption } = req.body
-    if (!Link || !Caption) {
-        return res.status(400).json({ error: "Fill the Admission Details Properly" })
-    }
-    const user = new Adminssion(req.body);
-    await user.save();
-    console.log("Details Saved Successfully")
-    return res.status(200).json({ message: "Details Saved Successfully " })
-})
-router.delete('/deleteAdmission/:id', async(req, res) => {
-    const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
-    res.status(200).json(delete_user + "User deleted")
-})
-
 
 // Feedback Form Staff Zone
 
@@ -1066,6 +1043,63 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Training({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Online Admission 
+
+router.get('/admission', async(req, res, ) => {
+    const details = await Adminssion.find()
+    res.status(200).json(details)
+});
+router.delete('/deleteAdmission/:id', async(req, res) => {
+    const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === 'text/link') {
+        console.log(delete_user.file_mimetype)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        console.log(delete_user.file_mimetype)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    }
+})
+router.post('/admission_online_add_link', async(req, res) => {
+    try {
+        console.log(req.body)
+        const { file, link, title } = req.body
+        if (!title || !link || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        const user = new Adminssion({ title, link, file_path: file, file_mimetype: 'text/link' });
+        await user.save();
+        console.log("Details Saved Successfully")
+        return res.status(200).json({ message: "Details Saved Successfully " })
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/admission_online_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Adminssion({
                 title,
                 link,
                 file_path: path,
