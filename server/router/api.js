@@ -12,6 +12,7 @@ const nodemailer = require('nodemailer')
     // const jwt = require("jsonwebtoken")
 const User = require('../models/adminSchema');
 const Adminssion = require('../models/Admission/onlineAdmission');
+const Fee_Structure = require('../models/Admission/Fee_Structure_Schema');
 const helpdesk = require('../models/Admission/helpdeskAdmission');
 const GE_Options = require('../models/Admission/GE_Options_Schema');
 const File = require("../models/Research/Research_fac_Schema");
@@ -1225,6 +1226,63 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new GE_Options({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Admission Fee Structure 
+
+router.get('/admission_Fee_Structure', async(req, res, ) => {
+    const details = await Fee_Structure.find()
+    res.status(200).json(details)
+});
+router.delete('/deleteadmission_Fee_Structure/:id', async(req, res) => {
+    const delete_user = await Fee_Structure.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === 'text/link') {
+        console.log(delete_user.file_mimetype)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        console.log(delete_user.file_mimetype)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    }
+})
+router.post('/admission_Fee_Structure_add_link', async(req, res) => {
+    try {
+        console.log(req.body)
+        const { file, link, title } = req.body
+        if (!title || !link || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        const user = new Fee_Structure({ title, link, file_path: file, file_mimetype: 'text/link' });
+        await user.save();
+        console.log("Details Saved Successfully")
+        return res.status(200).json({ message: "Details Saved Successfully " })
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/admission_Fee_Structure_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Fee_Structure({
                 title,
                 link,
                 file_path: path,

@@ -92,15 +92,11 @@ const GE_Option = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(
-          `http://localhost:5000/GE_Options_add`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axios.post(`http://localhost:5000/GE_Options_add`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         setCaption("");
         setLink("");
         setFile(null);
@@ -119,20 +115,17 @@ const GE_Option = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch(
-      "http://localhost:5000/GE_Options_add_link",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          link: link,
-          title: caption,
-          file: file,
-        }),
-      }
-    );
+    const response = await fetch("http://localhost:5000/GE_Options_add_link", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        link: link,
+        title: caption,
+        file: file,
+      }),
+    });
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
@@ -176,7 +169,7 @@ const GE_Option = () => {
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             GE Options
           </h2>
-          {data1 ?(
+          {data1 &&
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
               var path_pic = file_path;
@@ -185,7 +178,7 @@ const GE_Option = () => {
               return (
                 <>
                   <div className="flex flex-row mb-5 ml-5">
-                    <li className="mt-12 list-none" key={_id}>
+                    <li className="mt-8 list-none" key={_id}>
                       <div className="flex flex-col ">
                         <h1 className="mt-5">
                           <FontAwesomeIcon
@@ -224,7 +217,7 @@ const GE_Option = () => {
                   </div>
                 </>
               );
-            })):(<Maintanence />)}
+            })}
           {auth && (
             <>
               <form
@@ -261,7 +254,7 @@ const GE_Option = () => {
                     placeholder="Description"
                   ></textarea>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col h-full">
                   <div>
                     <label
                       htmlFor="checked-toggle"
@@ -282,7 +275,7 @@ const GE_Option = () => {
                   </div>
                   {check ? (
                     <>
-                      <div className="flex flex-col ">
+                      <div className="flex flex-col h-full ">
                         <span class="ml-3  text-md font-medium text-gray-900">
                           File
                         </span>
@@ -353,7 +346,7 @@ const GE_Option = () => {
                     </>
                   ) : (
                     <>
-                      <div className="flex flex-col">
+                      <div className="flex flex-col h-full">
                         {/* <div className=""> */}
                         <span class="ml-3  text-md font-medium text-gray-900">
                           Link
@@ -368,15 +361,15 @@ const GE_Option = () => {
                           placeholder="link"
                           className=" bg-gray-200 appearance-none border-2 mb-3 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                         />
-                      </div>
-                      <div class="md:w-2/3 mt-2 mb-16 ">
-                        <button
-                          class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                          type="button"
-                          onClick={handleSubmit1}
-                        >
-                          Add
-                        </button>
+                        <div class="md:w-2/3 mt-2 mb-16 ">
+                          <button
+                            class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                            type="button"
+                            onClick={handleSubmit1}
+                          >
+                            Add
+                          </button>
+                        </div>
                       </div>
                     </>
                   )}
