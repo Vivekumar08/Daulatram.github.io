@@ -64,6 +64,8 @@ const Physics_ProgramOffered = require("../models/Academics/Departments/Physics/
 const Physics_Awards = require("../models/Academics/Departments/Physics/Physics_Awards_Schema")
 const PolSci_ProgramOffered = require("../models/Academics/Departments/Political_Science/PolSci_ProgramsOffered_Schema")
 const PolSci_Awards = require("../models/Academics/Departments/Political_Science/PolSci_Awards_Schema")
+const Psychology_ProgramOffered = require("../models/Academics/Departments/Psychology/Psychology_ProgramsOffered_Schema")
+const Psychology_Awards = require("../models/Academics/Departments/Psychology/Psychology_Awards_Schema")
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -832,6 +834,44 @@ router.post(
         }
     }
 );
+// Psychology Program offered
+
+
+router.get('/Psychology_ProgramOffered', async(req, res, ) => {
+    const details = await Psychology_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Psychology_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await Psychology_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Psychology_ProgramOffered_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Psychology_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 
 
 
@@ -871,10 +911,30 @@ router.get('/PolSci_Awards', async(req, res, ) => {
     res.status(200).json(details)
 });
 router.delete('/delete_PolSci_Awards/:id', async(req, res) => {
-    const delete_user = await PolSci_Awards.findOneAndDelete({ _id: req.params.id });
+        const delete_user = await PolSci_Awards.findOneAndDelete({ _id: req.params.id });
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    })
+    // Psychology Awards
+
+
+
+router.get('/Psychology_Awards', async(req, res, ) => {
+    const details = await Psychology_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Psychology_Awards/:id', async(req, res) => {
+    const delete_user = await Psychology_Awards.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path)
     res.status(200).json(delete_user + "User deleted")
 })
+
+
+
+
+
+
+
 
 
 

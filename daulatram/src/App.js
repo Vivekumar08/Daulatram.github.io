@@ -219,6 +219,15 @@ import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_
 // Psychology
 import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about";
 import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
+import Psycho_awards from "./Pages/Academics/Departments/Psychology/Psycho_awards";
+import Psycho_programoffered from "./Pages/Academics/Departments/Psychology/Psycho_programoffered";
+
+
+
+
+
+
+
 // Sanskriti
 import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
 import Sans_fac from "./Pages/Academics/Departments/Sanskrit/Sans_fac";
@@ -1640,11 +1649,41 @@ function App() {
           <Route
             element={
               <>
+                <Psycho_awards />
+              </>
+            }
+            path="/academics/departments/Psychology/Awards"
+          ></Route>{" "}
+          
+          <Route
+            element={
+              <>
                 <Psycho_fac />
               </>
             }
             path="/academics/departments/Psychology/Faculty"
           ></Route>{" "}
+          
+          <Route
+            element={
+              <>
+                <Psycho_programoffered />
+              </>
+            }
+            path="/academics/departments/Psychology/Programoffered"
+          ></Route>{" "}
+
+
+
+
+
+
+
+
+
+
+
+
           {/* Sanskriti */}{" "}
           <Route
             element={
