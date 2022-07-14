@@ -15,7 +15,6 @@ const helpdeskAdmission = new mongoose.Schema(
         file_path: {
             type: String,
             required: true
-            // default:""
         },
         file_mimetype: {
             type: String,
