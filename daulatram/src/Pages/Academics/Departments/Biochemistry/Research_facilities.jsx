@@ -28,18 +28,19 @@ function Research_facilities() {
                 <div class="card2">
                   <div className="flex flex-row">
                     <div>
-                      <span className=" text-2xl font-bold mr-5">
+                      <span className=" text-lg font-bold mr-5">
                         Zebrafish Lab Facilities <br />
                       </span>
                     </div>
                   </div>
                   <div class="info ">
-                    <h1 className="font-bold flex justify-center">Description</h1>
-                    <p className="flex text-justify">
+                    <h1 className="font-bold flex justify-center">
+                      Description
+                    </h1>
+                    <p className="flex text-justify text-sm">
                       The aim of providing an alternative in vivo non –invasive
                       model system for science education, teaching and research.
                     </p>
-                    <br />
                     <a href={zebrafish}>
                       <button className="w-full">View</button>
                     </a>
@@ -48,23 +49,20 @@ function Research_facilities() {
                 </div>
                 <div class="card2">
                   <div className="">
-                    <span className=" text-2xl font-bold">
+                    <span className=" text-lg font-bold">
                       Resources Centers & Resource Facilities
                     </span>
                   </div>
                   <div class="info">
-                    <h1 className="font-bold flex justify-center">Description</h1>
-                    <p className="flex text-justify">
-                      1.The Bioinformatics Center
-                      <br />
-                      2.Drosophila Resource Center
-                      <br />
-                      3.Campus Sustainability Center
-                      <br />
-                      4. Health Sustainability
+                    <h1 className="font-bold flex justify-center">
+                      Description
+                    </h1>
+                    <p className="text-justify text-sm">
+                      <p>1.The Bioinformatics Center</p>
+                      <p>2.Drosophila Resource Center</p>
+                      <p>3.Campus Sustainability Center</p>
+                      <p>4. Health Sustainability</p>
                     </p>
-                    <br />
-                    <br />
                     <a href={resource}>
                       <button className="w-full">View</button>
                     </a>
@@ -72,13 +70,16 @@ function Research_facilities() {
                   </div>
                 </div>
                 <div class="card2">
-                  <span className=" text-2xl font-bold">
+                  <span className=" text-lg font-bold">
                     Grant & Research Guidance
                   </span>
                   <div class="info">
-                    <h1 className="font-bold flex justify-center ">Description</h1>
-                    <p className=" flex text-justify">Star Innovation Project, Cluster Innovation Center, DU</p>
-<br /><br /><br /><br />
+                    <h1 className="font-bold flex justify-center  ">
+                      Description
+                    </h1>
+                    <p className=" flex text-justify text-sm">
+                      Star Innovation Project, Cluster Innovation Center, DU
+                    </p>
                     <a href={grant}>
                       <button className="w-full">View</button>
                     </a>
@@ -87,7 +88,6 @@ function Research_facilities() {
                 </div>
               </div>
             </div>
-           
           </div>
         </div>
       </div>

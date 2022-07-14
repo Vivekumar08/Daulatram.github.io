@@ -5,7 +5,6 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import './awards.css'
 import Botanybanner from "../Botany/Botanybanner.jsx";
 import Botany from "../../../../Components/DepartSIde/Botany.jsx";
 
