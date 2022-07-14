@@ -9,7 +9,7 @@ import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 
-const Bulletins_Admission = () => {
+const Guidelines_Admission = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -129,16 +129,12 @@ const Bulletins_Admission = () => {
                   return (
                     <>
                       <div class="card2 ml-2" key={_id}>
-                        <span className="  font-bold text-xl ml-8">{link}</span>
-                        <div className="flex flex-col ml-10 w-full">
+                        <span className="  font-bold text-lg ml-4 text-justify">{link}</span>
+                        <div className="flex flex-col ml-6 text-lg w-full">
                           <div class="info2 ml-4 w-full">
                             <p className="text-justify">{title}</p>
-                            <br />
                             <a href={path} className="">
                               <button className="w-[80%]">View</button>
-                              <br />
-                              <br />
-                              <br />
                             </a>
                               {auth && (
                                 <>
@@ -266,4 +262,4 @@ const Bulletins_Admission = () => {
   );
 };
 
-export default Bulletins_Admission;
+export default Guidelines_Admission;
