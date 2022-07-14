@@ -26,6 +26,6 @@ const Awards_Schema = mongoose.Schema(
   }
 );
 
-const Bio_Awards_Schema = mongoose.model('Bio_Awards_Schema', Awards_Schema);
+const Bio_Awards = mongoose.model('Bio_Awards_Schema', Awards_Schema);
 
-module.exports = Bio_Awards_Schema;
+module.exports = Bio_Awards;

@@ -82,6 +82,8 @@ const Awards = () => {
         setCaption("");
         setLink("");
         setFile("");
+        setIsPreviewAvailable(false)
+        setPreviewSrc("")
         setAuth(true);
         fetchdata();
       } else {
