@@ -13,6 +13,7 @@ const nodemailer = require('nodemailer')
 const User = require('../models/adminSchema');
 const Adminssion = require('../models/Admission/onlineAdmission');
 const helpdesk = require('../models/Admission/helpdeskAdmission');
+const GE_Options = require('../models/Admission/GE_Options_Schema');
 const File = require("../models/Research/Research_fac_Schema");
 const Publications = require("../models/Research/Publications_Schema");
 const Soc = require('../models/Societies/Societies_Schema');
@@ -1167,6 +1168,63 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Training({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Admission GE Options
+
+router.get('/GE_Options_admission', async(req, res, ) => {
+    const details = await GE_Options.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_GE_Options/:id', async(req, res) => {
+    const delete_user = await GE_Options.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === 'text/link') {
+        console.log(delete_user.file_mimetype)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        console.log(delete_user.file_mimetype)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    }
+})
+router.post('/GE_Options_add_link', async(req, res) => {
+    try {
+        console.log(req.body)
+        const { file, link, title } = req.body
+        if (!title || !link || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        const user = new GE_Options({ title, link, file_path: file, file_mimetype: 'text/link' });
+        await user.save();
+        console.log("Details Saved Successfully")
+        return res.status(200).json({ message: "Details Saved Successfully " })
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/GE_Options_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new GE_Options({
                 title,
                 link,
                 file_path: path,
