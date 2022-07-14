@@ -176,7 +176,7 @@ function Upperfooter() {
                   DAULAT RAM COLLEGE, <span className="ml-2 mr-2">|</span>
                 </Link>
               {/* Created by: DarkWeb Dreamers (CICians) */}
-              Created by: CIC (Vivek Kumar, Riya Kumari, Ishika Rai, Priyanshu Sisodiya)
+              Created by: CIC (Ishika Rai, Priyanshu Sisodiya, Riya Kumari, Vivek Kumar)
               </p>
             </div>
           </div>
