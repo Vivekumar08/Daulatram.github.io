@@ -1,7 +1,102 @@
-import React from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 import PhysicalEdubanner from "./PhysicalEdubanner.jsx";
 import PhysicalEdu from "../../../../Components/DepartSIde/PhysicalEdu";
 function PhysicalEdu_fac() {
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [name, setName] = useState("");
+  const [designation, setDesignation] = useState("");
+  const [Qualification, setQualification] = useState("");
+  const [email, setEmail] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("http://localhost:5000/PE_Fac");
+    setData1(await response.json());
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(`http://localhost:5000/delete_PE_Fac/${id}`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(name,email,Qualification,designation, file)
+    try {
+      if (name.trim() !== "" && designation.trim() !== "" && Qualification !=="" && email !=="") {
+        // if (file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("name", name);
+        formData.append("Designation", designation);
+        formData.append("Qualification", Qualification);
+        formData.append("email", email);
+
+        setErrMsg("");
+        console.log(formData);
+        await axios.post(`http://localhost:5000/PE_Fac_add`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+        setName("")
+        setDesignation("")
+        setQualification("")
+        setEmail("")
+        setFile("")
+        setIsPreviewAvailable(false)
+        setPreviewSrc("")
+        setAuth(true);
+        fetchdata();
+      } else {
+        // setErrMsg("Please select a file to add.");
+        setErrMsg("Please enter all the field values.");
+      }
+      // } else {
+      // }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
     <div className=" flex flex-col">
       <div className="">
@@ -15,98 +110,188 @@ function PhysicalEdu_fac() {
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Faculty
           </h2>
-          <div className="flex ">
-            <div className="mr-5 ml-12">
-              <img
-                style={{
-                  backgroundImage:
-                    "url(/images/ImgPages/Physical_Education/Kavita_physical.jpg)",
-                  width: "300px",
-                  height: "300px",
-                }}
-                className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto  mb-1 rounded-3xl border-2 border-black"
-              />
-              <div className="pr-3 pl-3 flex mr-auto  w-[320px] ">
-                <span className="text-lg text-justify    mt-3 ">
-                  <ul>
-                    <li className="flex justify-center">
-                      <b>Dr. Kavita Sharma <br /> (Teacher-in-Charge)</b>
-                    </li>
-                    <li>
-                      <b>Designation</b>: Associate Professor
-                    </li>
-                    <li>
-                      <b>Qualification</b>: Ph.D, Master of Physical Education.
-                    </li>
+          <div className="md:grid md:grid-cols-3  ">
+            {data1 &&
+              data1.map((curElem) => {
+                const {
+                  _id,
+                  name,
+                  Designation,
+                  Qualification,
+                  email,
+                  file_path,
+                } = curElem;
+                var path_pic = file_path;
+                var path2 = path_pic.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                return (
+                  <>
+                    <div className="mr-5 ml-12 mb-10">
+                      <img
+                        src={path}
+                        style={{
+                          width: "300px",
+                          height: "300px",
+                        }}
+                        className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto  mb-1 rounded-3xl border-2 border-black"
+                      />
+                      <div className="pr-3 pl-3 flex mr-auto  w-[320px] ">
+                        <span className="text-lg text-justify    mt-3 ">
+                          <ul>
+                            <li className="flex justify-center">
+                              <b>{name}</b>
+                            </li>
+                    <br />
 
-                    <li>
-                      <b>E-mail</b>: kavitasharma@dr.du.ac.in
-                    </li>
-                  </ul>
-                </span>
-              </div>
-            </div>
-            <div className="mr-5 ml-5">
-              <img
-                style={{
-                  backgroundImage:
-                    "url(/images/ImgPages/Physical_Education/Kaushambi.jpg)",
-                  width: "300px",
-                  height: "300px",
-                }}
-                className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-12 mb-1 rounded-3xl border-2 border-black"
-              />
-              <div className="pr-3 pl-3 flex mr-auto w-[320px] ml-9">
-                <span className="text-lg text-justify   mt-3 ">
-                  <ul>
-                    <li className="flex justify-center">
-                      <b>Dr. Kaushambi Tyagi </b>
-                    </li><br />
-                    <li>
-                      <b>Designation</b>: Assistant Professor
-                    </li>
-                    <li>
-                      <b>Qualification</b>: Ph.D, Master of Physical Education.
-                    </li>
+                            <li>
+                              <b>Designation</b>: {Designation}
+                            </li>
+                            <li>
+                              <b>Qualification</b>: {Qualification}
+                            </li>
 
-                    <li>
-                      <b>E-mail</b>: kaushambi@dr.du.ac.in
-                    </li>
-                  </ul>
-                </span>
-              </div>
-            </div>
-            <div className="mr-5 ml-5">
-              <img
-                style={{
-                  backgroundImage:
-                    "url(/images/ImgPages/Physical_Education/Azad_physical.jpg)",
-                  width: "300px",
-                  height: "300px",
-                }}
-                className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-12 mb-1 rounded-3xl border-2 border-black"
-              />
-              <div className="pr-3 pl-3 flex mr-auto w-[320px] ml-9">
-                <span className="text-lg text-justify   mt-3 ">
-                  <ul>
-                    <li className="flex justify-center">
-                      <b>Dr. Azad Singh </b>
-                    </li> <br />
-                    <li>
-                      <b>Designation</b>: Assistant Professor
-                    </li>
-                    <li>
-                      <b>Qualification</b>: Ph.D, Master of Physical Education.
-                    </li>
-
-                    <li>
-                      <b>E-mail</b>: azad@dr.du.ac.in
-                    </li>
-                  </ul>
-                </span>
-              </div>
-            </div>
+                            <li>
+                              <b>E-mail</b>: {email}
+                            </li>
+                          </ul>
+                        </span>
+                      </div>
+                      {auth && (
+                        <>
+                          <div className="flex flex-col w-full">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-auto  hover:text-red-500"
+                              onClick={() => del(_id)}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
           </div>
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-full ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Name"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    placeholder="Name of the Faculty"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    name="Designation"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setDesignation(e.target.value)}
+                    value={designation}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Designation"
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    name="Qualification"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setQualification(e.target.value)}
+                    value={Qualification}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Qualification"
+                  ></textarea>
+                </div>
+                <div className="mb-3">
+                  <input
+                    name="Email"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Email"
+                  />
+                </div>
+                <div class="md:flex flex-col h-full md:items-center">
+                  {/* <div class="md:w-1/3"></div> */}
+                  <div className="upload-section flex h-[200px] mb-[10px] w-full">
+                    <Dropzone
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder("over")}
+                      onDragLeave={() => updateBorder("leave")}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div
+                          {...getRootProps({
+                            className:
+                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                          })}
+                          ref={dropRef}
+                        >
+                          <input {...getInputProps()} />
+                          <p>
+                            Drag and drop a file OR click here to select a file
+                          </p>
+                          {file && (
+                            <div>
+                              <strong>Selected file:</strong> {file.name}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                    {previewSrc ? (
+                      isPreviewAvailable ? (
+                        <div className="image-preview ml-[5%] w-full">
+                          <img
+                            className="preview-image w-full h-full block mb-[10px]"
+                            src={previewSrc}
+                            alt="Preview"
+                          />
+                        </div>
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>No preview available for this file</p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>Image preview will be shown here after selection</p>
+                      </div>
+                    )}
+                  </div>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>

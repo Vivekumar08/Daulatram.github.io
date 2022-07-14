@@ -1,5 +1,3 @@
-
-
 import React, { useContext, useEffect, useRef, useState } from "react";
 import PhysicalEdubanner from "./PhysicalEdubanner.jsx";
 import PhysicalEdu from "../../../../Components/DepartSIde/PhysicalEdu";
