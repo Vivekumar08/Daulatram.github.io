@@ -36,6 +36,7 @@ import Bot_Publications from "./Pages/Academics/Departments/Botany/Bot_Publicati
 import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearch_Fac";
 import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association";
 import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff";
+import Bot_awards from "./Pages/Academics/Departments/Botany/Awards";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -191,6 +192,8 @@ import Philosophy_association from "./Pages/Academics/Departments/Philosophy/Phi
 import PhysicalEdu_about from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_about";
 import PhysicalEdu_programoffered from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_programoffered";
 import PhysicalEdu_fac from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_fac";
+import PhysicalEdu_awards from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_awards";
+
 // Physics
 import Physics_about from "./Pages/Academics/Departments/Physics/Physics_about";
 import Physics_fac from "./Pages/Academics/Departments/Physics/Physics_fac";
@@ -233,9 +236,6 @@ import Zoo_studachieve from "./Pages/Academics/Departments/Zoology/Zoo_studachie
 import Zoo_facilities from "./Pages/Academics/Departments/Zoology/Zoo_facilities";
 import Zoo_association from "./Pages/Academics/Departments/Zoology/Zoo_association";
 import Zoo_labstaff from "./Pages/Academics/Departments/Zoology/Zoo_labstaff";
-
-
-
 
 function App() {
   return (
@@ -693,6 +693,16 @@ function App() {
             }
             path="/academics/departments/Botany/Programoffered"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Bot_awards />
+              </>
+            }
+            path="/academics/departments/Botany/awards"
+          ></Route>{" "}
+
+
           <Route
             element={
               <>
@@ -1459,6 +1469,14 @@ function App() {
             }
             path="/academics/departments/Physical_Education/Faculty"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <PhysicalEdu_awards />
+              </>
+            }
+            path="/academics/departments/Physical_Education/awards"
+          ></Route>{" "}
           {/* Physics */}{" "}
           <Route
             element={
@@ -1671,7 +1689,7 @@ function App() {
             }
             path="/academics/departments/Sanskrit/association"
           ></Route>{" "}
-          {/* Zoology */}
+          {/* Zoology */}{" "}
           <Route
             element={
               <>
@@ -1728,11 +1746,6 @@ function App() {
             }
             path="/academics/departments/Zoology/laboratorystaff"
           ></Route>{" "}
-
-
-
-
-
           <Route
             element={
               <>
