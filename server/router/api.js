@@ -58,6 +58,8 @@ const Eng_ProgramOffered = require("../models/Academics/Departments/English/Eng_
 const Eng_Awards = require("../models/Academics/Departments/English/Awards_Schema")
 const Hin_ProgramOffered = require("../models/Academics/Departments/Hindi/Hin_ProgramsOffered_Schema")
 const Hin_Awards = require("../models/Academics/Departments/Hindi/Awards_Schema")
+const PE_ProgramOffered = require("../models/Academics/Departments/Physical_Education/PE_ProgramsOffered_Schema")
+const PE_Awards = require("../models/Academics/Departments/Physical_Education/PE_Awards_Schema")
 
 const unlinkAsync = promisify(fs.unlink)
 
@@ -512,11 +514,11 @@ router.get('/Bio_Awards', async(req, res, ) => {
     res.status(200).json(details)
 });
 router.delete('/delete_Bio_Awards/:id', async(req, res) => {
-    const delete_user = await Bio_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path)
-    res.status(200).json(delete_user + "User deleted")
-})
-// Commerce Program Offered
+        const delete_user = await Bio_Awards.findOneAndDelete({ _id: req.params.id });
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    })
+    // Commerce Program Offered
 
 router.get('/Com_ProgramOffered', async(req, res, ) => {
     const details = await Com_ProgramOffered.find()
@@ -560,11 +562,11 @@ router.get('/Com_Awards', async(req, res, ) => {
     res.status(200).json(details)
 });
 router.delete('/delete_Com_Awards/:id', async(req, res) => {
-    const delete_user = await Com_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path)
-    res.status(200).json(delete_user + "User deleted")
-})
-// Chemistry Program Offered
+        const delete_user = await Com_Awards.findOneAndDelete({ _id: req.params.id });
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    })
+    // Chemistry Program Offered
 
 router.get('/Chem_ProgramOffered', async(req, res, ) => {
     const details = await Chem_ProgramOffered.find()
@@ -711,6 +713,60 @@ router.post(
         }
     }
 );
+
+// Physical_Education Program offered
+
+
+router.get('/PE_ProgramOffered', async(req, res, ) => {
+    const details = await PE_ProgramOffered.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_PE_ProgramOffered/:id', async(req, res) => {
+    const delete_user = await PE_ProgramOffered.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/PE_ProgramOffered_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new PE_ProgramOffered({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Physical Education Awards
+
+// BioChemistry Awards
+
+router.get('/PE_Awards', async(req, res, ) => {
+    const details = await PE_Awards.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_PE_Awards/:id', async(req, res) => {
+    const delete_user = await PE_Awards.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+
 
 // Academics Training
 
@@ -1071,11 +1127,11 @@ router.get('/Eco_Awards', async(req, res, ) => {
     res.status(200).json(details)
 });
 router.delete('/delete_Eco_Awards/:id', async(req, res) => {
-    const delete_user = await Eco_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path)
-    res.status(200).json(delete_user + "User deleted")
-})
-// English Program Offered
+        const delete_user = await Eco_Awards.findOneAndDelete({ _id: req.params.id });
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    })
+    // English Program Offered
 
 router.get('/Eng_ProgramOffered', async(req, res, ) => {
     const details = await Eng_ProgramOffered.find()
@@ -1119,11 +1175,11 @@ router.get('/Eng_Awards', async(req, res, ) => {
     res.status(200).json(details)
 });
 router.delete('/delete_Eng_Awards/:id', async(req, res) => {
-    const delete_user = await Eng_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path)
-    res.status(200).json(delete_user + "User deleted")
-})
-// Hindi Program Offered
+        const delete_user = await Eng_Awards.findOneAndDelete({ _id: req.params.id });
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    })
+    // Hindi Program Offered
 
 router.get('/Hin_ProgramOffered', async(req, res, ) => {
     const details = await Hin_ProgramOffered.find()
@@ -1167,11 +1223,11 @@ router.get('/Hin_Awards', async(req, res, ) => {
     res.status(200).json(details)
 });
 router.delete('/delete_Hin_Awards/:id', async(req, res) => {
-    const delete_user = await Hin_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path)
-    res.status(200).json(delete_user + "User deleted")
-})
-// Biochemistry Faculty
+        const delete_user = await Hin_Awards.findOneAndDelete({ _id: req.params.id });
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    })
+    // Biochemistry Faculty
 router.post('/delete_bio_faculty/:id', async(req, res) => {
     const delete_user = await Bio_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path
