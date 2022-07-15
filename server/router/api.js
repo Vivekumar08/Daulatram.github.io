@@ -31,6 +31,7 @@ const Teacher = require('../models/Academics/Teacher_Schema')
 const Feedback = require('../models/StaffZone/Feedback_Form_Schema')
 const Roster = require('../models/StaffZone/Roster_Schema')
 const Student_forms = require('../models/StudentZone/StudentZone_foms_Schema')
+const Staff_Forms = require('../models/StaffZone/Staff_Forms_Schema')
 const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema');
 const Com_Faculty = require('../models/Academics/Departments/Commerce/Com_fac_Schema');
 const Hist_Faculty = require("../models/Academics/Departments/History/Hist_Faculty_Schema");
@@ -2008,6 +2009,63 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Ragging({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Staff Forms
+
+router.get('/StaffZone_forms', async (req, res,) => {
+    const details = await Staff_Forms.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_StaffZone_forms/:id', async (req, res) => {
+    const delete_user = await Staff_Forms.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === 'text/link') {
+        console.log(delete_user.file_mimetype)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        console.log(delete_user.file_mimetype)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    }
+})
+router.post('/StaffZone_forms_add_link', async (req, res) => {
+    try {
+        console.log(req.body)
+        const { file, link, title } = req.body
+        if (!title || !link || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        const user = new Staff_Forms({ title, link, file_path: file, file_mimetype: 'text/link' });
+        await user.save();
+        console.log("Details Saved Successfully")
+        return res.status(200).json({ message: "Details Saved Successfully " })
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/StaffZone_forms_add',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Staff_Forms({
                 title,
                 link,
                 file_path: path,

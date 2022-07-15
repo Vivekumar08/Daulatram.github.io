@@ -194,14 +194,14 @@ const forms = () => {
                                 rel="noreferrer"
                               >
                                 {" "}
-                                <button className="btn1">Click Here</button>
+                                <button className="btn">Click Here</button>
                               </a>{" "}
                             </>
                           ) : (
                             <>
                               <a href={path} target="_blank" rel="noreferrer">
                                 {" "}
-                                <button className="btn1">Click Here</button>
+                                <button className="btn">Click Here</button>
                               </a>{" "}
                             </>
                           )}
