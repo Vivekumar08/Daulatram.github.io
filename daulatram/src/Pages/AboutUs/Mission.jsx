@@ -19,7 +19,7 @@ const Mission = () => {
           </div>
           <div className="w-[1100px]">
             <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              College Profile Mission and Vision
+              College Profile : Mission and Vision
             </h2>
 
             <figure className="flex flex-col p-4 ">
