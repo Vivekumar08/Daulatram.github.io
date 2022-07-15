@@ -10,12 +10,11 @@ const Banner = () => {
         style={{ backgroundImage: "url(/images/img1.jpeg)" }}
       >
         <div className="name">
-        <div className="flex flex-row justify-center">
+          <div className="flex flex-row justify-center">
             <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-            Teachers-in-charge{" "}
+            TEACHERS-IN-CHARGE
             </p>
           </div>
-          
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>

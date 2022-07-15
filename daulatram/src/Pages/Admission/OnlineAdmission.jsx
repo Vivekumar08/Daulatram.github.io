@@ -156,7 +156,7 @@ const OnlineAdmission = () => {
         <div className="name">
           <div className="flex flex-row justify-center">
             <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-              Admission Bulletins
+              Online Admission
             </p>
           </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">

@@ -23,9 +23,7 @@ const FAQs_Admission = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch(
-      "http://localhost:5000/Admission_FAQs"
-    );
+    const response = await fetch("http://localhost:5000/Admission_FAQs");
     setData1(await response.json());
   };
 
@@ -94,15 +92,11 @@ const FAQs_Admission = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(
-          `http://localhost:5000/Admission_FAQs_add`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axios.post(`http://localhost:5000/Admission_FAQs_add`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         setCaption("");
         setLink("");
         setFile(null);
@@ -158,7 +152,7 @@ const FAQs_Admission = () => {
         <div className="name">
           <div className="flex flex-row justify-center">
             <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-              Admisssion Committee
+              FAQ<p className="lowercase mr-4">s </p> Admission
             </p>
           </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
@@ -176,7 +170,7 @@ const FAQs_Admission = () => {
 
         <div className="w-[1100px] mb-5">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-            Admisssion Committee
+            FAQ<p className="lowercase mr-4">s </p> Admission
           </h2>
           {data1 ? (
             data1.map((curElem) => {

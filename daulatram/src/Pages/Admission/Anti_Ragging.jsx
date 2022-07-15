@@ -170,6 +170,7 @@ const Anti_Ragging = () => {
         </div>
       </div>
       <div className="flex flex-row">
+        
         <div className="w-[350px] ">
           <Admission_side />
         </div>
