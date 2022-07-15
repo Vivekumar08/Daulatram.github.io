@@ -1,8 +1,6 @@
 import React from "react";
 import Internalbanner from "../../Components/Banners/Internalbanner";
 import Student_side from "../../Components/Sidebar/Student_side";
-// import "./Attendence.css"
-import "./Att.css";
 
 const Internal = () => {
   return (
