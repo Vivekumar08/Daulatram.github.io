@@ -105,158 +105,200 @@ const teacher = () => {
         <div className="w-[350px] flex flex-row">
           <DeptSidebar />
         </div>
-        
-          <div className="w-[1100px]">
-            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
+
+        <div className="w-[1100px]">
+          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             TEACHERS-IN-CHARGE
-            </h2>
-            <div className="main flex-col whitespace-none">
-              <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1 ">
-                <tr className="h-20 text-lg">
-                  <th className="row text-lg">S.no</th>
-                  <th className="text-lg">About</th>
-                  <th className="text-lg">PDF</th>
-                  {auth && <th className="text-lg w-[15%]">Delete</th>}
-                </tr>
-                {data1 &&
-                  data1.map((curElem) => {
-                    const { _id, title, file_path, link } = curElem;
-                    var path_pic = file_path;
-                    var path2 = path_pic.replace(/\\/g, "/");
-                    var path = path2.slice(19);
-                    return (
-                      <>
-                        <tr className=" ">
-                          <td className="text-lg  overlay ">{link}</td>
-                          <td className="text-lg  overlay">
-                            <strong>{title} </strong>
-                          </td>
-                          <td>
-                            {" "}
-                            <a href={path} target="_blank" rel="noreferrer">
-                              {" "}
-                              <button className="btn">Click Here</button>
-                            </a>{" "}
-                          </td>
-                          {auth && (
-                            <>
-                              <td className="flex h-full overlay ">
-                                <FontAwesomeIcon
-                                  icon={faTrashCan}
-                                  size="2xl"
-                                  className=" cursor-pointer ml-auto mr-auto mt-[25%]  hover:text-red-500"
-                                  onClick={() => del(_id)}
-                                ></FontAwesomeIcon>
-                              </td>
-                            </>
-                          )}
-                        </tr>
-                      </>
-                    );
-                  })}
-              </table>
-            </div>
-            {auth && (
-              <>
-                <form
-                  method="post"
-                  className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
-                >
-                  <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
-                    <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
-                      {errMsg}
-                    </p>
-                  </h2>
-                  <div className="mb-3">
-                    <input
-                      type="text"
-                      name="Link"
-                      // id=""
-                      ref={userRef}
-                      onChange={(e) => setLink(e.target.value)}
-                      value={link}
-                      placeholder="Enter S.No. here"
-                      className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
-                    />
-                  </div>
-                  <div className="mb-3">
-                    <textarea
-                      name="Caption"
-                      // id=""
-                      cols="10"
-                      rows="5"
-                      ref={userRef}
-                      onChange={(e) => setCaption(e.target.value)}
-                      value={caption}
-                      className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
-                      placeholder="About"
-                    ></textarea>
-                  </div>
-                  <div class="md:flex flex-col md:items-center">
-                    {/* <div class="md:w-1/3"></div> */}
-                    <div className="upload-section flex h-[200px] mb-[10px] w-full">
-                      <Dropzone
-                        onDrop={onDrop}
-                        onDragEnter={() => updateBorder("over")}
-                        onDragLeave={() => updateBorder("leave")}
-                      >
-                        {({ getRootProps, getInputProps }) => (
-                          <div
-                            {...getRootProps({
-                              className:
-                                "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
-                            })}
-                            ref={dropRef}
-                          >
-                            <input {...getInputProps()} />
-                            <p>
-                              Drag and drop a file OR click here to select a
-                              file
-                            </p>
-                            {file && (
-                              <div>
-                                <strong>Selected file:</strong> {file.name}
-                              </div>
-                            )}
-                          </div>
+          </h2>
+          <div className="main flex-col whitespace-none">
+            <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1 ">
+              <tr className="h-20 text-lg">
+                <th className="row text-lg w-[15%]">S.no</th>
+                <th className="text-lg">Departments</th>
+                <th className="text-lg w-[25%]">TIC 2021-22</th>
+                <th className="text-lg w-[25%]">TIC 2022-23</th>
+                {auth && <th className="text-lg w-[15%]">Delete</th>}
+              </tr>
+              {data1 &&
+                data1.map((curElem) => {
+                  const { _id, title, file_path, link } = curElem;
+                  var path_pic = file_path;
+                  var path2 = path_pic.replace(/\\/g, "/");
+                  var path = path2.slice(19);
+                  return (
+                    <>
+                      <tr className=" ">
+                        <td className="text-lg  overlay ">{link}</td>
+                        <td className="text-lg  overlay">
+                          <strong>{title} </strong>
+                        </td>
+                        <td>
+                          {" "}
+                        </td>
+                        <td>
+                          {" "}
+                        </td>
+                        {auth && (
+                          <>
+                            <td className="flex h-full overlay ">
+                              <FontAwesomeIcon
+                                icon={faTrashCan}
+                                size="2xl"
+                                className=" cursor-pointer ml-auto mr-auto mt-[25%]  hover:text-red-500"
+                                onClick={() => del(_id)}
+                              ></FontAwesomeIcon>
+                            </td>
+                          </>
                         )}
-                      </Dropzone>
-                      {previewSrc ? (
-                        isPreviewAvailable ? (
-                          <div className="image-preview ml-[5%] w-full">
-                            <img
-                              className="preview-image w-full h-full block mb-[10px]"
-                              src={previewSrc}
-                              alt="Preview"
-                            />
-                          </div>
-                        ) : (
-                          <div className="preview-message flex justify-center items-center ml-[5%]">
-                            <p>No preview available for this file</p>
-                          </div>
-                        )
-                      ) : (
-                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                      </tr>
+                    </>
+                  );
+                })}
+            </table>
+          </div>
+          <div className="main flex-col whitespace-none">
+            <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1 ">
+              <tr className="h-20 text-lg">
+                <th className="row text-lg">S.no</th>
+                <th className="text-lg">About</th>
+                <th className="text-lg">PDF</th>
+                {auth && <th className="text-lg w-[15%]">Delete</th>}
+              </tr>
+              {data1 &&
+                data1.map((curElem) => {
+                  const { _id, title, file_path, link } = curElem;
+                  var path_pic = file_path;
+                  var path2 = path_pic.replace(/\\/g, "/");
+                  var path = path2.slice(19);
+                  return (
+                    <>
+                      <tr className=" ">
+                        <td className="text-lg  overlay ">{link}</td>
+                        <td className="text-lg  overlay">
+                          <strong>{title} </strong>
+                        </td>
+                        <td>
+                          {" "}
+                          <a href={path} target="_blank" rel="noreferrer">
+                            {" "}
+                            <button className="btn">Click Here</button>
+                          </a>{" "}
+                        </td>
+                        {auth && (
+                          <>
+                            <td className="flex h-full overlay ">
+                              <FontAwesomeIcon
+                                icon={faTrashCan}
+                                size="2xl"
+                                className=" cursor-pointer ml-auto mr-auto mt-[25%]  hover:text-red-500"
+                                onClick={() => del(_id)}
+                              ></FontAwesomeIcon>
+                            </td>
+                          </>
+                        )}
+                      </tr>
+                    </>
+                  );
+                })}
+            </table>
+          </div>
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Link"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setLink(e.target.value)}
+                    value={link}
+                    placeholder="Enter S.No. here"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="About"
+                  ></textarea>
+                </div>
+                <div class="md:flex flex-col md:items-center">
+                  {/* <div class="md:w-1/3"></div> */}
+                  <div className="upload-section flex h-[200px] mb-[10px] w-full">
+                    <Dropzone
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder("over")}
+                      onDragLeave={() => updateBorder("leave")}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div
+                          {...getRootProps({
+                            className:
+                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                          })}
+                          ref={dropRef}
+                        >
+                          <input {...getInputProps()} />
                           <p>
-                            Image preview will be shown here after selection
+                            Drag and drop a file OR click here to select a file
                           </p>
+                          {file && (
+                            <div>
+                              <strong>Selected file:</strong> {file.name}
+                            </div>
+                          )}
                         </div>
                       )}
-                    </div>
-                    <div class="md:w-2/3 ">
-                      <button
-                        class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                        type="button"
-                        onClick={handleSubmit}
-                      >
-                        Add
-                      </button>
-                    </div>
+                    </Dropzone>
+                    {previewSrc ? (
+                      isPreviewAvailable ? (
+                        <div className="image-preview ml-[5%] w-full">
+                          <img
+                            className="preview-image w-full h-full block mb-[10px]"
+                            src={previewSrc}
+                            alt="Preview"
+                          />
+                        </div>
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>No preview available for this file</p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>Image preview will be shown here after selection</p>
+                      </div>
+                    )}
                   </div>
-                </form>
-              </>
-            )}
-         
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>

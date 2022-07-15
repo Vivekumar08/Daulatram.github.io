@@ -7,12 +7,14 @@ const Banner = () => {
     <>
       <div
         className="Banner"
-        style={{ backgroundImage: "url(/images/img1.jpg)" }}
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
       >
         <div className="name">
-          <span className="  flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-            Teachers-in-charge{" "}
-          </span>
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            TEACHERS-IN-CHARGE
+            </p>
+          </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>
