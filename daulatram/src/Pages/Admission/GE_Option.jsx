@@ -169,7 +169,7 @@ const GE_Option = () => {
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             GE Options
           </h2>
-          {data1 &&
+          {data1 ?(
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
               var path_pic = file_path;
@@ -217,7 +217,7 @@ const GE_Option = () => {
                   </div>
                 </>
               );
-            })}
+            })):(<Maintanence/>)}
           {auth && (
             <>
               <form

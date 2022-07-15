@@ -24,7 +24,9 @@ const Fee_Structure = () => {
 
   const fetchdata = async () => {
     const response = await fetch("http://localhost:5000/admission_Fee_Structure");
-    setData1(await response.json());
+    const dat =  await response.json();
+    console.log(dat)
+    setData1(dat);
   };
 
   const onDrop = (files) => {
@@ -169,7 +171,7 @@ const Fee_Structure = () => {
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
           Fee Structure
           </h2>
-          {data1 &&
+          {data1 ?(
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
               var path_pic = file_path;
@@ -217,7 +219,7 @@ const Fee_Structure = () => {
                   </div>
                 </>
               );
-            })}
+            })):(<Maintanence/>)}
           {auth && (
             <>
               <form
