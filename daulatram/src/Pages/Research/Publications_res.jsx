@@ -115,18 +115,15 @@ const Publications_res = () => {
                   return (
                     <>
                       <div class="card2 mb-10" key={_id}>
-                        <span className="  font-bold text-xl ml-6 w-[250px]">
+                        <span className="  font-bold text-xl  w-[200px]">
                           {description}
                         </span>
-                        <div className="flex flex-col ml-10 w-full">
+                        <div className="flex flex-col ml-8 w-full">
                           <div class="info2 ml-4 w-full ">
                             <p className="text-justify mr-16">{title}</p>
                             <br />
                             <a href={path} className="">
                               <button className="w-[80%]">View</button>
-                              <br />
-                              <br />
-                              <br />
                             </a>
                             {auth && (
                               <>
@@ -147,18 +144,15 @@ const Publications_res = () => {
                   );
                 })}
               <div class="card2 mb-10" >
-                <span className="  font-bold text-xl ml-6 w-[250px]">
+                <span className="  font-bold text-xl  w-[200px]">
                 Magzines And Newsletters
                 </span>
-                <div className="flex flex-col ml-10 w-full">
+                <div className="flex flex-col ml-8 w-full">
                   <div class="info2 ml-4 w-full ">
                     <p className="text-justify mr-16">Magzines And Newsletters</p>
                     <br />
                     <Link to={"Magzines_and_Newsletter"} className="">
                       <button className="w-[80%]">View</button>
-                      <br />
-                      <br />
-                      <br />
                     </Link>
                   </div>
                 </div>

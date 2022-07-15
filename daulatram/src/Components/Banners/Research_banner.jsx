@@ -6,16 +6,20 @@ const Research_banner = () => {
     <div>
       <div
         className="Banner"
-        style={{ backgroundImage: "url(/images/img1.jpg)" }}
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
       >
-        <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center outline-2 outline-black  pt-14">
-          Research{" "}
-        </span>
+        <div className="name">
+ <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            Research & Publications{" "}
+            </p>
+          </div>
         <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080]  mt-28 ">
           <Link to={"/"}>
             <span className="ml-5">Home</span>
           </Link>
           <span className="ml-5">Research</span>
+        </div>
         </div>
       </div>
     </div>

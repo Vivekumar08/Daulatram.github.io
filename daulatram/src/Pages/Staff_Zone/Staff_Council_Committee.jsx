@@ -7,12 +7,17 @@ const Staff_Council_Committee = () => {
     <div className=" flex flex-col">
       <div
         className="Banner"
-        style={{ backgroundImage: "url(/images/img1.jpg)" }}
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
       >
-        <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-          Staff Council Committee{" "}
-        </span>
-        <div className="ml-2 text-lg text-white mt-28">
+        <div className="name">
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Staff Council Committee
+            </p>
+          </div>
+        </div>
+        <div className=" pl-5 text-xl text-[#000080] bg-gray-400 pt-3 pb-3 mt-28">
+
           <span className="ml-5">Home</span>
           <span className="ml-5">Staff Zone</span>
         </div>
@@ -23,7 +28,7 @@ const Staff_Council_Committee = () => {
         </div>
         <div className="ml-3 mb-5">
           <div className="w-[1100px]">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Staff Council Committee
             </h2>
             <Maintanence />
