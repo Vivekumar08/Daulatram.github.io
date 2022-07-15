@@ -7,7 +7,7 @@ const Staff_Noticebanner = () => {
 <>
 <div
         className="Banner"
-        style={{ backgroundImage: "url(/images/img1.jpg)" }}
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
       >
         <div className="name">
         <div className="flex flex-row justify-center">
