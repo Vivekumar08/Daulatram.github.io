@@ -88,6 +88,10 @@ const Zoology_Events = require("../models/Academics/Departments/Zoology/Zoology_
 const Physics_Stuachieve = require("../models/Academics/Departments/Physics/Physics_Stuachieve_Schema")
 const Sanskrit_Stuachieve = require("../models/Academics/Departments/Sanskrit/Sanskrit_Stuachieve_Schema")
 const Zoology_Stuachieve = require("../models/Academics/Departments/Zoology/Zoology_Stuachieve_Schema")
+const Physics_Publications = require("../models/Academics/Departments/Physics/Physics_Publications_Schema")
+const PS_Publications = require("../models/Academics/Departments/Political_Science/PS_Publications_Schema")
+const Sanskrit_Publications = require("../models/Academics/Departments/Sanskrit/Sanskrit_Publications_Schema")
+    // const Zoology_Publications = require("../models/Academics/Departments/Zoology/Zoology_Publications_Schema")
 
 
 
@@ -1549,7 +1553,152 @@ router.post(
         }
     }
 );
+//  Physics Publications
+router.get('/Physics_Publications', async(req, res, ) => {
+    const details = await Physics_Publications.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Physics_Publications/:id', async(req, res) => {
+    const delete_user = await Physics_Publications.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
 
+router.post(
+    '/Physics_Publications_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Physics_Publications({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  Political Science Publications
+router.get('/PS_Publications', async(req, res, ) => {
+    const details = await PS_Publications.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_PS_Publications/:id', async(req, res) => {
+    const delete_user = await PS_Publications.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/PS_Publications_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new PS_Publications({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+//  Sanskrit Publications
+router.get('/Sanskrit_Publications', async(req, res, ) => {
+    const details = await Sanskrit_Publications.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Sanskrit_Publications/:id', async(req, res) => {
+    const delete_user = await Sanskrit_Publications.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Sanskrit_Publications_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Sanskrit_Publications({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+// //  Zoology Publications
+// router.get('/Zoology_Publications', async(req, res, ) => {
+//     const details = await Zoology_Publications.find()
+//     res.status(200).json(details)
+// });
+// router.delete('/delete_Zoology_Publications/:id', async(req, res) => {
+//     const delete_user = await Zoology_Publications.findOneAndDelete({ _id: req.params.id });
+//     await unlinkAsync(delete_user.file_path)
+//     res.status(200).json(delete_user + "User deleted")
+// })
+
+// router.post(
+//     '/Zoology_Publications_add',
+//     upload.single('file'),
+//     async(req, res) => {
+//         try {
+//             const { title, link } = req.body;
+//             const { path, mimetype } = req.file;
+//             const file = new Zoology_Publications({
+//                 title,
+//                 link,
+//                 file_path: path,
+//                 file_mimetype: mimetype
+//             });
+//             await file.save();
+//             res.send('file uploaded successfully.');
+//         } catch (error) {
+//             res.status(400).send('Error while uploading file. Try again later.');
+//         }
+//     },
+//     (error, req, res, next) => {
+//         if (error) {
+//             res.status(402).send(error.message);
+//         }
+//     }
+// );
 
 
 
