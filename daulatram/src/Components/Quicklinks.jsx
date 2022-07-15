@@ -1,5 +1,5 @@
 import React from "react";
-import attendance from "../Dummy_data/images/attendance.png";
+import attendance1 from "../Dummy_data/images/attendance3.png";
 import calendar from "../Dummy_data/images/calendar.jpg";
 import datesheet from "../Dummy_data/images/datesheet.jpg";
 import hostel from "../Dummy_data/images/hostel.png";
@@ -24,7 +24,7 @@ function Quicklinks() {
           <div className="col">
             <a href="#"  className="gallery_item gallery_item-1 flex flex-col justify-center items-center cursor-pointer">
 
-              <img className="attendance" src={attendance} alt="" />
+              <img className="attendance" src={attendance1} alt="" />
               <p className="mt-2">
                 <strong>Attendance</strong>
               </p>
@@ -91,6 +91,7 @@ function Quicklinks() {
           </div>
           </div>
         </div>
+            <a target="_blank" href="https://icons8.com/icon/K4Be8ClAR0hC/immigration">Immigration</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
       
     </>
   );
