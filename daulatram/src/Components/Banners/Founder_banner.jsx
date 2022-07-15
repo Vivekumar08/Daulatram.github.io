@@ -10,9 +10,11 @@ const Founder_banner = () => {
         style={{ backgroundImage: "url(/images/img5.jpeg)" }}
       >
         <div className="name">
-          <span className="  flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-            Founder{" "}
-          </span>
+        <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Founder{" "}
+            </p>
+          </div>
           <div className="caption  text-lg font-bold bg-gray-400 pb-3 pt-3 pl-5 text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>
