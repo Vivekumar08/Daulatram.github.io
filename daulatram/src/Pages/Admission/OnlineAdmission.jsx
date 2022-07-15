@@ -1,5 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
+import Maintanence from "../../Components/UnderMaintanence/Maintanence";
 import Admission_side from "../../Components/Sidebar/Admission_side.";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -175,7 +176,7 @@ const OnlineAdmission = () => {
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             Online Admission
           </h2>
-          {data1 &&
+          {data1 ?(
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
               var path_pic = file_path;
@@ -223,7 +224,7 @@ const OnlineAdmission = () => {
                   </div>
                 </>
               );
-            })}
+            })):(<Maintanence/>)}
           {auth && (
             <>
               <form
@@ -260,7 +261,7 @@ const OnlineAdmission = () => {
                     placeholder="Description"
                   ></textarea>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col h-full">
                   <div>
                     <label
                       htmlFor="checked-toggle"

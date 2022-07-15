@@ -6,6 +6,7 @@ import { faArrowRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Dropzone from "react-dropzone";
 import AuthContext from "../../Context/AuthProvider";
 import axios from "axios";
+import Maintanence from "../../Components/UnderMaintanence/Maintanence";
 
 const Helpdesk = () => {
   const [data1, setData1] = useState();
@@ -145,8 +146,6 @@ const Helpdesk = () => {
         className="Banner"
         style={{
           backgroundImage: "url(/images/img1.jpeg)",
-          width: "100%",
-          height: "280px",
         }}
       >
         <div className="name">
@@ -172,7 +171,7 @@ const Helpdesk = () => {
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             Helpdesk
           </h2>
-          {data1 &&
+          {data1?(
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
               var path_pic = file_path;
@@ -220,7 +219,7 @@ const Helpdesk = () => {
                   </div>
                 </>
               );
-            })}
+            })):(<Maintanence/>)}
           {auth && (
             <>
               <form
@@ -257,7 +256,7 @@ const Helpdesk = () => {
                     placeholder="Description"
                   ></textarea>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col h-full">
                   <div>
                     <label
                       htmlFor="checked-toggle"

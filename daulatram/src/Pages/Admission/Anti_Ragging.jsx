@@ -6,6 +6,7 @@ import { faArrowRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Dropzone from "react-dropzone";
 import AuthContext from "../../Context/AuthProvider";
 import axios from "axios";
+import Maintanence from "../../Components/UnderMaintanence/Maintanence";
 
 const Anti_Ragging = () => {
   const [data1, setData1] = useState();
@@ -152,8 +153,6 @@ const Anti_Ragging = () => {
         className="Banner"
         style={{
           backgroundImage: "url(/images/img1.jpeg)",
-          width: "100%",
-          height: "280px",
         }}
       >
         <div className="name">
@@ -179,7 +178,7 @@ const Anti_Ragging = () => {
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             Anti-Ragging Guidelines
           </h2>
-          {data1 &&
+          {data1 ?(
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
               var path_pic = file_path;
@@ -227,7 +226,7 @@ const Anti_Ragging = () => {
                   </div>
                 </>
               );
-            })}
+            })):(<Maintanence/>)}
           {auth && (
             <>
               <form
@@ -264,7 +263,7 @@ const Anti_Ragging = () => {
                     placeholder="Description"
                   ></textarea>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col h-full">
                   <div>
                     <label
                       htmlFor="checked-toggle"

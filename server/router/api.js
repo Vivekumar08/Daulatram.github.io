@@ -316,7 +316,11 @@ router.delete('/deletefeedback/:id', async (req, res) => {
 
 router.get('/guidelines_admission', async (req, res,) => {
     const details = await Guidelines.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/delete_admission_guidelines/:id', async (req, res) => {
     const delete_user = await Guidelines.findOneAndDelete({ _id: req.params.id });
@@ -391,7 +395,11 @@ router.post(
 
 router.get('/bulletin', async (req, res,) => {
     const details = await Bulletin.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/delete_admissionbulletin/:id', async (req, res) => {
     const delete_user = await Bulletin.findOneAndDelete({ _id: req.params.id });
@@ -1334,7 +1342,11 @@ router.post(
 
 router.get('/GE_Options_admission', async (req, res,) => {
     const details = await GE_Options.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/delete_GE_Options/:id', async (req, res) => {
     const delete_user = await GE_Options.findOneAndDelete({ _id: req.params.id });
@@ -1391,7 +1403,11 @@ router.post(
 
 router.get('/Admission_FAQs', async (req, res,) => {
     const details = await Admission_FAQs.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/deleteAdmission_FAQs/:id', async (req, res) => {
     const delete_user = await Admission_FAQs.findOneAndDelete({ _id: req.params.id });
@@ -1448,7 +1464,11 @@ router.post(
 
 router.get('/Admission_comm', async (req, res,) => {
     const details = await Admission_comm.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/deleteAdmission_comm/:id', async (req, res) => {
     const delete_user = await Admission_comm.findOneAndDelete({ _id: req.params.id });
@@ -1505,7 +1525,11 @@ router.post(
 
 router.get('/Admission_Grievance_comm', async (req, res,) => {
     const details = await Admission_Grievance.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/deleteAdmission_Grievance_comm/:id', async (req, res) => {
     const delete_user = await Admission_Grievance.findOneAndDelete({ _id: req.params.id });
@@ -1562,7 +1586,11 @@ router.post(
 
 router.get('/admission_Fee_Structure', async (req, res,) => {
     const details = await Fee_Structure.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/deleteadmission_Fee_Structure/:id', async (req, res) => {
     const delete_user = await Fee_Structure.findOneAndDelete({ _id: req.params.id });
@@ -1619,7 +1647,11 @@ router.post(
 
 router.get('/admission', async (req, res,) => {
     const details = await Adminssion.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/deleteAdmission/:id', async (req, res) => {
     const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
@@ -1676,7 +1708,11 @@ router.post(
 
 router.get('/Helpdesk', async (req, res,) => {
     const details = await helpdesk.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/deleteHelpdesk/:id', async (req, res) => {
     try {
@@ -1737,7 +1773,11 @@ router.post(
 
 router.get('/Anti_Ragging', async (req, res,) => {
     const details = await Ragging.find()
-    res.status(200).json(details)
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
 });
 router.delete('/deleteAntiRagging/:id', async (req, res) => {
     try {

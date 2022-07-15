@@ -7,6 +7,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import Maintanence from "../../Components/UnderMaintanence/Maintanence";
 
 const Bulletins_Admission = () => {
   const [data1, setData1] = useState();
@@ -98,6 +99,7 @@ const Bulletins_Admission = () => {
       <div
         className="Banner"
         style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+
       >
         <div className="name">
           <div className="flex flex-row justify-center">
@@ -122,43 +124,44 @@ const Bulletins_Admission = () => {
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Admission Bulletin
           </h2>
+          {data1 ? "" : <Maintanence />}
           <div class="flex justify-evenly w-full mt-5 mb-5">
-            {data1 &&
-              data1.map((curElem) => {
-                const { _id, title, file_path, link } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
-                return (
-                  <>
-                    <div class="card2 ml-2 " key={_id}>
-                      <span className="  font-bold text-xl ml-2">{link}</span>
-                      <div className="flex flex-col ml-4 w-full">
-                        <div class="info2 ml-4 w-full">
-                          <p className="text-justify">{title}</p>
-                          <br />
-                          <a href={path} className="">
-                            <button className="w-[100%]">View</button>
+            {data1
+              ? data1.map((curElem) => {
+                  const { _id, title, file_path, link } = curElem;
+                  var path_pic = file_path;
+                  var path2 = path_pic.replace(/\\/g, "/");
+                  var path = path2.slice(19);
+                  return (
+                    <>
+                      <div class="card2 ml-2 " key={_id}>
+                        <span className="  font-bold text-xl ml-2">{link}</span>
+                        <div className="flex flex-col ml-4 w-full">
+                          <div class="info2 ml-4 w-full">
+                            <p className="text-justify">{title}</p>
                             <br />
-                          </a>
-                          {auth && (
-                            <>
-                              <div className="flex flex-col w-full">
-                                <FontAwesomeIcon
-                                  icon={faTrashCan}
-                                  size="lg"
-                                  className=" cursor-pointer ml-auto  hover:text-red-500"
-                                  onClick={() => del(_id)}
-                                ></FontAwesomeIcon>
-                              </div>
-                            </>
-                          )}
+                            <a href={path} className="">
+                              <button className="w-[100%]">View</button>
+                            </a>
+                            {auth && (
+                              <>
+                                <div className="flex flex-col mt-2 w-full">
+                                  <FontAwesomeIcon
+                                    icon={faTrashCan}
+                                    size="lg"
+                                    className=" cursor-pointer ml-auto  hover:text-red-500"
+                                    onClick={() => del(_id)}
+                                  ></FontAwesomeIcon>
+                                </div>
+                              </>
+                            )}
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </>
-                );
-              })}
+                    </>
+                  );
+                })
+              : ""}
           </div>
           {auth && (
             <>
