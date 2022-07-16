@@ -1,67 +1,87 @@
-.main_div1{
-background-color: rgb(255, 255, 255);
-display: flex;
-width: 100%;
-height: 430px;
+.main_div1 {
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    width: 100%;
+    height: 100%;
 }
 
 
-.small_box{
-    position: relative; 
-    width: 100%;
-    height: fit-content; 
+.small_box {
+    position: relative;
+    /* width: 100%; */
+    height: fit-content;
     margin: 10px;
-    padding: 15px;
-    margin-left: 10px;
+    /* padding: 15px; */
+    margin-left: 20px;
     opacity: 1;
     box-shadow: 10px;
-    border-radius: 20px;
-    margin-top: 75px;
-    
+    border-radius: 16px;
+    margin-top: 30px;
+    border: 4px solid transparent;
+
+
 }
-.read_btn{
-    position: absolute; 
-   color: white;
-   background-color: darkred;
-   padding: 10px;
-   height:fit-content;
-width: fit-content;
-z-index: 10;
-border-radius: 10px;
-margin-top: -120px;
-margin-left: 100px;
-opacity: 0;
+
+.read_btn {
+    position: absolute;
+    color: white;
+    background-color: darkred;
+    padding: 10px;
+    height: fit-content;
+    width: 80%;
+    z-index: 10;
+    border-radius: 10px;
+    margin-top: -100px;
+    margin-left: 30px;
+    opacity: 0;
+}
+
+.event_name {
+    position: absolute;
+    color: white;
+    padding: 10px;
+    height: fit-content;
+    width: fit-content;
+    z-index: 10;
+    margin-top: -220px;
+    margin-left: 40px;
+    text-shadow: -2px 2px 0 #000,
+    2px 2px 0 #000,
+   2px -2px 0 #000,
+  -2px -2px 0 #000;
 }
 
 
-.event_img{
+.event_img {
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 12px;
+    opacity: 0.6;
 }
-.event_img:hover{
+
+.event_img:hover {
     box-shadow: inset;
-    opacity: 0.3;
     transition: all .3s ease;
+}
+
+.small_box:hover .event_img {
+    transition: all .3s ease;
+}
+
+.small_box:hover {
     border: 4px solid darkred;
-}
-
-.small_box:hover .event_img{
-opacity: 0.3;
-transition: all .3s ease;
-
-border: 4px solid darkred;
 
 }
-.small_box:hover .read_btn{
+
+.small_box:hover .read_btn {
     opacity: 1;
     transition: all .3s ease;
 
-    }
-.read_btn:hover{
+}
+
+.read_btn:hover {
     border: 2px solid black;
     transition: all .3s ease;
-
     box-shadow: 50px;
 
 }
