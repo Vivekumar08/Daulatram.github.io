@@ -1,88 +1,305 @@
-import React from 'react'
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 import Sidebar from "../../Components/Sidebar/Sidebar";
-import Chairperson_banner from '../../Components/Banners/Chairperson_banner';
-import chairman from "../../Dummy_data/ImgPages/About/Chairman.jpeg";
-import Founder_banner from '../../Components/Banners/Founder_banner';
+import Chairperson_banner from "../../Components/Banners/Chairperson_banner";
 
 const Chairperson = () => {
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [para, setPara] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("http://localhost:5000/Chairperson_About");
+    const dat = await response.json();
+    console.log(dat);
+    {
+      dat ? dat.map((elem) => setData1(elem)) : setData1(dat);
+    }
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(
+        `http://localhost:5000/delete_Chairperson_About_data/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const handleSubmit = async (files) => {
+    try {
+      if (files) {
+        console.log(files);
+        setErrMsg("");
+        await axios.post(
+          `http://localhost:5000/Chairperson_About_add`,
+          { file: files },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+  const handleSubmit_data = async (id) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`http://localhost:5000/Chairperson_About_add_data/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setPara("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
-   <>
-   <div className=" flex flex-col">
-        <div className="">
-        {/* <Founder_banner/> */}
-        <Chairperson_banner/>
+    <div className=" flex flex-col">
+      <div className="">
+        <Chairperson_banner />
+      </div>
+      <div className="flex flex-row">
+        <div className="w-[350px]">
+          <Sidebar />
         </div>
-        <div className="flex flex-row">
-          <div className="w-[350px]">
-            <Sidebar />
-          </div>
-          <div className="w-[1100px]">
-            <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-                    Chairperson's Message
-                    </h2>
 
-            <figure className="flex flex-col p-4 ">
-              <img 
-                src={chairman}
-                alt="chairman"
-                className="rounded-3xl border-black border-2 h-[250px] w-[300px] md:h-[300px] md:w-[380px] ml-2 md:ml-80 mb-4"
-                width={180}
-              />
-
-              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg m-50 pr-4 pl-4 pt-2">
-              Daulat Ram College is a premium college for women in Delhi University, founded by the individualistic educationist,
-               Late Shri Daulat Ram Gupta in 1960. The institute, a large constituent college of University of Delhi, originally started as
-                ‘Pramila College’ and was renamed as Daulat Ram College in 1964 as it grew into a full-fledged extended college of University of Delhi.
-                 It imparts education at the Bachelors level in Arts, Science and Commerce. It also enrols students at the Masters Level and hold M.A. Tutorials.
-                 <br/>
-                </span>
-              
-            </figure>
-            <figure className="flex p-2">
-              <span className="card-description leading-14 font- medium text-justify text-base md:text-lg ml-6 ">
-                At present the college has 18 departments, over 3546 students on rolls, 185 teaching staff and 71 non-teaching staff. 
-                The courses in Science were introduced in 1968 which led to the construction of the Science Block and Science laboratories. 
-                The Commerce and M.A. courses as well as new Courses in B.A. (Hons.) and B.A. Programme were added simultaneously. 
-                Further expansion occurred with the introduction of B.Sc. (Hons.) in Bio-Chemistry, Chemistry and addition of Nutrition and
-                 Health Education (NHE), Office Management cum Secretarial Practice (OMSP) and Mathematics (Hons.). Foreign language as an
-                  add-on Course in the college is open to the public. It offers Certificate/Diploma/Advanced Diploma courses in French/ German/ 
-                  Spanish/ Italian/ Chinese/ Japanese and Korean languages. The College building also houses a block of tutorial rooms, an 
-                  imposing seminar hall, Computer laboratories with internet facilitates and a well-equipped library with over 90,000 titles.
-                   The college holds a leading position in sports and was developed as a training venue for the Commonwealth Games, 2010. 
-                   It boasts of a State-de-arte multi-sports Academy and compendium of latest sports facilities. Co-curricular activities
-                    like Societies, Departmental Associations, the Women’s Development Centre, Eco-Club, N.S.S and N.C.C. are available.
-                     For the old students to connect to their alma mater, the college has an active Alumni Association. The college 
-                     student’s hostel has an intake capacity of nearly 204 students. Every year it wins the University award for the best
-                      maintained environment and hostel in Delhi University. The intensely cherished dream of the founder Shri Daulat Ram 
-                      Gupta was finally given expression in 1990 by the then Chairperson late Shri Mahendra Nath Gupta (his son) who called
-                       upon Shri Rajiv Gandhi to lay the foundation stone of what stands today as an imposing multi -purpose auditorium in 
-                       the frontage of the college. On the spur of the moment, it was named ‘Sadbhavana Bhawan’. From 1990 onwards, Shri 
-                       Mahendra Nath Gupta relentlessly pursued its construction in 1997, the ‘Sadbhavana Bhawan’ was inaugurated to 
-                       articulate the talent and the creative genius in Arts, Culture, Sports & Drama of the students and having a seating 
-                       capacity of over 1400 persons. The vibrant mix of the cocurricular and extracurricular activities both at the intra-college
-                        and inter-college levels adds to the multidimensional character of the college. I feel privileged to be the Chairperson 
-                        of such an institution and carrying forward the vision of its founder Daulat Ram Gupta, as his descendant.
-              </span>
-            </figure>
-            <figure className="flex p-4 ">
-              
-
-              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg  p-4">
-    
-                 <b> - Prof. Mukund Gupta</b>
-                </span>
-              
-            </figure>
-            
-            
-           
-          </div>
+        <div className="w-[1100px]">
+          <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+            Chairperson
+          </h2>
+          <figure className="flex flex-col p-4 ">
+            {data1 &&
+              data1.img_data.file_path &&
+              data1.img_data.file_path.map((elem) => {
+                var path2 = elem.file_path1.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                // console.log(path);
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4">
+                      <img
+                        src={path}
+                        style={{
+                          width: "300px",
+                          height: "250px",
+                        }}
+                        alt="founder"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-80"
+                      />
+                      {auth && (
+                        <>
+                          <div className="flex  ml-auto">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer   hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "link")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+            {data1 &&
+              data1.img_data.para &&
+              data1.img_data.para.map((elem) => {
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4 ">
+                      <span className="card-description leading-14 font-medium text-justify text-base md:text-lg  ">
+                        {elem.para1}
+                      </span>
+                      {auth && (
+                        <>
+                          <div className="flex  w-full">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-auto  hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "para")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+          </figure>
+          {auth && data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm w-full  full ml-auto mr-auto mb-5"
+              >
+                <div className="mb-3">
+                  <textarea
+                    name="para"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setPara(e.target.value)}
+                    value={para}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Paragraph Here"
+                  ></textarea>
+                </div>
+                <div class="md:w-2/3 ">
+                  <button
+                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={() => handleSubmit_data(data1._id)}
+                  >
+                    Add Para
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+          {auth && !data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div class="md:flex flex-col md:items-center h-full">
+                  <div className="upload-section flex h-full mb-[10px] w-full">
+                    <Dropzone
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder("over")}
+                      onDragLeave={() => updateBorder("leave")}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div
+                          {...getRootProps({
+                            className:
+                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                          })}
+                          ref={dropRef}
+                        >
+                          <input {...getInputProps()} />
+                          <p>
+                            Drag and drop a file OR click here to select a file
+                          </p>
+                          {file && (
+                            <div>
+                              <strong>Selected file:</strong> {file.name}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                    {previewSrc ? (
+                      isPreviewAvailable ? (
+                        <div className="image-preview ml-[5%] w-full">
+                          <img
+                            className="preview-image w-full h-full block mb-[10px]"
+                            src={previewSrc}
+                            alt="Preview"
+                          />
+                        </div>
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>No preview available for this file</p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>Image preview will be shown here after selection</p>
+                      </div>
+                    )}
+                  </div>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={() => handleSubmit(file)}
+                    >
+                      Add Image
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
+    </div>
+  );
+};
 
-   
-   </>
-  )
-}
-
-export default Chairperson
+export default Chairperson;
