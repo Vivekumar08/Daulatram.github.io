@@ -14,7 +14,6 @@ const Founder = () => {
   const dropRef = useRef();
   const [para, setPara] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [errMsg_p, setErrMsg_p] = useState("");
   const [previewSrc, setPreviewSrc] = useState("");
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [file, setFile] = useState(null);
@@ -64,7 +63,6 @@ const Founder = () => {
       if (response.status === 200) {
         fetchdata();
       } else if (response.status === 202) {
-        window.alert("Data deleted successfully");
         fetchdata();
       } else {
         setErrMsg("");
@@ -79,7 +77,6 @@ const Founder = () => {
       if (files) {
         console.log(files);
         setErrMsg("");
-        setErrMsg_p("");
         await axios.post(
           `http://localhost:5000/Founder_About_add`,
           { file: files },
@@ -104,7 +101,6 @@ const Founder = () => {
   const handleSubmit_data = async (id) => {
     try {
       if (para !== "") {
-        setErrMsg_p("");
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
@@ -117,10 +113,10 @@ const Founder = () => {
         setAuth(true);
         fetchdata();
       } else {
-        setErrMsg_p("Please enter all the field values.");
+        setErrMsg("Please enter all the field values.");
       }
     } catch (err) {
-      err.response && setErrMsg_p(err.response.data);
+      err.response && setErrMsg(err.response.data);
     }
   };
 
