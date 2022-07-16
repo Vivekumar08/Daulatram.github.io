@@ -1,110 +1,304 @@
-import React from "react";
-import Vp_banner from "../../Components/Banners/Vp_banner";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 import Sidebar from "../../Components/Sidebar/Sidebar";
-import VP from "../../Dummy_data/ImgPages/About/Sarita_VP.jpg";
+import Vp_banner from "../../Components/Banners/Vp_banner";
 
 const VicePrincipal = () => {
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [para, setPara] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("http://localhost:5000/Principal_About");
+    const dat = await response.json();
+    console.log(dat);
+    {
+      dat ? dat.map((elem) => setData1(elem)) : setData1(dat);
+    }
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(
+        `http://localhost:5000/delete_Principal_About_data/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const handleSubmit = async (files) => {
+    try {
+      if (files) {
+        console.log(files);
+        setErrMsg("");
+        await axios.post(
+          `http://localhost:5000/Principal_About_add`,
+          { file: files },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+  const handleSubmit_data = async (id) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`http://localhost:5000/Principal_About_add_data/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setPara("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
-    <>
-      <div className=" flex flex-col">
-        <div className="">
+    <div className=" flex flex-col">
+      <div className="">
           <Vp_banner />
+      </div>
+      <div className="flex flex-row">
+        <div className="w-[350px]">
+          <Sidebar />
         </div>
-        <div className="flex flex-row">
-          <div className="w-[350px]">
-            <Sidebar />
-          </div>
-          <div className="w-[1100px]">
-            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              Vice-Principal's Message
-            </h2>
 
-            <figure className="flex flex-col pl-4 pr-4 pb-2 ">
-              <img
-                src={VP}
-                alt="Vice-Principal"
-                className="rounded-3xl border-black border-2h-[250px] w-[300px] md:h-[300px] md:w-[380px] ml-2 md:ml-80 mb-4"
-                width={220}
-              />
-
-              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg  pr-4 pl-4 pt-2">
-                Students you should be assured that you are about to be admitted
-                to Daulat Ram College, which is a renowned affiliated college of
-                Delhi University. The college imparts holistic education to
-                female students by training students in education coursework as
-                well as in co-curricular activities and extracurricular
-                activities. The college also gives a chance to add additional
-                skills for your progression into your career path by providing
-                you the opportunity to participate in Skill Development Programs
-                (SDP) which are conducted by the college faculty, in summer and
-                winter breaks. These SDPs can provide you training in various
-                progressive fields like Digital literacy, Bioinformatics, Music,
-                cybercrimes and many more areas of interest.
-                <br />
-              </span>
-            </figure>
-            <figure className="flex pl-4 pr-4">
-              <span className="card-description leading-14 font- medium text-justify text-base md:text-lg ml-4 ">
-                You can register yourself to any of these courses which are
-                launched from time to time by various departments. You can also
-                enroll for National Service Scheme (NSS), for community services
-                like blood donation, and National Cadet Corp (NCC) for advanced
-                physical training like trekking, which will boost discipline,
-                compassion and integrity within you. The college has an active
-                placement cell which will train you in writing your resume,
-                apprise you of off campus internships and career opportunities.
-                You can also get on- campus placements in your final year
-                through these opportunities. The college also has taken a
-                proactive role in keeping the college campus environment neat
-                and clean by recycling the college wastes. You can participate
-                in this venture and make yourself aware of the environment
-                sustainability of the campus which is one of the sustainable
-                goals of the United Nations. In case you are interested in
-                research, college can help you to acquire skill sets for this
-                purpose. The college has maintained several resource centres
-                like Zebrafish Facility, Drosophila Facility, Environment Lab
-                where you can participate in Internships and also undertake
-                small research projects. If you or your friends are facing any
-                mental anxieties you can approach the psychology resource centre
-                where you can take counselling about how to enhance your
-                positive mental health. The college also has a well-equipped
-                sports complex and big sports ground where you can train
-                yourself in Gym and other sports activities. You will also have
-                a chance to be a part of the Student Union to inculcate
-                leadership skills. You will have a chance to upgrade and
-                showcase your talent and organise events which can help other
-                students to do the same. This academic session we are going to
-                launch Vidya Vistar Scheme in which you may get an opportunity
-                to be trained in skill sets which may be unique to colleges
-                located away from NCR. College has been running Add courses in
-                foreign languages for the last ten years. This provides
-                education in 7 foreign languages like Spanish, French, Italian,
-                German, Chinese, Korean and Japanese which gives you an
-                opportunity to learn a foreign language thoroughly. You can
-                enrol in any one of the courses in the first year itself in the
-                certificate course. You can progress to Diploma and Advanced
-                Diploma in the same language in the subsequent years. So, you
-                can earn an additional qualification during your undergraduate
-                degree education period. We are also launching some additional
-                new add-on courses like Awareness in Legal Literacy , R
-                analytics, Happiness and Well-being this academic session. You
-                can enrol for any of these along with your degree course. Thus,
-                college life is going to give you a plethora of platforms where
-                you can groom yourself for the successful life ahead. It's up to
-                you how much interest you can take, work with energy and passion
-                to make the best use of campus life at Daulat Ram College. My
-                best wishes are with you.
-              </span>
-            </figure>
-            <figure className="flex p-4 ">
-              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg  p-4">
-                <b> - Prof. Sarita Nanda</b>
-              </span>
-            </figure>
-          </div>
+        <div className="w-[1100px]">
+          <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+            Vice-Principal's Message
+          </h2>
+          <figure className="flex flex-col p-4 ">
+            {data1 &&
+              data1.img_data.file_path &&
+              data1.img_data.file_path.map((elem) => {
+                var path2 = elem.file_path1.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                // console.log(path);
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4">
+                      <img
+                        src={path}
+                        style={{
+                          width: "300px",
+                          height: "250px",
+                        }}
+                        alt="founder"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-80"
+                      />
+                      {auth && (
+                        <>
+                          <div className="flex  ml-auto">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer   hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "link")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+            {data1 &&
+              data1.img_data.para &&
+              data1.img_data.para.map((elem) => {
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4 ">
+                      <span className="card-description leading-14 font-medium text-justify text-base md:text-lg  ">
+                        {elem.para1}
+                      </span>
+                      {auth && (
+                        <>
+                          <div className="flex  w-full">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-auto  hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "para")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+          </figure>
+          {auth && data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm w-full  full ml-auto mr-auto mb-5"
+              >
+                <div className="mb-3">
+                  <textarea
+                    name="para"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setPara(e.target.value)}
+                    value={para}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Paragraph Here"
+                  ></textarea>
+                </div>
+                <div class="md:w-2/3 ">
+                  <button
+                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={() => handleSubmit_data(data1._id)}
+                  >
+                    Add Paragraph
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+          {auth && !data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div class="md:flex flex-col md:items-center h-full">
+                  <div className="upload-section flex h-full mb-[10px] w-full">
+                    <Dropzone
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder("over")}
+                      onDragLeave={() => updateBorder("leave")}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div
+                          {...getRootProps({
+                            className:
+                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                          })}
+                          ref={dropRef}
+                        >
+                          <input {...getInputProps()} />
+                          <p>
+                            Drag and drop a file OR click here to select a file
+                          </p>
+                          {file && (
+                            <div>
+                              <strong>Selected file:</strong> {file.name}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                    {previewSrc ? (
+                      isPreviewAvailable ? (
+                        <div className="image-preview ml-[5%] w-full">
+                          <img
+                            className="preview-image w-full h-full block mb-[10px]"
+                            src={previewSrc}
+                            alt="Preview"
+                          />
+                        </div>
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>No preview available for this file</p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>Image preview will be shown here after selection</p>
+                      </div>
+                    )}
+                  </div>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={() => handleSubmit(file)}
+                    >
+                      Add Image
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

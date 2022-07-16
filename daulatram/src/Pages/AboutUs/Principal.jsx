@@ -131,7 +131,7 @@ const Principal = () => {
 
         <div className="w-[1100px]">
           <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-            College Profile : Principal and Vision
+            Principal's Message
           </h2>
           <figure className="flex flex-col p-4 ">
             {data1 &&
