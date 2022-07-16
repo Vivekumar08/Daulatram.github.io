@@ -10,10 +10,8 @@ const Bio_fac_data = (props) => {
 
   const dropRef = useRef();
   const [previewSrc, setPreviewSrc] = useState("");
-  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [pdf, setPdf] = useState(null);
-  const [pdf_path, setPdf_path] = useState(null);
-  const { auth, setAuth } = useContext(AuthContext);
+  const { auth } = useContext(AuthContext);
 
   const fetchdata = async () => {
     const response = await fetch("http://localhost:5000/bio_faculty");
@@ -62,9 +60,6 @@ const Bio_fac_data = (props) => {
                   </>
                 );
               })}
-
-            {/* <> */}
-            {/* </> */}
 
             {props.img_data.pdf_path.map((elem) => {
               const path2 = elem.pdf_path1.replace(/\\/g, "/");

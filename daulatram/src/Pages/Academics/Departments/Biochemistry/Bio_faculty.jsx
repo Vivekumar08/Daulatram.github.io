@@ -74,7 +74,6 @@ const Bio_faculty = () => {
     try {
       console.log(pdf);
       if (pdf) {
-        // setErrMsg("");
         await axios.post(
           `http://localhost:5000/bio_faculty_cv_upload/${id}`,
           {
@@ -100,8 +99,6 @@ const Bio_faculty = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setFile({imag,pdf} );
-    // console.log(data);
     try {
       if (link.trim() !== "" && caption.trim() !== "") {
         if (imag) {
@@ -109,7 +106,6 @@ const Bio_faculty = () => {
           console.log(link, caption, imag, filter);
           const data = await axios.post(
             `http://localhost:5000/bio_faculty_file_upload`,
-            // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {
               headers: {
