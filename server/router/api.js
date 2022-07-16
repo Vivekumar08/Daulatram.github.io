@@ -86,6 +86,18 @@ const NHE_ProgramOffered = require("../models/Academics/Departments/NHE/NHE_Prog
 const Physics_Events = require("../models/Academics/Departments/Physics/Physics_Events_Schema")
 const Sanskrit_Events = require("../models/Academics/Departments/Sanskrit/Sanskrit_Events_Schema")
 const Zoology_Events = require("../models/Academics/Departments/Zoology/Zoology_Events_Schema")
+const Physics_Stuachieve = require("../models/Academics/Departments/Physics/Physics_Stuachieve_Schema")
+const Sanskrit_Stuachieve = require("../models/Academics/Departments/Sanskrit/Sanskrit_Stuachieve_Schema")
+const Zoology_Stuachieve = require("../models/Academics/Departments/Zoology/Zoology_Stuachieve_Schema")
+const Physics_Publications = require("../models/Academics/Departments/Physics/Physics_Publications_Schema")
+const PS_Publications = require("../models/Academics/Departments/Political_Science/PS_Publications_Schema")
+const Sanskrit_Publications = require("../models/Academics/Departments/Sanskrit/Sanskrit_Publications_Schema")
+    // const Zoology_Publications = require("../models/Academics/Departments/Zoology/Zoology_Publications_Schema")
+const Physics_Facilities = require("../models/Academics/Departments/Physics/Physics_Facilities_Schema")
+const Physics_Association = require("../models/Academics/Departments/Physics/Physics_Association_Schema")
+const PS_Association = require("../models/Academics/Departments/Political_Science/PS_Association_Schema")
+const Sanskrit_Association = require("../models/Academics/Departments/Sanskrit/Sanskrit_Association_Schema")
+const Physics_Newsletter = require("../models/Academics/Departments/Physics/Physics_Newsletter_Schema")
 
 
 
@@ -1505,7 +1517,447 @@ router.post(
         }
     }
 );
+//  Physics Students' Achievements
+router.get('/Physics_Stuachieve', async(req, res, ) => {
+    const details = await Physics_Stuachieve.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Physics_Stuachieve/:id', async(req, res) => {
+    const delete_user = await Physics_Stuachieve.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
 
+router.post(
+    '/Physics_Stuachieve_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Physics_Stuachieve({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+//  Sanskrit Students' Achievements
+router.get('/Sanskrit_Stuachieve', async(req, res, ) => {
+    const details = await Sanskrit_Stuachieve.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Sanskrit_Stuachieve/:id', async(req, res) => {
+    const delete_user = await Sanskrit_Stuachieve.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Sanskrit_Stuachieve_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Sanskrit_Stuachieve({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  Zoology Students' Achievements
+router.get('/Zoology_Stuachieve', async(req, res, ) => {
+    const details = await Zoology_Stuachieve.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Zoology_Stuachieve/:id', async(req, res) => {
+    const delete_user = await Zoology_Stuachieve.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Zoology_Stuachieve_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Zoology_Stuachieve({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+//  Physics Publications
+router.get('/Physics_Publications', async(req, res, ) => {
+    const details = await Physics_Publications.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Physics_Publications/:id', async(req, res) => {
+    const delete_user = await Physics_Publications.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Physics_Publications_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Physics_Publications({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  Political Science Publications
+router.get('/PS_Publications', async(req, res, ) => {
+    const details = await PS_Publications.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_PS_Publications/:id', async(req, res) => {
+    const delete_user = await PS_Publications.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/PS_Publications_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new PS_Publications({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+//  Sanskrit Publications
+router.get('/Sanskrit_Publications', async(req, res, ) => {
+    const details = await Sanskrit_Publications.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Sanskrit_Publications/:id', async(req, res) => {
+    const delete_user = await Sanskrit_Publications.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Sanskrit_Publications_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Sanskrit_Publications({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+// //  Zoology Publications
+// router.get('/Zoology_Publications', async(req, res, ) => {
+//     const details = await Zoology_Publications.find()
+//     res.status(200).json(details)
+// });
+// router.delete('/delete_Zoology_Publications/:id', async(req, res) => {
+//     const delete_user = await Zoology_Publications.findOneAndDelete({ _id: req.params.id });
+//     await unlinkAsync(delete_user.file_path)
+//     res.status(200).json(delete_user + "User deleted")
+// })
+
+// router.post(
+//     '/Zoology_Publications_add',
+//     upload.single('file'),
+//     async(req, res) => {
+//         try {
+//             const { title, link } = req.body;
+//             const { path, mimetype } = req.file;
+//             const file = new Zoology_Publications({
+//                 title,
+//                 link,
+//                 file_path: path,
+//                 file_mimetype: mimetype
+//             });
+//             await file.save();
+//             res.send('file uploaded successfully.');
+//         } catch (error) {
+//             res.status(400).send('Error while uploading file. Try again later.');
+//         }
+//     },
+//     (error, req, res, next) => {
+//         if (error) {
+//             res.status(402).send(error.message);
+//         }
+//     }
+// );
+
+
+//   Physics Facilities
+router.get('/Physics_Facilities', async(req, res, ) => {
+    const details = await Physics_Facilities.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Physics_Facilities/:id', async(req, res) => {
+    const delete_user = await Physics_Facilities.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Physics_Facilities_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Physics_Facilities({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+//   Physics Association
+router.get('/Physics_Association', async(req, res, ) => {
+    const details = await Physics_Association.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Physics_Association/:id', async(req, res) => {
+    const delete_user = await Physics_Association.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Physics_Association_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Physics_Association({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+//   Physics Newsletter & Magazines
+router.get('/Physics_Newsletter', async(req, res, ) => {
+    const details = await Physics_Newsletter.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Physics_Newsletter/:id', async(req, res) => {
+    const delete_user = await Physics_Newsletter.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Physics_Newsletter_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Physics_Newsletter({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+//   Political Science Association
+router.get('/PS_Association', async(req, res, ) => {
+    const details = await PS_Association.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_PS_Association/:id', async(req, res) => {
+    const delete_user = await PS_Association.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/PS_Association_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new PS_Association({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+//   Sanskrit Association
+router.get('/Sanskrit_Association', async(req, res, ) => {
+    const details = await Sanskrit_Association.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Sanskrit_Association/:id', async(req, res) => {
+    const delete_user = await Sanskrit_Association.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Sanskrit_Association_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Sanskrit_Association({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 
 
 
@@ -2217,11 +2669,11 @@ router.post(
 );
 // Staff Forms
 
-router.get('/StaffZone_forms', async (req, res,) => {
+router.get('/StaffZone_forms', async(req, res, ) => {
     const details = await Staff_Forms.find()
     res.status(200).json(details)
 });
-router.delete('/delete_StaffZone_forms/:id', async (req, res) => {
+router.delete('/delete_StaffZone_forms/:id', async(req, res) => {
     const delete_user = await Staff_Forms.findOneAndDelete({ _id: req.params.id });
     if (delete_user.file_mimetype === 'text/link') {
         console.log(delete_user.file_mimetype)
@@ -2232,7 +2684,7 @@ router.delete('/delete_StaffZone_forms/:id', async (req, res) => {
         res.status(200).json(delete_user + "User deleted")
     }
 })
-router.post('/StaffZone_forms_add_link', async (req, res) => {
+router.post('/StaffZone_forms_add_link', async(req, res) => {
     try {
         console.log(req.body)
         const { file, link, title } = req.body
@@ -2250,7 +2702,7 @@ router.post('/StaffZone_forms_add_link', async (req, res) => {
 router.post(
     '/StaffZone_forms_add',
     upload.single('file'),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
