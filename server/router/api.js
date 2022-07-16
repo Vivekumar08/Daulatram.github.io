@@ -33,6 +33,7 @@ const Roster = require('../models/StaffZone/Roster_Schema')
 const Founder = require('../models/About_Us/Founder_Schema')
 const Chairperson = require('../models/About_Us/Chairperson_Schema')
 const Mission = require('../models/About_Us/Mission_Schema')
+const Principal = require('../models/About_Us/Principal_Schema')
 const Student_forms = require('../models/StudentZone/StudentZone_foms_Schema')
 const Staff_Forms = require('../models/StaffZone/Staff_Forms_Schema')
 const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema');
@@ -575,6 +576,75 @@ router.post(
         try {
             // console.log(req.body);
             const file = new Mission({
+                "img_data.file_path": { file_path1: req.file.path, file_mimetype1: req.file.mimetype, value: false },
+            });
+            await file.save();
+            res.status(200).send('file uploaded successfully.');
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// About Us Principal
+
+router.get('/Principal_About', async (req, res,) => {
+    const details = await Principal.find()
+    if (details.length === 0) {
+        res.status(200).json(false)
+    } else {
+        res.status(200).json(details)
+    }
+});
+
+router.post('/delete_Principal_About_data/:id', async (req, res) => {
+    try {
+        const { pid, type } = req.body
+        if (type === "para") {
+            const delete_user = await Principal.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted")
+        } else {
+            const delete_user = await Principal.findOneAndDelete({ _id: req.params.id });
+            const img = delete_user.img_data.file_path
+            await unlinkAsync(img[0].file_path1)
+            res.status(202).json(delete_user + "User deleted")
+        }
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+router.post(
+    '/Principal_About_add_data/:id',
+    async (req, res) => {
+        try {
+            const { para1 } = req.body
+            await Principal.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    '/Principal_About_add',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            // console.log(req.body);
+            const file = new Principal({
                 "img_data.file_path": { file_path1: req.file.path, file_mimetype1: req.file.mimetype, value: false },
             });
             await file.save();
