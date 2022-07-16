@@ -92,6 +92,9 @@ const Physics_Publications = require("../models/Academics/Departments/Physics/Ph
 const PS_Publications = require("../models/Academics/Departments/Political_Science/PS_Publications_Schema")
 const Sanskrit_Publications = require("../models/Academics/Departments/Sanskrit/Sanskrit_Publications_Schema")
     // const Zoology_Publications = require("../models/Academics/Departments/Zoology/Zoology_Publications_Schema")
+const Physics_Facilities = require("../models/Academics/Departments/Physics/Physics_Facilities_Schema")
+const Physics_Association = require("../models/Academics/Departments/Physics/Physics_Association_Schema")
+const PS_Association = require("../models/Academics/Departments/Political_Science/PS_Association_Schema")
 
 
 
@@ -1699,6 +1702,118 @@ router.post(
 //         }
 //     }
 // );
+
+
+//   Physics Facilities
+router.get('/Physics_Facilities', async(req, res, ) => {
+    const details = await Physics_Facilities.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Physics_Facilities/:id', async(req, res) => {
+    const delete_user = await Physics_Facilities.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Physics_Facilities_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Physics_Facilities({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+//   Physics Association
+router.get('/Physics_Association', async(req, res, ) => {
+    const details = await Physics_Association.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Physics_Association/:id', async(req, res) => {
+    const delete_user = await Physics_Association.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Physics_Association_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Physics_Association({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+//   Political Science Association
+router.get('/PS_Association', async(req, res, ) => {
+    const details = await PS_Association.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_PS_Association/:id', async(req, res) => {
+    const delete_user = await PS_Association.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/PS_Association_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new PS_Association({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 
 
 
