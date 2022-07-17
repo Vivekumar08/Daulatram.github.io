@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { StudentInfo } from "./Info"; //first step
 import { StaffInfo } from "./Info";
 import { PublicInfo } from "./Info";
+import "./infor.css";
 
 function Information() {
   const [Studentinfo, setStudentinfo] = useState(StudentInfo);
@@ -18,23 +21,33 @@ function Information() {
           </span>
         </div>
         {/* content/body/messages */}
-        <div className="flex md:flex-row flex-col w-auto   mb-5 mt-8 justify-between ml-24 mr-24 ">
-          <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[600px] text-lg font-semibold mb-5 hover:animate-none ">
-            <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center  text-white pb-4  px-4 ">
+        <div className="flex md:flex-row flex-col w-auto   mb-5 mt-8 justify-between   ml-24 mr-24 ">
+          <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[600px]  text-lg font-semibold mb-5   ">
+            <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center z-10 text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Students</span>
             </span>
-            {Studentinfo.map((curElem) => {
-              const { id, info, link, date } = curElem;
-              return (
-                <>
-                  <Link to={link} target="_blank" rel="norefferer" className="">
-                    <span className=" information flex flex-col hover:font-semibold hover:text-blue-600 hover:text-base ml-4 text-sm mb-4 mt-4  ">
-                      {info}
-                    </span>
+            <div className=" h-[480px] ">
+              {/* <ul className="sliderr  "> */}
+              {Studentinfo.map((curElem) => {
+                const { id, info, link, date } = curElem;
+                return (
+                  <Link
+                    to={link}
+                    target="_blank"
+                    rel="norefferer"
+                    className="informations flex flex-col  hover:font-semibold hover:text-blue-600  ml-4 text-sm mb-4 mt-4"
+                  >
+                    {"-> "}
+                    {info}
                   </Link>
-                </>
-              );
-            })}
+                );
+              })}
+            </div>
+            <button className="flex flex-row justify-center  ">
+              <FontAwesomeIcon icon={faCircle} className=" mb-5 text-[#000080]" />
+              <FontAwesomeIcon icon={faCircle} className=" mb-5 ml-5 text-[#000080]" />
+              <FontAwesomeIcon icon={faCircle} className=" mb-5 ml-5 text-[#000080]" />
+            </button>
           </div>
           <div className=" bg-[#d9d9d9] w-[20em] rounded-lg text-lg mb-5 h-[600px] font-semibold">
             <span className="bg-[#000080] rounded-t-lg flex flex-row  justify-center text-white pb-4  px-4 ">

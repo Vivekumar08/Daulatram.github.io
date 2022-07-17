@@ -1,0 +1,21 @@
+/* .sliderr {
+    position: absolute;
+    list-style-type: none;
+    text-align: center;
+    animation: sliderr linear infinite 10s;
+} */
+
+.informations {
+    line-height: 30px;
+}
+
+/* @keyframes sliderr {
+    0% {
+        transform: translateY(90%)
+    }
+    
+    100% {
+        transform: translateY(-20%);
+        
+    }
+} */
