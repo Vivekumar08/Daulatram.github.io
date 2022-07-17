@@ -8,7 +8,6 @@ import axios from "axios";
 import Botanybanner from "../Botany/Botanybanner.jsx";
 import Botany from "../../../../Components/DepartSIde/Botany.jsx";
 
-
 const Awards = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();

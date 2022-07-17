@@ -108,7 +108,7 @@ const Psychology_Time = require("../models/Academics/Departments/Psychology/Psyc
 const Sanskrit_Time = require("../models/Academics/Departments/Sanskrit/Sanskrit_Time_Schema")
 const Zoology_Time = require("../models/Academics/Departments/Zoology/Zoology_Time_Schema")
 const PS_Time = require("../models/Academics/Departments/Political_Science/PS_Time_Schema")
-
+const Bot_Publications = require("../models/Academics/Departments/Botany/Pubs_Schema")
 
 
 
@@ -1195,6 +1195,31 @@ router.delete('/delete_Com_Awards/:id', async(req, res) => {
         await unlinkAsync(delete_user.file_path)
         res.status(200).json(delete_user + "User deleted")
     })
+    router.post(
+        '/Com_Awards_add',
+        upload.single('file'),
+        async(req, res) => {
+            try {
+                const { title, link } = req.body;
+                const { path, mimetype } = req.file;
+                const file = new Com_Awards({
+                    title,
+                    link,
+                    file_path: path,
+                    file_mimetype: mimetype
+                });
+                await file.save();
+                res.send('file uploaded successfully.');
+            } catch (error) {
+                res.status(400).send('Error while uploading file. Try again later.');
+            }
+        },
+        (error, req, res, next) => {
+            if (error) {
+                res.status(402).send(error.message);
+            }
+        }
+    );
     // Chemistry Program Offered
 
 router.get('/Chem_ProgramOffered', async(req, res, ) => {
@@ -2137,6 +2162,42 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Zoology_Stuachieve({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+//  Botany Publications
+router.get('/Bot_Publications', async(req, res, ) => {
+    const details = await Bot_Publications.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Bot_Publications/:id', async(req, res) => {
+    const delete_user = await Bot_Publications.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Bot_Publications_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Bot_Publications({
                 title,
                 link,
                 file_path: path,
@@ -3554,6 +3615,31 @@ router.delete('/delete_Eco_Awards/:id', async(req, res) => {
         await unlinkAsync(delete_user.file_path)
         res.status(200).json(delete_user + "User deleted")
     })
+    router.post(
+        '/Eco_Awards_add',
+        upload.single('file'),
+        async(req, res) => {
+            try {
+                const { title, link } = req.body;
+                const { path, mimetype } = req.file;
+                const file = new Eco_Awards({
+                    title,
+                    link,
+                    file_path: path,
+                    file_mimetype: mimetype
+                });
+                await file.save();
+                res.send('file uploaded successfully.');
+            } catch (error) {
+                res.status(400).send('Error while uploading file. Try again later.');
+            }
+        },
+        (error, req, res, next) => {
+            if (error) {
+                res.status(402).send(error.message);
+            }
+        }
+    );
     // English Program Offered
 
 router.get('/Eng_ProgramOffered', async(req, res, ) => {
@@ -3602,6 +3688,31 @@ router.delete('/delete_Eng_Awards/:id', async(req, res) => {
         await unlinkAsync(delete_user.file_path)
         res.status(200).json(delete_user + "User deleted")
     })
+    router.post(
+        '/Eng_Awards_add',
+        upload.single('file'),
+        async(req, res) => {
+            try {
+                const { title, link } = req.body;
+                const { path, mimetype } = req.file;
+                const file = new Eng_Awards({
+                    title,
+                    link,
+                    file_path: path,
+                    file_mimetype: mimetype
+                });
+                await file.save();
+                res.send('file uploaded successfully.');
+            } catch (error) {
+                res.status(400).send('Error while uploading file. Try again later.');
+            }
+        },
+        (error, req, res, next) => {
+            if (error) {
+                res.status(402).send(error.message);
+            }
+        }
+    );
     // Hindi Program Offered
 
 router.get('/Hin_ProgramOffered', async(req, res, ) => {
@@ -3650,6 +3761,31 @@ router.delete('/delete_Hin_Awards/:id', async(req, res) => {
         await unlinkAsync(delete_user.file_path)
         res.status(200).json(delete_user + "User deleted")
     })
+    router.post(
+        '/Hin_Awards_add',
+        upload.single('file'),
+        async(req, res) => {
+            try {
+                const { title, link } = req.body;
+                const { path, mimetype } = req.file;
+                const file = new Hin_Awards({
+                    title,
+                    link,
+                    file_path: path,
+                    file_mimetype: mimetype
+                });
+                await file.save();
+                res.send('file uploaded successfully.');
+            } catch (error) {
+                res.status(400).send('Error while uploading file. Try again later.');
+            }
+        },
+        (error, req, res, next) => {
+            if (error) {
+                res.status(402).send(error.message);
+            }
+        }
+    );
     // Biochemistry Faculty
 router.post('/delete_bio_faculty/:id', async(req, res) => {
     const delete_user = await Bio_Faculty.findOne({ _id: req.params.id });
