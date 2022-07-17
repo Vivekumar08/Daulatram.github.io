@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { StudentInfo } from "./Info"; //first step
 import { StaffInfo } from "./Info";
 import { PublicInfo } from "./Info";
-//  import "./Information.css"
+import "./infor.css";
 
 //  window.onload = function() {
 //   var lineHeight = document.querySelector(".slider li").clientHeight;
@@ -27,9 +29,9 @@ function Information() {
           </span>
         </div>
         {/* content/body/messages */}
-        <div className="flex md:flex-row flex-col w-auto   mb-5 mt-8 justify-between ml-24 mr-24 ">
-          <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[600px] text-lg font-semibold mb-5 hover:animate-none ">
-            <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center  text-white pb-4  px-4 ">
+        <div className="flex md:flex-row flex-col w-auto   mb-5 mt-8 justify-between   ml-24 mr-24 ">
+          <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[600px]  text-lg font-semibold mb-5   ">
+            <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center z-10 text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Students</span>
             </span>
             <div className=" ">

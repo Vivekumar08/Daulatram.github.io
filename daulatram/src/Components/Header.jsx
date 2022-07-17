@@ -40,7 +40,7 @@ function Header() {
             </Link>
             <div className="text-[#F80CA7] text-xl flex flex-wrap justify-center font-bold mt-5 ">
               <div>
-                {"NIRF RANK: 29 "}<span style={{ color: "black" }}>{" | "}</span>
+                NIRF RANK: 29 <span style={{ color: "black" }}>{" | "}</span>
               </div>
               <div className="ml-1">
               {"NAAC GRADE 'A' "} <span style={{ color: "black" }}> | </span>
@@ -136,7 +136,7 @@ function Header() {
             </Link>
             <div className="text-[#F80CA7] text-lg flex flex-wrap justify-center font-bold mt-5 ">
               <div>
-                {"NIRF RANK: 26 "}<span style={{ color: "black" }}>{" | "}</span>
+                {"NIRF RANK: 29 "}<span style={{ color: "black" }}>{" | "}</span>
               </div>
               <div className="ml-1">
               {"NAAC GRADE 'A' "} <span style={{ color: "black" }}> | </span>

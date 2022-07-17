@@ -188,7 +188,7 @@ export const links = [
         link: "/Student_Zone/Students_Facilities",
       },
       {
-        name: "E-Resources",
+        name: "e-Resources",
         link: "/Student_Zone/E_Resources",
       },
       {
@@ -651,7 +651,7 @@ export const Student = [
         link: "/Student_Zone/Students_Facilities",
       },
       {
-        name: "E-Resources",
+        name: "e-Resources",
         link: "/Student_Zone/E_Resources",
       },
       {
