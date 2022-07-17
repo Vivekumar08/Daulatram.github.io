@@ -59,7 +59,8 @@ const Zoology_Faculty = require('../models/Academics/Departments/Zoology/Zoology
 const Bot_ProgramOffered = require("../models/Academics/Departments/Botany/Bot_ProgramsOffered_Schema")
 const Bot_Awards = require("../models/Academics/Departments/Botany/Awards_Schema")
 const Bot_Lab_Staff = require("../models/Academics/Departments/Botany/Bot_Lab_Staff_Schema")
-
+const Bot_StuAch = require("../models/Academics/Departments/Botany/StuAch_Schema")
+const Bot_Timetable = require("../models/Academics/Departments/Botany/Bot_tt_Schema")
 const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema")
 const Chem_Awards = require("../models/Academics/Departments/Chemistry/Awards_Schema")
 const Com_ProgramOffered = require("../models/Academics/Departments/Commerce/Com_ProgramsOffered_Schema")
@@ -1351,6 +1352,80 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Bot_Awards({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Botany Student Achievements
+
+router.get('/Bot_StuAch', async(req, res, ) => {
+    const details = await Bot_StuAch.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Bot_StuAch/:id', async(req, res) => {
+    const delete_user = await Bot_StuAch.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Bot_StuAch_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Bot_StuAch({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Botany Timetable
+
+router.get('/Bot_Timetable', async(req, res, ) => {
+    const details = await Bot_Timetable.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Bot_Timetable/:id', async(req, res) => {
+    const delete_user = await Bot_Timetable.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Bot_Timetable_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Bot_Timetable({
                 title,
                 link,
                 file_path: path,

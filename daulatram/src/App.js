@@ -37,6 +37,7 @@ import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearc
 import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association";
 import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff";
 import Bot_awards from "./Pages/Academics/Departments/Botany/Awards";
+import Bot_tt from "./Pages/Academics/Departments/Botany/Bot_tt";
 
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
@@ -712,6 +713,14 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/awards"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Bot_tt />
+              </>
+            }
+            path="/academics/departments/Botany/timetable"
           ></Route>{" "}
           <Route
             element={

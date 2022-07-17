@@ -24,7 +24,7 @@ const Bot_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/bot_faculty");
+    const response = await fetch("http://localhost:5000/bot_Lab_faculty");
     setData1(await response.json());
   };
 
@@ -56,7 +56,7 @@ const Bot_faculty = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_bot_faculty/${id}`,
+      `http://localhost:5000/delete_bot_Lab_faculty/${id}`,
       {
         method: "POST",
       }
@@ -80,7 +80,7 @@ const Bot_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/bot_faculty_file_upload`,
+            `http://localhost:5000/bot_Lab_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {
@@ -114,7 +114,7 @@ const Bot_faculty = () => {
         </div>
         <div className="w-[1100px]">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-            Faculty
+            Laboratory Stuff
           </h2>
           <div className="  ">
             <h2 className="text-2xl uppercase font-bold  flex   ">
