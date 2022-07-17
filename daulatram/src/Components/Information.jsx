@@ -3,7 +3,16 @@ import { Link } from "react-router-dom";
 import { StudentInfo } from "./Info"; //first step
 import { StaffInfo } from "./Info";
 import { PublicInfo } from "./Info";
+//  import "./Information.css"
 
+//  window.onload = function() {
+//   var lineHeight = document.querySelector(".slider li").clientHeight;
+//   var viewHeight = window.innerHeight;
+//   var slider = document.querySelector(".slider");
+//   var time = (slider.offsetHeight * 2.0 + viewHeight * 2) / 500.0; // 500px / sec
+  
+//   slider.style.animationDuration = time + "s";
+//   }
 function Information() {
   const [Studentinfo, setStudentinfo] = useState(StudentInfo);
   const [Staffinfo, setStaffinfo] = useState(StaffInfo);
@@ -23,18 +32,21 @@ function Information() {
             <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center  text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Students</span>
             </span>
+            <div className=" ">
             {Studentinfo.map((curElem) => {
               const { id, info, link, date } = curElem;
               return (
                 <>
                   <Link to={link} target="_blank" rel="norefferer" className="">
                     <span className=" information flex flex-col hover:font-semibold hover:text-blue-600 hover:text-base ml-4 text-sm mb-4 mt-4  ">
-                      {info}
+                     {info} 
                     </span>
                   </Link>
                 </>
               );
             })}
+            
+          </div>
           </div>
           <div className=" bg-[#d9d9d9] w-[20em] rounded-lg text-lg mb-5 h-[600px] font-semibold">
             <span className="bg-[#000080] rounded-t-lg flex flex-row  justify-center text-white pb-4  px-4 ">
