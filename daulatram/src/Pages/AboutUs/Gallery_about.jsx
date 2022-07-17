@@ -41,112 +41,84 @@ function Gallery_about() {
                 <div class="slidee">
                   <img
                     src="/images/ImgPages/Biochemistry/Anita_g.jpg"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="/images/ImgPages/Biochemistry/Biochemistry1.jpg"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="/images/ImgPages/Biochemistry/association1.jpg"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="/images/ImgPages/Biochemistry/association2.jpg"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="/images/ImgPages/Biochemistry/association3.jpg"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="/images/ImgPages/Biochemistry/association4.jpg"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="/images/ImgPages/Biochemistry/leena.jpg"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/2.png"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/3.png"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/4.png"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/5.png"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/6.png"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
                 <div class="slidee">
                   <img
                     src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/7.png"
-                    //   height="400px"
-                    //   width="1000px"
                     alt=""
                   />
                 </div>
