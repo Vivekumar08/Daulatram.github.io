@@ -2,7 +2,7 @@ import React from 'react'
 // import Internalbanner from "../../Components/Banners/Internalbanner";
 import AntiRagbanner from '../../Components/Banners/AntiRagbanner';
 import Student_side from "../../Components/Sidebar/Student_side";
-import "./Att.css";
+import "../Academics/Att.css";
 import anti1 from "../Student_zone/Anti-ragg1.pdf"
 import anti2 from "../Student_zone/Anti-Ragging2.pdf"
 import anti3 from "../Student_zone/Anti-Ragging3.pdf"

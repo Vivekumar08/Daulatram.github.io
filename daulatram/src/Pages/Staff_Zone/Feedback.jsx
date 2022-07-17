@@ -79,17 +79,20 @@ const Feedback = () => {
     <div className=" flex flex-col">
       <div
         className="Banner"
-        style={{ backgroundImage: "url(/images/img1.jpg)" }}
-      >
-        <span className="flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-        Feedback{" "}
-        </span>
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      ><div className="name">
+            <div className="flex flex-row justify-center">
+              <p className="  text-[#fff] text-6xl  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+                Feedback{" "}
+              </p>
+            </div>
         <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
           <Link to={"/"}>
             <span className="ml-5">Home</span>
           </Link>
           <span className="ml-5">Staff Zone</span>
         </div>
+      </div>
       </div>
       <div className="flex flex-row">
         <div className="w-[350px]">

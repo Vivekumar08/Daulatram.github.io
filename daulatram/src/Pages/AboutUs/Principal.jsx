@@ -1,72 +1,305 @@
-import React from 'react'
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Princi_banner from '../../Components/Banners/Princi_banner'
-import founder from "../../Dummy_data/ImgPages/About/founder.png";
-import princi1 from "../../Dummy_data/ImgPages/About/princi1.png";
-import princi2 from "../../Dummy_data/ImgPages/About/princi2.png";
-
 
 const Principal = () => {
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [para, setPara] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("http://localhost:5000/Principal_About");
+    const dat = await response.json();
+    console.log(dat);
+    {
+      dat ? dat.map((elem) => setData1(elem)) : setData1(dat);
+    }
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(
+        `http://localhost:5000/delete_Principal_About_data/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const handleSubmit = async (files) => {
+    try {
+      if (files) {
+        console.log(files);
+        setErrMsg("");
+        await axios.post(
+          `http://localhost:5000/Principal_About_add`,
+          { file: files },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+  const handleSubmit_data = async (id) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`http://localhost:5000/Principal_About_add_data/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setPara("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
-    <>
     <div className=" flex flex-col">
-        <div className="">
-          <Princi_banner />
+      <div className="">
+        <Princi_banner />
+      </div>
+      <div className="flex flex-row">
+        <div className="w-[350px]">
+          <Sidebar />
         </div>
-        <div className="flex flex-row">
-          <div className="w-[350px]">
-            <Sidebar />
-          </div>
-          <div className="w-[1100px]">
-            <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-                    Principal's Message
-                    </h2>
 
-                    <figure className="flex flex-col p-4">
-              <img
-                src={princi1}
-                alt="princi"
-                className="rounded-3xl border-black border-2 h-[250px] w-[300px] md:h-[300px] md:w-[380px] ml-2 md:ml-80 mr-10 mt-10 mb-4 "
-                width={250}
-              />
-
-              <span className=" card-description leading-14 font- medium text-justify text-base md:text-lg ">
-              Daulat Ram College, a Star college, is one of the oldest and largest women colleges of the city imparting holistic and quality education in the field of Science, Humanities and Commerce. The college is located in the north campus of University of Delhi. The college is known for its
-progressive staff and academic vigour which has produced alumni that have done
-exceedingly well in all walks of life. The intake capacity for undergraduate programs is approx. 1200 students in all streams combined together. The college has a fully air conditioned hostel with first year intake of approx. 70 students. It is a home away from home with 24X7 internet and computing facility. It is a great pleasure as Principal to welcome you all to the beginning of your lifelong association with this College. You are joining us at a time when higher education is undergoing rapid and dramatic transformation. We live in an era when knowledge is growing in importance in addressing the world’s most pressing problems. We at Daulat Ram College aspire to empower all young women to succeed in their world by offering a wide variety of challenging, enjoyable and successful curricular, co-curricular and extra-curricular opportunities which is carried out through different clubs, societies, associations and student Union. In addition we set high expectations for our students with regard to their academic performance.
-
-              </span>
-            </figure>
-            <figure className="flex p-4">
-              <span className="card-description leading-14 font- medium text-justify text-base md:text-lg ">
-              The Program like Miss DRC talent hunt, Manjari, hostel night, creative writing in college magazine “Pramila”, sports meet etc. are some of the platforms where students can participate and showcase their talent. We have been organizing self-defence training camps and Yoga training camps for physical and mental well-being of students. This has been made possible through NSS, NCC, WDC and Sports departments of the college. The Equal Opportunity Cell looks after the academic and extracurricular activities of the differently abled students. Students are given the opportunity to make campus clean and green through various initiatives taken by Eco club and NSS such as tree plantations and Swachchata Abhiyan. The other initiatives under which students can participate and contribute are converting garden waste to manure, Paper recycling etc. The college houses several summer programs such as in-house skill development programs, life skill programs and exchange programs. They also have an opportunity to undertake research and convert their idea into reality through innovation projects and star innovation activities. The entire campus is Wi-Fi enabled. The Placement cell of college is very active where students are exposed to various career opportunities and can opt for various openings / internships in industry.
-              </span>
-              {/* <img
-                src={princi2}
-                alt="princi2"
-                className=" rounded-3xl h-[250px] border-black border-2 ml-10 mr-8 mt-16"
-              /> */}
-            </figure>
-            <div className="p-3 flex  m-2">
-              <span className="card-description leading-14 font- medium text-justify text-base md:text-lg ">
-              In addition, students are encouraged to take advantage of other resources available in the college such as their teachers, the well-equipped library, the science laboratories & their museum, computer labs, state of art Gymnasium, amphitheatre etc. Our commitment is to provide a safe, positive, intellectual learning environment that will empower students to become creative problem solvers, thinkers and inspired learners. We want you to thrive and succeed here: academically, socially and personally. I wish you all the best for an exciting and rewarding, challenging and stimulating three years on this campus.
-
-
-              </span>
-            </div>
-            <div className="p-3 flex  m-2">
-            <span className="card-description leading-14 font- medium text-justify text-base md:text-lg "> <b>- Prof. Savita Roy</b> 
-</span>
-            
-            </div>
-            
-           
-          </div>
+        <div className="w-[1100px]">
+          <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+            Principal's Message
+          </h2>
+          <figure className="flex flex-col p-4 ">
+            {data1 &&
+              data1.img_data.file_path &&
+              data1.img_data.file_path.map((elem) => {
+                var path2 = elem.file_path1.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                // console.log(path);
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4">
+                      <img
+                        src={path}
+                        style={{
+                          width: "300px",
+                          height: "250px",
+                        }}
+                        alt="founder"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-80"
+                      />
+                      {auth && (
+                        <>
+                          <div className="flex  ml-auto">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer   hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "link")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+            {data1 &&
+              data1.img_data.para &&
+              data1.img_data.para.map((elem) => {
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4 ">
+                      <span className="card-description leading-14 font-medium text-justify text-base md:text-lg  ">
+                        {elem.para1}
+                      </span>
+                      {auth && (
+                        <>
+                          <div className="flex  w-full">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-auto  hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "para")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+          </figure>
+          {auth && data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm w-full  full ml-auto mr-auto mb-5"
+              >
+                <div className="mb-3">
+                  <textarea
+                    name="para"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setPara(e.target.value)}
+                    value={para}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Paragraph Here"
+                  ></textarea>
+                </div>
+                <div class="md:w-2/3 ">
+                  <button
+                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={() => handleSubmit_data(data1._id)}
+                  >
+                    Add Para
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+          {auth && !data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div class="md:flex flex-col md:items-center h-full">
+                  <div className="upload-section flex h-full mb-[10px] w-full">
+                    <Dropzone
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder("over")}
+                      onDragLeave={() => updateBorder("leave")}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div
+                          {...getRootProps({
+                            className:
+                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                          })}
+                          ref={dropRef}
+                        >
+                          <input {...getInputProps()} />
+                          <p>
+                            Drag and drop a file OR click here to select a file
+                          </p>
+                          {file && (
+                            <div>
+                              <strong>Selected file:</strong> {file.name}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                    {previewSrc ? (
+                      isPreviewAvailable ? (
+                        <div className="image-preview ml-[5%] w-full">
+                          <img
+                            className="preview-image w-full h-full block mb-[10px]"
+                            src={previewSrc}
+                            alt="Preview"
+                          />
+                        </div>
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>No preview available for this file</p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>Image preview will be shown here after selection</p>
+                      </div>
+                    )}
+                  </div>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={() => handleSubmit(file)}
+                    >
+                      Add Image
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
+    </div>
+  );
+};
 
-    </>
-  )
-}
-
-export default Principal
+export default Principal;
