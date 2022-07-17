@@ -17,7 +17,7 @@ const Eresources = () => {
         </div>
         <div className="w-[1100px]">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            E-Resources
+            <span className="lowercase">e</span> -Resources
           </h2>
 
           <div className=" md:ml-16 card-description leading-14 font-medium text-justify text-base md:text-2xl">
@@ -33,7 +33,7 @@ const Eresources = () => {
             </li>
 
             <li className="res">
-              <a href="https://epgp.inflibnet.ac.in/">E-Pathshala</a>
+              <a href="https://epgp.inflibnet.ac.in/">e-Pathshala</a>
             </li>
           </div>
         </div>
