@@ -1,0 +1,16 @@
+* { padding: 0; margin: 0; box-sizing: border-box; }
+body { overflow: hidden; height: 100%; }
+
+.slider {
+    position: absolute;
+    list-style-type: none;
+    text-align: center;
+    animation: slider linear infinite;
+}
+
+.slider li { line-height: 50px; width: 100vw; } 
+
+@keyframes slider {
+    0%   { transform: translateY(100vh) }
+    100% { transform: translateY(-100%) }
+}

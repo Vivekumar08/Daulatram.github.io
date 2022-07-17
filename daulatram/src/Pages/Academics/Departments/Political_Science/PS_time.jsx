@@ -1,14 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import PolScibanner from "../Political_Science/PolScibanner.jsx";
+import Political_Science from "../../../../Components/DepartSIde/Political_Science";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import Botanybanner from "../Botany/Botanybanner.jsx";
-import Botany from "../../../../Components/DepartSIde/Botany.jsx";
 
-const Awards = () => {
+
+const PS_time = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -22,7 +23,7 @@ const Awards = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Bot_Awards");
+    const response = await fetch("http://localhost:5000/PS_Time");
     setData1(await response.json());
   };
 
@@ -47,7 +48,7 @@ const Awards = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Bot_Awards/${id}`,
+      `http://localhost:5000/delete_PS_Time/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +73,7 @@ const Awards = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Bot_Awards_add`, formData, {
+        await axios.post(`http://localhost:5000/PS_Time_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -95,16 +96,16 @@ const Awards = () => {
 
   return (
     <div className=" flex flex-col">
-      <Botanybanner />
+      <PolScibanner />
 
       <div className="flex flex-row">
         <div className="flex  flex-col mt-12 ml-2 ">
-          <Botany />
+          <Political_Science />
         </div>
 
         <div className="w-full mr-auto ml-auto">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Awards
+            Time Table
           </h2>
           <div class="flex justify-evenly w-full mt-5 mb-5">
             {data1 &&
@@ -247,4 +248,4 @@ const Awards = () => {
   );
 };
 
-export default Awards;
+export default PS_time;
