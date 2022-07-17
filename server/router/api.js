@@ -102,6 +102,12 @@ const Physics_Association = require("../models/Academics/Departments/Physics/Phy
 const PS_Association = require("../models/Academics/Departments/Political_Science/PS_Association_Schema")
 const Sanskrit_Association = require("../models/Academics/Departments/Sanskrit/Sanskrit_Association_Schema")
 const Physics_Newsletter = require("../models/Academics/Departments/Physics/Physics_Newsletter_Schema")
+const PE_Time = require("../models/Academics/Departments/Physical_Education/PE_Time_Schema")
+const Physics_Time = require("../models/Academics/Departments/Physics/Physics_Time_Schema")
+const Psychology_Time = require("../models/Academics/Departments/Psychology/Psychology_Time_Schema")
+const Sanskrit_Time = require("../models/Academics/Departments/Sanskrit/Sanskrit_Time_Schema")
+const Zoology_Time = require("../models/Academics/Departments/Zoology/Zoology_Time_Schema")
+const PS_Time = require("../models/Academics/Departments/Political_Science/PS_Time_Schema")
 
 
 
@@ -1366,6 +1372,246 @@ router.post(
             await file.save();
             res.send('file uploaded successfully.');
         } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Physical_Education Time Table
+
+
+router.get('/PE_Time', async(req, res, ) => {
+    const details = await PE_Time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_PE_Time/:id', async(req, res) => {
+    const delete_user = await PE_Time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/PE_Time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title, link, path, mimetype)
+            const file = new PE_Time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Physics Time Table
+
+
+router.get('/Physics_Time', async(req, res, ) => {
+    const details = await Physics_Time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Physics_Time/:id', async(req, res) => {
+    const delete_user = await Physics_Time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Physics_Time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title, link, path, mimetype)
+            const file = new Physics_Time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Psychology Time Table
+
+
+router.get('/Psychology_Time', async(req, res, ) => {
+    const details = await Psychology_Time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Psychology_Time/:id', async(req, res) => {
+    const delete_user = await Psychology_Time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Psychology_Time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title, link, path, mimetype)
+            const file = new Psychology_Time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Sanskrit Time Table
+
+
+router.get('/Sanskrit_Time', async(req, res, ) => {
+    const details = await Sanskrit_Time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Sanskrit_Time/:id', async(req, res) => {
+    const delete_user = await Sanskrit_Time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Sanskrit_Time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title, link, path, mimetype)
+            const file = new Sanskrit_Time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Zoology Time Table
+
+
+router.get('/Zoology_Time', async(req, res, ) => {
+    const details = await Zoology_Time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Zoology_Time/:id', async(req, res) => {
+    const delete_user = await Zoology_Time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Zoology_Time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title, link, path, mimetype)
+            const file = new Zoology_Time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// PS Time Table
+
+
+router.get('/PS_Time', async(req, res, ) => {
+    const details = await PS_Time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_PS_Time/:id', async(req, res) => {
+    const delete_user = await PS_Time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/PS_Time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title, link, path, mimetype)
+            const file = new PS_Time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
             res.status(400).send('Error while uploading file. Try again later.');
         }
     },
