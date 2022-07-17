@@ -248,6 +248,7 @@ import Zoo_association from "./Pages/Academics/Departments/Zoology/Zoo_associati
 import Zoo_labstaff from "./Pages/Academics/Departments/Zoology/Zoo_labstaff";
 import Zoo_awards from "./Pages/Academics/Departments/Zoology/Zoo_awards";
 import Zoo_time from "./Pages/Academics/Departments/Zoology/Zoo_time";
+import Gallery_about from "./Pages/AboutUs/Gallery_about";
 
 function App() {
   return (
@@ -307,6 +308,14 @@ function App() {
               </>
             }
             path="/about/mission"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Gallery_about />
+              </>
+            }
+            path="/about/Gallery"
           ></Route>{" "}
           <Route
             element={
