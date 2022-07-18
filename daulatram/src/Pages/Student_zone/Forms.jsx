@@ -8,7 +8,6 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 import Formsbanner from "../../Components/Banners/Formsbanner";
 import Student_side from "../../Components/Sidebar/Student_side";
-import { queryByTitle } from "@testing-library/react";
 
 const forms = () => {
   const [data1, setData1] = useState();

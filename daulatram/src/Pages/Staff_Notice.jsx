@@ -16,7 +16,7 @@ const Student_Notice = () => {
         <div className="w-[280px] mt-7 ">
           <Notice_side />
         </div>
-       
+        <div className="ml-3 mb-5">
           <div className="w-[1100px]">
             <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Staff Notice
@@ -39,7 +39,7 @@ const Student_Notice = () => {
             })}
           </div>
         </div>
-      
+      </div>
     </>
   );
 };
