@@ -1,18 +1,20 @@
-import React from 'react'
+import React from "react";
 import "./Banner.css";
 import { Link } from "react-router-dom";
 
 const Third_banner = () => {
   return (
-<>
-<div
+    <>
+      <div
         className="Banner"
         style={{ backgroundImage: "url(/images/img1.jpg)" }}
       >
         <div className="name">
-          <span className="  flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-            Third Year {" "}
-          </span>
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Third Year{" "}
+            </p>
+          </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>
@@ -22,8 +24,8 @@ const Third_banner = () => {
           </div>
         </div>
       </div>
+    </>
+  );
+};
 
-</>  )
-}
-
-export default Third_banner
+export default Third_banner;

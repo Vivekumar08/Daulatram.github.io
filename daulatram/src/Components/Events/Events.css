@@ -8,10 +8,8 @@
 
 .small_box {
     position: relative;
-    /* width: 100%; */
     height: fit-content;
     margin: 10px;
-    /* padding: 15px; */
     margin-left: 20px;
     opacity: 1;
     box-shadow: 10px;
@@ -25,11 +23,13 @@
 .read_btn {
     position: absolute;
     color: white;
-    background-color: darkred;
+    background-color: #D21F3C;
     padding: 10px;
     height: fit-content;
     width: 80%;
     z-index: 10;
+    font-weight: 600;
+    border: 2px solid transparent;
     border-radius: 10px;
     margin-top: -100px;
     margin-left: 30px;
@@ -56,7 +56,7 @@
     width: 100%;
     height: auto;
     border-radius: 12px;
-    opacity: 0.6;
+    opacity: 0.8;
 }
 
 .event_img:hover {
@@ -69,19 +69,20 @@
 }
 
 .small_box:hover {
-    border: 4px solid darkred;
+    border: 4px solid #D21F3C;
 
 }
 
 .small_box:hover .read_btn {
     opacity: 1;
-    transition: all .3s ease;
-
+    /* transition: all .3s ease; */
+    
 }
 
 .read_btn:hover {
     border: 2px solid black;
-    transition: all .3s ease;
+    background-color: darkred;
+    /* transition: all .3s ease; */
     box-shadow: 50px;
 
 }

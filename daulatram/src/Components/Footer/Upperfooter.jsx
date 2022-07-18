@@ -110,6 +110,15 @@ function Upperfooter() {
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <Link
+                      to="/Archives"
+                      className="hover:text-white hover:font-semibold  text-[#d3d3d3] hover:px-2"
+                    >
+                      Archives
+                    </Link>
+                  </li>
+                  <li className="pb-2">
+                    <span className="mr-3">-</span>
+                    <Link
                       to="/Sitemap"
                       className="hover:text-white hover:font-semibold  text-[#d3d3d3] hover:px-2"
                     >
