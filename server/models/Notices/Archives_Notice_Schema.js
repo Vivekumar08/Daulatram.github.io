@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Student_Notice_Schema = mongoose.Schema(
+const Archives_Notice_Schema = mongoose.Schema(
     {
         title: {
             type: String,
@@ -31,6 +31,6 @@ const Student_Notice_Schema = mongoose.Schema(
     }
 );
 
-const Student_Notice = mongoose.model('Student_Notice', Student_Notice_Schema);
+const Archives_Notice = mongoose.model('Archives_Notice', Archives_Notice_Schema);
 
-module.exports = Student_Notice;
+module.exports = Archives_Notice;

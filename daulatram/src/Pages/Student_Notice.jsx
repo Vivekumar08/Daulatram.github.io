@@ -4,6 +4,12 @@ import axios from "axios";
 import Stu_Noticebanner from "../Components/Banners/Stu_Noticebanner";
 import Notice_side from "../Components/Sidebar/Notice_side";
 import Dropzone from "react-dropzone";
+import {
+  faArchive,
+  faBullseye,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Student_Notice = () => {
   var mL = [
@@ -38,8 +44,12 @@ const Student_Notice = () => {
   const userRef = useRef();
   const errRef = useRef();
   const dropRef = useRef();
+  const [date_exp, setDate_exp] = useState("");
+  const [month_exp, setMonth_exp] = useState("");
+  const [year_exp, setYear_exp] = useState("");
   const [filter, setFilter] = useState("");
   const [check, setCheck] = useState(false);
+  const [new_opt, setNew_opt] = useState(false);
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [previewSrc, setPreviewSrc] = useState("");
@@ -110,30 +120,87 @@ const Student_Notice = () => {
       setErrMsg("Unable to Delete");
     }
   };
+  const del_archive = async (id) => {
+    console.log(id);
+    const response = await fetch(
+      `http://localhost:5000/delete_Student_archive_notice/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+
+  const arch = async (
+    _id,
+    title,
+    file_mimetype,
+    file_path,
+    new_,
+    date_exp,
+    date
+  ) => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/Archive_notice_add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            file_mimetype,
+            file_path,
+            new_,
+            date_exp,
+            date,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (!data && response.status === 400) {
+        setErrMsg("No Server Response");
+      } else if (response.status === 400) {
+        setErrMsg("Fill Complete Details");
+      } else {
+        del_archive(_id)
+        setAuth(true);
+        fetchdata();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if ( caption.trim() !== "") {
+      if (caption.trim() !== "") {
         // if (file) {
+        const date_e = `${date_exp}/${month_exp}/${year_exp}`;
         const formData = new FormData();
         formData.append("file", file);
         formData.append("title", caption);
+        formData.append("date", date);
+        formData.append("date_exp", date_e);
+        formData.append("new_", new_opt);
 
         setErrMsg("");
-        await axios.post(
-          `http://localhost:5000/Student_notice_add`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axios.post(`http://localhost:5000/Student_notice_add`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         setCaption("");
         setFile(null);
-        setIsPreviewAvailable(false)
-        setPreviewSrc("")
+        setIsPreviewAvailable(false);
+        setPreviewSrc("");
         setAuth(true);
         fetchdata();
       } else {
@@ -148,30 +215,37 @@ const Student_Notice = () => {
   };
   const handleSubmit1 = async (e) => {
     e.preventDefault();
-    console.log( caption, file);
-    const response = await fetch(
-      "http://localhost:5000/Student_notice_add_link",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          title: caption,
-          file: file,
-        }),
+    try {
+      const date_e = `${date_exp}/${month_exp}/${year_exp}`;
+      const response = await fetch(
+        "http://localhost:5000/Student_notice_add_link",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: caption,
+            file: file,
+            date: date,
+            date_exp: date_e,
+            new_: new_opt,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (!data && response.status === 400) {
+        setErrMsg("No Server Response");
+      } else if (response.status === 400) {
+        setErrMsg("Fill Complete Details");
+      } else {
+        setCaption("");
+        setFile(null);
+        setAuth(true);
+        fetchdata();
       }
-    );
-    const data = await response.json();
-    if (!data && response.status === 400) {
-      setErrMsg("No Server Response");
-    } else if (response.status === 400) {
-      setErrMsg("Fill Complete Details");
-    } else {
-      setCaption("");
-      setFile(null)
-      setAuth(true);
-      fetchdata();
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -182,48 +256,106 @@ const Student_Notice = () => {
         <div className="w-[280px] mt-7 ">
           <Notice_side />
         </div>
-        <div className="w-[1100px]">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-            Student Notice
-          </h2>
-          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
+        <div className="ml-3 mb-5">
+          <div className="w-[1100px]">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+              Student Notice
+            </h2>
             {data1 &&
               data1.map((curElem) => {
-                const { _id, title, description, img_data } = curElem;
+                const {
+                  _id,
+                  title,
+                  file_mimetype,
+                  file_path,
+                  new_,
+                  date_exp,
+                  date,
+                } = curElem;
                 console.log(curElem);
+                const date_split = date.split("/");
+                var path2 = file_path.replace(/\\/g, "/");
+                var path = path2.slice(19);
                 return (
                   <>
-                    {img_data &&
-                      img_data.file_path.map((elem) => {
-                        var path2 = elem.file_path1.replace(/\\/g, "/");
-                        var path = path2.slice(19);
-                        return (
+                    <div
+                      className="flex relative w-full items-center border rounded-xl bg-[#daa520] "
+                      key={_id}
+                    >
+                      <div className="  p-2 m-3 md:m-4 w-12 h-13 md:w-16 md:h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25 ">
+                        <span className=" text-xs md:text-base tracking-wide  font-bold border-b border-white font-sans">
+                          {date_split[0]}
+                        </span>
+                        <span className="text-xs md:text-base tracking-wide font-bold uppercase block font-sans">
+                          {mS[date_split[1] - 1]}
+                        </span>
+                      </div>
+                      <div>
+                        {file_mimetype !== "text/link" ? (
                           <>
-                            <div
-                              className="flex relative w-full items-center border rounded-xl bg-[#daa520] "
-                              key={_id}
+                            <a
+                              href={path}
+                              target="_blank"
+                              rel="noopener noreferrer"
                             >
-                              <div class="  p-2 m-3 md:m-4 w-12 h-13 md:w-16 md:h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25 ">
-                                <span class=" text-xs md:text-base tracking-wide  font-bold border-b border-white font-sans">
-                                  {day}
-                                </span>
-                                <span class="text-xs md:text-base tracking-wide font-bold uppercase block font-sans">
-                                  {mon}
-                                </span>
-                              </div>
-                              <a
-                                href={path}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <span className="text-base md:text-xl">
-                                  {info}
-                                </span>
-                              </a>
-                            </div>
+                              <span className="text-base md:text-xl">
+                                {title}
+                                {new_ && (
+                                  <sup className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
+                                    new
+                                  </sup>
+                                )}
+                              </span>
+                            </a>
                           </>
-                        );
-                      })}
+                        ) : (
+                          <>
+                            <a
+                              href={file_path}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <span className="text-base md:text-xl">
+                                {title}
+                                {new_ && (
+                                  <sup className="font-extrabold ml-1 text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
+                                    new
+                                  </sup>
+                                )}
+                              </span>
+                            </a>
+                          </>
+                        )}
+                      </div>
+                      {auth && (
+                        <>
+                          <div className="ml-auto items-center">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="xl"
+                              className=" cursor-pointer  mr-5 hover:text-red-700"
+                              onClick={() => del(_id)}
+                            />
+                            <FontAwesomeIcon
+                              icon={faArchive}
+                              size="xl"
+                              className=" cursor-pointer  mr-5 hover:text-green-600"
+                              onClick={() =>
+                                arch(
+                                  _id,
+                                  title,
+                                  file_mimetype,
+                                  file_path,
+                                  new_,
+                                  date_exp,
+                                  date
+                                )
+                              }
+                            />
+                          </div>
+                        </>
+                      )}
+                    </div>
                   </>
                 );
               })}
@@ -270,22 +402,72 @@ const Student_Notice = () => {
                     // placeholder={}
                     disabled
                   />
-                  {/* {date} */}
                 </div>
-                <div class="flex flex-col h-full ">
+                <div className="flex flex-col h-full ">
                   <div>
                     <label
                       htmlFor="checked-toggle"
-                      class="inline-flex relative items-center cursor-pointer"
+                      className="inline-flex relative items-center cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        value={new_opt}
+                        id="checked-toggle"
+                        className="sr-only peer"
+                        onChange={() => setNew_opt(!new_opt)}
+                      />
+                      <div className="w-11 h-6  bg-gray-200 rounded-full peer  dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <p className="ml-3">
+                        Toggle to set{" "}
+                        <span className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
+                          new
+                        </span>{" "}
+                        label
+                      </p>
+                    </label>
+                  </div>
+                  {new_opt ? (
+                    <>
+                      <div className="mb-3 flex ">
+                        <input
+                          onChange={(e) => setDate_exp(e.target.value)}
+                          value={date_exp}
+                          ref={userRef}
+                          className="bg-gray-200 appearance-none border-2 mr-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                          placeholder={"DD"}
+                        />
+                        <input
+                          onChange={(e) => setMonth_exp(e.target.value)}
+                          ref={userRef}
+                          value={month_exp}
+                          className="bg-gray-200 appearance-none border-2 mr-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                          placeholder={"MM"}
+                        />
+                        <input
+                          onChange={(e) => setYear_exp(e.target.value)}
+                          ref={userRef}
+                          value={year_exp}
+                          className="bg-gray-200 appearance-none border-2  border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                          placeholder={"YYYY"}
+                        />
+                      </div>
+                    </>
+                  ) : (
+                    ""
+                  )}
+                  <div>
+                    <label
+                      htmlFor="checkedd-togglee"
+                      className="inline-flex relative items-center cursor-pointer"
                     >
                       <input
                         type="checkbox"
                         value={check}
-                        id="checked-toggle"
-                        class="sr-only peer"
+                        id="checkedd-togglee"
+                        className="sr-only peer"
                         onChange={() => setCheck(!check)}
                       />
-                      <div class="w-11 h-6  bg-gray-200 rounded-full peer  dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <div className="w-11 h-6  bg-gray-200 rounded-full peer  dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
                       <p className="ml-3">
                         Toggle to switch between File and Link
                       </p>
@@ -294,10 +476,10 @@ const Student_Notice = () => {
                   {check ? (
                     <>
                       <div className="flex flex-col h-full">
-                        <span class="ml-3  text-md font-medium text-gray-900">
+                        <span className="ml-3  text-md font-medium text-gray-900">
                           File
                         </span>
-                        <div class="md:flex flex-col h-full">
+                        <div className="md:flex flex-col h-full">
                           <div className="upload-section h-[200px] flex  mb-[10px] w-full">
                             <Dropzone
                               onDrop={onDrop}
@@ -349,9 +531,9 @@ const Student_Notice = () => {
                               </div>
                             )}
                           </div>
-                          <div class="md:w-2/3 ">
+                          <div className="md:w-2/3 ">
                             <button
-                              class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                              className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                               type="button"
                               onClick={handleSubmit}
                             >
@@ -365,7 +547,7 @@ const Student_Notice = () => {
                     <>
                       <div className="flex flex-col h-full">
                         {/* <div className=""> */}
-                        <span class="ml-3  text-md font-medium text-gray-900">
+                        <span className="ml-3  text-md font-medium text-gray-900">
                           Link
                         </span>
                         <input
@@ -378,9 +560,9 @@ const Student_Notice = () => {
                           placeholder="link"
                           className=" bg-gray-200 appearance-none border-2 mb-3 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                         />
-                        <div class="md:w-2/3 mt-2 mb-16 ">
+                        <div className="md:w-2/3 mt-2 mb-16 ">
                           <button
-                            class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                            className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                             type="button"
                             onClick={handleSubmit1}
                           >
