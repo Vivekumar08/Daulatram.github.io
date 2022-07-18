@@ -4,28 +4,10 @@ import axios from "axios";
 import Stu_Noticebanner from "../Components/Banners/Stu_Noticebanner";
 import Notice_side from "../Components/Sidebar/Notice_side";
 import Dropzone from "react-dropzone";
-import {
-  faArchive,
-  faBullseye,
-  faTrashCan,
-} from "@fortawesome/free-solid-svg-icons";
+import { faArchive, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Student_Notice = () => {
-  var mL = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-  ];
   var mS = [
     "Jan",
     "Feb",
@@ -47,7 +29,6 @@ const Student_Notice = () => {
   const [date_exp, setDate_exp] = useState("");
   const [month_exp, setMonth_exp] = useState("");
   const [year_exp, setYear_exp] = useState("");
-  const [filter, setFilter] = useState("");
   const [check, setCheck] = useState(false);
   const [new_opt, setNew_opt] = useState(false);
   const [caption, setCaption] = useState("");
@@ -146,30 +127,27 @@ const Student_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch(
-        "http://localhost:5000/Archive_notice_add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title,
-            file_mimetype,
-            file_path,
-            new_,
-            date_exp,
-            date,
-          }),
-        }
-      );
+      const response = await fetch("http://localhost:5000/Archive_notice_add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          file_mimetype,
+          file_path,
+          new_,
+          date_exp,
+          date,
+        }),
+      });
       const data = await response.json();
       if (!data && response.status === 400) {
         setErrMsg("No Server Response");
       } else if (response.status === 400) {
         setErrMsg("Fill Complete Details");
       } else {
-        del_archive(_id)
+        del_archive(_id);
         setAuth(true);
         fetchdata();
       }
@@ -272,8 +250,11 @@ const Student_Notice = () => {
                   date_exp,
                   date,
                 } = curElem;
-                console.log(curElem);
                 const date_split = date.split("/");
+                const cur_date = new Date();
+                const exp_date = new Date(date_exp);
+                const diffTime = Math.abs(exp_date - cur_date);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 var path2 = file_path.replace(/\\/g, "/");
                 var path = path2.slice(19);
                 return (
@@ -300,7 +281,7 @@ const Student_Notice = () => {
                             >
                               <span className="text-base md:text-xl">
                                 {title}
-                                {new_ && (
+                                {diffDays>0 && new_ && (
                                   <sup className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>
@@ -391,7 +372,7 @@ const Student_Notice = () => {
                     disabled
                   />
                   <input
-                    value={`Month: ${mL[current.getMonth()]}`}
+                    value={`Month: ${mS[current.getMonth()]}`}
                     className="bg-gray-200 appearance-none border-2 mr-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                     // placeholder={}
                     disabled
