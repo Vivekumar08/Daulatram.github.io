@@ -1,45 +1,402 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import AuthContext from "../Context/AuthProvider";
+import axios from "axios";
 import Stu_Noticebanner from "../Components/Banners/Stu_Noticebanner";
-import { StudentInfo } from "../Components/Info";
-// import "./Notice.css";
 import Notice_side from "../Components/Sidebar/Notice_side";
-const Student_Notice = () => {
-  const [Studentinfo, setStudentinfo] = useState(StudentInfo);
-  return (
-    <>
-      <div className="">
-        <Stu_Noticebanner />
-      </div>
+import Dropzone from "react-dropzone";
 
+const Student_Notice = () => {
+  var mL = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December",
+  ];
+  var mS = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [filter, setFilter] = useState("");
+  const [check, setCheck] = useState(false);
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const current = new Date();
+  const date = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
+
+  const fetchdata = async () => {
+    const response = await fetch("http://localhost:5000/Student_notice");
+    setData1(await response.json());
+  };
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
+
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(
+      `http://localhost:5000/delete_Student_notice/${id}`,
+      {
+        method: "DELETE",
+      }
+    );
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if ( caption.trim() !== "") {
+        // if (file) {
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("title", caption);
+
+        setErrMsg("");
+        await axios.post(
+          `http://localhost:5000/Student_notice_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setFile(null);
+        setIsPreviewAvailable(false)
+        setPreviewSrc("")
+        setAuth(true);
+        fetchdata();
+      } else {
+        // setErrMsg("Please select a file to add.");
+        setErrMsg("Please enter all the field values.");
+      }
+      // } else {
+      // }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+  const handleSubmit1 = async (e) => {
+    e.preventDefault();
+    console.log( caption, file);
+    const response = await fetch(
+      "http://localhost:5000/Student_notice_add_link",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title: caption,
+          file: file,
+        }),
+      }
+    );
+    const data = await response.json();
+    if (!data && response.status === 400) {
+      setErrMsg("No Server Response");
+    } else if (response.status === 400) {
+      setErrMsg("Fill Complete Details");
+    } else {
+      setCaption("");
+      setFile(null)
+      setAuth(true);
+      fetchdata();
+    }
+  };
+
+  return (
+    <div className=" flex flex-col">
+      <Stu_Noticebanner />
       <div className="flex flex-row">
         <div className="w-[280px] mt-7 ">
           <Notice_side />
         </div>
-        
-          <div className="w-[1100px]">
-            <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              Student Notice
-            </h2>
-            {Studentinfo.map((curElem) => {
-              const { id, info, link, day, mon } = curElem;
-              return (
-                <div className="flex relative w-full items-center border rounded-xl bg-[#daa520] ">
-                  <div class=" p-2 m-3 md:m-4 w-12 h-13 md:w-16 md:h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25 ">
-                    <span class=" text-xs md:text-base tracking-wide  font-bold border-b border-white font-sans">
-                      {day}
-                    </span>
-                    <span class="text-xs md:text-base tracking-wide font-bold uppercase block font-sans">
-                      {mon}
-                    </span>
-                  </div>
-                  <span className="text-base md:text-xl">{info}</span>
-                </div>
-              );
-            })}
+        <div className="w-[1100px]">
+          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+            Student Notice
+          </h2>
+          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
+            {data1 &&
+              data1.map((curElem) => {
+                const { _id, title, description, img_data } = curElem;
+                console.log(curElem);
+                return (
+                  <>
+                    {img_data &&
+                      img_data.file_path.map((elem) => {
+                        var path2 = elem.file_path1.replace(/\\/g, "/");
+                        var path = path2.slice(19);
+                        return (
+                          <>
+                            <div
+                              className="flex relative w-full items-center border rounded-xl bg-[#daa520] "
+                              key={_id}
+                            >
+                              <div class="  p-2 m-3 md:m-4 w-12 h-13 md:w-16 md:h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25 ">
+                                <span class=" text-xs md:text-base tracking-wide  font-bold border-b border-white font-sans">
+                                  {day}
+                                </span>
+                                <span class="text-xs md:text-base tracking-wide font-bold uppercase block font-sans">
+                                  {mon}
+                                </span>
+                              </div>
+                              <a
+                                href={path}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <span className="text-base md:text-xl">
+                                  {info}
+                                </span>
+                              </a>
+                            </div>
+                          </>
+                        );
+                      })}
+                  </>
+                );
+              })}
           </div>
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-full ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Title"
+                  ></textarea>
+                </div>
+                <div className="mb-3 flex ">
+                  <input
+                    value={`Date: ${current.getDate()}`}
+                    className="bg-gray-200 appearance-none border-2 mr-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    disabled
+                  />
+                  <input
+                    value={`Month: ${mL[current.getMonth()]}`}
+                    className="bg-gray-200 appearance-none border-2 mr-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    // placeholder={}
+                    disabled
+                  />
+                  <input
+                    value={`Year: ${current.getFullYear()}`}
+                    className="bg-gray-200 appearance-none border-2  border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    // placeholder={}
+                    disabled
+                  />
+                  {/* {date} */}
+                </div>
+                <div class="flex flex-col h-full ">
+                  <div>
+                    <label
+                      htmlFor="checked-toggle"
+                      class="inline-flex relative items-center cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        value={check}
+                        id="checked-toggle"
+                        class="sr-only peer"
+                        onChange={() => setCheck(!check)}
+                      />
+                      <div class="w-11 h-6  bg-gray-200 rounded-full peer  dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <p className="ml-3">
+                        Toggle to switch between File and Link
+                      </p>
+                    </label>
+                  </div>
+                  {check ? (
+                    <>
+                      <div className="flex flex-col h-full">
+                        <span class="ml-3  text-md font-medium text-gray-900">
+                          File
+                        </span>
+                        <div class="md:flex flex-col h-full">
+                          <div className="upload-section h-[200px] flex  mb-[10px] w-full">
+                            <Dropzone
+                              onDrop={onDrop}
+                              onDragEnter={() => updateBorder("over")}
+                              onDragLeave={() => updateBorder("leave")}
+                            >
+                              {({ getRootProps, getInputProps }) => (
+                                <div
+                                  {...getRootProps({
+                                    className:
+                                      "drop-zone   mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full ",
+                                  })}
+                                  ref={dropRef}
+                                >
+                                  <input {...getInputProps()} />
+                                  <p>
+                                    Drag and drop a file OR click here to select
+                                    a file
+                                  </p>
+                                  {file && (
+                                    <div>
+                                      <strong>Selected file:</strong>{" "}
+                                      {file.name}
+                                    </div>
+                                  )}
+                                </div>
+                              )}
+                            </Dropzone>
+                            {previewSrc ? (
+                              isPreviewAvailable ? (
+                                <div className="image-preview ml-[5%] w-full">
+                                  <img
+                                    className="preview-image w-full  block mb-[10px]"
+                                    src={previewSrc}
+                                    alt="Preview"
+                                  />
+                                </div>
+                              ) : (
+                                <div className="preview-message flex justify-center items-center ml-[5%]">
+                                  <p>No preview available for this file</p>
+                                </div>
+                              )
+                            ) : (
+                              <div className="preview-message flex justify-center items-center ml-[5%]">
+                                <p>
+                                  Image preview will be shown here after
+                                  selection
+                                </p>
+                              </div>
+                            )}
+                          </div>
+                          <div class="md:w-2/3 ">
+                            <button
+                              class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                              type="button"
+                              onClick={handleSubmit}
+                            >
+                              Add
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="flex flex-col h-full">
+                        {/* <div className=""> */}
+                        <span class="ml-3  text-md font-medium text-gray-900">
+                          Link
+                        </span>
+                        <input
+                          type="text"
+                          name="Link"
+                          // id=""
+                          ref={userRef}
+                          onChange={(e) => setFile(e.target.value)}
+                          value={file}
+                          placeholder="link"
+                          className=" bg-gray-200 appearance-none border-2 mb-3 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                        />
+                        <div class="md:w-2/3 mt-2 mb-16 ">
+                          <button
+                            class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                            type="button"
+                            onClick={handleSubmit1}
+                          >
+                            Add
+                          </button>
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </form>
+            </>
+          )}
         </div>
-      
-    </>
+      </div>
+    </div>
   );
 };
 
