@@ -5,8 +5,6 @@ import axios from "axios";
 import Botany from "../../../../Components/DepartSIde/Botany";
 import Botanybanner from "../Botany/Botanybanner.jsx";
 
-import Bot_fac_data from "./Bot_fac_data";
-import Bot_fac_data_sup from "./Bot_fac_data_sup";
 
 const Bot_faculty = () => {
   const [data1, setData1] = useState();
@@ -31,7 +29,6 @@ const Bot_faculty = () => {
   const onDropImg = (files) => {
     const [uploadedFile] = files;
     setImg(uploadedFile);
-    // setData(prev=>({...prev,image:uploadedFile}))
 
     const fileReader = new FileReader();
     fileReader.onload = () => {
@@ -72,12 +69,10 @@ const Bot_faculty = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setFile({imag,pdf} );
-    // console.log(data);
     try {
       if (link.trim() !== "" && caption.trim() !== "") {
         if (imag) {
-          // setErrMsg("");
+          setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
             `http://localhost:5000/bot_Lab_faculty_file_upload`,
@@ -91,7 +86,6 @@ const Bot_faculty = () => {
           );
           setCaption("");
           setLink("");
-          setFile("");
           setAuth(true);
           fetchdata();
         } else {

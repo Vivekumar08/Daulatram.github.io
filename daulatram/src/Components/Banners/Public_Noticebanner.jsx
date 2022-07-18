@@ -1,18 +1,20 @@
-import React from 'react'
+import React from "react";
 import "./Banner.css";
 import { Link } from "react-router-dom";
 
 const Public_Noticebanner = () => {
   return (
-<>
-<div
+    <>
+      <div
         className="Banner"
-        style={{ backgroundImage: "url(/images/img1.jpg)" }}
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
       >
         <div className="name">
-          <span className="  flex flex-row uppercase text-[#000080] text-6xl justify-center pt-14">
-            Public's Notice{" "}
-          </span>
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl   mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Public's Notice{" "}
+            </p>
+          </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>
@@ -21,8 +23,8 @@ const Public_Noticebanner = () => {
           </div>
         </div>
       </div>
+    </>
+  );
+};
 
-</>  )
-}
-
-export default Public_Noticebanner
+export default Public_Noticebanner;
