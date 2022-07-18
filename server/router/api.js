@@ -102,6 +102,7 @@ const Physics_Association = require("../models/Academics/Departments/Physics/Phy
 const PS_Association = require("../models/Academics/Departments/Political_Science/PS_Association_Schema")
 const Sanskrit_Association = require("../models/Academics/Departments/Sanskrit/Sanskrit_Association_Schema")
 const Physics_Newsletter = require("../models/Academics/Departments/Physics/Physics_Newsletter_Schema")
+const Math_Publication = require("../models/Academics/Departments/Mathematics/Math_publication_schema")
 
 
 
@@ -1262,6 +1263,45 @@ router.post(
         }
     }
 );
+
+//maths publications
+router.get('/Math_Publication', async (req, res,) => {
+    const details = await Math_Publication.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Math_Publication/:id', async (req, res) => {
+    const delete_user = await Math_Publication.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Math_Publication_add',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Math_Publication({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
 // Botany Program Offered
 
 router.get('/Bot_ProgramOffered', async (req, res,) => {
