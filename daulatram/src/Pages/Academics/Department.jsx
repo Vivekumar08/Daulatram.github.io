@@ -30,17 +30,17 @@ function Department() {
 
               {dept.map((names) => (
                 <>
-                  <div className="scene ml-20">
+                  <div className="scene ml-10">
                     {names.names.map((name) => (
                       <>
                         <Link to={name.link}>
                           <div className="flip">
-                            <div className="front text-2xl">
+                            <div className="front text-xl">
                               <h1 className="text-shadow mt-20 ml-6">
                                 {name.name}
                               </h1>
                             </div>
-                            <div className="back text-2xl">
+                            <div className="back text-xl">
                               <h2 className="mt-14 ml-6">{name.name}</h2>
                             </div>
                           </div>

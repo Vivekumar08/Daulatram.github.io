@@ -103,7 +103,7 @@ const Philo_time = () => {
 
         <div className="w-full mr-auto ml-auto">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Program Offered
+            Time Table
           </h2>
           <div class="flex justify-evenly w-full mt-5 mb-5">
             {data1 &&

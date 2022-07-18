@@ -46,7 +46,8 @@
   display: inline-block;
   margin-right: 3em;
   margin-bottom: 1em;
-  width: 290px;
+  width: 200px;
+margin-left: 10px;
 }
 .flip > .front,
 .flip > .back {
