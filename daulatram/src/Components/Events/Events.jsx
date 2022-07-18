@@ -10,7 +10,6 @@ const Events = () => {
       </div>
 
       <div className="main_div1">
-        <button><div></div></button>
         <div className="small_box">
           <img
             className="event_img z=-10"

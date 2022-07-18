@@ -158,7 +158,7 @@
       -webkit-animation: scroll 40s linear infinite;
       animation: scroll 40s linear infinite;
       display: flex;
-      width: calc(600px * 14);
+      width: calc(600px * 35);
   }
   
   .sliderr .slidee {
