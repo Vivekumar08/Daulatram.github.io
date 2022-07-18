@@ -3424,6 +3424,17 @@ router.post('/Archive_notice_add', async (req, res) => {
         console.log(err)
     }
 })
+router.delete('/delete_archives_notice/:id', async (req, res) => {
+    const delete_user = await Public_Notice.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === 'text/link') {
+        console.log(delete_user.file_mimetype)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        console.log(delete_user.file_mimetype)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    }
+})
 // Public Notices
 
 router.get('/Public_notice', async (req, res,) => {

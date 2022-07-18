@@ -251,6 +251,7 @@ import Zoo_awards from "./Pages/Academics/Departments/Zoology/Zoo_awards";
 import Zoo_time from "./Pages/Academics/Departments/Zoology/Zoo_time";
 import Gallery_about from "./Pages/AboutUs/Gallery_about";
 import Philo_time from "./Pages/Academics/Departments/Philosophy/Philo_time";
+import Archives_Notice from "./Pages/Archives_Notice";
 
 function App() {
   return (
@@ -883,6 +884,14 @@ function App() {
               </>
             }
             path="/Public_Notice"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Archives_Notice />
+              </>
+            }
+            path="/Archives"
           ></Route>{" "}
           <Route
             element={
@@ -1880,7 +1889,7 @@ function App() {
             path="*"
           ></Route>{" "}
         </Routes>{" "}
-        <Upperfooter /> {/* <Public_Notice/> */}{" "}
+        <Upperfooter />
       </Router>{" "}
     </>
   );
