@@ -34,6 +34,7 @@ const Founder = require('../models/About_Us/Founder_Schema')
 const Chairperson = require('../models/About_Us/Chairperson_Schema')
 const Mission = require('../models/About_Us/Mission_Schema')
 const Principal = require('../models/About_Us/Principal_Schema')
+const Gallery_About = require('../models/About_Us/Gallery_About_Schema')
 const VicePrincipal = require('../models/About_Us/VicePrincipal_Schema')
 const Student_forms = require('../models/StudentZone/StudentZone_foms_Schema')
 const Student_Notice = require('../models/Notices/Student_Notice_Schema')
@@ -3313,6 +3314,42 @@ router.post(
             const file = new Ragging({
                 title,
                 link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// About Us Gallery
+router.get('/About_Gallery', async (req, res,) => {
+    const details = await Gallery_About.find()
+    res.status(200).json(details)
+});
+
+router.delete('/delete_Gallery_About/:id', async (req, res) => {
+    const delete_user = await Gallery_About.findOneAndDelete({ _id: req.params.id });
+        console.log(delete_user.file_path)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    
+})
+
+router.post(
+    '/Gallery_About_add',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const file = new Gallery_About({
                 file_path: path,
                 file_mimetype: mimetype
             });
