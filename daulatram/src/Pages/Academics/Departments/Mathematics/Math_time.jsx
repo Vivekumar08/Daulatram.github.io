@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import Philosophybanner from "../Philosophy/Philosophybanner.jsx";
-import Philosophy from "../../../../Components/DepartSIde/Philosophy";
+import Mathbanner from "../Mathematics/Mathbanner.jsx";
+import Mathemtics from "../../../../Components/DepartSIde/Mathematics.jsx";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
@@ -8,7 +8,7 @@ import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 
-const Philo_achieve = () => {
+const Math_time = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -22,7 +22,7 @@ const Philo_achieve = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Philo_achieve");
+    const response = await fetch("http://localhost:5000/Math_time");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const Philo_achieve = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Philo_achieve/${id}`,
+      `http://localhost:5000/delete_Math_time/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +72,7 @@ const Philo_achieve = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Philo_achieve_add`, formData, {
+        await axios.post(`http://localhost:5000/Math_time_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -80,8 +80,6 @@ const Philo_achieve = () => {
         setCaption("");
         setLink("");
         setFile("");
-        setIsPreviewAvailable(false)
-        setPreviewSrc("")
         setAuth(true);
         fetchdata();
       } else {
@@ -97,16 +95,15 @@ const Philo_achieve = () => {
 
   return (
     <div className=" flex flex-col">
-      <Philosophybanner />
-
+<Mathbanner/>
       <div className="flex flex-row">
         <div className="flex  flex-col mt-12 ml-2 ">
-          <Philosophy />
+<Mathemtics/>
         </div>
 
         <div className="w-full mr-auto ml-auto">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Achievements
+            Program Offered
           </h2>
           <div class="flex justify-evenly w-full mt-5 mb-5">
             {data1 &&
@@ -249,4 +246,4 @@ const Philo_achieve = () => {
   );
 };
 
-export default Philo_achieve;
+export default Math_times;

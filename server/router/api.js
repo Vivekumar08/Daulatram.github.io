@@ -113,7 +113,14 @@ const Sanskrit_Time = require("../models/Academics/Departments/Sanskrit/Sanskrit
 const Zoology_Time = require("../models/Academics/Departments/Zoology/Zoology_Time_Schema")
 const PS_Time = require("../models/Academics/Departments/Political_Science/PS_Time_Schema")
 const Bot_Publications = require("../models/Academics/Departments/Botany/Pubs_Schema")
-
+const Philo_events = require("../models/Academics/Departments/Philosophy/Philo_events_schema")
+const Philo_achieve = require("../models/Academics/Departments/Philosophy/Philo_achieve_schema")
+const Philo_Publication = require("../models/Academics/Departments/Philosophy/Philo_publication_schema")
+const Hist_time = require("../models/Academics/Departments/History/Hist_time_schema")
+const Math_time = require("../models/Academics/Departments/Mathematics/Math_time_schema")
+const Music_time = require("../models/Academics/Departments/Music/Music_time_schema")
+const NHE_time = require("../models/Academics/Departments/NHE/NHE_time_schema")
+const Philo_time = require("../models/Academics/Departments/Philosophy/Philo_time_schema")
 
 
 
@@ -1077,6 +1084,286 @@ router.post(
     }
 );
 
+//philo events
+
+router.get('/Philo_events', async(req, res, ) => {
+    const details = await Philo_events.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Philo_events/:id', async(req, res) => {
+    const delete_user = await Philo_events.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Philo_events_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title,link,path,mimetype)
+            const file = new Philo_events({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//philo achieve
+
+router.get('/Philo_achieve', async(req, res, ) => {
+    const details = await Philo_achieve.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Philo_achieve/:id', async(req, res) => {
+    const delete_user = await Philo_achieve.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Philo_achieve_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title,link,path,mimetype)
+            const file = new Philo_achieve({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//Hist time
+
+router.get('/Hist_time', async(req, res, ) => {
+    const details = await Hist_time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hist_time/:id', async(req, res) => {
+    const delete_user = await Hist_time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Hist_time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title,link,path,mimetype)
+            const file = new Hist_time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//Math time
+
+router.get('/Math_time', async(req, res, ) => {
+    const details = await Math_time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Math_time/:id', async(req, res) => {
+    const delete_user = await Math_time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Math_time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title,link,path,mimetype)
+            const file = new Math_time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//Music time
+
+router.get('/Music_time', async(req, res, ) => {
+    const details = await Music_time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Music_time/:id', async(req, res) => {
+    const delete_user = await Music_time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Music_time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title,link,path,mimetype)
+            const file = new Music_time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//NHE time
+
+router.get('/NHE_time', async(req, res, ) => {
+    const details = await NHE_time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_NHE_time/:id', async(req, res) => {
+    const delete_user = await NHE_time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/NHE_time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title,link,path,mimetype)
+            const file = new NHE_time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//Philo time
+
+router.get('/Philo_time', async(req, res, ) => {
+    const details = await Philo_time.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Philo_time/:id', async(req, res) => {
+    const delete_user = await Philo_time.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Philo_time_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            console.log(title,link,path,mimetype)
+            const file = new Philo_time({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
 //history prog
 router.get('/Hist_ProgramOffered', async(req, res, ) => {
     const details = await Hist_ProgramOffered.find()
@@ -1334,6 +1621,44 @@ router.post(
         }
     }
 );
+
+//Philos publications
+router.get('/Philo_Publication', async (req, res,) => {
+    const details = await Philo_Publication.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Philo_Publication/:id', async (req, res) => {
+    const delete_user = await Philo_Publication.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Philo_Publication_add',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Philo_Publication({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
 
 
 // Botany Program Offered
