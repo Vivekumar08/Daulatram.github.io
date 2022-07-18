@@ -37,6 +37,7 @@ const Principal = require('../models/About_Us/Principal_Schema')
 const VicePrincipal = require('../models/About_Us/VicePrincipal_Schema')
 const Student_forms = require('../models/StudentZone/StudentZone_foms_Schema')
 const Student_Notice = require('../models/Notices/Student_Notice_Schema')
+const Staff_Notice = require('../models/Notices/Staff_Notice_Schema')
 const Archives_Notice = require('../models/Notices/Archives_Notice_Schema')
 const Staff_Forms = require('../models/StaffZone/Staff_Forms_Schema')
 const Bio_Faculty = require('../models/Academics/Departments/Biochemistry/Bio_Faculty_Schema');
@@ -3428,6 +3429,93 @@ router.post('/Archive_notice_add', async (req, res) => {
         console.log(err)
     }
 })
+// Staff Notices
+
+router.get('/Staff_notice', async (req, res,) => {
+    try {
+        const files = await Staff_Notice.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.status(200).send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send('Error while getting list of files. Try again later.');
+    }
+});
+router.delete('/delete_Staff_notice/:id', async (req, res) => {
+    const delete_user = await Staff_Notice.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === 'text/link') {
+        console.log(delete_user.file_mimetype)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        console.log(delete_user.file_mimetype)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    }
+})
+router.delete('/delete_Staff_archive_notice/:id', async (req, res) => {
+    const delete_user = await Staff_Notice.findOneAndDelete({ _id: req.params.id });
+    res.status(200).json(delete_user + "User deleted")
+})
+router.post('/Staff_notice_add_link', async (req, res) => {
+    try {
+        var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
+        const { file, date, title, date_exp, new_ } = req.body
+        if (!title || !date || !file) {
+            return res.status(400).json({ error: "Fill the Admission Details Properly" })
+        }
+        if (new_) {
+            if (date_regex.test(date_exp)) {
+                const user = new Staff_Notice({ date, title, date_exp, new_, file_path: file, file_mimetype: 'text/link' });
+                await user.save();
+                return res.status(200).json({ message: "Details Saved Successfully " })
+            } else {
+
+                return res.status(401).json({ message: "Expiry date invalid " })
+            }
+        } else {
+            const user = new Staff_Notice({ date, title, new_, file_path: file, file_mimetype: 'text/link' });
+            await user.save();
+            return res.status(200).json({ message: "Details Saved Successfully " })
+        }
+    } catch (err) {
+        console.log(err)
+    }
+})
+router.post(
+    '/Staff_notice_add',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            const { date, title, date_exp, new_ } = req.body;
+            const { path, mimetype } = req.file;
+            var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
+            if (new_) {
+                if (date_regex.test(date_exp)) {
+                    const user = new Staff_Notice({ date, title, date_exp, new_, file_path: path, file_mimetype: mimetype });
+                    await user.save();
+                    console.log("Details Saved Successfully")
+                    return res.status(200).json({ message: "Details Saved Successfully " })
+                } else {
+
+                    return res.status(401).json({ message: "Expiry date invalid " })
+                }
+            } else {
+                const user = new Staff_Notice({ date, title, new_, file_path: path, file_mimetype: mimetype });
+                await user.save();
+                console.log("Details Saved Successfully")
+                return res.status(200).json({ message: "Details Saved Successfully " })
+            }
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Student Notices
 
 router.get('/Student_notice', async (req, res,) => {
