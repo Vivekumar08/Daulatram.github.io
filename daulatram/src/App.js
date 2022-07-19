@@ -252,6 +252,7 @@ import Zoo_time from "./Pages/Academics/Departments/Zoology/Zoo_time";
 import Gallery_about from "./Pages/AboutUs/Gallery_about";
 import Philo_time from "./Pages/Academics/Departments/Philosophy/Philo_time";
 import Archives_Notice from "./Pages/Archives_Notice";
+import Biochem_Gallery from "./Pages/Academics/Departments/Biochemistry/Biochem_Gallery";
 
 function App() {
   return (
@@ -375,6 +376,14 @@ function App() {
               </>
             }
             path="/academics/departments/biochem/faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Biochem_Gallery />
+              </>
+            }
+            path="/academics/departments/biochem/photogallery"
           ></Route>{" "}
           <Route
             element={
@@ -725,7 +734,7 @@ function App() {
             }
             path="/academics/departments/Botany/awards"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Bot_tt />

@@ -168,6 +168,7 @@ const Student_Notice = () => {
         formData.append("date", date);
         formData.append("date_exp", date_e);
         formData.append("new_", new_opt);
+        
 
         setErrMsg("");
         await axios.post(`http://localhost:5000/Student_notice_add`, formData, {
@@ -195,6 +196,7 @@ const Student_Notice = () => {
     e.preventDefault();
     try {
       const date_e = `${date_exp}/${month_exp}/${year_exp}`;
+        setErrMsg("");
       const response = await fetch(
         "http://localhost:5000/Student_notice_add_link",
         {
@@ -218,7 +220,7 @@ const Student_Notice = () => {
         setErrMsg("Fill Complete Details");
       } else {
         setCaption("");
-        setFile(null);
+        setFile("");
         setAuth(true);
         fetchdata();
       }
