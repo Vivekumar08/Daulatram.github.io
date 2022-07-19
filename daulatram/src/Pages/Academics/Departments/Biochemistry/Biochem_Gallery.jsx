@@ -2,14 +2,14 @@ import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../../Context/AuthProvider";
+import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 
-import Sidebar from "../../Components/Sidebar/Sidebar";
-import "./stl.css";
+import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
+// import "./stl.css";
 
-function Gallery_about() {
+function Biochem_Gallery() {
   const [data1, setData1] = useState();
   const errRef = useRef();
   const dropRef = useRef();
@@ -20,7 +20,7 @@ function Gallery_about() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/About_Gallery");
+    const response = await fetch("http://localhost:5000/Bio_Photo_Gallery");
     setData1(await response.json());
   };
 
@@ -45,7 +45,7 @@ function Gallery_about() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Gallery_About/${id}`,
+      `http://localhost:5000/delete_Bio_Photo_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -65,7 +65,7 @@ function Gallery_about() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/Gallery_About_add`, formData, {
+        await axios.post(`http://localhost:5000/Bio_Photo_Gallery_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -101,14 +101,16 @@ function Gallery_about() {
               <Link to={"/"}>
                 <span className="ml-5">Home</span>
               </Link>
-              <span className="ml-5">About Us</span>
+              <span className="ml-5">Academics</span>
+              <span className="ml-5">Biochemistry</span>
+              <span className="ml-5">Photo Gallery</span>
             </div>
           </div>
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
-          <Sidebar />
+        <div className="flex  flex-col mt-12 ml-2">
+        <Biochemistry />
         </div>
         <div className="w-[1100px]">
           <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
@@ -236,4 +238,4 @@ function Gallery_about() {
   );
 }
 
-export default Gallery_about;
+export default Biochem_Gallery;

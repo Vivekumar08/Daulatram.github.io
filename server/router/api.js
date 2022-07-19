@@ -57,6 +57,7 @@ const NHE_Faculty = require('../models/Academics/Departments/NHE/NHE_Faculty_Sch
 const Hin_Faculty = require('../models/Academics/Departments/Hindi/Hin_Faculty_Schema');
 const Bio_ProgramOffered = require("../models/Academics/Departments/Biochemistry/Bio_ProgramsOffered_Schema")
 const Bio_Awards = require("../models/Academics/Departments/Biochemistry/Awards_Schema")
+const Bio_Photo_Gallery = require("../models/Academics/Departments/Biochemistry/Bio_Photo_Gallery_Schema")
 const Chem_Faculty = require('../models/Academics/Departments/Chemistry/Chem_Faculty_Schema');
 const Psychology_Faculty = require('../models/Academics/Departments/Psychology/Psychology_Faculty_Schema');
 const Zoology_Faculty = require('../models/Academics/Departments/Zoology/Zoology_Faculty_Schema');
@@ -3314,6 +3315,42 @@ router.post(
             const file = new Ragging({
                 title,
                 link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Biochemistry Photo Gallery
+router.get('/Bio_Photo_Gallery', async (req, res,) => {
+    const details = await Bio_Photo_Gallery.find()
+    res.status(200).json(details)
+});
+
+router.delete('/delete_Bio_Photo_Gallery/:id', async (req, res) => {
+    const delete_user = await Bio_Photo_Gallery.findOneAndDelete({ _id: req.params.id });
+        console.log(delete_user.file_path)
+        await unlinkAsync(delete_user.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    
+})
+
+router.post(
+    '/Bio_Photo_Gallery_add',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const file = new Bio_Photo_Gallery({
                 file_path: path,
                 file_mimetype: mimetype
             });
