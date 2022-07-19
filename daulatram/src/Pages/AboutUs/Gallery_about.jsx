@@ -70,7 +70,7 @@ function Gallery_about() {
             "Content-Type": "multipart/form-data",
           },
         });
-        setFile("");
+        ssetFile("");
         setIsPreviewAvailable(false);
         setPreviewSrc("");
         setAuth(true);
