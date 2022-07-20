@@ -14,7 +14,7 @@ function Header() {
   const [logout, setLogout] = useState(false);
   return (
     <>
-      <div className="hidden md:m-5 md:flex md:flex-row md:justify-between bg-[#fff]">
+      <div className="hidden lg:m-5 lg:flex lg:flex-row lg:justify-between bg-[#fff]">
         {/* <div className="  "> */}
         <Link to="/">
           <img
@@ -110,8 +110,8 @@ function Header() {
         )}
       </div>
       {/* Mobile View */}
-      <div className="flex flex-col m-5 md:hidden bg-[#fff] ">
-        <div className="flex flex-row gap-3 ">
+      <div className="flex flex-col m-5 lg:hidden bg-[#fff] ">
+        <div className="flex flex-row justify-evenly ">
           <div className="  ">
             <Link to="/">
               <img
@@ -138,7 +138,6 @@ function Header() {
           </div>
         </div>
         <div className="text-[#F80CA7] text-lg   text-justify  font-bold mt-5 ml-10 mr-1">
-          {/* <div className=""> */}
           NIRF RANK: 29
           <span style={{ color: "black" }} className="ml-1 mr-1">
             {" | "}
