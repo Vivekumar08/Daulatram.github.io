@@ -253,6 +253,12 @@ import Gallery_about from "./Pages/AboutUs/Gallery_about";
 import Philo_time from "./Pages/Academics/Departments/Philosophy/Philo_time";
 import Archives_Notice from "./Pages/Archives_Notice";
 import Biochem_Gallery from "./Pages/Academics/Departments/Biochemistry/Biochem_Gallery";
+import Hist_Gallery from "./Pages/Academics/Departments/History/Hist_Gallery";
+import Math_Gallery from "./Pages/Academics/Departments/Mathematics/Math_Gallery";
+import Music_Gallery from "./Pages/Academics/Departments/Music/Music_Gallery";
+// import NHE_Photo_Gallery from "../../server/models/Academics/Departments/NHE/NHE_Photo_Gallery_Schema";
+import NHE_Gallery from "./Pages/Academics/Departments/NHE/NHE_Gallery"
+import Philo_Gallery from "./Pages/Academics/Departments/Philosophy/Philo_Gallery";
 
 function App() {
   return (
@@ -384,6 +390,46 @@ function App() {
               </>
             }
             path="/academics/departments/biochem/photogallery"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Hist_Gallery />
+              </>
+            }
+            path="/academics/departments/History/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_Gallery />
+              </>
+            }
+            path="/academics/departments/Mathematics/photogallery"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Music_Gallery />
+              </>
+            }
+            path="/academics/departments/Music/photogallery"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <NHE_Gallery />
+              </>
+            }
+            path="/academics/departments/NHE/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Philo_Gallery />
+              </>
+            }
+            path="/academics/departments/Philosophy/photogallery"
           ></Route>{" "}
           <Route
             element={
