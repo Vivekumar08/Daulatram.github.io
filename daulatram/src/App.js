@@ -259,6 +259,12 @@ import Music_Gallery from "./Pages/Academics/Departments/Music/Music_Gallery";
 // import NHE_Photo_Gallery from "../../server/models/Academics/Departments/NHE/NHE_Photo_Gallery_Schema";
 import NHE_Gallery from "./Pages/Academics/Departments/NHE/NHE_Gallery"
 import Philo_Gallery from "./Pages/Academics/Departments/Philosophy/Philo_Gallery";
+import PE_gallery from "./Pages/Academics/Departments/Physical_Education/PE_gallery";
+import Physics_gallery from "./Pages/Academics/Departments/Physics/Physics_gallery";
+import PS_gallery from "./Pages/Academics/Departments/Political_Science/PS_gallery";
+import Psycho_gallery from "./Pages/Academics/Departments/Psychology/Psycho_gallery";
+import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_gallery";
+import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
 
 function App() {
   return (
@@ -1573,6 +1579,17 @@ function App() {
           <Route
             element={
               <>
+                <PE_gallery />
+              </>
+            }
+            path="/academics/departments/Physical_Education/photogallery"
+          ></Route>{" "}
+
+
+
+          <Route
+            element={
+              <>
                 <PE_time />
               </>
             }
@@ -1602,6 +1619,14 @@ function App() {
               </>
             }
             path="/academics/departments/Physics/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Physics_gallery />
+              </>
+            }
+            path="/academics/departments/Physics/photogallery"
           ></Route>{" "}
           <Route
             element={
@@ -1711,6 +1736,14 @@ function App() {
           <Route
             element={
               <>
+                <PS_gallery />
+              </>
+            }
+            path="/academics/departments/Political_Science/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Pol_Sci_programoffered />
               </>
             }
@@ -1776,6 +1809,14 @@ function App() {
           <Route
             element={
               <>
+                <Psycho_gallery />
+              </>
+            }
+            path="/academics/departments/Psychology/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Psycho_programoffered />
               </>
             }
@@ -1813,6 +1854,14 @@ function App() {
               </>
             }
             path="/academics/departments/Sanskrit/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Sanskrit_gallery />
+              </>
+            }
+            path="/academics/departments/Sanskrit/photogallery"
           ></Route>{" "}
           <Route
             element={
@@ -1894,6 +1943,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_gallery />
+              </>
+            }
+            path="/academics/departments/Zoology/photogallery"
           ></Route>{" "}
           <Route
             element={
