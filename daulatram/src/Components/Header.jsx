@@ -115,21 +115,21 @@ function Header() {
           <div className="  ">
             <Link to="/">
               <img
-                className="w-[100px] h-[100px] ml-2 mt-2"
+                className="w-[100px] h-[100px]  mt-2"
                 src="\images\logo.png"
                 alt="logo"
               />
             </Link>
           </div>
-          <div className="text-[#000080] mt-2 flex flex-col ">
+          <div className="text-[#000080] mt-4 ml-2 flex flex-col ">
             <Link to="/">
-              <div className="flex flex-col justify-center  items-center">
+              <div className="flex flex-col justify-center   items-center">
                 <div>
-                  <span className=" tracking-[2px] text-[21px] font-semibold font-Noto_Serif">
+                  <span className=" tracking-[2px] text-[22px] font-semibold font-Noto_Serif">
                     <strong>Daulat Ram College</strong>
                   </span>
                 </div>
-                <div className=" font-bold text-lg flex flex-col items-center justify-center">
+                <div className=" font-bold text-[16px] flex flex-col items-center justify-center">
                   <span> University of Delhi </span>
                   <span>Star College, Estb. 1960</span>
                 </div>
