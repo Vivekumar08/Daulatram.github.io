@@ -144,7 +144,7 @@ function Gallery_about() {
                 var path = path2.slice(19);
                 return (
                   <>
-                    <div class="flex flex-col items-center mb-5" key={_id}>
+                    <div class="flex flex-col items-center" key={_id}>
                       <img
                         src={path}
                         style={{ height: "250px", width: "250px" }}
