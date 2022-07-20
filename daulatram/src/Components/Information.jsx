@@ -1,20 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircle } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { StudentInfo } from "./Info"; //first step
 import { StaffInfo } from "./Info";
 import { PublicInfo } from "./Info";
 import "./infor.css";
 
-//  window.onload = function() {
-//   var lineHeight = document.querySelector(".slider li").clientHeight;
-//   var viewHeight = window.innerHeight;
-//   var slider = document.querySelector(".slider");
-//   var time = (slider.offsetHeight * 2.0 + viewHeight * 2) / 500.0; // 500px / sec
-  
-//   slider.style.animationDuration = time + "s";
-//   }
 function Information() {
   const [Studentinfo, setStudentinfo] = useState(StudentInfo);
   const [Staffinfo, setStaffinfo] = useState(StaffInfo);

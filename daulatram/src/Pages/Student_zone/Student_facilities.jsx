@@ -40,7 +40,7 @@ const Student_facilities = () => {
               Terms and Conditions
             </h4>
             <figure className="ml-3">
-              <span className="card-description text-justify text-lg font-medium ">
+              <span className=" text-justify text-lg font-medium ">
                 <li>
                   Before leaving the counter, the member should ensure that the
                   book lent to them is in sound condition. If not, it should

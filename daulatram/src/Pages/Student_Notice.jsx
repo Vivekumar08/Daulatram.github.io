@@ -279,7 +279,7 @@ const Student_Notice = () => {
                             <a
                               href={path}
                               target="_blank"
-                              rel="noopener noreferrer"
+                              // rel="noopener noreferrer"
                             >
                               <span className="text-base md:text-xl">
                                 {title}
@@ -296,7 +296,6 @@ const Student_Notice = () => {
                             <a
                               href={file_path}
                               target="_blank"
-                              rel="noopener noreferrer"
                             >
                               <span className="text-base md:text-xl">
                                 {title}
