@@ -20,22 +20,22 @@ const Eresources = () => {
             <span className="lowercase">e</span> -Resources
           </h2>
 
-          <div className=" md:ml-16 card-description leading-14 font-medium text-justify text-base md:text-2xl">
-            <li className="res">
-              <a href=" https://swayam.gov.in/"> Swayam Portal</a>
+          <ol className=" md:ml-10 list-none flex flex-col leading-14  font-medium text-justify text-base md:text-2xl">
+            <li className="mb-5 ">
+              <a href=" https://swayam.gov.in/" className="hover:text-blue-500 hover:pl-2"> Swayam Portal</a>
             </li>
-            <li className="res">
-              <a href="https://www.inflibnet.ac.in/"> Inflibnet</a>
-            </li>
-
-            <li className="res">
-              <a href=" http://crl.du.ac.in/subjectportal/">DUCC Library</a>
+            <li className="mb-5 ">
+              <a href="https://www.inflibnet.ac.in/" className="hover:text-blue-500 hover:pl-2"> Inflibnet</a>
             </li>
 
-            <li className="res">
-              <a href="https://epgp.inflibnet.ac.in/">e-Pathshala</a>
+            <li className="mb-5 ">
+              <a href=" http://crl.du.ac.in/subjectportal/" className="hover:text-blue-500 hover:pl-2">DUCC Library</a>
             </li>
-          </div>
+
+            <li className="mb-5 ">
+              <a href="https://epgp.inflibnet.ac.in/" className="hover:text-blue-500 hover:pl-2">e-Pathshala</a>
+            </li>
+          </ol>
         </div>
       </div>
     </>
