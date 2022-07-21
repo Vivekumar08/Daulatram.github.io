@@ -46,15 +46,17 @@
     margin-top: -220px;
     margin-left: 40px;
     text-shadow: -2px 2px 0 #000,
-    2px 2px 0 #000,
-   2px -2px 0 #000,
-  -2px -2px 0 #000;
+        2px 2px 0 #000,
+        2px -2px 0 #000,
+        -2px -2px 0 #000;
 }
 
 
 .event_img {
     width: 100%;
     height: auto;
+    max-width: 50vw;
+    max-height: 50vh;
     border-radius: 12px;
     opacity: 0.8;
 }
@@ -75,14 +77,10 @@
 
 .small_box:hover .read_btn {
     opacity: 1;
-    /* transition: all .3s ease; */
-    
 }
 
 .read_btn:hover {
     border: 2px solid black;
     background-color: darkred;
-    /* transition: all .3s ease; */
     box-shadow: 50px;
-
 }

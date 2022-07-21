@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import AuthContext from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,10 +12,32 @@ import { useState } from "react";
 function Header() {
   const { auth, setAuth } = useContext(AuthContext);
   const [logout, setLogout] = useState(false);
+
+  useEffect(() => {
+    var addScript = document.createElement('script');
+    addScript.setAttribute(
+      'src',
+      '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
+    );
+    document.body.appendChild(addScript);
+    window.googleTranslateElementInit = googleTranslateElementInit;
+  }, []);
+
+  const googleTranslateElementInit = () => {
+    new window.google.translate.TranslateElement(
+      {
+        pageLanguage: 'en',
+
+        // layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+      },
+      'google_translate_element'
+    );
+  };
+
   return (
     <>
       <div className="hidden lg:m-5 lg:flex lg:flex-row lg:justify-between bg-[#fff]">
-        {/* <div className="  "> */}
+        <div className="  ">
         <Link to="/">
           <img
             className="w-[180px] h-[180px] ml-8 mt-2"
@@ -23,6 +45,7 @@ function Header() {
             alt="logo"
           />
         </Link>
+        </div>
         <div className="text-[#000080] mt-2 flex flex-col ml-16 mr-16">
           <div>
             <Link to="/">
@@ -91,20 +114,24 @@ function Header() {
                   </div>
                 )}
               </div>
+              <div id="google_translate_element"></div>
             </div>
           </>
         ) : (
           <>
-            <div className="mt-2 mr-12">
-              <Link
-                to="/Admin"
-                className="text-lg   font-semibold text-[#000080]  "
-              >
-                <button className=" bg-[#000080] hover:bg-blue-600 rounded-lg pl-10 pr-10 p-2 text-white">
-                  {" "}
-                  Admin{" "}
-                </button>
-              </Link>
+            <div className="flex flex-col ">
+              <div className="mt-2 mr-12">
+                <Link
+                  to="/Admin"
+                  className="text-lg   font-semibold text-[#000080]  "
+                >
+                  <button className=" bg-[#000080] hover:bg-blue-600 rounded-lg pl-10 pr-10 p-2 text-white">
+                    {" "}
+                    Admin{" "}
+                  </button>
+                </Link>
+              </div>
+              <div id="google_translate_element" className="w-full mt-2"></div>
             </div>
           </>
         )}
