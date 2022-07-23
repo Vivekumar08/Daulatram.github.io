@@ -259,6 +259,7 @@ import Music_Gallery from "./Pages/Academics/Departments/Music/Music_Gallery";
 // import NHE_Photo_Gallery from "../../server/models/Academics/Departments/NHE/NHE_Photo_Gallery_Schema";
 import NHE_Gallery from "./Pages/Academics/Departments/NHE/NHE_Gallery"
 import Philo_Gallery from "./Pages/Academics/Departments/Philosophy/Philo_Gallery";
+import Library from "./Pages/Library/Library";
 
 function App() {
   return (
@@ -973,7 +974,7 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */} {" "}
           {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
@@ -1934,6 +1935,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/laboratorystaff"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Library />
+              </>
+            }
+            path="/Library"
           ></Route>{" "}
           <Route
             element={
