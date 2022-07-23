@@ -259,12 +259,14 @@ import Music_Gallery from "./Pages/Academics/Departments/Music/Music_Gallery";
 // import NHE_Photo_Gallery from "../../server/models/Academics/Departments/NHE/NHE_Photo_Gallery_Schema";
 import NHE_Gallery from "./Pages/Academics/Departments/NHE/NHE_Gallery"
 import Philo_Gallery from "./Pages/Academics/Departments/Philosophy/Philo_Gallery";
+import Library from "./Pages/Library/Library";
 import PE_gallery from "./Pages/Academics/Departments/Physical_Education/PE_gallery";
 import Physics_gallery from "./Pages/Academics/Departments/Physics/Physics_gallery";
 import PS_gallery from "./Pages/Academics/Departments/Political_Science/PS_gallery";
 import Psycho_gallery from "./Pages/Academics/Departments/Psychology/Psycho_gallery";
 import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_gallery";
 import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
+
 
 function App() {
   return (
@@ -979,7 +981,7 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
-          // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */} //{" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */} {" "}
           {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
@@ -1991,6 +1993,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/laboratorystaff"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Library />
+              </>
+            }
+            path="/Library"
           ></Route>{" "}
           <Route
             element={
