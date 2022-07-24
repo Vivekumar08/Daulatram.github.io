@@ -94,7 +94,8 @@ import Chemevents from "./Pages/Academics/Departments/Chemistry/Chemevents";
 import Chemstudachieve from "./Pages/Academics/Departments/Chemistry/Chemstudachieve";
 import Chempublications from "./Pages/Academics/Departments/Chemistry/Chempublications";
 import Chemfacilities from "./Pages/Academics/Departments/Chemistry/Chemfacilities";
-
+import Chem_Awards from "./Pages/Academics/Departments/Chemistry/Awards"
+import Chem_tt from "./Pages/Academics/Departments/Chemistry/Chem_tt"
 // import Socities1 from "./Pages/Socities1";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
@@ -1021,6 +1022,22 @@ function App() {
               </>
             }
             path="/academics/departments/Chemistry/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chem_Awards />
+              </>
+            }
+            path="/academics/departments/Chemistry/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Chem_tt />
+              </>
+            }
+            path="/academics/departments/Chemistry/timetable"
           ></Route>{" "}
           <Route
             element={

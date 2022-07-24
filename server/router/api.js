@@ -78,9 +78,13 @@ const Bot_ProgramOffered = require("../models/Academics/Departments/Botany/Bot_P
 const Bot_Awards = require("../models/Academics/Departments/Botany/Awards_Schema")
 const Bot_Lab_Staff = require("../models/Academics/Departments/Botany/Bot_Lab_Staff_Schema")
 const Bot_StuAch = require("../models/Academics/Departments/Botany/StuAch_Schema")
+const Chem_Fac = require("../models/Academics/Departments/Chemistry/Fac")
+const Chem_Pubs = require("../models/Academics/Departments/Chemistry/Pubs_Schema")
+const Chem_Association = require("../models/Academics/Departments/Chemistry/Association")
+const Chem_tt = require("../models/Academics/Departments/Chemistry/Chem_tt_Schema")
 const Bot_Timetable = require("../models/Academics/Departments/Botany/Bot_tt_Schema")
 const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema")
-const Chem_Awards = require("../models/Academics/Departments/Chemistry/Awards_Schema")
+//const Chem_Awards = require("../models/Academics/Departments/Chemistry/Awards_Schema")
 const Com_ProgramOffered = require("../models/Academics/Departments/Commerce/Com_ProgramsOffered_Schema")
 const Com_Awards = require("../models/Academics/Departments/Commerce/Awards_Schema")
 const Eco_ProgramOffered = require("../models/Academics/Departments/Economics/Eco_ProgramsOffered_Schema")
@@ -1401,6 +1405,192 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Bot_StuAch({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+// Chemistry Student Achievements
+
+router.get('/Chem_StuAch', async(req, res, ) => {
+    const details = await Chem_StuAch.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Chem_StuAch/:id', async(req, res) => {
+    const delete_user = await Chem_StuAch.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Chem_StuAch_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Chem_StuAch({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Chemistry Timetable
+
+router.get('/Chem_tt', async(req, res, ) => {
+    const details = await Chem_tt.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Chem_tt/:id', async(req, res) => {
+    const delete_user = await Chem_tt.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Chem_tt_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Chem_tt({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Chemistry Publication
+
+router.get('/Chem_Pubs', async(req, res, ) => {
+    const details = await Chem_Pubs.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Chem_Pubs/:id', async(req, res) => {
+    const delete_user = await Chem_Pubs.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Chem_Pubs_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Chem_Pubs({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Chemistry Association
+
+router.get('/Chem_Association', async(req, res, ) => {
+    const details = await Chem_Association.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Chem_Association/:id', async(req, res) => {
+    const delete_user = await Chem_Association.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Chem_Association_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Chem_Association({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Chemistry Facilities
+
+router.get('/Chem_Fac', async(req, res, ) => {
+    const details = await Chem_Fac.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Chem_Fac/:id', async(req, res) => {
+    const delete_user = await Chem_Fac.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Chem_Fac_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Chem_Fac({
                 title,
                 link,
                 file_path: path,
