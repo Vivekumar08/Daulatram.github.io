@@ -112,6 +112,7 @@ const Eng_ProgramOffered = require("../models/Academics/Departments/English/Eng_
 const Eng_Awards = require("../models/Academics/Departments/English/Awards_Schema")
 const Hin_ProgramOffered = require("../models/Academics/Departments/Hindi/Hin_ProgramsOffered_Schema")
 const Hin_Awards = require("../models/Academics/Departments/Hindi/Awards_Schema")
+const Hin_Magazine = require("../models/Academics/Departments/Hindi/Magazine")
 const PE_ProgramOffered = require("../models/Academics/Departments/Physical_Education/PE_ProgramsOffered_Schema")
 const PE_Awards = require("../models/Academics/Departments/Physical_Education/PE_Awards_Schema")
 const PE_Fac = require("../models/Academics/Departments/Physical_Education/PE_Fac_Schema")
@@ -5555,6 +5556,42 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Hin_Awards({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Hindi Magazine
+
+router.get('/Hin_Magazine', async(req, res, ) => {
+    const details = await Hin_Magazine.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hin_Magazine/:id', async(req, res) => {
+    const delete_user = await Hin_Magazine.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+router.post(
+    '/Hin_Magazine_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Hin_Magazine({
                 title,
                 link,
                 file_path: path,
