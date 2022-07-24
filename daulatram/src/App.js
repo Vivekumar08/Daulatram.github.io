@@ -135,7 +135,7 @@ import Eco_events from "./Pages/Academics/Departments/Economics/Eco_events";
 import Eco_publications from "./Pages/Academics/Departments/Economics/Eco_publications";
 import Eco_association from "./Pages/Academics/Departments/Economics/Eco_association";
 import Eco_photogallery from "./Pages/Academics/Departments/Economics/Eco_photogallery";
-
+import Eco_tt from "./Pages/Academics/Departments/Economics/Eco_tt"
 // English
 import Eng_about from "./Pages/Academics/Departments/English/Eng_about";
 import Eng_faculty from "./Pages/Academics/Departments/English/Eng_faculty";
@@ -1247,6 +1247,14 @@ function App() {
               </>
             }
             path="/academics/departments/Economics/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_tt />
+              </>
+            }
+            path="/academics/departments/Economics/timetable"
           ></Route>{" "}
           // {/* English */}{" "}
           <Route

@@ -87,9 +87,10 @@ const Com_Fac = require("../models/Academics/Departments/Commerce/Fac")
 const Com_Pubs = require("../models/Academics/Departments/Commerce/Pubs_Schema")
 const Com_Association = require("../models/Academics/Departments/Commerce/Association")
 const Com_tt = require("../models/Academics/Departments/Commerce/Com_tt_Schema")
+const Eco_tt = require("../models/Academics/Departments/Economics/Eco_tt_Schema")
 const Bot_Timetable = require("../models/Academics/Departments/Botany/Bot_tt_Schema")
 const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema")
-//const Chem_Awards = require("../models/Academics/Departments/Chemistry/Awards_Schema")
+const Chem_Awards = require("../models/Academics/Departments/Chemistry/Awards_Schema")
 const Com_ProgramOffered = require("../models/Academics/Departments/Commerce/Com_ProgramsOffered_Schema")
 const Com_Awards = require("../models/Academics/Departments/Commerce/Awards_Schema")
 const Eco_ProgramOffered = require("../models/Academics/Departments/Economics/Eco_ProgramsOffered_Schema")
@@ -1559,6 +1560,43 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Com_tt({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Economics Timetable
+
+router.get('/Eco_tt', async(req, res, ) => {
+    const details = await Eco_tt.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eco_tt/:id', async(req, res) => {
+    const delete_user = await Eco_tt.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eco_tt_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eco_tt({
                 title,
                 link,
                 file_path: path,
