@@ -96,6 +96,7 @@ import Chempublications from "./Pages/Academics/Departments/Chemistry/Chempublic
 import Chemfacilities from "./Pages/Academics/Departments/Chemistry/Chemfacilities";
 import Chem_Awards from "./Pages/Academics/Departments/Chemistry/Awards"
 import Chem_tt from "./Pages/Academics/Departments/Chemistry/Chem_tt"
+import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
 // import Socities1 from "./Pages/Socities1";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
@@ -110,7 +111,7 @@ import CAcadCal from "./Pages/Academics/CAcadCal";
 import Addoncourses from "./Pages/Academics/Addoncourses";
 
 import Tender from "./Pages/Tender/Tender";
-import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
+
 import Job_opportunities from "./Pages/Job_Opportunites/Job_opportunities";
 
 // Commerce
@@ -122,7 +123,10 @@ import Com_studachieve from "./Pages/Academics/Departments/Commerce/Com_studachi
 import Com_publications from "./Pages/Academics/Departments/Commerce/Com_publications";
 import Com_labstaff from "./Pages/Academics/Departments/Commerce/Com_labstaff";
 import Bcomprog from "./Pages/Academics/Departments/Commerce/Bcomprog";
-
+import Comfacilities from "./Pages/Academics/Departments/Commerce/Facilities";
+import Com_Awards from "./Pages/Academics/Departments/Commerce/Awards"
+import Com_tt from "./Pages/Academics/Departments/Commerce/Com_tt"
+import Comassociation from "./Pages/Academics/Departments/Commerce/Association";
 //Economics
 import Eco_about from "./Pages/Academics/Departments/Economics/Eco_about";
 import Eco_faculty from "./Pages/Academics/Departments/Economics/Eco_faculty";
@@ -1137,6 +1141,39 @@ function App() {
               </>
             }
             path="/academics/departments/Commerce/Publications"
+          ></Route>{" "}
+          
+          <Route
+            element={
+              <>
+                <Comfacilities />
+              </>
+            }
+            path="/academics/departments/Commerce/Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Comassociation />
+              </>
+            }
+            path="/academics/departments/Commerce/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_Awards />
+              </>
+            }
+            path="/academics/departments/Commerce/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Com_tt />
+              </>
+            }
+            path="/academics/departments/Commerce/timetable"
           ></Route>{" "}
           <Route
             element={

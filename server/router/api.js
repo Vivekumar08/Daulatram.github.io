@@ -82,6 +82,11 @@ const Chem_Fac = require("../models/Academics/Departments/Chemistry/Fac")
 const Chem_Pubs = require("../models/Academics/Departments/Chemistry/Pubs_Schema")
 const Chem_Association = require("../models/Academics/Departments/Chemistry/Association")
 const Chem_tt = require("../models/Academics/Departments/Chemistry/Chem_tt_Schema")
+const Com_StuAch = require("../models/Academics/Departments/Commerce/StuAch_Schema")
+const Com_Fac = require("../models/Academics/Departments/Commerce/Fac")
+const Com_Pubs = require("../models/Academics/Departments/Commerce/Pubs_Schema")
+const Com_Association = require("../models/Academics/Departments/Commerce/Association")
+const Com_tt = require("../models/Academics/Departments/Commerce/Com_tt_Schema")
 const Bot_Timetable = require("../models/Academics/Departments/Botany/Bot_tt_Schema")
 const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema")
 //const Chem_Awards = require("../models/Academics/Departments/Chemistry/Awards_Schema")
@@ -1460,6 +1465,43 @@ router.post(
         }
     }
 );
+// Commerce Student Achievements
+
+router.get('/Com_StuAch', async(req, res, ) => {
+    const details = await Com_StuAch.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Com_StuAch/:id', async(req, res) => {
+    const delete_user = await Com_StuAch.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Com_StuAch_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Com_StuAch({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Chemistry Timetable
 
 router.get('/Chem_tt', async(req, res, ) => {
@@ -1480,6 +1522,43 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Chem_tt({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Commerce Timetable
+
+router.get('/Com_tt', async(req, res, ) => {
+    const details = await Com_tt.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Com_tt/:id', async(req, res) => {
+    const delete_user = await Com_tt.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Com_tt_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Com_tt({
                 title,
                 link,
                 file_path: path,
@@ -1534,6 +1613,43 @@ router.post(
         }
     }
 );
+// Commerce Publication
+
+router.get('/Com_Pubs', async(req, res, ) => {
+    const details = await Com_Pubs.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Com_Pubs/:id', async(req, res) => {
+    const delete_user = await Com_Pubs.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Com_Pubs_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Com_Pubs({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Chemistry Association
 
 router.get('/Chem_Association', async(req, res, ) => {
@@ -1571,6 +1687,43 @@ router.post(
         }
     }
 );
+// Commerce Association
+
+router.get('/Com_Association', async(req, res, ) => {
+    const details = await Com_Association.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Com_Association/:id', async(req, res) => {
+    const delete_user = await Com_Association.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Com_Association_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Com_Association({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Chemistry Facilities
 
 router.get('/Chem_Fac', async(req, res, ) => {
@@ -1591,6 +1744,43 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Chem_Fac({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Commerce Facilities
+
+router.get('/Com_Fac', async(req, res, ) => {
+    const details = await Com_Fac.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Com_Fac/:id', async(req, res) => {
+    const delete_user = await Com_Fac.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Com_Fac_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Com_Fac({
                 title,
                 link,
                 file_path: path,
