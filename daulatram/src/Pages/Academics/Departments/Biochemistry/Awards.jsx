@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Programbanner from "../../../../Components/Banners/Programbanner";
-import Departments from "../../../../Components/Sidebar/Departments";
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

@@ -1,16 +1,12 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-
-import Hindibanner from "../Hindi/Hindibanner.jsx";
-import Hindi from "../../../../Components/DepartSIde/Hindi.jsx";
-import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../../../../Context/AuthProvider";
+import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-// import './awards.css'
+import { Link } from "react-router-dom";
 
-const Awards = () => {
+const Library = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -24,7 +20,7 @@ const Awards = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Hin_Awards");
+    const response = await fetch("http://localhost:5000/Library_details");
     setData1(await response.json());
   };
 
@@ -37,9 +33,7 @@ const Awards = () => {
       setPreviewSrc(fileReader.result);
     };
     fileReader.readAsDataURL(uploadedFile);
-    setIsPreviewAvailable(
-      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
-    );
+    setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
   };
 
   useEffect(() => {
@@ -49,7 +43,7 @@ const Awards = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Hin_Awards/${id}`,
+      `http://localhost:5000/delete_Library/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +68,7 @@ const Awards = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Hin_Awards_add`, formData, {
+        await axios.post(`http://localhost:5000/Library_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -82,6 +76,8 @@ const Awards = () => {
         setCaption("");
         setLink("");
         setFile("");
+        setIsPreviewAvailable(false);
+        setPreviewSrc("");
         setAuth(true);
         fetchdata();
       } else {
@@ -97,16 +93,29 @@ const Awards = () => {
 
   return (
     <div className=" flex flex-col">
-      <Hindibanner />
+      <div
+        className="Banner"
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      >
+        <div className="name">
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Library
+            </p>
+          </div>
+
+          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+          </div>
+        </div>
+      </div>
 
       <div className="flex flex-row">
-        <div className="flex  flex-col mt-12 ml-2 ">
-          <Hindi />
-        </div>
-
         <div className="w-full mr-auto ml-auto">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Awards
+            Library
           </h2>
           <div class="flex justify-evenly w-full mt-5 mb-5">
             {data1 &&
@@ -118,7 +127,9 @@ const Awards = () => {
                 return (
                   <>
                     <div class="card2 ml-2 " key={_id}>
-                      <span className="  font-bold text-justify text-lg w-[75%] ">{link}</span>
+                      <span className="   font-bold text-justify text-xl w-[75%] ">
+                        {link}
+                      </span>
                       <div className="flex flex-col ml-4 w-full">
                         <div class="info2  w-full">
                           <p className="text-justify ">{title}</p>
@@ -249,4 +260,4 @@ const Awards = () => {
   );
 };
 
-export default Awards;
+export default Library;
