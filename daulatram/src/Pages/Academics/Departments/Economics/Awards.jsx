@@ -5,10 +5,10 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import Engbanner from "../English/Engbanner";
-import English from "../../../../Components/DepartSIde/English";
+import Ecobanner from "../Economics/Ecobanner";
+import Economics from "../../../../Components/DepartSIde/Economics";
 
-const Pubs = () => {
+const Awards = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -22,7 +22,7 @@ const Pubs = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Eng_Pubs");
+    const response = await fetch("http://localhost:5000/Eco_Awards");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const Pubs = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Eng_Pubs/${id}`,
+      `http://localhost:5000/delete_Eco_Awards/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +72,7 @@ const Pubs = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Eng_Pubs_add`, formData, {
+        await axios.post(`http://localhost:5000/Eco_Awards_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -95,16 +95,16 @@ const Pubs = () => {
 
   return (
     <div className=" flex flex-col">
-      <Engbanner />
+      <Ecobanner />
 
       <div className="flex flex-row">
         <div className="flex  flex-col mt-12 ml-2 ">
-          <English />
+          <Economics />
         </div>
 
         <div className="w-full mr-auto ml-auto">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Publications
+            Awards
           </h2>
           <div class="flex justify-evenly w-full mt-5 mb-5">
             {data1 &&
@@ -247,4 +247,4 @@ const Pubs = () => {
   );
 };
 
-export default Pubs;
+export default Awards;

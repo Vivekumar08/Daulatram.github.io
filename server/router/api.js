@@ -85,18 +85,27 @@ const Chem_tt = require("../models/Academics/Departments/Chemistry/Chem_tt_Schem
 const Com_StuAch = require("../models/Academics/Departments/Commerce/StuAch_Schema")
 const Com_Fac = require("../models/Academics/Departments/Commerce/Fac")
 const Com_Pubs = require("../models/Academics/Departments/Commerce/Pubs_Schema")
+const Eco_StuAch = require("../models/Academics/Departments/Economics/StuAch_Schema")
+const Eco_Fac = require("../models/Academics/Departments/Economics/Fac")
+const Eco_Pubs = require("../models/Academics/Departments/Economics/Pubs_Schema")
+const Eco_Eve = require("../models/Academics/Departments/Economics/Events")
 const Com_Association = require("../models/Academics/Departments/Commerce/Association")
 const Com_tt = require("../models/Academics/Departments/Commerce/Com_tt_Schema")
 const Eco_tt = require("../models/Academics/Departments/Economics/Eco_tt_Schema")
+const Eng_tt = require("../models/Academics/Departments/English/Eng_tt_Schema")
+const Eng_StuAch = require("../models/Academics/Departments/English/StuAch_Schema")
+const Eng_Fac = require("../models/Academics/Departments/English/Fac")
+const Eng_Pubs = require("../models/Academics/Departments/English/Pubs_Schema")
+const Eng_Eve = require("../models/Academics/Departments/English/Events")
 const Bot_Timetable = require("../models/Academics/Departments/Botany/Bot_tt_Schema")
 const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema")
 const Chem_Awards = require("../models/Academics/Departments/Chemistry/Chem_Awards_Schema")
 const Com_ProgramOffered = require("../models/Academics/Departments/Commerce/Com_ProgramsOffered_Schema")
 const Com_Awards = require("../models/Academics/Departments/Commerce/Awards_Schema")
 const Eco_ProgramOffered = require("../models/Academics/Departments/Economics/Eco_ProgramsOffered_Schema")
-const Eco_Awards = require("../models/Academics/Departments/Economics/Awards_Schema")
+//const Eco_Awards = require("../models/Academics/Departments/Economics/Awards_Schema")
 const Eng_ProgramOffered = require("../models/Academics/Departments/English/Eng_ProgramsOffered_Schema")
-const Eng_Awards = require("../models/Academics/Departments/English/Awards_Schema")
+//const Eng_Awards = require("../models/Academics/Departments/English/Awards_Schema")
 const Hin_ProgramOffered = require("../models/Academics/Departments/Hindi/Hin_ProgramsOffered_Schema")
 const Hin_Awards = require("../models/Academics/Departments/Hindi/Awards_Schema")
 const PE_ProgramOffered = require("../models/Academics/Departments/Physical_Education/PE_ProgramsOffered_Schema")
@@ -1503,6 +1512,80 @@ router.post(
         }
     }
 );
+// Economics Student Achievements
+
+router.get('/Eco_StuAch', async(req, res, ) => {
+    const details = await Eco_StuAch.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eco_StuAch/:id', async(req, res) => {
+    const delete_user = await Eco_StuAch.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eco_StuAch_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eco_StuAch({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// English Student Achievements
+
+router.get('/Eng_StuAch', async(req, res, ) => {
+    const details = await Eng_StuAch.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eng_StuAch/:id', async(req, res) => {
+    const delete_user = await Eng_StuAch.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eng_StuAch_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eng_StuAch({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Chemistry Timetable
 
 router.get('/Chem_tt', async(req, res, ) => {
@@ -1614,6 +1697,43 @@ router.post(
         }
     }
 );
+// English Timetable
+
+router.get('/Eng_tt', async(req, res, ) => {
+    const details = await Eng_tt.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eng_tt/:id', async(req, res) => {
+    const delete_user = await Eng_tt.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eng_tt_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eng_tt({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Chemistry Publication
 
 router.get('/Chem_Pubs', async(req, res, ) => {
@@ -1671,6 +1791,80 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Com_Pubs({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Economics Publication
+
+router.get('/Eco_Pubs', async(req, res, ) => {
+    const details = await Eco_Pubs.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eco_Pubs/:id', async(req, res) => {
+    const delete_user = await Eco_Pubs.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eco_Pubs_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eco_Pubs({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// English Publication
+
+router.get('/Eng_Pubs', async(req, res, ) => {
+    const details = await Eng_Pubs.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eng_Pubs/:id', async(req, res) => {
+    const delete_user = await Eng_Pubs.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eng_Pubs_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eng_Pubs({
                 title,
                 link,
                 file_path: path,
@@ -1819,6 +2013,154 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Com_Fac({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Economics Facilities
+
+router.get('/Eco_Fac', async(req, res, ) => {
+    const details = await Eco_Fac.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eco_Fac/:id', async(req, res) => {
+    const delete_user = await Eco_Fac.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eco_Fac_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eco_Fac({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// English Facilities
+
+router.get('/Eng_Fac', async(req, res, ) => {
+    const details = await Eng_Fac.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eng_Fac/:id', async(req, res) => {
+    const delete_user = await Eng_Fac.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eng_Fac_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eng_Fac({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Economics Events
+
+router.get('/Eco_Eve', async(req, res, ) => {
+    const details = await Eco_Eve.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eco_Eve/:id', async(req, res) => {
+    const delete_user = await Eco_Eve.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eco_Eve_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eco_Eve({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// English Events
+
+router.get('/Eng_Eve', async(req, res, ) => {
+    const details = await Eng_Eve.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Eng_Eve/:id', async(req, res) => {
+    const delete_user = await Eng_Eve.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Eng_Eve_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eng_Eve({
                 title,
                 link,
                 file_path: path,

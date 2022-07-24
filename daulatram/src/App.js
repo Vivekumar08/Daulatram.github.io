@@ -135,7 +135,10 @@ import Eco_events from "./Pages/Academics/Departments/Economics/Eco_events";
 import Eco_publications from "./Pages/Academics/Departments/Economics/Eco_publications";
 import Eco_association from "./Pages/Academics/Departments/Economics/Eco_association";
 import Eco_photogallery from "./Pages/Academics/Departments/Economics/Eco_photogallery";
-import Eco_tt from "./Pages/Academics/Departments/Economics/Eco_tt"
+import Eco_tt from "./Pages/Academics/Departments/Economics/Eco_tt";
+import Eco_Facs from "./Pages/Academics/Departments/Economics/Facilities";
+import Eco_awards from "./Pages/Academics/Departments/Economics/Awards";
+import Eco_StuAch from "./Pages/Academics/Departments/Economics/StudentAchievements";
 // English
 import Eng_about from "./Pages/Academics/Departments/English/Eng_about";
 import Eng_faculty from "./Pages/Academics/Departments/English/Eng_faculty";
@@ -145,6 +148,11 @@ import Eng_association from "./Pages/Academics/Departments/English/Eng_associati
 import Eng_photogallery from "./Pages/Academics/Departments/English/Eng_photogallery";
 import Eng_publications from "./Pages/Academics/Departments/English/Eng_publications";
 import NotFound from "./Pages/NotFound";
+import Eng_tt from "./Pages/Academics/Departments/English/Eng_tt";
+import Eng_Facs from "./Pages/Academics/Departments/English/Facilities";
+import Eng_awards from "./Pages/Academics/Departments/English/Awards";
+import Eng_Eve from "./Pages/Academics/Departments/English/Events";
+
 
 // Hindi
 import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
@@ -1256,6 +1264,31 @@ function App() {
             }
             path="/academics/departments/Economics/timetable"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_awards />
+              </>
+            }
+            path="/academics/departments/Economics/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_StuAch />
+              </>
+            }
+            path="/academics/departments/Economics/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eco_Facs />
+              </>
+            }
+            path="/academics/departments/Economics/Facilities"
+          ></Route>{" "}
+        
           // {/* English */}{" "}
           <Route
             element={
@@ -1312,6 +1345,38 @@ function App() {
               </>
             }
             path="/academics/departments/English/Publications"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Eng_tt />
+              </>
+            }
+            path="/academics/departments/English/timetable"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_awards />
+              </>
+            }
+            path="/academics/departments/English/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_Eve />
+              </>
+            }
+            path="/academics/departments/English/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Eng_Facs />
+              </>
+            }
+            path="/academics/departments/English/Facilities"
           ></Route>{" "}
           {/* Hindi */}{" "}
           <Route
