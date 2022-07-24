@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 
-import Hindibanner from "../Hindi/Hindibanner.jsx";
+import Hindibanner from "./Hindibanner.jsx";
 import Hindi from "../../../../Components/DepartSIde/Hindi.jsx";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +10,7 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 // import './awards.css'
 
-const Pubs = () => {
+const tt = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -24,7 +24,7 @@ const Pubs = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Hin_Pubs");
+    const response = await fetch("http://localhost:5000/Hin_tt");
     setData1(await response.json());
   };
 
@@ -49,7 +49,7 @@ const Pubs = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Hin_Pubs/${id}`,
+      `http://localhost:5000/delete_Hin_tt/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Pubs = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Hin_Pubs_add`, formData, {
+        await axios.post(`http://localhost:5000/Hin_tt_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -106,7 +106,7 @@ const Pubs = () => {
 
         <div className="w-full mr-auto ml-auto">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Publications
+          Timetable
           </h2>
           <div class="flex justify-evenly w-full mt-5 mb-5">
             {data1 &&
@@ -249,4 +249,4 @@ const Pubs = () => {
   );
 };
 
-export default Pubs;
+export default tt;

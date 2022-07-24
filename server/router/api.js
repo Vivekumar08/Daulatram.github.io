@@ -97,15 +97,19 @@ const Eng_StuAch = require("../models/Academics/Departments/English/StuAch_Schem
 const Eng_Fac = require("../models/Academics/Departments/English/Fac")
 const Eng_Pubs = require("../models/Academics/Departments/English/Pubs_Schema")
 const Eng_Eve = require("../models/Academics/Departments/English/Events")
+const Hin_tt = require("../models/Academics/Departments/Hindi/Hin_tt_Schema")
+const Hin_Fac = require("../models/Academics/Departments/Hindi/Fac")
+const Hin_Pubs = require("../models/Academics/Departments/Hindi/Pubs_Schema")
+const Hin_Association = require("../models/Academics/Departments/Hindi/Association")
 const Bot_Timetable = require("../models/Academics/Departments/Botany/Bot_tt_Schema")
 const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema")
 const Chem_Awards = require("../models/Academics/Departments/Chemistry/Chem_Awards_Schema")
 const Com_ProgramOffered = require("../models/Academics/Departments/Commerce/Com_ProgramsOffered_Schema")
 const Com_Awards = require("../models/Academics/Departments/Commerce/Awards_Schema")
 const Eco_ProgramOffered = require("../models/Academics/Departments/Economics/Eco_ProgramsOffered_Schema")
-//const Eco_Awards = require("../models/Academics/Departments/Economics/Awards_Schema")
+const Eco_Awards = require("../models/Academics/Departments/Economics/Awards_Schema")
 const Eng_ProgramOffered = require("../models/Academics/Departments/English/Eng_ProgramsOffered_Schema")
-//const Eng_Awards = require("../models/Academics/Departments/English/Awards_Schema")
+const Eng_Awards = require("../models/Academics/Departments/English/Awards_Schema")
 const Hin_ProgramOffered = require("../models/Academics/Departments/Hindi/Hin_ProgramsOffered_Schema")
 const Hin_Awards = require("../models/Academics/Departments/Hindi/Awards_Schema")
 const PE_ProgramOffered = require("../models/Academics/Departments/Physical_Education/PE_ProgramsOffered_Schema")
@@ -1586,6 +1590,7 @@ router.post(
         }
     }
 );
+
 // Chemistry Timetable
 
 router.get('/Chem_tt', async(req, res, ) => {
@@ -1717,6 +1722,43 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Eng_tt({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Hindi Timetable
+
+router.get('/Hin_tt', async(req, res, ) => {
+    const details = await Hin_tt.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hin_tt/:id', async(req, res) => {
+    const delete_user = await Hin_tt.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Hin_tt_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Hin_tt({
                 title,
                 link,
                 file_path: path,
@@ -1882,6 +1924,43 @@ router.post(
         }
     }
 );
+// Hindi Publication
+
+router.get('/Hin_Pubs', async(req, res, ) => {
+    const details = await Hin_Pubs.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hin_Pubs/:id', async(req, res) => {
+    const delete_user = await Hin_Pubs.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Hin_Pubs_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Hin_Pubs({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Chemistry Association
 
 router.get('/Chem_Association', async(req, res, ) => {
@@ -1939,6 +2018,43 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Com_Association({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Hindi Association
+
+router.get('/Hin_Association', async(req, res, ) => {
+    const details = await Hin_Association.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hin_Association/:id', async(req, res) => {
+    const delete_user = await Hin_Association.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Hin_Association_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Hin_Association({
                 title,
                 link,
                 file_path: path,
@@ -2087,6 +2203,43 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Eng_Fac({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Hindi Facilities
+
+router.get('/Hin_Fac', async(req, res, ) => {
+    const details = await Hin_Fac.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Hin_Fac/:id', async(req, res) => {
+    const delete_user = await Hin_Fac.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Hin_Fac_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Hin_Fac({
                 title,
                 link,
                 file_path: path,

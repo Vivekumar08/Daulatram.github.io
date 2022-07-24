@@ -164,7 +164,8 @@ import Hindi_publications from "./Pages/Academics/Departments/Hindi/Hindi_public
 import Hindi_awards from "./Pages/Academics/Departments/Hindi/Hindi_awards";
 import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_association";
 import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine";
-
+import Hindi_Facs from "./Pages/Academics/Departments/Hindi/Facilities";
+import Hindi_tt from "./Pages/Academics/Departments/Hindi/Hin_tt";
 // History
 import Hist_about from "./Pages/Academics/Departments/History/Hist_about";
 import Hist_fac from "./Pages/Academics/Departments/History/Hist_fac";
@@ -1418,6 +1419,22 @@ function App() {
               </>
             }
             path="/academics/departments/Hindi/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_Facs />
+              </>
+            }
+            path="/academics/departments/Hindi/Facilities"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_tt />
+              </>
+            }
+            path="/academics/departments/Hindi/timetable"
           ></Route>{" "}
           <Route
             element={
