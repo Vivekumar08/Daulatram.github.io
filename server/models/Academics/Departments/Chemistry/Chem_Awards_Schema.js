@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Awards_Schema = mongoose.Schema(
+const Chem_Awards_Schema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -26,6 +26,6 @@ const Awards_Schema = mongoose.Schema(
   }
 );
 
-const Chem_Awards_Schema = mongoose.model('Chem_Awards_Schema', Awards_Schema);
+const Chem_Awards = mongoose.model('Chem_Awards', Chem_Awards_Schema);
 
-module.exports = Chem_Awards_Schema;
+module.exports = Chem_Awards;
