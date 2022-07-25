@@ -61,9 +61,32 @@ const Useful = () => {
           {/* Mobile menus */}
           <div
             className={`
-            ${heading === link.name ? "md:hidden" : "hidden"}
-          `}
-          ></div>
+              ${heading === link.name ? "xl:hidden" : "hidden"}
+              `}
+          >
+            <div>
+              {link.links.map((slink) => (
+                <>
+                  <div>
+                    {slink.name != "Annual Report" && (
+                      <a to={slink.link} className="hover:text-white">
+                        <li className="py-3 pl-14 ">{slink.name}</li>
+                      </a>
+                    )}
+                    {slink.name === "Annual Report" && (
+                      <a
+                        href={slink.link}
+                        target="_blank"
+                        className="hover:text-white"
+                      >
+                        <li className="py-3 pl-14 ">{slink.name}</li>
+                      </a>
+                    )}
+                  </div>
+                </>
+              ))}
+            </div>
+          </div>
         </div>
       ))}
     </>
