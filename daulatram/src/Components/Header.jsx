@@ -40,7 +40,7 @@ function Header() {
         <div className="  ">
         <Link to="/">
           <img
-            className="w-[180px] h-[180px] ml-8 mt-2"
+            className="w-[150px] h-[150px] ml-8 mt-2"
             src="\images\logo.png"
             alt="logo"
           />
@@ -51,17 +51,17 @@ function Header() {
             <Link to="/">
               <div className="flex flex-col justify-center items-center">
                 <div>
-                  <span className="college_name text-6xl tracking-[4px] font-Noto_Serif">
+                  <span className="college_name text-4xl tracking-[4px] font-Noto_Serif">
                     <strong>Daulat Ram College</strong>
                   </span>
                 </div>
-                <div className=" font-bold text-3xl flex flex-col items-center justify-center">
+                <div className=" font-bold text-xl flex flex-col items-center justify-center">
                   <span> University of Delhi </span>
                   <span>Star College, Estb. 1960</span>
                 </div>
               </div>
             </Link>
-            <div className="text-[#F80CA7] text-xl flex flex-wrap justify-center font-bold mt-5 ">
+            <div className="text-[#F80CA7] text-base flex flex-wrap justify-center font-bold mt-5 ">
               <div>
                 NIRF RANK: 29 <span style={{ color: "black" }}>{" | "}</span>
               </div>
