@@ -59,6 +59,12 @@ const Bio_ProgramOffered = require("../models/Academics/Departments/Biochemistry
 const Bio_Awards = require("../models/Academics/Departments/Biochemistry/Awards_Schema")
 const Bio_Photo_Gallery = require("../models/Academics/Departments/Biochemistry/Bio_Photo_Gallery_Schema")
 const Hist_Photo_Gallery = require("../models/Academics/Departments/History/Hist_Photo_Gallery_Schema")
+const Bot_Photo_Gallery = require("../models/Academics/Departments/Botany/Bot_Photo_Gallery_Schema")
+const Chem_Photo_Gallery = require("../models/Academics/Departments/Chemistry/Chem_Photo_Gallery_Schema")
+const Com_Photo_Gallery = require("../models/Academics/Departments/Commerce/Com_Photo_Gallery_Schema")
+const Eco_Photo_Gallery = require("../models/Academics/Departments/Economics/Eco_Photo_Gallery_Schema")
+const Eng_Photo_Gallery = require("../models/Academics/Departments/English/Eng_Photo_Gallery_Schema")
+const Hin_Photo_Gallery = require("../models/Academics/Departments/Hindi/Hin_Photo_Gallery_Schema")
 const Music_Photo_Gallery = require("../models/Academics/Departments/Music/Music_Photo_Gallery_Schema")
 const Math_Photo_Gallery = require("../models/Academics/Departments/Mathematics/Math_Photo_Gallery_Schema")
 const NHE_Photo_Gallery = require("../models/Academics/Departments/NHE/NHE_Photo_Gallery_Schema")
@@ -4329,7 +4335,222 @@ router.post(
         }
     }
 );
+// Hindi Photo Gallery
+router.get('/Hin_Photo_Gallery', async(req, res, ) => {
+    const details = await Hin_Photo_Gallery.find()
+    res.status(200).json(details)
+});
 
+router.delete('/delete_Hin_Photo_Gallery/:id', async(req, res) => {
+    const delete_user = await Hin_Photo_Gallery.findOneAndDelete({ _id: req.params.id });
+    console.log(delete_user.file_path)
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+
+})
+
+router.post(
+    '/Hin_Photo_Gallery_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const file = new Hin_Photo_Gallery({
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// English Photo Gallery
+router.get('/Eng_Photo_Gallery', async(req, res, ) => {
+    const details = await Eng_Photo_Gallery.find()
+    res.status(200).json(details)
+});
+
+router.delete('/delete_Eng_Photo_Gallery/:id', async(req, res) => {
+    const delete_user = await Eng_Photo_Gallery.findOneAndDelete({ _id: req.params.id });
+    console.log(delete_user.file_path)
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+
+})
+
+router.post(
+    '/Eng_Photo_Gallery_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const file = new Eng_Photo_Gallery({
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Economics Photo Gallery
+router.get('/Eco_Photo_Gallery', async(req, res, ) => {
+    const details = await Eco_Photo_Gallery.find()
+    res.status(200).json(details)
+});
+
+router.delete('/delete_Eco_Photo_Gallery/:id', async(req, res) => {
+    const delete_user = await Eco_Photo_Gallery.findOneAndDelete({ _id: req.params.id });
+    console.log(delete_user.file_path)
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+
+})
+
+router.post(
+    '/Eco_Photo_Gallery_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const file = new Eco_Photo_Gallery({
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Commerce Photo Gallery
+router.get('/Com_Photo_Gallery', async(req, res, ) => {
+    const details = await Com_Photo_Gallery.find()
+    res.status(200).json(details)
+});
+
+router.delete('/delete_Com_Photo_Gallery/:id', async(req, res) => {
+    const delete_user = await Com_Photo_Gallery.findOneAndDelete({ _id: req.params.id });
+    console.log(delete_user.file_path)
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+
+})
+
+router.post(
+    '/Com_Photo_Gallery_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const file = new Com_Photo_Gallery({
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Chemistry Photo Gallery
+router.get('/Chem_Photo_Gallery', async(req, res, ) => {
+    const details = await Chem_Photo_Gallery.find()
+    res.status(200).json(details)
+});
+
+router.delete('/delete_Chem_Photo_Gallery/:id', async(req, res) => {
+    const delete_user = await Chem_Photo_Gallery.findOneAndDelete({ _id: req.params.id });
+    console.log(delete_user.file_path)
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+
+})
+
+router.post(
+    '/Chem_Photo_Gallery_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const file = new Chem_Photo_Gallery({
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Botany Photo Gallery
+router.get('/Bot_Photo_Gallery', async(req, res, ) => {
+    const details = await Bot_Photo_Gallery.find()
+    res.status(200).json(details)
+});
+
+router.delete('/delete_Bot_Photo_Gallery/:id', async(req, res) => {
+    const delete_user = await Bot_Photo_Gallery.findOneAndDelete({ _id: req.params.id });
+    console.log(delete_user.file_path)
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+
+})
+
+router.post(
+    '/Bot_Photo_Gallery_add',
+    upload.single('file'),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const file = new Bot_Photo_Gallery({
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Math Photo Gallery
 router.get('/Math_Photo_Gallery', async(req, res, ) => {
     const details = await Math_Photo_Gallery.find()
