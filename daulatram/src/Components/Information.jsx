@@ -32,8 +32,8 @@ function Information() {
           </span>
         </div>
         {/* content/body/messages */}
-        <div className="flex md:flex-row flex-col w-auto   mb-5 mt-8 justify-between   ml-24 mr-24 ">
-          <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[500px]  text-lg font-semibold mb-5   ">
+        <div className="flex lg:flex-row flex-col items-center   mb-5 mt-8 lg:justify-between   ml-12 mr-12 ">
+          <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[500px]  text-lg font-semibold mb-5  ml-5 mr-10 ">
             <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center z-10 text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Students</span>
             </span>
@@ -100,7 +100,7 @@ function Information() {
                 })}
             </div>
           </div>
-          <div className=" bg-[#d9d9d9] w-[20em] rounded-lg text-lg mb-5 h-[500px] font-semibold">
+          <div className=" bg-[#d9d9d9] w-[20em] rounded-lg text-lg mb-5 h-[500px] font-semibold ml-5 mr-10">
             <span className="bg-[#000080] rounded-t-lg flex flex-row  justify-center text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Staff</span>
             </span>
@@ -146,7 +146,7 @@ function Information() {
                       <>
                         <a href={file_path} key={_id} target="_blank">
                           <div className="flex items-center ">
-                            <span className="information flex flex-col  hover:font-semibold hover:text-blue-600 text-justify w-[15em]  ml-4 text-sm mb-4 mt-4">
+                            <span className="information flex flex-col  hover:font-semibold hover:text-blue-600 text-justify w-[15em] ml-4   text-sm mb-4 mt-4">
                               {title}
                               {new_ && diffDays > 0 && (
                                 <sup className="font-extrabold ml-1 text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
@@ -163,7 +163,7 @@ function Information() {
                 );
               })}
           </div>
-          <div className=" bg-[#d9d9d9] w-[20em] rounded-lg mb-5 text-lg h-[500px] font-semibold">
+          <div className=" bg-[#d9d9d9] w-[20em] rounded-lg mb-5 text-lg h-[500px] font-semibold ml-5 mr-10">
             <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Public</span>
             </span>
