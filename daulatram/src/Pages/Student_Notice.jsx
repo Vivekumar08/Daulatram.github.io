@@ -299,7 +299,7 @@ const Student_Notice = () => {
                             >
                               <span className="text-base md:text-xl">
                                 {title}
-                                {new_ && (
+                                {new_ && diffDays>0 && (
                                   <sup className="font-extrabold ml-1 text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>

@@ -9,7 +9,7 @@ const NavLinks = () => {
     <>
       {links.map((link) => (
         <>
-          <div >
+          <div className="z-50">
             <div className=" text-left xl:cursor-pointer group ">
               <h1
                 className="py-4 font-bold uppercase flex justify-between  items-center xl:pr-0  group"
@@ -48,7 +48,7 @@ const NavLinks = () => {
                         <div>
                           {slink.name != "Annual Report" && (
                             <Link to={slink.link} className="hover:text-white">
-                              <li className="text-xl m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-xl outline-none hover:text-white hover:bg-[#000080] ">
+                              <li className="text-base m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-xl outline-none hover:text-white hover:bg-[#000080] ">
                                 {slink.name}
                               </li>
                             </Link>
@@ -59,7 +59,7 @@ const NavLinks = () => {
                               target="_blank"
                               className="hover:text-white"
                             >
-                              <li className="text-xl m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-xl outline-none hover:text-white hover:bg-[#000080] ">
+                              <li className="text-base m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-xl outline-none hover:text-white hover:bg-[#000080] ">
                                 {slink.name}
                               </li>
                             </a>
