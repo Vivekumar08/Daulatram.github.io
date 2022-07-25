@@ -1,8 +1,3 @@
-
-import Ecobanner from "../Economics/Ecobanner.jsx";
-import Economics from "../../../../Components/DepartSIde/Economics.jsx";
-
-import "./style1.css";
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,10 +5,11 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-
+import Botbanner from "../Botany/Botanybanner";
+import Botany from "../../../../Components/DepartSIde/Botany";
 // import "./stl.css";
 
-function Eco_Gallery() {
+function Bot_Gallery() {
   const [data1, setData1] = useState();
   const errRef = useRef();
   const dropRef = useRef();
@@ -24,7 +20,7 @@ function Eco_Gallery() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Eco_Photo_Gallery");
+    const response = await fetch("http://localhost:5000/Bot_Photo_Gallery");
     setData1(await response.json());
   };
 
@@ -49,7 +45,7 @@ function Eco_Gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Eco_Photo_Gallery/${id}`,
+      `http://localhost:5000/delete_Bot_Photo_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -69,7 +65,7 @@ function Eco_Gallery() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/Eco_Photo_Gallery_add`, formData, {
+        await axios.post(`http://localhost:5000/Bot_Photo_Gallery_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -106,7 +102,7 @@ function Eco_Gallery() {
                 <span className="ml-5">Home</span>
               </Link>
               <span className="ml-5">Academics</span>
-              <span className="ml-5">Economics</span>
+              <span className="ml-5">Botany</span>
               <span className="ml-5">Photo Gallery</span>
             </div>
           </div>
@@ -114,7 +110,7 @@ function Eco_Gallery() {
       </div>
       <div className="flex flex-row">
         <div className="flex  flex-col mt-12 ml-2">
-        <Economics/>
+        <Botany/>
         </div>
         <div className="w-[1100px]">
           <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
@@ -242,4 +238,4 @@ function Eco_Gallery() {
   );
 }
 
-export default Eco_Gallery;
+export default Bot_Gallery;

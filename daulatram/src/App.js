@@ -38,7 +38,7 @@ import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Asso
 import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff";
 import Bot_awards from "./Pages/Academics/Departments/Botany/Awards";
 import Bot_tt from "./Pages/Academics/Departments/Botany/Bot_tt";
-
+import Botany_Gallery from "./Pages/Academics/Departments/Botany/Bot_Gallery";
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
 import Facilities from "./Pages/Academics/Facilities";
@@ -97,6 +97,7 @@ import Chemfacilities from "./Pages/Academics/Departments/Chemistry/Chemfaciliti
 import Chem_Awards from "./Pages/Academics/Departments/Chemistry/Awards"
 import Chem_tt from "./Pages/Academics/Departments/Chemistry/Chem_tt"
 import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
+import Chem_Gallery from "./Pages/Academics/Departments/Chemistry/Chem_Gallery"
 // import Socities1 from "./Pages/Socities1";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
@@ -127,6 +128,7 @@ import Comfacilities from "./Pages/Academics/Departments/Commerce/Facilities";
 import Com_Awards from "./Pages/Academics/Departments/Commerce/Awards"
 import Com_tt from "./Pages/Academics/Departments/Commerce/Com_tt"
 import Comassociation from "./Pages/Academics/Departments/Commerce/Association";
+import Commerce_Gallery from "./Pages/Academics/Departments/Commerce/Com_Gallery"
 //Economics
 import Eco_about from "./Pages/Academics/Departments/Economics/Eco_about";
 import Eco_faculty from "./Pages/Academics/Departments/Economics/Eco_faculty";
@@ -166,6 +168,7 @@ import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_associa
 import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine";
 import Hindi_Facs from "./Pages/Academics/Departments/Hindi/Facilities";
 import Hindi_tt from "./Pages/Academics/Departments/Hindi/Hin_tt";
+import Hindi_gallery from "./Pages/Academics/Departments/Hindi/Hin_Gallery";
 // History
 import Hist_about from "./Pages/Academics/Departments/History/Hist_about";
 import Hist_fac from "./Pages/Academics/Departments/History/Hist_fac";
@@ -853,6 +856,14 @@ function App() {
           <Route
             element={
               <>
+                <Botany_Gallery />
+              </>
+            }
+            path="/academics/departments/Botany/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Time_table />
               </>
             }
@@ -1033,6 +1044,14 @@ function App() {
           <Route
             element={
               <>
+                <Chem_Gallery />
+              </>
+            }
+            path="/academics/departments/Chemistry/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Chemfaculty />
               </>
             }
@@ -1110,6 +1129,14 @@ function App() {
               </>
             }
             path="/academics/departments/Commerce/"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Commerce_Gallery />
+              </>
+            }
+            path="/academics/departments/Commerce/photogallery"
           ></Route>{" "}
           <Route
             element={
@@ -1467,6 +1494,14 @@ function App() {
               </>
             }
             path="/academics/departments/Hindi/newsletter_magazines_hindi"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hindi_gallery />
+              </>
+            }
+            path="/academics/departments/Hindi/photogallery"
           ></Route>{" "}
           {/* History */}{" "}
           <Route

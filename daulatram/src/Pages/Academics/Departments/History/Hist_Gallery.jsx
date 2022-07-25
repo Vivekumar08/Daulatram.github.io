@@ -103,7 +103,7 @@ function Hist_Gallery() {
                 <span className="ml-5">Home</span>
               </Link>
               <span className="ml-5">Academics</span>
-              <span className="ml-5">Histchemistry</span>
+              <span className="ml-5">History</span>
               <span className="ml-5">Photo Gallery</span>
             </div>
           </div>
