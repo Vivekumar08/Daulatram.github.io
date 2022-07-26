@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import Icons from "../Icons";
 
 
 function Upperfooter() {
@@ -176,6 +177,7 @@ function Upperfooter() {
                 allowfullscreen
                 loading="lazy"
               /> */}
+              <Icons/>
               </div>
             </div>
 
