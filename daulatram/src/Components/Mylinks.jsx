@@ -698,6 +698,10 @@ export const Notices = [
         name: "Archive Notice",
         link: "/Archives",
       },
+      {
+        name: "Bulleitns",
+        link: "/Bulletin",
+      },
     ],
   },
 ];

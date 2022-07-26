@@ -66,6 +66,45 @@ const Public_Notice = () => {
     fetchdata();
   }, []);
 
+  const Bulle = async (
+    _id,
+    title,
+    file_mimetype,
+    file_path,
+    new_,
+    date_exp,
+    date
+  ) => {
+    try {
+      const response = await fetch("http://localhost:5000/Bulletins_notice_add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          file_mimetype,
+          file_path,
+          new_,
+          date_exp,
+          date,
+        }),
+      });
+      const data = await response.json();
+      if (!data && response.status === 400) {
+        setErrMsg("No Server Response");
+      } else if (response.status === 402) {
+        window.alert("Delete some previous bulletin")
+        setErrMsg("Delete some previous bulletin");
+      } else {
+        setAuth(true);
+        window.alert("Your information added into bulletin")
+        fetchdata();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const updateBorder = (dragState) => {
     if (dragState === "over") {
       dropRef.current.style.border = "2px solid #000";
@@ -323,6 +362,22 @@ const Public_Notice = () => {
                               className=" cursor-pointer  mr-5 hover:text-green-600"
                               onClick={() =>
                                 arch(
+                                  _id,
+                                  title,
+                                  file_mimetype,
+                                  file_path,
+                                  new_,
+                                  date_exp,
+                                  date
+                                )
+                              }
+                            />
+                            <FontAwesomeIcon
+                              icon={faAdd}
+                              size="xl"
+                              className=" cursor-pointer  mr-5 hover:text-blue-700"
+                              onClick={() =>
+                                Bulle(
                                   _id,
                                   title,
                                   file_mimetype,

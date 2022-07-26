@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import Icons from "../Icons";
 
-
 function Upperfooter() {
+  const { auth, setAuth } = useContext(AuthContext);
+
   return (
     <>
       <footer className="footer mt-5  bg-[#002366] text-white">
@@ -63,6 +65,7 @@ function Upperfooter() {
                   </Link>
                 </li>
 
+
                 <li className="pb-2">
                   <span className="mr-3">-</span>
                   <Link
@@ -117,6 +120,17 @@ function Upperfooter() {
                     Archives
                   </Link>
                 </li>
+                {auth && (
+                    <li className="pb-2">
+                      <span className="mr-3">-</span>
+                      <Link
+                        to="/Bulletin"
+                        className="hover:text-white hover:font-semibold  text-[#d3d3d3] hover:px-2"
+                      >
+                        Bulletin
+                      </Link>
+                    </li>
+                  )}
                 <li className="pb-2">
                   <span className="mr-3">-</span>
                   <Link
@@ -153,6 +167,7 @@ function Upperfooter() {
                 <br />
                 <div className="email-id">
                   <p className="">
+
                     <a
                       to="mailto: daulatramcollegedu@gmail.com ? Subject: Query Regarding to Daulat Ram Collge"
                       target="_blank"
@@ -191,6 +206,7 @@ function Upperfooter() {
               {/* Created by: DarkWeb Dreamers (CICians) */}
               Created by: CIC (Ishika Rai, Priyanshu Sisodiya, Riya Kumari, Vivek Kumar)
             </p>
+
           </div>
         </div>
       </footer>
