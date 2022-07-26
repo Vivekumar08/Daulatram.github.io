@@ -53,7 +53,7 @@ const Biochem = () => {
                     backgroundImage:
                       "url(/images/ImgPages/Biochemistry/Biochemistry1.jpg)",
                   }}
-                  className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[600px] mr-auto w-[250px] h-[190px] lg:h-[450px] ml-auto mb-4 rounded-3xl border-2 border-black"
+                  className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[600px] mr-auto w-[250px] h-[190px] lg:h-[450px] ml-auto mb-4 rounded-2xl border-2 border-black"
                 ></div>
                 <div className="">
                   <div className="pr-3 pl-3 flex  ml-2">

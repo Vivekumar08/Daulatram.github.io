@@ -1,21 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
 import Departments from "../../../../Components/Sidebar/Departments";
 import Chembanner from "../Chemistry/Chembanner.jsx";
 import Chemistry from "../../../../Components/DepartSIde/Chemistry.jsx";
 import Aboutchem from "../../../../Dummy_data/ImgPages/Chemistry/Aboutchem.jpg"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 
 function Chem_About() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Chembanner />
       </div>
       <div className="flex flex-row">
-      <div className=" flex  flex-col mt-12 ml-2 ">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Chemistry />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+
+      <div className=" md:flex hidden md:flex-col mt-12 ml-2 ">
           <Chemistry/>
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
             About the department
           </h2>
 
@@ -26,15 +54,14 @@ function Chem_About() {
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Chemistry/Aboutchem.jpg)",
-                    width: "400px",
-                    height: "370px",
+                   
                   }}
-                  className="bg-center ml-auto mr-auto bg-no-repeat mt-[3%] bg-cover h-10  rounded-3xl border-2 border-black"
+                  className="bg-center ml-auto mr-auto lg:w-[400px] w-[250px] h-[190px] lg:h-[370px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                 ></div>
               </figure>
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium mt-3">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   The Department of Chemistry, Daulat Ram College was
                   established in 1968 . The department has highly qualified,
                   dedicated and experienced faculty. It has well equipped
@@ -48,7 +75,7 @@ function Chem_About() {
               </div>
               <br />
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   The Department has been awarded star status by DBT. It has
                   been running the DBT <strong>Star College Project</strong>{" "}
                   since 2011. The department takes pride in successfully
@@ -67,7 +94,7 @@ function Chem_About() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   The department runs a vibrant and prestigious co-scholastic
                   society “CHEMPHORIA” with all students and teachers as its
                   members. The society has the tradition of electing its own
@@ -77,7 +104,7 @@ function Chem_About() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   To its credit, the department has one International conference
                   (November 2016) and National conference (March 2018). These
                   conferences were attended enthusiastically by academia from
@@ -87,7 +114,7 @@ function Chem_About() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   Skill development programmes for students during summer and
                   winter breaks are organized by the Department every year.
                   These programmes give extensive practical hands-on training to
@@ -96,7 +123,7 @@ function Chem_About() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 mb-5 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   Year after year the majority of Daulat Ram College Chemistry
                   students graduate with high grades and some of them also get
                   university positions. Some of our students are pursuing
