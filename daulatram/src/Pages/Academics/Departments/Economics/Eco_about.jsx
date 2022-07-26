@@ -1,20 +1,46 @@
-import React from "react";
+import React,{useState} from "react";
 import Departments from "../../../../Components/Sidebar/Departments";
 import Ecobanner from "../Economics/Ecobanner.jsx";
 import Economics from "../../../../Components/DepartSIde/Economics.jsx";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Eco_about() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Ecobanner />
       </div>
       <div className="flex flex-row">
-      <div className=" flex  flex-col ml-2 mt-12">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Economics />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+      <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <Economics />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
             About the department
           </h2>
 
@@ -25,15 +51,14 @@ function Eco_about() {
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Economics/Eco_about.png)",
-                    width: "750px",
-                    height: "370px",
+                    
                   }}
-                  className="bg-center ml-auto mr-auto bg-no-repeat mt-[3%] bg-cover h-10  rounded-3xl border-2 border-black"
+                  className="bg-center ml-auto mr-auto lg:w-[750px] w-[250px] h-[190px] lg:h-[370px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                 ></div>
               </figure>
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium mt-3">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   The Department of Economics of Daulat Ram College was
                   established in 1960. The Department oﬀers a complete
                   three-year undergraduate B.A.(Hons) Economics course. Further,
@@ -51,7 +76,7 @@ function Eco_about() {
               </div>
               <br />
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   The cut-oﬀ for admissions to the BA (Hons) Economics course
                   for the last 5 years has been in the range of 95%-97%. The
                   department comprises of a team of dedicated faculty members to
@@ -65,7 +90,7 @@ function Eco_about() {
               </div>
               <br />
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   The department members are also members of the Economics
                   Association,<strong> ‘Éclat’</strong> which apart from
                   organising activities like fresher’s welcome and farewell for
@@ -90,7 +115,7 @@ function Eco_about() {
               </div>
               <br />
               <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   The students of the discipline are also encouraged to be
                   active members of the Entrepreneurship Cell and Finance and
                   Investment Cell of the College (Co-convened by the Economics
