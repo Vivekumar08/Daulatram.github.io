@@ -140,11 +140,12 @@ const Bio_faculty = () => {
             Faculty
           </h2>
           <div className="  ">
+
             <h2 className="text-2xl uppercase font-bold m-1 flex  items-center ">
               Current Faculty
             </h2>
           </div>
-          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
+          <div class="grid grid-cols-1 ml-5 md:grid-cols-5  w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, description, img_data, filter } = curElem;
