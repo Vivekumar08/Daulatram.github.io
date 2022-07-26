@@ -13,7 +13,7 @@ function Upperfooter() {
           <div className=" h-[95%] mt-10 ">
             <div className="flex flex-col md:items-start items-center md:justify-evenly  md:ml-5 md:flex-row ">
               <ul className="w-[50%] md:w-[20%]">
-                <h4 className="mb-5   md:relative font-bold text-2xl">
+                <h4 className="mb-5   md:relative  font-bold md:text-2xl text-lg">
                   INFORMATION
                 </h4>
                 
@@ -130,7 +130,7 @@ function Upperfooter() {
               </ul>
               <ul className="w-[50%] md:w-[20%] ">
               
-                <h4 className=" mt-10 md:mt-0  mb-5   md:relative font-bold text-2xl">
+                <h4 className=" mt-10 md:mt-0  mb-5   md:relative font-bold md:text-2xl text-lg">
                   ALUMNAE CONNECT
                 </h4>
                 <li className="pb-2">
@@ -146,7 +146,7 @@ function Upperfooter() {
                 </li>
                 <br />
                 <br />
-                <h4 className="mb-5 relative font-bold text-2xl">ADDRESS</h4>
+                <h4 className="mb-5 relative font-bold md:text-2xl text-lg">ADDRESS</h4>
                 <p className="text-[#d3d3d3]">
                   4, Patel Marg, Maurice Nagar, <br /> Delhi PIN-110007
                 </p>
@@ -186,7 +186,7 @@ function Upperfooter() {
             <p className="text-gray-200 bg-[#1E1F29] text-center h-12 pt-3">
               © All Rights Reserved
               <Link to="/" className="ml-3">
-                DAULAT RAM COLLEGE, <span className="ml-2 mr-2">|</span>
+                DAULAT RAM COLLEGE, <span className="ml-2  mr-2">|</span>
               </Link>
               {/* Created by: DarkWeb Dreamers (CICians) */}
               Created by: CIC (Ishika Rai, Priyanshu Sisodiya, Riya Kumari, Vivek Kumar)
