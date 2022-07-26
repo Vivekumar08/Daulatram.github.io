@@ -96,10 +96,10 @@ import Chemevents from "./Pages/Academics/Departments/Chemistry/Chemevents";
 import Chemstudachieve from "./Pages/Academics/Departments/Chemistry/Chemstudachieve";
 import Chempublications from "./Pages/Academics/Departments/Chemistry/Chempublications";
 import Chemfacilities from "./Pages/Academics/Departments/Chemistry/Chemfacilities";
-import Chem_Awards from "./Pages/Academics/Departments/Chemistry/Awards"
-import Chem_tt from "./Pages/Academics/Departments/Chemistry/Chem_tt"
+import Chem_Awards from "./Pages/Academics/Departments/Chemistry/Awards";
+import Chem_tt from "./Pages/Academics/Departments/Chemistry/Chem_tt";
 import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
-import Chem_Gallery from "./Pages/Academics/Departments/Chemistry/Chem_Gallery"
+import Chem_Gallery from "./Pages/Academics/Departments/Chemistry/Chem_Gallery";
 // import Socities1 from "./Pages/Socities1";
 import Student_Notice from "./Pages/Student_Notice";
 import Staff_Notice from "./Pages/Staff_Notice";
@@ -127,10 +127,10 @@ import Com_publications from "./Pages/Academics/Departments/Commerce/Com_publica
 import Com_labstaff from "./Pages/Academics/Departments/Commerce/Com_labstaff";
 import Bcomprog from "./Pages/Academics/Departments/Commerce/Bcomprog";
 import Comfacilities from "./Pages/Academics/Departments/Commerce/Facilities";
-import Com_Awards from "./Pages/Academics/Departments/Commerce/Awards"
-import Com_tt from "./Pages/Academics/Departments/Commerce/Com_tt"
+import Com_Awards from "./Pages/Academics/Departments/Commerce/Awards";
+import Com_tt from "./Pages/Academics/Departments/Commerce/Com_tt";
 import Comassociation from "./Pages/Academics/Departments/Commerce/Association";
-import Commerce_Gallery from "./Pages/Academics/Departments/Commerce/Com_Gallery"
+import Commerce_Gallery from "./Pages/Academics/Departments/Commerce/Com_Gallery";
 //Economics
 import Eco_about from "./Pages/Academics/Departments/Economics/Eco_about";
 import Eco_faculty from "./Pages/Academics/Departments/Economics/Eco_faculty";
@@ -156,7 +156,6 @@ import Eng_tt from "./Pages/Academics/Departments/English/Eng_tt";
 import Eng_Facs from "./Pages/Academics/Departments/English/Facilities";
 import Eng_awards from "./Pages/Academics/Departments/English/Awards";
 import Eng_Eve from "./Pages/Academics/Departments/English/Events";
-
 
 // Hindi
 import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
@@ -276,7 +275,7 @@ import Hist_Gallery from "./Pages/Academics/Departments/History/Hist_Gallery";
 import Math_Gallery from "./Pages/Academics/Departments/Mathematics/Math_Gallery";
 import Music_Gallery from "./Pages/Academics/Departments/Music/Music_Gallery";
 // import NHE_Photo_Gallery from "../../server/models/Academics/Departments/NHE/NHE_Photo_Gallery_Schema";
-import NHE_Gallery from "./Pages/Academics/Departments/NHE/NHE_Gallery"
+import NHE_Gallery from "./Pages/Academics/Departments/NHE/NHE_Gallery";
 import Philo_Gallery from "./Pages/Academics/Departments/Philosophy/Philo_Gallery";
 import Library from "./Pages/Library/Library";
 import PE_gallery from "./Pages/Academics/Departments/Physical_Education/PE_gallery";
@@ -285,7 +284,6 @@ import PS_gallery from "./Pages/Academics/Departments/Political_Science/PS_galle
 import Psycho_gallery from "./Pages/Academics/Departments/Psychology/Psycho_gallery";
 import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_gallery";
 import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
-
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -1010,7 +1008,7 @@ function App() {
             }
             path="/Sitemap"
           ></Route>{" "}
-          {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */} {" "}
+          {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Footer */}{" "}
           {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}
           <Route
             element={
@@ -1780,9 +1778,6 @@ function App() {
             }
             path="/academics/departments/Physical_Education/photogallery"
           ></Route>{" "}
-
-
-
           <Route
             element={
               <>

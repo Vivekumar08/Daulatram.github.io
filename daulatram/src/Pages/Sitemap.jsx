@@ -13,17 +13,17 @@ const Sitemap = () => {
     <div className="grid grid-cols-1">
       <div className="flex flex-row mt-[10] ">
 
-        <span className="ml-5 mr-5 p-0">
+        <span className="ml-4 mr-5 mt-3 p-0">
           <Sidebar />
         </span>
-        <span className="ml-5 mr-5 ">
+        <span className="mt-0 mr-5 mb-3 p-0 ">
           <DeptSidebar />
         </span>
-        <div className="ml-5 mr-5">
+        <div className="ml-5 mr-5 mt-10">
           <Departments />
         </div>
         </div>
-      <div className="mt-[-10%]">
+      <div className="mt-[-10%] ">
         <Staff_side />
       </div>
       <div className="mt-[-10%]"></div>
