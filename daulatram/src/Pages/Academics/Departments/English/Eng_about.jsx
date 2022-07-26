@@ -46,18 +46,18 @@ function Eng_about() {
 
           <div className="flex flex-row">
             <div className="flex flex-col">
-              <p className="text-2xl flex flex-row justify-center items-center font-bold underline pr-3 pl-3 mb-2 ml-2 mt-3">
+              <p className="md:text-2xl text-lg flex flex-row justify-center items-center font-bold underline pr-3 pl-3 mb-2 ml-2 mt-3">
                 The English Literary Association
               </p>
-              <p className="text-xl font-bold  pr-3 pl-3 mb-2 ml-2 mt-3">
+              <p className="md:text-xl text-lg font-bold  pr-3 pl-3 mb-2 ml-2 mt-3">
                 Convener: Dr. Deesphikha Mahanta Bortamuly
               </p>
-              <p className="text-xl font-bold mb-5 pr-3 pl-3 ml-2 mt-3">
+              <p className="md:text-lg text-lg font-bold mb-5 pr-3 pl-3 ml-2 mt-3">
                 Co-Convener: Ms. Trisha Mitra
               </p>
 
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium mt-3">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   The English Literary Association – Literati – had an exciting
                   year 2021-22. The inaugural session of the Study Circle
                   2021-22 was held on 11th August, 2021, with a focus on honing
@@ -79,7 +79,7 @@ function Eng_about() {
               </div>
               <br />
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   The next activity was an Invited Talk, delivered by Dr.
                   Avishek Parui, who teaches English and Memory Studies at IIT
                   Madras and is an Associate Fellow of the UK Higher Education
@@ -100,7 +100,7 @@ function Eng_about() {
               </div>
               <br />
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   To make our students more research oriented, a talk by a
                   former student and currently a research scholar Ms. Prakriti
                   Das was organised by the department on 23rd October 2021.
@@ -120,7 +120,7 @@ function Eng_about() {
               </div>
               <br />
               <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   As a part of{" "}
                   <strong>DRC SDP on ICT Tools for Learning,</strong> an SDP was
                   organised to ensure that every student learns the basics
@@ -138,7 +138,7 @@ function Eng_about() {
               </div>
               <br />
               <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   A talk on Children’s Literature was organised by the
                   department on 10th November 2021. The speaker, Dr. Tanu Shree
                   Singh titled her talk{" "}
@@ -157,7 +157,7 @@ function Eng_about() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   There are several areas where English literature and
                   Psychology intersect in term introspection, interpretations
                   and research. One such area is gender with its various
@@ -193,7 +193,7 @@ function Eng_about() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   The annual publication this year was unique as two Reviewers
                   from outside the college reviewed a section of shortlisted
                   entries and their comments were included in the publication.
@@ -210,7 +210,7 @@ function Eng_about() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   <strong>Faculty Editors: </strong>Dr. Deepshikha Mahanta
                   Bortamuly Ms. Trisha <br />
                   <strong>Mitra Reviewers: </strong>Dr. Simran Chadha and Ms.
@@ -220,7 +220,7 @@ function Eng_about() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   History and literature always complement each other. While
                   history presents the facts, literature can be an artistic
                   expression of the same. Every piece of literature is
@@ -243,7 +243,7 @@ function Eng_about() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   As it is aptly said, "Productivity is never an accident. It is
                   always the result of a commitment to excellence, intelligent
                   planning, and focused effort", the department organized its
@@ -267,7 +267,7 @@ function Eng_about() {
                 </span>
               </div>
               <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="text-lg text-justify font-medium ">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   <strong>President of Literati 2021-22: </strong>Bidisha Jalan
                   <br />
                   <strong>Vice President: </strong>Akanksha Kiran
