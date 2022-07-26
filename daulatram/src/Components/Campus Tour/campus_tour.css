@@ -26,3 +26,34 @@
     align-items: center;
     justify-content: center;
 }
+
+@media only screen and (max-width: 1352px){
+
+
+    .small_box2 {
+        position: relative;
+        display: flex;
+        flex-direction:row;
+        width: 5%;
+        height: auto;
+        padding: 15px;
+        opacity: 1;
+        font-weight: 600;
+        color: #111;
+        font-size: 30px;
+        left: -122px;
+        bottom: 130px;
+    }
+
+
+    .small_box1 {
+        position: relative;
+        width: 70%;
+        margin: 12px;
+        margin-top: 25px;
+    }
+
+
+
+
+}

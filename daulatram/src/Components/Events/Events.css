@@ -2,6 +2,7 @@
     background-color: rgb(255, 255, 255);
     display: flex;
     width: 100%;
+    justify-content: space-evenly;
     height: 100%;
 }
 
@@ -84,3 +85,106 @@
     background-color: darkred;
     box-shadow: 50px;
 }
+
+@media only screen and (max-width: 1352px){
+    .main_div1 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr ;
+        width: 100%;
+        height: 100%;
+    }
+    .small_box {
+        position: relative;
+        height: fit-content;
+        margin: 2px;
+        margin-left: 6px;
+        margin-right: 16px;
+        opacity: 1;
+        box-shadow: 5px;
+        border-radius: 16px;
+        margin-top: 20px;
+        width: fit-content;
+        /* padding: 10px; */
+    
+        /* border: 2px solid transparent; */
+       
+    }
+
+}
+@media only screen and (max-width:  980px) {
+
+    .main_div1 {
+        background-color: rgb(255, 255, 255);
+        /* display: flex; */
+        display: grid;
+        grid-template-columns: 1fr 1fr ;
+        /* gap: 50px 100px; */
+        width: 100%;
+        height: 100%;
+    }
+    
+    .small_box {
+        position: relative;
+        height: fit-content;
+        margin: 2px;
+        margin-left: 16px;
+        margin-right: 16px;
+        opacity: 1;
+        box-shadow: 5px;
+        border-radius: 16px;
+        margin-top: 20px;
+        width: fit-content;
+        /* padding: 10px; */
+    
+        /* border: 2px solid transparent; */
+       
+    }
+    .read_btn {
+        position: absolute;
+        color: white;
+        background-color: #D21F3C;
+        padding: 0.5px;
+        height: 20%;
+        width: 50%;
+        z-index: 10;
+        font-weight: 100;
+        border: 2px solid transparent;
+        border-radius: 10px;
+        margin-top: -90px;
+        margin-left: 65px;
+        opacity: 0;
+        font-size: small;
+    }
+    
+    .event_img {
+        width: 80%;
+        height: 80%;
+        max-width: 40vw;
+        max-height:30vh;
+        border-radius: 12px;
+        opacity: 0.8;
+        /* padding: 10px; */
+        /* margin: 10px;
+        margin-right: 10px; */
+    }
+    .event_name {
+        position: absolute;
+        color: white;
+        padding: 1px;
+        height: fit-content;
+        width: fit-content;
+        z-index: 10;
+        margin-top: -160px;
+        margin-left: 60px;
+        text-shadow: -2px 2px 0 #000,
+            2px 2px 0 #000,
+            2px -2px 0 #000,
+            -2px -2px 0 #000;
+          font-size: 20px;  
+    }
+    .small_box:hover {
+        border: 0.5px solid #D21F3C;
+    
+    }
+  }
+  

@@ -30,7 +30,7 @@ const Useful = () => {
               </span>
             </h1>
             <div>
-              <div className="absolute top-[330px] hidden group-hover:md:block hover:md:block">
+              <div className="absolute top-[295px] hidden group-hover:md:block hover:md:block">
                 <div className="py-3">
                   <div
                     className=" h-4 left-3 absolute 
@@ -47,7 +47,7 @@ const Useful = () => {
                           // rel="noreferrer"
                           className="hover:text-white"
                         >
-                          <li className="text-md m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
+                          <li className="text-base m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
                             {slink.name}
                           </li>
                         </a>
@@ -61,9 +61,32 @@ const Useful = () => {
           {/* Mobile menus */}
           <div
             className={`
-            ${heading === link.name ? "md:hidden" : "hidden"}
-          `}
-          ></div>
+              ${heading === link.name ? "xl:hidden" : "hidden"}
+              `}
+          >
+            <div>
+              {link.links.map((slink) => (
+                <>
+                  <div>
+                    {slink.name != "Annual Report" && (
+                      <a to={slink.link} className="hover:text-white">
+                        <li className="py-3 pl-14 ">{slink.name}</li>
+                      </a>
+                    )}
+                    {slink.name === "Annual Report" && (
+                      <a
+                        href={slink.link}
+                        target="_blank"
+                        className="hover:text-white"
+                      >
+                        <li className="py-3 pl-14 ">{slink.name}</li>
+                      </a>
+                    )}
+                  </div>
+                </>
+              ))}
+            </div>
+          </div>
         </div>
       ))}
     </>
