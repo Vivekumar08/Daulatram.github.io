@@ -5,9 +5,9 @@ function Campustour() {
   return (
     <>
       <div className="main_div">
-        <div className="small_box1  rounded-lg ">
+        <div className="small_box1 w-full rounded-lg ">
           <video
-            className="rounded-lg h-[430px]"
+            className="rounded-lg   h-full md:[430px]"
             src={sample}
             autoplay
             controls
@@ -16,9 +16,8 @@ function Campustour() {
         </div>
 
         <div className="small_box2 uppercase ">
-          <h2>virtual</h2>
-          <h2>Campus</h2>
-          <h2>Tour</h2>
+          <h2>virtual Campus Tour</h2>
+          
         </div>
       </div>
     </>

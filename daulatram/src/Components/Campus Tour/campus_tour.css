@@ -7,19 +7,27 @@
 
 .small_box1 {
     position: relative;
-    width: 70%;
-    margin: 12px;
+    width: 100%;
+    /* height: 100px; */
+    /* margin: 12px; */
+    margin-bottom: 12px;
     margin-top: 15px;
+align-items: center;
+display: flex;
+justify-content: center;
+
+
 }
 
 .small_box2 {
     position: relative;
     display: flex;
-    flex-direction: column;
-    width: 55%;
+    width: 15%;
     height: auto;
     padding: 15px;
     opacity: 1;
+    /* margin-left: -5px; */
+    margin-right: 250px;
     font-weight: 600;
     color: #111;
     font-size: 40px;
@@ -32,26 +40,35 @@
 
     .small_box2 {
         position: relative;
-        display: flex;
-        flex-direction:row;
-        width: 5%;
-        height: auto;
-        padding: 15px;
-        opacity: 1;
+        /* display: flex;
+        flex-direction:row; */
+        width: 100%;
         font-weight: 600;
-        color: #111;
-        font-size: 30px;
-        left: -122px;
-        bottom: 130px;
+        font-size: 35px;
+        padding: 5px;
+        margin: 1px;
     }
 
 
     .small_box1 {
         position: relative;
-        width: 70%;
-        margin: 12px;
-        margin-top: 25px;
+        width: 100%;
+        margin: 1px;
+        /* margin-top: 25px; */
+
     }
+
+    .main_div {
+        background-color: #fff;
+        display: flex;
+        flex-direction: column-reverse;
+        width: 100%;
+        height: fit-content;
+    }
+    
+
+
+    
 
 
 
