@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./App.css";
 import Header from "./Components/Header";
 import Bulletin from "./Components/Bulletin";
 import Navbar from "./Components/Nav";
 import Icons from "./Components/Icons";
 import Upperfooter from "./Components/Footer/Upperfooter";
+import AuthContext from "./Context/AuthProvider";
 
 // Import Pages
 import Home from "./Pages/Home";
@@ -75,6 +76,7 @@ import Attendence from "./Pages/Student_zone/Attendence";
 import Sitemap from "./Pages/Sitemap";
 import Resources from "./Pages/Academics/Resources";
 import Contact from "./Pages/Footer/Contact";
+import Bulletins_page from "./Pages/Footer/Bulletins_page";
 import Internal from "./Pages/Student_zone/Internal";
 import First_year from "./Pages/Student_zone/Internals/First_year/First_year";
 import Second_year from "./Pages/Student_zone/Internals/Second_year/Second_year";
@@ -286,6 +288,8 @@ import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
 
 
 function App() {
+  const { auth, setAuth } = useContext(AuthContext);
+
   return (
     <>
       <Router>
@@ -416,7 +420,7 @@ function App() {
             }
             path="/academics/departments/biochem/photogallery"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Hist_Gallery />
@@ -432,7 +436,7 @@ function App() {
             }
             path="/academics/departments/Mathematics/photogallery"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Music_Gallery />
@@ -440,7 +444,7 @@ function App() {
             }
             path="/academics/departments/Music/photogallery"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <NHE_Gallery />
@@ -1016,6 +1020,17 @@ function App() {
             }
             path="/Contact_us"
           ></Route>{" "}
+
+          {auth &&
+            <Route
+              element={
+                <>
+                  <Bulletins_page />
+                </>
+              }
+              path="/Bulletin"
+            ></Route>
+          }
           <Route
             element={
               <>
@@ -1178,7 +1193,7 @@ function App() {
             }
             path="/academics/departments/Commerce/Publications"
           ></Route>{" "}
-          
+
           <Route
             element={
               <>
@@ -1316,7 +1331,7 @@ function App() {
             }
             path="/academics/departments/Economics/Facilities"
           ></Route>{" "}
-        
+
           // {/* English */}{" "}
           <Route
             element={
@@ -1374,7 +1389,7 @@ function App() {
             }
             path="/academics/departments/English/Publications"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Eng_tt />

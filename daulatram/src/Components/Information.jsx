@@ -6,8 +6,7 @@ function Information() {
   const [Studentinfo, setStudentinfo] = useState();
   const [Staffinfo, setStaffinfo] = useState();
   const [Publicinfo, setPublicinfo] = useState();
-  const [data1, setData1] = useState();
-
+  
   const fetchdata = async () => {
     const response_staff = await fetch("http://localhost:5000/Staff_notice");
     const response_Student = await fetch(

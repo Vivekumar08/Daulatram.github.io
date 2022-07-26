@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Notices } from "../Mylinks";
+import AuthContext from "../../Context/AuthProvider";
+import { useContext } from "react";
 
 function Notice_side() {
+  const { auth } = useContext(AuthContext);
   return (
     <div className="mt-[20%] mb-[20%] bg-gray-200 rounded-lg">
       {Notices.map((link) => (
@@ -14,17 +17,35 @@ function Notice_side() {
             {Notices.map((link) => (
               <div className="flex flex-col divide-y divide-solid divide-black">
                 {link.links.map((slink) => (
-                  <Link
-                    to={slink.link}
+                  <div
                     className=" ml-4 mb-2  p-2 mr-6 rounded-lg hover:bg-white hover:pl-4 "
                   >
-                    <li className=" hover:bg-white ">
-                      <p className="text-black font-semibold mt-2 ">
-                        - {""}
-                        {slink.name}
-                      </p>
-                    </li>
-                  </Link>
+                    {slink.name !== "Bulletins" && (
+                      <Link
+                        to={slink.link}
+                      >
+                        <li className=" hover:bg-white ">
+                          <p className="text-black font-semibold mt-2 ">
+                            - {""}
+                            {slink.name}
+                          </p>
+                        </li>
+                      </Link>
+                    )}
+                    {auth && slink.name === "Bulletins" && (
+                      <Link
+                        to={slink.link}
+                        // className=" ml-4 mb-2  p-2 mr-6 rounded-lg hover:bg-white hover:pl-4 "
+                      >
+                        <li className=" hover:bg-white ">
+                          <p className="text-black font-semibold mt-2 ">
+                            - {""}
+                            {slink.name}
+                          </p>
+                        </li>
+                      </Link>
+                    )}
+                  </div>
                 ))}
               </div>
             ))}

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
+import AuthContext from "../../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
-
 function Upperfooter() {
+  const { auth, setAuth } = useContext(AuthContext);
+
   return (
     <>
       <footer className="footer mt-5  bg-[#002366] text-white">
@@ -116,6 +118,17 @@ function Upperfooter() {
                       Archives
                     </Link>
                   </li>
+                  {auth && (
+                    <li className="pb-2">
+                      <span className="mr-3">-</span>
+                      <Link
+                        to="/Bulletin"
+                        className="hover:text-white hover:font-semibold  text-[#d3d3d3] hover:px-2"
+                      >
+                        Bulletin
+                      </Link>
+                    </li>
+                  )}
                   <li className="pb-2">
                     <span className="mr-3">-</span>
                     <Link
@@ -184,8 +197,9 @@ function Upperfooter() {
                 <Link to="/" className="ml-3">
                   DAULAT RAM COLLEGE, <span className="ml-2 mr-2">|</span>
                 </Link>
-              {/* Created by: DarkWeb Dreamers (CICians) */}
-              Created by: CIC (Ishika Rai, Priyanshu Sisodiya, Riya Kumari, Vivek Kumar)
+                {/* Created by: DarkWeb Dreamers (CICians) */}
+                Created by: CIC (Ishika Rai, Priyanshu Sisodiya, Riya Kumari,
+                Vivek Kumar)
               </p>
             </div>
           </div>

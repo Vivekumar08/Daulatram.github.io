@@ -116,7 +116,48 @@ const Student_Notice = () => {
       setErrMsg("Unable to Delete");
     }
   };
-
+  const Bulle = async (
+    _id,
+    title,
+    file_mimetype,
+    file_path,
+    new_,
+    date_exp,
+    date
+  ) => {
+    try {
+      const response = await fetch(
+        "http://localhost:5000/Bulletins_notice_add",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title,
+            file_mimetype,
+            file_path,
+            new_,
+            date_exp,
+            date,
+          }),
+        }
+      );
+      const data = await response.json();
+      if (!data && response.status === 400) {
+        setErrMsg("No Server Response");
+      } else if (response.status === 402) {
+        window.alert("Delete some previous bulletin");
+        setErrMsg("Delete some previous bulletin");
+      } else {
+        setAuth(true);
+        window.alert("Your information added into bulletin");
+        fetchdata();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
   const arch = async (
     _id,
     title,
@@ -168,7 +209,6 @@ const Student_Notice = () => {
         formData.append("date", date);
         formData.append("date_exp", date_e);
         formData.append("new_", new_opt);
-        
 
         setErrMsg("");
         await axios.post(`http://localhost:5000/Student_notice_add`, formData, {
@@ -196,7 +236,7 @@ const Student_Notice = () => {
     e.preventDefault();
     try {
       const date_e = `${date_exp}/${month_exp}/${year_exp}`;
-        setErrMsg("");
+      setErrMsg("");
       const response = await fetch(
         "http://localhost:5000/Student_notice_add_link",
         {
@@ -283,7 +323,7 @@ const Student_Notice = () => {
                             >
                               <span className="text-base md:text-xl">
                                 {title}
-                                {diffDays>0 && new_ && (
+                                {diffDays > 0 && new_ && (
                                   <sup className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>
@@ -293,13 +333,10 @@ const Student_Notice = () => {
                           </>
                         ) : (
                           <>
-                            <a
-                              href={file_path}
-                              target="_blank"
-                            >
+                            <a href={file_path} target="_blank">
                               <span className="text-base md:text-xl">
                                 {title}
-                                {new_ && diffDays>0 && (
+                                {new_ && diffDays > 0 && (
                                   <sup className="font-extrabold ml-1 text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>
@@ -324,6 +361,22 @@ const Student_Notice = () => {
                               className=" cursor-pointer  mr-5 hover:text-green-600"
                               onClick={() =>
                                 arch(
+                                  _id,
+                                  title,
+                                  file_mimetype,
+                                  file_path,
+                                  new_,
+                                  date_exp,
+                                  date
+                                )
+                              }
+                            />
+                            <FontAwesomeIcon
+                              icon={faAdd}
+                              size="xl"
+                              className=" cursor-pointer  mr-5 hover:text-blue-700"
+                              onClick={() =>
+                                Bulle(
                                   _id,
                                   title,
                                   file_mimetype,

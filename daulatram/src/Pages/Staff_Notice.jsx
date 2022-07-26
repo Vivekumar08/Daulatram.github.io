@@ -4,7 +4,7 @@ import axios from "axios";
 import Staff_Noticebanner from "../Components/Banners/Staff_Noticebanner";
 import Notice_side from "../Components/Sidebar/Notice_side";
 import Dropzone from "react-dropzone";
-import { faArchive, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faArchive, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Staff_Notice = () => {
@@ -114,6 +114,46 @@ const Staff_Notice = () => {
       fetchdata();
     } else {
       setErrMsg("Unable to Delete");
+    }
+  };
+
+  const Bulle = async (
+    _id,
+    title,
+    file_mimetype,
+    file_path,
+    new_,
+    date_exp,
+    date
+  ) => {
+    try {
+      const response = await fetch("http://localhost:5000/Bulletins_notice_add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          file_mimetype,
+          file_path,
+          new_,
+          date_exp,
+          date,
+        }),
+      });
+      const data = await response.json();
+      if (!data && response.status === 400) {
+        setErrMsg("No Server Response");
+      } else if (response.status === 402) {
+        window.alert("Delete some previous bulletin")
+        setErrMsg("Delete some previous bulletin");
+      } else {
+        setAuth(true);
+        window.alert("Your information added into bulletin")
+        fetchdata();
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -323,6 +363,22 @@ const Staff_Notice = () => {
                               className=" cursor-pointer  mr-5 hover:text-green-600"
                               onClick={() =>
                                 arch(
+                                  _id,
+                                  title,
+                                  file_mimetype,
+                                  file_path,
+                                  new_,
+                                  date_exp,
+                                  date
+                                )
+                              }
+                            />
+                            <FontAwesomeIcon
+                              icon={faAdd}
+                              size="xl"
+                              className=" cursor-pointer  mr-5 hover:text-blue-700"
+                              onClick={() =>
+                                Bulle(
                                   _id,
                                   title,
                                   file_mimetype,
