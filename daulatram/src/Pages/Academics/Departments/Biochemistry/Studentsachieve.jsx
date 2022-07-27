@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
 import Departments from "../../../../Components/Sidebar/Departments";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Studentsachieve() {
+  const [visible, setVisible] = useState(false);
   return (
     <>
       <div className=" flex flex-col">
@@ -11,16 +13,37 @@ function Studentsachieve() {
           <DepartBanner />
         </div>
         <div className="flex flex-row">
-          {/* <div className="w-[350px]">
-            <Departments />
-          </div> */}
-          <div className=" flex  flex-col ml-2 mt-12 ">
+        <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Biochemistry />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+          <div className="md:flex hidden md:flex-col mt-12 ml-2 ">
               <Biochemistry/>
 
               </div>
           <div className="ml-3 ">
             <div className="w-full mr-16">
-              <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+              <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
                 Students Achievements
               </h2>
             </div>
@@ -29,13 +52,13 @@ function Studentsachieve() {
                 <div className="mr-5 ml-4">
                   
                     <div>
-                      <h2 className="text-3xl ml-4 font-bold underline mb-6">
+                      <h2 className="md:text-2xl text-lg ml-4 font-bold underline mb-6">
                         Awards
                       </h2>
-                      <p className="text-1xl ml-4 font-bold text-xl">
+                      <p className="md:text-1xl text-base ml-4 font-bold ">
                         Academic :
                       </p>
-                      <ol className="list-decimal mt-2 ml-8">
+                      <ol className="md:text-base text-sm list-decimal mt-2 ml-8 ">
                         <li>
                           Shefali Jain, Best poster, DST Inspire Science
                           Conclave 2019: Research on the Frontier, Miranda
@@ -56,11 +79,11 @@ function Studentsachieve() {
                       </ol>
                     </div>
                     <div>
-                      <h2 className="text-3xl ml-4 font-bold underline mb-6 mt-3">
+                      <h2 className="md:text-2xl text-lg  ml-4 font-bold underline mb-6 mt-3">
                         Student's Progression
                       </h2>
                     </div>
-                    <ol className="list-decimal ml-8">
+                    <ol className="list-decimal ml-8 md:text-base text-sm">
                       <li>AAKANKSHA MAKOL 2016 batch Medical analyst.</li>
                       <li>Ridhima Batra is self employed.</li>
                       <li>Teena Bajaj masters in biochemistry.</li>

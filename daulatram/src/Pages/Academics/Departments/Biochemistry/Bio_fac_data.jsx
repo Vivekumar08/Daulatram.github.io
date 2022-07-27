@@ -43,8 +43,8 @@ const Bio_fac_data = (props) => {
   return (
     <>
       {props.filter == "Current" && (
-        <div className="flex flex-col">
-          <div class="first fac ">
+        <div className="flex flex-col ">
+          <div class="first fac ml-5 mr-5 mt-5 ">
             {props.img_data.file_path &&
               props.img_data.file_path.map((elem) => {
                 var path2 = elem.file_path1.replace(/\\/g, "/");
