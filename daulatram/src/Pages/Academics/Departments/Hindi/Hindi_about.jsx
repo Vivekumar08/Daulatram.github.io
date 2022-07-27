@@ -1,25 +1,52 @@
-import React from "react";
+import React,{useState} from "react";
 import Hindibanner from "../Hindi/Hindibanner.jsx";
 import Hindi from "../../../../Components/DepartSIde/Hindi.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Hindi_about() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Hindibanner />
       </div>
       <div className="flex flex-row">
-        <div className=" flex  flex-col mt-12 ml-2">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Hindi />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2">
           <Hindi />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
             विभाग का संक्षिप्त परिचय
           </h2>
 
           <div className="flex flex-row">
             <div className="flex flex-col">
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium mt-3">
+              <div className="pr-3 pl-3 flex mr-1 mb-2 ml-2">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   हिंदी साहित्य में ऑनर्स पाठयक्रम महाविद्यालय में 1964 में
                   विधिवत आरंभ हुआ था | उसके पहले 1960 से 1963 तक हिंदी विषय
                   पासकोर्स का अभिन्न अंग था | तब से लेकर अब तक हिंदी साहित्य और
@@ -28,9 +55,9 @@ function Hindi_about() {
                   रोज़गार के अवसरों का लाभ उठा सकें |
                 </span>
               </div>
-              <br />
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+              
+              <div className="pr-3 pl-3 flex mr-1 mb-2 ml-2">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   हिन्दी भाषा और साहित्य का अध्ययन जनसम्पर्क का, भारतीय समाज की
                   विचारशक्ति को गहराई से जानने का अवसर देता है | यह अध्ययन जड़ों
                   से जोड़ता है, ज्ञान क्षेत्र का विस्तार करता है; मानव प्रकृति को
@@ -43,9 +70,9 @@ function Hindi_about() {
                   स्नातक प्रशासनिक सेवा की परीक्षा भी दे सकता है।
                 </span>
               </div>
-              <br />
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="text-lg text-justify font-medium ">
+              
+              <div className="pr-3 pl-3 flex mr-1 mb-2 ml-2">
+                <span className="md:text-lg text-sm text-justify font-medium ">
                   साहित्य अध्यापन का कार्य शोध कार्य में रूचि रखने वाले समर्पित
                   अनुभवी प्राध्यापकों द्वारा किया जाता है, जो स्वयं को क्रियाशील
                   बनाये रखने के साथ-साथ विभिन्न कार्यशालाओं, राष्ट्रीय और
