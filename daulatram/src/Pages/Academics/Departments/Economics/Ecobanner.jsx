@@ -4,20 +4,19 @@ function Ecobanner() {
   return (
     <>
       <div
-        className="Banner"
+        className="Banner md:h-[280px]"
         style={{
           backgroundImage: "url(/images/img1.jpeg)",
-          width: "100%",
-          height: "280px",
+         
         }}
       >
         <div className="name">
         <div className="flex flex-row justify-center">
-            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="  text-[#ffffff] md:text-6xl text-4xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md    ">
               Economics
             </p>
           </div>
-          <div className=" pl-5 text-xl text-[#000080] bg-gray-400 pt-3 pb-3 mt-28">
+          <div className=" bg-gray-400 pt-3 pb-3 pl-5 md:text-lg text-s text-[#000080] mt-20">
           <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
