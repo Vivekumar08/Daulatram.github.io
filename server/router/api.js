@@ -1,7 +1,8 @@
 const express = require('express');
 const path = require('path');
 const multer = require('multer');
-const fs = require("fs")
+const fs = require("fs");
+const sanitize = require("mongo-sanitize")
 const { promisify } = require("util")
 const router = express.Router();
 const bcrypt = require('bcryptjs');
@@ -269,7 +270,7 @@ router.post('/NewAdmin', async (req, res) => {
         if (!Username || !Email || !Password) {
             return res.status(400).json({ error: "Fill the complete form" });
         }
-
+        // const hashedUser = await bcrypt.hash(Username, salt)
         const hashedPassword = await bcrypt.hash(Password, salt)
 
         const user = new User({ Username: Username, Email: Email, Password: hashedPassword });
@@ -344,9 +345,11 @@ router.post('/AdminLogin', async (req, res) => {
         if (!Username || !Password) {
             return res.status(400).json({ error: "Fill the Admin Login Form Properly" })
         }
-        const UserLogin = await User.findOne({ Username: Username })
+        const username_ = sanitize(Username)
+        const UserLogin = await User.findOne({Username :username_})
         if (UserLogin) {
             const isMatch = await bcrypt.compare(Password, UserLogin.Password);
+            // console.log(isMatch)
             if (!isMatch) {
                 console.log("Invalid Credentials")
                 res.status(402).json({ error: "Invalid Credentials" })

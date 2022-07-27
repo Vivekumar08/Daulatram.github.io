@@ -51,6 +51,7 @@ import Memesis from "./Pages/Societies/Memesis";
 // import Research_Facilities from "./Pages/Research/Research_Facilities";
 import Research_fac from "./Pages/Research/Research_Facilities/Research_fac";
 import Publications_res from "./Pages/Research/Publications_res";
+import Mag_New from "./Pages/Research/Mag_News/Mag_New";
 
 import Admission_committee from "./Pages/Admission/Admission_committee";
 import Fee_Structure from "./Pages/Admission/Fee_Structure";
@@ -774,7 +775,14 @@ function App() {
             }
             path="/research/publications"
           ></Route>{" "}
-          // {/* Botany */}{" "}
+          <Route
+            element={
+              <>
+                <Mag_New />
+              </>
+            }
+            path="/research/publications/Magzines_and_Newsletter"
+          ></Route>{" "}
           <Route
             element={
               <>

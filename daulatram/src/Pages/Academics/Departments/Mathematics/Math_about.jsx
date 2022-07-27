@@ -1,19 +1,46 @@
-import React from "react";
+import React,{useState} from "react";
 
 import Mathbanner from "../Mathematics/Mathbanner.jsx";
-import Mathemtics from "../../../../Components/DepartSIde/Mathematics.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import Mathematics from "../../../../Components/DepartSIde/Mathematics.jsx";
 function Math_about() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Mathbanner />
       </div>
       <div className="flex flex-row">
-        <div className=" flex  flex-col mt-12 ml-2">
-          <Mathemtics />
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Mathematics />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+          <Mathematics />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center">
             About the department
           </h2>
 
@@ -25,13 +52,12 @@ function Math_about() {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Mathematics/Newsletter.jpg)",
-                      width: "700px",
-                      height: "450px",
+
                     }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   ></div>
-                  <div className="pr-3 pl-3 flex mr-1 ml-2">
-                    <span className="text-lg text-justify font-medium mt-3">
+                  <div className="pr-3 pl-3 flex mr-1 mb-2 ml-2">
+                    <span className="md:text-lg text-sm text-justify font-medium">
                       In the education system across the globe, there is one
                       constant subject, a language that is universally spoken:
                       Mathematics. The department of Mathematics was established
@@ -46,9 +72,9 @@ function Math_about() {
                       Elective course for other B.A.(H) and B.Sc.(H) courses.
                     </span>
                   </div>
-                  <br />
-                  <div className="pr-3 pl-3 flex mr-1 ml-2">
-                    <span className="text-lg text-justify font-medium ">
+                  
+                  <div className="pr-3 pl-3 flex mr-1 mb-2 ml-2">
+                    <span className="md:text-lg text-sm text-justify font-medium">
                       The course structure allows the students to develop
                       conceptual and geometrical understanding and a deeper
                       approach to learning via the use of advanced software such
@@ -58,9 +84,9 @@ function Math_about() {
                       e-resources.
                     </span>
                   </div>
-                  <br />
-                  <div className="pr-3 pl-3 flex mr-1 ml-2">
-                    <span className="text-lg text-justify font-medium ">
+
+                  <div className="pr-3 pl-3 flex mr-1 mb-2 ml-2">
+                    <span className="md:text-lg text-sm text-justify font-medium ">
                       “Affine”, the Mathematics association organises various
                       lectures by eminent Professors throughout the year. An
                       inter-college annual festival “Shoonya” is organised
@@ -71,10 +97,10 @@ function Math_about() {
                       farewell to bid adieu to its outgoing batch is also
                       organised by the association.
                     </span>
-                    <br />
+                   
                   </div>
-                  <div className="pr-3 pl-3 flex mr-1 ml-2">
-                    <span className="text-lg text-justify font-medium ">
+                  <div className="pr-3 pl-3 flex mr-1 mb-2 ml-2">
+                    <span className="md:text-lg text-sm text-justify font-medium ">
                       To motivate the students to excel in academics, the
                       college awards Proficiency Prizes (for securing highest
                       marks in each year), Silver Jubilee Merit Scholarship (for
@@ -87,9 +113,9 @@ function Math_about() {
                       Mathematics.
                     </span>
                   </div>
-                  <br />
-                  <div className="pr-3 pl-3 flex mr-1 ml-2">
-                    <span className="text-lg text-justify font-medium ">
+                  
+                  <div className="pr-3 pl-3 flex mr-1 ml-2 mb-3">
+                    <span className="md:text-lg text-sm text-justify font-medium ">
                       <b>Vision and Mission Statement of the Department:</b>
                       <br />
                       <p>
@@ -119,9 +145,9 @@ function Math_about() {
                       </p>
                     </span>
                   </div>
-<br />
-                  <div className="pr-3 pl-3 flex mr-1 ml-2">
-                    <span className="text-lg text-justify font-medium ">
+
+                  <div className="pr-3 pl-3 flex  mb-3 mr-1 ml-2">
+                    <span className="md:text-lg text-sm text-justify font-medium">
                       Students with undergraduate degree in Mathematics have the
                       option of attaining higher education in the form of Master
                       degree in Mathematics, Statistics, Operational Research,
@@ -132,7 +158,7 @@ function Math_about() {
                     </span>
                   </div>
 
-                  <br />
+                
                 </div>
               </div>
             </div>
