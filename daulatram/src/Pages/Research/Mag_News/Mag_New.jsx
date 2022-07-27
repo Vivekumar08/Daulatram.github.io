@@ -1,13 +1,12 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import Research_banner from "../../../Components/Banners/Research_banner";
 import Research_side from "../../../Components/Sidebar/Research_side";
-// import { res_data } from "./data";
 import AuthContext from "../../../Context/AuthProvider";
-import Res_fac_data from "./Res_fac_data";
+import Mag_new_data from "./Mag_new_data";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
-const Research_fac = () => {
-  // const [data, setData] = useState(res_data);
+const Mag_New = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -41,22 +40,14 @@ const Research_fac = () => {
         const response = await axios.post(
           `http://localhost:5000/research_upload`,
           { title: link, description: caption }
-          // {
-          //   headers: {
-          //     "Content-Type": "multipart/form-data",
-          //   },
-          // }
         );
         setCaption("");
         setLink("");
         setAuth(true);
         fetchdata();
       } else {
-        // setErrMsg("Please select a file to add.");
         setErrMsg("Please enter all the field values.");
       }
-      // } else {
-      // }
     } catch (err) {
       err.response && setErrMsg(err.response.data);
     }
@@ -64,7 +55,24 @@ const Research_fac = () => {
 
   return (
     <>
-      <Research_banner />
+      <div
+        className="Banner"
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      >
+        <div className="name">
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Magzines and Newsletter{" "}
+            </p>
+          </div>
+          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080]  mt-28 ">
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+            <span className="ml-5">Research</span>
+          </div>
+        </div>
+      </div>
 
       <div className="flex flex-row">
         <div className="w-[350px] mb-2">
@@ -74,7 +82,7 @@ const Research_fac = () => {
           <div className="flex justify-center items-center flex-col">
             <div>
               <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-                Research and Facilities Centres
+                Magzines and Newsletter
               </h2>
             </div>
           </div>
@@ -84,7 +92,7 @@ const Research_fac = () => {
                 const { _id, title, description, img_data } = curElem;
                 return (
                   <>
-                    <Res_fac_data
+                    <Mag_new_data
                       key={_id}
                       id={_id}
                       tittle={title}
@@ -153,4 +161,4 @@ const Research_fac = () => {
   );
 };
 
-export default Research_fac;
+export default Mag_New;

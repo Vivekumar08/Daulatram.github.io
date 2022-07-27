@@ -1,6 +1,6 @@
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faEyeSlash, faUser } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -11,6 +11,7 @@ const Admin = () => {
   const errRef = useRef();
   const [user, setUser] = useState("");
   const [pwd, setPwd] = useState("");
+  const [Passwd, setPasswd] = useState(true);
   const [errMsg, setErrMsg] = useState("");
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const Admin = () => {
       }),
     });
     const data = await response.json();
-    if (!data) {
+    if (!data || response.status === 400) {
       setErrMsg("No Server Response");
     } else if (response.status === 401) {
       setErrMsg("Missing Username or Password");
@@ -75,7 +76,6 @@ const Admin = () => {
           </div>
           <div class="md:w-2/3">
             <input
-              
               class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
               id="full-name"
               type="text"
@@ -98,9 +98,9 @@ const Admin = () => {
           </div>
           <div class="md:w-2/3">
             <input
-              class="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+              class="bg-gray-200 appearance-none border-2 ml-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
               id="password"
-              type="password"
+              type={Passwd ? "password" : "text"}
               placeholder="******************"
               ref={userRef}
               onChange={(e) => setPwd(e.target.value)}
@@ -108,6 +108,11 @@ const Admin = () => {
               required
             />
           </div>
+          <FontAwesomeIcon
+            icon={Passwd ? faEye : faEyeSlash}
+            className="cursor-pointer"
+            onClick={() => setPasswd(!Passwd)}
+          ></FontAwesomeIcon>
         </div>
         <div class="md:flex md:items-center">
           <div class="md:w-1/3"></div>
@@ -122,7 +127,9 @@ const Admin = () => {
           </div>
         </div>
         <Link to="/forgot">
-          <div className="justify-end flex mt-3 text-blue-500  hover:scale-105 ">Forgot Password?</div>
+          <div className="justify-end flex mt-3 text-blue-500  hover:scale-105 ">
+            Forgot Password?
+          </div>
         </Link>
       </form>
     </>

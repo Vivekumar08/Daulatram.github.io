@@ -8,9 +8,8 @@ import {
 import AuthContext from "../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import { Navigate } from "react-router-dom";
 
-const Res_fac_data = (props) => {
+const Mag_new_data = (props) => {
   const [visible, setVisible] = useState(false);
   const errRef = useRef();
   const dropRef = useRef();
@@ -247,4 +246,4 @@ const Res_fac_data = (props) => {
   );
 };
 
-export default Res_fac_data;
+export default Mag_new_data;
