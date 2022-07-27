@@ -1,18 +1,45 @@
-import React from "react";
+import React,{useState} from "react";
 import Psychology from "../../../../Components/DepartSIde/Psychology";
 import Psychobanner from "./Psychobanner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Psycho_about() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Psychobanner />
       </div>
       <div className="flex flex-row">
-        <div className=" flex  flex-col mt-12 ml-2">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Psychology />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <Psychology />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center">
             About the department
           </h2>
 
@@ -24,14 +51,13 @@ function Psycho_about() {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Psychology/about_theme.png)",
-                      width: "700px",
-                      height: "400px",
+                     
                     }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover mb-2  rounded-2xl border-2 border-black"
                   />
 
                   <div className="pr-3 pl-3 flex mr-1 ml-2">
-                    <span className="text-lg text-justify font-medium mt-3">
+                    <span className="md:text-lg text-sm text-justify font-medium">
                       The discipline of Psychology provides in depth
                       understanding of various aspects of human behaviour and
                       personality. Psychologists are constantly evolving new
@@ -48,7 +74,7 @@ function Psycho_about() {
                     </span>
                   </div>
                   <div className="pr-3 pl-3 flex mr-1 ml-2 mb-5">
-                    <span className="text-lg text-justify font-medium mt-3">
+                    <span className="md:text-lg text-sm text-justify font-medium">
                       The department which has a history of over ﬁve decades is
                       well-equipped with state-of-art laboratories, latest
                       psychological tests and equipment. It has an active
@@ -71,7 +97,7 @@ function Psycho_about() {
                     </span>
                   </div>
                   <div className="pr-3 pl-3 flex mr-1 ml-2 mb-5">
-                    <span className="text-lg text-justify font-medium mt-3">
+                    <span className="md:text-lg text-sm text-justify font-medium">
                       The Psychology association organized various activities in
                       the session 2019-2020. On 6th April 2019, a talk on
                       ‘Exploring the Vulnerabilities if the LGBTQIA+ Community
