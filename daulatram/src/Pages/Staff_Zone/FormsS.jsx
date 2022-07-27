@@ -164,7 +164,7 @@ const Forms = () => {
             Forms
           </h2>
           <div className="main flex-col ">
-            <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-auto md:mr-auto md:w-[900px] md:h-[180px] mt-1 ">
+            <table className=" w-96 h-48 md:table-fixed md:ml-auto md:mr-auto md:w-[450px] md:h-[100px] lg:w-[700px] lg:h-[180px] xl:w-[900px] xl:h-[180px] mt-1 ">
               <tr className="h-20 text-lg">
                 <th className="row text-lg w-[10%]">S.no</th>
                 <th className="text-lg">About</th>
@@ -195,14 +195,14 @@ const Forms = () => {
                                 rel="noreferrer"
                               >
                                 {" "}
-                                <button className="btn">Click Here</button>
+                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1 border border-2 border-[#000080] rounded-md">Click Here</button>
                               </a>{" "}
                             </>
                           ) : (
                             <>
                               <a href={path} target="_blank" rel="noreferrer">
                                 {" "}
-                                <button className="btn">Click Here</button>
+                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1 border border-2 border-[#000080] rounded-md">Click Here</button>
                               </a>{" "}
                             </>
                           )}

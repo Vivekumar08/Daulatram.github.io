@@ -271,12 +271,12 @@ const Staff_Notice = () => {
     <div className=" flex flex-col">
         <Staff_Noticebanner />
       <div className="flex flex-row">
-        <div className="w-[280px] mt-7 ">
+        <div className="md:w-[280px] mt-2 ">
           <Notice_side />
         </div>
-        <div className="ml-3 mb-5">
-          <div className="w-[1100px]">
-            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+        <div className="ml-5 mb-5 mr-6 w-full">
+          <div className=" w-full ">
+            <h2 className=" ml-28 text-xl md:text-2xl lg:text-3xl md:text-4xl uppercase font-bold mb-12 mt-12 flex flex-row md:justify-center items-center  ">
               Staff Notice
             </h2>
             {data1 &&
@@ -300,7 +300,7 @@ const Staff_Notice = () => {
                 return (
                   <>
                     <div
-                      className="flex relative w-full items-center border rounded-xl bg-[#daa520] "
+                      className="flex relative w-full mt-2 items-center border rounded-xl bg-[#daa520] "
                       key={_id}
                     >
                       <div className="  p-2 m-3 md:m-4 w-12 h-13 md:w-16 md:h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25 ">

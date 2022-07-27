@@ -120,7 +120,7 @@ const Roster = () => {
             <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Staff Roster
             </h2>
-            <div class="grid grid-cols-1 ml-5 md:grid-cols-3  w-full mt-5 mb-5">
+            <div class="grid grid-cols-1 ml-2 lg:ml-5 md:grid-cols-2 lg:grid-cols-3  w-full mt-5 mb-5">
               {data1 &&
                 data1.map((curElem) => {
                   const { _id, title, file_path, link } = curElem;
@@ -130,7 +130,7 @@ const Roster = () => {
                   return (
                     <>
                       <div class="card2 mb-10" key={_id}>
-                        <span className="  font-bold text-xl ml-6 w-[250px]">{link}</span>
+                        <span className="  font-bold text-xl ml-2 w-[200px] text-justify">{link}</span>
                         <div className="flex flex-col ml-10 w-full">
                           <div class="info2 ml-4 w-full ">
                             <p className="text-justify mr-16">{title}</p>

@@ -28,9 +28,8 @@ const Public_Notice = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const current = new Date();
-  const date = `${current.getDate()}/${
-    current.getMonth() + 1
-  }/${current.getFullYear()}`;
+  const date = `${current.getDate()}/${current.getMonth() + 1
+    }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
     const response = await fetch("http://localhost:5000/Archives_notice");
@@ -79,12 +78,12 @@ const Public_Notice = () => {
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="w-[280px] mt-7 ">
+        <div className="md:w-[280px] mt-2 ">
           <Notice_side />
         </div>
-        <div className="ml-3 mb-5">
-          <div className="w-[1100px]">
-            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+        <div className="ml-5 mb-5 mr-6 w-full">
+          <div className=" w-full ">
+            <h2 className=" ml-28 text-xl md:text-2xl lg:text-3xl md:text-4xl uppercase font-bold mb-12 mt-12 flex flex-row md:justify-center items-center  ">
               Archive Notices
             </h2>
             {data1 &&

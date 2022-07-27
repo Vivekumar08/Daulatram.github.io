@@ -27,12 +27,12 @@ const Seniority_list = () => {
           </div>
         </div>
         <div className="flex flex-row">
-          <div className="w-[350px]">
+          <div className="md:w-[350px] ">
             <Staff_side />
           </div>
-          <div className="ml-3 mb-5">
-            <div className="w-[1100px]">
-              <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <div className=" w-full ml-auto mr-auto mb-5">
+            <div className="w-full md:w-[1100px]">
+              <h2 className="text-xl md:text-4xl  uppercase font-bold mb-5 mt-[5%]  flex justify-center items-center">
                 Senior Staff List
               </h2>
               <Maintanence />

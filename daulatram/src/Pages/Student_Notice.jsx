@@ -40,9 +40,8 @@ const Student_Notice = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const current = new Date();
-  const date = `${current.getDate()}/${
-    current.getMonth() + 1
-  }/${current.getFullYear()}`;
+  const date = `${current.getDate()}/${current.getMonth() + 1
+    }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
     const response = await fetch("http://localhost:5000/Student_notice");
@@ -273,12 +272,12 @@ const Student_Notice = () => {
     <div className=" flex flex-col">
       <Stu_Noticebanner />
       <div className="flex flex-row">
-        <div className="w-[280px] mt-7 ">
+        <div className="md:w-[280px] mt-2 ">
           <Notice_side />
         </div>
-        <div className="ml-3 mb-5">
-          <div className="w-[1100px]">
-            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+        <div className="ml-5 mb-5 mr-6 w-full">
+          <div className=" w-full ">
+            <h2 className=" ml-28 text-xl md:text-2xl lg:text-3xl md:text-4xl uppercase font-bold mb-12 mt-12 flex flex-row md:justify-center items-center  ">
               Student Notice
             </h2>
             {data1 &&
@@ -319,7 +318,7 @@ const Student_Notice = () => {
                             <a
                               href={path}
                               target="_blank"
-                              // rel="noopener noreferrer"
+                            // rel="noopener noreferrer"
                             >
                               <span className="text-base md:text-xl">
                                 {title}

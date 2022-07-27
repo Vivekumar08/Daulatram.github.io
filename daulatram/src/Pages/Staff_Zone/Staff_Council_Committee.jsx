@@ -11,7 +11,7 @@ const Staff_Council_Committee = () => {
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Staff Council Committee
             </p>
           </div>
@@ -23,12 +23,12 @@ const Staff_Council_Committee = () => {
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px]">
+        <div className="md:w-[350px] ">
           <Staff_side />
         </div>
-        <div className="ml-3 mb-5">
-          <div className="w-[1100px]">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+        <div className=" w-full ml-auto mr-auto mb-5">
+          <div className="lg:w-[1100px] w-full">
+            <h2 className="text-xl md:text-4xl  uppercase font-bold mb-5 mt-[5%]  flex justify-center items-center ">
               Staff Council Committee
             </h2>
             <Maintanence />
