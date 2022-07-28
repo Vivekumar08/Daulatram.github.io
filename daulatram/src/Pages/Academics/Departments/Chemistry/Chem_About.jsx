@@ -43,7 +43,7 @@ function Chem_About() {
           <Chemistry/>
         </div>
         <div className="w-full mr-16">
-          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
+          <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
             About the department
           </h2>
 

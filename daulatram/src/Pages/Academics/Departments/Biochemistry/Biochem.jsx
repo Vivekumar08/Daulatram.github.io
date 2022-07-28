@@ -43,7 +43,7 @@ const Biochem = () => {
         </div>
         <div className=" w-full mr-16 ">
           <div className=" ">
-            <h2 className="md:text-4xl text-lg  uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className="md:text-3xl text-lg  uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               About the department
             </h2>
             <div className="flex flex-row ">
