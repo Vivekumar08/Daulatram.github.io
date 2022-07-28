@@ -21,7 +21,9 @@ const helpdesk = require('../models/Admission/helpdeskAdmission');
 const GE_Options = require('../models/Admission/GE_Options_Schema');
 const File = require("../models/Research/Research_fac_Schema");
 const Publications = require("../models/Research/Publications_Schema");
+const Magz_and_News = require("../models/Research/Magz_and_News_Schema");
 const Soc = require('../models/Societies/Societies_Schema');
+const Library = require('../models/Library/Library_Schema');
 const Bulletin = require('../models/Admission/AdmissionBulletin_Schema');
 const Guidelines = require('../models/Admission/Admission_guidelines_Schema');
 const Ragging = require('../models/Admission/Anti_Ragging_Schema');
@@ -347,7 +349,11 @@ router.post('/AdminLogin', async(req, res) => {
             return res.status(400).json({ error: "Fill the Admin Login Form Properly" })
         }
         const username_ = sanitize(Username)
-        const UserLogin = await User.findOne({ Username: username_ })
+
+  const UserLogin = await User.findOne({ Username: username_ })
+
+        const UserLogin = await User.findOne({Username :username_})
+        console.log(UserLogin)
         if (UserLogin) {
             const isMatch = await bcrypt.compare(Password, UserLogin.Password);
             // console.log(isMatch)
@@ -5560,6 +5566,91 @@ router.post(
 );
 
 
+// Magzine and Newsletter
+router.post('/delete_Magz_and_News_res_fac/:id', async (req, res) => {
+    const delete_user = await Magz_and_News.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id })
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted")
+    } else {
+        res.status(400).json("First Delete all the images related to this section")
+    }
+})
+router.post('/delete_img_Magz_and_News_res_fac/:id', async (req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1)
+    res.status(200).json(delete_user + "User deleted")
+
+})
+
+router.get('/Magz_and_News_res', async (req, res) => {
+    try {
+        const files = await Magz_and_News.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send('Error while getting list of files. Try again later.');
+    }
+});
+
+router.post(
+    '/Magz_and_News_res_upload',
+    async (req, res) => {
+        try {
+            // console.log(req.body)
+            const { title, description } = req.body;
+            const file = new Magz_and_News({
+                title: title,
+                description: description,
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+router.post(
+    '/Magz_and_News_res_img_upload/:id',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path,mimetype)
+            const dat = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.file_path": { file_path1: path, file_mimetype1: mimetype } } });
+            // console.log(dat)
+            if (dat) {
+                res.status(200).send('file uploaded successfully.');
+            }
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get('/Magz_and_News_res_download/:id', async (req, res) => {
+    try {
+        const file = await Magz_and_News.findById(req.params.id);
+        res.set({
+            'Content-Type': file.file_mimetype
+        });
+        res.sendFile(path.join(__dirname, '..', file.file_path));
+    } catch (error) {
+        res.status(400).send('Error while downloading file. Try again later.');
+    }
+});
 // Research
 router.post('/delete_research_fac/:id', async(req, res) => {
     const delete_user = await File.findOne({ _id: req.params.id });
@@ -7501,6 +7592,44 @@ router.get('/Publications_res_download/:id', async(req, res) => {
     }
 });
 
+// Library
+
+router.get('/Library_details', async (req, res,) => {
+    const details = await Library.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Library/:id', async (req, res) => {
+    const delete_user = await Library.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Library_add',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Library({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
 // Societies
 router.delete('/delete_Socities/:id', async(req, res) => {
     const delete_user = await Soc.findOneAndDelete({ _id: req.params.id });
@@ -7519,6 +7648,8 @@ router.get('/Socitie', async(req, res) => {
         res.status(400).send('Error while getting list of files. Try again later.');
     }
 });
+
+
 
 router.post(
     '/Soc',
