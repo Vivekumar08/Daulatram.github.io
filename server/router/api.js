@@ -23,6 +23,7 @@ const File = require("../models/Research/Research_fac_Schema");
 const Publications = require("../models/Research/Publications_Schema");
 const Magz_and_News = require("../models/Research/Magz_and_News_Schema");
 const Soc = require('../models/Societies/Societies_Schema');
+const Library = require('../models/Library/Library_Schema');
 const Bulletin = require('../models/Admission/AdmissionBulletin_Schema');
 const Guidelines = require('../models/Admission/Admission_guidelines_Schema');
 const Ragging = require('../models/Admission/Anti_Ragging_Schema');
@@ -7589,6 +7590,44 @@ router.get('/Publications_res_download/:id', async (req, res) => {
     }
 });
 
+// Library
+
+router.get('/Library_details', async (req, res,) => {
+    const details = await Library.find()
+    res.status(200).json(details)
+});
+router.delete('/delete_Library/:id', async (req, res) => {
+    const delete_user = await Library.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path)
+    res.status(200).json(delete_user + "User deleted")
+})
+
+router.post(
+    '/Library_add',
+    upload.single('file'),
+    async (req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Library({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype
+            });
+            await file.save();
+            res.send('file uploaded successfully.');
+        } catch (error) {
+            res.status(400).send('Error while uploading file. Try again later.');
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
 // Societies
 router.delete('/delete_Socities/:id', async (req, res) => {
     const delete_user = await Soc.findOneAndDelete({ _id: req.params.id });
@@ -7607,6 +7646,8 @@ router.get('/Socitie', async (req, res) => {
         res.status(400).send('Error while getting list of files. Try again later.');
     }
 });
+
+
 
 router.post(
     '/Soc',
