@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import Research_banner from "../../../Components/Banners/Research_banner";
 import Research_side from "../../../Components/Sidebar/Research_side";
 import AuthContext from "../../../Context/AuthProvider";
 import Mag_new_data from "./Mag_new_data";
@@ -16,7 +15,7 @@ const Mag_New = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/research");
+    const response = await fetch("http://localhost:5000/Magz_and_News_res");
     setData1(await response.json());
   };
 
@@ -38,7 +37,7 @@ const Mag_New = () => {
 
         setErrMsg("");
         const response = await axios.post(
-          `http://localhost:5000/research_upload`,
+          `http://localhost:5000/Magz_and_News_res_upload`,
           { title: link, description: caption }
         );
         setCaption("");
