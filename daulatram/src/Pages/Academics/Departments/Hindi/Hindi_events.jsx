@@ -1,32 +1,59 @@
-import React from "react";
+import React, {useState} from "react";
 import Hindibanner from "../Hindi/Hindibanner.jsx";
 import Hindi from "../../../../Components/DepartSIde/Hindi.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Hindi_events() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Hindibanner />
       </div>
       <div className="flex flex-row">
-        <div className=" flex  flex-col mt-12 ml-2">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Hindi />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2">
           <Hindi />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
             Events
           </h2>
           <div className="pr-3 pl-3 flex mr-1 ml-1">
-            <span className="text-2xl underline text-justify font-bold mb-2 mt-3">
+            <span className="md:text-2xl text-xl underline text-justify font-bold mb-2 mt-3">
               आचार्य हजारी प्रसाद द्विवेदी स्मारक भाषणमाला - वर्ष 2019
             </span>
           </div>
           <div>
-            <h2 className="text-xl ml-4 font-bold mb-1">
+            <h2 className="md:text-xl text-lg text- ml-4 font-bold mb-1">
               विषय - ट्रांसजेंडर : साहित्य, समाज और चुनौतियाँ
             </h2>
             <br />
             <div className="ml-4">
-              <span className="text-lg text-justify font-medium mt-3">
+              <span className="md:text-lg text-sm text-justify font-medium">
                 दौलतराम महाविद्यालय के हिंदी विभाग द्वारा 3 मार्च 2020 को आचार्य
                 हजारी प्रसाद द्विवेदी स्मारक भाषणमाला - 39 का आयोजन किया गया।
                 जिस का विषय था -
@@ -52,7 +79,7 @@ function Hindi_events() {
                 </figure> */}
               </span>
 
-              <span className="text-lg text-justify font-medium mt-3">
+              <span className="md:text-lg text-sm text-justify font-medium">
                 आचार्य हजारी प्रसाद द्विवेदी जी की सुपुत्री डाक्टर इंदुमती ओझा
                 जी ने आचार्य हजारी प्रसाद द्विवेदी जी की समृति में वर्ष 1980 में
                 दौलतराम महाविद्यालय के हिन्दी विभाग द्वारा "आचार्य हजारी प्रसाद
@@ -65,13 +92,13 @@ function Hindi_events() {
                 हम उनके मन की बात और संघर्ष को निकट से जान एवं समझ सकें।
               </span>
               <div className="pr-3  flex">
-                <span className="text-2xl underline text-justify font-bold mt-3">
+                <span className="md:text-2xl text-lg underline text-justify font-bold mt-3">
                   छात्र संवर्धन कार्यक्रम तीन दिवसीय कार्यशाला (SDP )रिपोर्ट
                   2020-21)
                 </span>
               </div>
               <div className="pr-3  flex">
-                <span className="text-lg text-justify font-medium mt-3 mb-5">
+                <span className="md:text-lg text-sm text-justify font-medium">
                   <p>
                     {" "}
                     <strong>कार्यक्रम </strong>– तीन दिवसीय छात्र संवर्धन

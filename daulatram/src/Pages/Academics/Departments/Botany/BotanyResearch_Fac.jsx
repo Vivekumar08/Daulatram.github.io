@@ -1,25 +1,51 @@
-import React from "react";
+import React, {useState} from "react";
 import Botanybanner from "./Botanybanner.jsx";
 import Departments from "../../../../Components/Sidebar/Departments";
 import Botany from "../../../../Components/DepartSIde/Botany.jsx";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Research_Fac() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Botanybanner />
       </div>
       <div className="flex flex-row">
-      <div className=" flex flex-col  mt-12 ml-2">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+                <div className=" flex  flex-col mt-8 ml-2">
+                  <FontAwesomeIcon
+                    icon={faClose}
+                    size="lg"
+                    onClick={() => setVisible(!visible)}
+                    className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                  />
+                  <Botany />
+                </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+      <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <Botany />
         </div>
         
           <div className="w-full mr-16">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className="md:text-4xl text-lg sm:text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row ml-3 md:justify-center items-center  ">
               Research and Facilities
             </h2>
             <div className="flex pr-4 pl-4 pb-2">
-              <span className=" card-description text-lg ml-2 text-justify font-medium ">
+              <span className=" card-description md:text-base lg:text-lg text-sm text-justify font-medium ">
                 The Department has well equipped, projector fitted, air
                 conditioned four Laboratories, Museum, Culture room with tissue
                 culture facility, and a Botanical garden.
@@ -28,12 +54,12 @@ function Research_Fac() {
             </div>
 
             <div>
-              <p className=" card-description text-xl ml-2 flex pr-4 pl-4 text-justify font-bold ">
+              <p className=" card-description md:text-xl text-lg ml-2 flex pr-4 pl-4 text-justify font-bold">
                 Laboratories-
               </p>
             </div>
             <div>
-              <p className=" card-description text-lg ml-2 flex pr-4 pl-4 pb-2 font-medium text-justify ">
+              <p className=" card-description pl-4 pr-4 md:text-base lg:text-lg text-sm text-justify font-medium ">
                 Department of Botany having four laboratories, which are well
                 maintained and equipped with all essentials required like PCR
                 machine, Spectrophotometer, Gel Electrophoresis units
@@ -55,20 +81,19 @@ function Research_Fac() {
                 style={{
                   backgroundImage:
                     "url(/images/ImgPages/Botany/PIC_1_Laboratories.JPG)",
-                  width: "96%",
-                  height: "470px",
+                
                 }}
-                className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mb-5  ml-6 rounded-2xl border-2 border-black"
+                className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[800px] mr-auto w-[250px] h-[190px] lg:h-[470px] ml-auto mb-4 rounded-2xl border-2 border-black"
               ></div>
             </div>
 
             <div>
-              <p className=" card-description text-xl ml-2 flex pr-4 pl-4 text-justify font-bold ">
+              <p className=" card-description md:text-xl  text-lg ml-2 flex pr-4 pl-4 text-justify font-bold ">
                 Museum-
               </p>
             </div>
             <div>
-              <p className=" card-description text-lg ml-2 flex pr-4 pl-4 pb-2 font-medium text-justify ">
+              <p className=" card-description pl-4 pr-4 md:text-base lg:text-lg text-sm text-justify font-medium ">
                 The Departmental museum has a rich collection of preserved
                 specimens required for study of plant diversity in theory as
                 well as practical classes. The museum consists of preserved
@@ -81,19 +106,18 @@ function Research_Fac() {
               style={{
                 backgroundImage:
                   "url(/images/ImgPages/Botany/PIC_2_Museum.JPG)",
-                width: "96%",
-                height: "470px",
+                
               }}
-              className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mb-7  ml-6 rounded-2xl border-2 border-black"
+              className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[800px] mr-auto w-[250px] h-[190px] lg:h-[470px] ml-auto mb-4 rounded-2xl border-2 border-black"
             ></div>
 
             <div>
-              <p className=" card-description text-xl ml-2 flex pr-4 pl-4 text-justify font-bold ">
+              <p className=" card-description md:text-base lg:text-lg text-sm ml-2 flex pr-4 pl-4 text-justify font-bold ">
                 Tissue Culture Facility-
               </p>
             </div>
             <div>
-              <p className=" card-description text-lg ml-2 flex pr-4 pl-4 pb-2 font-medium text-justify ">
+              <p className=" card-description pl-4 pr-4 md:text-base lg:text-lg text-sm text-justify font-medium ">
                 The Department has a well-equipped completely sterilized tissue
                 culture laboratory. The laboratory has a laminar flow,
                 autoclave, culture trolley, maintained light and temperature
@@ -104,19 +128,18 @@ function Research_Fac() {
               style={{
                 backgroundImage:
                   "url(/images/ImgPages/Botany/PIC_3_Tissue_Culture_room.JPG)",
-                width: "96%",
-                height: "470px",
+
               }}
-              className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mb-7  ml-6 rounded-2xl border-2 border-black"
+              className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[800px] mr-auto w-[250px] h-[190px] lg:h-[470px] ml-auto mb-4 rounded-2xl border-2 border-black"
             ></div>
 
             <div>
-              <p className=" card-description text-xl ml-2 flex pr-4 pl-4 text-justify font-bold ">
+              <p className=" card-description md:text-xl text-lg ml-2 flex pr-4 pl-4 text-justify font-bold ">
                 Botanical Garden-
               </p>
             </div>
             <div>
-              <p className=" card-description text-lg ml-2 flex pr-4 pl-4 pb-2 font-medium text-justify ">
+              <p className=" card-description md:text-base lg:text-lg pr-4 pl-4 text-sm text-justify font-medium  ">
                 For routine practical classes fresh plant material is required
                 and for that Department is having a well-maintained Botanical
                 Garden. In the Botanical Garden various plants are available for
@@ -131,10 +154,9 @@ function Research_Fac() {
               style={{
                 backgroundImage:
                   "url(/images/ImgPages/Botany/PIC_4_Botanical_garden.png)",
-                width: "96%",
-                height: "470px",
+               
               }}
-              className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mb-7  ml-6 rounded-2xl border-2 border-black"
+              className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[800px] mr-auto w-[250px] h-[190px] lg:h-[470px] ml-auto mb-4 rounded-2xl border-2 border-black"
             ></div>
           </div>
         </div>

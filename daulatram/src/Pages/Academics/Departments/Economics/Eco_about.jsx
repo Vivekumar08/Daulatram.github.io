@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import Departments from "../../../../Components/Sidebar/Departments";
 import Ecobanner from "../Economics/Ecobanner.jsx";
 import Economics from "../../../../Components/DepartSIde/Economics.jsx";
@@ -12,7 +12,7 @@ function Eco_about() {
         <Ecobanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden absolute bg-white">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -36,10 +36,10 @@ function Eco_about() {
             </div>
           )}
         </div>
-      <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <Economics />
         </div>
-        <div className="w-full mr-16">
+        <div className="w-full mr-10">
           <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
             About the department
           </h2>
@@ -51,7 +51,6 @@ function Eco_about() {
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Economics/Eco_about.png)",
-                    
                   }}
                   className="bg-center ml-auto mr-auto lg:w-[750px] w-[250px] h-[190px] lg:h-[370px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
@@ -137,7 +136,6 @@ function Eco_about() {
             </div>
           </div>
         </div>
-        
       </div>
     </div>
   );
