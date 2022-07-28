@@ -36,6 +36,15 @@ const Library = () => {
     setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png)$/));
   };
 
+  
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
+
   useEffect(() => {
     fetchdata();
   }, []);
