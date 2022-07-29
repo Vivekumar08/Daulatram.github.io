@@ -162,7 +162,7 @@ const forms = () => {
             Forms
           </h2>
           <div className="main flex-col ">
-            <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-auto md:mr-auto md:w-[900px] md:h-[180px] mt-1 ">
+            <table className=" text-xs md:text-base leading-5 w-80 h-40 ml-3 md:table-fixed  md:ml-28 lg:ml-32 md:w-[500px] lg:w-[800px] md:h-[180px] mt-1 ">
               <tr className="h-20 text-lg">
                 <th className="row text-lg w-[10%]">S.no</th>
                 <th className="text-lg">About</th>
