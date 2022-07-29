@@ -13,15 +13,15 @@ const Student_facilities = () => {
           <Student_side />
         </div>
 
-        <div className="w-[1100px]">
-            <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+        <div className="relative ml-20 w-[1100px]">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               FACILITIES
             </h2>
-            <h3 className="text-2xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-center items-center text-center ">
+            <h3 className="text-2xl md:text-3xl font-bold  mb-5 mt-5 flex flex-row justify-center items-center text-center ">
               Library and Reading Room
             </h3>
             <figure className="flex p-4">
-              <span className=" card-description leading-14 font-medium text-justify text-base md:text-lg ">
+              <span className=" card-description leading-14 font-medium text-justify text-base  md:text-lg ">
                 Library and Reading Room facilities are open only to students
                 and staﬀ of the college. The College Library possesses an
                 excellent collection of more than 1,20,000 books and journals/
@@ -40,7 +40,7 @@ const Student_facilities = () => {
               Terms and Conditions
             </h4>
             <figure className="ml-3">
-              <span className=" text-justify text-lg font-medium ">
+              <span className=" leadig-14 font-medium text-justify text-base  md:text-lg ">
                 <li>
                   Before leaving the counter, the member should ensure that the
                   book lent to them is in sound condition. If not, it should
