@@ -23,9 +23,7 @@ const Admission_committee = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch(
-      "http://localhost:5000/Admission_comm"
-    );
+    const response = await fetch("http://localhost:5000/Admission_comm");
     setData1(await response.json());
   };
 
@@ -94,15 +92,11 @@ const Admission_committee = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(
-          `http://localhost:5000/Admission_comm_add`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axios.post(`http://localhost:5000/Admission_comm_add`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         setCaption("");
         setLink("");
         setFile(null);
@@ -157,7 +151,7 @@ const Admission_committee = () => {
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Admisssion Committee
             </p>
           </div>
@@ -170,12 +164,12 @@ const Admission_committee = () => {
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px] ">
+        <div className="md:w-[350px] ">
           <Admission_side />
         </div>
 
-        <div className="w-[1100px] mb-5">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
+        <div className="w-full ml-5">
+          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[7%] flex flex-row justify-center items-center   ">
             Admisssion Committee
           </h2>
           {data1 ? (

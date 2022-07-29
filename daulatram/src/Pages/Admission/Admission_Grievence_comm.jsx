@@ -157,7 +157,7 @@ const Admission_Grievence_comm = () => {
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+          <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Admisssion Grievance Committee
             </p>
           </div>
@@ -170,12 +170,12 @@ const Admission_Grievence_comm = () => {
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px] ">
+        <div className="md:w-[350px] ">
           <Admission_side />
         </div>
 
-        <div className="w-[1100px] mb-5">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
+        <div className="w-full mb-5">
+          <h2 className=" text-2xl md:text-4xl uppercase font-bold mb-5 mt-[15%] flex flex-row text-justify justify-center items-center   ">
             Admisssion Grievance Committee
           </h2>
           {data1 ? (

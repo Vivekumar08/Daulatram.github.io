@@ -36,9 +36,7 @@ const Bulletins_Admission = () => {
       setPreviewSrc(fileReader.result);
     };
     fileReader.readAsDataURL(uploadedFile);
-    setIsPreviewAvailable(
-      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
-    );
+    setIsPreviewAvailable(uploadedFile.name.match(/\.(jpeg|jpg|png|)$/));
   };
 
   useEffect(() => {
@@ -81,6 +79,8 @@ const Bulletins_Admission = () => {
         setCaption("");
         setLink("");
         setFile("");
+        setIsPreviewAvailable(false);
+        setPreviewSrc("");
         setAuth(true);
         fetchdata();
       } else {
@@ -99,11 +99,10 @@ const Bulletins_Admission = () => {
       <div
         className="Banner"
         style={{ backgroundImage: "url(/images/img1.jpeg)" }}
-
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Admission Bulletins
             </p>
           </div>
@@ -115,17 +114,17 @@ const Bulletins_Admission = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-row">
-        <div className="w-[350px]">
+      <div className="flex flex-row ">
+        <div className="md:w-[350px]">
           <Admission_side />
         </div>
 
-        <div className="w-[1100px]">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+        <div className="w-full ml-5">
+          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[7%] flex flex-row justify-center items-center   ">
             Admission Bulletin
           </h2>
           {data1 ? "" : <Maintanence />}
-          <div class="flex justify-evenly w-full mt-5 mb-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4  w-full mt-5 mb-5">
             {data1
               ? data1.map((curElem) => {
                   const { _id, title, file_path, link } = curElem;
@@ -134,7 +133,7 @@ const Bulletins_Admission = () => {
                   var path = path2.slice(19);
                   return (
                     <>
-                      <div class="card2 ml-2 " key={_id}>
+                      <div class="card2 ml-2 mb-10 " key={_id}>
                         <span className="  font-bold text-xl ml-2">{link}</span>
                         <div className="flex flex-col ml-4 w-full">
                           <div class="info2 ml-4 w-full">
@@ -167,7 +166,7 @@ const Bulletins_Admission = () => {
             <>
               <form
                 method="post"
-                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+                className="flex flex-col justify-center content-center max-w-sm mt-5 h-full ml-auto mr-auto mb-16"
               >
                 <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
                   <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
@@ -183,7 +182,7 @@ const Bulletins_Admission = () => {
                     onChange={(e) => setLink(e.target.value)}
                     value={link}
                     placeholder="Enter Text Here"
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded md:w-full w-[70%] py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                   />
                 </div>
                 <div className="mb-3">
@@ -195,7 +194,7 @@ const Bulletins_Admission = () => {
                     ref={userRef}
                     onChange={(e) => setCaption(e.target.value)}
                     value={caption}
-                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded md:w-full w-[70%] py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                     placeholder="Description"
                   ></textarea>
                 </div>
@@ -249,7 +248,7 @@ const Bulletins_Admission = () => {
                   </div>
                   <div class="md:w-2/3 ">
                     <button
-                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      class="shadow md:w-full w-[70%]  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                       type="button"
                       onClick={handleSubmit}
                     >
