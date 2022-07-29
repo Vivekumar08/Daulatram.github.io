@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import Histbanner from "../History/Histbanner.jsx";
 import History from "../../../../Components/DepartSIde/History.jsx";
 import history_event from "../../../../Dummy_data/ImgPages/History/History_events.pdf";
@@ -12,7 +12,7 @@ function Hist_events() {
         <Histbanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden lg:hidden absolute bg-white">
+        <div className="md:hidden lg:hidden absolute bg-white">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -54,22 +54,21 @@ function Hist_events() {
                 </div>
 
                 {/* </div> */}
-                <div className="flex md:gap-10 gap-5 ml-5">
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-2 2xl:grid-cols-2  w-full mt-5 mb-5">
                   <div
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/History/symposium.jpg)",
-                      
                     }}
-                    className="bg-center ml-auto mr-auto   w-[200px] sm:w-[250px] sm:h-[200px] lg:w-[320px] lg:h-[250px] h-[140px] 2xl:h-[400px] 2xl:w-[600px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]   bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   ></div>
+
                   <div
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/History/symposium_2.jpg)",
-                      
                     }}
-                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] lg:w-[350px] lg:h-[250px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]  bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   ></div>
                 </div>
                 {/* </div>
@@ -81,18 +80,15 @@ function Hist_events() {
                 </div>
 
                 {/* </div> */}
-                <div className="flex md:gap-10 gap-3 ml-5">
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-2 2xl:grid-cols-2  w-full mt-5 mb-5">
                   <img
                     src="/images/ImgPages/History/2019_event_1.jpg"
-                    style={{
-
-                    }}
-                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    style={{}}
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]  bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                   <img
                     src="/images/ImgPages/History/2019_event_2.jpg"
-                    
-                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]  bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                 </div>
                 <div className="pr-3 pl-3 flex mr-1 ml-5">
@@ -102,40 +98,30 @@ function Hist_events() {
                 </div>
 
                 {/* </div> */}
-                <div className="flex md:gap-10 gap-3 ml-5">
+                <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-2 2xl:grid-cols-2  w-full mt-5 mb-5">
                   <img
                     src="/images/ImgPages/History/Art_History.jpg"
-                  
-                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]  bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                   <img
                     src="/images/ImgPages/History/Michelangelo.jpg"
-                    
-                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]  bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
-                </div>
-                <div className="flex md:gap-10 gap-3 ml-5">
                   <img
                     src="/images/ImgPages/History/Nomenclature.jpeg"
-                   
-                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]  bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                   <img
                     src="/images/ImgPages/History/Nomenclature2.jpeg"
-                   
-                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]  bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
-                </div>
-                <div className="flex md:gap-10 gap-3 ml-5">
                   <img
                     src="/images/ImgPages/History/Subramaniam.jpeg"
-
-                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]  bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                   <img
                     src="/images/ImgPages/History/Vijayanagar.jpeg"
-
-                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                    className="bg-center ml-16 mr-auto  2xl:w-[550px] 2xl-h[400px] xl:w-[440px] xl:h-[350px] lg:w-[330px] lg:h[310px] md:w-[390px] md:h-[270px] sm:w-[390px] sm:h-[260px] w-[350px] h-[250px]  bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                 </div>
               </div>
