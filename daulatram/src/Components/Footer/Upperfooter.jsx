@@ -197,8 +197,8 @@ function Upperfooter() {
             </div>
 
           </div>
-          <div className="mt-1 ">
-            <p className="text-gray-200 bg-[#1E1F29] text-center h-12 pt-3">
+          <div className="mt-1 bg-[#1E1F29]">
+            <p className="text-gray-200 m-2  text-center md:text-base text-sm h-12 pt-3">
               © All Rights Reserved
               <Link to="/" className="ml-3">
                 DAULAT RAM COLLEGE, <span className="ml-2  mr-2">|</span>

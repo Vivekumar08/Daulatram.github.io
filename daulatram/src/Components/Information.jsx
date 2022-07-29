@@ -31,7 +31,7 @@ function Information() {
           </span>
         </div>
         {/* content/body/messages */}
-        <div className="flex lg:flex-row flex-col items-center   mb-5 mt-8 lg:justify-between   ml-12 mr-12 ">
+        <div className="flex xl:flex-row flex-col items-center   mb-5 mt-8 lg:justify-between   ml-12 mr-12 ">
           <div className=" bg-[#d3d3d3] w-[20em] rounded-lg h-[500px]  text-lg font-semibold mb-5  ml-5 mr-10 ">
             <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center z-10 text-white pb-4  px-4 ">
               <span className="mt-3">Notice for Students</span>
