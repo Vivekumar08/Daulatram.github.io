@@ -26,7 +26,7 @@ const Mag_new_data = (props) => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_research_fac/${id}`,
+      `http://localhost:5000/delete_Magz_and_News_res_fac/${id}`,
       {
         method: "POST",
       }
@@ -45,7 +45,7 @@ const Mag_new_data = (props) => {
     console.log(id);
     console.log(file_path1);
     const response = await axios.post(
-      `http://localhost:5000/delete_img_research_fac/${id}`,
+      `http://localhost:5000/delete_img_Magz_and_News_res_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -84,7 +84,7 @@ const Mag_new_data = (props) => {
 
         setErrMsg("");
         const response = await axios.post(
-          `http://localhost:5000/research_img_upload/${id}`,
+          `http://localhost:5000/Magz_and_News_res_img_upload/${id}`,
           { file: file },
           {
             headers: {

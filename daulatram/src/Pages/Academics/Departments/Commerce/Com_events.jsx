@@ -1,32 +1,58 @@
-import React from "react";
+import React, {useState} from "react";
 import Departments from "../../../../Components/Sidebar/Departments";
 import Commercebanner from "../Commerce/Commercebanner.jsx";
 import Commerce from "../../../../Components/DepartSIde/Commerce.jsx";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Com_Events() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Commercebanner />
       </div>
       <div className="flex flex-row">
-        <div className=" flex  flex-col mt-12 ml-2">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Commerce />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+      <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <Commerce />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
             Commerce Department: Events
           </h2>
           <div className="pr-3 pl-3 flex mr-1 ml-2">
-            <span className="text-lg text-justify font-medium mt-3">
+            <span className="md:text-lg text-sm text-justify font-medium mb-2">
               We bring to you glimpses of some of the recent events, activities
               and workshops organised by our Department
             </span>
           </div>
           <div>
-            <h2 className="text-3xl ml-4 font-bold underline mb-6">2020-21</h2>
+            <h2 className="md:text-3xl text-lg ml-4 font-bold underline mb-2">2020-21</h2>
 
-            <ol className="list-decimal mt-2 ml-8">
+            <ol className="md:text-base text-sm list-decimal mt-2 ml-8">
               <li>
                 <strong>.E-SDP</strong> Commerce Association organised E-SDP
                 during 17th - 19th August, 2020 on the topic "Simplifying Online
@@ -36,10 +62,9 @@ function Com_Events() {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Commerce/Event_1.jpg)",
-                      width: "720px",
-                      height: "400px",
+
                     }}
-                    className="bg-center ml-auto mr-auto object-fit bg-no-repeat mt-[3%] bg-cover h-10  rounded-2xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto lg:w-[720px] w-[350px] h-[200px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                   ></div>
                 </figure>
@@ -55,10 +80,9 @@ function Com_Events() {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Commerce/Event_2.jpg)",
-                      width: "780px",
-                      height: "520px",
+
                     }}
-                    className="bg-center ml-auto mr-auto object-fit bg-no-repeat mt-[3%] bg-cover h-10  rounded-2xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[350px] h-[250px] lg:h-[520px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                   ></div>
                 </figure>
@@ -73,10 +97,9 @@ function Com_Events() {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Commerce/Event_3.jpg)",
-                      width: "780px",
-                      height: "400px",
+                     
                     }}
-                    className="bg-center ml-auto mr-auto object-fit bg-no-repeat mt-[3%] bg-cover h-10  rounded-2xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[360px] h-[250px] lg:h-[520px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                   ></div>
                 </figure>
@@ -91,10 +114,9 @@ function Com_Events() {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Commerce/Event_4.jpg)",
-                      width: "780px",
-                      height: "520px",
+
                     }}
-                    className="bg-center ml-auto mr-auto object-fit bg-no-repeat mt-[3%] bg-cover h-10  rounded-2xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[350px] h-[250px] lg:h-[520px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                   ></div>
                 </figure>
@@ -111,10 +133,9 @@ function Com_Events() {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Commerce/Event_5.jpg)",
-                      width: "780px",
-                      height: "450px",
+                      
                     }}
-                    className="bg-center ml-auto mr-auto object-fit bg-no-repeat mt-[3%] bg-cover h-10  rounded-2xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[350px] h-[220px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                   ></div>
                 </figure>
@@ -130,10 +151,9 @@ function Com_Events() {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Commerce/Event_6.png)",
-                      width: "780px",
-                      height: "450px",
+                      
                     }}
-                    className="bg-center ml-auto mr-auto object-fit bg-no-repeat mt-[3%] bg-cover h-10  rounded-2xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[350px] h-[290px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                   ></div>
                 </figure>
@@ -142,9 +162,9 @@ function Com_Events() {
           </div>
           <br />
           <div>
-            <h2 className="text-3xl ml-4 font-bold underline mb-6">2019-20</h2>
+            <h2 className="md:text-3xl text-lg ml-4 font-bold underline mb-6">2019-20</h2>
 
-            <ol className="list-decimal mt-2 ml-8 mb-6">
+            <ol className="md:text-base text-sm list-decimal mt-2 ml-8">
               <li>
                 <strong>Freshers Party</strong> -Faculty Members together with
                 the Student Union members on the occasion of Freshers’ Party for
