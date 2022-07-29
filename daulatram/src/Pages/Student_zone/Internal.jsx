@@ -19,7 +19,7 @@ const Internal = () => {
           </h2>
           <div className="main flex-col ">
             {/* <div className='w-[200px] small  mt-20 p-3'>Internal Assesments</div> */}
-            <table className="text-xs md:text-base leading-5 w-80 h-40 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1">
+            <table className="text-xs md:text-base leading-5 w-80 h-40 ml-3 md:table-fixed md:ml-28 lg:ml-32 md:w-[500px] lg:w-[800px] md:h-[180px] mt-1">
               <tr>
                 <th>S.no</th>
                 <th>About</th>

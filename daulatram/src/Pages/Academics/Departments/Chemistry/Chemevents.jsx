@@ -1,22 +1,49 @@
-import React from "react";
+import React, {useState} from "react";
 import Departments from "../../../../Components/Sidebar/Departments";
 import Chembanner from "../Chemistry/Chembanner.jsx";
 import Chemistry from "../../../../Components/DepartSIde/Chemistry.jsx";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Chemevents() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Chembanner />
       </div>
       <div className="flex flex-row">
-      <div className=" flex  flex-col  ml-2 mt-12">
-          <Chemistry />
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Chemistry />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+
+      <div className=" md:flex hidden md:flex-col mt-12 ml-2 ">
+          <Chemistry/>
         </div>
 
 
           <div className="w-full mr-auto ml-auto">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-3xl text-xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
             Events
           </h2>
         
@@ -26,12 +53,12 @@ function Chemevents() {
             <div className="mr-5">
               <div>
                 <div>
-                  <h2 className="text-3xl ml-4 font-bold underline mb-6">
+                  <h2 className="md:text-2xl sm:text-xl text-lg ml-4 font-bold underline mb-3">
                     Conferences
                   </h2>
 
-                  <ol className="list-decimal mt-2 ml-8">
-                    <li>
+                  <ol className="md:text-base text-sm list-decimal mt-2 ml-8">
+                    <li className="text-justify font-medium">
                       International Conference on "Green Chemistry in
                       Environmental Sustainability & Chemical Education" 17 to
                       18 November 2016
@@ -45,11 +72,11 @@ function Chemevents() {
                   </ol>
                 </div>
                 <div>
-                  <h2 className="text-3xl ml-4 font-bold underline mb-6 mt-3">
+                  <h2 className="md:text-2xl sm:text-xl text-lg ml-4 font-bold underline mb-3">
                     Faculty Development Programmes
                   </h2>
                 </div>
-                <ol className="list-decimal ml-8">
+                <ol className="md:text-base text-sm list-decimal mt-2 ml-8">
                   <li>
                     Faculty Development Program entitled "From Chemistry of Life
                     to Chemistry of Diseases: Understanding Clinical
@@ -63,11 +90,11 @@ function Chemevents() {
                   </li>
                 </ol>
                 <div>
-                  <h2 className="text-3xl ml-4 font-bold underline mb-6 mt-3">
+                  <h2 className="md:text-2xl sm:text-xl text-lg ml-4 font-bold underline mb-3">
                     Workshops and Seminars
                   </h2>
                 </div>
-                <ol className="list-decimal ml-8">
+                <ol className="md:text-base text-sm list-decimal mt-2 ml-8">
                   <li>
                     National workshop cum seminar on Novel Trends in Green
                     Chemistry & Sustainable Development on 26 to 27 February
@@ -79,11 +106,11 @@ function Chemevents() {
                   </li>
                 </ol>
                 <div>
-                  <h2 className="text-3xl ml-4 font-bold underline mb-6 mt-3">
+                  <h2 className="md:text-2xl sm:text-xl text-lg ml-4 font-bold underline mb-3">
                     Skill Development Program
                   </h2>
                 </div>
-                <ol className="list-decimal ml-8">
+                <ol className="md:text-base text-sm list-decimal mt-2 ml-8">
                   <li>
                     In-House Skill Development Course on Green Genesis and
                     Sustainability of Personal Care Products and Food Stuff from
@@ -110,11 +137,11 @@ function Chemevents() {
                   </li>
                 </ol>
                 <div>
-                  <h2 className="text-3xl ml-4 font-bold underline mb-6 mt-3">
+                  <h2 className="md:text-2xl sm:text-xl text-lg ml-4 font-bold underline mb-3">
                     Summer Internship Programme
                   </h2>
                 </div>
-                <ol className="list-decimal ml-8">
+                <ol className="md:text-base text-sm list-decimal mt-2 ml-8">
                   <li>
                     Two week online summer internship programme on Research
                     methodology in chemistry from 16th May to 30th May 2020.
@@ -126,10 +153,9 @@ function Chemevents() {
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Chemistry/event_image_1.jpg)",
-                    width: "750px",
-                    height: "420px",
+                    
                   }}
-                  className="bg-center ml-auto mr-auto bg-no-repeat mt-[3%] bg-cover h-10  rounded-3xl border-2 border-black"
+                  className="bg-center ml-auto mr-auto lg:w-[750px] w-[270px] h-[150px] lg:h-[420px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                 ></div>
               </figure>
@@ -138,10 +164,9 @@ function Chemevents() {
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Chemistry/event_image_2.jpg)",
-                    width: "750px",
-                    height: "420px",
+
                   }}
-                  className="bg-center ml-auto mr-auto bg-no-repeat mt-[3%] bg-cover h-10  rounded-3xl border-2 border-black"
+                  className="bg-center ml-auto mr-auto lg:w-[750px] w-[220px] h-[120px] lg:h-[420px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                 ></div>
               </figure>
@@ -150,10 +175,9 @@ function Chemevents() {
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Chemistry/event_image_3.jpg)",
-                    width: "800px",
-                    height: "1100px",
+                    
                   }}
-                  className="bg-center ml-auto mr-auto bg-no-repeat mt-[3%] bg-cover h-10  rounded-3xl border-2 border-black"
+                  className="bg-center ml-auto mr-auto lg:w-[800px] w-[370px] h-[500px] lg:h-[1100px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
                 ></div>
               </figure>

@@ -13,13 +13,13 @@ const Undergraduate = () => {
               <div className="w-[350px]">
                 <Sidebar />
               </div>
-              <div className="md:w-[1100px]">
-                <h2 className="text-2xl md:text-4xl font-bold mb-5 mt-[5%] ml-10 md:ml-0 text-justify justify-center  ">
+              <div className="relative mr-20 md:ml-10 md:w-[1100px]">
+                <h2 className="md:text-2xl md:text-4xl font-bold mb-5 mt-[5%] ml-10 md:ml-0 text-justify justify-center  ">
                   UNDERGRADUATE COURSES
                 </h2>
                 
-                <figure className="ml-10 md:ml-20 mt-10  ">
-                  <ul className=" list-disc card-description flex flex-col gap-4 text-justify  text-lg font-medium ">
+                <figure className=" relative mb-10 md:ml-12 lg:ml-20 mt-10  ">
+                  <ul className="  relative list-disc card-description flex flex-col gap-4 text-justify  text-lg font-medium ">
                     <li>
                     B.A. (Programme)
                     </li>
