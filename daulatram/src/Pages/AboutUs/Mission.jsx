@@ -129,8 +129,8 @@ const Mission = () => {
           <Sidebar />
         </div>
 
-        <div className="w-[1100px]">
-          <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+        <div className="w-[1100px] md:ml-9">
+          <h2 className="text-2xl md:text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
             College Profile : Mission and Vision
           </h2>
           <figure className="flex flex-col p-4 ">
@@ -150,7 +150,7 @@ const Mission = () => {
                           height: "250px",
                         }}
                         alt="founder"
-                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-80"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-8 lg:ml-80"
                       />
                       {auth && (
                         <>

@@ -350,7 +350,7 @@ router.post('/AdminLogin', async(req, res) => {
         }
         const username_ = sanitize(Username)
 
-  const UserLogin = await User.findOne({ Username: username_ })
+//   const UserLogin = await User.findOne({ Username: username_ })
 
         const UserLogin = await User.findOne({Username :username_})
         console.log(UserLogin)
