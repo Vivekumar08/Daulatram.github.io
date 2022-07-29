@@ -14,7 +14,7 @@ const Hostel = () => {
         <div className="w-[350px] flex flex-row">
           <Student_side />
         </div>
-<div className='main_txt'>
+<div className='main_txt text-base leading-10  md:ml-8 md:text-4xl'>
 <blink>* Closed for Academic Session 2022-23</blink>
 </div>
 </div>

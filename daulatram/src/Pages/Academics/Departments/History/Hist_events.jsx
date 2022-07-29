@@ -1,19 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import Histbanner from "../History/Histbanner.jsx";
 import History from "../../../../Components/DepartSIde/History.jsx";
 import history_event from "../../../../Dummy_data/ImgPages/History/History_events.pdf";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Hist_events() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Histbanner />
       </div>
       <div className="flex flex-row">
-        <div className=" flex  flex-col mt-12 ml-2">
+      <div className="md:hidden lg:hidden absolute bg-white">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="2xl"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-2xl p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <History />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="2xl"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-2xl p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <History />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-3xl text-xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
             Events
           </h2>
 
@@ -21,130 +48,106 @@ function Hist_events() {
             <div className="flex flex-row">
               <div>
                 <div className="pr-3 pl-3 flex mr-1 ml-5">
-                  <span className="text-xl underline text-justify font-bold mb-2 mt-3">
+                  <span className="md:text-xl text-2xl underline text-justify font-bold mb-2 mt-3">
                     2017-18
                   </span>
                 </div>
 
                 {/* </div> */}
-                <div className="flex gap-10 ml-5">
+                <div className="flex md:gap-10 gap-5 ml-5">
                   <div
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/History/symposium.jpg)",
-                      width: "550px",
-                      height: "400px",
+                      
                     }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto   w-[200px] sm:w-[250px] sm:h-[200px] lg:w-[320px] lg:h-[250px] h-[140px] 2xl:h-[400px] 2xl:w-[600px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   ></div>
                   <div
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/History/symposium_2.jpg)",
-                      width: "550px",
-                      height: "400px",
+                      
                     }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] lg:w-[350px] lg:h-[250px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   ></div>
                 </div>
                 {/* </div>
               <div> */}
                 <div className="pr-3 pl-3 flex mr-1 ml-5">
-                  <span className="text-xl underline text-justify font-bold mb-2 mt-3">
+                  <span className="md:text-xl text-2xl underline text-justify font-bold mb-2 mt-3">
                     2018-19
                   </span>
                 </div>
 
                 {/* </div> */}
-                <div className="flex gap-10 ml-5">
+                <div className="flex md:gap-10 gap-3 ml-5">
                   <img
                     src="/images/ImgPages/History/2019_event_1.jpg"
                     style={{
-                      width: "550px",
-                      height: "400px",
+
                     }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                   <img
                     src="/images/ImgPages/History/2019_event_2.jpg"
-                    style={{
-                      width: "550px",
-                      height: "400px",
-                    }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+                    
+                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                 </div>
                 <div className="pr-3 pl-3 flex mr-1 ml-5">
-                  <span className="text-xl underline text-justify font-bold mb-2 mt-3">
+                  <span className="md:text-xl text-2xl underline text-justify font-bold mb-2 mt-3">
                     2019-20
                   </span>
                 </div>
 
                 {/* </div> */}
-                <div className="flex gap-10 ml-5">
+                <div className="flex md:gap-10 gap-3 ml-5">
                   <img
                     src="/images/ImgPages/History/Art_History.jpg"
-                    style={{
-                      width: "550px",
-                      height: "400px",
-                    }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+                  
+                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                   <img
                     src="/images/ImgPages/History/Michelangelo.jpg"
-                    style={{
-                      width: "550px",
-                      height: "400px",
-                    }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+                    
+                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                 </div>
-                <div className="flex gap-10 ml-5">
+                <div className="flex md:gap-10 gap-3 ml-5">
                   <img
                     src="/images/ImgPages/History/Nomenclature.jpeg"
-                    style={{
-                      width: "550px",
-                      height: "400px",
-                    }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+                   
+                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                   <img
                     src="/images/ImgPages/History/Nomenclature2.jpeg"
-                    style={{
-                      width: "550px",
-                      height: "400px",
-                    }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+                   
+                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                 </div>
-                <div className="flex gap-10 ml-5">
+                <div className="flex md:gap-10 gap-3 ml-5">
                   <img
                     src="/images/ImgPages/History/Subramaniam.jpeg"
-                    style={{
-                      width: "550px",
-                      height: "400px",
-                    }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+
+                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                   <img
                     src="/images/ImgPages/History/Vijayanagar.jpeg"
-                    style={{
-                      width: "550px",
-                      height: "400px",
-                    }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-3 mb-4 rounded-3xl border-2 border-black"
+
+                    className="bg-center ml-auto mr-auto 2xl:w-[550px] w-[200px] sm:w-[250px] sm:h-[200px] h-[140px] 2xl:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                   />
                 </div>
               </div>
             </div>
             <div className="pr-3 pl-3 flex mr-1 ml-5">
-              <span className="text-xl underline text-justify font-bold mb-2 mt-3">
+              <span className="md:text-xl text-2xl underline text-justify font-bold mb-2 mt-3">
                 2021-22
               </span>
             </div>
             <div className="flex justify-start ml-6">
               <a href={history_event} target="_blank">
-                <span className=" mr-2 bg-blue-900 rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
+                <span className=" mr-2 bg-blue-900 rounded-2xl p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">
                   <span>History Association Annual Report </span>
                   <span>(Click here)</span>
                 </span>

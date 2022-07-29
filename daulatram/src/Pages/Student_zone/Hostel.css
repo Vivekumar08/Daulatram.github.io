@@ -1,6 +1,6 @@
 .main_txt{
     animation:blinking 1.5s infinite;
-font-size: 30px;
+
 align-items: center;
 position: relative;
 /* left: 17px; */
@@ -18,3 +18,5 @@ margin-bottom: 200px;
    
     }
 
+
+    

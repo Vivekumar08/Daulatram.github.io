@@ -10,16 +10,16 @@ const Undergraduate = () => {
               <Banner />
             </div>
             <div className="flex flex-row">
-              <div className="w-[350px]">
+              <div className="w-[250px]">
                 <Sidebar />
               </div>
-              <div className="md:w-[1100px]">
-                <h2 className="text-2xl md:text-4xl font-bold mb-5 mt-[5%] ml-10 md:ml-0 text-justify justify-center  ">
+              <div className="relative mr-20 md:w-[1100px]">
+                <h2 className=" md:text-4xl text-xl font-bold mb-5 mt-[5%] md:ml-16 text-justify justify-center  ">
                   UNDERGRADUATE COURSES
                 </h2>
                 
-                <figure className="ml-10 md:ml-20 mt-10  ">
-                  <ul className=" list-disc card-description flex flex-col gap-4 text-justify  text-lg font-medium ">
+                <figure className=" relative mb-10 md:ml-12 lg:ml-20 mt-10  ">
+                  <ul className="  relative list-disc card-description flex flex-col gap-4 text-justify font-medium ">
                     <li>
                     B.A. (Programme)
                     </li>

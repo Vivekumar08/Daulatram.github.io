@@ -107,17 +107,17 @@ const teacher = () => {
         </div>
 
         <div className="w-[1100px]">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
+          <h2 className=" text-xl md:text-2xl lg:text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             TEACHERS-IN-CHARGE
           </h2>
           <div className="main flex-col whitespace-none">
-            <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1 ">
-              <tr className="h-20 text-lg">
-                <th className="row text-lg w-[15%]">S.no</th>
-                <th className="text-lg">Departments</th>
-                <th className="text-lg w-[25%]">TIC 2021-22</th>
-                <th className="text-lg w-[25%]">TIC 2022-23</th>
-                {auth && <th className="text-lg w-[15%]">Delete</th>}
+            <table className=" w-96 h-48 ml-3 md:ml-26 md:w-[500px] md:h-[160px] lg:table-fixed lg:ml-32 lg:w-[800px] lg:h-[180px] mt-1 ">
+              <tr className="h-12 md:h-14 lg:h-20 text-lg">
+                <th className="row text-sm md:text-lg w-[15%]">S.no</th>
+                <th className="text-sm md:text-sm lg:text-lg">Departments</th>
+                <th className="text-sm md:md:text-sm lg:text-lg w-[25%]">TIC 2021-22</th>
+                <th className="text-sm md:text-sm lg:text-lg w-[25%]">TIC 2022-23</th>
+                {auth && <th className="text-sm md:text-sm lg:text-lg w-[15%]">Delete</th>}
               </tr>
               {data1 &&
                 data1.map((curElem) => {
@@ -127,9 +127,9 @@ const teacher = () => {
                   var path = path2.slice(19);
                   return (
                     <>
-                      <tr className=" ">
-                        <td className="text-lg  overlay ">{link}</td>
-                        <td className="text-lg  overlay">
+                      <tr className=" h-12 md:h-14 lg:h-20">
+                        <td className="text-sm md:text-sm lg:text-lg  overlay ">{link}</td>
+                        <td className="text-sm md:text-sm lg:text-lg  overlay">
                           <strong>{title} </strong>
                         </td>
                         <td>
@@ -157,12 +157,12 @@ const teacher = () => {
             </table>
           </div>
           <div className="main flex-col whitespace-none">
-            <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-32 md:w-[800px] md:h-[180px] mt-1 ">
-              <tr className="h-20 text-lg">
-                <th className="row text-lg">S.no</th>
-                <th className="text-lg">About</th>
-                <th className="text-lg">PDF</th>
-                {auth && <th className="text-lg w-[15%]">Delete</th>}
+            <table className=" w-96 h-48 ml-3 md:ml-26 md:w-[500px] md:h-[160px] lg:table-fixed lg:ml-32 lg:w-[800px] mt-1 ">
+              <tr className="h-12 md:h-14 lg:h-20 text-lg">
+                <th className="row text-sm md:text-sm lg:text-lg">S.no</th>
+                <th className="text-sm md:text-sm lg:text-lg">About</th>
+                <th className="text-sm md:text-sm lg:text-lg">PDF</th>
+                {auth && <th className="text-sm md:text-sm lg:text-lg w-[15%]">Delete</th>}
               </tr>
               {data1 &&
                 data1.map((curElem) => {
@@ -172,16 +172,16 @@ const teacher = () => {
                   var path = path2.slice(19);
                   return (
                     <>
-                      <tr className=" ">
-                        <td className="text-lg  overlay ">{link}</td>
-                        <td className="text-lg  overlay">
+                      <tr className=" h-12 md:h-14 lg:h-20">
+                        <td className="text-sm md:text-sm lg:text-lg overlay ">{link}</td>
+                        <td className="text-sm md:text-sm lg:text-lg overlay">
                           <strong>{title} </strong>
                         </td>
                         <td>
                           {" "}
                           <a href={path} target="_blank" rel="noreferrer">
                             {" "}
-                            <button className="btn">Click Here</button>
+                            <button className="btn ">Click Here</button>
                           </a>{" "}
                         </td>
                         {auth && (

@@ -11,7 +11,7 @@ function DepartBanner() {
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-            <p className="  text-[#ffffff] md:text-6xl text-4xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="  text-[#ffffff] md:text-3xl md:text-4xl lg:text-6xl text-4xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Biochemistry
             </p>
           </div>
