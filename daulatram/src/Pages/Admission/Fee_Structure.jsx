@@ -23,9 +23,11 @@ const Fee_Structure = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/admission_Fee_Structure");
-    const dat =  await response.json();
-    console.log(dat)
+    const response = await fetch(
+      "http://localhost:5000/admission_Fee_Structure"
+    );
+    const dat = await response.json();
+    console.log(dat);
     setData1(dat);
   };
 
@@ -94,11 +96,15 @@ const Fee_Structure = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/admission_Fee_Structure_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `http://localhost:5000/admission_Fee_Structure_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
         setLink("");
         setFile(null);
@@ -117,17 +123,20 @@ const Fee_Structure = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch("http://localhost:5000/admission_Fee_Structure_add_link", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        link: link,
-        title: caption,
-        file: file,
-      }),
-    });
+    const response = await fetch(
+      "http://localhost:5000/admission_Fee_Structure_add_link",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          link: link,
+          title: caption,
+          file: file,
+        }),
+      }
+    );
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
@@ -150,7 +159,7 @@ const Fee_Structure = () => {
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Fee Structure
             </p>
           </div>
@@ -163,15 +172,15 @@ const Fee_Structure = () => {
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px] ">
+        <div className="md:w-[350px] ">
           <Admission_side />
         </div>
 
-        <div className="w-[1100px] mb-5">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-          Fee Structure
+        <div className="w-full mb-5">
+          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[7%] flex flex-row justify-center items-center   ">
+            Fee Structure
           </h2>
-          {data1 ?(
+          {data1 ? (
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
               var path_pic = file_path;
@@ -219,7 +228,10 @@ const Fee_Structure = () => {
                   </div>
                 </>
               );
-            })):(<Maintanence/>)}
+            })
+          ) : (
+            <Maintanence />
+          )}
           {auth && (
             <>
               <form
