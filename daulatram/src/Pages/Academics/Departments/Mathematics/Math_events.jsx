@@ -1,22 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import Mathbanner from "../Mathematics/Mathbanner.jsx";
 import Mathematics from "../../../../Components/DepartSIde/Mathematics.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Math_events() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Mathbanner />
       </div>
       <div className="flex flex-row">
-        {/* <div className="w-[350px]">
-        <Departments />
-      </div> */}
-        <div className=" flex  flex-col ml-2 mt-12 ">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Mathematics />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <Mathematics />
         </div>
         <div className="ml-3 ">
           <div className="w-full mr-16">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center">
                 Events
             </h2>
           </div>
@@ -24,10 +48,10 @@ function Math_events() {
             <div>
               <div className="mr-20 ml-4 flex text-justify ">
                 <div>
-                  <p className="text-1xl ml-4 underline font-bold text-xl">
+                  <p className="md:text-xl text-lg  ml-4 underline font-bold">
                     Academic year 2020-21 :
                   </p>
-                  <ul className="list-disc mt-2 ml-8">
+                  <ul className="list-decimal md:text-base text-sm mt-2 ml-8 mr-4 text-justify mb-4">
                     <li>
                       The association organised a national webinar for faculty
                       on <b>“Technology-enabled Higher education in India:
@@ -41,19 +65,17 @@ function Math_events() {
                         style={{
                           backgroundImage:
                             "url(/images/ImgPages/Mathematics/Events_Webinar.jpg)",
-                          width: "700px",
-                          height: "400px",
+                          
                         }}
-                        className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"
+                        className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                       ></div>
                       <div
                         style={{
                           backgroundImage:
                             "url(/images/ImgPages/Mathematics/Webinar2.jpg)",
-                          width: "700px",
-                          height: "400px",
+                          
                         }}
-                        className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"
+                        className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                       ></div>
                     </li>
 
@@ -67,10 +89,9 @@ function Math_events() {
                         style={{
                           backgroundImage:
                             "url(/images/ImgPages/Mathematics/Graph2.jpg)",
-                          width: "700px",
-                          height: "400px",
+                         
                         }}
-                        className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"
+                        className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                       ></div>
                     </li>
 
@@ -85,20 +106,19 @@ function Math_events() {
                         style={{
                           backgroundImage:
                             "url(/images/ImgPages/Mathematics/Freshers1.jpg)",
-                          width: "700px",
-                          height: "400px",
+
                         }}
-                        className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-4 rounded-3xl border-2 border-black"
+                        className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[40px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                       ></div>
                     </li>
                   </ul>
 
                 <div>
-                  <p className="text-1xl ml-4 underline font-bold text-xl">
+                  <p className=" ml-4 underline font-bold md:text-xl text-lg">
                     Academic year 2019-20 :
                   </p>
                 </div>
-                <ul className="list-disc ml-8">
+                <ul className="list-decimal md:text-base text-sm mt-2 ml-8 mr-4 text-justify mb-4">
                   <li>
                     The association organised a talk on <b>“A Journey with Infinite
                     Series”</b> by Dr. Tanvi Jain, Associate Professor at Indian
@@ -114,11 +134,11 @@ function Math_events() {
                   </li>
                 </ul>
                 <div>
-                  <p className="text-1xl ml-4 underline font-bold text-xl">
+                  <p className=" ml-4 underline font-bold md:text-xl tetx-lg">
                     Academic year 2018-19 :
                   </p>
                 </div>
-                <ul className="list-disc ml-8 mb-10">
+                <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
                   <li>
                     The association organised a talk on <b>“Mathematical Modelling
                     on Wild Life Preserving”</b> by Prof. Shoba Bagai, Professor at
