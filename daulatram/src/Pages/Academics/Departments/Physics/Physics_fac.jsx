@@ -168,7 +168,7 @@ const Physics_fac = () => {
         </div>
 
         <div className="w-[1100px]">
-          <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
+          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
             Faculty
           </h2>
           <div className="  ">
@@ -197,21 +197,11 @@ const Physics_fac = () => {
                 );
               })}
           </div>
-         {/* {data1 &&
-            data1.map((curElem) => {
-              const { filter } = curElem;
-              return (
-                <>
-                  {filter === "Supernnuated" && ( */}
           <div className="  ">
             <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
               Superannuated
             </h2>
           </div>
-          {/* )}
-                </>
-              );
-            })} */}
           <div class="grid grid-cols-1 sm:grid-cols-2 ml-5 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {

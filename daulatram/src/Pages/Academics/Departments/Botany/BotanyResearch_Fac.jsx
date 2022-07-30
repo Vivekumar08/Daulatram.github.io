@@ -41,7 +41,7 @@ function Research_Fac() {
         </div>
         
           <div className="w-full mr-16">
-            <h2 className="md:text-4xl text-lg sm:text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row ml-3 md:justify-center items-center  ">
+            <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
               Research and Facilities
             </h2>
             <div className="flex pr-4 pl-4 pb-2">

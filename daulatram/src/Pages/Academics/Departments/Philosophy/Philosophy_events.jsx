@@ -80,8 +80,8 @@ const Philo_events = () => {
         setCaption("");
         setLink("");
         setFile("");
-        setIsPreviewAvailable(false)
-        setPreviewSrc("")
+        setIsPreviewAvailable(false);
+        setPreviewSrc("");
         setAuth(true);
         fetchdata();
       } else {
@@ -100,7 +100,31 @@ const Philo_events = () => {
       <Philosophybanner />
 
       <div className="flex flex-row">
-        <div className="flex  flex-col mt-12 ml-2 ">
+        <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Botany />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className="w-[250px]  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Philosophy />
         </div>
 
@@ -117,8 +141,10 @@ const Philo_events = () => {
                 var path = path2.slice(19);
                 return (
                   <>
-                    <div class="card2 ml-2 " key={_id}>
-                      <span className="  font-bold text-lg w-[75%] ">{link}</span>
+                   <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
+                      <span className="  font-bold text-lg w-[75%] ">
+                        {link}
+                      </span>
                       <div className="flex flex-col ml-4 w-full">
                         <div class="info2 ml-4 w-full">
                           <p className="text-justify ">{title}</p>

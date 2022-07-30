@@ -27,7 +27,9 @@ const Pol_Sci_fac = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Political_Science_faculty");
+    const response = await fetch(
+      "http://localhost:5000/Political_Science_faculty"
+    );
     setData1(await response.json());
   };
 
@@ -139,7 +141,7 @@ const Pol_Sci_fac = () => {
     <div className=" flex flex-col">
       <PolScibanner />
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -168,7 +170,7 @@ const Pol_Sci_fac = () => {
         </div>
 
         <div className="w-[1100px]">
-          <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
+          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
             Faculty
           </h2>
           <div className="  ">
