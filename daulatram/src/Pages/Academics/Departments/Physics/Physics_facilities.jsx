@@ -10,6 +10,7 @@ import axios from "axios";
 
 
 const Physics_facilities = () => {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
