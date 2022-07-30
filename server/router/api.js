@@ -6809,6 +6809,7 @@ router.post(
         try {
             const { title, description, DOJ } = req.body
             const { path, mimetype } = req.file
+            console.log(title, description, DOJ,path, mimetype )
             const file = new Bot_Lab_Staff({
                 title: title,
                 description: description,
