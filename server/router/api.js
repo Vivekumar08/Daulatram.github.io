@@ -6315,7 +6315,7 @@ router.post("/delete_bio_faculty/:id", async(req, res) => {
     const delete_user = await Bio_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
-    // console.log()
+    console.log(pdf, img)
     if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
         if (img[0].file_path1) {
             await delete_user.deleteOne({ _id: req.params.id });
