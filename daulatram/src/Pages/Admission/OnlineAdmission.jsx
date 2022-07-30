@@ -155,7 +155,7 @@ const OnlineAdmission = () => {
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-            <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Online Admission
             </p>
           </div>
@@ -168,15 +168,15 @@ const OnlineAdmission = () => {
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px] ">
+        <div className="md:w-[350px] ">
           <Admission_side />
         </div>
 
-        <div className="w-[1100px] mb-5">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
+        <div className="w-full mb-5">
+          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[7%] flex flex-row justify-center items-center   ">
             Online Admission
           </h2>
-          {data1 ?(
+          {data1 ? (
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
               var path_pic = file_path;
@@ -184,9 +184,9 @@ const OnlineAdmission = () => {
               var path = path2.slice(19);
               return (
                 <>
-                  <div className="flex flex-row mb-5 ml-5">
-                    <li className="mt-12 list-none" key={_id}>
-                      <div className="flex flex-col ">
+                  <div className="flex flex-row mb-2 ml-5">
+                    <li className="mt-2 list-none" key={_id}>
+                      <div className="flex flex-col mr-10 ">
                         <h1 className="mt-5">
                           <FontAwesomeIcon
                             icon={faArrowRight}
@@ -200,7 +200,7 @@ const OnlineAdmission = () => {
                             {" "}
                             {link}{" "}
                           </a>
-                          <p className="mt-2 ml-3 leading-14 font-medium text-justify text-base md:text-lg">
+                          <p className=" ml-3 mt-2 leading-14 font-medium text-justify text-base md:text-lg">
                             {title}
                           </p>
                         </h1>
@@ -224,7 +224,10 @@ const OnlineAdmission = () => {
                   </div>
                 </>
               );
-            })):(<Maintanence/>)}
+            })
+          ) : (
+            <Maintanence />
+          )}
           {auth && (
             <>
               <form

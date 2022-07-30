@@ -11,7 +11,7 @@ const Public_Noticebanner = () => {
       >
         <div className="name">
           <div className="flex flex-row justify-center">
-            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl   mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
               Public's Notice{" "}
             </p>
           </div>

@@ -14,10 +14,10 @@ function Header() {
   const [logout, setLogout] = useState(false);
 
   useEffect(() => {
-    var addScript = document.createElement('script');
+    var addScript = document.createElement("script");
     addScript.setAttribute(
-      'src',
-      '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit'
+      "src",
+      "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     );
     document.body.appendChild(addScript);
     window.googleTranslateElementInit = googleTranslateElementInit;
@@ -26,11 +26,11 @@ function Header() {
   const googleTranslateElementInit = () => {
     new window.google.translate.TranslateElement(
       {
-        pageLanguage: 'en',
+        pageLanguage: "en",
 
         // layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
       },
-      'google_translate_element'
+      "google_translate_element"
     );
   };
 
@@ -38,13 +38,13 @@ function Header() {
     <>
       <div className="hidden lg:m-5 lg:flex lg:flex-row lg:justify-between bg-[#fff]">
         <div className="  ">
-        <Link to="/">
-          <img
-            className="w-[150px] h-[150px] ml-8 mt-2"
-            src="\images\logo.png"
-            alt="logo"
-          />
-        </Link>
+          <Link to="/">
+            <img
+              className="w-[150px] h-[150px] ml-8 mt-2"
+              src="\images\logo.png"
+              alt="logo"
+            />
+          </Link>
         </div>
         <div className="text-[#000080] mt-2 flex flex-col ml-16 mr-16">
           <div>
@@ -76,9 +76,9 @@ function Header() {
             </div>
           </div>
         </div>
-        {auth ? (
-          <>
-            <div className="flex flex-col">
+        <div className="flex flex-col ">
+          {auth ? (
+            <>
               <div className="mt-2 mr-12">
                 <p className=" text-lg w-[160px] bg-gray-300 p-2 rounded-md  text-Black">
                   {" "}
@@ -107,19 +107,16 @@ function Header() {
                 </p>
                 {logout && (
                   <div
-                    className="flex justify-center transition duration-500 mt-1 rounded-md hover:bg-blue-600 bg-[#000080] p-2 text-xl cursor-pointer"
+                    className="flex justify-center transition absolute w-[150px] duration-500 mt-1 rounded-md hover:bg-blue-600 bg-[#000080] p-2 text-xl cursor-pointer"
                     onClick={() => setAuth(!auth)}
                   >
                     <span className="   text-white">Logout</span>
                   </div>
                 )}
               </div>
-              <div id="google_translate_element"></div>
-            </div>
-          </>
-        ) : (
-          <>
-            <div className="flex flex-col ">
+            </>
+          ) : (
+            <>
               <div className="mt-2 mr-12">
                 <Link
                   to="/Admin"
@@ -131,10 +128,10 @@ function Header() {
                   </button>
                 </Link>
               </div>
-              <div id="google_translate_element" className="w-full mt-2"></div>
-            </div>
-          </>
-        )}
+            </>
+          )}
+          <div id="google_translate_element" className="mt-14"></div>
+        </div>
       </div>
       {/* Mobile View */}
       <div className="flex flex-col m-5 lg:hidden bg-[#fff] ">
@@ -164,7 +161,7 @@ function Header() {
             </Link>
           </div>
         </div>
-        <div className="text-[#F80CA7] text-lg   text-justify  font-bold mt-5 ml-10 mr-1">
+        <div className="text-[#F80CA7] text-base   text-justify  font-bold mt-5 ml-10 mr-1">
           NIRF RANK: 29
           <span style={{ color: "black" }} className="ml-1 mr-1">
             {" | "}

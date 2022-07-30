@@ -6,7 +6,10 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 import PhysicalEdubanner from "./PhysicalEdubanner.jsx";
 import PhysicalEdu from "../../../../Components/DepartSIde/PhysicalEdu";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function PhysicalEdu_fac() {
+  // const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
