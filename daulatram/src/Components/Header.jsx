@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import AuthContext from "../Context/AuthProvider";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -7,7 +7,6 @@ import {
   faChevronUp,
   faUserCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 
 function Header() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -19,15 +18,15 @@ function Header() {
       "src",
       "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"
     );
-    document.body.appendChild(addScript);
+
     window.googleTranslateElementInit = googleTranslateElementInit;
+    return () => document.body.appendChild(addScript);
   }, []);
 
   const googleTranslateElementInit = () => {
     new window.google.translate.TranslateElement(
       {
         pageLanguage: "en",
-
         // layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
       },
       "google_translate_element"
@@ -36,7 +35,7 @@ function Header() {
 
   return (
     <>
-      <div className="hidden lg:m-5 lg:flex lg:flex-row lg:justify-between bg-[#fff]">
+      <div className="hidden lg:m-5 lg:flex lg:flex-row lg:justify-between  bg-[#fff]">
         <div className="  ">
           <Link to="/">
             <img
@@ -79,8 +78,8 @@ function Header() {
         <div className="flex flex-col ">
           {auth ? (
             <>
-              <div className="mt-2 mr-12">
-                <p className=" text-lg w-[160px] bg-gray-300 p-2 rounded-md  text-Black">
+              <div className="mt-2 mr-10">
+                <p className=" text-base w-[160px] bg-gray-300 p-2 rounded-md  text-Black">
                   {" "}
                   <span className="justify-center items-center flex flex-row ml-2">
                     Hi,{" "}
@@ -107,7 +106,7 @@ function Header() {
                 </p>
                 {logout && (
                   <div
-                    className="flex justify-center transition absolute w-[150px] duration-500 mt-1 rounded-md hover:bg-blue-600 bg-[#000080] p-2 text-xl cursor-pointer"
+                    className="flex justify-center transition absolute w-[150px] duration-500 mt-1 rounded-md hover:bg-blue-600 bg-[#000080] p-2 text-base cursor-pointer"
                     onClick={() => setAuth(!auth)}
                   >
                     <span className="   text-white">Logout</span>
@@ -130,7 +129,7 @@ function Header() {
               </div>
             </>
           )}
-          <div id="google_translate_element" className="mt-14"></div>
+          <div id="google_translate_element" className="mt-2 mb-2"></div>
         </div>
       </div>
       {/* Mobile View */}
