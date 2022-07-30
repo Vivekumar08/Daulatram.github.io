@@ -131,7 +131,7 @@ const Founder = () => {
         </div>
 
         <div className="w-[1100px]">
-          <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Founder
           </h2>
           <figure className="flex flex-col p-4 ">
@@ -143,7 +143,7 @@ const Founder = () => {
                 // console.log(path);
                 return (
                   <>
-                    <div className="flex flex-row  items-center p-4">
+                    <div className=" flex flex-row  items-center p-4">
                       <img
                         src={path}
                         style={{
@@ -151,7 +151,7 @@ const Founder = () => {
                           height: "250px",
                         }}
                         alt="founder"
-                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-80"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-28 lg:ml-80"
                       />
                       {auth && (
                         <>

@@ -135,7 +135,7 @@ const Bio_faculty = () => {
     <div className=" flex flex-col">
       <DepartBanner />
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -164,11 +164,10 @@ const Bio_faculty = () => {
         </div>
 
         <div className="w-[1100px]">
-          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
+          <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
             Faculty
           </h2>
           <div className="  ">
-
             <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
               Current Faculty
             </h2>
@@ -194,23 +193,22 @@ const Bio_faculty = () => {
                 );
               })}
           </div>
-          {data1 &&
+          {/* {data1 &&
             data1.map((curElem) => {
-              const {  filter } = curElem;
-              // console.log(curElem);
+              const { filter } = curElem;
               return (
-                <>{filter ==="Supernnuated"&&
-
-                  <div className="  ">
-                    <h2 className="text-2xl uppercase font-bold m-1 flex  items-center ">
-                      Superannuated
-                    </h2>
-                  </div>
-                  }
+                <>
+                  {filter === "Supernnuated" && ( */}
+          <div className="  ">
+            <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
+              Superannuated
+            </h2>
+          </div>
+          {/* )}
                 </>
               );
-            })}
-          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
+            })} */}
+          <div class="grid grid-cols-1 sm:grid-cols-2 ml-5 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, description, img_data, filter } = curElem;

@@ -11,7 +11,7 @@ function Hist_about() {
         <Histbanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+      <div className="md:hidden absolute bg-white">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">

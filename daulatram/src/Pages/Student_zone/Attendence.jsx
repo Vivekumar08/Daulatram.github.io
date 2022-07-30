@@ -14,15 +14,15 @@ const Attendence = () => {
           <Student_side />
         </div>
         <div className="w-[1100px]">
-          <h2 className="text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="text-2xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Attendance
           </h2>
           <div className="flex-col ">
-            <div className="small ml-auto mr-auto bg-[#000080] text-white p-3">
+            <div className="small ml-auto md:ml-28 lg:ml-auto mr-auto bg-[#000080] text-white p-3">
               <span className="flex flex-row justify-center  text-lg">First Year Attendance</span>
             </div>
           
-            <table className="mt-0 mb-14 ml-auto mr-auto">
+            <table className="text-xs md:text-base leading-5 w-80 h-40 ml-auto mr-auto md:table-fixed  md:ml-24 lg:ml-auto md:w-[580px] lg:w-[800px] md:h-[180px] mt-1">
               <tr className="">
                 <th>Arts</th>
                 <th>Science</th>
@@ -227,7 +227,7 @@ const Attendence = () => {
               <span className="flex flex-row justify-center  text-lg">Second Year Attendance</span>
             </div>
           
-            <table className="mt-0 mb-14 ml-auto mr-auto">
+            <table className="text-xs md:text-base leading-5 w-80 h-40 ml-auto mr-auto md:table-fixed md:w-[500px] lg:w-[800px] md:h-[180px] mt-1">
               <tr>
                 <th>Arts</th>
                 <th>Science</th>
@@ -311,7 +311,7 @@ const Attendence = () => {
               <span className="flex flex-row justify-center  text-lg">Third Year Attendance</span>
             </div>
           
-            <table className="mt-0 ml-auto mr-auto">
+            <table className="text-xs md:text-base leading-5 w-80 h-40 ml-auto mr-auto md:table-fixed  md:w-[500px] lg:w-[800px] md:h-[180px] mt-1">
               <tr>
                 <th>Arts</th>
                 <th>Science</th>

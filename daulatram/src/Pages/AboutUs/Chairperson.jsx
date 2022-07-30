@@ -150,7 +150,7 @@ const Chairperson = () => {
                           height: "250px",
                         }}
                         alt="founder"
-                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-80"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-28 lg:ml-80"
                       />
                       {auth && (
                         <>
