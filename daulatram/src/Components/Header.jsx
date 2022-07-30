@@ -12,6 +12,7 @@ import { useState } from "react";
 function Header() {
   const { auth, setAuth } = useContext(AuthContext);
   const [logout, setLogout] = useState(false);
+  
 
   useEffect(() => {
     var addScript = document.createElement("script");
