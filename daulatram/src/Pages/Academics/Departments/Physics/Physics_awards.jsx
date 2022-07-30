@@ -9,6 +9,7 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 
 const Physics_awards = () => {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
