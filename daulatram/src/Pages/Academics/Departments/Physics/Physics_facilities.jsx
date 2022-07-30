@@ -3,7 +3,7 @@ import Physicsbanner from "../Physics/Physicsbanner.jsx";
 import Physics from "../../../../Components/DepartSIde/Physics";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -104,7 +104,7 @@ const Physics_facilities = () => {
         </div>
 
         <div className="w-full mr-auto ml-auto">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
           Facilities
           </h2>
           <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
@@ -116,7 +116,7 @@ const Physics_facilities = () => {
                 var path = path2.slice(19);
                 return (
                   <>
-                    <div class="card2 ml-2 " key={_id}>
+                   <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
                       <span className="  font-bold text-lg w-[75%] ">{link}</span>
                       <div className="flex flex-col ml-4 w-full">
                         <div class="info2  w-full">

@@ -15,36 +15,36 @@ const Sans_fac = () => {
           <Sansbanner />
         </div>
         <div className="flex flex-row">
-        <div className="md:hidden">
-          {visible ? (
-            <>
+          <div className="md:hidden">
+            {visible ? (
+              <>
+                <div className=" flex  flex-col mt-8 ml-2">
+                  <FontAwesomeIcon
+                    icon={faClose}
+                    size="lg"
+                    onClick={() => setVisible(!visible)}
+                    className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                  />
+                  <Sanskrit />
+                </div>
+              </>
+            ) : (
               <div className=" flex  flex-col mt-8 ml-2">
                 <FontAwesomeIcon
-                  icon={faClose}
+                  icon={faBars}
                   size="lg"
                   onClick={() => setVisible(!visible)}
-                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                  className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
                 />
-                <Sanskrit />
               </div>
-            </>
-          ) : (
-            <div className=" flex  flex-col mt-8 ml-2">
-              <FontAwesomeIcon
-                icon={faBars}
-                size="lg"
-                onClick={() => setVisible(!visible)}
-                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
-              />
-            </div>
-          )}
-        </div>
-        <div className=" md:flex ww-[250px] hidden md:flex-col mt-12 ml-2">
-          <Sanskrit />
-        </div>
+            )}
+          </div>
+          <div className=" md:flex ww-[250px] hidden md:flex-col mt-12 ml-2">
+            <Sanskrit />
+          </div>
           <div className=" ml-5 w-full">
             <div className="  ">
-              <h2 className="md:text-3xl text-xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center">
+              <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
                 Faculty
               </h2>
             </div>
@@ -54,30 +54,30 @@ const Sans_fac = () => {
               </h2>
             </div>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:mt-5 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-6 md:mb-5">
-            {Info.map((currElem) => {
-              const { id, Fac_name, Designation, filter, img, cv } = currElem;
-              return (
-                <>
-                  {filter == "Current" && (
-                    <>
-                      <div class="first fac mb-14">
-                        <img class="Fac-img" src={img} alt="" />
-                        <div class="fac-description-bk"></div>
+              {Info.map((currElem) => {
+                const { id, Fac_name, Designation, filter, img, cv } = currElem;
+                return (
+                  <>
+                    {filter == "Current" && (
+                      <>
+                        <div class="first fac mb-14">
+                          <img class="Fac-img" src={img} alt="" />
+                          <div class="fac-description-bk"></div>
 
-                        <div class="Fac-description">
-                          <p>{Fac_name}</p>
-                          <p className="font-medium"> {Designation}</p>
+                          <div class="Fac-description">
+                            <p>{Fac_name}</p>
+                            <p className="font-medium"> {Designation}</p>
+                          </div>
+
+                          <a href={cv}>
+                            <div class="fac-btn">View CV</div>
+                          </a>
                         </div>
-
-                        <a href={cv}>
-                          <div class="fac-btn">View CV</div>
-                        </a>
-                      </div>
-                    </>
-                  )}
-                </>
-              );
-            })}
+                      </>
+                    )}
+                  </>
+                );
+              })}
             </div>
             <div className="  ">
               <h2 className="md:text-2xl text-lg uppercase font-bold m-1 flex  items-center  ">
@@ -91,11 +91,12 @@ const Sans_fac = () => {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Sanskrit/Sushma_k_sans.jpg)",
-
                     }}
                     className="bg-center ml-auto mr-auto lg:w-[300px] w-[250px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[18%] bg-cover  rounded-2xl border-2 border-black"
                   />
-                  <b className="md:ml-4 lg:ml-6  ml-2">Dr. Sushma Kulshreshtha</b>
+                  <b className="md:ml-4 lg:ml-6  ml-2">
+                    Dr. Sushma Kulshreshtha
+                  </b>
                 </div>
                 <div className="pr-3 pl-3 flex w-full ">
                   <div className="text-lg text-justify mt-2 md:mr-16 ">
@@ -138,12 +139,11 @@ const Sans_fac = () => {
 
             <div className=" mr-2 ">
               <div className="w-full">
-              <hr className="mt-2 mb-5" />
+                <hr className="mt-2 mb-5" />
                 <img
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Sanskrit/Bhakti_sans.png)",
-                   
                   }}
                   className="bg-center ml-auto mr-auto lg:w-[300px] w-[250px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                 />
@@ -155,7 +155,6 @@ const Sans_fac = () => {
                       style={{
                         backgroundImage:
                           "url(/images/ImgPages/Sanskrit/diya_sans.png)",
-                       
                       }}
                       className="bg-center ml-auto mr-auto lg:w-[300px] w-[250px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     />
@@ -192,7 +191,6 @@ const Sans_fac = () => {
                       style={{
                         backgroundImage:
                           "url(/images/ImgPages/Sanskrit/Nargis_sans.png)",
-                        
                       }}
                       className="bg-center ml-auto mr-auto lg:w-[300px] w-[250px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     />
@@ -212,7 +210,6 @@ const Sans_fac = () => {
                       style={{
                         backgroundImage:
                           "url(/images/ImgPages/Sanskrit/Nirmla_sans.png)",
-
                       }}
                       className="bg-center ml-auto mr-auto lg:w-[300px] w-[260px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[15%] bg-cover  rounded-2xl border-2 border-black"
                     />

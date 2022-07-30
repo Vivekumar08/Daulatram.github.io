@@ -42,7 +42,7 @@ function Zoo_facilities() {
           <Zoology />
         </div>
         <div className="w-full mr-16">
-          <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
+          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
             Research & Facilities
           </h2>
 
