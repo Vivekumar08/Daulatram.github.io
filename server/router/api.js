@@ -7189,8 +7189,10 @@ router.post(
     upload.single("file"),
     async(req, res) => {
         try {
+
             const { title, description, DOJ } = req.body;
             const { path, mimetype } = req.file;
+
             const file = new Bot_Lab_Staff({
                 title: title,
                 description: description,

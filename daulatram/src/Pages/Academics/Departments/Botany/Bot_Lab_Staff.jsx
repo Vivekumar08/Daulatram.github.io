@@ -4,7 +4,8 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 import Botany from "../../../../Components/DepartSIde/Botany";
 import Botanybanner from "../Botany/Botanybanner.jsx";
-
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Bot_faculty = () => {
   const [data1, setData1] = useState();
@@ -66,7 +67,6 @@ const Bot_faculty = () => {
     }
   };
 
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -77,13 +77,21 @@ const Bot_faculty = () => {
           const data = await axios.post(
             `http://localhost:5000/bot_Lab_faculty_file_upload`,
             // { method: "POST" },
-            { title: caption, description: link, file: imag, filter: filter },
+            {
+              title: caption,
+              description: link,
+              DOJ: filter,
+              file: imag,
+              filter: filter,
+            },
             {
               headers: {
                 "Content-Type": "multipart/form-data",
               },
             }
           );
+          setIsPreviewAvailableImg(false);
+          setPreviewSrcImg("");
           setCaption("");
           setLink("");
           setAuth(true);
@@ -118,28 +126,39 @@ const Bot_faculty = () => {
           <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
-                const { _id, title, description, img_data, filter } = curElem;
+                const { _id, title, description, img_data, DOJ } = curElem;
                 console.log(curElem);
                 return (
                   <>
-                    {img_data&&img_data.file_path.map((elem) => {
-                      var path2 = elem.file_path1.replace(/\\/g, "/");
-                      var path = path2.slice(19);
-                      return (
-                        <>
-                          <div class="first1 fac1 " key={_id}>
-                            <img class="Fac-img1" src={path} alt="" />
-                            <div class="fac-description-bk"></div>
+                    {img_data &&
+                      img_data.file_path.map((elem) => {
+                        var path2 = elem.file_path1.replace(/\\/g, "/");
+                        var path = path2.slice(19);
+                        return (
+                          <>
+                            <div class="first1 fac1 " key={_id}>
+                              <img class="Fac-img1" src={path} alt="" />
+                              <div class="fac-description-bk"></div>
 
-                            <div class="Fac-description1">
-                              <p>{description}</p>
-                              <p className="font-medium"> {title}</p>
-                              <p>Date of Joining: {filter}</p>
+                              <div class="Fac-description1">
+                                <p>{description}</p>
+                                <p className="font-medium"> {title}</p>
+                                <p>Date of Joining: {DOJ}</p>
+                              </div>
+                              {auth && (
+                                <div className="flex flex-col w-full  ml-auto">
+                                  <FontAwesomeIcon
+                                    icon={faTrash}
+                                    size="lg"
+                                    className=" cursor-pointer text-white  absolute right-10  hover:text-black"
+                                    onClick={() => del(_id)}
+                                  />
+                                </div>
+                              )}
                             </div>
-                          </div>
-                        </>
-                      );
-                    })}
+                          </>
+                        );
+                      })}
                   </>
                 );
               })}
