@@ -21,7 +21,7 @@ function Zoo_association() {
           </h2>
 
           <div className="flex flex-row justify-between ">
-            <div class="wrapper2  mt-5 mb-5">
+            <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
               <div class="card2">
                 <div className="">
                   <span className=" text-2xl font-bold ml-16 ">

@@ -108,7 +108,7 @@ const Pol_Sci_association = () => {
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Association
           </h2>
-          <div class="flex justify-evenly w-full mt-5 mb-5">
+          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;

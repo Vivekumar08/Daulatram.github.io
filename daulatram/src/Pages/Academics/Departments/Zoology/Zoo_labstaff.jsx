@@ -26,7 +26,7 @@ function Zoo_labstaff() {
           <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center">
             Laboratory Staff
           </h2>
-          <div className="flex flex-row justify-between">
+          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
             <div className="flex flex-row w-full justify-center gap-4 mt-16 ">
               <a href={ajay}>
                 <span className=" mr-2 bg-blue-900 w-[215px] rounded-lg p-2 pr-8 pl-8 flex flex-col justify-center items-center mb-2 mt-2 text-white hover:bg-blue-600">

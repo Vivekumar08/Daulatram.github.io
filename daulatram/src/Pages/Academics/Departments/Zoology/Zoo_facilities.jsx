@@ -20,29 +20,6 @@ function Zoo_facilities() {
             Research & Facilities
           </h2>
 
-          {/* <div className="flex flex-row justify-between ">
-            <div class="wrapper2  mt-5 mb-5">
-              <div class="card2">
-                <div className="">
-                  <span className=" text-2xl font-bold ml-16 ">
-                    {" "}
-                    Research
-                  </span>
-                </div>
-                <div class="info">
-                  <h1 className="font-bold flex justify-center">Description</h1>
-                  <p className="flex justify-center">Zoology Department</p>
-                  <br />
-                  <a href={research_zoo}>
-                    <button className="w-full">View</button>
-                    <br />
-                  </a>
-
-                  <br />
-                </div>
-              </div>
-            </div>
-          </div> */}
           <div className="pr-3 pl-3 flex mr-1 ml-4">
             <span className="text-xl underline text-justify font-bold mb-2 mt-3">
               Drosophila Resource Center, Department of Zoology
