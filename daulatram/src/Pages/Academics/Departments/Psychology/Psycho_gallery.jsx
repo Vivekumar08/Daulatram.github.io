@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -12,6 +12,7 @@ import Psychobanner from "./Psychobanner";
 
 function Psycho_gallery() {
   const [data1, setData1] = useState();
+  const [visible, setVisible] = useState(false);
   const errRef = useRef();
   const dropRef = useRef();
   const [errMsg, setErrMsg] = useState("");

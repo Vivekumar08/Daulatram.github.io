@@ -10,6 +10,7 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 
 const Zoo_events = () => {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -140,7 +141,7 @@ const Zoo_events = () => {
                 var path = path2.slice(19);
                 return (
                   <>
-                   <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
+                    <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
                       <span className="  font-bold text-lg w-[75%] ">
                         {link}
                       </span>

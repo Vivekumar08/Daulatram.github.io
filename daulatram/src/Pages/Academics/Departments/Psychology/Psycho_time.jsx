@@ -3,7 +3,7 @@ import Psychology from "../../../../Components/DepartSIde/Psychology";
 import Psychobanner from "./Psychobanner";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -11,6 +11,7 @@ import axios from "axios";
 const Psycho_time = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
+  const [visible, setVisible] = useState(false);
   const errRef = useRef();
   const dropRef = useRef();
   const [link, setLink] = useState("");

@@ -13,6 +13,7 @@ import Sanskrit from "../../../../Components/DepartSIde/Sanskrit";
 
 function Sanskrit_gallery() {
   const [data1, setData1] = useState();
+  const [visible, setVisible] = useState(false);
   const errRef = useRef();
   const dropRef = useRef();
   const [errMsg, setErrMsg] = useState("");

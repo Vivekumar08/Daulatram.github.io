@@ -10,6 +10,7 @@ import axios from "axios";
 
 const Sanskrit_events = () => {
   const [data1, setData1] = useState();
+  const [visible, setVisible] = useState(false);
   const userRef = useRef();
   const errRef = useRef();
   const dropRef = useRef();

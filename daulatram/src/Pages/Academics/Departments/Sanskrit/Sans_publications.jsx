@@ -11,6 +11,7 @@ import axios from "axios";
 const Sans_publications = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
+  const [visible, setVisible] = useState(false);
   const errRef = useRef();
   const dropRef = useRef();
   const [link, setLink] = useState("");
