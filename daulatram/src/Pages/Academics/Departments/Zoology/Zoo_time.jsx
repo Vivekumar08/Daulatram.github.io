@@ -10,6 +10,7 @@ import Dropzone from "react-dropzone";
 import axios from "axios";
 
 const Zoo_time = () => {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();

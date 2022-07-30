@@ -4,8 +4,11 @@ import association from "../../../../Dummy_data/ImgPages/Zoology/Association.pdf
 
 import Zoobanner from "./Zoobanner";
 import Zoology from "../../../../Components/DepartSIde/Zoology";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 
 function Zoo_association() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
@@ -18,6 +21,7 @@ function Zoo_association() {
               <div className=" flex  flex-col mt-8 ml-2">
                 <FontAwesomeIcon
                   icon={faClose}
+
                   size="lg"
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"

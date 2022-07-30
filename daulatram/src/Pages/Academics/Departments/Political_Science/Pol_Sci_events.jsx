@@ -6,6 +6,7 @@ import Political_Science from "../../../../Components/DepartSIde/Political_Scien
 import { Pol_Sci_fac_info } from "../Political_Science/event_info";
 const Pol_Sci_events = () => {
   const [Info, setFac_info] = useState(Pol_Sci_fac_info);
+  const [visible, setVisible] = useState(false);
 
   return (
     <>
