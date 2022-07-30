@@ -2,7 +2,10 @@ import React, { useState } from "react";
 import Sanskrit from "../../../../Components/DepartSIde/Sanskrit";
 import { Sans_fac_info } from "../Fac_info";
 import Sansbanner from "./Sansbanner";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 const Sans_fac = () => {
+  const [visible, setVisible] = useState(false);
   const [Info, setFac_info] = useState(Sans_fac_info);
 
   return (
@@ -12,27 +15,52 @@ const Sans_fac = () => {
           <Sansbanner />
         </div>
         <div className="flex flex-row">
-          <div className="ml-2 mt-12">
-            <Sanskrit />
-          </div>
+        <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Sanskrit />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex ww-[250px] hidden md:flex-col mt-12 ml-2">
+          <Sanskrit />
+        </div>
           <div className=" ml-5 w-full">
             <div className="  ">
-              <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+              <h2 className="md:text-3xl text-xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center">
                 Faculty
               </h2>
             </div>
             <div className="  ">
-              <h2 className="text-2xl uppercase font-bold m-1 flex  items-center ">
+              <h2 className="md:text-2xl text-lg uppercase font-bold m-1 flex  items-center ">
                 Sansrit Faculty
               </h2>
             </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:mt-5 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-6 md:mb-5">
             {Info.map((currElem) => {
               const { id, Fac_name, Designation, filter, img, cv } = currElem;
               return (
                 <>
                   {filter == "Current" && (
                     <>
-                      <div class="first fac ">
+                      <div class="first fac mb-14">
                         <img class="Fac-img" src={img} alt="" />
                         <div class="fac-description-bk"></div>
 
@@ -50,8 +78,9 @@ const Sans_fac = () => {
                 </>
               );
             })}
+            </div>
             <div className="  ">
-              <h2 className="text-2xl uppercase font-bold m-1 mt-5 flex  items-center ">
+              <h2 className="md:text-2xl text-lg uppercase font-bold m-1 flex  items-center  ">
                 Superannuated Faculty
               </h2>
             </div>
@@ -62,16 +91,15 @@ const Sans_fac = () => {
                     style={{
                       backgroundImage:
                         "url(/images/ImgPages/Sanskrit/Sushma_k_sans.jpg)",
-                      width: "300px",
-                      height: "300px",
+
                     }}
-                    className="bg-center bg-no-repeat mt-[1%] bg-cover ml-1 rounded-3xl border-2 border-black"
+                    className="bg-center ml-auto mr-auto lg:w-[300px] w-[250px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[18%] bg-cover  rounded-2xl border-2 border-black"
                   />
-                  <b className="ml-12">Dr. Sushma Kulshreshtha</b>
+                  <b className="md:ml-4 lg:ml-6  ml-2">Dr. Sushma Kulshreshtha</b>
                 </div>
                 <div className="pr-3 pl-3 flex w-full ">
-                  <div className="text-lg text-justify mt-2 mr-16 ">
-                    <ul className="list-disc mt-2 ml-4 mr-2 text-justify mb-4">
+                  <div className="text-lg text-justify mt-2 md:mr-16 ">
+                    <ul className="list-disc mt-2 md:ml-4 ml-8  mr-2 md:text-base text-sm text-justify mb-4">
                       <li>
                         Dr. Sushma Kulshreshtha (born on 13.03.1945 in Khurja)
                         joined Daulat Ram College as a Lecturer in Sanskrit in
@@ -102,39 +130,39 @@ const Sans_fac = () => {
                 </div>
               </div>
             </div>
-            <p className="text-lg text-justify mt-2 mr-16">
+            <hr className="mt-2 mb-5" />
+            <p className="md:text-lg text-sm text-justify mt-2 mr-16">
               <b>Mrs. Lalita Kuppuswamy</b> ( born on 15.07.1946 in
               Thiruchirapalli, T.N.) M.A., Ph.D
             </p>
 
             <div className=" mr-2 ">
               <div className="w-full">
+              <hr className="mt-2 mb-5" />
                 <img
                   style={{
                     backgroundImage:
                       "url(/images/ImgPages/Sanskrit/Bhakti_sans.png)",
-                    width: "300px",
-                    height: "300px",
+                   
                   }}
-                  className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-1 rounded-3xl border-2 border-black"
+                  className="bg-center ml-auto mr-auto lg:w-[300px] w-[250px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                 />
-                <b className="ml-28">Dr. Bhakti</b>
-
+                <b className="flex justify-center lg:mr-16 ">Dr. Bhakti</b>
+                <hr className="mt-2 mb-5" />
                 <div className=" mr-2 flex flex-row w-full mb-5">
                   <div className="w-[40%]">
                     <img
                       style={{
                         backgroundImage:
                           "url(/images/ImgPages/Sanskrit/diya_sans.png)",
-                        width: "300px",
-                        height: "300px",
+                       
                       }}
-                      className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-1 rounded-3xl border-2 border-black"
+                      className="bg-center ml-auto mr-auto lg:w-[300px] w-[250px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     />
-                    <b className="ml-28">Dr. Kaushik</b>
+                    <b className="ml-2 lg:ml-12">Dr. Kaushik</b>
                   </div>
                   <div className="pr-3 pl-3 flex w-full">
-                    <div className="text-lg text-justify mt-2 mr-16 ">
+                    <div className="md:text-lg text-sm ml-8 text-justify font-medium md:mr-16 ">
                       Dr. Kaushik joined the Department of Sanskrit in 1960 and
                       was the sole bearer of the responsibilities for the nest 3
                       years. M.A. in Sanskrit Grammar, she is the recipient of
@@ -157,42 +185,42 @@ const Sans_fac = () => {
                     </div>
                   </div>
                 </div>
+                <hr className="mt-2 mb-5" />
                 <div className=" mr-2 flex flex-row w-full">
                   <div className="w-[40%]">
                     <img
                       style={{
                         backgroundImage:
                           "url(/images/ImgPages/Sanskrit/Nargis_sans.png)",
-                        width: "300px",
-                        height: "300px",
+                        
                       }}
-                      className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-1 rounded-3xl border-2 border-black"
+                      className="bg-center ml-auto mr-auto lg:w-[300px] w-[250px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                     />
-                    <b className="ml-20">Dr. Nargis Verma</b>
+                    <b className="lg:ml-6">Dr. Nargis Verma</b>
                   </div>
-                  <div className="pr-3 pl-3 flex w-full">
-                    <div className="text-lg text-justify mt-2 mr-16 ">
+                  <div className="pr-3 pl-3  flex w-full">
+                    <div className="md:text-lg ml-8 mb-2 text-sm text-justify md:mr-16 font-medium ">
                       Dr. Nargis Verma Retired as Reader on February 14, 2010.
                       (born on 05.02.1945 in Peshawar.)
                     </div>
                   </div>
                 </div>
+                <hr className="mt-2 mb-5" />
                 <div className=" mr-2 flex flex-row w-full">
                   <div className="w-[40%]">
                     <img
                       style={{
                         backgroundImage:
                           "url(/images/ImgPages/Sanskrit/Nirmla_sans.png)",
-                        width: "300px",
-                        height: "300px",
+
                       }}
-                      className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-1 rounded-3xl border-2 border-black"
+                      className="bg-center ml-auto mr-auto lg:w-[300px] w-[260px] h-[190px] lg:h-[300px] mb-3 bg-no-repeat mt-[15%] bg-cover  rounded-2xl border-2 border-black"
                     />
-                    <b className="ml-20">Dr. Nirmal Trikha</b>
+                    <b className="lg:ml-6">Dr. Nirmal Trikha</b>
                   </div>
                   <div className="pr-3 pl-3 flex w-full mb-5">
-                    <div className="text-lg text-justify mt-2 mr-16 ">
-                      <span className="text-lg text-justify font-medium mt-3">
+                    <div className="md:text-lg text-sm text-justify ml-8 md:mr-16 mt-2 mr-4 ">
+                      <span className="md:text-lg mb-2 text-sm text-justify  font-medium">
                         Dr. Nirmal Trikha joined Department of Sanskrit in 1968
                         and retired as Associate Professor after 42 years of
                         dedicated service in 2010. She is B.A.(Hons) and
@@ -201,7 +229,7 @@ const Sans_fac = () => {
                         the award of Long Term Teacher Fellowship by U.G.C.
                       </span>
                       <br />
-                      <span className="text-lg text-justify font-medium mt-3">
+                      <span className="md:text-lg mb-2 text-sm text-justify font-medium">
                         In her long teaching experience, as an Incharge of
                         Sanskrit Department, Dr.Trikha was associated with
                         curriculum development and examination work. She taught
@@ -210,7 +238,7 @@ const Sans_fac = () => {
                         specialization.
                       </span>
                       <br />
-                      <span className="text-lg text-justify font-medium mt-3">
+                      <span className="md:text-lg mb-2 text-sm text-justify font-medium">
                         As an Administrator, she contributed to the development
                         of the college as a Vice Principal, Bursar and staff
                         representative on the Governing Body. She worked as
@@ -218,7 +246,7 @@ const Sans_fac = () => {
                         Council and Governing Body.
                       </span>
                       <br />
-                      <span className="text-lg text-justify font-medium mt-3">
+                      <span className="md:text-lg mb-2 text-sm text-justify font-medium">
                         Being Incharge of Sanskrit Association several times,
                         she organized Inter College Competitions and directed
                         Sanskrit Plays. She was Chief Editor of College Magazine
@@ -231,7 +259,7 @@ const Sans_fac = () => {
                         Samaaraadhaka Sammaana' Six times.
                       </span>
                       <br />
-                      <span className="text-lg text-justify font-medium mt-3">
+                      <span className="md:text-lg mb-2 text-sm text-justify font-medium">
                         Dr.Trikha participated in national and international
                         conferences, seminars, lectures and workshops and
                         presented more than sixty research papers. Most of the
@@ -243,8 +271,8 @@ const Sans_fac = () => {
                         Sanskrit Literature with special reference to pure and
                         applied Botany.
                       </span>
-                      <br />
-                      <span className="text-lg text-justify font-medium mt-3">
+
+                      <span className="md:text-lg mb-2 text-sm text-justify font-medium">
                         Along with her academic pursuit, Dr. Trikha possesses a
                         distinguished career in extra-curricular activities. She
                         was adjudged the Best Speaker of the University of Delhi
@@ -253,7 +281,7 @@ const Sans_fac = () => {
                         University Youth Festival and certificate of Merit was
                         awarded to her by the Ministry of Education.
                       </span>
-                      <span className="text-lg text-justify font-medium mt-3">
+                      <span className="md:text-lg text-sm mb-2 text-justify font-medium">
                         Dr. Nirmal Trikha retired as Reader on October 31, 2010.
                       </span>
                     </div>
