@@ -36,7 +36,7 @@ function Header() {
 
   return (
     <>
-      <div className="hidden lg:m-5 lg:flex lg:flex-row lg:justify-between  bg-[#fff]">
+      <div className="hidden lg:m-5 lg:flex lg:flex-row xl:justify-between lg:justify-start  bg-[#fff]">
         <div className="  ">
           <Link to="/">
             <img
@@ -135,8 +135,8 @@ function Header() {
       </div>
       {/* Mobile View */}
       <div className="flex flex-col m-5 lg:hidden bg-[#fff] ">
-        <div className="flex flex-row justify-evenly ">
-          <div className="  ">
+        <div className="flex flex-row justify-evenly  ">
+          <div className=" ">
             <Link to="/">
               <img
                 className="w-[100px] h-[100px]  mt-2"

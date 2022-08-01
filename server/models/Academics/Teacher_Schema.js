@@ -12,17 +12,14 @@ const Teacher_Schema = mongoose.Schema(
       required: true,
       trim: true
     },
-    file_path: {
+    Tic1: {
       type: String,
       required: true
     },
-    file_mimetype: {
+    Tic2: {
       type: String,
       required: true
     }
-  },
-  {
-    timestamps: true
   }
 );
 

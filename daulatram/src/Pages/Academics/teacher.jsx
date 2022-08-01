@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
-import Dropzone from "react-dropzone";
+// import Dropzone from "react-dropzone";
 import axios from "axios";
 import Banner from "../../Components/Banners/teach";
 import DeptSidebar from "../../Components/Sidebar/DeptSidebar";
@@ -12,32 +12,16 @@ const teacher = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
-  const dropRef = useRef();
   const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
+  const [tic1, setTic1] = useState("");
+  const [tic2, setTic2] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [previewSrc, setPreviewSrc] = useState("");
-  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
-  const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
     const response = await fetch("http://localhost:5000/Teacher_In_Charge");
     setData1(await response.json());
-  };
-
-  const onDrop = (files) => {
-    const [uploadedFile] = files;
-    setFile(uploadedFile);
-
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setPreviewSrc(fileReader.result);
-    };
-    fileReader.readAsDataURL(uploadedFile);
-    setIsPreviewAvailable(
-      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
-    );
   };
 
   useEffect(() => {
@@ -65,24 +49,22 @@ const teacher = () => {
     try {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("link", link);
-        formData.append("title", caption);
+        // const formData = new FormData();
+        // formData.append("Tic1", tic1);
+        // formData.append("Tic2", tic2);
+        // formData.append("link", link);
+        // formData.append("title", caption);
+        // console.log(tic1, tic2, link, caption);
 
         setErrMsg("");
         await axios.post(
           `http://localhost:5000/Teacher_In_Charge_add`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
+          { Tic1: tic1, Tic2: tic2, link: link, title: caption },
         );
         setCaption("");
         setLink("");
-        setFile(null);
+        setTic1("");
+        setTic2("");
         setAuth(true);
         fetchdata();
       } else {
@@ -107,7 +89,7 @@ const teacher = () => {
         </div>
 
         <div className="w-[1100px]">
-          <h2 className=" text-xl md:text-2xl lg:text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
+          <h2 className=" text-xl  lg:text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             TEACHERS-IN-CHARGE
           </h2>
           <div className="main flex-col whitespace-none">
@@ -115,75 +97,32 @@ const teacher = () => {
               <tr className="h-12 md:h-14 lg:h-20 text-lg">
                 <th className="row text-sm md:text-lg w-[15%]">S.no</th>
                 <th className="text-sm md:text-sm lg:text-lg">Departments</th>
-                <th className="text-sm md:md:text-sm lg:text-lg w-[25%]">TIC 2021-22</th>
-                <th className="text-sm md:text-sm lg:text-lg w-[25%]">TIC 2022-23</th>
-                {auth && <th className="text-sm md:text-sm lg:text-lg w-[15%]">Delete</th>}
+                <th className="text-sm md:md:text-sm lg:text-lg w-[25%]">
+                  TIC 2021-22
+                </th>
+                <th className="text-sm md:text-sm lg:text-lg w-[25%]">
+                  TIC 2022-23
+                </th>
+                {auth && (
+                  <th className="text-sm md:text-sm lg:text-lg w-[15%]">
+                    Delete
+                  </th>
+                )}
               </tr>
               {data1 &&
                 data1.map((curElem) => {
-                  const { _id, title, file_path, link } = curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
+                  const { _id, title, Tic1, Tic2, link } = curElem;
                   return (
                     <>
                       <tr className=" h-12 md:h-14 lg:h-20">
-                        <td className="text-sm md:text-sm lg:text-lg  overlay ">{link}</td>
-                        <td className="text-sm md:text-sm lg:text-lg  overlay">
+                        <td className="text-sm md:text-sm lg:text-lg  overlay ">
+                          {link}
+                        </td>
+                        <td className="">
                           <strong>{title} </strong>
                         </td>
-                        <td>
-                          {" "}
-                        </td>
-                        <td>
-                          {" "}
-                        </td>
-                        {auth && (
-                          <>
-                            <td className="flex h-full overlay ">
-                              <FontAwesomeIcon
-                                icon={faTrashCan}
-                                size="2xl"
-                                className=" cursor-pointer ml-auto mr-auto mt-[25%]  hover:text-red-500"
-                                onClick={() => del(_id)}
-                              ></FontAwesomeIcon>
-                            </td>
-                          </>
-                        )}
-                      </tr>
-                    </>
-                  );
-                })}
-            </table>
-          </div>
-          <div className="main flex-col whitespace-none">
-            <table className=" w-96 h-48 ml-3 md:ml-26 md:w-[500px] md:h-[160px] lg:table-fixed lg:ml-32 lg:w-[800px] mt-1 ">
-              <tr className="h-12 md:h-14 lg:h-20 text-lg">
-                <th className="row text-sm md:text-sm lg:text-lg">S.no</th>
-                <th className="text-sm md:text-sm lg:text-lg">About</th>
-                <th className="text-sm md:text-sm lg:text-lg">PDF</th>
-                {auth && <th className="text-sm md:text-sm lg:text-lg w-[15%]">Delete</th>}
-              </tr>
-              {data1 &&
-                data1.map((curElem) => {
-                  const { _id, title, file_path, link } = curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
-                  return (
-                    <>
-                      <tr className=" h-12 md:h-14 lg:h-20">
-                        <td className="text-sm md:text-sm lg:text-lg overlay ">{link}</td>
-                        <td className="text-sm md:text-sm lg:text-lg overlay">
-                          <strong>{title} </strong>
-                        </td>
-                        <td>
-                          {" "}
-                          <a href={path} target="_blank" rel="noreferrer">
-                            {" "}
-                            <button className="btn ">Click Here</button>
-                          </a>{" "}
-                        </td>
+                        <td>{Tic1}</td>
+                        <td>{Tic2}</td>
                         {auth && (
                           <>
                             <td className="flex h-full overlay ">
@@ -235,57 +174,35 @@ const teacher = () => {
                     onChange={(e) => setCaption(e.target.value)}
                     value={caption}
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
-                    placeholder="About"
+                    placeholder="Departments"
                   ></textarea>
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="TIC1"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setTic1(e.target.value)}
+                    value={tic1}
+                    placeholder="Previous Teacher In Charge "
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="TIC2"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setTic2(e.target.value)}
+                    value={tic2}
+                    placeholder="Current Teacher In Charge "
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
                 </div>
                 <div class="md:flex flex-col md:items-center">
                   {/* <div class="md:w-1/3"></div> */}
-                  <div className="upload-section flex h-[200px] mb-[10px] w-full">
-                    <Dropzone
-                      onDrop={onDrop}
-                      onDragEnter={() => updateBorder("over")}
-                      onDragLeave={() => updateBorder("leave")}
-                    >
-                      {({ getRootProps, getInputProps }) => (
-                        <div
-                          {...getRootProps({
-                            className:
-                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
-                          })}
-                          ref={dropRef}
-                        >
-                          <input {...getInputProps()} />
-                          <p>
-                            Drag and drop a file OR click here to select a file
-                          </p>
-                          {file && (
-                            <div>
-                              <strong>Selected file:</strong> {file.name}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </Dropzone>
-                    {previewSrc ? (
-                      isPreviewAvailable ? (
-                        <div className="image-preview ml-[5%] w-full">
-                          <img
-                            className="preview-image w-full h-full block mb-[10px]"
-                            src={previewSrc}
-                            alt="Preview"
-                          />
-                        </div>
-                      ) : (
-                        <div className="preview-message flex justify-center items-center ml-[5%]">
-                          <p>No preview available for this file</p>
-                        </div>
-                      )
-                    ) : (
-                      <div className="preview-message flex justify-center items-center ml-[5%]">
-                        <p>Image preview will be shown here after selection</p>
-                      </div>
-                    )}
-                  </div>
                   <div class="md:w-2/3 ">
                     <button
                       class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
