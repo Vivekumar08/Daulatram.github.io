@@ -5766,26 +5766,25 @@ router.get("/Teacher_In_Charge", async(req, res) => {
 });
 router.delete("/delete_Teacher_In_Charge/:id", async(req, res) => {
     const delete_user = await Teacher.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
 });
 
 router.post(
     "/Teacher_In_Charge_add",
-    upload.single("file"),
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
+            const { title, link,Tic1, Tic2 } = req.body;
+            console.log(title, link,Tic1, Tic2)
             const file = new Teacher({
                 title,
                 link,
-                file_path: path,
-                file_mimetype: mimetype,
+                Tic1,
+                Tic2
             });
             await file.save();
             res.send("file uploaded successfully.");
         } catch (error) {
+            console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
