@@ -75,7 +75,7 @@ const Time_table = () => {
           <Student_side />
         </div>
         <div className="w-[1100px]">
-          <h2 className=" md:ml-20 lg:ml-0 lg:mr-20 text-2xl md:text-4xl uppercase font-bold mb-5 mt-[7%] flex flex-row justify-center items-center  ">
+          <h2 className=" md:ml-20 lg:ml-0 lg:mr-20 text-2xl md:text-4xl uppercase font-bold mb-5 mt-[15%] flex flex-row justify-center items-center  ">
             Time Table & Academics Calendar
           </h2>
           <table className=" leading-5 w-48 h-40 ml-auto mr-auto md:ml-24 md:table-fixed  md:w-[620px] lg:w-[800px] md:h-[180px] mt-5">
