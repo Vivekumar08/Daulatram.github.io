@@ -117,7 +117,7 @@ const Roster = () => {
         </div>
        
           <div className="w-[1100px]">
-            <h2 className="bg-yellow-500 md:bg-red-500 lg:bg-green-500 text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               Staff Roster
             </h2>
             <div class="grid grid-cols-1 ml-2 lg:ml-5 md:grid-cols-2 lg:grid-cols-3  w-full mt-5 mb-5">
