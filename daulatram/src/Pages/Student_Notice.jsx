@@ -4,7 +4,7 @@ import axios from "axios";
 import Stu_Noticebanner from "../Components/Banners/Stu_Noticebanner";
 import Notice_side from "../Components/Sidebar/Notice_side";
 import Dropzone from "react-dropzone";
-import { faArchive, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faAdd, faArchive, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Student_Notice = () => {
