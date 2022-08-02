@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import Commercebanner from "../../../../Components/Banners/DepartBanner";
+import Commercebanner from "./Commercebanner";;
 import Commerce from "../../../../Components/DepartSIde/Commerce";
 import Com_fac_data from "./Com_fac_data";
 import Com_fac_data_sup from "./Com_fac_data_sup";

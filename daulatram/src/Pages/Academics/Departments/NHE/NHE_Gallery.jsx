@@ -11,6 +11,7 @@ import NHE from "../../../../Components/DepartSIde/NHE.jsx";
 
 function NHE_Gallery() {
   const [data1, setData1] = useState();
+  const [visible, setVisible] = useState(false);
   const errRef = useRef();
   const dropRef = useRef();
   const [errMsg, setErrMsg] = useState("");
