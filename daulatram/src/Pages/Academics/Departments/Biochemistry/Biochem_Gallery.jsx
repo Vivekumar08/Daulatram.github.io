@@ -97,14 +97,15 @@ function Biochem_Gallery() {
               </p>
             </div>
 
-            <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
-              <Link to={"/"}>
-                <span className="ml-5">Home</span>
-              </Link>
-              <span className="ml-5">Academics</span>
-              <span className="ml-5">Biochemistry</span>
-              <span className="ml-5">Photo Gallery</span>
-            </div>
+            <div className=" bg-gray-400 pt-3 pb-3 pl-5 md:text-lg text-s text-[#000080] mt-20 ">
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+            <span className="ml-5">Academics</span>
+            <Link to={"/academics/departments"}>
+              <span className="ml-5">Departments</span>
+            </Link>
+          </div>
           </div>
         </div>
       </div>

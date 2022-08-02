@@ -1,5 +1,5 @@
 import React from "react";
-import DepartBanner from "../../../../Components/Banners/DepartBanner";
+import Programbanner from "../../../../Components/Banners/Programbanner";
 import Departments from "../../../../Components/Sidebar/Departments";
 import "./research.css";
 import grant from "../../../../Dummy_data/ImgPages/Biochemistry/Grant.pdf";
@@ -10,7 +10,7 @@ function Research_facilities() {
   return (
     <div className=" flex flex-col">
       <div className="">
-        <DepartBanner />
+        <Programbanner />
       </div>
       <div className="flex flex-row">
         <div className=" flex  flex-col mt-12 ml-2 ">

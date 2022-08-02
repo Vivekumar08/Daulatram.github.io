@@ -93,18 +93,19 @@ function Math_Gallery() {
           <div className="">
             <div className="flex flex-row justify-center">
               <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-                Photo Gallery{" "}
+                Mathematics{" "}
               </p>
             </div>
 
             <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
-              <Link to={"/"}>
-                <span className="ml-5">Home</span>
-              </Link>
-              <span className="ml-5">Academics</span>
-              <span className="ml-5">Mathematics</span>
-              <span className="ml-5">Photo Gallery</span>
-            </div>
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+            <span className="ml-5">Academics</span>
+            <Link to={"/academics/departments"}>
+              <span className="ml-5">Departments</span>
+            </Link>
+          </div>
           </div>
         </div>
       </div>

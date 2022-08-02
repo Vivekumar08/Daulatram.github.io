@@ -6,7 +6,7 @@ function Programbanner() {
   return (
     <>
       <div
-        className="Banner"
+        className="Banner md:h-[280px]"
         style={{ backgroundImage: "url(/images/img1.jpeg)" }}
       >
         <div className="name">
