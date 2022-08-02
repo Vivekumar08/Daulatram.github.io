@@ -26,7 +26,12 @@ function Quicklinks() {
               to="/Student_Zone/Attendance"
               className="gallery_item gallery_item-1 flex flex-col justify-center items-center cursor-pointer"
             >
-              <img className="attendance" src={attendance1} alt="" />
+             <img
+                  
+                  src = {"/images/attendance3.png"} 
+                  className="attendance"
+                  alt="attendance"
+                />
               <p className="mt-2">
                 <strong>Attendance</strong>
               </p>
@@ -35,7 +40,12 @@ function Quicklinks() {
               to="/academics/College_Calendar"
               className="gallery_item gallery_item-2 flex flex-col justify-center items-center cursor-pointer"
             >
-              <img className="calendar" src={calendar} alt="" />
+<img
+                  
+                  src = {"/images/calendar1.png"} 
+                  className="calendar"
+                  alt="calendar"
+                />
               <p className="mt-2">
                 <b>Calendar</b>
               </p>
@@ -44,7 +54,12 @@ function Quicklinks() {
               to="/Student_Zone/Examination_Form_&_Database"
               className="gallery_item gallery_item-3 flex flex-col justify-center items-center  cursor-pointer"
             >
-              <img className="datesheet" src={datesheet} alt="" />
+             <img
+                  
+                  src = {"/images/datesheet1.png"} 
+                  className="datesheet"
+                  alt="datesheet"
+                />
               <p className="mt-2">
                 <b>Datesheet</b>
               </p>
@@ -53,7 +68,12 @@ function Quicklinks() {
               to="/Student_Zone/Hostel"
               className="gallery_item gallery_item-4 flex flex-col justify-center items-center cursor-pointer"
             >
-              <img className="hostel" src={hostel} alt="" />
+              <img
+                  
+                  src = {"/images/hostel1.png"} 
+                  className="hostel"
+                  alt="hostel"
+                />
               <p className="mt-2">
                 <b>Hostel Facilities</b>
               </p>
@@ -63,10 +83,11 @@ function Quicklinks() {
               className=" gallery_item gallery_item-5 flex flex-col justify-center items-center cursor-pointer"
             >
               <img
-                className="internal_assessment"
-                src={internal_assessment}
-                alt=""
-              />
+                  
+                  src = {"/images/internal_assessment.png"} 
+                  className="Internal_assessment"
+                  alt="internal_assessment"
+                />
               <p className="mt-2 w-[160px]">
                 <b>Internal Assessment</b>
               </p>
@@ -75,7 +96,12 @@ function Quicklinks() {
               to="/Student_Zone/Placement_Cell"
               className="gallery_item gallery_item-6 flex flex-col justify-center items-center cursor-pointer"
             >
-              <img className="placement_cell" src={placement_cell} alt="" />
+                            <img
+                  
+                  src = {"/images/placement1.png"} 
+                  className="placement"
+                  alt="placement"
+                />
               <p className="mt-2">
                 <b>Placement Cell</b>
               </p>
@@ -84,7 +110,12 @@ function Quicklinks() {
               to="/Student_Zone/Scholarship"
               className="gallery_item gallery_item-7 flex flex-col justify-center items-center cursor-pointer"
             >
-              <img className="scholarship" src={scholarship} alt="" />
+                           <img
+                  
+                  src = {"/images/scholarship.png"} 
+                  className="scholarship"
+                  alt="scholarship"
+                />
               <p className="mt-2">
                 <b>Scholarship</b>
               </p>
@@ -93,11 +124,12 @@ function Quicklinks() {
               to="/Student_Zone/Students_Facilities"
               className="gallery_item gallery_item-8 flex flex-col justify-center items-center cursor-pointer"
             >
-              <img
-                className="student_facilities"
-                src={student_facilities}
-                alt=""
-              />
+                           <img
+                  
+                  src = {"/images/facilities.png"} 
+                  className="facilities"
+                  alt="facilities"
+                />
               <p className="mt-2">
                 <b>Student Facilities</b>
               </p>
@@ -106,7 +138,12 @@ function Quicklinks() {
               to="/Student_Zone/Student_Union"
               className="gallery_item gallery_item-9 flex flex-col justify-center items-center cursor-pointer"
             >
-              <img className="student_union" src={student_union} alt="" />
+                            <img
+                  
+                  src = {"/images/union.png"} 
+                  className="union"
+                  alt="union"
+                />
               <p className="mt-2">
                 <b>Student Union</b>
               </p>
@@ -115,7 +152,12 @@ function Quicklinks() {
               to="/Student_Zone/Time_Table_&_Academic_Calendar"
               className="gallery_item gallery_item-10 flex flex-col justify-center items-center cursor-pointer"
             >
-              <img className="time_table" src={time_table} alt="" />
+                            <img
+                  
+                  src = {"/images/time_table.png"} 
+                  className="time_table"
+                  alt="time_table"
+                />
               <p className="mt-2">
                 <b>Time Table</b>
               </p>
