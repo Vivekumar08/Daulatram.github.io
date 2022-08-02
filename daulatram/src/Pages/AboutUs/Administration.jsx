@@ -15,19 +15,19 @@ const Administration = () => {
                         <Sidebar />
                     </div>
                     <div>
-                        <div className="w-[1100px]">
-                            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+                        <div className="md:w-[500px] lg:w-[1100px]">
+                        <h2 className="ml-40 lg:ml-0 text-2xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row md:justify-center items-center  ">
                                 Administration
                             </h2>
                             {/* <div className="flex pr-4 pl-4 pb-2"></div> */}
                             <div
                                 style={{
                                     backgroundImage: "url(/images/About/administration.jpg)",
-                                    width: "50%",
-                                    height: "500px",
+                                    width: "450px",
+                                    height: "450px",
                                 }}
-                                className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mb-5 ml-56 rounded-2xl border-2 border-black"
-                            >
+                                className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-28 lg:ml-80"
+                                >
 
                             </div>
                         </div>
