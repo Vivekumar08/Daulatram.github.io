@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../Context/AuthProvider";
 // import axios from "axios";
-import Public_Noticebanner from "../Components/Banners/Public_Noticebanner";
 import Notice_side from "../Components/Sidebar/Notice_side";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

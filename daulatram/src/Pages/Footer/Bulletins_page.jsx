@@ -82,7 +82,7 @@ const Bulletins_page = () => {
         </div>
         <div className="ml-5 mb-5 mr-6 w-full">
           <div className=" w-full ">
-            <h2 className=" ml-28 text-xl md:text-2xl lg:text-3xl md:text-4xl uppercase font-bold mb-12 mt-12 flex flex-row md:justify-center items-center  ">
+            <h2 className=" ml-28 text-xl  lg:text-3xl md:text-2xl uppercase font-bold mb-12 mt-12 flex flex-row md:justify-center items-center  ">
               Bulletins
             </h2>
             {data1 &&
