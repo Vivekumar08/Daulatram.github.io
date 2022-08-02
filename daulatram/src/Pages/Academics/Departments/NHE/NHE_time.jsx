@@ -128,7 +128,7 @@ const NHE_time = () => {
 
         <div className="w-full mr-auto ml-auto">
           <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
-            Program Offered
+            Time table
           </h2>
           <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
             {data1 &&
@@ -273,4 +273,4 @@ const NHE_time = () => {
   );
 };
 
-export default NHE_times;
+export default NHE_time;

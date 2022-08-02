@@ -129,7 +129,7 @@ const Math_time = () => {
 
         <div className="w-full ml-auto mr-auto ">
           <h2 className=" md:text-3xl text-xl sm:text-xl  uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center">
-            Program Offered
+            Time table
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3  md:ml-24 lg:ml-2 w-full mt-5 mb-5">
             {data1 &&
@@ -272,4 +272,4 @@ const Math_time = () => {
   );
 };
 
-export default Math_times;
+export default Math_time;

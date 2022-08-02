@@ -179,6 +179,7 @@ import Hist_publications from "./Pages/Academics/Departments/History/Hist_public
 import Hist_awards from "./Pages/Academics/Departments/History/Hist_awards";
 import Hist_association from "./Pages/Academics/Departments/History/Hist_association";
 import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
+import Hist_time from "./Pages/Academics/Departments/History/Hist_time"
 
 // Mathemtics
 import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
@@ -189,17 +190,20 @@ import Math_studachieve from "./Pages/Academics/Departments/Mathematics/Math_stu
 import Math_publication from "./Pages/Academics/Departments/Mathematics/Math_publication";
 import Math_facilities from "./Pages/Academics/Departments/Mathematics/Math_facilities";
 import Math_association from "./Pages/Academics/Departments/Mathematics/Math_association";
+import Math_time from "./Pages/Academics/Departments/Mathematics/Math_time";
 
 // Music
 import Music_about from "./Pages/Academics/Departments/Music/Music_about";
 import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
 import Forgot from "./Pages/Admin/Forgot";
 import ResetPassword from "./Pages/Admin/ResetPassword";
+import Music_time from "./Pages/Academics/Departments/Music/Music_time";
 
 // NHE
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
 import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
 import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
+import NHE_time from "./Pages/Academics/Departments/NHE/NHE_time";
 // Philosophy
 import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
 import Philosophy_fac from "./Pages/Academics/Departments/Philosophy/Philosophy_fac";
@@ -427,6 +431,14 @@ function App() {
             }
             path="/academics/departments/History/photogallery"
           ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Hist_time />
+              </>
+            }
+            path="/academics/departments/History/timetable"
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -438,10 +450,26 @@ function App() {
           <Route
             element={
               <>
+                <Math_time />
+              </>
+            }
+            path="/academics/departments/Mathematics/timetable"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Music_Gallery />
               </>
             }
             path="/academics/departments/Music/photogallery"
+          ></Route>{" "}
+            <Route
+            element={
+              <>
+                <Music_time />
+              </>
+            }
+            path="/academics/departments/Music/timetable"
           ></Route>{" "}
           <Route
             element={
@@ -450,6 +478,14 @@ function App() {
               </>
             }
             path="/academics/departments/NHE/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <NHE_time />
+              </>
+            }
+            path="/academics/departments/NHE/timetable"
           ></Route>{" "}
           <Route
             element={
