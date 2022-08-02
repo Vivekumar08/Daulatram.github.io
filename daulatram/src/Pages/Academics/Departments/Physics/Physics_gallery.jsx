@@ -10,6 +10,7 @@ import Physics from "../../../../Components/DepartSIde/Physics";
 // import "../../../AboutUs/stl.css";
 
 function Physics_gallery() {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const errRef = useRef();
   const dropRef = useRef();

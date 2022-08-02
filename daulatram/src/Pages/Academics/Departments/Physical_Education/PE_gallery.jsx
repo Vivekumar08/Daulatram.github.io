@@ -10,6 +10,7 @@ import PhysicalEdu from "../../../../Components/DepartSIde/PhysicalEdu";
 // import "../../../AboutUs/stl.css";
 
 function PE_gallery() {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const errRef = useRef();
   const dropRef = useRef();

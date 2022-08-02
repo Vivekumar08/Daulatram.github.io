@@ -93,18 +93,19 @@ function Philo_Gallery() {
           <div className="">
             <div className="flex flex-row justify-center">
               <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-                Photo Gallery{" "}
+                Philosophy{" "}
               </p>
             </div>
 
             <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
-              <Link to={"/"}>
-                <span className="ml-5">Home</span>
-              </Link>
-              <span className="ml-5">Academics</span>
-              <span className="ml-5">Philo</span>
-              <span className="ml-5">Photo Gallery</span>
-            </div>
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+            <span className="ml-5">Academics</span>
+            <Link to={"/academics/departments"}>
+              <span className="ml-5">Departments</span>
+            </Link>
+          </div>
           </div>
         </div>
       </div>
@@ -119,7 +120,7 @@ function Philo_Gallery() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Botany />
+                <Philosophy />
               </div>
             </>
           ) : (
