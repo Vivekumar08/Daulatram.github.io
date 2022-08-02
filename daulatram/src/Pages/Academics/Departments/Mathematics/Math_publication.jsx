@@ -7,8 +7,9 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 const Publication = () => {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -98,15 +99,39 @@ const Publication = () => {
       <Mathbanner />
 
       <div className="flex flex-row">
-        <div className="flex  flex-col mt-12 ml-2 ">
+      <div className="md:hidden absolute bg-white">
+          {visible ? (
+            <>
+                <div className=" flex  flex-col mt-8 ml-2">
+                  <FontAwesomeIcon
+                    icon={faClose}
+                    size="lg"
+                    onClick={() => setVisible(!visible)}
+                    className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                  />
+                  <Mathematics />
+                </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex md:w-[250px] hidden md:flex-col mt-12 ml-2">
           <Mathematics />
         </div>
 
-        <div className="w-full mr-auto ml-auto">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+        <div className="w-full ml-auto mr-auto ">
+          <h2 className=" md:text-3xl text-xl sm:text-xl  uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center">
             Publication
           </h2>
-          <div class="flex justify-evenly w-full mt-5 mb-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3  md:ml-24 lg:ml-2 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
@@ -115,7 +140,7 @@ const Publication = () => {
                 var path = path2.slice(19);
                 return (
                   <>
-                    <div class="card2 ml-2 " key={_id}>
+                     <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
                       <span className="  font-bold text-lg w-[75%] ">{link}</span>
                       <div className="flex flex-col ml-4 w-full">
                         <div class="info2 ml-4 w-full">

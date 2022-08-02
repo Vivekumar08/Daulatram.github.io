@@ -1,56 +1,59 @@
-import React from "react";
+import React, { useState } from "react";
 
 import research_zoo from "../../../../Dummy_data/ImgPages/Zoology/Research_zoo.pdf";
 
 import Zoobanner from "./Zoobanner";
 import Zoology from "../../../../Components/DepartSIde/Zoology";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Zoo_facilities() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Zoobanner />
       </div>
       <div className="flex flex-row">
-        <div className=" flex  flex-col mt-12 ml-2">
+        <div className="md:hidden absolute bg-white">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Zoology />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <Zoology />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
             Research & Facilities
           </h2>
 
-          {/* <div className="flex flex-row justify-between ">
-            <div class="wrapper2  mt-5 mb-5">
-              <div class="card2">
-                <div className="">
-                  <span className=" text-2xl font-bold ml-16 ">
-                    {" "}
-                    Research
-                  </span>
-                </div>
-                <div class="info">
-                  <h1 className="font-bold flex justify-center">Description</h1>
-                  <p className="flex justify-center">Zoology Department</p>
-                  <br />
-                  <a href={research_zoo}>
-                    <button className="w-full">View</button>
-                    <br />
-                  </a>
-
-                  <br />
-                </div>
-              </div>
-            </div>
-          </div> */}
           <div className="pr-3 pl-3 flex mr-1 ml-4">
-            <span className="text-xl underline text-justify font-bold mb-2 mt-3">
+            <span className="md:text-xl md:ml-0 ml-9 text-lg underline text-justify font-bold mb-2 mt-3">
               Drosophila Resource Center, Department of Zoology
             </span>
           </div>
 
-          <div className="ml-4 ">
-            <ul className="list-disc mt-2 ml-8">
+          <div className="ml-6 ">
+            <ul className="md:text-base text-sm list-decimal ml-10 mt-2  mr-5 text-justify mb-4 ">
               <li>
                 The Department of Zoology has developed resource centers for two
                 animal model organisms: Drosophila melanogaster (Banana fruit
@@ -126,28 +129,24 @@ function Zoo_facilities() {
             <img
               style={{
                 backgroundImage: "url(/images/ImgPages/Zoology/r1.jpg)",
-                width: "900px",
-                height: "450px",
               }}
-              className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-2 rounded-3xl border-2 border-black"
+              className="bg-center ml-auto mr-auto lg:w-[900px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
             />
             <img
               style={{
                 backgroundImage: "url(/images/ImgPages/Zoology/r2.jpg)",
-                width: "900px",
-                height: "450px",
               }}
-              className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-2 rounded-3xl border-2 border-black"
+              className="bg-center ml-auto mr-auto lg:w-[900px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
             />
           </div>
           <div>
             <div className="pr-3 pl-3 flex mr-1 ml-4">
-              <span className="text-xl underline text-justify font-bold mb-2 mt-3">
+              <span className="md:text-xl md:ml-0 ml-9 text-lg underline text-justify font-bold mb-2 mt-3">
                 Reproductive Biology lab
               </span>
             </div>
-            <div className="pr-3 pl-3 flex mr-1 ml-4">
-              <span className=" text-justify font-medium ">
+            <div className="pr-3 pl-3 flex mr-1 ml-6 md:ml-4">
+              <span className=" md:text-lg text-sm text-justify ml-8 font-medium md:ml-0">
                 Our Lab research efforts are focused on understanding key
                 reproductive health problems and causing factors for these in
                 young girls. We have completed the DU Innovation Project
@@ -164,7 +163,7 @@ function Zoo_facilities() {
               </span>
             </div>
             <div className="pr-3 pl-3 flex mr-1 ml-4">
-              <span className=" text-justify font-medium mt-3">
+              <span className=" md:text-lg text-sm text-justify md:ml-0 ml-10 font-medium">
                 Professor Rita Singh from Department of Zoology, North Campus of
                 Zoology was our mentor who guided us in our PCOS project. We
                 have made collaboration with health clinics and Gynaecoligist
@@ -172,12 +171,12 @@ function Zoo_facilities() {
               </span>
             </div>
             <div className="pr-3 pl-3 flex mr-1 ml-4">
-              <span className=" underline text-justify font-bold mb-1 mt-3">
+              <span className=" underline text-justify md:ml-0 ml-9 font-bold mb-1 mt-3">
                 List of Symposium and Health Camp Organized
               </span>
             </div>
             <div className="ml-4 ">
-              <ol className="list-inside list-decimal mt-1 ml-8">
+              <ol className="list-inside md:text-base text-sm list-decimal mt-2 md:ml-10 ml-12 mr-5 text-justify mb-3">
                 <li>Bone Mineral Density Camp March 2014</li>
                 <li>Reproductive Health Camp April 2016</li>
                 <li>National Symposium and Awareness Programme March 2017</li>
@@ -192,54 +191,49 @@ function Zoo_facilities() {
               </ol>
             </div>
             <div className="pr-3 pl-3 flex mr-1 ml-4">
-              <span className=" underline text-justify font-bold mb-1 mt-3">
-              List of Symposium and Conferences attended for Oral, Poster, and Paper presentation.
-
+              <span className="md:ml-0 ml-9 underline text-justify font-bold mb-1 mt-3">
+                List of Symposium and Conferences attended for Oral, Poster, and
+                Paper presentation.
               </span>
             </div>
             <div className="ml-4 ">
-              <ol className="list-inside list-decimal mt-1 ml-8">
-                <li>“National Symposium on Reproductive Health in India: Cocerns & Awareness” Deshbandhu College, Feb 2016.
-</li>
-                <li> National Seminar on “A paradigm shift towards Enpowerment of Women” Kalindi college, University of Delhi.
-</li>
-                <li> National symposium on “Lifestyle and Reproductive Health Challenges inYoung Girls”, Daulat Ram College, March 29 2017.
-</li>
+              <ol className="list-inside md:text-base text-sm list-decimal mt-2 md:ml-10 ml-12 mr-5 text-justify mb-4">
                 <li>
-                  {" "}
-                  National Conference on Communicable Diseases, Zakir Hussain College, Jan 31-1 Feb 2018
-
+                  “National Symposium on Reproductive Health in India: Cocerns &
+                  Awareness” Deshbandhu College, Feb 2016.
                 </li>
                 <li>
-                Lifestyle risk factors and reproductive health in young women, S.S Jain Subodh PG
-(Autonomous) College, Jaipur
-
+                  {" "}
+                  National Seminar on “A paradigm shift towards Enpowerment of
+                  Women” Kalindi college, University of Delhi.
+                </li>
+                <li>
+                  {" "}
+                  National symposium on “Lifestyle and Reproductive Health
+                  Challenges inYoung Girls”, Daulat Ram College, March 29 2017.
+                </li>
+                <li>
+                  {" "}
+                  National Conference on Communicable Diseases, Zakir Hussain
+                  College, Jan 31-1 Feb 2018
+                </li>
+                <li>
+                  Lifestyle risk factors and reproductive health in young women,
+                  S.S Jain Subodh PG (Autonomous) College, Jaipur
                 </li>
               </ol>
               <img
-              style={{
-                backgroundImage: "url(/images/ImgPages/Zoology/r3.JPG)",
-                width: "900px",
-                height: "450px",
-              }}
-              className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-2 rounded-3xl border-2 border-black"
-            />
+                style={{
+                  backgroundImage: "url(/images/ImgPages/Zoology/r3.JPG)",
+                }}
+                className="bg-center ml-auto mr-auto lg:w-[900px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+              />
               <img
-              style={{
-                backgroundImage: "url(/images/ImgPages/Zoology/r5.JPG)",
-                width: "900px",
-                height: "450px",
-              }}
-              className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto ml-auto mb-2 rounded-3xl border-2 border-black"
-            />
-
-
-
-
-
-
-
-
+                style={{
+                  backgroundImage: "url(/images/ImgPages/Zoology/r5.JPG)",
+                }}
+                className="bg-center ml-auto mr-auto lg:w-[900px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+              />
             </div>
           </div>
         </div>

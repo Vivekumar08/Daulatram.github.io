@@ -11,7 +11,7 @@ function Zoo_about() {
         <Zoobanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+      <div className="md:hidden absolute bg-white">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -39,7 +39,7 @@ function Zoo_about() {
           <Zoology />
         </div>
         <div className="w-full mr-16">
-          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center">
+          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
             About the department
           </h2>
 

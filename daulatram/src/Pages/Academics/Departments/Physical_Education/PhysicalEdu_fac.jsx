@@ -1,12 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import PhysicalEdubanner from "./PhysicalEdubanner.jsx";
 import PhysicalEdu from "../../../../Components/DepartSIde/PhysicalEdu";
+
 function PhysicalEdu_fac() {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -103,14 +106,38 @@ function PhysicalEdu_fac() {
         <PhysicalEdubanner />
       </div>
       <div className="flex flex-row">
-        <div className=" flex  flex-col mt-12 ml-2">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <PhysicalEdu />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className="w-[250px]  md:flex hidden md:flex-col mt-12 ml-2 ">
           <PhysicalEdu />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
             Faculty
           </h2>
-          <div className="md:grid md:grid-cols-3  ">
+          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 w-full mt-5 mb-5  ">
             {data1 &&
               data1.map((curElem) => {
                 const {
@@ -126,17 +153,15 @@ function PhysicalEdu_fac() {
                 var path = path2.slice(19);
                 return (
                   <>
+                  
                     <div className="mr-5 ml-12 mb-10">
                       <img
                         src={path}
-                        style={{
-                          width: "300px",
-                          height: "300px",
-                        }}
-                        className="bg-center bg-no-repeat mt-[1%] bg-cover h-10 mr-auto  mb-1 rounded-3xl border-2 border-black"
+
+                        className="bg-center bg-no-repeat w-[300px] h-[300px] mt-[1%] bg-cover  mr-auto  mb-1 rounded-3xl border-2 border-black"
                       />
                       <div className="pr-3 pl-3 flex mr-auto  w-[320px] ">
-                        <span className="text-lg text-justify    mt-3 ">
+                        <span className="md:text-lg text-sm text-justify mt-3 ">
                           <ul>
                             <li className="flex justify-center">
                               <b>{name}</b>
@@ -169,6 +194,7 @@ function PhysicalEdu_fac() {
                         </>
                       )}
                     </div>
+                    
                   </>
                 );
               })}

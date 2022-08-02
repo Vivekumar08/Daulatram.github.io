@@ -8,8 +8,10 @@ import Mathbanner from "./Mathbanner"
 // import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Math_fac_data from "./Math_fac_data";
 import Math_fac_data_sup from "./Math_fac_data_sup";
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 const Math_faculty = () => {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -137,19 +139,44 @@ const Math_faculty = () => {
     <div className=" flex flex-col">
       <Mathbanner />
       <div className="flex flex-row">
-        <div className="w-[350px] ml-2 mt-12">
+      <div className="md:hidden">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Mathematics />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className="w-[250px]  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Mathematics />
         </div>
+
         <div className="w-[1100px]">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+          <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
             Faculty
           </h2>
           <div className="  ">
-            <h2 className="text-2xl uppercase font-bold m-1 flex  items-center ">
+            <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
               Current Faculty
             </h2>
           </div>
-          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, description, img_data, filter } = curElem;
@@ -170,23 +197,22 @@ const Math_faculty = () => {
                 );
               })}
           </div>
-          {data1 &&
+           {/* {data1 &&
             data1.map((curElem) => {
-              const {  filter } = curElem;
-              // console.log(curElem);
+              const { filter } = curElem;
               return (
-                <>{filter ==="Supernnuated"&&
-
-                  <div className="  ">
-                    <h2 className="text-2xl uppercase font-bold m-1 flex  items-center ">
-                      Superannuated
-                    </h2>
-                  </div>
-                  }
+                <>
+                  {filter === "Supernnuated" && ( */}
+          <div className="  ">
+            <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
+              Superannuated
+            </h2>
+          </div>
+          {/* )}
                 </>
               );
-            })}
-          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
+            })} */}
+          <div class="grid grid-cols-1 sm:grid-cols-2 ml-5 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, description, img_data, filter } = curElem;

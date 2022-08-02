@@ -1,22 +1,46 @@
-import React from "react";
+import React, {useState} from "react";
 import Mathbanner from "../Mathematics/Mathbanner.jsx";
 import Mathematics from "../../../../Components/DepartSIde/Mathematics.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Math_studachieve() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Mathbanner />
       </div>
       <div className="flex flex-row">
-        {/* <div className="w-[350px]">
-        <Departments />
-      </div> */}
-        <div className=" flex  flex-col ml-2 mt-12 ">
-          <Mathematics/>
+      <div className="md:hidden absolute bg-white">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Mathematics />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+          <Mathematics />
         </div>
         <div className="ml-3 ">
           <div className="w-full mr-16">
-            <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
               Students Achievements
             </h2>
           </div>
@@ -24,11 +48,11 @@ function Math_studachieve() {
             <div>
               <div className="mr-5 ml-4">
                 <div>
-                  <h2 className="text-3xl ml-4 font-bold underline mb-3">
+                  <h2 className="mdtext-2xl text-xl ml-4 font-bold underline mb-3">
                     Awards
                   </h2>
-                  <p className="text-1xl ml-4 font-bold text-xl">Academic :</p>
-                  <ul className="list-disc mt-2 ml-8">
+                  <p className=" ml-4 font-bold md:text-xl text-lg">Academic :</p>
+                  <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
                     <li>
                       Sneha Goyal (Batch 2017-20) won{" "}
                       <b>Silver Jubilee Merit Scholarship</b> for securing
@@ -68,9 +92,9 @@ function Math_studachieve() {
                     </li>
                   </ul>
                   <br />
-                  <p className="text-1xl ml-4 font-bold text-xl">Sports:</p>
+                  <p className="ml-4 font-bold md:text-xl text-lg">Sports:</p>
 
-                  <ul className="list-disc mt-2 ml-8 mb-3">
+                  <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
                     <li>
                       Nandni Sorout (Batch 2017-20) has twice won first position
                       in 100 m Hurdles in 8th and 33rd Haryana State Junior
@@ -105,11 +129,11 @@ function Math_studachieve() {
                     </li>
                   </ul>
 
-                  <p className="text-1xl ml-4 font-bold text-xl">
+                  <p className="ml-4 font-bold md:text-xl text-lg">
                     Cultural / Others:
                   </p>
 
-                  <ul className="list-disc mt-2 ml-8 mb-3">
+                  <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
                     <li>
                       Punyakshi (Batch 2018-21) won second prize in the Inter
                       College Speech Competition organized by P.G.D.A.V.(Eve) on
@@ -173,11 +197,11 @@ function Math_studachieve() {
                   
                 </div>
                 <div>
-                  <h2 className="text-3xl ml-4 font-bold underline mb-3 mt-3">
+                  <h2 className="md:text-2xl text-xl ml-4 font-bold underline mb-3 mt-3">
                     Student's Progression
                   </h2>
                 </div>
-                <ul className="list-disc ml-8 mb-10">
+                <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
                   <li>
                     Sneha Goyal (Batch 2017-20) AIR 117 in JAM (Mathematics),
                     2020, pursuing M.Sc. from IIT Roorkee.

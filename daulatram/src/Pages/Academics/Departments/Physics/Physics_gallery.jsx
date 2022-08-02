@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faClose, faBars } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -65,11 +65,15 @@ function Physics_gallery() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/Physics_Gallery_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        await axios.post(
+          `http://localhost:5000/Physics_Gallery_add`,
+          formData,
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setFile("");
         setIsPreviewAvailable(false);
         setPreviewSrc("");
@@ -86,68 +90,92 @@ function Physics_gallery() {
   return (
     <>
       {/* <div className=" flex flex-col"> */}
-        <Physicsbanner />
+      <Physicsbanner />
 
-        <div className="flex flex-row">
-          <div className="flex  flex-col mt-12 ml-2 ">
-            <Physics />
-          </div>
+      <div className="flex flex-row">
+        <div className="md:hidden absolute bg-white">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Physics />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+          <Physics />
+        </div>
 
-          <div className="w-[1100px]">
-            <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center   ">
-              Photo Gallery
-            </h2>
-            <div className="main_conta">
-              <div class="sliderr">
-                <div class="slidee-track">
-                  {data1 &&
-                    data1.map((curElem) => {
-                      const { _id, file_path } = curElem;
-                      var path_pic = file_path;
-                      var path2 = path_pic.replace(/\\/g, "/");
-                      var path = path2.slice(19);
-                      return (
-                        <>
-                          <div class="slidee" key={_id}>
-                            <img src={path} alt={path} />
-                          </div>
-                        </>
-                      );
-                    })}
-                </div>
+        <div className="w-[1100px]">
+          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
+            Photo Gallery
+          </h2>
+          <div className="main_conta">
+            <div class="sliderr">
+              <div class="slidee-track">
+                {data1 &&
+                  data1.map((curElem) => {
+                    const { _id, file_path } = curElem;
+                    var path_pic = file_path;
+                    var path2 = path_pic.replace(/\\/g, "/");
+                    var path = path2.slice(19);
+                    return (
+                      <>
+                        <div class="slidee" key={_id}>
+                          <img src={path} alt={path} />
+                        </div>
+                      </>
+                    );
+                  })}
               </div>
             </div>
-            <div className="grid md:grid-cols-4">
-              {data1 &&
-                auth &&
-                data1.map((curElem) => {
-                  const { _id, file_path } = curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
-                  return (
-                    <>
-                      <div class="flex flex-col items-center mb-5" key={_id}>
-                        <img
-                          src={path}
-                          style={{ height: "250px", width: "250px" }}
-                          alt={path}
-                        />
-                        <div>
-                          <FontAwesomeIcon
-                            icon={faTrashCan}
-                            size="xl"
-                            className=" cursor-pointer ml-auto mr-auto mt-[25%]   hover:text-red-500"
-                            onClick={() => del(_id)}
-                          ></FontAwesomeIcon>
-                        </div>
+          </div>
+          <div className="grid md:grid-cols-4">
+            {data1 &&
+              auth &&
+              data1.map((curElem) => {
+                const { _id, file_path } = curElem;
+                var path_pic = file_path;
+                var path2 = path_pic.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                return (
+                  <>
+                    <div class="flex flex-col items-center mb-5" key={_id}>
+                      <img
+                        src={path}
+                        style={{ height: "250px", width: "250px" }}
+                        alt={path}
+                      />
+                      <div>
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
+                          size="xl"
+                          className=" cursor-pointer ml-auto mr-auto mt-[25%]   hover:text-red-500"
+                          onClick={() => del(_id)}
+                        ></FontAwesomeIcon>
                       </div>
-                    </>
-                  );
-                })}
-            </div>
+                    </div>
+                  </>
+                );
+              })}
           </div>
         </div>
+      </div>
       {/* </div> */}
       {auth && (
         <form

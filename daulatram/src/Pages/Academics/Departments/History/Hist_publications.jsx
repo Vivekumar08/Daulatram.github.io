@@ -1,23 +1,50 @@
-import React from "react";
+import React,{useState} from "react";
 import Histbanner from "../History/Histbanner.jsx";
 import History from "../../../../Components/DepartSIde/History.jsx";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 function Hist_publications() {
+  const [visible, setVisible] = useState(false);
   return (
     <div className=" flex flex-col">
       <div className="">
         <Histbanner />
       </div>
       <div className="flex flex-row">
-        <div className=" flex  flex-col mt-12 ml-2">
+      <div className="md:hidden absolute bg-white">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <History />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
+        </div>
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <History />
         </div>
         <div className="w-full mr-16">
-          <h2 className="text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className="md:text-3xl text-xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-2 items-center ">
             Publications
           </h2>
 
-          <div className="ml-4 ">
-            <ol className="list-decimal mt-2 mb-5 ml-8">
+          <div className="md:ml-4 ml-10 mr-5">
+            <ol className="md:text-sm lg:text-base ml-2 text-sm flex flex-col text-justify list-decimal mt-2 mb-2">
               <li>
                 Dr. Smarika Nawani, “The Misericórdia and the Bishopric in
                 Peninsular India during the Course of Retreat (C.1600- 1641)” in
@@ -61,8 +88,8 @@ function Hist_publications() {
                 Deepak Naorem, Research Paper: “Japanese invasion, War
                 preparation, Relief, Rehabilitation, Compensation and
                 ‘State-Making’ in an Imperial Frontier (1939-1955)”, in Asian
-                Ethnicity, Volume 21, 2020- Issue 1, pp. 96- 121; Doi:
-                https://www.tandfonline.com/doi/abs/10.1080/14631369.2019.1581985
+                Ethnicity, Volume 21, 2020- Issue 1, pp. 96- 121;Doi:
+                https://www.tandfonline.com/doi/abs/10.1080/14631369.2019<br/>.1581985
               </li>
               <li>
                 Deepak Naorem, Article: “Chibu Stone Inscriptions and

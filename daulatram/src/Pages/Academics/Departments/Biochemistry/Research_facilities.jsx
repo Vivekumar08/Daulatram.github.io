@@ -47,7 +47,7 @@ function Research_facilities() {
                     <br />
                   </div>
                 </div>
-                <div class="card2">
+                <div class="card2 ml-12">
                   <div className="">
                     <span className=" text-lg font-bold">
                       Resources Centers & Resource Facilities
@@ -69,7 +69,7 @@ function Research_facilities() {
                     <br />
                   </div>
                 </div>
-                <div class="card2">
+                <div class="card2 ml-12">
                   <span className=" text-lg font-bold">
                     Grant & Research Guidance
                   </span>
