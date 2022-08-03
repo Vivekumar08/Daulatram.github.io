@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './Slider.css'
 import BtnSlider from './BtnSlider'
 import dataSlider from './dataSlider'
@@ -6,7 +6,11 @@ import dataSlider from './dataSlider'
 
 export default function Slider() {
 
-    const [slideIndex, setSlideIndex] = useState(1)
+    const [slideIndex, setSlideIndex] = useState(1)  
+    let slideInterval;
+    let intervalTime = 3000;
+  
+    const autoScroll = true;
 
     const nextSlide = () => {
         if (slideIndex !== dataSlider.length) {
@@ -29,6 +33,21 @@ export default function Slider() {
     const moveDot = index => {
         setSlideIndex(index)
     }
+
+    function auto() {
+        slideInterval = setInterval(nextSlide, intervalTime);
+      }
+
+    useEffect(() => {
+        setSlideIndex(0);
+    }, []);
+
+    useEffect(() => {
+        if (autoScroll) {
+            auto();
+        }
+        return () => clearInterval(slideInterval);
+    }, [slideIndex]);
 
     return (
         <>

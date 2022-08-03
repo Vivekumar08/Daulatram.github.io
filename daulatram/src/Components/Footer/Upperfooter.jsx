@@ -179,14 +179,15 @@ function Upperfooter() {
                 </div>
               </ul>
               <div className="footer-map">
-                <iframe
+              <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3500.0416241843877!2d77.20486695!3d28.68840145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd8d74105ee5%3A0xb06f76b10853f864!2sDaulat%20Ram%20College%2C%20Maurice%20Nagar%2C%20Roop%20Nagar%2C%20Delhi%2C%20110007!5e0!3m2!1sen!2sin!4v1659536675984!5m2!1sen!2sin"
-                  width="600"
-                  height="450"
-                  style={{border:0}}
+                  // width="600"
+                  // height="450"
+                  style={{ border: 0 }}
                   allowfullscreen=""
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
+                  className="w-[500px] lg:h-[400px] md:w-[768px] xl-[600px] h-[350px] mb-5 mt-5"
                 ></iframe>
                 <Icons />
               </div>
