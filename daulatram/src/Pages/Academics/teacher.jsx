@@ -24,6 +24,18 @@ const teacher = () => {
     setData1(await response.json());
   };
 
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
+
   useEffect(() => {
     fetchdata();
   }, []);
@@ -57,10 +69,12 @@ const teacher = () => {
         // console.log(tic1, tic2, link, caption);
 
         setErrMsg("");
-        await axios.post(
-          `http://localhost:5000/Teacher_In_Charge_add`,
-          { Tic1: tic1, Tic2: tic2, link: link, title: caption },
-        );
+        await axios.post(`http://localhost:5000/Teacher_In_Charge_add`, {
+          Tic1: tic1,
+          Tic2: tic2,
+          link: link,
+          title: caption,
+        });
         setCaption("");
         setLink("");
         setTic1("");
@@ -110,7 +124,7 @@ const teacher = () => {
                 )}
               </tr>
               {data1 &&
-                data1.map((curElem) => {
+                data1.sort(sortOn("link")).map((curElem) => {
                   const { _id, title, Tic1, Tic2, link } = curElem;
                   return (
                     <>
