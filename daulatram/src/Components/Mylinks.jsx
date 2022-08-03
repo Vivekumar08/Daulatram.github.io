@@ -53,7 +53,7 @@ export const links = [
         link: "/academics/UG_courses",
       },
       {
-        name: "Centre for Foreign Languages(Add-On Courses)",
+        name: "Centre for Foreign Languages (Add-On Courses)",
         link: "/academics/Add_on_courses",
       },
       {
