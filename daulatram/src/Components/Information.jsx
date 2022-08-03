@@ -8,11 +8,11 @@ function Information() {
   const [Publicinfo, setPublicinfo] = useState();
   
   const fetchdata = async () => {
-    const response_staff = await fetch("http://localhost:5000/Staff_notice");
+    const response_staff = await fetch("/Staff_notice");
     const response_Student = await fetch(
-      "http://localhost:5000/Student_notice"
+      "/Student_notice"
     );
-    const response_public = await fetch("http://localhost:5000/Public_notice");
+    const response_public = await fetch("/Public_notice");
     setStudentinfo(await response_Student.json());
     setStaffinfo(await response_staff.json());
     setPublicinfo(await response_public.json());

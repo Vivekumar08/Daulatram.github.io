@@ -22,7 +22,7 @@ const Hist_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Hist_time");
+    const response = await fetch("/Hist_time");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const Hist_time = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Hist_time/${id}`,
+      `/delete_Hist_time/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +72,7 @@ const Hist_time = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Hist_time_add`, formData, {
+        await axios.post(`/Hist_time_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

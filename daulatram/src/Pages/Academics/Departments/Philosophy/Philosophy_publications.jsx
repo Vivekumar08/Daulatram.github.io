@@ -23,7 +23,7 @@ const Publication = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Philo_Publication");
+    const response = await fetch("/Philo_Publication");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Publication = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Philo_Publication/${id}`,
+      `/delete_Philo_Publication/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Publication = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Philo_Publication_add`,
+          `/Philo_Publication_add`,
           formData,
           {
             headers: {

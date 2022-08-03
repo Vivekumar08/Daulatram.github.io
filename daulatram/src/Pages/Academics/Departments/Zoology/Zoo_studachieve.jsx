@@ -24,7 +24,7 @@ const Zoo_studachieve = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Zoology_Stuachieve");
+    const response = await fetch("/Zoology_Stuachieve");
     setData1(await response.json());
   };
 
@@ -49,7 +49,7 @@ const Zoo_studachieve = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Zoology_Stuachieve/${id}`,
+      `/delete_Zoology_Stuachieve/${id}`,
       {
         method: "DELETE",
       }
@@ -75,7 +75,7 @@ const Zoo_studachieve = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Zoology_Stuachieve_add`,
+          `/Zoology_Stuachieve_add`,
           formData,
           {
             headers: {

@@ -23,7 +23,7 @@ const Eve = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Eng_Eve");
+    const response = await fetch("/Eng_Eve");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Eve = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Eng_Eve/${id}`,
+      `/delete_Eng_Eve/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const Eve = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Eng_Eve_add`, formData, {
+        await axios.post(`/Eng_Eve_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

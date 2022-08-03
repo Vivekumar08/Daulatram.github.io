@@ -28,7 +28,7 @@ const Chem_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/chem_faculty");
+    const response = await fetch("/chem_faculty");
     setData1(await response.json());
   };
 
@@ -60,7 +60,7 @@ const Chem_faculty = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_chem_faculty/${id}`,
+      `/delete_chem_faculty/${id}`,
       {
         method: "POST",
       }
@@ -80,7 +80,7 @@ const Chem_faculty = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `http://localhost:5000/chem_faculty_cv_upload/${id}`,
+          `/chem_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -112,7 +112,7 @@ const Chem_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/chem_faculty_file_upload`,
+            `/chem_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

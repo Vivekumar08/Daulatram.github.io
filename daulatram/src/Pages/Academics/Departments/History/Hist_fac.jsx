@@ -25,7 +25,7 @@ const Hist_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Hist_faculty");
+    const response = await fetch("/Hist_faculty");
     setData1(await response.json());
   };
 
@@ -57,7 +57,7 @@ const Hist_faculty = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Hist_faculty/${id}`,
+      `/delete_Hist_faculty/${id}`,
       {
         method: "POST",
       }
@@ -77,7 +77,7 @@ const Hist_faculty = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Hist_faculty_cv_upload/${id}`,
+          `/Hist_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -109,7 +109,7 @@ const Hist_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/Hist_faculty_file_upload`,
+            `/Hist_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

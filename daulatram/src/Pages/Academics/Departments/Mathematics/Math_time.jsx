@@ -24,7 +24,7 @@ const Math_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Math_time");
+    const response = await fetch("/Math_time");
     setData1(await response.json());
   };
 
@@ -49,7 +49,7 @@ const Math_time = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Math_time/${id}`,
+      `/delete_Math_time/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Math_time = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Math_time_add`, formData, {
+        await axios.post(`/Math_time_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

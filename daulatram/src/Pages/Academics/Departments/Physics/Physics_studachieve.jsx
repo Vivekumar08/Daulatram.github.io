@@ -23,7 +23,7 @@ const [visible, setVisible] = useState(false);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_Stuachieve");
+    const response = await fetch("/Physics_Stuachieve");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const [visible, setVisible] = useState(false);
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Physics_Stuachieve/${id}`,
+      `/delete_Physics_Stuachieve/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const [visible, setVisible] = useState(false);
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Physics_Stuachieve_add`,
+          `/Physics_Stuachieve_add`,
           formData,
           {
             headers: {

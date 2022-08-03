@@ -23,7 +23,7 @@ const Helpdesk = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Helpdesk");
+    const response = await fetch("/Helpdesk");
     setData1(await response.json());
   };
 
@@ -59,7 +59,7 @@ const Helpdesk = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`http://localhost:5000/deleteHelpdesk/${id}`, {
+    const response = await fetch(`/deleteHelpdesk/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
@@ -89,7 +89,7 @@ const Helpdesk = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/helpdesk_admission`, formData, {
+        await axios.post(`/helpdesk_admission`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -113,7 +113,7 @@ const Helpdesk = () => {
     e.preventDefault();
     console.log(link, caption, file);
     const response = await fetch(
-      "http://localhost:5000/helpdesk_admission_add_link",
+      "/helpdesk_admission_add_link",
       {
         method: "POST",
         headers: {

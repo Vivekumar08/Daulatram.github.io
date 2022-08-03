@@ -17,7 +17,7 @@ const Research_fac = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/research");
+    const response = await fetch("/research");
     setData1(await response.json());
   };
 
@@ -39,7 +39,7 @@ const Research_fac = () => {
 
         setErrMsg("");
         const response = await axios.post(
-          `http://localhost:5000/research_upload`,
+          `/research_upload`,
           { title: link, description: caption }
           // {
           //   headers: {

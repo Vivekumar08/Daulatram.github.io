@@ -26,7 +26,7 @@ const Bot_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/bot_faculty");
+    const response = await fetch("/bot_faculty");
     setData1(await response.json());
   };
 
@@ -58,7 +58,7 @@ const Bot_faculty = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_bot_faculty/${id}`,
+      `/delete_bot_faculty/${id}`,
       {
         method: "POST",
       }
@@ -78,7 +78,7 @@ const Bot_faculty = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `http://localhost:5000/bot_faculty_cv_upload/${id}`,
+          `/bot_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -110,7 +110,7 @@ const Bot_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/bot_faculty_file_upload`,
+            `/bot_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

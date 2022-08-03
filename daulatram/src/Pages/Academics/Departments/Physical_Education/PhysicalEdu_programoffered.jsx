@@ -23,7 +23,7 @@ const PhysicalEdu_programmesoffer = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/PE_ProgramOffered");
+    const response = await fetch("/PE_ProgramOffered");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const PhysicalEdu_programmesoffer = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_PE_ProgramOffered/${id}`,
+      `/delete_PE_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const PhysicalEdu_programmesoffer = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/PE_ProgramOffered_add`,
+          `/PE_ProgramOffered_add`,
           formData,
           {
             headers: {

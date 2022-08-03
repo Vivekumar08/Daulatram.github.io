@@ -22,7 +22,7 @@ const Guidelines_Admission = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/guidelines_admission");
+    const response = await fetch("/guidelines_admission");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const Guidelines_Admission = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_admission_guidelines/${id}`,
+      `/delete_admission_guidelines/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +72,7 @@ const Guidelines_Admission = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/guidelines_add`, formData, {
+        await axios.post(`/guidelines_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

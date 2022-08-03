@@ -25,7 +25,7 @@ const Chemprogramoffered = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Chem_ProgramOffered");
+    const response = await fetch("/Chem_ProgramOffered");
     setData1(await response.json());
   };
 
@@ -50,7 +50,7 @@ const Chemprogramoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Chem_ProgramOffered/${id}`,
+      `/delete_Chem_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -75,7 +75,7 @@ const Chemprogramoffered = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Chem_ProgramOffered_add`, formData, {
+        await axios.post(`/Chem_ProgramOffered_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

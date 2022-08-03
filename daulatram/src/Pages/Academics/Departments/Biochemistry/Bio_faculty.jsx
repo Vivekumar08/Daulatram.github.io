@@ -27,7 +27,7 @@ const Bio_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/bio_faculty");
+    const response = await fetch("/bio_faculty");
     setData1(await response.json());
   };
 
@@ -59,7 +59,7 @@ const Bio_faculty = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_bio_faculty/${id}`,
+      `/delete_bio_faculty/${id}`,
       {
         method: "POST",
       }
@@ -78,7 +78,7 @@ const Bio_faculty = () => {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `http://localhost:5000/bio_faculty_cv_upload/${id}`,
+          `/bio_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -108,7 +108,7 @@ const Bio_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/bio_faculty_file_upload`,
+            `/bio_faculty_file_upload`,
             { title: caption, description: link, file: imag, filter: filter },
             {
               headers: {

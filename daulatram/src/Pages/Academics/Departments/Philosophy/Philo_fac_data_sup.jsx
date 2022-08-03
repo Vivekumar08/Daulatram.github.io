@@ -14,7 +14,7 @@ const philo_fac_data_sup = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/philo_faculty");
+    const response = await fetch("/philo_faculty");
     setData1(await response.json());
   };
 

@@ -23,7 +23,7 @@ const Physics_association = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_Association");
+    const response = await fetch("/Physics_Association");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Physics_association = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Physics_Association/${id}`,
+      `/delete_Physics_Association/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Physics_association = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Physics_Association_add`,
+          `/Physics_Association_add`,
           formData,
           {
             headers: {

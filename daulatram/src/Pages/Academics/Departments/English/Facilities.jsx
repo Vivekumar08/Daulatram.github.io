@@ -23,7 +23,7 @@ const Fac = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Eng_Fac");
+    const response = await fetch("/Eng_Fac");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Fac = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Eng_Fac/${id}`,
+      `/delete_Eng_Fac/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const Fac = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Eng_Fac_add`, formData, {
+        await axios.post(`/Eng_Fac_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

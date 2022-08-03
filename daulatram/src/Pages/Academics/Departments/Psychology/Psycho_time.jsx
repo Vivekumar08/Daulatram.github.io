@@ -23,7 +23,7 @@ const Psycho_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Psychology_Time");
+    const response = await fetch("/Psychology_Time");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Psycho_time = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Psychology_Time/${id}`,
+      `/delete_Psychology_Time/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Psycho_time = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Psychology_Time_add`,
+          `/Psychology_Time_add`,
           formData,
           {
             headers: {

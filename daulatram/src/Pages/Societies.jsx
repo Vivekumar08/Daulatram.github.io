@@ -20,7 +20,7 @@ const Societies = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Socitie");
+    const response = await fetch("/Socitie");
     setData1(await response.json());
   };
 
@@ -45,7 +45,7 @@ const Societies = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Socities/${id}`,
+      `/delete_Socities/${id}`,
       {
         method: "DELETE",
       }
@@ -89,7 +89,7 @@ const Societies = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Soc`, formData, {
+        await axios.post(`/Soc`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

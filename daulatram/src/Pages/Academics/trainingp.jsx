@@ -22,7 +22,7 @@ const trainingp = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Training_");
+    const response = await fetch("/Training_");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const trainingp = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_academicsTraings/${id}`,
+      `/delete_academicsTraings/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +72,7 @@ const trainingp = () => {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Academics_Training_add`,
+          `/Academics_Training_add`,
           formData,
           {
             headers: {

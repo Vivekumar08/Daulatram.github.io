@@ -21,7 +21,7 @@ function Physics_gallery() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_Gallery");
+    const response = await fetch("/Physics_Gallery");
     setData1(await response.json());
   };
 
@@ -46,7 +46,7 @@ function Physics_gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Physics_Gallery/${id}`,
+      `/delete_Physics_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -67,7 +67,7 @@ function Physics_gallery() {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Physics_Gallery_add`,
+          `/Physics_Gallery_add`,
           formData,
           {
             headers: {

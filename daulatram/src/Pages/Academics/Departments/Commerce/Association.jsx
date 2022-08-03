@@ -23,7 +23,7 @@ const Association = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Com_Association");
+    const response = await fetch("/Com_Association");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Association = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Com_Association/${id}`,
+      `/delete_Com_Association/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const Association = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Com_Association_add`, formData, {
+        await axios.post(`/Com_Association_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

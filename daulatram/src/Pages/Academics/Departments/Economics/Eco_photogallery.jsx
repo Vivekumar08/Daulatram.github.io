@@ -24,7 +24,7 @@ function Eco_Gallery() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Eco_Photo_Gallery");
+    const response = await fetch("/Eco_Photo_Gallery");
     setData1(await response.json());
   };
 
@@ -49,7 +49,7 @@ function Eco_Gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Eco_Photo_Gallery/${id}`,
+      `/delete_Eco_Photo_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -69,7 +69,7 @@ function Eco_Gallery() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/Eco_Photo_Gallery_add`, formData, {
+        await axios.post(`/Eco_Photo_Gallery_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

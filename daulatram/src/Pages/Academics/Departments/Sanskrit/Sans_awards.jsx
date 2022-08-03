@@ -23,7 +23,7 @@ const Sans_awards = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Sanskrit_Awards");
+    const response = await fetch("/Sanskrit_Awards");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Sans_awards = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Sanskrit_Awards/${id}`,
+      `/delete_Sanskrit_Awards/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Sans_awards = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Sanskrit_Awards_add`,
+          `/Sanskrit_Awards_add`,
           formData,
           {
             headers: {

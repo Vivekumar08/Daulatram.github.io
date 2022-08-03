@@ -31,7 +31,7 @@ const Public_Notice = () => {
     }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Archives_notice");
+    const response = await fetch("/Archives_notice");
     setData1(await response.json());
   };
 
@@ -43,7 +43,7 @@ const Public_Notice = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_archives_notice/${id}`,
+      `/delete_archives_notice/${id}`,
       {
         method: "DELETE",
       }

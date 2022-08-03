@@ -16,7 +16,7 @@ const Eng_fac_data = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/eng_faculty");
+    const response = await fetch("/eng_faculty");
     setData1(await response.json());
   };
 

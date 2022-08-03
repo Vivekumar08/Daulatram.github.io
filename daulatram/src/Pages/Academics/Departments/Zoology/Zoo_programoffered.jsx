@@ -24,7 +24,7 @@ const Zoo_programoffered = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "http://localhost:5000/Zoology_ProgramOffered"
+      "/Zoology_ProgramOffered"
     );
     setData1(await response.json());
   };
@@ -50,7 +50,7 @@ const Zoo_programoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Zoology_ProgramOffered/${id}`,
+      `/delete_Zoology_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -76,7 +76,7 @@ const Zoo_programoffered = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Zoology_ProgramOffered_add`,
+          `/Zoology_ProgramOffered_add`,
           formData,
           {
             headers: {

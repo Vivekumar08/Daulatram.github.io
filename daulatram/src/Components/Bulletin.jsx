@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 const Bulletin = () => {
   const [StudentInfo, setStaffinfo] = useState();
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Bulletins_notice");
+    const response = await fetch("/Bulletins_notice");
     setStaffinfo(await response.json());
   };
   useEffect(() => {

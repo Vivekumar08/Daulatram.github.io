@@ -24,7 +24,7 @@ const Programmesoffer = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Philo_ProgramOffered");
+    const response = await fetch("/Philo_ProgramOffered");
     setData1(await response.json());
   };
 
@@ -49,7 +49,7 @@ const Programmesoffer = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Philo_ProgramOffered/${id}`,
+      `/delete_Philo_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -75,7 +75,7 @@ const Programmesoffer = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Philo_ProgramOffered_add`,
+          `/Philo_ProgramOffered_add`,
           formData,
           {
             headers: {

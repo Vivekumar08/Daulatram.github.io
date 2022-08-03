@@ -27,7 +27,7 @@ const Physics_fac = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_faculty");
+    const response = await fetch("/Physics_faculty");
     setData1(await response.json());
   };
 
@@ -59,7 +59,7 @@ const Physics_fac = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Physics_fac/${id}`,
+      `/delete_Physics_fac/${id}`,
       {
         method: "POST",
       }
@@ -79,7 +79,7 @@ const Physics_fac = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Physics_fac_cv_upload/${id}`,
+          `/Physics_fac_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -111,7 +111,7 @@ const Physics_fac = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/Physics_fac_file_upload`,
+            `/Physics_fac_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

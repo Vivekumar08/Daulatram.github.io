@@ -23,7 +23,7 @@ const Philo_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Philo_time");
+    const response = await fetch("/Philo_time");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Philo_time = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Philo_time/${id}`,
+      `/delete_Philo_time/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const Philo_time = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Philo_time_add`, formData, {
+        await axios.post(`/Philo_time_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

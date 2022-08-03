@@ -24,7 +24,7 @@ const Sans_programoffered = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "http://localhost:5000/Sanskrit_ProgramOffered"
+      "/Sanskrit_ProgramOffered"
     );
     setData1(await response.json());
   };
@@ -50,7 +50,7 @@ const Sans_programoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Sanskrit_ProgramOffered/${id}`,
+      `/delete_Sanskrit_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -76,7 +76,7 @@ const Sans_programoffered = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Sanskrit_ProgramOffered_add`,
+          `/Sanskrit_ProgramOffered_add`,
           formData,
           {
             headers: {

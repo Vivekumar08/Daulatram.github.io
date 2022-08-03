@@ -23,7 +23,7 @@ const Philo_achieve = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Philo_achieve");
+    const response = await fetch("/Philo_achieve");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Philo_achieve = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Philo_achieve/${id}`,
+      `/delete_Philo_achieve/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const Philo_achieve = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Philo_achieve_add`, formData, {
+        await axios.post(`/Philo_achieve_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
