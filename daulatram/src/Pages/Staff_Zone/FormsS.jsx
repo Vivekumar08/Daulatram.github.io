@@ -195,14 +195,14 @@ const Forms = () => {
                                 rel="noreferrer"
                               >
                                 {" "}
-                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1 border border-2 border-[#000080] rounded-md">Click Here</button>
+                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">Click Here</button>
                               </a>{" "}
                             </>
                           ) : (
                             <>
                               <a href={path} target="_blank" rel="noreferrer">
                                 {" "}
-                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1 border border-2 border-[#000080] rounded-md">Click Here</button>
+                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">Click Here</button>
                               </a>{" "}
                             </>
                           )}
