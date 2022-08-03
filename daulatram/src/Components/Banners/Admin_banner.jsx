@@ -7,7 +7,7 @@ const Admin_banner = () => {
     <>
       <div
         className="Banner"
-        style={{ backgroundImage: "url(/images/img5.jpeg)" }}
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
       >
         <div className="name">
           <div className="flex flex-row justify-center">
@@ -15,11 +15,11 @@ const Admin_banner = () => {
               Administration{" "}
             </p>
           </div>
-          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+          <div className=" text-lg font-bold bg-gray-400 pb-3 pt-3 pl-5 text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
-            <span className="ml-5">Admin Login</span>
+            <span className="ml-5">Administration</span>
           </div>
         </div>
       </div>
