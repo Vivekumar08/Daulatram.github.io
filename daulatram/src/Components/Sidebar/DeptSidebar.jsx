@@ -19,7 +19,7 @@ const DeptSidebar = () => {
                 {link.links.map((slink) => (
                   <Link to={slink.link} className=" ml-4 mb-2  p-2 mr-6 rounded-lg hover:bg-white hover:pl-4 ">
                     <li className="hover:bg-white">
-                      <p className="text-black text-justify font-semibold mt-2">
+                      <p className="text-black text-left font-semibold mt-2">
                         - {""}
                         {slink.name}
                       </p>
