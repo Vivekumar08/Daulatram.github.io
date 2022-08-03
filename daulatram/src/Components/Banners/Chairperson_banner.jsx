@@ -15,7 +15,7 @@ const Chairperson_banner = () => {
               Chairperson's Message{" "}
             </p>
           </div>
-          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+          <div className=" text-lg font-bold bg-gray-400 pb-3 pt-3 pl-5 text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
