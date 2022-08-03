@@ -97,6 +97,7 @@ function Information() {
                     </>
                   );
                 })}
+                <a href="/Student_Zone/Student_Notice"className="text-sm text-[#000080] absolute mt-2 ml-64 " >...read more</a>
             </div>
           </div>
           <div className=" bg-[#d9d9d9] w-[20em] rounded-lg text-lg mb-5 h-[500px] font-semibold ml-5 mr-10">
@@ -161,6 +162,7 @@ function Information() {
                   </>
                 );
               })}
+             <a href="/StaffZone/Notices"className="text-sm text-[#000080] absolute mt-2 ml-64 " >...read more</a>
           </div>
           <div className=" bg-[#d9d9d9] w-[20em] rounded-lg mb-5 text-lg h-[500px] font-semibold ml-5 mr-10">
             <span className="bg-[#000080] rounded-t-lg flex flex-row justify-center text-white pb-4  px-4 ">
@@ -224,6 +226,8 @@ function Information() {
                   </>
                 );
               })}
+ <a href="/Public_Notice"className="text-sm text-[#000080] absolute mt-2 ml-64 " >...read more</a>
+
           </div>
         </div>
       </div>

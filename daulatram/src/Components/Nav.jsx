@@ -8,7 +8,7 @@ const Nav = () => {
   return (
     <nav className="bg-[#000080]  ">
       <div className="flex text-[15px] ml-5 items-center font-medium  tracking-[1px] text-white ">
-        <ul className="xl:flex hidden w-full items-center gap-4 font-Noto_Sans">
+        <ul className="xl:flex hidden justify-center mr-12 w-full items-center gap-4 font-Noto_Sans">
           <li>
             <Link to="/" className="py-4 font-bold px-2 uppercase inline-block">
               Home

@@ -205,6 +205,12 @@ function Upperfooter() {
               </Link>
               {/* Created by: DarkWeb Dreamers (CICians) */}
               Created by: CIC (Ishika Rai, Priyanshu Sisodiya, Riya Kumari, Vivek Kumar)
+             <br />
+           
+        icon by{" "}
+        <Link target="_blank" to="https://icons8.com">
+          Icons8
+        </Link>
             </p>
 
           </div>

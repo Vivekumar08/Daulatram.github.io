@@ -10,7 +10,7 @@ const Undergraduate = () => {
               <Banner />
             </div>
             <div className="flex flex-row">
-              <div className="w-[250px]">
+              <div className="">
                 <Sidebar />
               </div>
               <div className="relative mr-20 md:w-[1100px]">

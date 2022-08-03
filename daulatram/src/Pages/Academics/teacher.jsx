@@ -96,7 +96,7 @@ const teacher = () => {
             <table className=" w-96 h-48 ml-3 md:ml-26 md:w-[500px] md:h-[160px] lg:table-fixed lg:ml-32 lg:w-[800px] lg:h-[180px] mt-1 ">
               <tr className="h-12 md:h-14 lg:h-20 text-lg">
                 <th className="row text-sm md:text-lg w-[15%]">S.no</th>
-                <th className="text-sm md:text-sm lg:text-lg">Departments</th>
+                <th className="text-sm md:text-sm lg:text-lg w-[20%]">Departments</th>
                 <th className="text-sm md:md:text-sm lg:text-lg w-[25%]">
                   TIC 2021-22
                 </th>
@@ -125,7 +125,7 @@ const teacher = () => {
                         <td>{Tic2}</td>
                         {auth && (
                           <>
-                            <td className="flex h-full overlay ">
+                            <td className=" ">
                               <FontAwesomeIcon
                                 icon={faTrashCan}
                                 size="2xl"

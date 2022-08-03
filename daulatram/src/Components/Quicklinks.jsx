@@ -164,16 +164,7 @@ function Quicklinks() {
             </Link>
           </div>
         </div>
-        <Link
-          target="_blank"
-          to="https://icons8.com/icon/K4Be8ClAR0hC/immigration"
-        >
-          Immigration
-        </Link>{" "}
-        icon by{" "}
-        <Link target="_blank" to="https://icons8.com">
-          Icons8
-        </Link>
+        
       </div>
     </>
   );

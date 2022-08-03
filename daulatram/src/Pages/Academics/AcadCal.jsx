@@ -140,7 +140,7 @@ const AcadCal = () => {
                           </td>
                           {auth && (
                             <>
-                              <td className="flex h-full ">
+                              <td className= "">
                                 <FontAwesomeIcon
                                   icon={faTrashCan}
                                   size="2xl"

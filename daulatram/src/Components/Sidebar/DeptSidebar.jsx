@@ -6,7 +6,7 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 const DeptSidebar = () => {
   const [visible, setVisible] = useState(false);
   return (
-    <div className="relative mb-10 md:w-[280px] invisible absolute md:relative md:visible mb-30">
+    <div className="relative mb-10 md:w-[350px] invisible absolute md:relative md:visible mb-30">
       <div className="absolute md:relative mt-[22%] bg-gray-200 rounded-lg">
       {acade.map((link) => (
         <>
