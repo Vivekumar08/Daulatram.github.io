@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan, faCircleArrowLeft, faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -18,10 +18,21 @@ function Gallery_about() {
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slideLength, setSlideLength] = useState(0);
+  const autoScroll = true;
+  let slideInterval;
+  let intervalTime = 5000;
 
   const fetchdata = async () => {
+
     const response = await fetch("http://localhost:5000/About_Gallery");
-    setData1(await response.json());
+    const data = await response.json()
+    setData1(data)
+    setSlideLength(data.length)
+    console.log(data.length);
+
+
   };
 
   const onDrop = (files) => {
@@ -41,6 +52,32 @@ function Gallery_about() {
   useEffect(() => {
     fetchdata();
   }, []);
+
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, []);
+
+  useEffect(() => {
+    if (autoScroll) {
+      auto();
+    }
+    return () => clearInterval(slideInterval);
+  }, [currentSlide]);
+
+  const nextSlide = () => {
+    setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
+    console.log("next");
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
+    console.log("prev");
+  };
+
+  function auto() {
+    slideInterval = setInterval(nextSlide, intervalTime);
+  }
+
 
   const del = async (id) => {
     console.log(id);
@@ -114,18 +151,20 @@ function Gallery_about() {
           <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
             Gallery
           </h2>
-          <div className="main_conta">
+          <div className="main_conta flex items-center ml-5">
+            <FontAwesomeIcon icon={faCircleArrowLeft} onClick={prevSlide} size="2xl" className="cursor-pointer " />
             <div class="sliderr">
               <div class="slidee-track">
                 {data1 &&
-                  data1.map((curElem) => {
+                  data1.map((curElem, index) => {
                     const { _id, file_path } = curElem;
                     var path_pic = file_path;
                     var path2 = path_pic.replace(/\\/g, "/");
                     var path = path2.slice(19);
                     return (
                       <>
-                        <div class="slidee" key={_id}>
+
+                        <div class={index === currentSlide ? `slidee current` : "slidee"} key={_id}>
                           <img src={path} alt={path} />
                         </div>
                       </>
@@ -133,6 +172,7 @@ function Gallery_about() {
                   })}
               </div>
             </div>
+            <FontAwesomeIcon icon={faCircleArrowRight} onClick={nextSlide} size="2xl" className="cursor-pointer" />
           </div>
           <div className="grid md:grid-cols-4">
             {data1 &&
