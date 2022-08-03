@@ -16,7 +16,7 @@ const Physics_fac_data = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_faculty");
+    const response = await fetch("/Physics_faculty");
     setData1(await response.json());
   };
 

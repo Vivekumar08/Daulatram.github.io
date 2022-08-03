@@ -21,7 +21,7 @@ function Hist_Gallery() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Hist_Photo_Gallery");
+    const response = await fetch("/Hist_Photo_Gallery");
     setData1(await response.json());
   };
 
@@ -46,7 +46,7 @@ function Hist_Gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Hist_Photo_Gallery/${id}`,
+      `/delete_Hist_Photo_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -66,7 +66,7 @@ function Hist_Gallery() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/Hist_Photo_Gallery_add`, formData, {
+        await axios.post(`/Hist_Photo_Gallery_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

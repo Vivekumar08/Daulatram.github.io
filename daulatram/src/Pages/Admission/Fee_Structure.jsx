@@ -24,7 +24,7 @@ const Fee_Structure = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "http://localhost:5000/admission_Fee_Structure"
+      "/admission_Fee_Structure"
     );
     const dat = await response.json();
     console.log(dat);
@@ -64,7 +64,7 @@ const Fee_Structure = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/deleteadmission_Fee_Structure/${id}`,
+      `/deleteadmission_Fee_Structure/${id}`,
       {
         method: "DELETE",
       }
@@ -97,7 +97,7 @@ const Fee_Structure = () => {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/admission_Fee_Structure_add`,
+          `/admission_Fee_Structure_add`,
           formData,
           {
             headers: {
@@ -124,7 +124,7 @@ const Fee_Structure = () => {
     e.preventDefault();
     console.log(link, caption, file);
     const response = await fetch(
-      "http://localhost:5000/admission_Fee_Structure_add_link",
+      "/admission_Fee_Structure_add_link",
       {
         method: "POST",
         headers: {

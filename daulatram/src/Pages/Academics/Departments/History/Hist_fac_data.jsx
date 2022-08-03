@@ -16,7 +16,7 @@ const Hist_fac_data = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Hist_fac");
+    const response = await fetch("/Hist_fac");
     setData1(await response.json());
   };
 

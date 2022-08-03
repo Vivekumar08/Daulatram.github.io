@@ -21,7 +21,7 @@ function PE_gallery() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/PE_Gallery");
+    const response = await fetch("/PE_Gallery");
     setData1(await response.json());
   };
 
@@ -46,7 +46,7 @@ function PE_gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_PE_Gallery/${id}`,
+      `/delete_PE_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -66,7 +66,7 @@ function PE_gallery() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/PE_Gallery_add`, formData, {
+        await axios.post(`/PE_Gallery_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

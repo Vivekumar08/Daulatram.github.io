@@ -23,7 +23,7 @@ const Pol_Sci_publications = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/PS_Publications");
+    const response = await fetch("/PS_Publications");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Pol_Sci_publications = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_PS_Publications/${id}`,
+      `/delete_PS_Publications/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Pol_Sci_publications = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/PS_Publications_add`,
+          `/PS_Publications_add`,
           formData,
           {
             headers: {

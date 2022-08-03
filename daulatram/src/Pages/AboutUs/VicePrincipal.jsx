@@ -20,7 +20,7 @@ const VicePrincipal = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Principal_About");
+    const response = await fetch("/VicePrincipal_About");
     const dat = await response.json();
     console.log(dat);
     {
@@ -51,7 +51,7 @@ const VicePrincipal = () => {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `http://localhost:5000/delete_Principal_About_data/${id}`,
+        `/delete_VicePrincipal_About_data/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -77,7 +77,7 @@ const VicePrincipal = () => {
         console.log(files);
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Principal_About_add`,
+          `/VicePrincipal_About_add`,
           { file: files },
           {
             headers: {
@@ -103,7 +103,7 @@ const VicePrincipal = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`http://localhost:5000/Principal_About_add_data/${id}`, {
+        await fetch(`/VicePrincipal_About_add_data/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },

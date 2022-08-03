@@ -23,7 +23,7 @@ const OnlineAdmission = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/admission");
+    const response = await fetch("/admission");
     setData1(await response.json());
   };
 
@@ -60,7 +60,7 @@ const OnlineAdmission = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/deleteAdmission/${id}`,
+      `/deleteAdmission/${id}`,
       {
         method: "DELETE",
       }
@@ -93,7 +93,7 @@ const OnlineAdmission = () => {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/admission_online_add`,
+          `/admission_online_add`,
           formData,
           {
             headers: {
@@ -120,7 +120,7 @@ const OnlineAdmission = () => {
     e.preventDefault();
     console.log(link, caption, file);
     const response = await fetch(
-      "http://localhost:5000/admission_online_add_link",
+      "/admission_online_add_link",
       {
         method: "POST",
         headers: {

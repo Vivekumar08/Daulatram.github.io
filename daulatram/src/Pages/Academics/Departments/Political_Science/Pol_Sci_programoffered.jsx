@@ -23,7 +23,7 @@ const Pol_Sci_programoffered = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/PolSci_ProgramOffered");
+    const response = await fetch("/PolSci_ProgramOffered");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Pol_Sci_programoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_PolSci_ProgramOffered/${id}`,
+      `/delete_PolSci_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Pol_Sci_programoffered = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/PolSci_ProgramOffered_add`,
+          `/PolSci_ProgramOffered_add`,
           formData,
           {
             headers: {

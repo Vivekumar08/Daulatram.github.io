@@ -26,7 +26,7 @@ const Hin_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/hin_faculty");
+    const response = await fetch("/hin_faculty");
     setData1(await response.json());
   };
 
@@ -58,7 +58,7 @@ const Hin_faculty = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_hin_faculty/${id}`,
+      `/delete_hin_faculty/${id}`,
       {
         method: "POST",
       }
@@ -78,7 +78,7 @@ const Hin_faculty = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `http://localhost:5000/hin_faculty_cv_upload/${id}`,
+          `/hin_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -110,7 +110,7 @@ const Hin_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/hin_faculty_file_upload`,
+            `/hin_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

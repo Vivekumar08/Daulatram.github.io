@@ -25,7 +25,7 @@ const tt = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Hin_tt");
+    const response = await fetch("/Hin_tt");
     setData1(await response.json());
   };
 
@@ -50,7 +50,7 @@ const tt = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Hin_tt/${id}`,
+      `/delete_Hin_tt/${id}`,
       {
         method: "DELETE",
       }
@@ -75,7 +75,7 @@ const tt = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Hin_tt_add`, formData, {
+        await axios.post(`/Hin_tt_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

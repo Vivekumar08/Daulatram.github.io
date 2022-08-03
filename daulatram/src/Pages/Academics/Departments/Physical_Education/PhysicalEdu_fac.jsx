@@ -25,7 +25,7 @@ function PhysicalEdu_fac() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/PE_Fac");
+    const response = await fetch("/PE_Fac");
     setData1(await response.json());
   };
 
@@ -49,7 +49,7 @@ function PhysicalEdu_fac() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`http://localhost:5000/delete_PE_Fac/${id}`, {
+    const response = await fetch(`/delete_PE_Fac/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
@@ -75,7 +75,7 @@ function PhysicalEdu_fac() {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/PE_Fac_add`, formData, {
+        await axios.post(`/PE_Fac_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

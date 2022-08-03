@@ -24,7 +24,7 @@ const Psycho_programoffered = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "http://localhost:5000/Psychology_ProgramOffered"
+      "/Psychology_ProgramOffered"
     );
     setData1(await response.json());
   };
@@ -50,7 +50,7 @@ const Psycho_programoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Psychology_ProgramOffered/${id}`,
+      `/delete_Psychology_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -76,7 +76,7 @@ const Psycho_programoffered = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Psychology_ProgramOffered_add`,
+          `/Psychology_ProgramOffered_add`,
           formData,
           {
             headers: {

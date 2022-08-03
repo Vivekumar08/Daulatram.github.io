@@ -24,7 +24,7 @@ const Physics_programmesoffered = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "http://localhost:5000/Physics_ProgramOffered"
+      "/Physics_ProgramOffered"
     );
     setData1(await response.json());
   };
@@ -50,7 +50,7 @@ const Physics_programmesoffered = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Physics_ProgramOffered/${id}`,
+      `/delete_Physics_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -76,7 +76,7 @@ const Physics_programmesoffered = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Physics_ProgramOffered_add`,
+          `/Physics_ProgramOffered_add`,
           formData,
           {
             headers: {

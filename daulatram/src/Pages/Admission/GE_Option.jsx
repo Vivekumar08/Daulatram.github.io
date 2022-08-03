@@ -23,7 +23,7 @@ const GE_Option = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/GE_Options_admission");
+    const response = await fetch("/GE_Options_admission");
     setData1(await response.json());
   };
 
@@ -60,7 +60,7 @@ const GE_Option = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_GE_Options/${id}`,
+      `/delete_GE_Options/${id}`,
       {
         method: "DELETE",
       }
@@ -92,7 +92,7 @@ const GE_Option = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/GE_Options_add`, formData, {
+        await axios.post(`/GE_Options_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -115,7 +115,7 @@ const GE_Option = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch("http://localhost:5000/GE_Options_add_link", {
+    const response = await fetch("/GE_Options_add_link", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

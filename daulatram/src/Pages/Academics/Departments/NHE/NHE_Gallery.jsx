@@ -21,7 +21,7 @@ function NHE_Gallery() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/NHE_Photo_Gallery");
+    const response = await fetch("/NHE_Photo_Gallery");
     setData1(await response.json());
   };
 
@@ -46,7 +46,7 @@ function NHE_Gallery() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_NHE_Photo_Gallery/${id}`,
+      `/delete_NHE_Photo_Gallery/${id}`,
       {
         method: "DELETE",
       }
@@ -67,7 +67,7 @@ function NHE_Gallery() {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/NHE_Photo_Gallery_add`,
+          `/NHE_Photo_Gallery_add`,
           formData,
           {
             headers: {

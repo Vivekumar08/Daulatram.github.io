@@ -27,7 +27,7 @@ const Math_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Math_faculty");
+    const response = await fetch("/Math_faculty");
     setData1(await response.json());
   };
 
@@ -59,7 +59,7 @@ const Math_faculty = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Math_faculty/${id}`,
+      `/delete_Math_faculty/${id}`,
       {
         method: "POST",
       }
@@ -79,7 +79,7 @@ const Math_faculty = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Math_faculty_cv_upload/${id}`,
+          `/Math_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -111,7 +111,7 @@ const Math_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/Math_faculty_file_upload`,
+            `/Math_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

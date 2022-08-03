@@ -23,7 +23,7 @@ const Sanskrit_events = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Sanskrit_Events");
+    const response = await fetch("/Sanskrit_Events");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Sanskrit_events = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Sanskrit_Events/${id}`,
+      `/delete_Sanskrit_Events/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Sanskrit_events = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Sanskrit_Events_add`,
+          `/Sanskrit_Events_add`,
           formData,
           {
             headers: {

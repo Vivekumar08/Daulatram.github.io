@@ -23,7 +23,7 @@ const Physics_news_magazines = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_Newsletter");
+    const response = await fetch("/Physics_Newsletter");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Physics_news_magazines = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Physics_Newsletter/${id}`,
+      `/delete_Physics_Newsletter/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Physics_news_magazines = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Physics_Newsletter_add`,
+          `/Physics_Newsletter_add`,
           formData,
           {
             headers: {

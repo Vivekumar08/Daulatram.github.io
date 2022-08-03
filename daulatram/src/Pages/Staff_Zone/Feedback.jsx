@@ -20,7 +20,7 @@ const Feedback = () => {
   const [data, setData] = useState([]);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/feedback");
+    const response = await fetch("/feedback");
     setData(await response.json());
   };
 
@@ -31,7 +31,7 @@ const Feedback = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/deletefeedback/${id}`,
+      `/deletefeedback/${id}`,
       {
         method: "DELETE",
         // headers: {
@@ -50,7 +50,7 @@ const Feedback = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(link, caption);
-    const response = await fetch("http://localhost:5000/StaffZone_feedback", {
+    const response = await fetch("/StaffZone_feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -22,7 +22,7 @@ const CAcadCal = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/C_Acad_Cal");
+    const response = await fetch("/C_Acad_Cal");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const CAcadCal = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_C_Acad_Cal/${id}`,
+      `/delete_C_Acad_Cal/${id}`,
       {
         method: "DELETE",
       }
@@ -72,7 +72,7 @@ const CAcadCal = () => {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/C_Acad_Cal_add`,
+          `/C_Acad_Cal_add`,
           formData,
           {
             headers: {

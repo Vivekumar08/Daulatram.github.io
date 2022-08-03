@@ -23,7 +23,7 @@ const Awards = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Chem_Fac");
+    const response = await fetch("/Chem_Fac");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Awards = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Chem_Fac/${id}`,
+      `/delete_Chem_Fac/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const Awards = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Chem_Fac_add`, formData, {
+        await axios.post(`/Chem_Fac_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

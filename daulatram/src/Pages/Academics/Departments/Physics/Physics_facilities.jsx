@@ -24,7 +24,7 @@ const Physics_facilities = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Physics_Facilities");
+    const response = await fetch("/Physics_Facilities");
     setData1(await response.json());
   };
 
@@ -49,7 +49,7 @@ const Physics_facilities = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Physics_Facilities/${id}`,
+      `/delete_Physics_Facilities/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Physics_facilities = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Physics_Facilities_add`, formData, {
+        await axios.post(`/Physics_Facilities_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

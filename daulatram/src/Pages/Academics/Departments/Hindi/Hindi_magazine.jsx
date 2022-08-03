@@ -25,7 +25,7 @@ const Magazine = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Hin_Magazine");
+    const response = await fetch("/Hin_Magazine");
     setData1(await response.json());
   };
 
@@ -50,7 +50,7 @@ const Magazine = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Hin_Magazine/${id}`,
+      `/delete_Hin_Magazine/${id}`,
       {
         method: "DELETE",
       }
@@ -75,7 +75,7 @@ const Magazine = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Hin_Magazine_add`, formData, {
+        await axios.post(`/Hin_Magazine_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

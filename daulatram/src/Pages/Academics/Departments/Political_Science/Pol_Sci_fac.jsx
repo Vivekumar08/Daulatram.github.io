@@ -28,7 +28,7 @@ const Pol_Sci_fac = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "http://localhost:5000/Political_Science_faculty"
+      "/Political_Science_faculty"
     );
     setData1(await response.json());
   };
@@ -61,7 +61,7 @@ const Pol_Sci_fac = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Political_Science_faculty/${id}`,
+      `/delete_Political_Science_faculty/${id}`,
       {
         method: "POST",
       }
@@ -81,7 +81,7 @@ const Pol_Sci_fac = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Political_Science_faculty_cv_upload/${id}`,
+          `/Political_Science_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -113,7 +113,7 @@ const Pol_Sci_fac = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/Political_Science_faculty_file_upload`,
+            `/Political_Science_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

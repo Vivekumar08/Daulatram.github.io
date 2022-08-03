@@ -24,7 +24,7 @@ const Zoo_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Zoology_Time");
+    const response = await fetch("/Zoology_Time");
     setData1(await response.json());
   };
 
@@ -49,7 +49,7 @@ const Zoo_time = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Zoology_Time/${id}`,
+      `/delete_Zoology_Time/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Zoo_time = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Zoology_Time_add`, formData, {
+        await axios.post(`/Zoology_Time_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

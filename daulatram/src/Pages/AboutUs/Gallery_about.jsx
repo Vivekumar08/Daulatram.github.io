@@ -26,13 +26,10 @@ function Gallery_about() {
 
   const fetchdata = async () => {
 
-    const response = await fetch("http://localhost:5000/About_Gallery");
+    const response = await fetch("/About_Gallery");
     const data = await response.json()
     setData1(data)
     setSlideLength(data.length)
-    console.log(data.length);
-
-
   };
 
   const onDrop = (files) => {
@@ -82,7 +79,7 @@ function Gallery_about() {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Gallery_About/${id}`,
+      `/delete_Gallery_About/${id}`,
       {
         method: "DELETE",
       }
@@ -102,7 +99,7 @@ function Gallery_about() {
         formData.append("file", file);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/Gallery_About_add`, formData, {
+        await axios.post(`/Gallery_About_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

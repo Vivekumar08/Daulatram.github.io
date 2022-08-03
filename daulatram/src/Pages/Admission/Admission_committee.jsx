@@ -23,7 +23,7 @@ const Admission_committee = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Admission_comm");
+    const response = await fetch("/Admission_comm");
     setData1(await response.json());
   };
 
@@ -60,7 +60,7 @@ const Admission_committee = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/deleteAdmission_comm/${id}`,
+      `/deleteAdmission_comm/${id}`,
       {
         method: "DELETE",
       }
@@ -92,7 +92,7 @@ const Admission_committee = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/Admission_comm_add`, formData, {
+        await axios.post(`/Admission_comm_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -116,7 +116,7 @@ const Admission_committee = () => {
     e.preventDefault();
     console.log(link, caption, file);
     const response = await fetch(
-      "http://localhost:5000/Admission_comm_add_link",
+      "/Admission_comm_add_link",
       {
         method: "POST",
         headers: {
