@@ -26,7 +26,7 @@ const Eng_faculty = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/eng_faculty");
+    const response = await fetch("/eng_faculty");
     setData1(await response.json());
   };
 
@@ -58,7 +58,7 @@ const Eng_faculty = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_eng_faculty/${id}`,
+      `/delete_eng_faculty/${id}`,
       {
         method: "POST",
       }
@@ -78,7 +78,7 @@ const Eng_faculty = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `http://localhost:5000/eng_faculty_cv_upload/${id}`,
+          `/eng_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -110,7 +110,7 @@ const Eng_faculty = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/eng_faculty_file_upload`,
+            `/eng_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

@@ -26,7 +26,7 @@ const Programmesoffer = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Eco_ProgramOffered");
+    const response = await fetch("/Eco_ProgramOffered");
     setData1(await response.json());
   };
 
@@ -51,7 +51,7 @@ const Programmesoffer = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Eco_ProgramOffered/${id}`,
+      `/delete_Eco_ProgramOffered/${id}`,
       {
         method: "DELETE",
       }
@@ -76,7 +76,7 @@ const Programmesoffer = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Eco_ProgramOffered_add`, formData, {
+        await axios.post(`/Eco_ProgramOffered_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

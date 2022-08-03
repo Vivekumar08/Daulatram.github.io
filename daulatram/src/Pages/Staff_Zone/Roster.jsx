@@ -21,7 +21,7 @@ const Roster = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Staff_Roster");
+    const response = await fetch("/Staff_Roster");
     setData1(await response.json());
   };
 
@@ -46,7 +46,7 @@ const Roster = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Staff_Roster/${id}`,
+      `/delete_Staff_Roster/${id}`,
       {
         method: "DELETE",
       }
@@ -71,7 +71,7 @@ const Roster = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Staff_Roster_add`, formData, {
+        await axios.post(`/Staff_Roster_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

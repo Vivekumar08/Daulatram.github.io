@@ -24,7 +24,7 @@ const Admission_Grievence_comm = () => {
 
   const fetchdata = async () => {
     const response = await fetch(
-      "http://localhost:5000/Admission_Grievance_comm"
+      "/Admission_Grievance_comm"
     );
     setData1(await response.json());
   };
@@ -62,7 +62,7 @@ const Admission_Grievence_comm = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/deleteAdmission_Grievance_comm/${id}`,
+      `/deleteAdmission_Grievance_comm/${id}`,
       {
         method: "DELETE",
       }
@@ -95,7 +95,7 @@ const Admission_Grievence_comm = () => {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Admission_Grievance_comm_add`,
+          `/Admission_Grievance_comm_add`,
           formData,
           {
             headers: {
@@ -122,7 +122,7 @@ const Admission_Grievence_comm = () => {
     e.preventDefault();
     console.log(link, caption, file);
     const response = await fetch(
-      "http://localhost:5000/Admission_Grievance_comm_add_link",
+      "/Admission_Grievance_comm_add_link",
       {
         method: "POST",
         headers: {

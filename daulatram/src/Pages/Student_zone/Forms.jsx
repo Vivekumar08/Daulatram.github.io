@@ -24,7 +24,7 @@ const forms = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/StudentZone_forms");
+    const response = await fetch("/StudentZone_forms");
     setData1(await response.json());
   };
 
@@ -61,7 +61,7 @@ const forms = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_StudentZone_forms/${id}`,
+      `/delete_StudentZone_forms/${id}`,
       {
         method: "DELETE",
       }
@@ -94,7 +94,7 @@ const forms = () => {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/StudentZone_forms_add`,
+          `/StudentZone_forms_add`,
           formData,
           {
             headers: {
@@ -121,7 +121,7 @@ const forms = () => {
     e.preventDefault();
     console.log(link, caption, file);
     const response = await fetch(
-      "http://localhost:5000/StudentZone_forms_add_link",
+      "/StudentZone_forms_add_link",
       {
         method: "POST",
         headers: {

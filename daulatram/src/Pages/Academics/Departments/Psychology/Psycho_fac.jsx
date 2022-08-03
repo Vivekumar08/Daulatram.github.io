@@ -27,7 +27,7 @@ const Psycho_fac = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Psychology_faculty");
+    const response = await fetch("/Psychology_faculty");
     setData1(await response.json());
   };
 
@@ -59,7 +59,7 @@ const Psycho_fac = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Psychology_faculty/${id}`,
+      `/delete_Psychology_faculty/${id}`,
       {
         method: "POST",
       }
@@ -79,7 +79,7 @@ const Psycho_fac = () => {
       if (pdf) {
         // setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Psychology_faculty_cv_upload/${id}`,
+          `/Psychology_faculty_cv_upload/${id}`,
           {
             file: pdf,
           },
@@ -111,7 +111,7 @@ const Psycho_fac = () => {
           // setErrMsg("");
           console.log(link, caption, imag, filter);
           const data = await axios.post(
-            `http://localhost:5000/Psychology_faculty_file_upload`,
+            `/Psychology_faculty_file_upload`,
             // { method: "POST" },
             { title: caption, description: link, file: imag, filter: filter },
             {

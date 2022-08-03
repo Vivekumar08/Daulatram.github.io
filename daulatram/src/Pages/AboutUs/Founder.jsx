@@ -20,7 +20,7 @@ const Founder = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Founder_About");
+    const response = await fetch("/Founder_About");
     const dat = await response.json();
     console.log(dat);
     {
@@ -52,7 +52,7 @@ const Founder = () => {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `http://localhost:5000/delete_Founder_About_data/${id}`,
+        `/delete_Founder_About_data/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -78,7 +78,7 @@ const Founder = () => {
         console.log(files);
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/Founder_About_add`,
+          `/Founder_About_add`,
           { file: files },
           {
             headers: {
@@ -104,7 +104,7 @@ const Founder = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`http://localhost:5000/Founder_About_add_data/${id}`, {
+        await fetch(`/Founder_About_add_data/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },

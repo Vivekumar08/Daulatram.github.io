@@ -23,7 +23,7 @@ const PolSci_awards = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/PolSci_Awards");
+    const response = await fetch("/PolSci_Awards");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const PolSci_awards = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_PolSci_Awards/${id}`,
+      `/delete_PolSci_Awards/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const PolSci_awards = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/PolSci_Awards_add`, formData, {
+        await axios.post(`/PolSci_Awards_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

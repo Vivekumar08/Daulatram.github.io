@@ -24,7 +24,7 @@ const Forgot = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(email);
-    const response = await fetch("http://localhost:5000/forgotEmail", {
+    const response = await fetch("/forgotEmail", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

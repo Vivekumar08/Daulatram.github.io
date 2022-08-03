@@ -23,7 +23,7 @@ const Publications_res = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Publications_res");
+    const response = await fetch("/Publications_res");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Publications_res = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Publications_res/${id}`,
+      `/delete_Publications_res/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const Publications_res = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/Publications_res_upload`, formData, {
+        await axios.post(`/Publications_res_upload`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

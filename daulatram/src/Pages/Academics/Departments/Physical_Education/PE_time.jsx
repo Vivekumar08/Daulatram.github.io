@@ -23,7 +23,7 @@ const PE_time = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/PE_Time");
+    const response = await fetch("/PE_Time");
     setData1(await response.json());
   };
 
@@ -47,7 +47,7 @@ const PE_time = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`http://localhost:5000/delete_PE_Time/${id}`, {
+    const response = await fetch(`/delete_PE_Time/${id}`, {
       method: "DELETE",
     });
     const data = await response.json();
@@ -70,7 +70,7 @@ const PE_time = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/PE_Time_add`, formData, {
+        await axios.post(`/PE_Time_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },

@@ -16,7 +16,7 @@ const Political_Science_fac_data = (props) => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Political_Science_faculty");
+    const response = await fetch("/Political_Science_faculty");
     setData1(await response.json());
   };
 

@@ -23,7 +23,7 @@ const Anti_Ragging = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Anti_Ragging");
+    const response = await fetch("/Anti_Ragging");
     setData1(await response.json());
   };
 
@@ -60,7 +60,7 @@ const Anti_Ragging = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/deleteAntiRagging/${id}`,
+      `/deleteAntiRagging/${id}`,
       {
         method: "DELETE",
       }
@@ -93,7 +93,7 @@ const Anti_Ragging = () => {
 
         setErrMsg("");
         await axios.post(
-          `http://localhost:5000/admission_Anti_Ragging`,
+          `/admission_Anti_Ragging`,
           formData,
           {
             headers: {
@@ -120,7 +120,7 @@ const Anti_Ragging = () => {
     e.preventDefault();
     console.log(link, caption, file);
     const response = await fetch(
-      "http://localhost:5000/AntiRagging_add_link",
+      "/AntiRagging_add_link",
       {
         method: "POST",
         headers: {

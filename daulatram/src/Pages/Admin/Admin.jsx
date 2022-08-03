@@ -25,7 +25,7 @@ const Admin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(user, pwd);
-    const response = await fetch("http://localhost:5000/AdminLogin", {
+    const response = await fetch("/AdminLogin", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

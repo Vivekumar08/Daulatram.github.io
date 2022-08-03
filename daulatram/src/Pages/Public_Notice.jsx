@@ -45,7 +45,7 @@ const Public_Notice = () => {
   }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Public_notice");
+    const response = await fetch("/Public_notice");
     setData1(await response.json());
   };
   const onDrop = (files) => {
@@ -76,7 +76,7 @@ const Public_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch("http://localhost:5000/Bulletins_notice_add", {
+      const response = await fetch("/Bulletins_notice_add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -128,7 +128,7 @@ const Public_Notice = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Public_notice/${id}`,
+      `/delete_Public_notice/${id}`,
       {
         method: "DELETE",
       }
@@ -143,7 +143,7 @@ const Public_Notice = () => {
   const del_archive = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Public_archive_notice/${id}`,
+      `/delete_Public_archive_notice/${id}`,
       {
         method: "DELETE",
       }
@@ -166,7 +166,7 @@ const Public_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch("http://localhost:5000/Archive_notice_add", {
+      const response = await fetch("/Archive_notice_add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -209,7 +209,7 @@ const Public_Notice = () => {
         formData.append("new_", new_opt);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/Public_notice_add`, formData, {
+        await axios.post(`/Public_notice_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -235,7 +235,7 @@ const Public_Notice = () => {
     try {
       const date_e = `${date_exp}/${month_exp}/${year_exp}`;
       const response = await fetch(
-        "http://localhost:5000/Public_notice_add_link",
+        "/Public_notice_add_link",
         {
           method: "POST",
           headers: {

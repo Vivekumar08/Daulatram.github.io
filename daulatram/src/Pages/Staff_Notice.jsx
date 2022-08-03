@@ -45,7 +45,7 @@ const Staff_Notice = () => {
   }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Staff_notice");
+    const response = await fetch("/Staff_notice");
     setData1(await response.json());
   };
   const onDrop = (files) => {
@@ -89,7 +89,7 @@ const Staff_Notice = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Staff_notice/${id}`,
+      `/delete_Staff_notice/${id}`,
       {
         method: "DELETE",
       }
@@ -104,7 +104,7 @@ const Staff_Notice = () => {
   const del_archive = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Staff_archive_notice/${id}`,
+      `/delete_Staff_archive_notice/${id}`,
       {
         method: "DELETE",
       }
@@ -127,7 +127,7 @@ const Staff_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch("http://localhost:5000/Bulletins_notice_add", {
+      const response = await fetch("/Bulletins_notice_add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -167,7 +167,7 @@ const Staff_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch("http://localhost:5000/Archive_notice_add", {
+      const response = await fetch("/Archive_notice_add", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -210,7 +210,7 @@ const Staff_Notice = () => {
         formData.append("new_", new_opt);
 
         setErrMsg("");
-        await axios.post(`http://localhost:5000/Staff_notice_add`, formData, {
+        await axios.post(`/Staff_notice_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
@@ -236,7 +236,7 @@ const Staff_Notice = () => {
     try {
       const date_e = `${date_exp}/${month_exp}/${year_exp}`;
       const response = await fetch(
-        "http://localhost:5000/Staff_notice_add_link",
+        "/Staff_notice_add_link",
         {
           method: "POST",
           headers: {

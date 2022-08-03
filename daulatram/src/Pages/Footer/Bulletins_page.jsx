@@ -30,7 +30,7 @@ const Bulletins_page = () => {
     }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Bulletins_notice");
+    const response = await fetch("/Bulletins_notice");
     setData1(await response.json());
   };
 
@@ -42,7 +42,7 @@ const Bulletins_page = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Bulletins_notice/${id}`,
+      `/delete_Bulletins_notice/${id}`,
       {
         method: "DELETE",
       }

@@ -23,7 +23,7 @@ const Sans_studachieve = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/Sanskrit_Stuachieve");
+    const response = await fetch("/Sanskrit_Stuachieve");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Sans_studachieve = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_Sanskrit_Stuachieve/${id}`,
+      `/delete_Sanskrit_Stuachieve/${id}`,
       {
         method: "DELETE",
       }
@@ -74,7 +74,7 @@ const Sans_studachieve = () => {
         setErrMsg("");
         console.log(formData);
         await axios.post(
-          `http://localhost:5000/Sanskrit_Stuachieve_add`,
+          `/Sanskrit_Stuachieve_add`,
           formData,
           {
             headers: {

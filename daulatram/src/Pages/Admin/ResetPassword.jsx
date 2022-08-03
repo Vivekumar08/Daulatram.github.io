@@ -22,7 +22,7 @@ const ResetPassword = () => {
   const fetchdata = async () => {
       
       console.log(token);
-      const response = await axios.get("http://localhost:5000/resetData", {
+      const response = await axios.get("/resetData", {
           params: {
         resetPasswordToken: token,
       },
@@ -53,7 +53,7 @@ const ResetPassword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const response = await fetch(
-      "http://localhost:5000/updatePasswordViaEmail",
+      "/updatePasswordViaEmail",
       {
         method: "PUT",
         headers: {

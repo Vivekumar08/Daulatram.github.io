@@ -23,7 +23,7 @@ const Pol_Sci_association = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("http://localhost:5000/PS_Association");
+    const response = await fetch("/PS_Association");
     setData1(await response.json());
   };
 
@@ -48,7 +48,7 @@ const Pol_Sci_association = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `http://localhost:5000/delete_PS_Association/${id}`,
+      `/delete_PS_Association/${id}`,
       {
         method: "DELETE",
       }
@@ -73,7 +73,7 @@ const Pol_Sci_association = () => {
 
         setErrMsg("");
         console.log(formData);
-        await axios.post(`http://localhost:5000/PS_Association_add`, formData, {
+        await axios.post(`/PS_Association_add`, formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
