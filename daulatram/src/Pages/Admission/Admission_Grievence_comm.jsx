@@ -175,7 +175,7 @@ const Admission_Grievence_comm = () => {
         </div>
 
         <div className="w-full mb-5">
-          <h2 className=" text-2xl md:text-4xl uppercase font-bold mb-5 mt-[15%] flex flex-row text-justify justify-center items-center   ">
+          <h2 className=" text-2xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row text-justify justify-center items-center   ">
             Admisssion Grievance Committee
           </h2>
           {data1 ? (
