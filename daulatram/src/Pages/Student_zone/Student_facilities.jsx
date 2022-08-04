@@ -13,7 +13,7 @@ const Student_facilities = () => {
           <Student_side />
         </div>
 
-        <div className="relative ml-20 w-[1100px]">
+        <div className="relative ml-2 w-[1100px]">
             <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
               FACILITIES
             </h2>
@@ -21,7 +21,7 @@ const Student_facilities = () => {
               Library and Reading Room
             </h3>
             <figure className="flex p-4">
-              <span className=" card-description leading-14 font-medium text-justify text-base  md:text-lg ">
+              <span className=" card-description mr-16 font-medium text-justify text-base  md:text-lg ">
                 Library and Reading Room facilities are open only to students
                 and staﬀ of the college. The College Library possesses an
                 excellent collection of more than 1,20,000 books and journals/

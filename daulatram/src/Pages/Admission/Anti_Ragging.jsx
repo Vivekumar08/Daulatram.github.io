@@ -176,7 +176,7 @@ const Anti_Ragging = () => {
         </div>
 
         <div className="w-full mb-5">
-          <h2 className=" text-2xl md:text-4xl uppercase font-bold mb-5 mt-[15%] flex flex-row justify-center items-center   ">
+          <h2 className=" text-2xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             Anti-Ragging Guidelines
           </h2>
           {data1 ?(
