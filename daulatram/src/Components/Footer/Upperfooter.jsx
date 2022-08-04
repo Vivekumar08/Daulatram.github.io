@@ -13,8 +13,8 @@ function Upperfooter() {
       <footer className="footer mt-5  bg-[#002366] text-white">
         <div className="flex flex-col ">
           <div className=" h-[95%] mt-10 ">
-            <div className="flex flex-col md:items-start items-center md:justify-evenly  md:ml-5 md:flex-row ">
-              <ul className="w-[50%] md:w-[20%]">
+            <div className="flex flex-col lg:items-start items-center lg:justify-evenly  lg:ml-5 lg:flex-row ">
+              <ul className="w-[50%] lg:w-[20%]">
                 <h4 className="mb-5   md:relative  font-bold md:text-2xl text-lg">
                   INFORMATION
                 </h4>
@@ -140,8 +140,8 @@ function Upperfooter() {
                   </Link>
                 </li>
               </ul>
-              <ul className="w-[50%] md:w-[20%] ">
-                <h4 className=" mt-10 md:mt-0  mb-5   md:relative font-bold md:text-2xl text-lg">
+              <ul className="w-[50%] lg:w-[20%] ">
+                <h4 className=" mt-10 lg:mt-0  mb-5   md:relative font-bold md:text-2xl text-lg">
                   ALUMNAE CONNECT
                 </h4>
                 <li className="pb-2">
@@ -172,7 +172,7 @@ function Upperfooter() {
                       rel="noreferrer"
                       className="hover:text-white hover:font-semibold text-[#d3d3d3]"
                     >
-                      <FontAwesomeIcon icon={faEnvelope} className="mr-1   " />
+                      <FontAwesomeIcon icon={faEnvelope} className="mr-0 md:mr-1   " />
                       <span className="ml-2">daulatramcollegedu@gmail.com</span>
                     </a>
                   </p>
@@ -187,7 +187,7 @@ function Upperfooter() {
                   allowfullscreen=""
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
-                  className="w-[500px] lg:h-[400px] md:w-[768px] xl-[600px] h-[350px] mb-5 mt-5"
+                  className="w-[450px] lg:h-[400px] md:w-[768px] lg:w-[600px] h-[350px] mb-5 mt-5"
                 ></iframe>
                 <Icons />
               </div>

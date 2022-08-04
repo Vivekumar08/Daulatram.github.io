@@ -5,26 +5,26 @@ const Contact = () => {
   return (
     <div>
       <Contact_side />
-      <div className="flex flex-row justify-center w-full mt-10 mb-10">
-        <h2 className="text-4xl uppercase font-bold mb-5 mt-5 flex flex-row justify-center items-center ml-10 ">
-          Contact Information:
+      <div className="flex flex-col lg:flex-row justify-center w-full mt-10 mb-10">
+        <h2 className="text-2xl md:text-3xl lg:4xl uppercase font-bold mb-5 mt-5 flex flex-row justify-center items-center ml-10 ">
+          Contact Information
         </h2>
-        <div className="w-full flex justify-center flex-row ">
-          <div className="mr-4">
+        <div className="w-full flex justify-center flex-col lg:flex-row ">
+          <div className="lg:mr-4">
             <div className="  w-full gap-4 flex flex-col ">
-              <div className="text-[#000] flex flex-row items-start justify-center">
-                <div className="mb-5 mr-5 font-bold text-lg w-32">Address:</div>
-                <span className="text-lg w-2/3">
+              <div className="text-[#000] flex flex-row items-start  justify-center">
+                <div className="mb-5 mr-5 font-bold text-base lg:text-lg w-32">Address:</div>
+                <span className="text-base lg:text-lg w-2/3">
                   4, Patel Marg, Maurice Nagar, <br /> Delhi PIN-110007
                 </span>
               </div>
-              <div className="text-[#000] flex flex-row items-start justify-center">
-                <div className="mb-5 mr-5 font-bold text-lg w-32">Phone:</div>
-                <span className="text-lg w-2/3">011 - 2766 7863, 27667650</span>
+              <div className="text-[#000] flex flex-row items-end justify-center">
+                <div className="mb-5 mr-5 font-bold text-base lg:text-lg w-32">Phone:</div>
+                <span className="text-base lg:text-lg w-2/3">011 - 2766 7863, 27667650</span>
               </div>
               <div className="text-[#000] flex flex-row items-start justify-center">
-                <div className="mb-5 mr-5 font-bold text-lg w-32">Email:</div>
-                <span className="text-lg w-2/3">
+                <div className="mb-5 mr-5 font-bold text-base lg:text-lg w-32">Email:</div>
+                <span className="text-base lg:text-lg w-2/3">
                   <a
                     href="mailto: daulatramcollegedu@gmail.com ? Subject: Query Regarding to Daulat Ram Collge"
                     target="_blank"
@@ -36,10 +36,10 @@ const Contact = () => {
                 </span>
               </div>
               <div className="text-[#000] flex flex-row items-start justify-center">
-                <div className="mb-5 mr-5 font-bold text-lg w-32">
+                <div className="mb-5 mr-5 font-bold text-base lg:text-lg w-32">
                   Follow us on:
                 </div>
-                <span className="text-lg w-2/3">
+                <span className="text-base lg:text-lg w-2/3">
                   <a
                     href="https://www.facebook.com/DRC1972"
                     target="_blank"
@@ -60,36 +60,36 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className=" ml-4">
+          <div className=" ml-2 md:ml-24 lg:ml-4 ">
             <div className="text-[#000] flex flex-row items-start justify-center">
-              <div className="mb-5 mr-5 font-bold text-md w-72">Principal:</div>
-              <span className="text-lg w-2/3">Prof. Savita Roy</span>
+              <div className="mb-5 mr-5 font-bold text-base lg:text-md w-72">Principal:</div>
+              <span className="text-base lg:text-md w-2/3">Prof. Savita Roy</span>
             </div>
             <div className="text-[#000] flex flex-row items-start justify-center">
-              <div className="mb-5 mr-5 font-bold text-md w-72">Bursar:</div>
-              <span className="text-lg w-2/3">Dr. Pooja Jain</span>
+              <div className="mb-5 mr-5 font-bold text-base lg:text-md w-72">Bursar:</div>
+              <span className="text-base lg:text-md w-2/3">Dr. Pooja Jain</span>
             </div>
             <div className="text-[#000] flex flex-row items-start justify-center">
-              <div className="mb-5 mr-5 font-bold text-md w-72">
+              <div className="mb-5 mr-5 font-bold text-base lg:text-md w-72">
                 Administrative Officer:
               </div>
-              <span className="text-lg w-2/3"></span>
+              <span className="text-base lg:text-md w-2/3"></span>
             </div>
             <div className="text-[#000] flex flex-row items-start justify-center">
-              <div className="mb-5 mr-5 font-bold text-md w-72">PIO:</div>
-              <span className="text-lg w-2/3">Dr. Jyoti Tyagi</span>
+              <div className="mb-5 mr-5 font-bold text-base lg:text-md w-72">PIO:</div>
+              <span className="text-base lg:text-md w-2/3">Dr. Jyoti Tyagi</span>
             </div>
             <div className="text-[#000] flex flex-row items-start justify-center">
-              <div className="mb-5 mr-5 font-bold text-md w-72">
+              <div className="mb-5 mr-5 font-bold text-base lg:text-md w-72">
                 Section Officer(Offg.):
               </div>
-              <span className="text-lg w-2/3">Mr. B.S. Negi</span>
+              <span className="text-base lg:text-md w-2/3">Mr. B.S. Negi</span>
             </div>
             <div className="text-[#000] flex flex-row items-start justify-center">
-              <div className="mb-5 mr-5 font-bold text-md w-72">
+              <div className="mb-5 mr-5 font-bold text-base lg:text-md w-72">
                 Section Officer(Accounts):
               </div>
-              <span className="text-lg w-2/3">Mr. Rakesh</span>
+              <span className="text-base lg:text-md w-2/3">Mr. Rakesh</span>
             </div>
           </div>
         </div>
