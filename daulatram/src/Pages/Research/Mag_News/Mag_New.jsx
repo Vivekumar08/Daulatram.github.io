@@ -61,7 +61,7 @@ const Mag_New = () => {
         <div className="name">
           <div className="flex flex-row justify-center">
             <p className="  text-[#fff] text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-              Magzines and Newsletter{" "}
+              Magazines and Newsletter{" "}
             </p>
           </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080]  mt-28 ">
@@ -81,7 +81,7 @@ const Mag_New = () => {
           <div className="flex justify-center items-center flex-col">
             <div>
               <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-                Magzines and Newsletter
+                Magazines and Newsletter
               </h2>
             </div>
           </div>
