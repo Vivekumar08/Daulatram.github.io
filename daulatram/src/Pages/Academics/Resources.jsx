@@ -14,8 +14,8 @@ const Resources = () => {
             <Sidebar />
           </div>
           <div className="w-[1100px] ">
-            <h2 className="text-3xl md:text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-              RESOURCES
+            <h2 className="text-3xl uppercase md:text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
+              RESOURCE Centres for innovation
             </h2>
             
           

@@ -74,7 +74,7 @@ const Research_fac = () => {
           <div className="flex justify-center items-center flex-col">
             <div>
               <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-                Research and Facilities Centres
+                  Research Centres & Facilities 
               </h2>
             </div>
           </div>

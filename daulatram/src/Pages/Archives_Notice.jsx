@@ -65,14 +65,14 @@ const Public_Notice = () => {
         <div className="name">
           <div className="flex flex-row justify-center">
             <p className="  text-[#fff] text-6xl   mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-              Archive Notices{" "}
+              Notice Board{" "}
             </p>
           </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
-            <span className="ml-5">Archives Notice</span>
+            <span className="ml-5">Archives </span>
           </div>
         </div>
       </div>
@@ -83,7 +83,7 @@ const Public_Notice = () => {
         <div className="ml-5 mb-5 mr-6 w-full">
           <div className=" w-full ">
             <h2 className=" ml-28 text-xl md:text-2xl lg:text-3xl  uppercase font-bold mb-12 mt-12 flex flex-row md:justify-center items-center  ">
-              Archive Notices
+              Archives
             </h2>
             {data1 &&
               data1.map((curElem) => {

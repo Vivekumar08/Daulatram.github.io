@@ -149,14 +149,14 @@ const GE_Option = () => {
         <div className="name">
           <div className="flex flex-row justify-center">
             <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-              GE Options
+            VACs / SECs / GE Options
             </p>
           </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
-            <span className="ml-5">Admisssion</span>
+            <span className="ml-5">Admission</span>
           </div>
         </div>
       </div>
@@ -166,8 +166,8 @@ const GE_Option = () => {
         </div>
 
         <div className="w-full mb-5">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-            GE Options
+          <h2 className=" text-3xl md:text-4xl  font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
+          VACs / SECs / GE Options
           </h2>
           {data1 ? (
             data1.map((curElem) => {

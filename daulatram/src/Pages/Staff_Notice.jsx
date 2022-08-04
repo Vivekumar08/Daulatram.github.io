@@ -1,7 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../Context/AuthProvider";
 import axios from "axios";
-import Staff_Noticebanner from "../Components/Banners/Staff_Noticebanner";
+import Staff_Noticebanner from "../Components/Banners/Stu_Noticebanner";
+
 import Notice_side from "../Components/Sidebar/Notice_side";
 import Dropzone from "react-dropzone";
 import {
@@ -321,7 +322,7 @@ const Staff_Notice = () => {
         <div className="ml-5 mb-5 mr-6 w-full">
           <div className=" w-full ">
             <h2 className=" ml-28 text-xl md:text-2xl lg:text-3xl  uppercase font-bold mb-12 mt-12 flex flex-row md:justify-center items-center  ">
-              Staff Notice
+              Staff Notices
             </h2>
             {data1 &&
               data1.map((curElem) => {
