@@ -187,7 +187,7 @@ function Upperfooter() {
                   allowfullscreen=""
                   loading="lazy"
                   referrerpolicy="no-referrer-when-downgrade"
-                  className="w-[500px] lg:h-[400px] md:w-[768px] xl-[600px] h-[350px] mb-5 mt-5"
+                  className="w-[400px] lg:h-[400px] md:w-[350x] md:ml-12 md:h-[400px] xl-[600px] h-[300px] mb-5 mt-5"
                 ></iframe>
                 <Icons />
               </div>
