@@ -1,4 +1,4 @@
-import React ,{useEffect}from "react";
+import React from "react";
 import DeptSidebar from "../../Components/Sidebar/DeptSidebar";
 import DeptBanner from "../../Components/Banners/DeptBanner";
 import "./card.css";
@@ -6,12 +6,8 @@ import { dept } from "../../Components/Mylinks";
 import { Link } from "react-router-dom";
 
 function Department() {
-  useEffect(() => {
-    document.title="Departments"
-  }, [])
   
   return (
-    <>
       <>
         <div className=" flex flex-col">
           <div className="">
@@ -54,7 +50,6 @@ function Department() {
           </div>
         </div>
       </>
-    </>
   );
 }
 
