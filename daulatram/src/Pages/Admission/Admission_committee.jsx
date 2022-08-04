@@ -169,7 +169,7 @@ const Admission_committee = () => {
         </div>
 
         <div className="w-full ml-5">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[7%] flex flex-row justify-center items-center   ">
+          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             Admisssion Committee
           </h2>
           {data1 ? (
