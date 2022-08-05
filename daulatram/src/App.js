@@ -78,6 +78,8 @@ import Resources from "./Pages/Academics/Resources";
 import Contact from "./Pages/Footer/Contact";
 import Bulletins_page from "./Pages/Footer/Bulletins_page";
 import Internal from "./Pages/Student_zone/Internal";
+import Grievance from "./Pages/Student_zone/Grievance";
+import Complaints from "./Pages/Student_zone/Complaints";
 import First_year from "./Pages/Student_zone/Internals/First_year/First_year";
 import Second_year from "./Pages/Student_zone/Internals/Second_year/Second_year";
 import Third_year from "./Pages/Student_zone/Internals/Third_year/Third_year";
@@ -929,6 +931,22 @@ function App() {
               </>
             }
             path="/Student_Zone/Internal_Assesments"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Grievance />
+              </>
+            }
+            path="/Student_Zone/Grievance_Redressal"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Complaints/>
+              </>
+            }
+            path="/Student_Zone/Complainst_&_Suggetions"
           ></Route>{" "}
           <Route
             element={
