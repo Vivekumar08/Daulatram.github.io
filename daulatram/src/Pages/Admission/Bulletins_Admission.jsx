@@ -110,7 +110,7 @@ const Bulletins_Admission = () => {
             <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
-            <span className="ml-5">Admisssion</span>
+            <span className="ml-5">Admission</span>
           </div>
         </div>
       </div>

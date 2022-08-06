@@ -5,8 +5,6 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import Staff_side from "../../Components/Sidebar/Staff_side";
-import Research_banner from "../../Components/Banners/Research_banner";
 import Research_side from "../../Components/Sidebar/Research_side";
 
 const Publications_res = () => {
@@ -96,7 +94,26 @@ const Publications_res = () => {
 
   return (
     <div className=" flex flex-col">
-      <Research_banner/>
+      <div>
+      <div
+        className="Banner"
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      >
+        <div className="name">
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Publications {" "}
+            </p>
+          </div>
+          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080]  mt-28 ">
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+            <span className="ml-5">Research</span>
+          </div>
+        </div>
+      </div>
+    </div>
       <div className="flex flex-row">
         <div className="w-[350px]">
         <Research_side />
@@ -145,11 +162,39 @@ const Publications_res = () => {
                 })}
               <div class="card2 mb-10" >
                 <span className="  font-bold text-xl  w-[200px]">
-                Magzines And Newsletters
+                Faculty Publications
                 </span>
                 <div className="flex flex-col ml-8 w-full">
                   <div class="info2 ml-4 w-full ">
-                    <p className="text-justify mr-16">Magzines And Newsletters</p>
+                    <p className="text-justify mr-16">Faculty Publications</p>
+                    <br />
+                    <Link to={"Magzines_and_Newsletter"} className="">
+                      <button className="w-[80%]">View</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div class="card2 mb-10" >
+                <span className="  font-bold text-xl  w-[200px]">
+                Students' Publications
+                </span>
+                <div className="flex flex-col ml-8 w-full">
+                  <div class="info2 ml-4 w-full ">
+                    <p className="text-justify mr-16">Students' Publications</p>
+                    <br />
+                    <Link to={"Magzines_and_Newsletter"} className="">
+                      <button className="w-[80%]">View</button>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div class="card2 mb-10" >
+                <span className="  font-bold text-xl  w-[200px]">
+                Magazines & Newsletters
+                </span>
+                <div className="flex flex-col ml-8 w-full">
+                  <div class="info2 ml-4 w-full ">
+                    <p className="text-justify mr-16">Magazines & Newsletters</p>
                     <br />
                     <Link to={"Magzines_and_Newsletter"} className="">
                       <button className="w-[80%]">View</button>

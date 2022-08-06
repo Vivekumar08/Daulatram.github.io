@@ -33,10 +33,10 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td className="">
-                  <a href="" className="hover:text-red-600  " >BA_P</a>
+                  <a href="" className="hover:text-red-600  " >B.A. (Prog)</a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H)</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H) </a>
                 </td>
                 <td>
                   <a href="" className="hover:text-red-600  ">Commerce</a>
@@ -53,7 +53,7 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H)</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (H) </a>
                 </td>
                 <td>
                   <a href="" className="hover:text-red-600  ">Chemistry</a>
@@ -91,7 +91,7 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H)</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (H) </a>
                 </td>
                 <td>
                   <a href="" className="hover:text-red-600  ">Sciences</a>
@@ -113,7 +113,7 @@ const Attendence = () => {
                   <a href="" className="hover:text-red-600  ">English</a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H)</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H) </a>
                 </td>
                 <td>
                   {" "}
@@ -129,7 +129,7 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H)</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (H) </a>
                 </td>
                 <td>
                   <a href="" className="hover:text-red-600  ">Zoology</a>
@@ -151,7 +151,7 @@ const Attendence = () => {
                   <a href="" className="hover:text-red-600  ">Hindi</a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H) Physics</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H)  Physics</a>
                 </td>
                 <td>
                   {" "}
@@ -170,7 +170,7 @@ const Attendence = () => {
                   <a href="" className="hover:text-red-600  "></a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H)</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H) </a>
                 </td>
                 <td>
                   {" "}
@@ -189,7 +189,7 @@ const Attendence = () => {
                   <a href="" className="hover:text-red-600  "></a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H)</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H) </a>
                 </td>
                 <td>
                   {" "}
@@ -238,10 +238,10 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">BA_P</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (Prog)</a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H) Chemistry</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H)  Chemistry</a>
                 </td>
                 <td>
                   <a href="" className="hover:text-red-600  ">Commerce</a>
@@ -256,7 +256,7 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H) Economics</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (H)  Economics</a>
                 </td>
                 <td>
                   <a href="" className="hover:text-red-600  ">B.Sc Life Sciences</a>
@@ -273,10 +273,10 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H) English</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (H)  English</a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H) Physics</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H)  Physics</a>
                 </td>
                 <td>
                   {" "}
@@ -290,10 +290,10 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H) Hindi</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (H)  Hindi</a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H) Mathematics</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H)  Mathematics</a>
                 </td>
                 <td>
                   {" "}
@@ -322,10 +322,10 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">BA_P</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (Prog)</a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H) Chemistry</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H)  Chemistry</a>
                 </td>
                 <td>
                   <a href="" className="hover:text-red-600  ">Commerce</a>
@@ -340,29 +340,10 @@ const Attendence = () => {
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H) Economics</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (H)  Economics</a>
                 </td>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H) Mathematics</a>
-                </td>
-                <td>
-                  {" "}
-                  <a href="" className="hover:text-red-600  "></a>
-                </td>
-                {/* <td><a href="" className="hover:text-red-600  "></a></td> */}
-                <td>
-                  <a href="" className="hover:text-red-600  "></a>
-                </td>
-                <td>
-                  <a href="" className="hover:text-red-600  ">SECC</a>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H) English</a>
-                </td>
-                <td>
-                  <a href="" className="hover:text-red-600  ">B.Sc(H) Zoology</a>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H)  Mathematics</a>
                 </td>
                 <td>
                   {" "}
@@ -373,12 +354,31 @@ const Attendence = () => {
                   <a href="" className="hover:text-red-600  "></a>
                 </td>
                 <td>
+                  <a href="" className="hover:text-red-600  ">SEC</a>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <a href="" className="hover:text-red-600  ">B.A. (H)  English</a>
+                </td>
+                <td>
+                  <a href="" className="hover:text-red-600  ">B.Sc (H)  Zoology</a>
+                </td>
+                <td>
+                  {" "}
+                  <a href="" className="hover:text-red-600  "></a>
+                </td>
+                {/* <td><a href="" className="hover:text-red-600  "></a></td> */}
+                <td>
+                  <a href="" className="hover:text-red-600  "></a>
+                </td>
+                <td>
                   <a href="" className="hover:text-red-600  "></a>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H) Hindi</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (H)  Hindi</a>
                 </td>
                 <td>
                   <a href="" className="hover:text-red-600  ">B.Sc Life Sciences</a>
@@ -398,7 +398,7 @@ const Attendence = () => {
 
               <tr>
                 <td>
-                  <a href="" className="hover:text-red-600  ">B.A.(H)Political Science</a>
+                  <a href="" className="hover:text-red-600  ">B.A. (H) Political Science</a>
                 </td>
                 <td>
                   <a href="" className="hover:text-red-600  "></a>

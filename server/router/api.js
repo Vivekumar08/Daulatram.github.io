@@ -5493,9 +5493,7 @@ router.post("/Staff_notice_add_link", async(req, res) => {
         var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
         const { file, date, title, date_exp, new_ } = req.body;
         if (!title || !date || !file) {
-            return res
-                .status(400)
-                .json({ error: "Fill the Admission Details Properly" });
+            return res.status(400).json({ error: "Fill the Admission Details Properly" });
         }
         if (new_) {
             if (date_regex.test(date_exp)) {
@@ -5612,9 +5610,7 @@ router.post("/Student_notice_add_link", async(req, res) => {
         var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
         const { file, date, title, date_exp, new_ } = req.body;
         if (!title || !date || !file) {
-            return res
-                .status(400)
-                .json({ error: "Fill the Admission Details Properly" });
+            return res.status(400).json({ error: "Fill the Admission Details Properly" });
         }
         if (new_) {
             if (date_regex.test(date_exp)) {

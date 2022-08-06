@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import './Slider.css'
 import BtnSlider from './BtnSlider'
 import dataSlider from './dataSlider'
-// import NavLinks from '../NavLinks'
 
 export default function Slider() {
 
     const [slideIndex, setSlideIndex] = useState(1)  
     let slideInterval;
     let intervalTime = 3000;
+    const len = dataSlider.length
   
     const autoScroll = true;
 
@@ -39,7 +39,7 @@ export default function Slider() {
       }
 
     useEffect(() => {
-        setSlideIndex(0);
+        setSlideIndex(1);
     }, []);
 
     useEffect(() => {
@@ -59,7 +59,7 @@ export default function Slider() {
                             className={slideIndex === index + 1 ? "slide active-anim" : "slide"}
                         >
                             <img
-                                src={process.env.PUBLIC_URL + `/Images/img${index + 1}.jpeg`}
+                                src={obj.img}
                             />
                         </div>
                     )
@@ -68,7 +68,7 @@ export default function Slider() {
                 <BtnSlider moveSlide={prevSlide} direction={"prev"} />
 
                 <div className="container-dots">
-                    {Array.from({ length: 4 }).map((item, index) => (
+                    {dataSlider.map((obj, index) => (
                         <div
                             onClick={() => moveDot(index + 1)}
                             className={slideIndex === index + 1 ? "dot active" : "dot"}

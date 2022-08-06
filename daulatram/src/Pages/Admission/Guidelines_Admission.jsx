@@ -102,14 +102,14 @@ const Guidelines_Admission = () => {
         <div className="name">
           <div className="flex flex-row justify-center">
             <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-              SC/ST/OBC/EWS Guidelines
+            OBC/SC/ST/EWS Guidelines
             </p>
           </div>
           <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
             <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
-            <span className="ml-5">Admisssion</span>
+            <span className="ml-5">Admission</span>
           </div>
         </div>
       </div>
@@ -120,7 +120,7 @@ const Guidelines_Admission = () => {
 
         <div className="w-full">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-            SC/ST/OBC/EWS Guidelines
+          OBC/SC/ST/EWS Guidelines
           </h2>
           {data1 ? "" : <Maintanence />}
           <div class="flex justify-evenly w-full mt-5 mb-5">

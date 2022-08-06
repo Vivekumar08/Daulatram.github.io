@@ -173,22 +173,19 @@
   }
 
   .sliderr .slidee-track {
-      /* -webkit-animation: scroll 40s linear infinite; */
-      /* animation: scroll 5s linear infinite; */
-      /* display: flex; */
       width: 100%;
       height: 500px;
       position: relative;
       overflow: hidden;
   }
 
-  /* .sliderr .slidee {
-      height: 400px;
-      padding: 15px;
-      display: flex;
-  }
-   */
   .sliderr .slidee:hover {
       transform: scale(1.1);
       transition: 0.4s;
+  }
+
+  @media only screen and (max-width: 900px) {
+      .sliderr .slidee-track {
+          height: 400px;
+      }
   }

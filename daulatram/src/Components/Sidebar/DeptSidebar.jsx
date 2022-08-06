@@ -6,7 +6,7 @@ import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 const DeptSidebar = () => {
   const [visible, setVisible] = useState(false);
   return (
-    <div className="relative mb-10 md:w-[350px] invisible absolute md:relative md:visible mb-30">
+    <div className="relative mb-10 md:w-[350px] invisible  md:relative md:visible mb-30">
       <div className="absolute md:relative mt-[22%] bg-gray-200 rounded-lg">
       {acade.map((link) => (
         <>
@@ -38,7 +38,7 @@ const DeptSidebar = () => {
 {/* <div className="mt-[20%] mb-[20%] bg-gray-200 rounded-lg z-10 w-full"> */}
 {/* <div className="bg-[#000080]  flex justify-center mb-4 text-white pt-2 pb-2 pl-4 pr-4 rounded-lg font-bold text-3xl"> */}
 {visible ? (
-  <div className=" mb-[20%] mt-[5%] bg-gray-200 rounded-lg z-10 w-[250px] absolute mb-20">
+  <div className="  mt-[5%] bg-gray-200 rounded-lg z-10 w-[250px] absolute mb-20">
     {acade.map((link) => (
       <>
         <div className="bg-[#000080]  flex justify-center mb-4 ml-auto mr-auto  text-white pt-2 pb-2 pl-4 pr-4 rounded-lg font-bold text-xl">

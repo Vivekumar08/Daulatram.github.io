@@ -1,10 +1,15 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import AuthContext from "../Context/AuthProvider";
 import axios from "axios";
-import Public_Noticebanner from "../Components/Banners/Public_Noticebanner";
+import Public_Noticebanner from "../Components/Banners/Stu_Noticebanner";
+
 import Notice_side from "../Components/Sidebar/Notice_side";
 import Dropzone from "react-dropzone";
-import { faAdd, faArchive, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAdd,
+  faArchive,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Public_Notice = () => {
@@ -94,11 +99,11 @@ const Public_Notice = () => {
       if (!data && response.status === 400) {
         setErrMsg("No Server Response");
       } else if (response.status === 402) {
-        window.alert("Delete some previous bulletin")
+        window.alert("Delete some previous bulletin");
         setErrMsg("Delete some previous bulletin");
       } else {
         setAuth(true);
-        window.alert("Your information added into bulletin")
+        window.alert("Your information added into bulletin");
         fetchdata();
       }
     } catch (err) {
@@ -127,12 +132,9 @@ const Public_Notice = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Public_notice/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/delete_Public_notice/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -142,12 +144,9 @@ const Public_Notice = () => {
   };
   const del_archive = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Public_archive_notice/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/delete_Public_archive_notice/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -199,27 +198,49 @@ const Public_Notice = () => {
     e.preventDefault();
     try {
       if (caption.trim() !== "") {
-        // if (file) {
-        const date_e = `${date_exp}/${month_exp}/${year_exp}`;
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("title", caption);
-        formData.append("date", date);
-        formData.append("date_exp", date_e);
-        formData.append("new_", new_opt);
+        if (!date_exp || !month_exp || !year_exp) {
+          const date_e = null;
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("title", caption);
+          formData.append("date", date);
+          formData.append("date_exp", date_e);
+          formData.append("new_", new_opt);
 
-        setErrMsg("");
-        await axios.post(`/Public_notice_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        setCaption("");
-        setFile(null);
-        setIsPreviewAvailable(false);
-        setPreviewSrc("");
-        setAuth(true);
-        fetchdata();
+          setErrMsg("");
+          await axios.post(`/Public_notice_add`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          setCaption("");
+          setFile("");
+          setIsPreviewAvailable(false);
+          setPreviewSrc("");
+          setAuth(true);
+          fetchdata();
+        } else {
+          const date_e = `${date_exp}/${month_exp}/${year_exp}`;
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("title", caption);
+          formData.append("date", date);
+          formData.append("date_exp", date_e);
+          formData.append("new_", new_opt);
+
+          setErrMsg("");
+          await axios.post(`/Public_notice_add`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          setCaption("");
+          setFile("");
+          setIsPreviewAvailable(false);
+          setPreviewSrc("");
+          setAuth(true);
+          fetchdata();
+        }
       } else {
         // setErrMsg("Please select a file to add.");
         setErrMsg("Please enter all the field values.");
@@ -233,10 +254,10 @@ const Public_Notice = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     try {
-      const date_e = `${date_exp}/${month_exp}/${year_exp}`;
-      const response = await fetch(
-        "/Public_notice_add_link",
-        {
+      if (!date_exp || !month_exp || !year_exp) {
+        const date_e = null;
+          setErrMsg("");
+          const response = await fetch("/Public_notice_add_link", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -248,18 +269,45 @@ const Public_Notice = () => {
             date_exp: date_e,
             new_: new_opt,
           }),
+        });
+        const data = await response.json();
+        if (!data && response.status === 400) {
+          setErrMsg("No Server Response");
+        } else if (response.status === 400) {
+          setErrMsg("Fill Complete Details");
+        } else {
+          setCaption("");
+          setFile("");
+          setAuth(true);
+          fetchdata();
         }
-      );
-      const data = await response.json();
-      if (!data && response.status === 400) {
-        setErrMsg("No Server Response");
-      } else if (response.status === 400) {
-        setErrMsg("Fill Complete Details");
       } else {
-        setCaption("");
-        setFile(null);
-        setAuth(true);
-        fetchdata();
+        const date_e = `${date_exp}/${month_exp}/${year_exp}`;
+          setErrMsg("");
+          const response = await fetch("/Public_notice_add_link", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: caption,
+            file: file,
+            date: date,
+            date_exp: date_e,
+            new_: new_opt,
+          }),
+        });
+        const data = await response.json();
+        if (!data && response.status === 400) {
+          setErrMsg("No Server Response");
+        } else if (response.status === 400) {
+          setErrMsg("Fill Complete Details");
+        } else {
+          setCaption("");
+          setFile("");
+          setAuth(true);
+          fetchdata();
+        }
       }
     } catch (err) {
       console.log(err);
@@ -268,7 +316,7 @@ const Public_Notice = () => {
 
   return (
     <div className=" flex flex-col">
-        <Public_Noticebanner />
+      <Public_Noticebanner />
       <div className="flex flex-row">
         <div className="md:w-[280px] mt-2 ">
           <Notice_side />
@@ -276,7 +324,7 @@ const Public_Notice = () => {
         <div className="ml-5 mb-5 mr-6 w-full">
           <div className=" w-full ">
             <h2 className=" ml-28 text-xl md:text-2xl lg:text-3xl uppercase font-bold mb-12 mt-12 flex flex-row md:justify-center items-center  ">
-              Public Notice
+              Public Notices
             </h2>
             {data1 &&
               data1.map((curElem) => {
@@ -320,7 +368,7 @@ const Public_Notice = () => {
                             >
                               <span className="text-base md:text-xl">
                                 {title}
-                                {diffDays>0 && new_ && (
+                                {diffDays > 0 && new_ && (
                                   <sup className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>

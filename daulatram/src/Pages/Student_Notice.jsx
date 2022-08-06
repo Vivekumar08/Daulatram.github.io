@@ -4,7 +4,11 @@ import axios from "axios";
 import Stu_Noticebanner from "../Components/Banners/Stu_Noticebanner";
 import Notice_side from "../Components/Sidebar/Notice_side";
 import Dropzone from "react-dropzone";
-import { faAdd, faArchive, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAdd,
+  faArchive,
+  faTrashCan,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Student_Notice = () => {
@@ -40,8 +44,9 @@ const Student_Notice = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const current = new Date();
-  const date = `${current.getDate()}/${current.getMonth() + 1
-    }/${current.getFullYear()}`;
+  const date = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
 
   const fetchdata = async () => {
     const response = await fetch("/Student_notice");
@@ -87,12 +92,9 @@ const Student_Notice = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Student_notice/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/delete_Student_notice/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -102,12 +104,9 @@ const Student_Notice = () => {
   };
   const del_archive = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Student_archive_notice/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/delete_Student_archive_notice/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -125,23 +124,20 @@ const Student_Notice = () => {
     date
   ) => {
     try {
-      const response = await fetch(
-        "/Bulletins_notice_add",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            title,
-            file_mimetype,
-            file_path,
-            new_,
-            date_exp,
-            date,
-          }),
-        }
-      );
+      const response = await fetch("/Bulletins_notice_add", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          title,
+          file_mimetype,
+          file_path,
+          new_,
+          date_exp,
+          date,
+        }),
+      });
       const data = await response.json();
       if (!data && response.status === 400) {
         setErrMsg("No Server Response");
@@ -200,33 +196,53 @@ const Student_Notice = () => {
     e.preventDefault();
     try {
       if (caption.trim() !== "") {
-        // if (file) {
-        const date_e = `${date_exp}/${month_exp}/${year_exp}`;
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("title", caption);
-        formData.append("date", date);
-        formData.append("date_exp", date_e);
-        formData.append("new_", new_opt);
+        if (!date_exp || !month_exp || !year_exp) {
+          const date_e = null;
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("title", caption);
+          formData.append("date", date);
+          formData.append("date_exp", date_e);
+          formData.append("new_", new_opt);
 
-        setErrMsg("");
-        await axios.post(`/Student_notice_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        setCaption("");
-        setFile(null);
-        setIsPreviewAvailable(false);
-        setPreviewSrc("");
-        setAuth(true);
-        fetchdata();
+          setErrMsg("");
+          await axios.post(`/Student_notice_add`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          setCaption("");
+          setFile("");
+          setIsPreviewAvailable(false);
+          setPreviewSrc("");
+          setAuth(true);
+          fetchdata();
+        } else {
+          const date_e = `${date_exp}/${month_exp}/${year_exp}`;
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("title", caption);
+          formData.append("date", date);
+          formData.append("date_exp", date_e);
+          formData.append("new_", new_opt);
+
+          setErrMsg("");
+          await axios.post(`/Student_notice_add`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          setCaption("");
+          setFile("");
+          setIsPreviewAvailable(false);
+          setPreviewSrc("");
+          setAuth(true);
+          fetchdata();
+        }
       } else {
         // setErrMsg("Please select a file to add.");
         setErrMsg("Please enter all the field values.");
       }
-      // } else {
-      // }
     } catch (err) {
       err.response && setErrMsg(err.response.data);
     }
@@ -234,11 +250,10 @@ const Student_Notice = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     try {
-      const date_e = `${date_exp}/${month_exp}/${year_exp}`;
-      setErrMsg("");
-      const response = await fetch(
-        "/Student_notice_add_link",
-        {
+      if (!date_exp || !month_exp || !year_exp) {
+        const date_e = null;
+        setErrMsg("");
+        const response = await fetch("/Student_notice_add_link", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -250,18 +265,45 @@ const Student_Notice = () => {
             date_exp: date_e,
             new_: new_opt,
           }),
+        });
+        const data = await response.json();
+        if (!data && response.status === 400) {
+          setErrMsg("No Server Response");
+        } else if (response.status === 400) {
+          setErrMsg("Fill Complete Details");
+        } else {
+          setCaption("");
+          setFile("");
+          setAuth(true);
+          fetchdata();
         }
-      );
-      const data = await response.json();
-      if (!data && response.status === 400) {
-        setErrMsg("No Server Response");
-      } else if (response.status === 400) {
-        setErrMsg("Fill Complete Details");
       } else {
-        setCaption("");
-        setFile("");
-        setAuth(true);
-        fetchdata();
+        const date_e = `${date_exp}/${month_exp}/${year_exp}`;
+        setErrMsg("");
+        const response = await fetch("/Student_notice_add_link", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            title: caption,
+            file: file,
+            date: date,
+            date_exp: date_e,
+            new_: new_opt,
+          }),
+        });
+        const data = await response.json();
+        if (!data && response.status === 400) {
+          setErrMsg("No Server Response");
+        } else if (response.status === 400) {
+          setErrMsg("Fill Complete Details");
+        } else {
+          setCaption("");
+          setFile("");
+          setAuth(true);
+          fetchdata();
+        }
       }
     } catch (err) {
       console.log(err);
@@ -278,7 +320,7 @@ const Student_Notice = () => {
         <div className="ml-5 mb-5 mr-6 w-full">
           <div className=" w-full ">
             <h2 className=" ml-28 text-xl md:text-2xl lg:text-3xl uppercase font-bold mb-12 mt-12 flex flex-row md:justify-center items-center  ">
-              Student Notice
+              Student Notices
             </h2>
             {data1 &&
               data1.map((curElem) => {
@@ -318,7 +360,7 @@ const Student_Notice = () => {
                             <a
                               href={path}
                               target="_blank"
-                            // rel="noopener noreferrer"
+                              // rel="noopener noreferrer"
                             >
                               <span className="text-base md:text-xl">
                                 {title}

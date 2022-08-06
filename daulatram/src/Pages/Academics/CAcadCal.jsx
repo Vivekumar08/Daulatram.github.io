@@ -108,12 +108,12 @@ const CAcadCal = () => {
         
           <div className="md:w-[500px] lg:w-[1100px]">
             <h2 className=" text-2xl md:text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center">
-            College Academics Calendar
+            College Academic Calendar
             </h2>
             <div className="main flex-col">
               <table className="w-96 h-48 ml-3 md:table-fixed md:ml-10 md:w-[500px] md:h-[180px] lg:ml-32 lg:w-[800px] lg:h-[180px] mt-1">
                 <tr className="h-20 text-m md:text-lg">
-                  <th className="row text-m md:text-lg">S.no</th>
+                  <th className="row text-m md:text-lg">S. No.</th>
                   <th className="text-m md:text-lg">About</th>
                   <th className="text-m md:text-lg">PDF</th>
                   {auth && <th className="text-m md:text-lg w-[15%]">Delete</th>}
