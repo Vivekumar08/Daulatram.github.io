@@ -164,6 +164,8 @@ const Sanskrit_Time = require("../models/Academics/Departments/Sanskrit/Sanskrit
 const Zoology_Time = require("../models/Academics/Departments/Zoology/Zoology_Time_Schema");
 const PS_Time = require("../models/Academics/Departments/Political_Science/PS_Time_Schema");
 const Bot_Publications = require("../models/Academics/Departments/Botany/Pubs_Schema");
+const Useful_Links = require("../models/Useful_Links_schema");
+
 
 // const NHE_Awards = require("../models/Academics/Departments/NHE/Awards_Schema");
 const Philo_ProgramOffered = require("../models/Academics/Departments/Philosophy/Philo_ProgramsOffered_Schema");
@@ -5773,8 +5775,8 @@ router.post(
     "/Teacher_In_Charge_add",
     async(req, res) => {
         try {
-            const { title, link,Tic1, Tic2 } = req.body;
-            console.log(title, link,Tic1, Tic2)
+            const { title, link, Tic1, Tic2 } = req.body;
+            console.log(title, link, Tic1, Tic2)
             const file = new Teacher({
                 title,
                 link,
@@ -5950,6 +5952,94 @@ router.post(
 router.get("/Magz_and_News_res_download/:id", async(req, res) => {
     try {
         const file = await Magz_and_News.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+// Useful Links
+router.post("/delete_Useful_Links/:id", async(req, res) => {
+    const delete_user = await Useful_Links.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Useful_Links_res_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Useful_Links.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.get("/Useful_Links_res", async(req, res) => {
+    try {
+        const files = await Useful_Links.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+router.post("/Useful_Links_res_upload", async(req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Useful_Links({
+            title: title,
+            description: description,
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Useful_Links_res_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path,mimetype)
+            const dat = await Useful_Links.findOneAndUpdate({ _id: req.params.id }, {
+                $push: {
+                    "img_data.file_path": {
+                        file_path1: path,
+                        file_mimetype1: mimetype,
+                    },
+                },
+            });
+            // console.log(dat)
+            if (dat) {
+                res.status(200).send("file uploaded successfully.");
+            }
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Useful_Links_res_download/:id", async(req, res) => {
+    try {
+        const file = await Useful_Links.findById(req.params.id);
         res.set({
             "Content-Type": file.file_mimetype,
         });
