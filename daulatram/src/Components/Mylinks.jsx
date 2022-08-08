@@ -45,7 +45,7 @@ export const links = [
         link: "/academics/departments",
       },
       {
-        name: "Teachers-In-Charges",
+        name: "Teachers-In-Charge",
         link: "/academics/Teacher_in_charge",
       },
       {
@@ -82,7 +82,7 @@ export const links = [
     name: "Research",
     links: [
       {
-        name: "Facilities & Research Centres",
+        name: " Research Centres & Facilities ",
         link: "/research/research_facilities",
       },
       {
@@ -211,6 +211,10 @@ export const links = [
         name: "Complaints/Suggestions",
         link: "/Student_Zone/Complainst_&_Suggetions",
       },
+      {
+        name: "Feedback",
+        link: "/Student_Zone/Student_Feedback",
+      },
     ],
   },
   {
@@ -287,11 +291,11 @@ export const useful = [
     name: "Useful Links",
     links: [
       {
-        name: "Covid Information & Resources",
+        name: "COVID Information & Resources",
         link: "http://www.du.ac.in/uploads/COVIDCARE/index.html",
       },
       {
-        name: "Employement Opportunities",
+        name: "Employment Opportunities",
         link: "https://www.dr.du.ac.in/employment-opportunities.php",
       },
       {
@@ -299,11 +303,11 @@ export const useful = [
         link: "#",
       },
       {
-        name: "E-Paathshala",
+        name: "e-Pathshala",
         link: "https://epgp.inflibnet.ac.in/",
       },
       {
-        name: "Swayam Protal",
+        name: "Swayam Portal",
         link: "https://swayam.gov.in/",
       },
       {
@@ -619,7 +623,7 @@ export const Student = [
         link: "/Student_Zone/Internal_Assesments",
       },
       {
-        name: "Examination Form And Datesheet",
+        name: "Examination Form and Datesheet",
         link: "/Student_Zone/Examination_Form_&_Database",
       },
       {
@@ -635,11 +639,11 @@ export const Student = [
         link: "/Student_Zone/Fee_Payment_Portal",
       },
       {
-        name: "Student Notice",
+        name: "Student Notices",
         link: "/Student_Zone/Student_Notice",
       },
       {
-        name: "Scholarship",
+        name: "Scholarships",
         link: "/Student_Zone/Scholarship",
       },
       {
@@ -677,6 +681,10 @@ export const Student = [
       {
         name: "Complaints / Suggestions",
         link: "/Student_Zone/Complainst_&_Suggetions",
+      },
+      {
+        name: "Feedback",
+        link: "/Student_Zone/Student_Feedback",
       },
     ],
   },

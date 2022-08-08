@@ -40,6 +40,7 @@ const Principal = require("../models/About_Us/Principal_Schema");
 const Gallery_About = require("../models/About_Us/Gallery_About_Schema");
 const VicePrincipal = require("../models/About_Us/VicePrincipal_Schema");
 const Student_forms = require("../models/StudentZone/StudentZone_foms_Schema");
+const Ethics = require("../models/StaffZone/Ethics_Schema");
 const Student_Notice = require("../models/Notices/Student_Notice_Schema");
 const Staff_Notice = require("../models/Notices/Staff_Notice_Schema");
 const Public_Notice = require("../models/Notices/Public_Notice_Schema");
@@ -4200,6 +4201,81 @@ router.post(
         }
     }
 );
+// Professional Code of Ethics
+
+router.get("/Ethics_", async(req, res) => {
+    const details = await Ethics.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+router.delete("/delete_Ethics/:id", async(req, res) => {
+    const delete_user = await Ethics.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === "text/link") {
+        console.log(delete_user.file_mimetype);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(delete_user.file_mimetype);
+        await unlinkAsync(delete_user.file_path);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+router.post("/Ethics_add_link", async(req, res) => {
+    try {
+        console.log(req.body);
+        const { file, link, title,heading } = req.body;
+        if (!title || !link || !file || !heading) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Ethics Details Properly" });
+        }
+        const user = new Ethics({
+            heading,
+            title,
+            link,
+            file_path: file,
+            file_mimetype: "text/link",
+        });
+        await user.save();
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+router.post(
+    "/Ethics_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { title, link,heading } = req.body;
+            const { path, mimetype } = req.file;
+            if (!title || !link || !file || !heading) {
+                return res
+                    .status(400)
+                    .json({ error: "Fill the Ethics Details Properly" });
+            }
+            const file = new Ethics({
+                heading,
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype,
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
 // Online Admission
 
 router.get("/admission", async(req, res) => {
@@ -5688,6 +5764,33 @@ router.post(
         }
     }
 );
+
+// Student Zone Feedback
+
+router.get("/Studfeedback", async(req, res) => {
+    // res.send(`Hello World from the server`);
+    const details = await Feedback.find();
+    res.status(200).json(details);
+});
+
+router.post("/StudentZone_feedback", async(req, res) => {
+    const { Link, Caption, text } = req.body;
+    if (!Link || !Caption) {
+        return res
+            .status(400)
+            .json({ error: "Fill the Admission Details Properly" });
+    }
+    const user = new Feedback(req.body);
+    await user.save();
+    console.log("Details Saved Successfully");
+    return res.status(200).json({ message: "Details Saved Successfully " });
+});
+router.delete("/deletestudfeedback/:id", async(req, res) => {
+    const delete_user = await Feedback.findOneAndDelete({ _id: req.params.id });
+    res.status(200).json(delete_user + "User deleted");
+});
+
+
 // Student-Zone Forms
 
 router.get("/StudentZone_forms", async(req, res) => {
