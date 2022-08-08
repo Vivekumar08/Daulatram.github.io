@@ -162,34 +162,6 @@ const Publications_res = () => {
                 })}
               <div class="card2 mb-10" >
                 <span className="  font-bold text-xl  w-[200px]">
-                Faculty Publications
-                </span>
-                <div className="flex flex-col ml-8 w-full">
-                  <div class="info2 ml-4 w-full ">
-                    <p className="text-justify mr-16">Faculty Publications</p>
-                    <br />
-                    <Link to={"Magzines_and_Newsletter"} className="">
-                      <button className="w-[80%]">View</button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div class="card2 mb-10" >
-                <span className="  font-bold text-xl  w-[200px]">
-                Students' Publications
-                </span>
-                <div className="flex flex-col ml-8 w-full">
-                  <div class="info2 ml-4 w-full ">
-                    <p className="text-justify mr-16">Students' Publications</p>
-                    <br />
-                    <Link to={"Magzines_and_Newsletter"} className="">
-                      <button className="w-[80%]">View</button>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div class="card2 mb-10" >
-                <span className="  font-bold text-xl  w-[200px]">
                 Magazines & Newsletters
                 </span>
                 <div className="flex flex-col ml-8 w-full">
