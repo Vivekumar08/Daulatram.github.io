@@ -59,12 +59,9 @@ const Accred = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/deleteaccred/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/deleteaccred/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -92,15 +89,11 @@ const Accred = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(
-          `/accred_online_add`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axios.post(`/accred_online_add`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         setCaption("");
         setLink("");
         setFile(null);
@@ -119,20 +112,17 @@ const Accred = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch(
-      "/accred_online_add_link",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          link: link,
-          title: caption,
-          file: file,
-        }),
-      }
-    );
+    const response = await fetch("/accred_online_add_link", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        link: link,
+        title: caption,
+        file: file,
+      }),
+    });
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
@@ -168,14 +158,52 @@ const Accred = () => {
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="md:w-[350px] ">
-          <Accreditation />
-        </div>
-
         <div className="w-full mb-5">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-              Accreditation          </h2>
-          {data1 ? (
+            Accreditation{" "}
+          </h2>
+          {data1 ? "" : <Maintanence />}
+          {/* <div class="flex justify-evenly w-full mt-5 mb-5"> */}
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4  w-full mt-5 mb-5">
+            {data1
+              ? data1.map((curElem) => {
+                  const { _id, title, file_path, link } = curElem;
+                  var path_pic = file_path;
+                  var path2 = path_pic.replace(/\\/g, "/");
+                  var path = path2.slice(19);
+                  return (
+                    <>
+                      <div class="card2 ml-20 mt-8" key={_id}>
+                        <span className="  font-bold text-lg ml-4 text-justify">
+                          {link}
+                        </span>
+                        <div className="flex flex-col ml-6 text-lg w-full">
+                          <div class="info2 ml-4 w-full">
+                            <p className="text-justify">{title}</p>
+                            <a href={path} className="">
+                              <button className="w-[80%]">View</button>
+                            </a>
+                            {auth && (
+                              <>
+                                <div className="flex flex-col w-full">
+                                  <FontAwesomeIcon
+                                    icon={faTrashCan}
+                                    size="lg"
+                                    className=" cursor-pointer ml-auto  hover:text-red-500"
+                                    onClick={() => del(_id)}
+                                  ></FontAwesomeIcon>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })
+              : ""}
+          </div>
+          {/* {data1 ? (
             data1.map((curElem) => {
               const { _id, title, file_path, link } = curElem;
               var path_pic = file_path;
@@ -226,7 +254,7 @@ const Accred = () => {
             })
           ) : (
             <Maintanence />
-          )}
+          )} */}
           {auth && (
             <>
               <form

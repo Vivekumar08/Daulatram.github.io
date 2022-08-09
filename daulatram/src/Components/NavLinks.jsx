@@ -48,7 +48,7 @@ const NavLinks = () => {
                         <div>
                           {slink.name != "Annual Report" && (
                             <Link to={slink.link} className="hover:text-white">
-                              <li className="text-base m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-xl outline-none hover:text-white hover:bg-[#000080] ">
+                              <li className="text-base m-1 p-1 pl-2 pr-2 text-gray-500  rounded-xl outline-none hover:text-white hover:bg-[#000080] ">
                                 {slink.name}
                               </li>
                             </Link>
@@ -59,7 +59,7 @@ const NavLinks = () => {
                               target="_blank"
                               className="hover:text-white"
                             >
-                              <li className="text-base m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-xl outline-none hover:text-white hover:bg-[#000080] ">
+                              <li className="text-base m-1 p-1 pl-2 pr-2 text-gray-500  rounded-xl outline-none hover:text-white hover:bg-[#000080] ">
                                 {slink.name}
                               </li>
                             </a>
