@@ -276,7 +276,7 @@ import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_ga
 import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
 
 import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
-
+import Accreditation from "./Pages/Accreditation/accred"
 import Useful from "./Pages/UsefulLinks/Useful";
 
 
@@ -2135,6 +2135,14 @@ function App() {
               </>
             }
             path="/Library"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Accreditation />
+              </>
+            }
+            path="/Accreditation"
           ></Route>{" "}
           <Route
             element={
