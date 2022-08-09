@@ -69,6 +69,7 @@ const NHE_Faculty = require("../models/Academics/Departments/NHE/NHE_Faculty_Sch
 const Hin_Faculty = require("../models/Academics/Departments/Hindi/Hin_Faculty_Schema");
 const Bio_ProgramOffered = require("../models/Academics/Departments/Biochemistry/Bio_ProgramsOffered_Schema");
 const Bio_Awards = require("../models/Academics/Departments/Biochemistry/Awards_Schema");
+const Bio_Evetns = require("../models/Academics/Departments/Biochemistry/Bio_Evetns_Schema");
 const Biochem_About = require("../models/Academics/Departments/Biochemistry/About_depart_Schema");
 const Bio_Photo_Gallery = require("../models/Academics/Departments/Biochemistry/Bio_Photo_Gallery_Schema");
 const Hist_Photo_Gallery = require("../models/Academics/Departments/History/Hist_Photo_Gallery_Schema");
@@ -8347,6 +8348,52 @@ router.post(
         }
     }
 );
+
+// Biochemistry Events
+router.delete("/delete_Bio_Evetns/:id", async(req, res) => {
+    const delete_user = await Bio_Evetns.findOneAndDelete({ _id: req.params.id });
+    await unlinkAsync(delete_user.file_path);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.get("/Bio_Evetns", async(req, res) => {
+    try {
+        const files = await Bio_Evetns.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+router.post(
+    "/Bio_Evetns_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Bio_Evetns({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype,
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
 
 // Societies
 router.delete("/delete_Socities/:id", async(req, res) => {
