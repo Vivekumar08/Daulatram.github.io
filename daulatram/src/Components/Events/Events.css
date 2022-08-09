@@ -14,6 +14,7 @@
     margin-left: 20px;
     opacity: 1;
     box-shadow: 10px;
+    width: fit-content;
     border-radius: 16px;
     margin-top: 30px;
     border: 4px solid transparent;
@@ -33,7 +34,7 @@
     border: 2px solid transparent;
     border-radius: 10px;
     margin-top: -100px;
-    margin-left: 30px;
+    margin-left: 20px;
     opacity: 0;
 }
 
@@ -86,6 +87,7 @@
     box-shadow: 50px;
 }
 
+/* 
 @media only screen and (max-width: 1352px){
     .main_div1 {
         display: grid;
@@ -104,9 +106,6 @@
         border-radius: 16px;
         margin-top: 20px;
         width: fit-content;
-        /* padding: 10px; */
-    
-        /* border: 2px solid transparent; */
        
     }
 
@@ -115,10 +114,8 @@
 
     .main_div1 {
         background-color: rgb(255, 255, 255);
-        /* display: flex; */
         display: grid;
         grid-template-columns: 1fr 1fr ;
-        /* gap: 50px 100px; */
         width: 100%;
         height: 100%;
     }
@@ -134,9 +131,6 @@
         border-radius: 16px;
         margin-top: 20px;
         width: fit-content;
-        /* padding: 10px; */
-    
-        /* border: 2px solid transparent; */
        
     }
     .read_btn {
@@ -163,9 +157,6 @@
         max-height:30vh;
         border-radius: 12px;
         opacity: 0.8;
-        /* padding: 10px; */
-        /* margin: 10px;
-        margin-right: 10px; */
     }
     .event_name {
         position: absolute;
@@ -187,4 +178,5 @@
     
     }
   }
-  
+
+   */
