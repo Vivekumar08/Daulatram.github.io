@@ -15,7 +15,7 @@ const User = require("../models/adminSchema");
 const Adminssion = require("../models/Admission/onlineAdmission");
 const Eresources = require("../models/StudentZone/eResources_Schema");
 
-const accred = require("../models/Accreditation/Accreditation");
+const Accred = require("../models/Accreditation/Accreditation_Schema");
 const Fee_Structure = require("../models/Admission/Fee_Structure_Schema");
 const Admission_FAQs = require("../models/Admission/Fee_Structure_Schema");
 const Admission_Grievance = require("../models/Admission/Admission_Grievance_Schema");
@@ -4064,17 +4064,21 @@ router.post(
 );
 // Accreditation
 
+
 router.get("/accred", async(req, res) => {
     const details = await accred.find();
+
+
     if (details.length === 0) {
         res.status(200).json(false);
     } else {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteaccred/:id", async(req, res) => {
-    const delete_user = await accred.findOneAndDelete({ _id: req.params.id });
-    if (delete_user.file_mimetype === "text/link") {
+
+router.delete("/deleteaccred/:id", async (req, res) => {
+    const delete_user = await Accred.findOneAndDelete({ _id: req.params.id });
+   if (delete_user.file_mimetype === "text/link") {
         console.log(delete_user.file_mimetype);
         res.status(200).json(delete_user + "User deleted");
     } else {
@@ -4092,7 +4096,7 @@ router.post("/accred_online_add_link", async(req, res) => {
                 .status(400)
                 .json({ error: "Fill the Details Properly" });
         }
-        const user = new accred({
+        const user = new Accred({
             title,
             link,
             file_path: file,
@@ -4112,7 +4116,7 @@ router.post(
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
-            const file = new accred({
+            const file = new Accred({
                 title,
                 link,
                 file_path: path,

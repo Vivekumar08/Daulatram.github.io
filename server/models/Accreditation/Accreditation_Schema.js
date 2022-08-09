@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const accreditation = new mongoose.Schema(
+const Accreditation_Schema = new mongoose.Schema(
     {
         title: {
             type: String,
@@ -27,5 +27,5 @@ const accreditation = new mongoose.Schema(
 )
 
 
-const accred = mongoose.model('ACCRED', accreditation);
+const accred = mongoose.model('ACCRED', Accreditation_Schema);
 module.exports = accred;

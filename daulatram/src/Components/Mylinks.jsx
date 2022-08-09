@@ -263,27 +263,27 @@ export const useful = [
     links: [
       {
         name: "NAAC/IQAC",
-        link: "/Accreditation/NAAC_IQAC",
+        link: "/Accreditation",
       },
       {
         name: "NAAC/AQAR",
-        link: "/academics/NAAC_AQAR",
+        link: "/Accreditation",
       },
       {
         name: "NIRF",
-        link: "/academics/NIRF",
+        link: "/Accreditation",
       },
       {
         name: "AISHE",
-        link: "/academics/AISHE",
+        link: "/Accreditation",
       },
       {
         name: "DBT Star College",
-        link: "/academics/DBT_Star_college",
+        link: "/Accreditation",
       },
       {
         name: "Other Rankings",
-        link: "/academics/Other_rankings",
+        link: "/Accreditation",
       },
     ],
   },

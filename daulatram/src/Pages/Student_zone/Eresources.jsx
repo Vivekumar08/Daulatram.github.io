@@ -1,8 +1,6 @@
-Student_side
 import Student_side from "../../Components/Sidebar/Student_side";
 import "./Eresources.css";
 import Maintanence from "../../Components/UnderMaintanence/Maintanence";
-import Eresourcesbanner from "../../Components/Banners/Eresourcesbanner";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -182,7 +180,48 @@ const Eresources = () => {
             <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             <span className="lowercase">e</span> -Resources
             </h2>
-            {data1 ? (
+            {data1 ? "" : <Maintanence />}
+          {/* <div class="flex justify-evenly w-full mt-5 mb-5"> */}
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 2xl:grid-cols-4  w-full mt-5 mb-5">
+            {data1
+              ? data1.map((curElem) => {
+                  const { _id, title, file_path, link } = curElem;
+                  var path_pic = file_path;
+                  var path2 = path_pic.replace(/\\/g, "/");
+                  var path = path2.slice(19);
+                  return (
+                    <>
+                      <div class="card2 ml-20 mt-8" key={_id}>
+                        <span className="  font-bold text-lg ml-4 text-justify">
+                          {link}
+                        </span>
+                        <div className="flex flex-col ml-6 text-lg w-full">
+                          <div class="info2 ml-4 w-full">
+                            <p className="text-justify">{title}</p>
+                            <a href={path} className="">
+                              <button className="w-[80%]">View</button>
+                            </a>
+                            {auth && (
+                              <>
+                                <div className="flex flex-col w-full">
+                                  <FontAwesomeIcon
+                                    icon={faTrashCan}
+                                    size="lg"
+                                    className=" cursor-pointer ml-auto  hover:text-red-500"
+                                    onClick={() => del(_id)}
+                                  ></FontAwesomeIcon>
+                                </div>
+                              </>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </>
+                  );
+                })
+              : ""}
+          </div>
+            {/* {data1 ? (
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
                 var path_pic = file_path;
@@ -233,7 +272,7 @@ const Eresources = () => {
               })
             ) : (
               <Maintanence />
-            )}
+            )} */}
             {auth && (
               <>
                 <form
