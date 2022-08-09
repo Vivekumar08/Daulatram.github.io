@@ -81,7 +81,7 @@ const Sans_fac = () => {
             </div>
             <div className="  ">
               <h2 className="md:text-2xl text-lg uppercase font-bold m-1 flex  items-center  ">
-                Superannuated Faculty
+                Superannuated / Former Faculty 
               </h2>
             </div>
             <div className="flex flex-col md:flex-row">

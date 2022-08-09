@@ -102,8 +102,6 @@ const Hin_faculty = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setFile({imag,pdf} );
-    // console.log(data);
     try {
       if (link.trim() !== "" && caption.trim() !== "") {
         if (imag) {
@@ -119,6 +117,9 @@ const Hin_faculty = () => {
               },
             }
           );
+          setImg("")
+          setPreviewSrcImg("")
+          setIsPreviewAvailableImg(false)
           setCaption("");
           setLink("");
           setAuth(true);
@@ -196,21 +197,11 @@ const Hin_faculty = () => {
                 );
               })}
           </div>
-            {/* {data1 &&
-            data1.map((curElem) => {
-              const { filter } = curElem;
-              return (
-                <>
-                  {filter === "Supernnuated" && ( */}
           <div className="  ">
             <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
-              Superannuated
+              Superannuated / Former Faculty
             </h2>
           </div>
-          {/* )}
-                </>
-              );
-            })} */}
           <div class="grid grid-cols-1 sm:grid-cols-2 ml-5 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
@@ -284,7 +275,7 @@ const Hin_faculty = () => {
                       value="Supernnuated"
                       className="p-2 text-lg acctive:text-white  block px-4 py-2 "
                     >
-                      Superannuated
+                      Superannuated / Former Faculty
                     </option>
                   </select>
                 </div>
