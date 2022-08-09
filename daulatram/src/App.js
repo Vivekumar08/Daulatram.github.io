@@ -107,6 +107,7 @@ import Public_Notice from "./Pages/Public_Notice";
 import RTI from "./Pages/RTI/RTI";
 
 import Undergraduate from "./Pages/Academics/Undergraduate";
+import Postgraduate from "./Pages/Academics/Postgraduate";
 import Teacher from "./Pages/Academics/teacher";
 import Trainingp from "./Pages/Academics/trainingp";
 import AcadCal from "./Pages/Academics/AcadCal";
@@ -273,7 +274,11 @@ import PS_gallery from "./Pages/Academics/Departments/Political_Science/PS_galle
 import Psycho_gallery from "./Pages/Academics/Departments/Psychology/Psycho_gallery";
 import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_gallery";
 import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
+
+import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
+
 import Useful from "./Pages/UsefulLinks/Useful";
+
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -511,6 +516,14 @@ function App() {
               </>
             }
             path="/academics/UG_courses"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Postgraduate />
+              </>
+            }
+            path="/academics/PG_courses"
           ></Route>{" "}
           <Route
             element={
@@ -904,6 +917,14 @@ function App() {
               </>
             }
             path="/Student_Zone/Complainst_&_Suggetions"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Stud_Feedback/>
+              </>
+            }
+            path="/Student_Zone/Student_Feedback"
           ></Route>{" "}
           <Route
             element={

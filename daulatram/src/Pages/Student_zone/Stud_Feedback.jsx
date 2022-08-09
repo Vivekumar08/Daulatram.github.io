@@ -9,7 +9,7 @@ import { Link, Navigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthProvider";
 import Staff_side from "../../Components/Sidebar/Staff_side";
 
-const Feedback = () => {
+const Stud_Feedback = () => {
   const userRef = useRef();
   const errRef = useRef();
   const [link, setLink] = useState("");
@@ -20,7 +20,7 @@ const Feedback = () => {
   const [data, setData] = useState([]);
 
   const fetchdata = async () => {
-    const response = await fetch("/feedback");
+    const response = await fetch("/Studfeedback");
     setData(await response.json());
   };
 
@@ -31,7 +31,7 @@ const Feedback = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/deletefeedback/${id}`,
+      `/deletestudfeedback/${id}`,
       {
         method: "DELETE",
         // headers: {
@@ -50,7 +50,7 @@ const Feedback = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(link, caption);
-    const response = await fetch("/StaffZone_feedback", {
+    const response = await fetch("/StudentZone_feedback", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -101,7 +101,7 @@ const Feedback = () => {
        
           <div className="w-[1100px]">
             <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              Feedback Form for staff
+              Feedback Form for Students
             </h2>
             {data.map((datas) => (
               <>
@@ -213,4 +213,4 @@ const Feedback = () => {
   );
 };
 
-export default Feedback;
+export default Stud_Feedback;

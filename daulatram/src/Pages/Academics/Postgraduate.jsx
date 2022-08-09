@@ -1,59 +1,65 @@
 import React from 'react'
 import Sidebar from "../../Components/Sidebar/DeptSidebar";
+import { Link } from "react-router-dom";
 import Banner from "../../Components/Banners/ugcourses";
 
-const Undergraduate = () => {
+const Postgraduate = () => {
     return (
         <>
           <div className=" flex flex-col">
-            <div className="">
-              <Banner />
+            <div
+        className="Banner"
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      >
+        <div className="name">
+          <div className="">
+            <div className="flex flex-row justify-center">
+              <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+                Postgraduate{" "}
+              </p>
             </div>
+
+            <div className=" text-lg font-bold bg-gray-400 pb-3 pt-3 pl-5 text-[#000080] mt-28 ">
+              <Link to={"/"}>
+                <span className="ml-5">Home</span>
+              </Link>
+              <span className="ml-5">About Us</span>
+            </div>
+          </div>
+        </div>
+      </div>
             <div className="flex flex-row">
               <div className="">
                 <Sidebar />
               </div>
               <div className="relative mr-20 md:w-[1100px]">
                 <h2 className=" md:text-4xl text-xl font-bold mb-5 mt-[5%] md:ml-16 text-justify justify-center  ">
-                  UNDERGRADUATE COURSES
+                  POSTGRADUATE COURSES
                 </h2>
                 
                 <figure className=" relative mb-10 md:ml-12 lg:ml-20 mt-10  ">
                   <ul className="  relative list-disc card-description flex flex-col gap-4 text-justify font-medium ">
                     <li>
-                    B.A. (Programme)
+                    M.A. English
                     </li>
                     <li>
-                    B.Com
+                    M.A. Hindi
                     </li>
                     <li>
-                    B.Com (H)
+                    M.A. History
                     </li>
                     <li>
-                    B.A. (H) Economics
+                    M.A. Music (Vocal)
                     </li>
                     <li>
-                    B.A. (H) English
+                    M.A. Political Science
                     </li>
                     <li>
-                    B.A. (H) Hindi
+                    M.A. Psychology
                     </li>
                     <li>
-                    B.A.(H) History
+                    M.A. Sanskrit
                     </li>
-                    <li>
-                    B.A.(H) Philosophy
-                    </li>
-                    <li> B.A.(H) Political Science</li>
-                    <li> B.A. (H) Psychology</li>
-                    <li> B.A. (H) Sanskrit</li>
-                    <li> B.Sc. (Prog) Life Sciences</li>
-                    <li> B.Sc. (H) Biochemistry</li>
-                    <li> B.Sc. (H) Botany</li>
-                    <li> B.Sc. (H) Chemistry</li>
-                    <li> B.Sc. (H) Mathematics</li>
-                    <li> B.Sc. (H) Physics</li>
-                    <li>B.Sc. (H) Zoology</li>
     
                    
                   </ul>
@@ -66,4 +72,4 @@ const Undergraduate = () => {
       );
 }
 
-export default Undergraduate
+export default Postgraduate
