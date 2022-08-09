@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faArrowRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -458,7 +458,7 @@ const Ethics = () => {
             var path = path2.slice(19);
             return (
               <>
-                <h1 className="text-xl md:text-3xl font-bold mb-5 mt-5 flex flex-row justify-left items-center ">
+                <h1 className="text-xl md:text-3xl font-bold mb-2 mt-5 flex flex-row justify-left items-center ">
                   {heading}
                 </h1>
                 <div className="flex flex-row mb-2 ml-5">
