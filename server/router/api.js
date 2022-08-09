@@ -92,7 +92,6 @@ const Bot_StuAch = require("../models/Academics/Departments/Botany/StuAch_Schema
 const Chem_Fac = require("../models/Academics/Departments/Chemistry/Fac");
 const Chem_Pubs = require("../models/Academics/Departments/Chemistry/Pubs_Schema");
 const Chem_Association = require("../models/Academics/Departments/Chemistry/Association");
-const Chem_tt = require("../models/Academics/Departments/Chemistry/Chem_tt_Schema");
 const Com_StuAch = require("../models/Academics/Departments/Commerce/StuAch_Schema");
 const Com_Fac = require("../models/Academics/Departments/Commerce/Fac");
 const Com_Pubs = require("../models/Academics/Departments/Commerce/Pubs_Schema");
@@ -101,18 +100,14 @@ const Eco_Fac = require("../models/Academics/Departments/Economics/Fac");
 const Eco_Pubs = require("../models/Academics/Departments/Economics/Pubs_Schema");
 const Eco_Eve = require("../models/Academics/Departments/Economics/Events");
 const Com_Association = require("../models/Academics/Departments/Commerce/Association");
-const Com_tt = require("../models/Academics/Departments/Commerce/Com_tt_Schema");
-const Eco_tt = require("../models/Academics/Departments/Economics/Eco_tt_Schema");
-const Eng_tt = require("../models/Academics/Departments/English/Eng_tt_Schema");
 const Eng_StuAch = require("../models/Academics/Departments/English/StuAch_Schema");
 const Eng_Fac = require("../models/Academics/Departments/English/Fac");
 const Eng_Pubs = require("../models/Academics/Departments/English/Pubs_Schema");
 const Eng_Eve = require("../models/Academics/Departments/English/Events");
-const Hin_tt = require("../models/Academics/Departments/Hindi/Hin_tt_Schema");
 const Hin_Fac = require("../models/Academics/Departments/Hindi/Fac");
 const Hin_Pubs = require("../models/Academics/Departments/Hindi/Pubs_Schema");
 const Hin_Association = require("../models/Academics/Departments/Hindi/Association");
-const Bot_Timetable = require("../models/Academics/Departments/Botany/Bot_tt_Schema");
+
 const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema");
 const Chem_Awards = require("../models/Academics/Departments/Chemistry/Chem_Awards_Schema");
 const Com_ProgramOffered = require("../models/Academics/Departments/Commerce/Com_ProgramsOffered_Schema");
@@ -157,12 +152,7 @@ const Physics_Association = require("../models/Academics/Departments/Physics/Phy
 const PS_Association = require("../models/Academics/Departments/Political_Science/PS_Association_Schema");
 const Sanskrit_Association = require("../models/Academics/Departments/Sanskrit/Sanskrit_Association_Schema");
 const Physics_Newsletter = require("../models/Academics/Departments/Physics/Physics_Newsletter_Schema");
-const PE_Time = require("../models/Academics/Departments/Physical_Education/PE_Time_Schema");
-const Physics_Time = require("../models/Academics/Departments/Physics/Physics_Time_Schema");
-const Psychology_Time = require("../models/Academics/Departments/Psychology/Psychology_Time_Schema");
-const Sanskrit_Time = require("../models/Academics/Departments/Sanskrit/Sanskrit_Time_Schema");
-const Zoology_Time = require("../models/Academics/Departments/Zoology/Zoology_Time_Schema");
-const PS_Time = require("../models/Academics/Departments/Political_Science/PS_Time_Schema");
+
 const Bot_Publications = require("../models/Academics/Departments/Botany/Pubs_Schema");
 const Useful_Links = require("../models/Useful_Links_schema");
 
@@ -1666,191 +1656,7 @@ router.post(
     }
 );
 
-// Chemistry Timetable
 
-router.get("/Chem_tt", async(req, res) => {
-    const details = await Chem_tt.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Chem_tt/:id", async(req, res) => {
-    const delete_user = await Chem_tt.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Chem_tt_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Chem_tt({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-// Commerce Timetable
-
-router.get("/Com_tt", async(req, res) => {
-    const details = await Com_tt.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Com_tt/:id", async(req, res) => {
-    const delete_user = await Com_tt.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Com_tt_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Com_tt({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-// Economics Timetable
-
-router.get("/Eco_tt", async(req, res) => {
-    const details = await Eco_tt.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Eco_tt/:id", async(req, res) => {
-    const delete_user = await Eco_tt.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Eco_tt_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Eco_tt({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-// English Timetable
-
-router.get("/Eng_tt", async(req, res) => {
-    const details = await Eng_tt.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Eng_tt/:id", async(req, res) => {
-    const delete_user = await Eng_tt.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Eng_tt_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Eng_tt({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-// Hindi Timetable
-
-router.get("/Hin_tt", async(req, res) => {
-    const details = await Hin_tt.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Hin_tt/:id", async(req, res) => {
-    const delete_user = await Hin_tt.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Hin_tt_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Hin_tt({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
 // Chemistry Publication
 
 router.get("/Chem_Pubs", async(req, res) => {
@@ -2412,45 +2218,7 @@ router.post(
         }
     }
 );
-// Botany Timetable
 
-router.get("/Bot_Timetable", async(req, res) => {
-    const details = await Bot_Timetable.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Bot_Timetable/:id", async(req, res) => {
-    const delete_user = await Bot_Timetable.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Bot_Timetable_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Bot_Timetable({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
 
 // Physical_Education Program offered
 
@@ -2491,248 +2259,7 @@ router.post(
         }
     }
 );
-// Physical_Education Time Table
 
-router.get("/PE_Time", async(req, res) => {
-    const details = await PE_Time.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_PE_Time/:id", async(req, res) => {
-    const delete_user = await PE_Time.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/PE_Time_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            console.log(title, link, path, mimetype);
-            const file = new PE_Time({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            // console.log(error)
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-// Physics Time Table
-
-router.get("/Physics_Time", async(req, res) => {
-    const details = await Physics_Time.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Physics_Time/:id", async(req, res) => {
-    const delete_user = await Physics_Time.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Physics_Time_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            console.log(title, link, path, mimetype);
-            const file = new Physics_Time({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            // console.log(error)
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-// Psychology Time Table
-
-router.get("/Psychology_Time", async(req, res) => {
-    const details = await Psychology_Time.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Psychology_Time/:id", async(req, res) => {
-    const delete_user = await Psychology_Time.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Psychology_Time_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            console.log(title, link, path, mimetype);
-            const file = new Psychology_Time({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            // console.log(error)
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-// Sanskrit Time Table
-
-router.get("/Sanskrit_Time", async(req, res) => {
-    const details = await Sanskrit_Time.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Sanskrit_Time/:id", async(req, res) => {
-    const delete_user = await Sanskrit_Time.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Sanskrit_Time_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            console.log(title, link, path, mimetype);
-            const file = new Sanskrit_Time({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            // console.log(error)
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-// Zoology Time Table
-
-router.get("/Zoology_Time", async(req, res) => {
-    const details = await Zoology_Time.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Zoology_Time/:id", async(req, res) => {
-    const delete_user = await Zoology_Time.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Zoology_Time_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            console.log(title, link, path, mimetype);
-            const file = new Zoology_Time({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            // console.log(error)
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
-// PS Time Table
-
-router.get("/PS_Time", async(req, res) => {
-    const details = await PS_Time.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_PS_Time/:id", async(req, res) => {
-    const delete_user = await PS_Time.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/PS_Time_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            console.log(title, link, path, mimetype);
-            const file = new PS_Time({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            // console.log(error)
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
 // Physics Program offered
 
 router.get("/Physics_ProgramOffered", async(req, res) => {
