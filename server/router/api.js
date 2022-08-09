@@ -8350,10 +8350,25 @@ router.post(
 );
 
 // Biochemistry Events
-router.delete("/delete_Bio_Evetns/:id", async(req, res) => {
-    const delete_user = await Bio_Evetns.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
+router.post("/delete_Bio_Evetns/:id", async(req, res) => {
+    const delete_user = await Bio_Evetns.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
 });
 
 router.get("/Bio_Evetns", async(req, res) => {
@@ -8368,28 +8383,57 @@ router.get("/Bio_Evetns", async(req, res) => {
     }
 });
 
+
+router.post(
+    "/Bio_Evetns_file_add/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Bio_Evetns.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
 router.post(
     "/Bio_Evetns_add",
     upload.single("file"),
     async(req, res) => {
         try {
-            const { title, link } = req.body;
+            const { title } = req.body;
             const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
             const file = new Bio_Evetns({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
             });
             await file.save();
             res.send("file uploaded successfully.");
         } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
         }
     }
 );
