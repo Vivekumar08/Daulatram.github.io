@@ -4,6 +4,7 @@ import Information from "../Components/Information";
 import Campustour from "../Components/Campus Tour/Campustour";
 import Quicklinks from "../Components/Quicklinks";
 import Events from "../Components/Events/Events";
+import Events1 from "../Components/Events/Events1";
 
 function Home() {
   return (
@@ -12,7 +13,7 @@ function Home() {
       <Information />
       <Campustour />
       <Quicklinks />
-      <Events />
+      <Events1 />
     </>
   );
 }

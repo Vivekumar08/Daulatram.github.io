@@ -291,28 +291,24 @@ export const useful = [
     name: "Useful Links",
     links: [
       {
-
         name: "COVID Information & Resources",
         link: "http://www.du.ac.in/uploads/COVIDCARE/index.html",
       },
       {
         name: "Employment Opportunities",
         link: "https://www.dr.du.ac.in/employment-opportunities.php",
-
       },
       {
         name: "ECA Calendar",
         link: "/UsefulLinks",
       },
       {
-
         name: "e-Pathshala",
         link: "https://epgp.inflibnet.ac.in/",
       },
       {
         name: "Swayam Portal",
         link: "https://swayam.gov.in/",
-
       },
       {
         name: "UGC",
@@ -525,8 +521,6 @@ export const research = [
     ],
   },
 ];
-
-
 
 export const admisn = [
   {
