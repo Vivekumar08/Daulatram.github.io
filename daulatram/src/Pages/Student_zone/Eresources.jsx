@@ -107,7 +107,9 @@ const Eresources = () => {
           );
           setCaption("");
           setLink("");
-          setFile(null);
+          setFile("");
+          setIsPreviewAvailable(false)
+          setPreviewSrc("")
           setAuth(true);
           fetchdata();
         } else {
@@ -145,7 +147,7 @@ const Eresources = () => {
       } else {
         setCaption("");
         setLink("");
-        setFile(null);
+        setFile("");
         setAuth(true);
         fetchdata();
       }
