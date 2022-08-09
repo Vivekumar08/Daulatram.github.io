@@ -1,13 +1,128 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan,faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
-import Departments from "../../../../Components/Sidebar/Departments";
-import Biochemistry1 from "../../../../Dummy_data/ImgPages/Biochemistry/Biochemistry1.jpg";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 
 const Biochem = () => {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [para, setPara] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+
+  const fetchdata = async () => {
+    const response = await fetch("/Biochem_About");
+    const dat = await response.json();
+    console.log(dat);
+    {
+      dat ? dat.map((elem) => setData1(elem)) : setData1(dat);
+    }
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+
+  const del = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(
+        `/delete_Biochem_About_data/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const handleSubmit = async (files) => {
+    try {
+      if (files) {
+        console.log(files);
+        setErrMsg("");
+        await axios.post(
+          `/Biochem_About_add`,
+          { file: files },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+  const handleSubmit_data = async (id) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Biochem_About_add_data/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setPara("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+
   return (
     <>
       <div className="">
@@ -17,15 +132,15 @@ const Biochem = () => {
         <div className="md:hidden absolute bg-white">
           {visible ? (
             <>
-                <div className=" flex  flex-col mt-8 ml-2">
-                  <FontAwesomeIcon
-                    icon={faClose}
-                    size="lg"
-                    onClick={() => setVisible(!visible)}
-                    className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
-                  />
-                  <Biochemistry />
-                </div>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Biochemistry />
+              </div>
             </>
           ) : (
             <div className=" flex  flex-col mt-8 ml-2">
@@ -42,103 +157,172 @@ const Biochem = () => {
           <Biochemistry />
         </div>
         <div className=" w-full mr-16 ">
-          <div className=" ">
-            <h2 className="md:text-3xl text-lg  uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-              About the department
-            </h2>
-            <div className="flex flex-row ">
-              <div>
-                <div
-                  style={{
-                    backgroundImage:
-                      "url(/images/ImgPages/Biochemistry/Biochemistry1.jpg)",
-                  }}
-                  className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[600px] mr-auto w-[250px] h-[190px] lg:h-[450px] ml-auto mb-4 rounded-2xl border-2 border-black"
-                ></div>
-                <div className="">
-                  <div className="pr-3 pl-3 flex  ml-2">
-                    <span className=" md:text-lg text-sm text-justify font-medium md:flex">
-                      The Department of Biochemistry was started in the year
-                      1988 and offers a BSc (Hons) course which is unique to
-                      only a few colleges in India. This unique course covers
-                      areas in basic Biochemistry such as biomolecules,
-                      proteins, enzymology and intermediary metabolism as well
-                      as advanced areas in Biology such as cell biology,
-                      physiology, hormone biochemistry, nutritional
-                      biochemistry, biochemistry of diseases, immunology,
-                      molecular biology, genetics and recombinant DNA
-                      technology. The department has well equipped laboratories
-                      wherein all modern biology experiments can be conducted.
-                      In addition a Drosophila Resource Centre and Zebrafish lab
-                      facility has been established, where students can
-                      undertake short term training, and research
-                      internships.These advanced research facilities have been
-                      established under the Star College Project Funds granted
-                      as part of the Star Status awarded to the college science
-                      departments, by the Department of Biotechnology, GOI.
-                    </span>
-                  </div>{" "}
-                  <br />
-                  <div className="pr-3 pl-3 flex ml-2">
-                    <span className="md:text-lg text-sm text-justify font-medium ">
-                      Over the years, the department has been awarded projects
-                      from the Department of Science and Technology, DU
-                      Innovation Projects, Star Innovation projects and DRDO to
-                      faculty members. Recently, Bioinformatics lab has been a
-                      recent addition to the ever growing biochemistry
-                      department.
-                    </span>
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            About the Department
+          </h2>
+          <figure className="flex flex-col p-4 ">
+            {data1 &&
+              data1.img_data.file_path &&
+              data1.img_data.file_path.map((elem) => {
+                var path2 = elem.file_path1.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                // console.log(path);
+                return (
+                  <>
+                    <div className=" flex flex-row  items-center p-4">
+                      <img
+                        src={path}
+                        style={{
+                          width: "300px",
+                          height: "250px",
+                        }}
+                        alt="founder"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-28 lg:ml-80"
+                      />
+                      {auth && (
+                        <>
+                          <div className="flex  ml-auto">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer   hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "link")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+            {data1 &&
+              data1.img_data.para &&
+              data1.img_data.para.map((elem) => {
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4 ">
+                      <span className="card-description leading-14 font-medium text-justify text-base md:text-lg  ">
+                        {elem.para1}
+                      </span>
+                      {auth && (
+                        <>
+                          <div className="flex  w-full">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-auto  hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "para")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+          </figure>
+          {auth && data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm w-full  full ml-auto mr-auto mb-5"
+              >
+                <div className="mb-3">
+                  <textarea
+                    name="para"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setPara(e.target.value)}
+                    value={para}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Paragraph Here"
+                  ></textarea>
+                </div>
+                <div class="md:w-2/3 ">
+                  <button
+                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={() => handleSubmit_data(data1._id)}
+                  >
+                    Add Para
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+          {auth && !data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div class="md:flex flex-col md:items-center h-full">
+                  <div className="upload-section flex h-full mb-[10px] w-full">
+                    <Dropzone
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder("over")}
+                      onDragLeave={() => updateBorder("leave")}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div
+                          {...getRootProps({
+                            className:
+                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                          })}
+                          ref={dropRef}
+                        >
+                          <input {...getInputProps()} />
+                          <p>
+                            Drag and drop a file OR click here to select a file
+                          </p>
+                          {file && (
+                            <div>
+                              <strong>Selected file:</strong> {file.name}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                    {previewSrc ? (
+                      isPreviewAvailable ? (
+                        <div className="image-preview ml-[5%] w-full">
+                          <img
+                            className="preview-image w-full h-full block mb-[10px]"
+                            src={previewSrc}
+                            alt="Preview"
+                          />
+                        </div>
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>No preview available for this file</p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>Image preview will be shown here after selection</p>
+                      </div>
+                    )}
                   </div>
-                  <div className="p-3 flex ml-2">
-                    <span className="md:text-lg text-sm text-justify font-medium ">
-                      Students are exposed to scientific research conducted in
-                      various prestigious institutes like IISER Pune, IISER
-                      Mohali, NBRC, NIN Hyderabad, CDFD, RCB, BHU, IGIB etc by
-                      taking them on either educational trips or open days
-                      conducted by these institutes. Eminent scientists are
-                      invited to the department under a programme called ‘Meet
-                      the scientist’ where students get a one to one chance to
-                      interact with the scientists. Students are even encouraged
-                      for off-campus internships at these scientific
-                      institutions in summer break. These activities in addition
-                      to teaching groom the students to be future scientists.
-                    </span>
-                  </div>
-                  <div className="p-3 flex ml-2">
-                    <span className="md:text-lg text-sm text-justify font-medium ">
-                      The department has the distinction of having over 90%
-                      first classes as well as University positions every year.
-                      Our students have been recipients of University gold
-                      medals for securing first position in University, KVPY
-                      fellowships, DRC silver jubilee merit scholarships, all
-                      rounder awards and proficiency prizes. Graduates from the
-                      department have been selected for integrated Ph.D. and MSc
-                      programmes through entrance exams in Biochemistry,
-                      Biotechnology, Molecular Biology, Neurosciences, Genetics
-                      and other Life Science courses in leading scientific
-                      Institutions such as IISc (Bengaluru), TIFR-NCBS, IISERs,
-                      AIIMS, JNU, UDSC as well as Cambridge and Universities in
-                      the US and Germany.
-                    </span>
-                  </div>
-                  <div className="p-3 flex ml-2">
-                    <span className="md:text-lg text-sm text-justify font-medium ">
-                      The department since its inception is also involved in
-                      conducting training workshops for school and college
-                      students and teachers. Recently, DST Inspire Science Camp
-                      was organized in which more than 150 school students from
-                      Delhi/NCR participated and were introduced to
-                      Biotechnology as a future prospect. The department is
-                      proud of its alumni who hold faculty/ scientific positions
-                      at prestigious US universities, JNU, DRDO, Delhi
-                      University Biochemistry Department, and many undergraduate
-                      Colleges.
-                    </span>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={() => handleSubmit(file)}
+                    >
+                      Add Image
+                    </button>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </>
