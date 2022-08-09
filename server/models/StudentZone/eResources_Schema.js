@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const eres = new mongoose.Schema(
+const eResources_Schema = new mongoose.Schema(
     {
         title: {
             type: String,
@@ -27,5 +27,5 @@ const eres = new mongoose.Schema(
 )
 
 
-const eresources = mongoose.model('e-Resources', eres);
+const eresources = mongoose.model('eResources', eResources_Schema);
 module.exports = eresources;
