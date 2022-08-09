@@ -13,6 +13,9 @@ const nodemailer = require("nodemailer");
 // const jwt = require("jsonwebtoken")
 const User = require("../models/adminSchema");
 const Adminssion = require("../models/Admission/onlineAdmission");
+const Eresources = require("../models/StudentZone/eresources");
+
+const accred = require("../models/Accreditation/Accreditation");
 const Fee_Structure = require("../models/Admission/Fee_Structure_Schema");
 const Admission_FAQs = require("../models/Admission/Fee_Structure_Schema");
 const Admission_Grievance = require("../models/Admission/Admission_Grievance_Schema");
@@ -356,7 +359,7 @@ router.post("/AdminLogin", async (req, res) => {
                 console.log("Invalid Credentials");
                 res.status(402).json({ error: "Invalid Credentials" });
             } else {
-                console.log("Signin Successfull");
+                console.log("Signin Successful");
                 res.status(200).json({ message: "user Signin Sucessfully" });
                 await UserLogin.save();
             }
@@ -3933,6 +3936,142 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Adminssion({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype,
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// e-resources
+
+router.get("/eresources", async (req, res) => {
+    const details = await Eresources.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+router.delete("/deleteeresources/:id", async (req, res) => {
+    const delete_user = await Eresources.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === "text/link") {
+        console.log(delete_user.file_mimetype);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(delete_user.file_mimetype);
+        await unlinkAsync(delete_user.file_path);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+router.post("/eresources_online_add_link", async (req, res) => {
+    try {
+        console.log(req.body);
+        const { file, link, title } = req.body;
+        if (!title || !link || !file) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Details Properly" });
+        }
+        const user = new Eresources({
+            title,
+            link,
+            file_path: file,
+            file_mimetype: "text/link",
+        });
+        await user.save();
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+router.post(
+    "/eresources_online_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Eresources({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype,
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Accreditation
+
+router.get("/accred", async (req, res) => {
+    const details = await accred.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+router.delete("/deleteaccred/:id", async (req, res) => {
+    const delete_user = await accred.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === "text/link") {
+        console.log(delete_user.file_mimetype);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(delete_user.file_mimetype);
+        await unlinkAsync(delete_user.file_path);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+router.post("/accred_online_add_link", async (req, res) => {
+    try {
+        console.log(req.body);
+        const { file, link, title } = req.body;
+        if (!title || !link || !file) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Details Properly" });
+        }
+        const user = new accred({
+            title,
+            link,
+            file_path: file,
+            file_mimetype: "text/link",
+        });
+        await user.save();
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+router.post(
+    "/accred_online_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new accred({
                 title,
                 link,
                 file_path: path,
