@@ -45,7 +45,7 @@ export const links = [
         link: "/academics/departments",
       },
       {
-        name: "Teachers-In-Charges",
+        name: "Teachers-In-Charge",
         link: "/academics/Teacher_in_charge",
       },
       {
@@ -61,7 +61,7 @@ export const links = [
         link: "/academics/Facilities",
       },
       {
-        name: "Resources",
+        name: "Resource Centres for Innovation",
         link: "/academics/resources",
       },
       {
@@ -82,7 +82,7 @@ export const links = [
     name: "Research",
     links: [
       {
-        name: "Facilities & Research Centres",
+        name: " Research Centres & Facilities ",
         link: "/research/research_facilities",
       },
       {
@@ -211,6 +211,10 @@ export const links = [
         name: "Complaints/Suggestions",
         link: "/Student_Zone/Complainst_&_Suggetions",
       },
+      {
+        name: "Feedback",
+        link: "/Student_Zone/Student_Feedback",
+      },
     ],
   },
   {
@@ -287,24 +291,28 @@ export const useful = [
     name: "Useful Links",
     links: [
       {
-        name: "Covid Information & Resources",
-        link: "/UsefulLinks",
+
+        name: "COVID Information & Resources",
+        link: "http://www.du.ac.in/uploads/COVIDCARE/index.html",
       },
       {
-        name: "Employement Opportunities",
-        link: "/UsefulLinks",
+        name: "Employment Opportunities",
+        link: "https://www.dr.du.ac.in/employment-opportunities.php",
+
       },
       {
         name: "ECA Calendar",
         link: "/UsefulLinks",
       },
       {
-        name: "E-Paathshala",
-        link: "/UsefulLinks",
+
+        name: "e-Pathshala",
+        link: "https://epgp.inflibnet.ac.in/",
       },
       {
-        name: "Swayam Protal",
-        link: "/UsefulLinks",
+        name: "Swayam Portal",
+        link: "https://swayam.gov.in/",
+
       },
       {
         name: "UGC",
@@ -621,7 +629,7 @@ export const Student = [
         link: "/Student_Zone/Internal_Assesments",
       },
       {
-        name: "Examination Form And Datesheet",
+        name: "Examination Form and Datesheet",
         link: "/Student_Zone/Examination_Form_&_Database",
       },
       {
@@ -637,11 +645,11 @@ export const Student = [
         link: "/Student_Zone/Fee_Payment_Portal",
       },
       {
-        name: "Student Notice",
+        name: "Student Notices",
         link: "/Student_Zone/Student_Notice",
       },
       {
-        name: "Scholarship",
+        name: "Scholarships",
         link: "/Student_Zone/Scholarship",
       },
       {
@@ -679,6 +687,10 @@ export const Student = [
       {
         name: "Complaints / Suggestions",
         link: "/Student_Zone/Complainst_&_Suggetions",
+      },
+      {
+        name: "Feedback",
+        link: "/Student_Zone/Student_Feedback",
       },
     ],
   },

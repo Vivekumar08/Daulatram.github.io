@@ -27,9 +27,7 @@ const Pol_Sci_fac = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch(
-      "/Political_Science_faculty"
-    );
+    const response = await fetch("/Political_Science_faculty");
     setData1(await response.json());
   };
 
@@ -60,12 +58,9 @@ const Pol_Sci_fac = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Political_Science_faculty/${id}`,
-      {
-        method: "POST",
-      }
-    );
+    const response = await fetch(`/delete_Political_Science_faculty/${id}`, {
+      method: "POST",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -105,8 +100,6 @@ const Pol_Sci_fac = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setFile({imag,pdf} );
-    // console.log(data);
     try {
       if (link.trim() !== "" && caption.trim() !== "") {
         if (imag) {
@@ -122,6 +115,9 @@ const Pol_Sci_fac = () => {
               },
             }
           );
+          setImg("");
+          setPreviewSrcImg("");
+          setIsPreviewAvailableImg(false);
           setCaption("");
           setLink("");
           setAuth(true);
@@ -199,21 +195,11 @@ const Pol_Sci_fac = () => {
                 );
               })}
           </div>
-          {/* {data1 &&
-            data1.map((curElem) => {
-              const { filter } = curElem;
-              return (
-                <>
-                  {filter === "Supernnuated" && ( */}
           <div className="  ">
             <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
-              Superannuated
+              Superannuated / Former Faculty
             </h2>
           </div>
-          {/* )}
-                </>
-              );
-            })} */}
           <div class="grid grid-cols-1 sm:grid-cols-2 ml-5 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
@@ -287,7 +273,7 @@ const Pol_Sci_fac = () => {
                       value="Supernnuated"
                       className="p-2 text-lg acctive:text-white  block px-4 py-2 "
                     >
-                      Superannuated
+                      Superannuated / Former Faculty
                     </option>
                   </select>
                 </div>

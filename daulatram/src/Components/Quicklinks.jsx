@@ -117,7 +117,7 @@ function Quicklinks() {
                   alt="scholarship"
                 />
               <p className="mt-2">
-                <b>Scholarship</b>
+                <b>Scholarships</b>
               </p>
             </Link>
             <Link
@@ -131,7 +131,7 @@ function Quicklinks() {
                   alt="facilities"
                 />
               <p className="mt-2">
-                <b>Student Facilities</b>
+                <b>Students' Facilities</b>
               </p>
             </Link>
             <Link
@@ -145,7 +145,7 @@ function Quicklinks() {
                   alt="union"
                 />
               <p className="mt-2">
-                <b>Student Union</b>
+                <b>Students' Union</b>
               </p>
             </Link>
             <Link

@@ -78,9 +78,6 @@ function Information() {
                                     new
                                   </sup>
                                 )}
-                                <span className=" mr-5 ml-auto text-sm">
-                                  {date}
-                                </span>
                               </span>
                             </div>
                           </a>
@@ -96,9 +93,6 @@ function Information() {
                                     new
                                   </sup>
                                 )}
-                              </span>
-                              <span className="ml-auto mr-5 text-sm">
-                                {date}
                               </span>
                             </div>
                           </a>
@@ -150,9 +144,6 @@ function Information() {
                                   new
                                 </sup>
                               )}
-                              <span className=" mr-5 ml-auto text-sm">
-                                {date}
-                              </span>
                             </span>
                           </div>
                         </a>
@@ -169,7 +160,6 @@ function Information() {
                                 </sup>
                               )}
                             </span>
-                            <span className="ml-auto mr-5 text-sm">{date}</span>
                           </div>
                         </a>
                       </>
@@ -219,9 +209,6 @@ function Information() {
                                   new
                                 </sup>
                               )}
-                              <span className=" mr-5 ml-auto text-sm">
-                                {date}
-                              </span>
                             </span>
                           </div>
                         </a>
@@ -238,7 +225,6 @@ function Information() {
                                 </sup>
                               )}
                             </span>
-                            <span className="ml-auto mr-5 text-sm">{date}</span>
                           </div>
                         </a>
                       </>

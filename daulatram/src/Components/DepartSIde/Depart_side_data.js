@@ -54,7 +54,7 @@ export const biochems = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/biochem/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -118,7 +118,7 @@ export const botony_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Botany/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -183,7 +183,7 @@ export const chemistry_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Chemistry/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -247,7 +247,7 @@ export const commerce_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Commerce/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -310,7 +310,7 @@ export const Eco_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Economics/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -373,7 +373,7 @@ export const Eng_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/English/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -430,7 +430,7 @@ export const Hindi_side = [{
     {
         id: 10,
         title: "Time Table",
-        link: "/academics/departments/Hindi/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 11,
@@ -499,7 +499,7 @@ export const Hist_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/History/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -562,7 +562,7 @@ export const Math_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Mathematics/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -626,7 +626,7 @@ export const Nhe_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/NHE/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -689,7 +689,7 @@ export const Music_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Music/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -752,7 +752,7 @@ export const Philosophy_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Philosophy/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -815,7 +815,7 @@ export const PhysicalEdu_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Physical_Education/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -878,7 +878,7 @@ export const Physics_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Physics/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -950,7 +950,7 @@ export const Pol_Scie_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Political_Science/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -1022,7 +1022,7 @@ export const Psycho_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Psychology/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -1094,7 +1094,7 @@ export const Sans_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Sanskrit/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,
@@ -1162,7 +1162,7 @@ export const Zoo_side = [{
     {
         id: 11,
         title: "Time Table",
-        link: "/academics/departments/Zoology/timetable",
+        link: "/Student_Zone/Time_Table_&_Academic_Calendar",
     },
     {
         id: 12,

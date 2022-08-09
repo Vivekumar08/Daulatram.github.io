@@ -9,10 +9,7 @@ const Chem_fac_data = (props) => {
   const [data1, setData1] = useState();
 
   const dropRef = useRef();
-  const [previewSrc, setPreviewSrc] = useState("");
-  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [pdf, setPdf] = useState(null);
-  const [pdf_path, setPdf_path] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {

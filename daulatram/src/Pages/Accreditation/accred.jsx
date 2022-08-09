@@ -1,15 +1,14 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-// import "./toggle.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../../Context/AuthProvider";
-import Dropzone from "react-dropzone";
-import axios from "axios";
-import Formsbanner from "../../Components/Banners/Formsbanner";
-import Student_side from "../../Components/Sidebar/Student_side";
+import Maintanence from "../../Components/UnderMaintanence/Maintanence";
 
-const forms = () => {
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import Dropzone from "react-dropzone";
+import AuthContext from "../../Context/AuthProvider";
+import axios from "axios";
+
+const Accred = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -24,7 +23,7 @@ const forms = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/StudentZone_forms");
+    const response = await fetch("/accred");
     setData1(await response.json());
   };
 
@@ -61,7 +60,7 @@ const forms = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_StudentZone_forms/${id}`,
+      `/deleteaccred/${id}`,
       {
         method: "DELETE",
       }
@@ -94,7 +93,7 @@ const forms = () => {
 
         setErrMsg("");
         await axios.post(
-          `/StudentZone_forms_add`,
+          `/accred_online_add`,
           formData,
           {
             headers: {
@@ -121,7 +120,7 @@ const forms = () => {
     e.preventDefault();
     console.log(link, caption, file);
     const response = await fetch(
-      "/StudentZone_forms_add_link",
+      "/accred_online_add_link",
       {
         method: "POST",
         headers: {
@@ -142,6 +141,7 @@ const forms = () => {
     } else {
       setCaption("");
       setLink("");
+      setFile(null);
       setAuth(true);
       fetchdata();
     }
@@ -149,85 +149,89 @@ const forms = () => {
 
   return (
     <div className=" flex flex-col mb-16 ">
-      <div className="">
-        <Formsbanner />
+      <div
+        className="Banner"
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      >
+        <div className="name">
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Accreditation
+            </p>
+          </div>
+          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+            <span className="ml-5">Accreditation</span>
+          </div>
+        </div>
       </div>
       <div className="flex flex-row">
-        <div className="w-[350px] flex flex-row">
-          <Student_side />
+        <div className="md:w-[350px] ">
+          <Accreditation />
         </div>
 
-        <div className="w-[1100px] mb-5">
+        <div className="w-full mb-5">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-            Forms for Students 
-          </h2>
-          <div className="main flex-col ">
-            <table className=" text-xs md:text-base leading-5 w-80 h-40 ml-3 md:table-fixed  md:ml-28 lg:ml-32 md:w-[500px] lg:w-[800px] md:h-[180px] mt-1 ">
-              <tr className="h-20 text-lg">
-                <th className="row text-lg w-[10%]">S. No.</th>
-                <th className="text-lg">About</th>
-                <th className="text-lg w-[25%]">PDF</th>
-                {auth && <th className="text-lg w-[15%]">Delete</th>}
-              </tr>
-              {data1 &&
-                data1.sort(sortOn("link")).map((curElem) => {
-                  const { _id, title, file_path, link, file_mimetype } =
-                    curElem;
-                  var path_pic = file_path;
-                  var path2 = path_pic.replace(/\\/g, "/");
-                  var path = path2.slice(19);
-                  return (
-                    <>
-                      <tr className=" ">
-                        <td className="text-lg  overlay ">{link}</td>
-                        <td className="text-lg overlay">
-                          <strong>{title} </strong>
-                        </td>
-                        <td>
-                          {" "}
-                          {file_mimetype === "text/link" ? (
-                            <>
-                              <a
-                                href={file_path}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {" "}
-                                <button className="btn">Click Here</button>
-                              </a>{" "}
-                            </>
-                          ) : (
-                            <>
-                              <a href={path} target="_blank" rel="noreferrer">
-                                {" "}
-                                <button className="btn">Click Here</button>
-                              </a>{" "}
-                            </>
-                          )}
-                        </td>
-                        {auth && (
-                          <>
-                            <td className="flex h-full overlay ">
-                              <FontAwesomeIcon
-                                icon={faTrashCan}
-                                size="2xl"
-                                className=" cursor-pointer ml-auto mr-auto mt-[25%]  hover:text-red-500"
-                                onClick={() => del(_id)}
-                              ></FontAwesomeIcon>
-                            </td>
-                          </>
-                        )}
-                      </tr>
-                    </>
-                  );
-                })}
-            </table>
-          </div>
+              Accreditation          </h2>
+          {data1 ? (
+            data1.map((curElem) => {
+              const { _id, title, file_path, link } = curElem;
+              var path_pic = file_path;
+              var path2 = path_pic.replace(/\\/g, "/");
+              var path = path2.slice(19);
+              return (
+                <>
+                  <div className="flex flex-row mb-2 ml-5">
+                    <li className="mt-2 list-none" key={_id}>
+                      <div className="flex flex-col mr-10 ">
+                        <h1 className="mt-5">
+                          <FontAwesomeIcon
+                            icon={faArrowRight}
+                            className="ml-3 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400"
+                          />
+                          <a
+                            href={path}
+                            target="_blank"
+                            className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
+                          >
+                            {" "}
+                            {link}{" "}
+                          </a>
+                          <p className=" ml-3 mt-2 leading-14 font-medium text-justify text-base md:text-lg">
+                            {title}
+                          </p>
+                        </h1>
+                      </div>
+                    </li>
+
+                    <span className="ml-auto">
+                      {auth && (
+                        <>
+                          <div className="flex flex-col">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className="mt-16 cursor-pointer ml-auto mr-16 hover:text-red-500"
+                              onClick={() => del(_id)}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </span>
+                  </div>
+                </>
+              );
+            })
+          ) : (
+            <Maintanence />
+          )}
           {auth && (
             <>
               <form
                 method="post"
-                className="flex flex-col justify-center content-center max-w-sm mt-5 h-[55%] ml-auto mr-auto mb-16"
+                className="flex flex-col justify-center content-center max-w-sm mt-5 h-full ml-auto mr-auto mb-16"
               >
                 <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-5 mr-auto flex flex-row justify-center items-center text-red-500">
                   <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
@@ -242,7 +246,7 @@ const forms = () => {
                     ref={userRef}
                     onChange={(e) => setLink(e.target.value)}
                     value={link}
-                    placeholder="Enter S.No. here"
+                    placeholder="Enter Text Here"
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                   />
                 </div>
@@ -256,10 +260,10 @@ const forms = () => {
                     onChange={(e) => setCaption(e.target.value)}
                     value={caption}
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
-                    placeholder="About"
+                    placeholder="Description"
                   ></textarea>
                 </div>
-                <div class="flex flex-col">
+                <div class="flex flex-col h-full">
                   <div>
                     <label
                       htmlFor="checked-toggle"
@@ -280,7 +284,7 @@ const forms = () => {
                   </div>
                   {check ? (
                     <>
-                      <div className="flex flex-col">
+                      <div className="flex flex-col ">
                         <span class="ml-3  text-md font-medium text-gray-900">
                           File
                         </span>
@@ -337,15 +341,15 @@ const forms = () => {
                               </div>
                             )}
                           </div>
-                          <div class="md:w-2/3 ">
-                            <button
-                              class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                              type="button"
-                              onClick={handleSubmit}
-                            >
-                              Add
-                            </button>
-                          </div>
+                        </div>
+                        <div class="md:w-2/3 ">
+                          <button
+                            class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                            type="button"
+                            onClick={handleSubmit}
+                          >
+                            Add
+                          </button>
                         </div>
                       </div>
                     </>
@@ -366,15 +370,15 @@ const forms = () => {
                           placeholder="link"
                           className=" bg-gray-200 appearance-none border-2 mb-3 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                         />
-                        <div class="md:w-2/3 mt-2 mb-16 ">
-                          <button
-                            class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                            type="button"
-                            onClick={handleSubmit1}
-                          >
-                            Add
-                          </button>
-                        </div>
+                      </div>
+                      <div class="md:w-2/3 mt-2 mb-16 ">
+                        <button
+                          class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                          type="button"
+                          onClick={handleSubmit1}
+                        >
+                          Add
+                        </button>
                       </div>
                     </>
                   )}
@@ -388,4 +392,4 @@ const forms = () => {
   );
 };
 
-export default forms;
+export default Accred;

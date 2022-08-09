@@ -38,11 +38,10 @@ import Bot_research_fac from "./Pages/Academics/Departments/Botany/BotanyResearc
 import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Association";
 import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff";
 import Bot_awards from "./Pages/Academics/Departments/Botany/Awards";
-import Bot_tt from "./Pages/Academics/Departments/Botany/Bot_tt";
 import Botany_Gallery from "./Pages/Academics/Departments/Botany/Bot_Gallery";
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
-import Facilities from "./Pages/Academics/Facilities";
+import Facilities from "./Pages/Academics/Facilities/Facilities";
 
 import { EnablinUnit } from "./Pages/Societies/EnablinUnit";
 import ExtraCurricular from "./Pages/Societies/ExtraCurricular";
@@ -74,7 +73,7 @@ import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
 import Attendence from "./Pages/Student_zone/Attendence";
-import Resources from "./Pages/Academics/Resources";
+import Resources from "./Pages/Academics/Resources/Resources";
 import Contact from "./Pages/Footer/Contact";
 import Bulletins_page from "./Pages/Footer/Bulletins_page";
 import Internal from "./Pages/Student_zone/Internal";
@@ -99,7 +98,6 @@ import Chemstudachieve from "./Pages/Academics/Departments/Chemistry/Chemstudach
 import Chempublications from "./Pages/Academics/Departments/Chemistry/Chempublications";
 import Chemfacilities from "./Pages/Academics/Departments/Chemistry/Chemfacilities";
 import Chem_Awards from "./Pages/Academics/Departments/Chemistry/Awards";
-import Chem_tt from "./Pages/Academics/Departments/Chemistry/Chem_tt";
 import Chemassociation from "./Pages/Academics/Departments/Chemistry/Chemassociation";
 import Chem_Gallery from "./Pages/Academics/Departments/Chemistry/Chem_Gallery";
 // import Socities1 from "./Pages/Socities1";
@@ -109,6 +107,7 @@ import Public_Notice from "./Pages/Public_Notice";
 import RTI from "./Pages/RTI/RTI";
 
 import Undergraduate from "./Pages/Academics/Undergraduate";
+import Postgraduate from "./Pages/Academics/Postgraduate";
 import Teacher from "./Pages/Academics/teacher";
 import Trainingp from "./Pages/Academics/trainingp";
 import AcadCal from "./Pages/Academics/AcadCal";
@@ -130,7 +129,6 @@ import Com_labstaff from "./Pages/Academics/Departments/Commerce/Com_labstaff";
 import Bcomprog from "./Pages/Academics/Departments/Commerce/Bcomprog";
 import Comfacilities from "./Pages/Academics/Departments/Commerce/Facilities";
 import Com_Awards from "./Pages/Academics/Departments/Commerce/Awards";
-import Com_tt from "./Pages/Academics/Departments/Commerce/Com_tt";
 import Comassociation from "./Pages/Academics/Departments/Commerce/Association";
 import Commerce_Gallery from "./Pages/Academics/Departments/Commerce/Com_Gallery";
 //Economics
@@ -141,7 +139,6 @@ import Eco_events from "./Pages/Academics/Departments/Economics/Eco_events";
 import Eco_publications from "./Pages/Academics/Departments/Economics/Eco_publications";
 import Eco_association from "./Pages/Academics/Departments/Economics/Eco_association";
 import Eco_photogallery from "./Pages/Academics/Departments/Economics/Eco_photogallery";
-import Eco_tt from "./Pages/Academics/Departments/Economics/Eco_tt";
 import Eco_Facs from "./Pages/Academics/Departments/Economics/Facilities";
 import Eco_awards from "./Pages/Academics/Departments/Economics/Awards";
 import Eco_StuAch from "./Pages/Academics/Departments/Economics/StudentAchievements";
@@ -154,7 +151,6 @@ import Eng_association from "./Pages/Academics/Departments/English/Eng_associati
 import Eng_photogallery from "./Pages/Academics/Departments/English/Eng_photogallery";
 import Eng_publications from "./Pages/Academics/Departments/English/Eng_publications";
 import NotFound from "./Pages/NotFound";
-import Eng_tt from "./Pages/Academics/Departments/English/Eng_tt";
 import Eng_Facs from "./Pages/Academics/Departments/English/Facilities";
 import Eng_awards from "./Pages/Academics/Departments/English/Awards";
 import Eng_Eve from "./Pages/Academics/Departments/English/Events";
@@ -170,7 +166,6 @@ import Hindi_awards from "./Pages/Academics/Departments/Hindi/Hindi_awards";
 import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_association";
 import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine";
 import Hindi_Facs from "./Pages/Academics/Departments/Hindi/Facilities";
-import Hindi_tt from "./Pages/Academics/Departments/Hindi/Hin_tt";
 import Hindi_gallery from "./Pages/Academics/Departments/Hindi/Hin_Gallery";
 // History
 import Hist_about from "./Pages/Academics/Departments/History/Hist_about";
@@ -180,7 +175,6 @@ import Hist_publications from "./Pages/Academics/Departments/History/Hist_public
 import Hist_awards from "./Pages/Academics/Departments/History/Hist_awards";
 import Hist_association from "./Pages/Academics/Departments/History/Hist_association";
 import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
-import Hist_time from "./Pages/Academics/Departments/History/Hist_time";
 
 // Mathemtics
 import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
@@ -191,20 +185,17 @@ import Math_studachieve from "./Pages/Academics/Departments/Mathematics/Math_stu
 import Math_publication from "./Pages/Academics/Departments/Mathematics/Math_publication";
 import Math_facilities from "./Pages/Academics/Departments/Mathematics/Math_facilities";
 import Math_association from "./Pages/Academics/Departments/Mathematics/Math_association";
-import Math_time from "./Pages/Academics/Departments/Mathematics/Math_time";
 
 // Music
 import Music_about from "./Pages/Academics/Departments/Music/Music_about";
 import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
 import Forgot from "./Pages/Admin/Forgot";
 import ResetPassword from "./Pages/Admin/ResetPassword";
-import Music_time from "./Pages/Academics/Departments/Music/Music_time";
 
 // NHE
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
 import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
 import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
-import NHE_time from "./Pages/Academics/Departments/NHE/NHE_time";
 // Philosophy
 import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
 import Philosophy_fac from "./Pages/Academics/Departments/Philosophy/Philosophy_fac";
@@ -218,7 +209,6 @@ import PhysicalEdu_about from "./Pages/Academics/Departments/Physical_Education/
 import PhysicalEdu_programoffered from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_programoffered";
 import PhysicalEdu_fac from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_fac";
 import PhysicalEdu_awards from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_awards";
-import PE_time from "./Pages/Academics/Departments/Physical_Education/PE_time";
 
 // Physics
 import Physics_about from "./Pages/Academics/Departments/Physics/Physics_about";
@@ -232,7 +222,6 @@ import Physics_labstaff from "./Pages/Academics/Departments/Physics/Physics_labs
 import Physics_association from "./Pages/Academics/Departments/Physics/Physics_association";
 import Physics_news_magazines from "./Pages/Academics/Departments/Physics/Physics_news_magazines";
 import Physics_awards from "./Pages/Academics/Departments/Physics/Physics_awards";
-import Physics_time from "./Pages/Academics/Departments/Physics/Physics_time";
 
 // Political Science
 import Pol_Sci_about from "./Pages/Academics/Departments/Political_Science/Pol_Sci_about";
@@ -242,14 +231,12 @@ import PolSci_awards from "./Pages/Academics/Departments/Political_Science/PolSc
 import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Science/Pol_Sci_publications";
 import Pol_Sci_association from "./Pages/Academics/Departments/Political_Science/Pol_Sci_association";
 import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_Sci_events";
-import PS_time from "./Pages/Academics/Departments/Political_Science/PS_time";
 
 // Psychology
 import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about";
 import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 import Psycho_awards from "./Pages/Academics/Departments/Psychology/Psycho_awards";
 import Psycho_programoffered from "./Pages/Academics/Departments/Psychology/Psycho_programoffered";
-import Psycho_time from "./Pages/Academics/Departments/Psychology/Psycho_time";
 
 // Sanskriti
 import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
@@ -260,7 +247,6 @@ import Sans_studachieve from "./Pages/Academics/Departments/Sanskrit/Sans_studac
 import Sans_publications from "./Pages/Academics/Departments/Sanskrit/Sans_publications";
 import Sans_awards from "./Pages/Academics/Departments/Sanskrit/Sans_awards";
 import Sans_association from "./Pages/Academics/Departments/Sanskrit/Sans_association";
-import Sans_time from "./Pages/Academics/Departments/Sanskrit/Sans_time";
 
 // Zoology
 import Zoo_about from "./Pages/Academics/Departments/Zoology/Zoo_about";
@@ -272,9 +258,7 @@ import Zoo_facilities from "./Pages/Academics/Departments/Zoology/Zoo_facilities
 import Zoo_association from "./Pages/Academics/Departments/Zoology/Zoo_association";
 import Zoo_labstaff from "./Pages/Academics/Departments/Zoology/Zoo_labstaff";
 import Zoo_awards from "./Pages/Academics/Departments/Zoology/Zoo_awards";
-import Zoo_time from "./Pages/Academics/Departments/Zoology/Zoo_time";
 import Gallery_about from "./Pages/AboutUs/Gallery_about";
-import Philo_time from "./Pages/Academics/Departments/Philosophy/Philo_time";
 import Archives_Notice from "./Pages/Archives_Notice";
 import Biochem_Gallery from "./Pages/Academics/Departments/Biochemistry/Biochem_Gallery";
 import Hist_Gallery from "./Pages/Academics/Departments/History/Hist_Gallery";
@@ -290,7 +274,11 @@ import PS_gallery from "./Pages/Academics/Departments/Political_Science/PS_galle
 import Psycho_gallery from "./Pages/Academics/Departments/Psychology/Psycho_gallery";
 import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_gallery";
 import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
+
+import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
+
 import Useful from "./Pages/UsefulLinks/Useful";
+
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -361,6 +349,7 @@ function App() {
             }
             path="/about/mission"
           ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -441,14 +430,7 @@ function App() {
             }
             path="/academics/departments/History/photogallery"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hist_time />
-              </>
-            }
-            path="/academics/departments/History/timetable"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -457,14 +439,7 @@ function App() {
             }
             path="/academics/departments/Mathematics/photogallery"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Math_time />
-              </>
-            }
-            path="/academics/departments/Mathematics/timetable"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -473,14 +448,7 @@ function App() {
             }
             path="/academics/departments/Music/photogallery"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Music_time />
-              </>
-            }
-            path="/academics/departments/Music/timetable"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -489,14 +457,7 @@ function App() {
             }
             path="/academics/departments/NHE/photogallery"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <NHE_time />
-              </>
-            }
-            path="/academics/departments/NHE/timetable"
-          ></Route>{" "}
+        
           <Route
             element={
               <>
@@ -556,6 +517,14 @@ function App() {
               </>
             }
             path="/academics/UG_courses"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Postgraduate />
+              </>
+            }
+            path="/academics/PG_courses"
           ></Route>{" "}
           <Route
             element={
@@ -861,14 +830,7 @@ function App() {
             }
             path="/academics/departments/Botany/awards"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Bot_tt />
-              </>
-            }
-            path="/academics/departments/Botany/timetable"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -956,6 +918,14 @@ function App() {
               </>
             }
             path="/Student_Zone/Complainst_&_Suggetions"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Stud_Feedback/>
+              </>
+            }
+            path="/Student_Zone/Student_Feedback"
           ></Route>{" "}
           <Route
             element={
@@ -1139,14 +1109,7 @@ function App() {
             }
             path="/academics/departments/Chemistry/awards"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Chem_tt />
-              </>
-            }
-            path="/academics/departments/Chemistry/timetable"
-          ></Route>{" "}
+         
           <Route
             element={
               <>
@@ -1276,14 +1239,7 @@ function App() {
             }
             path="/academics/departments/Commerce/awards"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Com_tt />
-              </>
-            }
-            path="/academics/departments/Commerce/timetable"
-          ></Route>{" "}
+         
           <Route
             element={
               <>
@@ -1357,14 +1313,7 @@ function App() {
             }
             path="/academics/departments/Economics/photogallery"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Eco_tt />
-              </>
-            }
-            path="/academics/departments/Economics/timetable"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -1446,14 +1395,7 @@ function App() {
             }
             path="/academics/departments/English/Publications"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Eng_tt />
-              </>
-            }
-            path="/academics/departments/English/timetable"
-          ></Route>{" "}
+         
           <Route
             element={
               <>
@@ -1527,14 +1469,7 @@ function App() {
             }
             path="/academics/departments/Hindi/Facilities"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Hindi_tt />
-              </>
-            }
-            path="/academics/departments/Hindi/timetable"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -1748,14 +1683,7 @@ function App() {
             }
             path="/academics/departments/Philosophy/"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Philo_time />
-              </>
-            }
-            path="/academics/departments/Philosophy/timetable"
-          ></Route>{" "}
+         
           <Route
             element={
               <>
@@ -1837,14 +1765,7 @@ function App() {
             }
             path="/academics/departments/Physical_Education/photogallery"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <PE_time />
-              </>
-            }
-            path="/academics/departments/Physical_Education/timetable"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -1902,14 +1823,7 @@ function App() {
             }
             path="/academics/departments/Physics/Events"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Physics_time />
-              </>
-            }
-            path="/academics/departments/Physics/timetable"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -1975,14 +1889,7 @@ function App() {
             }
             path="/academics/departments/Political_Science/Faculty"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <PS_time />
-              </>
-            }
-            path="/academics/departments/Political_Science/timetable"
-          ></Route>{" "}
+          
           <Route
             element={
               <>
@@ -2072,14 +1979,7 @@ function App() {
             }
             path="/academics/departments/Psychology/Programoffered"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Psycho_time />
-              </>
-            }
-            path="/academics/departments/Psychology/timetable"
-          ></Route>{" "}
+          
           {/* Sanskriti */}{" "}
           <Route
             element={
@@ -2153,14 +2053,7 @@ function App() {
             }
             path="/academics/departments/Sanskrit/association"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Sans_time />
-              </>
-            }
-            path="/academics/departments/Sanskrit/timetable"
-          ></Route>{" "}
+         
           {/* Zoology */}{" "}
           <Route
             element={
@@ -2202,14 +2095,7 @@ function App() {
             }
             path="/academics/departments/Zoology/photogallery"
           ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Zoo_time />
-              </>
-            }
-            path="/academics/departments/Zoology/timetable"
-          ></Route>{" "}
+         
           <Route
             element={
               <>
