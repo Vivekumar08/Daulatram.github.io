@@ -157,7 +157,7 @@ const Events1 = () => {
           <strong>College Events and Activities </strong>
         </span>
       </div>
-      {data1 &&
+      {/* {data1 &&
         data1.map((curElem) => {
           const { _id, title, img_data } = curElem;
           // console.log(curElem);
@@ -174,7 +174,7 @@ const Events1 = () => {
               />
             </>
           );
-        })}
+        })} */}
         <Events_data/>
       {/* </div> */}
       {auth && (
