@@ -8,11 +8,15 @@ import Dropzone from "react-dropzone";
 
 const Events_data = (props) => {
   const [data1, setData1] = useState();
+  const errRef = useRef();
   const userRef = useRef();
+  const [errMsg, setErrMsg] = useState("");
   const dropRef = useRef();
-  const [check, setCheck] = useState(false);
   const [previewSrc, setPreviewSrc] = useState("");
   const [pdf, setPdf] = useState(null);
+  const [file, setFile] = useState("");
+  const [check, setCheck] = useState(false)
+  
   const { auth } = useContext(AuthContext);
 
   const fetchdata = async () => {
@@ -59,7 +63,7 @@ const Events_data = (props) => {
       slidesToSlide: 1, // optional, default to 1.
     },
   };
-  
+
   return (
     <>
       <Carousel
@@ -177,7 +181,7 @@ const Events_data = (props) => {
                       {/* <div class="md:w-1/3"></div> */}
                       <div className="upload-section flex h-[200px]  mb-[10px] w-full">
                         <Dropzone
-                          onDrop={onDrop}
+                          onDrop={onDropPdf}
                           onDragEnter={() => updateBorder("over")}
                           onDragLeave={() => updateBorder("leave")}
                         >
@@ -229,7 +233,7 @@ const Events_data = (props) => {
                       <button
                         class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                         type="button"
-                        onClick={()=>props.handleSubmit_file(props.id,file)}
+                        onClick={() => props.file_upload(props.id, file)}
                       >
                         Add
                       </button>
@@ -258,7 +262,7 @@ const Events_data = (props) => {
                     <button
                       class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                       type="button"
-                      onClick={props.handleSubmit_link(props.id,file)}
+                      onClick={()=>props.Link_upload(props.id, file)}
                     >
                       Add
                     </button>

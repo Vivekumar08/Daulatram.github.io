@@ -13,6 +13,7 @@ const Events1 = () => {
   const dropRef = useRef();
   const [filter, setFilter] = useState("Current");
   const [link, setLink] = useState("");
+  const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [previewSrcImg, setPreviewSrcImg] = useState("");
@@ -64,7 +65,7 @@ const Events1 = () => {
   };
 
   const handleSubmit_link = async (id, link) => {
-    const response = await fetch("/admission_online_add_link", {
+    const response = await fetch(`/admission_online_add_link/${id}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -157,24 +158,24 @@ const Events1 = () => {
           <strong>College Events and Activities </strong>
         </span>
       </div>
-      {/* {data1 &&
+      {data1 &&
         data1.map((curElem) => {
-          const { _id, title, img_data } = curElem;
+          // const { _id, title, img_data } = curElem;
           // console.log(curElem);
           return (
             <>
               <Events_data
-                key={_id}
-                id={_id}
-                title={title}
-                img_data={img_data}
+                // key={_id}
+                // id={_id}
+                // title={title}
+                // img_data={img_data}
                 delete={del}
                 file_upload={handleSubmit_file}
                 Link_upload={handleSubmit_link}
               />
             </>
           );
-        })} */}
+        })}
         <Events_data/>
       {/* </div> */}
       {auth && (
