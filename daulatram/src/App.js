@@ -41,7 +41,7 @@ import Bot_awards from "./Pages/Academics/Departments/Botany/Awards";
 import Botany_Gallery from "./Pages/Academics/Departments/Botany/Bot_Gallery";
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
-import Facilities from "./Pages/Academics/Facilities";
+import Facilities from "./Pages/Academics/Facilities/Facilities";
 
 import { EnablinUnit } from "./Pages/Societies/EnablinUnit";
 import ExtraCurricular from "./Pages/Societies/ExtraCurricular";

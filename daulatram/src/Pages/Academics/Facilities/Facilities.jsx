@@ -1,22 +1,22 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import Banner from "../../../Components/Banners/ResourcesBanner";
 import Sidebar from "../../../Components/Sidebar/DeptSidebar";
+import Banner from "../../../Components/Banners/Facilities";
 import AuthContext from "../../../Context/AuthProvider";
-import Res_fac_data from "./Resources_dat";
+import Res_fac_data from "./Facilities_dat";
 import axios from "axios";
 
-
-const Resources = () => {
+const Facilities = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
   const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
+  
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Resource_centre");
+    const response = await fetch("/Academics_Facilities");
     setData1(await response.json());
   };
 
@@ -29,7 +29,7 @@ const Resources = () => {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Resource_center_img_upload/${id}`,
+          `/Academics_Facilities_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -51,7 +51,7 @@ const Resources = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Resource_centre_fac/${id}`, {
+    const response = await fetch(`/delete_Academics_Facilities_fac/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -67,7 +67,7 @@ const Resources = () => {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Resource_centre_fac/${id}`,
+      `/delete_img_Academics_Facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -82,7 +82,7 @@ const Resources = () => {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Resource_centre_upload`, {
+        await axios.post(`/Academics_Facilities_upload`, {
           title: link,
           description: caption,
         });
@@ -110,7 +110,7 @@ const Resources = () => {
           </div>
           <div className="w-[1100px] ">
             <h2 className="text-3xl uppercase md:text-4xl font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-              RESOURCE Centres for innovation
+              Facilities
             </h2>
 
             <div className="text-justify p-3 m-2 ml-4">
@@ -192,4 +192,4 @@ const Resources = () => {
   );
 };
 
-export default Resources;
+export default Facilities;

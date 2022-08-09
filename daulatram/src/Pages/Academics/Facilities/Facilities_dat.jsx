@@ -8,7 +8,7 @@ import {
 import AuthContext from "../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 
-const Resources_dat = (props) => {
+const Facilities_dat = (props) => {
   const [visible, setVisible] = useState(false);
   const errRef = useRef();
   const dropRef = useRef();
@@ -194,4 +194,4 @@ const Resources_dat = (props) => {
   );
 };
 
-export default Resources_dat;
+export default Facilities_dat;
