@@ -3,11 +3,15 @@ import Musicbanner from "../Music/Musicbanner.jsx";
 import Music from "../../../../Components/DepartSIde/Music.jsx";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan  } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-
+// import {
+//   faTrashCan,
+//   faCircleArrowLeft,
+//   faCircleArrowRight,
+// } from "@fortawesome/free-solid-svg-icons";
 const Music_time = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();

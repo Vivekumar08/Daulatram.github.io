@@ -181,7 +181,7 @@ import Hist_publications from "./Pages/Academics/Departments/History/Hist_public
 import Hist_awards from "./Pages/Academics/Departments/History/Hist_awards";
 import Hist_association from "./Pages/Academics/Departments/History/Hist_association";
 import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
-import Hist_time from "./Pages/Academics/Departments/History/Hist_time"
+import Hist_time from "./Pages/Academics/Departments/History/Hist_time";
 
 // Mathemtics
 import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
@@ -291,7 +291,11 @@ import PS_gallery from "./Pages/Academics/Departments/Political_Science/PS_galle
 import Psycho_gallery from "./Pages/Academics/Departments/Psychology/Psycho_gallery";
 import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_gallery";
 import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
+
 import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
+
+import Useful from "./Pages/UsefulLinks/Useful";
+
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -328,6 +332,14 @@ function App() {
               </>
             }
             path="/forgot"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Useful />
+              </>
+            }
+            path="/UsefulLinks"
           ></Route>{" "}
           <Route
             element={
@@ -434,7 +446,7 @@ function App() {
             }
             path="/academics/departments/History/photogallery"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Hist_time />
@@ -466,7 +478,7 @@ function App() {
             }
             path="/academics/departments/Music/photogallery"
           ></Route>{" "}
-            <Route
+          <Route
             element={
               <>
                 <Music_time />
@@ -1089,8 +1101,7 @@ function App() {
             }
             path="/Contact_us"
           ></Route>{" "}
-
-          {auth &&
+          {auth && (
             <Route
               element={
                 <>
@@ -1099,7 +1110,7 @@ function App() {
               }
               path="/Bulletin"
             ></Route>
-          }
+          )}{" "}
           <Route
             element={
               <>
@@ -1262,7 +1273,6 @@ function App() {
             }
             path="/academics/departments/Commerce/Publications"
           ></Route>{" "}
-
           <Route
             element={
               <>
@@ -1400,7 +1410,6 @@ function App() {
             }
             path="/academics/departments/Economics/Facilities"
           ></Route>{" "}
-
           // {/* English */}{" "}
           <Route
             element={

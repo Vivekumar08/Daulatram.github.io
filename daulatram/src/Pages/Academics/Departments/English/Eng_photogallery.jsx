@@ -4,7 +4,9 @@ import English from "../../../../Components/DepartSIde/English.jsx";
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import {  faTrashCan,
+  faCircleArrowLeft,
+  faCircleArrowRight, } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -20,11 +22,17 @@ function Eng_Gallery() {
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slideLength, setSlideLength] = useState(0);
+  const autoScroll = true;
+  let slideInterval;
+  let intervalTime = 5000;
 
   const fetchdata = async () => {
     const response = await fetch("/Eng_Photo_Gallery");
-    setData1(await response.json());
-  };
+    const data = await response.json();
+    setData1(data);
+    setSlideLength(data.length);  };
 
   const onDrop = (files) => {
     const [uploadedFile] = files;
@@ -43,6 +51,28 @@ function Eng_Gallery() {
   useEffect(() => {
     fetchdata();
   }, []);
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, []);
+
+  useEffect(() => {
+    if (autoScroll) {
+      auto();
+    }
+    return () => clearInterval(slideInterval);
+  }, [currentSlide]);
+  const nextSlide = () => {
+    setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
+  };
+
+  function auto() {
+    slideInterval = setInterval(nextSlide, intervalTime);
+  }
+
 
   const del = async (id) => {
     console.log(id);
@@ -119,8 +149,15 @@ function Eng_Gallery() {
           <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
             Gallery
           </h2>
-          <div className="main_conta">
+          <div className="main_conta flex items-center ml-5">
+          <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              onClick={prevSlide}
+              size="2xl"
+              className="cursor-pointer "
+            />
             <div class="sliderr">
+
               <div class="slidee-track">
                 {data1 &&
                   data1.map((curElem) => {
@@ -129,15 +166,26 @@ function Eng_Gallery() {
                     var path2 = path_pic.replace(/\\/g, "/");
                     var path = path2.slice(19);
                     return (
-                      <>
-                        <div class="slidee" key={_id}>
-                          <img src={path} alt={path} />
-                        </div>
+                      <> 
+                      <div
+                      class={
+                        index === currentSlide ? `slidee current` : "slidee"
+                      }
+                      key={_id}
+                    >
+                      <img src={path} className="w-full h-[500px]" alt={path} />
+                    </div>
                       </>
                     );
                   })}
               </div>
             </div>
+            <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              onClick={nextSlide}
+              size="2xl"
+              className="cursor-pointer"
+            />
           </div>
           <div className="grid md:grid-cols-4">
             {data1 &&

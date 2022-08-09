@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan ,faClose, faBars} from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan ,faClose, faBars,faCircleArrowLeft,
+  faCircleArrowRight,} from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -21,7 +22,11 @@ function Sanskrit_gallery() {
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
-
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slideLength, setSlideLength] = useState(0);
+  const autoScroll = true;
+  let slideInterval;
+  let intervalTime = 5000;
   const fetchdata = async () => {
     const response = await fetch("/Psychology_Gallery");
     setData1(await response.json());
@@ -44,7 +49,27 @@ function Sanskrit_gallery() {
   useEffect(() => {
     fetchdata();
   }, []);
+  useEffect(() => {
+    setCurrentSlide(0);
+  }, []);
 
+  useEffect(() => {
+    if (autoScroll) {
+      auto();
+    }
+    return () => clearInterval(slideInterval);
+  }, [currentSlide]);
+  const nextSlide = () => {
+    setCurrentSlide(currentSlide === slideLength - 1 ? 0 : currentSlide + 1);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide(currentSlide === 0 ? slideLength - 1 : currentSlide - 1);
+  };
+
+  function auto() {
+    slideInterval = setInterval(nextSlide, intervalTime);
+  }
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
@@ -124,7 +149,13 @@ function Sanskrit_gallery() {
           <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
               Photo Gallery
             </h2>
-            <div className="main_conta">
+            <div className="main_conta flex items-center ml-5">
+          <FontAwesomeIcon
+              icon={faCircleArrowLeft}
+              onClick={prevSlide}
+              size="2xl"
+              className="cursor-pointer "
+            />
               <div class="sliderr">
                 <div class="slidee-track">
                   {data1 &&
@@ -135,14 +166,25 @@ function Sanskrit_gallery() {
                       var path = path2.slice(19);
                       return (
                         <>
-                          <div class="slidee" key={_id}>
-                            <img src={path} alt={path} />
-                          </div>
+                            <div
+                      class={
+                        index === currentSlide ? `slidee current` : "slidee"
+                      }
+                      key={_id}
+                    >
+                      <img src={path} className="w-full h-[500px]" alt={path} />
+                    </div>
                         </>
                       );
                     })}
                 </div>
               </div>
+              <FontAwesomeIcon
+              icon={faCircleArrowRight}
+              onClick={nextSlide}
+              size="2xl"
+              className="cursor-pointer"
+            />
             </div>
             <div className="grid md:grid-cols-4">
               {data1 &&
