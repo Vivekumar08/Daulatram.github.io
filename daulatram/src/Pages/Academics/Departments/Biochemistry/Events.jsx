@@ -141,12 +141,10 @@ function Events() {
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Biochemistry />
         </div>
-        <div className="ml-3 ">
-          <div className="w-full ml-2">
-            <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
-              Events
-            </h2>
-          </div>
+        <div className="w-full ml-auto mr-auto">
+          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
+            Events
+          </h2>
         </div>
         {data1 &&
           data1.sort(sortOn("title")).map((currElem) => {
