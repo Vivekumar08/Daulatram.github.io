@@ -5,8 +5,9 @@ import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import { Link } from "react-router-dom";
-
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 const Library = () => {
+  const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -123,10 +124,10 @@ const Library = () => {
 
       <div className="flex flex-row">
         <div className="w-full mr-auto ml-auto">
-          <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+          <h2 className=" md:text-3xl text-lg  uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Library
           </h2>
-          <div class="flex justify-evenly w-full mt-5 mb-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 ml-16 md:ml-24 lg:ml-10 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
@@ -135,7 +136,7 @@ const Library = () => {
                 var path = path2.slice(19);
                 return (
                   <>
-                    <div class="card2 ml-2 " key={_id}>
+                    <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
                       <span className="   font-bold text-justify text-xl w-[75%] ">
                         {link}
                       </span>
