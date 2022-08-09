@@ -13,7 +13,7 @@ const nodemailer = require("nodemailer");
 // const jwt = require("jsonwebtoken")
 const User = require("../models/adminSchema");
 const Adminssion = require("../models/Admission/onlineAdmission");
-const Eresources = require("../models/StudentZone/eresources");
+const Eresources = require("../models/StudentZone/eResources_Schema");
 
 const accred = require("../models/Accreditation/Accreditation");
 const Fee_Structure = require("../models/Admission/Fee_Structure_Schema");
@@ -3977,7 +3977,6 @@ router.delete("/deleteeresources/:id", async (req, res) => {
 });
 router.post("/eresources_online_add_link", async (req, res) => {
     try {
-        console.log(req.body);
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
