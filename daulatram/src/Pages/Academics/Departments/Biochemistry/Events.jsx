@@ -13,17 +13,28 @@ function Events() {
   const userRef = useRef();
   const errRef = useRef();
   const dropRef = useRef();
-  const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [previewSrc, setPreviewSrc] = useState("");
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [file, setFile] = useState(null);
+  const [pdf, setPdf] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
     const response = await fetch("/Bio_Evetns");
     setData1(await response.json());
+  };
+
+  const onDropPdf = (files) => {
+    const [uploadedFile] = files;
+    setPdf(uploadedFile);
+    // setData(prev=>({...prev,pdf:uploadedFile}))
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
   };
 
   const onDrop = (files) => {
@@ -45,9 +56,9 @@ function Events() {
   }, []);
 
   const del = async (id) => {
-    console.log(id);
+    // console.log(id);
     const response = await fetch(`/delete_Bio_Evetns/${id}`, {
-      method: "DELETE",
+      method: "POST",
     });
     const data = await response.json();
     if (data || response.status === 200) {
@@ -76,26 +87,58 @@ function Events() {
     }
   };
 
+  const handleSubmit_file = async (id, pdf) => {
+    // console.log(id);
+    try {
+      // console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Bio_Evetns_file_add/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setPdf("")
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (link.trim() !== "" && caption.trim() !== "") {
+      if (caption.trim() !== "") {
         // if (file) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("link", link);
-        formData.append("title", caption);
+        // const formData = new FormData();
+        // formData.append("file", file);
+        // formData.append("title", caption);
 
         setErrMsg("");
-        console.log(formData);
-        await axios.post(`/Bio_Evetns_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
+        console.log(file, caption);
+        await axios.post(
+          `/Bio_Evetns_add`,
+          { file: file, title: caption },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
         setCaption("");
-        setLink("");
         setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
         setAuth(true);
         fetchdata();
       } else {
@@ -148,36 +191,111 @@ function Events() {
         </div>
         {data1 &&
           data1.sort(sortOn("title")).map((currElem) => {
-            const { _id, title, file_path, link } = currElem;
-            var path_pic = file_path;
-            var path2 = path_pic.replace(/\\/g, "/");
-            var path = path2.slice(19);
+            const { _id, title, img_data } = currElem;
             return (
-              <div class="first hero" key={_id}>
-                <img class="hero-profile-img" src={path} alt="" />
-                <div class="hero-description-bk"></div>
-                <div className="">
+              <div className="flex flex-col ">
+                <div class="first hero" key={_id}>
                   <div className="">
-                    <div class="hero-description ml-16">
-                      <p>{title}</p>
+                    <div className="">
+                      {img_data.file_path &&
+                        img_data.file_path.map((elem) => {
+                          var path2 = elem.file_path1.replace(/\\/g, "/");
+                          var path = path2.slice(19);
+                          return (
+                            <>
+                              <img class="hero-profile-img" src={path} alt="" />
+                            </>
+                          );
+                        })}
+                      <div class="hero-description-bk"></div>
+                      <div class="hero-description ml-16">
+                        <p>{title}</p>
+                      </div>
+                      {img_data.pdf_path &&
+                        img_data.pdf_path.map((elem) => {
+                          const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                          const path = path2.slice(19);
+                          return (
+                            <>
+                              {elem.value === "true" && (
+                                <>
+                                  <a href={path}>
+                                    <div class="hero-btn ml-28">Learn More</div>
+                                  </a>
+                                </>
+                              )}
+                            </>
+                          );
+                        })}
                     </div>
-                    <a href={link} target="_blank">
-                      <div class="hero-btn ml-28">Learn More</div>
-                    </a>
                   </div>
+                  {auth && (
+                    <>
+                      <div className="flex flex-col">
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
+                          size="lg"
+                          className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
+                          onClick={() => del(_id)}
+                        ></FontAwesomeIcon>
+                      </div>
+                    </>
+                  )}
                 </div>
-                {auth && (
-                  <>
-                    <div className="flex flex-col">
-                      <FontAwesomeIcon
-                        icon={faTrashCan}
-                        size="lg"
-                        className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
-                        onClick={() => del(_id)}
-                      ></FontAwesomeIcon>
-                    </div>
-                  </>
-                )}
+                {img_data.pdf_path &&
+                  img_data.pdf_path.map((elem) => {
+                    return (
+                      <>
+                        {auth && elem.value != "true" && (
+                          <>
+                            <div className="flex flex-col justify-center content-center max-w-sm w-[220px]  ml-auto mr-auto mb-5" key={_id}>
+                              <p>Events file</p>
+                              <div class="md:flex flex-col md:items-center h-full ">
+                                <div className="upload-section flex h-full mb-[10px] ">
+                                  <Dropzone
+                                    onDrop={onDropPdf}
+                                    onDragEnter={() => updateBorder("over")}
+                                    onDragLeave={() => updateBorder("leave")}
+                                  >
+                                    {({ getRootProps, getInputProps }) => (
+                                      <div
+                                        {...getRootProps({
+                                          className:
+                                            "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                                        })}
+                                        ref={dropRef}
+                                      >
+                                        <input {...getInputProps()} />
+                                        <p>
+                                          Drag and drop a file OR click here to
+                                          select a file
+                                        </p>
+                                        {pdf && (
+                                          <div>
+                                            <strong>Selected file:</strong>{" "}
+                                            {pdf.name}
+                                          </div>
+                                        )}
+                                      </div>
+                                    )}
+                                  </Dropzone>
+                                </div>
+                                <div class="md:w-[220px]  ">
+                                  <button
+                                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                    type="button"
+                                    onClick={() => handleSubmit_file(_id, pdf)}
+                                  >
+                                    Add Event file
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </>
+                    );
+                  })}
               </div>
             );
           })}
@@ -187,25 +305,13 @@ function Events() {
         <>
           <form
             method="post"
-            className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+            className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
           >
             <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
               <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
                 {errMsg}
               </p>
             </h2>
-            <div className="mb-3">
-              <input
-                type="text"
-                name="Link"
-                // id=""
-                ref={userRef}
-                onChange={(e) => setLink(e.target.value)}
-                value={link}
-                placeholder="Google Site link"
-                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
-              />
-            </div>
             <div className="mb-3">
               <textarea
                 name="Caption"
@@ -219,9 +325,9 @@ function Events() {
                 placeholder="Title of Society"
               ></textarea>
             </div>
-            <div class="md:flex flex-col md:items-center">
+            <div class="md:flex flex-col md:items-center h-full">
               {/* <div class="md:w-1/3"></div> */}
-              <div className="upload-section flex h-[200px] mb-[10px] w-full">
+              <div className="upload-section flex h-full mb-[10px] w-full">
                 <Dropzone
                   onDrop={onDrop}
                   onDragEnter={() => updateBorder("over")}
