@@ -279,7 +279,6 @@ import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
 import Accreditation from "./Pages/Accreditation/accred"
 import Useful from "./Pages/UsefulLinks/Useful";
 
-
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
 
@@ -349,7 +348,6 @@ function App() {
             }
             path="/about/mission"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -430,7 +428,6 @@ function App() {
             }
             path="/academics/departments/History/photogallery"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -439,7 +436,6 @@ function App() {
             }
             path="/academics/departments/Mathematics/photogallery"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -448,7 +444,6 @@ function App() {
             }
             path="/academics/departments/Music/photogallery"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -457,7 +452,6 @@ function App() {
             }
             path="/academics/departments/NHE/photogallery"
           ></Route>{" "}
-        
           <Route
             element={
               <>
@@ -830,7 +824,6 @@ function App() {
             }
             path="/academics/departments/Botany/awards"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -914,7 +907,7 @@ function App() {
           <Route
             element={
               <>
-                <Complaints/>
+                <Complaints />
               </>
             }
             path="/Student_Zone/Complainst_&_Suggetions"
@@ -922,7 +915,7 @@ function App() {
           <Route
             element={
               <>
-                <Stud_Feedback/>
+                <Stud_Feedback />
               </>
             }
             path="/Student_Zone/Student_Feedback"
@@ -1109,7 +1102,6 @@ function App() {
             }
             path="/academics/departments/Chemistry/awards"
           ></Route>{" "}
-         
           <Route
             element={
               <>
@@ -1239,7 +1231,6 @@ function App() {
             }
             path="/academics/departments/Commerce/awards"
           ></Route>{" "}
-         
           <Route
             element={
               <>
@@ -1313,7 +1304,6 @@ function App() {
             }
             path="/academics/departments/Economics/photogallery"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -1395,7 +1385,6 @@ function App() {
             }
             path="/academics/departments/English/Publications"
           ></Route>{" "}
-         
           <Route
             element={
               <>
@@ -1469,7 +1458,6 @@ function App() {
             }
             path="/academics/departments/Hindi/Facilities"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -1683,7 +1671,6 @@ function App() {
             }
             path="/academics/departments/Philosophy/"
           ></Route>{" "}
-         
           <Route
             element={
               <>
@@ -1765,7 +1752,6 @@ function App() {
             }
             path="/academics/departments/Physical_Education/photogallery"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -1823,7 +1809,6 @@ function App() {
             }
             path="/academics/departments/Physics/Events"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -1889,7 +1874,6 @@ function App() {
             }
             path="/academics/departments/Political_Science/Faculty"
           ></Route>{" "}
-          
           <Route
             element={
               <>
@@ -1979,7 +1963,6 @@ function App() {
             }
             path="/academics/departments/Psychology/Programoffered"
           ></Route>{" "}
-          
           {/* Sanskriti */}{" "}
           <Route
             element={
@@ -2053,7 +2036,6 @@ function App() {
             }
             path="/academics/departments/Sanskrit/association"
           ></Route>{" "}
-         
           {/* Zoology */}{" "}
           <Route
             element={
@@ -2095,7 +2077,6 @@ function App() {
             }
             path="/academics/departments/Zoology/photogallery"
           ></Route>{" "}
-         
           <Route
             element={
               <>
