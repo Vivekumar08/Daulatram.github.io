@@ -61,7 +61,7 @@ export const links = [
         link: "/academics/Facilities",
       },
       {
-        name: "Resources",
+        name: "Resource Centres for Innovation",
         link: "/academics/resources",
       },
       {

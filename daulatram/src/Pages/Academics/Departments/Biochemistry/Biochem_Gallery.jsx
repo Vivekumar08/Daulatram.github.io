@@ -5,6 +5,7 @@ import {
   faTrashCan,
   faCircleArrowLeft,
   faCircleArrowRight,
+  faBars
 } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
@@ -14,6 +15,7 @@ import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
 // import "./stl.css";
 
 function Biochem_Gallery() {
+  const [visible, setVisible] = useState()
   const [data1, setData1] = useState();
   const errRef = useRef();
   const dropRef = useRef();
