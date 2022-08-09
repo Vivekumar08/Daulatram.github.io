@@ -73,7 +73,7 @@ import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
 import Attendence from "./Pages/Student_zone/Attendence";
-import Resources from "./Pages/Academics/Resources";
+import Resources from "./Pages/Academics/Resources/Resources";
 import Contact from "./Pages/Footer/Contact";
 import Bulletins_page from "./Pages/Footer/Bulletins_page";
 import Internal from "./Pages/Student_zone/Internal";

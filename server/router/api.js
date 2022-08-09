@@ -31,6 +31,7 @@ const Training = require("../models/Academics/Training_Schema");
 const U_Acad_Cal = require("../models/Academics/U_Acad_Cal_Schema");
 const C_Acad_Cal = require("../models/Academics/C_Acad_Cal_Schema");
 const Teacher = require("../models/Academics/Teacher_Schema");
+const Resources_Innovation = require("../models/Academics/Resources_Innovation_Schema");
 const Feedback = require("../models/StaffZone/Feedback_Form_Schema");
 const Roster = require("../models/StaffZone/Roster_Schema");
 const Founder = require("../models/About_Us/Founder_Schema");
@@ -4171,7 +4172,7 @@ router.post(
                 await unlinkAsync(path);
                 res.status(402).send("Delete previous Images there is only a limit of 6 images");
             }
-            
+
         } catch (error) {
             res.status(400).send("Error while uploading file. Try again later.");
         }
@@ -4249,17 +4250,17 @@ router.post(
             const dat = await Eng_Photo_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Eng_Photo_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
-        }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
     },
     (error, req, res, next) => {
@@ -4292,22 +4293,22 @@ router.post(
             const dat = await Eco_Photo_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Eco_Photo_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
-    }
-},
-(error, req, res, next) => {
-    if (error) {
-        res.status(402).send(error.message);
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
         }
     }
 );
@@ -4335,25 +4336,25 @@ router.post(
             const dat = await Com_Photo_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Com_Photo_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
-    }
-},
-(error, req, res, next) => {
-    if (error) {
-        res.status(402).send(error.message);
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
         }
     }
-    );
+);
 // Chemistry Photo Gallery
 router.get("/Chem_Photo_Gallery", async (req, res) => {
     const details = await Chem_Photo_Gallery.find();
@@ -4383,30 +4384,30 @@ router.post(
                 });
                 await file.save();
                 res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
-    }
-},
-(error, req, res, next) => {
-    if (error) {
+    },
+    (error, req, res, next) => {
+        if (error) {
             res.status(402).send(error.message);
         }
     }
-    );
-    // Botany Photo Gallery
-    router.get("/Bot_Photo_Gallery", async (req, res) => {
-        const details = await Bot_Photo_Gallery.find();
-        res.status(200).json(details);
+);
+// Botany Photo Gallery
+router.get("/Bot_Photo_Gallery", async (req, res) => {
+    const details = await Bot_Photo_Gallery.find();
+    res.status(200).json(details);
+});
+
+router.delete("/delete_Bot_Photo_Gallery/:id", async (req, res) => {
+    const delete_user = await Bot_Photo_Gallery.findOneAndDelete({
+        _id: req.params.id,
     });
-    
-    router.delete("/delete_Bot_Photo_Gallery/:id", async (req, res) => {
-        const delete_user = await Bot_Photo_Gallery.findOneAndDelete({
-            _id: req.params.id,
-        });
     console.log(delete_user.file_path);
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -4420,18 +4421,18 @@ router.post(
             const { path, mimetype } = req.file;
             const dat = await Bot_Photo_Gallery.find()
             if (dat.length <= 5) {
-            const file = new Bot_Photo_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
-        }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
+                const file = new Bot_Photo_Gallery({
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
     },
     (error, req, res, next) => {
@@ -4464,17 +4465,17 @@ router.post(
             const dat = await Math_Photo_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Math_Photo_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
-        }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
     },
     (error, req, res, next) => {
@@ -4508,24 +4509,24 @@ router.post(
             const dat = await Music_Photo_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Music_Photo_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
     }
-},
-(error, req, res, next) => {
-    if (error) {
-        res.status(402).send(error.message);
-    }
-}
 );
 
 // NHE Photo Gallery
@@ -4552,22 +4553,22 @@ router.post(
             const dat = await NHE_Photo_Gallery.find()
             if (dat.length <= 5) {
                 const file = new NHE_Photo_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
-    }
-},
-(error, req, res, next) => {
-    if (error) {
-        res.status(402).send(error.message);
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
         }
     }
 );
@@ -4596,17 +4597,17 @@ router.post(
             const dat = await Philo_Photo_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Philo_Photo_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
-        }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
     },
     (error, req, res, next) => {
@@ -4637,19 +4638,19 @@ router.post(
             const dat = await PE_Gallery.find()
             if (dat.length <= 5) {
                 const file = new PE_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
-    }
-},
+    },
     (error, req, res, next) => {
         if (error) {
             res.status(402).send(error.message);
@@ -4680,17 +4681,17 @@ router.post(
             const dat = await Physics_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Physics_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
-        }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
     },
     (error, req, res, next) => {
@@ -4698,8 +4699,8 @@ router.post(
             res.status(402).send(error.message);
         }
     }
-    );
-    // Zoology Gallery
+);
+// Zoology Gallery
 router.get("/Zoology_Gallery", async (req, res) => {
     const details = await Zoology_Gallery.find();
     res.status(200).json(details);
@@ -4723,18 +4724,18 @@ router.post(
             const dat = await Zoology_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Zoology_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
-    }
     },
     (error, req, res, next) => {
         if (error) {
@@ -4766,19 +4767,19 @@ router.post(
             const dat = await Sanskrit_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Sanskrit_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
-    }
-},
+    },
     (error, req, res, next) => {
         if (error) {
             res.status(402).send(error.message);
@@ -4809,17 +4810,17 @@ router.post(
             const dat = await Psychology_Gallery.find()
             if (dat.length <= 5) {
                 const file = new Psychology_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
-        }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
     },
     (error, req, res, next) => {
@@ -4850,17 +4851,17 @@ router.post(
             const dat = await PS_Gallery.find()
             if (dat.length <= 5) {
                 const file = new PS_Gallery({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
-        }
-    } catch (error) {
-        res.status(400).send("Error while uploading file. Try again later.");
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
         }
     },
     (error, req, res, next) => {
@@ -4894,15 +4895,15 @@ router.post(
             const dat = await Gallery_About.find()
             if (dat.length <= 25) {
                 const file = new Gallery_About({
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } else {
-            await unlinkAsync(path);
-            res.status(402).send("Delete previous Images there is only a limit of 6 images");
-        }
+                    file_path: path,
+                    file_mimetype: mimetype,
+                });
+                await file.save();
+                res.send("file uploaded successfully.");
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
         } catch (error) {
             res.status(400).send("Error while uploading file. Try again later.");
         }
@@ -5946,6 +5947,101 @@ router.post(
 router.get("/research_download/:id", async (req, res) => {
     try {
         const file = await File.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+// Resources Centre for Innovation
+router.post("/delete_Resource_centre_fac/:id", async (req, res) => {
+    const delete_user = await Resources_Innovation.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Resource_centre_fac/:id", async (req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Resources_Innovation.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.get("/Resource_centre", async (req, res) => {
+    try {
+        const files = await Resources_Innovation.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+router.post("/Resource_centre_upload", async (req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Resources_Innovation({
+            title: title,
+            description: description,
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Resource_center_img_upload/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Resources_Innovation.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length<=4) {
+                const data = await Resources_Innovation.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Resource_center_download/:id", async (req, res) => {
+    try {
+        const file = await Resources_Innovation.findById(req.params.id);
         res.set({
             "Content-Type": file.file_mimetype,
         });
