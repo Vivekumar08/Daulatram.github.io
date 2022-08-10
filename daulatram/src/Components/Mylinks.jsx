@@ -45,7 +45,7 @@ export const links = [
         link: "/academics/departments",
       },
       {
-        name: "Teachers-In-Charges",
+        name: "Teachers-In-Charge",
         link: "/academics/Teacher_in_charge",
       },
       {
@@ -61,7 +61,7 @@ export const links = [
         link: "/academics/Facilities",
       },
       {
-        name: "Resources",
+        name: "Resource Centres for Innovation",
         link: "/academics/resources",
       },
       {
@@ -82,7 +82,7 @@ export const links = [
     name: "Research",
     links: [
       {
-        name: "Facilities & Research Centres",
+        name: " Research Centres & Facilities ",
         link: "/research/research_facilities",
       },
       {
@@ -137,7 +137,7 @@ export const links = [
     ],
   },
   {
-    name: "Students ZOne",
+    name: "Student ZOne",
     links: [
       {
         name: "Time Table & Academics Calendar",
@@ -211,6 +211,10 @@ export const links = [
         name: "Complaints/Suggestions",
         link: "/Student_Zone/Complainst_&_Suggetions",
       },
+      {
+        name: "Feedback",
+        link: "/Student_Zone/Student_Feedback",
+      },
     ],
   },
   {
@@ -259,27 +263,27 @@ export const useful = [
     links: [
       {
         name: "NAAC/IQAC",
-        link: "/Accreditation/NAAC_IQAC",
+        link: "/Accreditation",
       },
       {
         name: "NAAC/AQAR",
-        link: "/academics/NAAC_AQAR",
+        link: "/Accreditation",
       },
       {
         name: "NIRF",
-        link: "/academics/NIRF",
+        link: "/Accreditation",
       },
       {
         name: "AISHE",
-        link: "/academics/AISHE",
+        link: "/Accreditation",
       },
       {
         name: "DBT Star College",
-        link: "/academics/DBT_Star_college",
+        link: "/Accreditation",
       },
       {
         name: "Other Rankings",
-        link: "/academics/Other_rankings",
+        link: "/Accreditation",
       },
     ],
   },
@@ -287,28 +291,28 @@ export const useful = [
     name: "Useful Links",
     links: [
       {
-        name: "Covid Information & Resources",
+        name: "COVID Information & Resources",
         link: "http://www.du.ac.in/uploads/COVIDCARE/index.html",
       },
       {
-        name: "Employement Opportunities",
+        name: "Employment Opportunities",
         link: "https://www.dr.du.ac.in/employment-opportunities.php",
       },
       {
         name: "ECA Calendar",
-        link: "#",
+        link: "/UsefulLinks",
       },
       {
-        name: "E-Paathshala",
+        name: "e-Pathshala",
         link: "https://epgp.inflibnet.ac.in/",
       },
       {
-        name: "Swayam Protal",
+        name: "Swayam Portal",
         link: "https://swayam.gov.in/",
       },
       {
         name: "UGC",
-        link: "https://www.ugc.ac.in/",
+        link: "/UsefulLinks",
       },
     ],
   },
@@ -363,12 +367,16 @@ export const acade = [
         link: "/academics/departments",
       },
       {
-        name: "Teacher-In-Charges",
+        name: "Teachers-In-Charge",
         link: "/academics/Teacher_in_charge",
       },
       {
         name: "Undergraduate Courses",
         link: "/academics/UG_courses",
+      },
+      {
+        name: "Postgraduate Courses",
+        link: "/academics/PG_courses",
       },
       {
         name: "Centre for Foreign Languages (Add-On Courses)",
@@ -379,7 +387,7 @@ export const acade = [
         link: "/academics/Facilities",
       },
       {
-        name: "Resources",
+        name: "Resource Centres for Innovation",
         link: "/academics/Resources",
       },
       {
@@ -503,7 +511,7 @@ export const research = [
     name: "Research",
     links: [
       {
-        name: "Research and Facilities Centres",
+        name: " Research Centres & Facilities",
         link: "/research/research_facilities",
       },
       {
@@ -523,7 +531,7 @@ export const admisn = [
         link: "/admission/Online_Admission",
       },
       {
-        name: "Admissions Bulletin 2022-23",
+        name: "Admission Bulletin 2022-23",
         link: "/admission/Admission_Bulletin",
       },
       {
@@ -535,7 +543,7 @@ export const admisn = [
         link: "/admission/feeStructure",
       },
       {
-        name: "GE Options 2022-23",
+        name: "VACs / SECs / GE Options",
         link: "/admission/GEoption",
       },
       {
@@ -551,7 +559,7 @@ export const admisn = [
         link: "/admission/Admission_Grievance_Committee",
       },
       {
-        name: "Anti Ragging Guidlines",
+        name: "Anti-Ragging Guidelines",
         link: "/admission/AntiRaggingGuidlines",
       },
       {
@@ -600,10 +608,10 @@ export const staff = [
 
 export const Student = [
   {
-    name: "Students Zone",
+    name: "Student Zone",
     links: [
       {
-        name: "Time Table & Academics Calendar",
+        name: "Time Table ",
         link: "/Student_Zone/Time_Table_&_Academic_Calendar",
       },
       {
@@ -611,11 +619,11 @@ export const Student = [
         link: "/Student_Zone/Attendance",
       },
       {
-        name: "Internal Assesments",
+        name: "Internal Assessment",
         link: "/Student_Zone/Internal_Assesments",
       },
       {
-        name: "Examination Form And Datesheet",
+        name: "Examination Form and Datesheet",
         link: "/Student_Zone/Examination_Form_&_Database",
       },
       {
@@ -631,15 +639,15 @@ export const Student = [
         link: "/Student_Zone/Fee_Payment_Portal",
       },
       {
-        name: "Student Notice",
+        name: "Student Notices",
         link: "/Student_Zone/Student_Notice",
       },
       {
-        name: "Scholarship",
+        name: "Scholarships",
         link: "/Student_Zone/Scholarship",
       },
       {
-        name: "Student's Union",
+        name: "Students' Union",
         link: "/Student_Zone/Student_Union",
       },
       {
@@ -647,7 +655,7 @@ export const Student = [
         link: "/Student_Zone/Placement_Cell",
       },
       {
-        name: "Students Facilities",
+        name: "Students' Facilities",
         link: "/Student_Zone/Students_Facilities",
       },
       {
@@ -663,7 +671,7 @@ export const Student = [
         link: "/Student_Zone/Anti_Ragging_Helpline",
       },
       {
-        name: "Equal Opportunities Cell",
+        name: "Equal Opportunity Cell",
         link: "/Student_Zone/Equal_Opportunities_Cell",
       },
       {
@@ -671,8 +679,12 @@ export const Student = [
         link: "/Student_Zone/Grievance_Redressal",
       },
       {
-        name: "Complaints/Suggestions",
+        name: "Complaints / Suggestions",
         link: "/Student_Zone/Complainst_&_Suggetions",
+      },
+      {
+        name: "Feedback",
+        link: "/Student_Zone/Student_Feedback",
       },
     ],
   },
@@ -683,23 +695,23 @@ export const Notices = [
     name: "Notice Board",
     links: [
       {
-        name: "Students Notice",
+        name: "Student Notices",
         link: "/Student_Zone/Student_Notice",
       },
       {
-        name: "Staff Notice",
+        name: "Staff Notices",
         link: "/StaffZone/Notices",
       },
       {
-        name: "Public Notice",
+        name: "Public Notices",
         link: "/Public_Notice",
       },
       {
-        name: "Archive Notice",
+        name: "Archives",
         link: "/Archives",
       },
       {
-        name: "Bulleitns",
+        name: "Bulletin",
         link: "/Bulletin",
       },
     ],

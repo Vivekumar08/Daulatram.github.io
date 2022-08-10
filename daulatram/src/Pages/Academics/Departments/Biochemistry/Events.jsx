@@ -1,19 +1,163 @@
-import React from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
-import Departments from "../../../../Components/Sidebar/Departments";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
+
 function Events() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const [pdf, setPdf] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Bio_Evetns");
+    setData1(await response.json());
+  };
+
+  const onDropPdf = (files) => {
+    const [uploadedFile] = files;
+    setPdf(uploadedFile);
+    // setData(prev=>({...prev,pdf:uploadedFile}))
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id) => {
+    // console.log(id);
+    const response = await fetch(`/delete_Bio_Evetns/${id}`, {
+      method: "POST",
+    });
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
+
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    // console.log(id);
+    try {
+      // console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Bio_Evetns_file_add/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setPdf("")
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (caption.trim() !== "") {
+        // if (file) {
+        // const formData = new FormData();
+        // formData.append("file", file);
+        // formData.append("title", caption);
+
+        setErrMsg("");
+        console.log(file, caption);
+        await axios.post(
+          `/Bio_Evetns_add`,
+          { file: file, title: caption },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        // setErrMsg("Please select a file to add.");
+        setErrMsg("Please enter all the field values.");
+      }
+      // } else {
+      // }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
   return (
     <div className=" flex flex-col">
       <div className="">
         <DepartBanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -40,132 +184,206 @@ function Events() {
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Biochemistry />
         </div>
-        <div className="ml-3 ">
-          <div className="w-full ml-2">
-            <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
-              Events
-            </h2>
-          </div>
-          <div className="flex flex-row">
-            <div className="mr-11">
-              <div>
-                <p className="md:text-1xl text-lg ml-4 font-bold">Year 2020-21</p>
-              </div>
-              <ol className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
-                <li>
-                  <strong>
-                    SDP held by Department of Biochemistry from 19th August 2020
-                    to 21st August 2020 titled E-skill development program on
-                    enhanced learning through ICT tools.
-                  </strong>
-                </li>
-
-                <p>
-                  The objective of the SDP was to introduce the latest ICT tools
-                  to students as this year due to Covid 19 all the classes are
-                  held on the online platform.Course coordinator: Dr Sarita
-                  Nanda (TIC, biochemistry department) Duration with dates: The
-                  SDP was help from 11:00 am to 1:00 pm from 19th to 21st August
-                  2020
-                </p>
-                <br />
-                <li>
-                  <strong>
-                    Report on SDP held by Department of Biochemistry from 17th
-                    December 2020 to 19th December 2020 titled E-skill
-                    development program on enhanced learning through ICT tools.
-                  </strong>
-                </li>
-
-                <p>
-                  The objective of the SDP was to introduce the latest ICT tools
-                  to students as this year due to Covid 19 all the classes are
-                  held on the online platform. Course coordinator: Dr Sarita
-                  Nanda (TIC, biochemistry department) Duration with dates: The
-                  SDP was help from 11:00 am to 1:00 pm from 17th to 19th
-                  December 2020
-                </p>
-                <br />
-                <li>
-                  The Biochemistry department festival{" "}
-                  <strong>
-                    BIOMANIA 2020-21 was held on 13 February 2021{" "}
-                  </strong>{" "}
-                  over zoom meet In our effort to sensitise our students towards
-                  important environmental and sustainability issues facing the
-                  world today,the Biochemistry department organised an intra
-                  college contest:{" "}
-                  <strong>
-                    "The Innovation Challenge :Create a better future"
-                  </strong>{" "}
-                  under the convenership of{" "}
-                  <strong>Dr. Padmshree Mudgal and Dr. Leena Vig.</strong>
-                </li>
-                <br />
-                <li>
-                  The Biochemistry association’s inaugural lecture was held on
-                  25th November, 2020. It was organised by the Department of
-                  Biochemistry, Daulat Ram College. Covid 19 pandemic has
-                  impacted the whole world and the key to prevent the spread is
-                  early detection. We were very fortunate to have with us Dr
-                  Debojyoti Chakraborty and his team who have been pioneers in
-                  indigenously developing CRISPR based COVID-19 detection kit
-                  which is now popularly known as Feluda.
-                </li>
-                <br />
-              </ol>
-              <div>
-                <p className="md:text-1xl text-lg ml-4 font-bold ">Year 2019-20</p>
-              </div>
-              <ol className="list-decimal mt-2 md:text-base text-sm ml-10 mr-4 text-justify mb-4">
-                <li>
-                  <strong>Ellora Sen, PhD,</strong> Scientist, National Brain
-                  Research Centre, Manesar gave a talk on Re-inventing Oneself:
-                  Science as a Career under{" "}
-                  <strong> Meet the scientist series</strong> on 10th April,
-                  2019
-                </li>
-              </ol>
-
-              <div>
-                <p className="md:text-1xl text-lg ml-4 font-bold">Year 2018-19</p>
-              </div>
-              <ol className="list-decimal mt-2 md:text-base text-sm ml-10 mr-4 text-justify mb-4">
-                <li>
-                  <strong>
-                    {" "}
-                    BIOMANIA18, an intracollege Science festival was organized
-                    by Biochemistry department on 20th Feb, 2018.
-                  </strong>{" "}
-                  Various events like Poster presention on “Future
-                  Technologies”, Just a minute, and Dumb Charades were
-                  organized. Under{" "}
-                  <strong>
-                    Meet the scientist series, Prof Suman kundu,
-                  </strong>{" "}
-                  head, Department Of Biochemistry, University of Delhi, South
-                  Campus, Delhi, gave an talk on <strong>Proteomics</strong>.
-                </li>
-                <br />
-                <li>
-                  Scientist talk –
-                  <strong>
-                    {" "}
-                    Dr. Nisheeth Agarwal (Associate Professor, Translational
-                    Health Science and Technology Institute, Faridabad){" "}
-                  </strong>
-                  came and delivered a lecture on the topic- “Nuts & bolts of
-                  CRISPR interference: optimization & implication mycobacteria
-                </li>
-              </ol>
-            </div>
-            {/* <div className=" flex  flex-col mr-16 ">
-            <Biochemistry/>
-
-            </div> */}
-          </div>
+        <div className="w-full ml-auto mr-auto">
+          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
+            Events
+          </h2>
         </div>
+        {data1 &&
+          data1.sort(sortOn("title")).map((currElem) => {
+            const { _id, title, img_data } = currElem;
+            return (
+              <div className="flex flex-col ">
+                <div class="first hero" key={_id}>
+                  <div className="">
+                    <div className="">
+                      {img_data.file_path &&
+                        img_data.file_path.map((elem) => {
+                          var path2 = elem.file_path1.replace(/\\/g, "/");
+                          var path = path2.slice(19);
+                          return (
+                            <>
+                              <img class="hero-profile-img" src={path} alt="" />
+                            </>
+                          );
+                        })}
+                      <div class="hero-description-bk"></div>
+                      <div class="hero-description ml-16">
+                        <p>{title}</p>
+                      </div>
+                      {img_data.pdf_path &&
+                        img_data.pdf_path.map((elem) => {
+                          const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                          const path = path2.slice(19);
+                          return (
+                            <>
+                              {elem.value === "true" && (
+                                <>
+                                  <a href={path}>
+                                    <div class="hero-btn ml-28">Learn More</div>
+                                  </a>
+                                </>
+                              )}
+                            </>
+                          );
+                        })}
+                    </div>
+                  </div>
+                  {auth && (
+                    <>
+                      <div className="flex flex-col">
+                        <FontAwesomeIcon
+                          icon={faTrashCan}
+                          size="lg"
+                          className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
+                          onClick={() => del(_id)}
+                        ></FontAwesomeIcon>
+                      </div>
+                    </>
+                  )}
+                </div>
+                {img_data.pdf_path &&
+                  img_data.pdf_path.map((elem) => {
+                    return (
+                      <>
+                        {auth && elem.value != "true" && (
+                          <>
+                            <div className="flex flex-col justify-center content-center max-w-sm w-[220px]  ml-auto mr-auto mb-5" key={_id}>
+                              <p>Events file</p>
+                              <div class="md:flex flex-col md:items-center h-full ">
+                                <div className="upload-section flex h-full mb-[10px] ">
+                                  <Dropzone
+                                    onDrop={onDropPdf}
+                                    onDragEnter={() => updateBorder("over")}
+                                    onDragLeave={() => updateBorder("leave")}
+                                  >
+                                    {({ getRootProps, getInputProps }) => (
+                                      <div
+                                        {...getRootProps({
+                                          className:
+                                            "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                                        })}
+                                        ref={dropRef}
+                                      >
+                                        <input {...getInputProps()} />
+                                        <p>
+                                          Drag and drop a file OR click here to
+                                          select a file
+                                        </p>
+                                        {pdf && (
+                                          <div>
+                                            <strong>Selected file:</strong>{" "}
+                                            {pdf.name}
+                                          </div>
+                                        )}
+                                      </div>
+                                    )}
+                                  </Dropzone>
+                                </div>
+                                <div class="md:w-[220px]  ">
+                                  <button
+                                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                    type="button"
+                                    onClick={() => handleSubmit_file(_id, pdf)}
+                                  >
+                                    Add Event file
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                      </>
+                    );
+                  })}
+              </div>
+            );
+          })}
       </div>
+
+      {auth && (
+        <>
+          <form
+            method="post"
+            className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+          >
+            <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+              <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                {errMsg}
+              </p>
+            </h2>
+            <div className="mb-3">
+              <textarea
+                name="Caption"
+                // id=""
+                cols="10"
+                rows="5"
+                ref={userRef}
+                onChange={(e) => setCaption(e.target.value)}
+                value={caption}
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                placeholder="Title of Society"
+              ></textarea>
+            </div>
+            <div class="md:flex flex-col md:items-center h-full">
+              {/* <div class="md:w-1/3"></div> */}
+              <div className="upload-section flex h-full mb-[10px] w-full">
+                <Dropzone
+                  onDrop={onDrop}
+                  onDragEnter={() => updateBorder("over")}
+                  onDragLeave={() => updateBorder("leave")}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <div
+                      {...getRootProps({
+                        className:
+                          "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                      })}
+                      ref={dropRef}
+                    >
+                      <input {...getInputProps()} />
+                      <p>Drag and drop a file OR click here to select a file</p>
+                      {file && (
+                        <div>
+                          <strong>Selected file:</strong> {file.name}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </Dropzone>
+                {previewSrc ? (
+                  isPreviewAvailable ? (
+                    <div className="image-preview ml-[5%] w-full">
+                      <img
+                        className="preview-image w-full h-full block mb-[10px]"
+                        src={previewSrc}
+                        alt="Preview"
+                      />
+                    </div>
+                  ) : (
+                    <div className="preview-message flex justify-center items-center ml-[5%]">
+                      <p>No preview available for this file</p>
+                    </div>
+                  )
+                ) : (
+                  <div className="preview-message flex justify-center items-center ml-[5%]">
+                    <p>Image preview will be shown here after selection</p>
+                  </div>
+                )}
+              </div>
+              <div class="md:w-2/3 ">
+                <button
+                  class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  type="button"
+                  onClick={handleSubmit}
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+        </>
+      )}
     </div>
   );
 }

@@ -113,7 +113,7 @@ const trainingp = () => {
             <div className="main flex-col">
               <table className=" w-96 h-48 ml-3 md:table-fixed md:ml-20 md:w-[500px] md:h-[180px] lg:ml-32 lg:w-[800px] lg:h-[180px] mt-1 ">
                 <tr className="h-20 text-lg">
-                  <th className="row text-lg">S.no</th>
+                  <th className="row text-lg">S. No.</th>
                   <th className="text-lg">About</th>
                   <th className="text-lg">PDF</th>
                   {auth && <th className="text-lg w-[15%]">Delete</th>}

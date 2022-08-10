@@ -117,6 +117,9 @@ const Bio_faculty = () => {
             }
           );
           setCaption("");
+          setImg("")
+          setIsPreviewAvailableImg(false)
+          setPreviewSrcImg("")
           setLink("");
           setAuth(true);
           fetchdata();
@@ -201,7 +204,7 @@ const Bio_faculty = () => {
                   {filter === "Supernnuated" && ( */}
           <div className="  ">
             <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
-              Superannuated
+              Superannuated / Former Faculty
             </h2>
           </div>
           {/* )}
@@ -281,7 +284,7 @@ const Bio_faculty = () => {
                       value="Supernnuated"
                       className="p-2 text-lg acctive:text-white  block px-4 py-2 "
                     >
-                      Superannuated
+                      Superannuated / Former Faculty
                     </option>
                   </select>
                 </div>

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Physics_Time_Schema = mongoose.Schema({
+const Senior_list_Schema = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -23,6 +23,6 @@ const Physics_Time_Schema = mongoose.Schema({
     timestamps: true
 });
 
-const Physics_Time = mongoose.model('Physics_Time', Physics_Time_Schema);
+const Senior_list = mongoose.model('Senior_list', Senior_list_Schema);
 
-module.exports = Physics_Time;
+module.exports = Senior_list;

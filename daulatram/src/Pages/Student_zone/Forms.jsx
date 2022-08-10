@@ -159,12 +159,12 @@ const forms = () => {
 
         <div className="w-[1100px] mb-5">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-            Forms
+            Forms for Students 
           </h2>
           <div className="main flex-col ">
             <table className=" text-xs md:text-base leading-5 w-80 h-40 ml-3 md:table-fixed  md:ml-28 lg:ml-32 md:w-[500px] lg:w-[800px] md:h-[180px] mt-1 ">
               <tr className="h-20 text-lg">
-                <th className="row text-lg w-[10%]">S.no</th>
+                <th className="row text-lg w-[10%]">S. No.</th>
                 <th className="text-lg">About</th>
                 <th className="text-lg w-[25%]">PDF</th>
                 {auth && <th className="text-lg w-[15%]">Delete</th>}

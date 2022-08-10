@@ -57,12 +57,9 @@ const Bot_faculty = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_bot_faculty/${id}`,
-      {
-        method: "POST",
-      }
-    );
+    const response = await fetch(`/delete_bot_faculty/${id}`, {
+      method: "POST",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -121,6 +118,9 @@ const Bot_faculty = () => {
           );
           setCaption("");
           setLink("");
+          setImg("");
+          setPreviewSrcImg("");
+          setIsPreviewAvailableImg(false);
           setAuth(true);
           fetchdata();
         } else {
@@ -138,7 +138,7 @@ const Bot_faculty = () => {
     <div className=" flex flex-col">
       <Botanybanner />
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -195,22 +195,12 @@ const Bot_faculty = () => {
                 );
               })}
           </div>
-          {/* {data1 &&
-            data1.map((curElem) => {
-              const {  filter } = curElem;
-              // console.log(curElem);
-              return (
-                <>{filter ==="Supernnuated"&& */}
 
-                  <div className="  ">
-                    <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
-                      Superannuated
-                    </h2>
-                  </div>
-                  {/* }
-                </>
-              );
-            })} */}
+          <div className="  ">
+            <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
+              Superannuated / Former Faculty
+            </h2>
+          </div>
           <div class="grid grid-cols-1 sm:grid-cols-2 ml-5 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
@@ -284,7 +274,7 @@ const Bot_faculty = () => {
                       value="Supernnuated"
                       className="p-2 text-lg acctive:text-white  block px-4 py-2 "
                     >
-                      Superannuated
+                      Superannuated / Former Faculty
                     </option>
                   </select>
                 </div>

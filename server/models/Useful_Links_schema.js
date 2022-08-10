@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 
-const Psychology_Time_Schema = mongoose.Schema({
+const Useful_Links_schema = mongoose.Schema({
     title: {
         type: String,
         required: true,
         trim: true
     },
-    link: {
+    description: {
         type: String,
         required: true,
         trim: true
@@ -23,6 +23,6 @@ const Psychology_Time_Schema = mongoose.Schema({
     timestamps: true
 });
 
-const Psychology_Time = mongoose.model('Psychology_Time', Psychology_Time_Schema);
+const Useful_Links = mongoose.model('Useful_Links', Useful_Links_schema);
 
-module.exports = Psychology_Time;
+module.exports = Useful_Links;

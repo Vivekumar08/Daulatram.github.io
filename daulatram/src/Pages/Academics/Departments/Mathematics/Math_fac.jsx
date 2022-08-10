@@ -4,7 +4,7 @@ import Dropzone from "react-dropzone";
 import Mathematics from "../../../../Components/DepartSIde/Mathematics.jsx";
 // import "./bio_fac.css";
 import axios from "axios";
-import Mathbanner from "./Mathbanner"
+import Mathbanner from "./Mathbanner";
 // import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Math_fac_data from "./Math_fac_data";
 import Math_fac_data_sup from "./Math_fac_data_sup";
@@ -58,12 +58,9 @@ const Math_faculty = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Math_faculty/${id}`,
-      {
-        method: "POST",
-      }
-    );
+    const response = await fetch(`/delete_Math_faculty/${id}`, {
+      method: "POST",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -89,6 +86,9 @@ const Math_faculty = () => {
             },
           }
         );
+        setImg("");
+        setPreviewSrcImg("");
+        setIsPreviewAvailableImg(false);
         setCaption("");
         setLink("");
         setAuth(true);
@@ -139,7 +139,7 @@ const Math_faculty = () => {
     <div className=" flex flex-col">
       <Mathbanner />
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -197,21 +197,11 @@ const Math_faculty = () => {
                 );
               })}
           </div>
-           {/* {data1 &&
-            data1.map((curElem) => {
-              const { filter } = curElem;
-              return (
-                <>
-                  {filter === "Supernnuated" && ( */}
           <div className="  ">
             <h2 className="md:text-2xl text-lg uppercase font-bold m-1 ml-2 flex  items-center ">
-              Superannuated
+              Superannuated / Former Faculty
             </h2>
           </div>
-          {/* )}
-                </>
-              );
-            })} */}
           <div class="grid grid-cols-1 sm:grid-cols-2 ml-5 lg:grid-cols-3 xl:grid-cols-4 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
@@ -285,7 +275,7 @@ const Math_faculty = () => {
                       value="Supernnuated"
                       className="p-2 text-lg acctive:text-white  block px-4 py-2 "
                     >
-                      Superannuated
+                      Superannuated / Former Faculty
                     </option>
                   </select>
                 </div>

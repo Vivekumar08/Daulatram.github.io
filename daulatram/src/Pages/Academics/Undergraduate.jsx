@@ -24,10 +24,10 @@ const Undergraduate = () => {
                     B.A. (Programme)
                     </li>
                     <li>
-                    B.Com.
+                    B.Com
                     </li>
                     <li>
-                    B.Com. (H)
+                    B.Com (H)
                     </li>
                     <li>
                     B.A. (H) Economics

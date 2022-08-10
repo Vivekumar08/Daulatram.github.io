@@ -1,9 +1,12 @@
 import { Link } from "react-router-dom";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {  faTrashCan,
+import {
+  faTrashCan,
   faCircleArrowLeft,
-  faCircleArrowRight, } from "@fortawesome/free-solid-svg-icons";
+  faCircleArrowRight,
+  faBars
+} from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -12,6 +15,7 @@ import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
 // import "./stl.css";
 
 function Biochem_Gallery() {
+  const [visible, setVisible] = useState()
   const [data1, setData1] = useState();
   const errRef = useRef();
   const dropRef = useRef();
@@ -30,7 +34,8 @@ function Biochem_Gallery() {
     const response = await fetch("/Bio_Photo_Gallery");
     const data = await response.json();
     setData1(data);
-    setSlideLength(data.length);  };
+    setSlideLength(data.length);
+  };
 
   const onDrop = (files) => {
     const [uploadedFile] = files;
@@ -73,12 +78,9 @@ function Biochem_Gallery() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Bio_Photo_Gallery/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/delete_Bio_Photo_Gallery/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -127,27 +129,51 @@ function Biochem_Gallery() {
             </div>
 
             <div className=" bg-gray-400 pt-3 pb-3 pl-5 md:text-lg text-s text-[#000080] mt-20 ">
-            <Link to={"/"}>
-              <span className="ml-5">Home</span>
-            </Link>
-            <span className="ml-5">Academics</span>
-            <Link to={"/academics/departments"}>
-              <span className="ml-5">Departments</span>
-            </Link>
-          </div>
+              <Link to={"/"}>
+                <span className="ml-5">Home</span>
+              </Link>
+              <span className="ml-5">Academics</span>
+              <Link to={"/academics/departments"}>
+                <span className="ml-5">Departments</span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
       <div className="flex flex-row">
-        <div className="flex  flex-col mt-12 ml-2">
-        <Biochemistry />
+        <div className="md:hidden absolute bg-white">
+          {visible ? (
+            <>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Zoology />
+              </div>
+            </>
+          ) : (
+            <div className=" flex  flex-col mt-8 ml-2">
+              <FontAwesomeIcon
+                icon={faBars}
+                size="lg"
+                onClick={() => setVisible(!visible)}
+                className="text-black border-2 border-[#000080] mr-2 hover:text-white bg-[#fff] rounded-lg p-2 cursor-pointer hover:bg-[#000080]"
+              />
+            </div>
+          )}
         </div>
-        <div className="w-[1100px]">
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+          <Biochemistry />
+        </div>
+        <div className="w-full">
           <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
             Gallery
           </h2>
           <div className="main_conta flex items-center ml-5">
-          <FontAwesomeIcon
+            <FontAwesomeIcon
               icon={faCircleArrowLeft}
               onClick={prevSlide}
               size="2xl"
@@ -155,7 +181,7 @@ function Biochem_Gallery() {
             />
             <div class="sliderr">
               <div class="slidee-track">
-              {data1 &&
+                {data1 &&
                   data1.map((curElem, index) => {
                     const { _id, file_path } = curElem;
                     var path_pic = file_path;
@@ -169,7 +195,11 @@ function Biochem_Gallery() {
                           }
                           key={_id}
                         >
-                          <img src={path} className="w-full h-[500px]" alt={path} />
+                          <img
+                            src={path}
+                            className="w-full h-[500px] "
+                            alt={path}
+                          />
                         </div>
                       </>
                     );
