@@ -7,7 +7,7 @@ import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
 export default function BtnSlider({ direction, moveSlide }) {
-  console.log(direction, moveSlide);
+  // console.log(direction, moveSlide);
   return (
     <button
       onClick={moveSlide}
