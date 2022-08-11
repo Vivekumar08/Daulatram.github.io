@@ -1,15 +1,11 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import Carousel from "react-multi-carousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faArrowLeft,
   faArrowRight,
-  faCircleArrowLeft,
-  faCircleArrowRight,
 } from "@fortawesome/free-solid-svg-icons";
-import "react-multi-carousel/lib/styles.css";
 import "./Carousel.css";
 import AuthContext from "../../Context/AuthProvider";
 import Events_data from "./Events_data";
