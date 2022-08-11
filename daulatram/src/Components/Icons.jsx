@@ -34,7 +34,8 @@ function Icons() {
           rel="noreferrer"
           className="block items-center pl-[15px] p-[6px] w-full h-full bg-[#ff1493] rounded-l-md  hover:pl-[25px]"
         >
-          <i class="fa fa-instagram  "></i>
+          <i className="fa fa-instagram  "></i>
+
         </a>
       </div>
     </div>

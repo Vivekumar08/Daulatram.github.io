@@ -9,7 +9,7 @@ function Campustour() {
           <video
             className="rounded-lg   h-full md:[430px]"
             src={sample}
-            autoplay
+            autoPlay
             controls
             loop
           />

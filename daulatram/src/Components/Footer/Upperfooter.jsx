@@ -184,9 +184,9 @@ function Upperfooter() {
                   // width="600"
                   // height="450"
                   style={{ border: 0 }}
-                  allowfullscreen=""
+                  allowFullScreen=""
                   loading="lazy"
-                  referrerpolicy="no-referrer-when-downgrade"
+                  referrerPolicy="no-referrer-when-downgrade"
                   className="w-[400px] lg:h-[400px] md:w-[350x] md:ml-12 md:h-[400px] xl-[600px] h-[300px] mb-5 mt-5"
                 ></iframe>
                 <Icons />
