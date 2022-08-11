@@ -140,8 +140,6 @@ function Events() {
         // setErrMsg("Please select a file to add.");
         setErrMsg("Please enter all the field values.");
       }
-      // } else {
-      // }
     } catch (err) {
       err.response && setErrMsg(err.response.data);
     }
@@ -328,7 +326,6 @@ function Events() {
             <div className="mb-3">
               <textarea
                 name="Caption"
-                // id=""
                 cols="10"
                 rows="5"
                 ref={userRef}
