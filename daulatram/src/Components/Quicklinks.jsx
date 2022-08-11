@@ -16,8 +16,8 @@ function Quicklinks() {
     <>
       <div className="quick mt-0 mb-0  h-auto ">
         <div class="quick_links top-[170px] flex flex-row mb-16 items-center justify-center text-center text-white font-bold ">
-          <span className="quick_content uppercase">
-            <strong>Quick Links</strong>
+          <span className="uppercase w-full font-bold text-2xl">
+            Quick Links
           </span>
         </div>
         <div className="flex mt-5 justify-center ml-5 mr-5">
