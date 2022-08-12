@@ -58,6 +58,32 @@ function Association() {
     }
   };
 
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(
+        `/delete_Bio_Association_para/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+
   const del = async (id) => {
     console.log(id);
     const response = await fetch(`/delete_Bio_Association/${id}`, {
@@ -96,6 +122,28 @@ function Association() {
     );
     fetchdata();
   };
+
+  const handleSubmit_data = async (id,para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Bio_Association_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
 
   const handleSubmit_link = async (id, link) => {
     try {
@@ -214,6 +262,8 @@ function Association() {
                       delete={del}
                       delete_img={dele}
                       delete_file = {delete_file}
+                      delete_para = {del_para}
+                      add_para = {handleSubmit_data}
                       file_upload={handleSubmit_file}
                       Link_upload={handleSubmit_link}
                       submit_img={handleSubmit_img}
@@ -228,6 +278,11 @@ function Association() {
                 method="post"
                 className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
               >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p  >
+                    Add New Data
+                  </p>
+                </h2>
                 <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
                   <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
                     {errMsg}
