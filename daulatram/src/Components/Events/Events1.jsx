@@ -1,8 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faArrowLeft,
+  faArrowRight,
+} from "@fortawesome/free-solid-svg-icons";
+import "./Carousel.css";
 import AuthContext from "../../Context/AuthProvider";
-
 import Events_data from "./Events_data";
 
 const Events1 = () => {
@@ -11,18 +16,42 @@ const Events1 = () => {
   const errRef = useRef();
   const dropRefImg = useRef();
   const dropRef = useRef();
-  const [filter, setFilter] = useState("Current");
-  const [link, setLink] = useState("");
-  const [title, setTitle] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [previewSrcImg, setPreviewSrcImg] = useState("");
   const [isPreviewAvailableImg, setIsPreviewAvailableImg] = useState(false);
   const [imag, setImg] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
+  const [moveClass, setMoveClass] = useState("");
+
+  useEffect(() => {
+    document.documentElement.style.setProperty("--num", data1 && data1.length);
+  }, [data1]);
+
+  const handleAnimationEnd = (e) => {
+    e.preventDefault();
+    if (moveClass === "prev") {
+      shiftNext([...data1]);
+    } else if (moveClass === "next") {
+      shiftPrev([...data1]);
+    }
+    setMoveClass("");
+  };
+
+  const shiftPrev = (copy) => {
+    let lastcard = copy.pop();
+    copy.splice(0, 0, lastcard);
+    setData1(copy);
+  };
+
+  const shiftNext = (copy) => {
+    let firstcard = copy.shift();
+    copy.splice(copy.length, 0, firstcard);
+    setData1(copy);
+  };
 
   const fetchdata = async () => {
-    const response = await fetch("/bio_faculty");
+    const response = await fetch("/Events_and_Activities");
     setData1(await response.json());
   };
 
@@ -53,7 +82,7 @@ const Events1 = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_bio_faculty/${id}`, {
+    const response = await fetch(`/delete_Events_and_Activities/${id}`, {
       method: "POST",
     });
     const data = await response.json();
@@ -65,26 +94,16 @@ const Events1 = () => {
   };
 
   const handleSubmit_link = async (id, link) => {
-    const response = await fetch(`/admission_online_add_link/${id}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+    try {
+      console.log(link);
+      await axios.post(`/Events_and_Activities_add_link/${id}`, {
         link: link,
-      }),
-    });
-    const data = await response.json();
-    if (!data) {
-      setErrMsg("No Server Response");
-    } else if (response.status === 400) {
-      setErrMsg("Fill Complete Details");
-    } else {
+      });
       setCaption("");
-      setLink("");
-      setFile(null);
       setAuth(true);
       fetchdata();
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -94,7 +113,7 @@ const Events1 = () => {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/bio_faculty_cv_upload/${id}`,
+          `/Events_and_Activities_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -105,7 +124,6 @@ const Events1 = () => {
           }
         );
         setCaption("");
-        setLink("");
         setAuth(true);
         fetchdata();
       } else {
@@ -119,13 +137,12 @@ const Events1 = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      if (link.trim() !== "" && caption.trim() !== "") {
+      if (caption.trim() !== "") {
         if (imag) {
-          // setErrMsg("");
-          console.log(link, caption, imag, filter);
-          const data = await axios.post(
-            `/bio_faculty_file_upload`,
-            { title: caption, description: link, file: imag, filter: filter },
+          setErrMsg("");
+          await axios.post(
+            `/Events_and_Activities_upload`,
+            { title: caption, file: imag },
             {
               headers: {
                 "Content-Type": "multipart/form-data",
@@ -136,7 +153,6 @@ const Events1 = () => {
           setImg("");
           setIsPreviewAvailableImg(false);
           setPreviewSrcImg("");
-          setLink("");
           setAuth(true);
           fetchdata();
         } else {
@@ -150,7 +166,6 @@ const Events1 = () => {
     }
   };
 
- 
   return (
     <>
       <div className="quick_links flex flex-row items-center mt-6 justify-center text-center text-white font-bold  ">
@@ -158,26 +173,43 @@ const Events1 = () => {
           College Events and Activities
         </span>
       </div>
-      {data1 &&
-        data1.map((curElem) => {
-          // const { _id, title, img_data } = curElem;
-          // console.log(curElem);
-          return (
-            <>
-              <Events_data
-                // key={_id}
-                // id={_id}
-                // title={title}
-                // img_data={img_data}
-                delete={del}
-                file_upload={handleSubmit_file}
-                Link_upload={handleSubmit_link}
-              />
-            </>
-          );
-        })}
-        <Events_data/>
-      {/* </div> */}
+
+      <div className="carouselwrapper module-wrapper">
+        <div className={data1 && data1.length >= 3 && "ui"}>
+          <button onClick={() => setMoveClass("next")} className="prev">
+            <FontAwesomeIcon icon={faArrowLeft} size="2xl" />
+          </button>
+          <button onClick={() => setMoveClass("prev")} className="next">
+            <FontAwesomeIcon icon={faArrowRight} size="2xl" />
+          </button>
+        </div>
+        <div
+          onAnimationEnd={handleAnimationEnd}
+          className={`${moveClass} carousel_car `}
+        >
+          {/* {carouselItems.map((t, index) => 
+          <Card key={t.copy + index} icon={t.icon} copy={t.copy} />
+        )} */}
+          {data1 &&
+            data1.map(
+              (t, index) => (
+                // const { _id, title, img_data } = curElem;
+                // return (
+                <Events_data
+                  key={t._id + index}
+                  id={t._id}
+                  title={t.title}
+                  img_data={t.img_data}
+                  delete={del}
+                  file_upload={handleSubmit_file}
+                  Link_upload={handleSubmit_link}
+                />
+              )
+              // );
+            )}
+        </div>
+      </div>
+
       {auth && (
         <>
           <form
@@ -195,9 +227,9 @@ const Events1 = () => {
                 name="Title"
                 // id=""
                 ref={userRef}
-                onChange={(e) => setTitle(e.target.value)}
-                value={title}
-                placeholder="Enter Name of Faculty"
+                onChange={(e) => setCaption(e.target.value)}
+                value={caption}
+                placeholder="Enter Name of Event"
                 className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
               />
             </div>
@@ -253,7 +285,7 @@ const Events1 = () => {
               <button
                 class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                 type="button"
-                onClick={()=>handleSubmit}
+                onClick={handleSubmit}
               >
                 Add
               </button>

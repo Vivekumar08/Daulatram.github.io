@@ -1,0 +1,118 @@
+:root {
+    --up: 3;
+    --card-margin: 12px;
+    --card-shadow: rgba(46, 49, 52, .4);
+    --color-white: #fff;
+    --color-lightgrey: #ccc;
+    --color-ui: #999;
+    --color-ui-hover: #666;
+    --cardWidth: calc(96vw/var(--up));
+    --carouselWidth: calc(var(--cardWidth) * var(--num));
+    --carouselLeftMargin: calc(2vw - var(--cardWidth));
+}
+
+@media screen and (max-width: 900px) {
+    :root {
+        /*basically mobile*/
+        --up: 1;
+    }
+}
+
+.carouselwrapper {
+    overflow: hidden;
+    /* background: var(--color-lightgrey); */
+    position: relative;
+}
+
+.carousel_car {
+    margin-left: 15px;
+    /* width: 100%; */
+    width: var(--carouselWidth);
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+}
+
+.carousel_car.prev {
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
+    animation-name: prev;
+}
+
+.carousel_car.next {
+    animation-duration: 0.6s;
+    animation-timing-function: cubic-bezier(0.83, 0, 0.17, 1);
+    animation-name: next;
+}
+
+
+
+/* .carousel li {
+    padding: 50px;
+    text-align: center;
+    width: calc(var(--cardWidth) - var(--card-margin) * 2);
+    box-sizing: border-box;
+} */
+
+.ui {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    z-index: 100;
+}
+
+.ui button {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-ui);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    color: var(--color-white);
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, .25);
+    border: 0;
+    transition: all 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.ui button:hover {
+    background: var(--color-ui-hover);
+}
+
+.ui button:focus {
+    outline: none;
+    border: 1px solid rgba(255, 255, 255, 1);
+}
+
+.card_car {
+    box-shadow: 0px 1px 2px 0px var(--card-shadow);
+    border-radius: 4px;
+    margin: var(--card-margin);
+    background: var(--color-white);
+}
+
+
+@keyframes next {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        transform: translateX(calc(0px + var(fit-content)));
+    }
+}
+
+@keyframes prev {
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        transform: translateX(calc(0px - var(fit-content)));
+    }
+}

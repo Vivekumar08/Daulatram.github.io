@@ -4,6 +4,7 @@ import { faTrashCan, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import "../../../Societies.css";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
 
@@ -88,9 +89,7 @@ function Events() {
   };
 
   const handleSubmit_file = async (id, pdf) => {
-    // console.log(id);
     try {
-      // console.log(pdf);
       if (pdf) {
         await axios.post(
           `/Bio_Evetns_file_add/${id}`,
@@ -104,7 +103,7 @@ function Events() {
           }
         );
         setCaption("");
-        setPdf("")
+        setPdf("");
         setAuth(true);
         fetchdata();
       } else {
@@ -119,10 +118,6 @@ function Events() {
     e.preventDefault();
     try {
       if (caption.trim() !== "") {
-        // if (file) {
-        // const formData = new FormData();
-        // formData.append("file", file);
-        // formData.append("title", caption);
 
         setErrMsg("");
         console.log(file, caption);
@@ -145,14 +140,12 @@ function Events() {
         // setErrMsg("Please select a file to add.");
         setErrMsg("Please enter all the field values.");
       }
-      // } else {
-      // }
     } catch (err) {
       err.response && setErrMsg(err.response.data);
     }
   };
   return (
-    <div className=" flex flex-col">
+    <>
       <div className="">
         <DepartBanner />
       </div>
@@ -184,124 +177,139 @@ function Events() {
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Biochemistry />
         </div>
-        <div className="">
-        <div className="w-full ml-auto mb-[7%] mr-auto">
-          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
-            Events
-          </h2>
-        </div>
-        {data1 &&
-          data1.sort(sortOn("title")).map((currElem) => {
-            const { _id, title, img_data } = currElem;
-            return (
-              <div className="flex flex-col ">
-                <div class="first hero" key={_id}>
-                  <div className="">
-                    <div className="">
-                      {img_data.file_path &&
-                        img_data.file_path.map((elem) => {
-                          var path2 = elem.file_path1.replace(/\\/g, "/");
-                          var path = path2.slice(19);
-                          return (
-                            <>
-                              <img class="hero-profile-img" src={path} alt="" />
-                            </>
-                          );
-                        })}
+        <div className="flex flex-col md:w-[1100px]">
+          <div className="">
+            <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center  items-center ">
+              Events
+            </h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+            {data1 &&
+              data1.sort(sortOn("title")).map((currElem) => {
+                const { _id, title, img_data } = currElem;
+                return (
+                  <div className="flex flex-col ">
+                    <div class="first hero" key={_id}>
                       <div class="hero-description-bk"></div>
-                      <div class="hero-description ml-16">
-                        <p>{title}</p>
-                      </div>
-                      {img_data.pdf_path &&
-                        img_data.pdf_path.map((elem) => {
-                          const path2 = elem.pdf_path1.replace(/\\/g, "/");
-                          const path = path2.slice(19);
-                          return (
-                            <>
-                              {elem.value === "true" && (
+                      <div className="">
+                        <div className="">
+                          {img_data.file_path &&
+                            img_data.file_path.map((elem) => {
+                              var path2 = elem.file_path1.replace(/\\/g, "/");
+                              var path = path2.slice(19);
+                              return (
                                 <>
-                                  <a href={path}>
-                                    <div class="hero-btn ml-28">Learn More</div>
-                                  </a>
+                                  <img
+                                    class="hero-profile-img"
+                                    src={path}
+                                    alt=""
+                                  />
                                 </>
-                              )}
-                            </>
-                          );
-                        })}
-                    </div>
-                  </div>
-                  {auth && (
-                    <>
-                      <div className="flex flex-col">
-                        <FontAwesomeIcon
-                          icon={faTrashCan}
-                          size="lg"
-                          className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
-                          onClick={() => del(_id)}
-                        ></FontAwesomeIcon>
+                              );
+                            })}
+                          <div class="hero-description-bk"></div>
+                          <div class="hero-description ml-16">
+                            <p>{title}</p>
+                          </div>
+                          {img_data.pdf_path &&
+                            img_data.pdf_path.map((elem) => {
+                              const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                              const path = path2.slice(19);
+                              return (
+                                <>
+                                  {elem.value === "true" && (
+                                    <>
+                                      <a href={path}>
+                                        <div class="hero-btn ml-28">
+                                          Learn More
+                                        </div>
+                                      </a>
+                                    </>
+                                  )}
+                                </>
+                              );
+                            })}
+                        </div>
                       </div>
-                    </>
-                  )}
-                </div>
-                {img_data.pdf_path &&
-                  img_data.pdf_path.map((elem) => {
-                    return (
-                      <>
-                        {auth && elem.value != "true" && (
+                      {auth && (
+                        <>
+                          <div className="flex flex-col">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
+                              onClick={() => del(_id)}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    {img_data.pdf_path &&
+                      img_data.pdf_path.map((elem) => {
+                        return (
                           <>
-                            <div className="flex flex-col justify-center content-center max-w-sm w-[220px]  ml-auto mr-auto mb-5" key={_id}>
-                              <p>Events file</p>
-                              <div class="md:flex flex-col md:items-center h-full ">
-                                <div className="upload-section flex h-full mb-[10px] ">
-                                  <Dropzone
-                                    onDrop={onDropPdf}
-                                    onDragEnter={() => updateBorder("over")}
-                                    onDragLeave={() => updateBorder("leave")}
-                                  >
-                                    {({ getRootProps, getInputProps }) => (
-                                      <div
-                                        {...getRootProps({
-                                          className:
-                                            "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
-                                        })}
-                                        ref={dropRef}
+                            {auth && elem.value != "true" && (
+                              <>
+                                <div
+                                  className="flex flex-col justify-center content-center max-w-sm w-[220px]  ml-auto mr-auto mb-5"
+                                  key={_id}
+                                >
+                                  <p>Events file</p>
+                                  <div class="md:flex flex-col md:items-center h-full ">
+                                    <div className="upload-section flex h-full mb-[10px] ">
+                                      <Dropzone
+                                        onDrop={onDropPdf}
+                                        onDragEnter={() => updateBorder("over")}
+                                        onDragLeave={() =>
+                                          updateBorder("leave")
+                                        }
                                       >
-                                        <input {...getInputProps()} />
-                                        <p>
-                                          Drag and drop a file OR click here to
-                                          select a file
-                                        </p>
-                                        {pdf && (
-                                          <div>
-                                            <strong>Selected file:</strong>{" "}
-                                            {pdf.name}
+                                        {({ getRootProps, getInputProps }) => (
+                                          <div
+                                            {...getRootProps({
+                                              className:
+                                                "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                                            })}
+                                            ref={dropRef}
+                                          >
+                                            <input {...getInputProps()} />
+                                            <p>
+                                              Drag and drop a file OR click here
+                                              to select a file
+                                            </p>
+                                            {pdf && (
+                                              <div>
+                                                <strong>Selected file:</strong>{" "}
+                                                {pdf.name}
+                                              </div>
+                                            )}
                                           </div>
                                         )}
-                                      </div>
-                                    )}
-                                  </Dropzone>
+                                      </Dropzone>
+                                    </div>
+                                    <div class="md:w-[220px]  ">
+                                      <button
+                                        class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                        type="button"
+                                        onClick={() =>
+                                          handleSubmit_file(_id, pdf)
+                                        }
+                                      >
+                                        Add Event file
+                                      </button>
+                                    </div>
+                                  </div>
                                 </div>
-                                <div class="md:w-[220px]  ">
-                                  <button
-                                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
-                                    type="button"
-                                    onClick={() => handleSubmit_file(_id, pdf)}
-                                  >
-                                    Add Event file
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
+                              </>
+                            )}
                           </>
-                        )}
-                      </>
-                    );
-                  })}
-              </div>
-              
-            );
-          })}
-      </div>
+                        );
+                      })}
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
 
       {auth && (
@@ -318,7 +326,6 @@ function Events() {
             <div className="mb-3">
               <textarea
                 name="Caption"
-                // id=""
                 cols="10"
                 rows="5"
                 ref={userRef}
@@ -387,7 +394,7 @@ function Events() {
           </form>
         </>
       )}
-    </div>
+    </>
   );
 }
 
