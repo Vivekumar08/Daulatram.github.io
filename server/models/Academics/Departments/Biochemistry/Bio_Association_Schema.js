@@ -37,7 +37,14 @@ const Bio_Association_Schema = mongoose.Schema(
                     value: {
                         type: String,
                         default: null
-                      },
+                    },
+                }
+            ],
+            para: [
+                {
+                    para1: {
+                        type: String,
+                    },
                 }
             ],
         }

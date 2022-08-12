@@ -175,7 +175,7 @@ const Events1 = () => {
       </div>
 
       <div className="carouselwrapper module-wrapper">
-        <div className={data1 && data1.length >= 3 && "ui"}>
+        <div className={data1 && data1.length >4 && "ui"}>
           <button onClick={() => setMoveClass("next")} className="prev">
             <FontAwesomeIcon icon={faArrowLeft} size="2xl" />
           </button>

@@ -6373,6 +6373,26 @@ router.post("/delete_pdf_link_Bio_Association_fac/:id", async (req, res) => {
     }
 });
 
+router.post("/delete_Bio_Association_para/:id", async (req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Bio_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Bio_Association.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 router.get("/Bio_Association", async (req, res) => {
     try {
         const files = await Bio_Association.find({});
@@ -6384,6 +6404,27 @@ router.get("/Bio_Association", async (req, res) => {
         res.status(400).send("Error while getting list of files. Try again later.");
     }
 });
+
+
+router.post(
+    "/Bio_Association_add_para/:id",
+    async (req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Bio_Association.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
 
 router.post(
     "/Bio_Association_file_upload/:id",
