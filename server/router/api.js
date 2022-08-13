@@ -75,11 +75,13 @@ const NHE_Faculty = require("../models/Academics/Departments/NHE/NHE_Faculty_Sch
 const Hin_Faculty = require("../models/Academics/Departments/Hindi/Hin_Faculty_Schema");
 const Bio_ProgramOffered = require("../models/Academics/Departments/Biochemistry/Bio_ProgramsOffered_Schema");
 const Bio_Evetns = require("../models/Academics/Departments/Biochemistry/Bio_Evetns_Schema");
+const Botany_Events = require("../models/Academics/Departments/Botany/Botany_Events_Schema");
 const Biochem_About = require("../models/Academics/Departments/Biochemistry/About_depart_Schema");
 const Bio_Photo_Gallery = require("../models/Academics/Departments/Biochemistry/Bio_Photo_Gallery_Schema");
 const Hist_Photo_Gallery = require("../models/Academics/Departments/History/Hist_Photo_Gallery_Schema");
 const Bot_Photo_Gallery = require("../models/Academics/Departments/Botany/Bot_Photo_Gallery_Schema");
 const Chem_Photo_Gallery = require("../models/Academics/Departments/Chemistry/Chem_Photo_Gallery_Schema");
+const Chem_Events = require("../models/Academics/Departments/Chemistry/Chem_Events_Schema");
 const Com_Photo_Gallery = require("../models/Academics/Departments/Commerce/Com_Photo_Gallery_Schema");
 const Eco_Photo_Gallery = require("../models/Academics/Departments/Economics/Eco_Photo_Gallery_Schema");
 const Eng_Photo_Gallery = require("../models/Academics/Departments/English/Eng_Photo_Gallery_Schema");
@@ -9714,6 +9716,187 @@ router.post(
         }
     }
 );
+
+// Botany Events
+router.post("/delete_Botany_Events/:id", async (req, res) => {
+    const delete_user = await Botany_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Botany_Events", async (req, res) => {
+    try {
+        const files = await Botany_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Botany_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Botany_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Botany_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Botany_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+// Chem Events
+router.post("/delete_Chem_Events/:id", async (req, res) => {
+    const delete_user = await Chem_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Chem_Events", async (req, res) => {
+    try {
+        const files = await Chem_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Chem_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Chem_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Chem_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Chem_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+
+
 
 
 // Societies

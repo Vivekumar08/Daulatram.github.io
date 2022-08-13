@@ -39,6 +39,7 @@ import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Asso
 import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff";
 import Bot_awards from "./Pages/Academics/Departments/Botany/Awards";
 import Botany_Gallery from "./Pages/Academics/Departments/Botany/Bot_Gallery";
+import Botany_Events from "./Pages/Academics/Departments/Botany/Botany_Events"
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
 import Facilities from "./Pages/Academics/Facilities/Facilities";
@@ -94,7 +95,7 @@ import Societies from "./Pages/Societies";
 import Chem_About from "./Pages/Academics/Departments/Chemistry/Chem_About";
 import Chemfaculty from "./Pages/Academics/Departments/Chemistry/Chemfaculty";
 import Chemprogramoffered from "./Pages/Academics/Departments/Chemistry/Chemprogramoffered";
-import Chemevents from "./Pages/Academics/Departments/Chemistry/Chemevents";
+import Chemevents from "./Pages/Academics/Departments/Chemistry/Chem_Events";
 import Chemstudachieve from "./Pages/Academics/Departments/Chemistry/Chemstudachieve";
 import Chempublications from "./Pages/Academics/Departments/Chemistry/Chempublications";
 import Chemfacilities from "./Pages/Academics/Departments/Chemistry/Chemfacilities";
@@ -412,6 +413,14 @@ function App() {
               </>
             }
             path="/academics/departments/biochem/faculty"
+          ></Route>{" "}
+            <Route
+            element={
+              <>
+                <Botany_Events />
+              </>
+            }
+            path="/academics/departments/Botany/events"
           ></Route>{" "}
           <Route
             element={
