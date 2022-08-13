@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const PS_Association_Schema = mongoose.Schema({
+const Sanskrit_Association_Schema = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -23,6 +23,6 @@ const PS_Association_Schema = mongoose.Schema({
     timestamps: true
 });
 
-const PS_Association = mongoose.model('PS_Association', PS_Association_Schema);
+const Sanskrit_Association = mongoose.model('Sanskrit_Association', Sanskrit_Association_Schema);
 
-module.exports = PS_Association;
+module.exports = Sanskrit_Association;
