@@ -4554,7 +4554,7 @@ router.post(
 
 
 router.get("/accred", async (req, res) => {
-    const details = await accred.find();
+    const details = await Accred.find();
 
 
     if (details.length === 0) {
