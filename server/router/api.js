@@ -55,7 +55,7 @@ const Bulletins_Notice = require("../models/Notices/Bulletin_Schema");
 const Staff_Forms = require("../models/StaffZone/Staff_Forms_Schema");
 const Senior_list = require("../models/StaffZone/Senior_list_Schema");
 const Student_union = require("../models/StudentZone/Student_union_Schema");
-
+const Equal_opp = require("../models/StudentZone/Equal_opp_Schema");
 const Bio_Research_fac = require("../models/Academics/Departments/Biochemistry/Bio_Research_fac_Schema");
 const Bio_Publications = require("../models/Academics/Departments/Biochemistry/Bio_Publications_Schema");
 const Bio_Awards = require("../models/Academics/Departments/Biochemistry/Bio_Awards_Schema");
@@ -6144,6 +6144,226 @@ router.post(
 router.get("/Student_union_download/:id", async (req, res) => {
     try {
         const file = await Student_union.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+// Equal Opportunities
+router.post("/delete_Equal_opp/:id", async (req, res) => {
+    const delete_user = await Equal_opp.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Equal_opp_fac/:id", async (req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Equal_opp.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Equal_opp_fac/:id", async (req, res) => {
+    const delete_user = await Equal_opp.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Equal_opp_para/:id", async (req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Equal_opp.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Equal_opp.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Equal_opp", async (req, res) => {
+    try {
+        const files = await Equal_opp.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Equal_opp_add_para/:id",
+    async (req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Equal_opp.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Equal_opp_file_upload/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Equal_opp.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Equal_opp_add_link/:id", async (req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Equal_opp.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Equal_opp_upload", async (req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Equal_opp({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Equal_opp_img_upload/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Equal_opp.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Equal_opp.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Equal_opp_download/:id", async (req, res) => {
+    try {
+        const file = await Equal_opp.findById(req.params.id);
         res.set({
             "Content-Type": file.file_mimetype,
         });

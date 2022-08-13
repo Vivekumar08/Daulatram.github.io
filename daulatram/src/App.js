@@ -281,6 +281,7 @@ import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
 import Accreditation from "./Pages/Accreditation/accred"
 import Useful from "./Pages/UsefulLinks/Useful";
 import Student_Union from "./Pages/Student_zone/Student_union";
+import Equal_opp from "./Pages/Student_zone/Equal_opp";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -594,6 +595,14 @@ function App() {
               </>
             }
             path="/Student_Zone/Student_Union"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Equal_opp />
+              </>
+            }
+            path="/Student_Zone/Equal_Opportunities_Cell"
           ></Route>{" "}
           <Route
             element={
