@@ -434,36 +434,78 @@ router.delete("/deletefeedback/:id", async (req, res) => {
 
 // Guidelines
 
-router.get("/guidelines_admission", async (req, res) => {
-    const details = await Guidelines.find();
-    if (details.length === 0) {
-        res.status(200).json(false);
+router.post("/delete_Guidelines_fac/:id", async (req, res) => {
+    const delete_user = await Guidelines.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
     } else {
-        res.status(200).json(details);
+        res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.delete("/delete_admission_guidelines/:id", async (req, res) => {
-    const delete_user = await Guidelines.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Guidelines_fac/:id", async (req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Guidelines.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
+router.get("/Guidelines", async (req, res) => {
+    try {
+        const files = await Guidelines.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+router.post("/Guidelines_upload", async (req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Guidelines({
+            title: title,
+            description: description,
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
 router.post(
-    "/guidelines_add",
+    "/Guidelines_img_upload/:id",
     upload.single("file"),
     async (req, res) => {
         try {
-            const { title, link } = req.body;
             const { path, mimetype } = req.file;
-            const file = new Guidelines({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const dat = await Guidelines.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Guidelines.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
         } catch (error) {
+            console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -473,6 +515,19 @@ router.post(
         }
     }
 );
+
+router.get("/Guidelines_download/:id", async (req, res) => {
+    try {
+        const file = await Guidelines.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 
 // About Us Founder
 
@@ -7537,7 +7592,7 @@ router.post(
     }
 );
 
-router.get("/Resource_center_download/:id", async (req, res) => {
+router.get("/Student_Facilities_download/:id", async (req, res) => {
     try {
         const file = await Student_Facilities.findById(req.params.id);
         res.set({
@@ -7631,7 +7686,7 @@ router.post(
     }
 );
 
-router.get("/Resource_center_download/:id", async (req, res) => {
+router.get("/Academics_Facilities_download/:id", async (req, res) => {
     try {
         const file = await Acad_Facilities.findById(req.params.id);
         res.set({

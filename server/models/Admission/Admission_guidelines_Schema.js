@@ -1,24 +1,29 @@
 const mongoose = require('mongoose');
 
-const Admission_guidelines_Schema = mongoose.Schema(
+const Guidelines_Schema = mongoose.Schema(
   {
     title: {
       type: String,
       required: true,
-      trim: true
     },
-    link: {
+    description: {
       type: String,
       required: true,
-      trim: true
     },
-    file_path: {
-      type: String,
-      required: true
-    },
-    file_mimetype: {
-      type: String,
-      required: true
+    img_data: {
+
+      file_path: [
+        {
+          file_path1: {
+            type: String,
+            default: null
+          },
+          file_mimetype1: {
+            type: String,
+            default: null
+          },
+        }
+      ],
     }
   },
   {
@@ -26,6 +31,6 @@ const Admission_guidelines_Schema = mongoose.Schema(
   }
 );
 
-const Guidelines = mongoose.model('Guidelines', Admission_guidelines_Schema);
+const Guidelines = mongoose.model('Guidelines', Guidelines_Schema);
 
 module.exports = Guidelines;

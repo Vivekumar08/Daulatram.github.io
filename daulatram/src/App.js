@@ -61,7 +61,7 @@ import Admission_Grievence_comm from "./Pages/Admission/Admission_Grievence_comm
 import GE_Option from "./Pages/Admission/GE_Option";
 import OnlineAdmission from "./Pages/Admission/OnlineAdmission";
 import Helpdesk from "./Pages/Admission/Helpdesk";
-import Guidelines_Admission from "./Pages/Admission/Guidelines_Admission";
+import Guidelines_Admission from "./Pages/Admission/Guidelines/Guidelines";
 import Bulletins_Admission from "./Pages/Admission/Bulletins_Admission";
 import Anti_Ragging from "./Pages/Admission/Anti_Ragging";
 import Feedback from "./Pages/Staff_Zone/Feedback";
