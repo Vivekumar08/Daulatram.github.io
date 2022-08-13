@@ -37,6 +37,8 @@ const C_Acad_Cal = require("../models/Academics/C_Acad_Cal_Schema");
 const Teacher = require("../models/Academics/Teacher_Schema");
 const Resources_Innovation = require("../models/Academics/Resources_Innovation_Schema");
 const Acad_Facilities = require("../models/Academics/Acad_Facilities_Schema");
+const Student_Facilities = require("../models/StudentZone/Student_Facilities_Schema");
+
 const Feedback = require("../models/StaffZone/Feedback_Form_Schema");
 const Roster = require("../models/StaffZone/Roster_Schema");
 const Founder = require("../models/About_Us/Founder_Schema");
@@ -7452,7 +7454,100 @@ router.get("/research_download/:id", async (req, res) => {
         res.status(400).send("Error while downloading file. Try again later.");
     }
 });
+// Student Facilities
+router.post("/delete_Student_Facilities_fac/:id", async (req, res) => {
+    const delete_user = await Student_Facilities.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Student_Facilities_fac/:id", async (req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Student_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
 
+router.get("/Student_Facilities", async (req, res) => {
+    try {
+        const files = await Student_Facilities.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+router.post("/Student_Facilities_upload", async (req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Student_Facilities({
+            title: title,
+            description: description,
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Student_Facilities_img_upload/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Student_Facilities.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Student_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Resource_center_download/:id", async (req, res) => {
+    try {
+        const file = await Student_Facilities.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
 // Academics Facilities
 router.post("/delete_Academics_Facilities_fac/:id", async (req, res) => {
     const delete_user = await Acad_Facilities.findOne({ _id: req.params.id });

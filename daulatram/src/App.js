@@ -88,7 +88,7 @@ import Second_year from "./Pages/Student_zone/Internals/Second_year/Second_year"
 import Third_year from "./Pages/Student_zone/Internals/Third_year/Third_year";
 import Hostel from "./Pages/Student_zone/Hostel";
 import Forms from "./Pages/Student_zone/Forms";
-import Student_facilities from "./Pages/Student_zone/Student_facilities";
+import Student_facilities from "./Pages/Student_zone/Student_Facilities/Student_Facilities";
 import Eresources from "./Pages/Student_zone/Eresources";
 import Antiragging from "./Pages/Student_zone/Antiragging";
 import Societies from "./Pages/Societies";
@@ -285,7 +285,6 @@ import Accreditation from "./Pages/Accreditation/accred"
 import Useful from "./Pages/UsefulLinks/Useful";
 import Student_Union from "./Pages/Student_zone/Student_union";
 import Placement_cell from "./Pages/Student_zone/Placement_cell";
-
 
 import Equal_opp from "./Pages/Student_zone/Equal_opp";
 
@@ -910,6 +909,7 @@ function App() {
             }
             path="/academics/resources"
           ></Route>{" "}
+
            <Route
             element={
               <>
