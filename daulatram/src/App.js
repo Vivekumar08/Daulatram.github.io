@@ -193,7 +193,6 @@ import Math_association from "./Pages/Academics/Departments/Mathematics/Math_ass
 // Music
 import Music_about from "./Pages/Academics/Departments/Music/Music_about";
 import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
-import Music_association from "./Pages/Academics/Departments/Music/Music_association";
 import Forgot from "./Pages/Admin/Forgot";
 import ResetPassword from "./Pages/Admin/ResetPassword";
 
@@ -201,7 +200,6 @@ import ResetPassword from "./Pages/Admin/ResetPassword";
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
 import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
 import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
-import Nhe_association from "./Pages/Academics/Departments/NHE/Nhe_association";
 // Philosophy
 import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
 import Philosophy_fac from "./Pages/Academics/Departments/Philosophy/Philosophy_fac";
@@ -243,9 +241,8 @@ import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about"
 import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 import Psycho_awards from "./Pages/Academics/Departments/Psychology/Psycho_awards";
 import Psycho_programoffered from "./Pages/Academics/Departments/Psychology/Psycho_programoffered";
-import Psycho_association from "./Pages/Academics/Departments/Psychology/Psycho_association";
 
-// Sanskrit
+// Sanskriti
 import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
 import Sans_fac from "./Pages/Academics/Departments/Sanskrit/Sans_fac";
 import Sans_programoffered from "./Pages/Academics/Departments/Sanskrit/Sans_programoffered";
@@ -284,11 +281,8 @@ import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_ga
 import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
 
 import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
-import Accreditation from "./Pages/Accreditation/accred";
+import Accreditation from "./Pages/Accreditation/accred"
 import Useful from "./Pages/UsefulLinks/Useful";
-
-import PE_association from "./Pages/Academics/Departments/Physical_Education/PE_association";
-
 import Student_Union from "./Pages/Student_zone/Student_union";
 import Placement_cell from "./Pages/Student_zone/Placement_cell";
 
@@ -296,7 +290,6 @@ import Equal_opp from "./Pages/Student_zone/Equal_opp";
 
 import Music_Events from "./Pages/Academics/Departments/Music/Music_Events";
 import Phy_Events from "./Pages/Academics/Departments/Physics/Phy_Events";
-
 
 
 function App() {
@@ -375,14 +368,6 @@ function App() {
               </>
             }
             path="/about/Gallery"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Music_association />
-              </>
-            }
-            path="/academics/departments/Music/association"
           ></Route>{" "}
           <Route
             element={
@@ -1766,14 +1751,6 @@ function App() {
           <Route
             element={
               <>
-                <Nhe_association />
-              </>
-            }
-            path="/academics/departments/NHE/association"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
                 <Nhe_programoffered />
               </>
             }
@@ -1860,14 +1837,6 @@ function App() {
               </>
             }
             path="/academics/departments/Physical_Education/Faculty"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <PE_association />
-              </>
-            }
-            path="/academics/departments/Physical_Education/association"
           ></Route>{" "}
           <Route
             element={
@@ -2067,14 +2036,6 @@ function App() {
           <Route
             element={
               <>
-                <Psycho_association />
-              </>
-            }
-            path="/academics/departments/Psychology/association"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
                 <Psycho_fac />
               </>
             }
@@ -2185,14 +2146,6 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/Faculty"
-          ></Route>{" "}
-          <Route
-            element={
-              <>
-                <Zoo_association />
-              </>
-            }
-            path="/academics/departments/Zoology/association"
           ></Route>{" "}
           <Route
             element={

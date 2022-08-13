@@ -4,42 +4,20 @@ const Physics_Association_Schema = mongoose.Schema({
     title: {
         type: String,
         required: true,
+        trim: true
     },
-    description: {
+    link: {
         type: String,
         required: true,
+        trim: true
     },
-    img_data: {
-
-        file_path: [{
-            file_path1: {
-                type: String,
-                default: null
-            },
-            file_mimetype1: {
-                type: String,
-                default: null
-            },
-        }],
-        pdf_path: [{
-            pdf_path1: {
-                type: String,
-                default: "../daulatram/public/images/uploads"
-            },
-            pdf_mimetype1: {
-                type: String,
-                default: null
-            },
-            value: {
-                type: String,
-                default: null
-            },
-        }],
-        para: [{
-            para1: {
-                type: String,
-            },
-        }],
+    file_path: {
+        type: String,
+        required: true
+    },
+    file_mimetype: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true
