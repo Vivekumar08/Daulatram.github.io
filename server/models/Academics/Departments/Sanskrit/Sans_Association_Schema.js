@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Physics_Association_Schema = mongoose.Schema({
+const Sans_Association_Schema = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -45,6 +45,6 @@ const Physics_Association_Schema = mongoose.Schema({
     timestamps: true
 });
 
-const Physics_Association = mongoose.model('Physics_Association', Physics_Association_Schema);
+const Sans_Association = mongoose.model('Sans_Association', Sans_Association_Schema);
 
-module.exports = Physics_Association;
+module.exports = Sans_Association;

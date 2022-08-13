@@ -1,7 +1,6 @@
-
 import React, { useContext, useEffect, useState, useRef } from "react";
-import Philosophybanner from "../Philosophy/Philosophybanner.jsx";
-import Philosophy from "../../../../Components/DepartSIde/Philosophy";
+import PhysicalEdu from "../../../../Components/DepartSIde/PhysicalEdu";
+import PhysicalEdubanner from "./PhysicalEdubanner.jsx";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import AuthContext from "../../../../Context/AuthProvider";
@@ -9,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import Common_dat from "../Common_dat";
 
-function Philosophy_association() {
+function PE_association() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
@@ -20,7 +19,7 @@ function Philosophy_association() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Philo_Association");
+    const response = await fetch("/PE_Association");
     setData1(await response.json());
   };
 
@@ -33,7 +32,7 @@ function Philosophy_association() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Philo_Association_img_upload/${id}`,
+          `/PE_Association_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -57,7 +56,7 @@ function Philosophy_association() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Philo_Association_para/${id}`, {
+      const response = await fetch(`/delete_PE_Association_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -77,7 +76,7 @@ function Philosophy_association() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Philo_Association/${id}`, {
+    const response = await fetch(`/delete_PE_Association/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -93,7 +92,7 @@ function Philosophy_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Philo_Association_fac/${id}`,
+      `/delete_pdf_link_PE_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -105,7 +104,7 @@ function Philosophy_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Philo_Association_fac/${id}`,
+      `/delete_img_PE_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -120,7 +119,7 @@ function Philosophy_association() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Philo_Association_add_para/${id}`, {
+        await fetch(`/PE_Association_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -138,7 +137,7 @@ function Philosophy_association() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Philo_Association_add_link/${id}`, {
+      await axios.post(`/PE_Association_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -155,7 +154,7 @@ function Philosophy_association() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Philo_Association_file_upload/${id}`,
+          `/PE_Association_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -182,7 +181,7 @@ function Philosophy_association() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Philo_Association_upload`, {
+        await axios.post(`/PE_Association_upload`, {
           title: link,
           description: caption,
         });
@@ -201,7 +200,7 @@ function Philosophy_association() {
   return (
     <div className=" flex flex-col">
       <div className="">
-        <Philosophybanner />
+        <PhysicalEdubanner />
       </div>
 
       <div className="flex flex-row">
@@ -215,7 +214,7 @@ function Philosophy_association() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Philosophy />
+                <PhysicalEdu />
               </div>
             </>
           ) : (
@@ -230,7 +229,7 @@ function Philosophy_association() {
           )}
         </div>
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <Philosophy />
+          <PhysicalEdu />
         </div>
         <div className="w-full mr-16">
           <h2 className="md:text-3xl text-xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4  items-center ">
@@ -322,4 +321,4 @@ function Philosophy_association() {
   );
 }
 
-export default Philosophy_association;
+export default PE_association;
