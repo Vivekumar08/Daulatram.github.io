@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useful } from "./Mylinks";
+import { Link } from "react-router-dom";
 
 const Useful = () => {
   const [heading, setHeading] = useState("");
@@ -41,16 +42,15 @@ const Useful = () => {
                   {link.links.map((slink) => (
                     <>
                       <div>
-                        <a
-                          href={slink.link}
-                          target="_blank"
+                        <Link
+                          to={slink.link}
                           // rel="noreferrer"
                           className="hover:text-white"
                         >
                           <li className="text-base m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
                             {slink.name}
                           </li>
-                        </a>
+                        </Link>
                       </div>
                     </>
                   ))}
@@ -74,13 +74,9 @@ const Useful = () => {
                       </a>
                     )}
                     {slink.name === "Annual Report" && (
-                      <a
-                        href={slink.link}
-                        target="_blank"
-                        className="hover:text-white"
-                      >
+                      <Link to={slink.link} className="hover:text-white">
                         <li className="py-3 pl-14 ">{slink.name}</li>
-                      </a>
+                      </Link>
                     )}
                   </div>
                 </>

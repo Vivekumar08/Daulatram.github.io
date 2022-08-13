@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
-
 import axios from "axios";
+import "./awards.css"
 import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
