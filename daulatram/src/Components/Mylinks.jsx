@@ -296,7 +296,7 @@ export const useful = [
       },
       {
         name: "Employment Opportunities",
-        link: "https://www.dr.du.ac.in/employment-opportunities.php",
+        link: "/UsefulLinks",
       },
       {
         name: "ECA Calendar",
@@ -304,11 +304,11 @@ export const useful = [
       },
       {
         name: "e-Pathshala",
-        link: "https://epgp.inflibnet.ac.in/",
+        link: "/UsefulLinks",
       },
       {
         name: "Swayam Portal",
-        link: "https://swayam.gov.in/",
+        link: "/UsefulLinks",
       },
       {
         name: "UGC",

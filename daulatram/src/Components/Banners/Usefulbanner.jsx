@@ -1,12 +1,12 @@
 import React from "react";
-// import "./Banner.css";
+import "./Banner.css";
 import { Link } from "react-router-dom";
 
-const Usefulbanner = () => {
+const Banner = () => {
   return (
     <>
       <div
-        className="Usefulbanner"
+        className="Banner"
         style={{ backgroundImage: "url(/images/img1.jpeg)" }}
       >
         <div className="name">
@@ -19,7 +19,7 @@ const Usefulbanner = () => {
             <Link to={"/"}>
               <span className="ml-5">Home</span>
             </Link>
-            <span className="ml-5">Useful Links</span>
+            <span className="ml-5">Academics</span>
           </div>
         </div>
       </div>
@@ -27,4 +27,4 @@ const Usefulbanner = () => {
   );
 };
 
-export default Usefulbanner;
+export default Banner;
