@@ -7,7 +7,7 @@ import axios from "axios";
 import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-import Research_facilities_dat from "./Research_facilities_dat";
+import Common_dat from "../Common_dat";
 
 function Research_facilities() {
   const [visible, setVisible] = useState(false);
@@ -245,7 +245,7 @@ function Research_facilities() {
                 const { _id, title, description, img_data } = curElem;
                 return (
                   <>
-                    <Research_facilities_dat
+                    <Common_dat
                       key={_id}
                       id={_id}
                       tittle={title}

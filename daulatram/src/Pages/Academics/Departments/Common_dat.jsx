@@ -1,10 +1,10 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faTrash } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../../../../Context/AuthProvider";
+import AuthContext from "../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 
-const Student_achieve_dat = (props) => {
+const Common_dat = (props) => {
   const errRef = useRef();
   const userRef = useRef();
   const dropRef = useRef();
@@ -412,4 +412,4 @@ const Student_achieve_dat = (props) => {
   );
 };
 
-export default Student_achieve_dat;
+export default Common_dat;
