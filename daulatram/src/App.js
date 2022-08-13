@@ -76,7 +76,8 @@ import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
 import Attendence from "./Pages/Student_zone/Attendence";
 import ICC from "./Pages/Student_zone/ICC";
-import Resources from "./Pages/Academics/Resources/Resources";
+import Resources from "./Pages/Academics/Resources/Resources"
+import Courses from "./Pages/Academics/Add on courses/courses";
 import Contact from "./Pages/Footer/Contact";
 import Bulletins_page from "./Pages/Footer/Bulletins_page";
 import Internal from "./Pages/Student_zone/Internal";
@@ -565,14 +566,14 @@ function App() {
             }
             path="/academics/PG_courses"
           ></Route>{" "}
-          <Route
+          {/* <Route
             element={
               <>
                 <Addoncourses />
               </>
             }
             path="/academics/Add_on_courses"
-          ></Route>{" "}
+          ></Route>{" "} */}
           <Route
             element={
               <>
@@ -908,6 +909,14 @@ function App() {
               </>
             }
             path="/academics/resources"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Courses />
+              </>
+            }
+            path="/academics/Add_on_courses"
           ></Route>{" "}
           <Route
             element={
