@@ -1,17 +1,159 @@
-import React, {useState} from "react";
+
 import Mathbanner from "../Mathematics/Mathbanner.jsx";
 import Mathematics from "../../../../Components/DepartSIde/Mathematics.jsx";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-function Math_events() {
+import { faTrashCan, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import "../../../Societies.css";
+
+
+
+function Events() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const [pdf, setPdf] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Math_Events");
+    setData1(await response.json());
+  };
+
+  const onDropPdf = (files) => {
+    const [uploadedFile] = files;
+    setPdf(uploadedFile);
+    // setData(prev=>({...prev,pdf:uploadedFile}))
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id) => {
+    // console.log(id);
+    const response = await fetch(`/delete_Math_Events/${id}`, {
+      method: "POST",
+    });
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
+
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    try {
+      if (pdf) {
+        await axios.post(
+          `/Math_Events_file_add/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setPdf("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (caption.trim() !== "") {
+
+        setErrMsg("");
+        console.log(file, caption);
+        await axios.post(
+          `/Math_Events_add`,
+          { file: file, title: caption },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        // setErrMsg("Please select a file to add.");
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
   return (
-    <div className=" flex flex-col">
+    <>
       <div className="">
         <Mathbanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -35,139 +177,228 @@ function Math_events() {
             </div>
           )}
         </div>
-        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Mathematics />
         </div>
-        <div className="ml-3 ">
-          <div className="w-full mr-16">
-            <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center">
-                Events
+        <div className="flex flex-col md:w-[1100px]">
+          <div className="">
+            <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center  items-center ">
+              Events
             </h2>
           </div>
-          <div className="flex flex-row">
-            <div>
-              <div className="mr-20 ml-4 flex text-justify ">
-                <div>
-                  <p className="md:text-xl text-lg  ml-4 underline font-bold">
-                    Academic year 2020-21 :
-                  </p>
-                  <ul className="list-decimal md:text-base text-sm mt-2 ml-8 mr-4 text-justify mb-4">
-                    <li>
-                      The association organised a national webinar for faculty
-                      on <b>“Technology-enabled Higher education in India:
-                      Challenges and opportunities”</b> on 19 June, 2020 at 3:00 pm
-                      on the Google meet platform. The Resource Person for the
-                      event was Prof. (Dr.) A.K. Bakhshi, Vice-Chancellor of PDM
-                      University, Bahadurgarh (Haryana) and Chairman of Guru
-                      Angad Dev Teaching-Learning Centre of the MHRD, GOI. The
-                      event was attended by a total of 650 participants.
-                      <div
-                        style={{
-                          backgroundImage:
-                            "url(/images/ImgPages/Mathematics/Events_Webinar.jpg)",
-                          
-                        }}
-                        className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                      ></div>
-                      <div
-                        style={{
-                          backgroundImage:
-                            "url(/images/ImgPages/Mathematics/Webinar2.jpg)",
-                          
-                        }}
-                        className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                      ></div>
-                    </li>
-
-                    <li>
-                      The association organised a webinar for students on <b>"Graph
-                      Theory and The Seven Bridges Problem"</b> on 26 November 2020
-                      at 3:30 p.m. The resource person was Prof. Geetha
-                      Venkataraman, Dean of Dr. B.R. Ambedkar University, Delhi.
-                      The webinar was attended by around 100 participants.
-                      <div
-                        style={{
-                          backgroundImage:
-                            "url(/images/ImgPages/Mathematics/Graph2.jpg)",
-                         
-                        }}
-                        className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                      ></div>
-                    </li>
-
-                    <li>
-                      {" "}
-                      Fresher’s party 2021 was organised by the association to
-                      welcome the new batch on 27th February 2021. The event
-                      provided a platform to the freshers to get acquainted with
-                      their seniors, as well as with their own classmates from
-                      the warmth of their own homes.
-                      <div
-                        style={{
-                          backgroundImage:
-                            "url(/images/ImgPages/Mathematics/Freshers1.jpg)",
-
-                        }}
-                        className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[40px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                      ></div>
-                    </li>
-                  </ul>
-
-                <div>
-                  <p className=" ml-4 underline font-bold md:text-xl text-lg">
-                    Academic year 2019-20 :
-                  </p>
-                </div>
-                <ul className="list-decimal md:text-base text-sm mt-2 ml-8 mr-4 text-justify mb-4">
-                  <li>
-                    The association organised a talk on <b>“A Journey with Infinite
-                    Series”</b> by Dr. Tanvi Jain, Associate Professor at Indian
-                    Statistical Institute, Delhi, on 20th September 2019.
-                  </li>
-                  <li>
-                    The association organised its annual fest “Shoonya’20” on
-                    19th February 2020. On the occasion, the association
-                    organised a lecture on the topic <b>“Testing of primality and
-                    factorization”</b> by Dr. Mukund Madhav Mishra, Assistant
-                    Professor, Department of Mathematics, Hansraj College,
-                    University of Delhi.
-                  </li>
-                </ul>
-                <div>
-                  <p className=" ml-4 underline font-bold md:text-xl tetx-lg">
-                    Academic year 2018-19 :
-                  </p>
-                </div>
-                <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
-                  <li>
-                    The association organised a talk on <b>“Mathematical Modelling
-                    on Wild Life Preserving”</b> by Prof. Shoba Bagai, Professor at
-                    Cluster Innovation Centre, University of Delhi on 3rd
-                    October 2018, wherein she discussed the role of mathematical
-                    models in analysing various parameters of any biographical
-                    region. The session was enthusiastically attended by the
-                    students.
-                  </li>
-                  <li>
-                    The association organised its annual fest “Shoonya’19” on
-                    21st February 2019. On the occasion, the association
-                    organised a lecture on the topic <b>“Introduction to wavelet
-                    analysis”</b> by Dr. Shiv Kumar Kaushik, Associate Professor,
-                    Department of Mathematics, Kirori Mal College.
-                  </li>
-                </ul>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+            {data1 &&
+              data1.sort(sortOn("title")).map((currElem) => {
+                const { _id, title, img_data } = currElem;
+                return (
+                  <div className="flex flex-col ">
+                    <div class="first hero" key={_id}>
+                      <div class="hero-description-bk"></div>
+                      <div className="">
+                        <div className="">
+                          {img_data.file_path &&
+                            img_data.file_path.map((elem) => {
+                              var path2 = elem.file_path1.replace(/\\/g, "/");
+                              var path = path2.slice(19);
+                              return (
+                                <>
+                                  <img
+                                    class="hero-profile-img"
+                                    src={path}
+                                    alt=""
+                                  />
+                                </>
+                              );
+                            })}
+                          <div class="hero-description-bk"></div>
+                          <div class="hero-description ml-16">
+                            <p>{title}</p>
+                          </div>
+                          {img_data.pdf_path &&
+                            img_data.pdf_path.map((elem) => {
+                              const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                              const path = path2.slice(19);
+                              return (
+                                <>
+                                  {elem.value === "true" && (
+                                    <>
+                                      <a href={path}>
+                                        <div class="hero-btn ml-28">
+                                          Learn More
+                                        </div>
+                                      </a>
+                                    </>
+                                  )}
+                                </>
+                              );
+                            })}
+                        </div>
+                      </div>
+                      {auth && (
+                        <>
+                          <div className="flex flex-col">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
+                              onClick={() => del(_id)}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    {img_data.pdf_path &&
+                      img_data.pdf_path.map((elem) => {
+                        return (
+                          <>
+                            {auth && elem.value != "true" && (
+                              <>
+                                <div
+                                  className="flex flex-col justify-center content-center max-w-sm w-[220px]  ml-auto mr-auto mb-5"
+                                  key={_id}
+                                >
+                                  <p>Events file</p>
+                                  <div class="md:flex flex-col md:items-center h-full ">
+                                    <div className="upload-section flex h-full mb-[10px] ">
+                                      <Dropzone
+                                        onDrop={onDropPdf}
+                                        onDragEnter={() => updateBorder("over")}
+                                        onDragLeave={() =>
+                                          updateBorder("leave")
+                                        }
+                                      >
+                                        {({ getRootProps, getInputProps }) => (
+                                          <div
+                                            {...getRootProps({
+                                              className:
+                                                "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                                            })}
+                                            ref={dropRef}
+                                          >
+                                            <input {...getInputProps()} />
+                                            <p>
+                                              Drag and drop a file OR click here
+                                              to select a file
+                                            </p>
+                                            {pdf && (
+                                              <div>
+                                                <strong>Selected file:</strong>{" "}
+                                                {pdf.name}
+                                              </div>
+                                            )}
+                                          </div>
+                                        )}
+                                      </Dropzone>
+                                    </div>
+                                    <div class="md:w-[220px]  ">
+                                      <button
+                                        class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                        type="button"
+                                        onClick={() =>
+                                          handleSubmit_file(_id, pdf)
+                                        }
+                                      >
+                                        Add Event file
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                          </>
+                        );
+                      })}
+                  </div>
+                );
+              })}
           </div>
-          </div>
-          {/* <div className=" flex  flex-col ml-4 mr-16 mt-10 ">
-          <Biochemistry/>
-
-          </div> */}
         </div>
       </div>
-    </div>
+
+      {auth && (
+        <>
+          <form
+            method="post"
+            className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+          >
+            <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+              <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                {errMsg}
+              </p>
+            </h2>
+            <div className="mb-3">
+              <textarea
+                name="Caption"
+                cols="10"
+                rows="5"
+                ref={userRef}
+                onChange={(e) => setCaption(e.target.value)}
+                value={caption}
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                placeholder="Title of Society"
+              ></textarea>
+            </div>
+            <div class="md:flex flex-col md:items-center h-full">
+              {/* <div class="md:w-1/3"></div> */}
+              <div className="upload-section flex h-full mb-[10px] w-full">
+                <Dropzone
+                  onDrop={onDrop}
+                  onDragEnter={() => updateBorder("over")}
+                  onDragLeave={() => updateBorder("leave")}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <div
+                      {...getRootProps({
+                        className:
+                          "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                      })}
+                      ref={dropRef}
+                    >
+                      <input {...getInputProps()} />
+                      <p>Drag and drop a file OR click here to select a file</p>
+                      {file && (
+                        <div>
+                          <strong>Selected file:</strong> {file.name}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </Dropzone>
+                {previewSrc ? (
+                  isPreviewAvailable ? (
+                    <div className="image-preview ml-[5%] w-full">
+                      <img
+                        className="preview-image w-full h-full block mb-[10px]"
+                        src={previewSrc}
+                        alt="Preview"
+                      />
+                    </div>
+                  ) : (
+                    <div className="preview-message flex justify-center items-center ml-[5%]">
+                      <p>No preview available for this file</p>
+                    </div>
+                  )
+                ) : (
+                  <div className="preview-message flex justify-center items-center ml-[5%]">
+                    <p>Image preview will be shown here after selection</p>
+                  </div>
+                )}
+              </div>
+              <div class="md:w-2/3 ">
+                <button
+                  class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  type="button"
+                  onClick={handleSubmit}
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+        </>
+      )}
+    </>
   );
 }
 
-export default Math_events;
+export default Events;

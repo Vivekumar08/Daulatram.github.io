@@ -1,17 +1,158 @@
-import React, {useState} from "react";
 import Hindibanner from "../Hindi/Hindibanner.jsx";
 import Hindi from "../../../../Components/DepartSIde/Hindi.jsx";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-function Hindi_events() {
+import { faTrashCan, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import "../../../Societies.css";
+
+
+
+function Events() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const [pdf, setPdf] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Hin_Events");
+    setData1(await response.json());
+  };
+
+  const onDropPdf = (files) => {
+    const [uploadedFile] = files;
+    setPdf(uploadedFile);
+    // setData(prev=>({...prev,pdf:uploadedFile}))
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id) => {
+    // console.log(id);
+    const response = await fetch(`/delete_Hin_Events/${id}`, {
+      method: "POST",
+    });
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
+
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    try {
+      if (pdf) {
+        await axios.post(
+          `/Hin_Events_file_add/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setPdf("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (caption.trim() !== "") {
+
+        setErrMsg("");
+        console.log(file, caption);
+        await axios.post(
+          `/Hin_Events_add`,
+          { file: file, title: caption },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        // setErrMsg("Please select a file to add.");
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
   return (
-    <div className=" flex flex-col">
+    <>
       <div className="">
         <Hindibanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -35,202 +176,228 @@ function Hindi_events() {
             </div>
           )}
         </div>
-        <div className="  md:flex hidden md:flex-col mt-12 ml-2">
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Hindi />
         </div>
-        <div className="w-full mr-16">
-          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
-            Events
-          </h2>
-          <div className="pr-3 pl-3 flex mr-1 ml-1">
-            <span className="md:text-2xl text-xl underline text-justify font-bold mb-2 mt-3">
-              आचार्य हजारी प्रसाद द्विवेदी स्मारक भाषणमाला - वर्ष 2019
-            </span>
-          </div>
-          <div>
-            <h2 className="md:text-xl text-lg text- ml-4 font-bold mb-1">
-              विषय - ट्रांसजेंडर : साहित्य, समाज और चुनौतियाँ
+        <div className="flex flex-col md:w-[1100px]">
+          <div className="">
+            <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center  items-center ">
+              Events
             </h2>
-            <br />
-            <div className="ml-4">
-              <span className="md:text-lg text-sm text-justify font-medium">
-                दौलतराम महाविद्यालय के हिंदी विभाग द्वारा 3 मार्च 2020 को आचार्य
-                हजारी प्रसाद द्विवेदी स्मारक भाषणमाला - 39 का आयोजन किया गया।
-                जिस का विषय था -
-                <strong> " ट्रांसजेंडर : साहित्य, समाज और चुनौतियां "</strong>.
-                कार्यक्रम में अध्यक्ष के रूप में दिल्ली विश्वविद्यालय के हिंदी
-                विभाग से <strong>प्रो. पूरनचंद टंडन</strong>, विशिष्ट वक्ता के
-                रूप में दिल्ली विश्वविद्यालय के हिंदी विभाग से{" "}
-                <strong>प्रो. कुमुद शर्मा </strong>, मुख्य अतिथि के रूप में{" "}
-                <strong>‘साथी’ की प्रोग्राम मैनेजर अमृता सरकार</strong> व मुख्य
-                वक्ता के रूप में <b>डॉ. भारती अग्रवाल </b>शामिल हुए।
-                <br />
-                {/* <figure className="flex pr-4 pl-4 pb-2">
-                  <div
-                    style={{
-                      backgroundImage:
-                        "url(/images/ImgPages/Commerce/Event_1.jpg)",
-                      width: "720px",
-                      height: "400px",
-                    }}
-                    className="bg-center ml-auto mr-auto object-fit bg-no-repeat mt-[3%] bg-cover h-10  rounded-2xl border-2 border-black"
-                    // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
-                  ></div>
-                </figure> */}
-              </span>
-
-              <span className="md:text-lg text-sm text-justify font-medium">
-                आचार्य हजारी प्रसाद द्विवेदी जी की सुपुत्री डाक्टर इंदुमती ओझा
-                जी ने आचार्य हजारी प्रसाद द्विवेदी जी की समृति में वर्ष 1980 में
-                दौलतराम महाविद्यालय के हिन्दी विभाग द्वारा "आचार्य हजारी प्रसाद
-                द्विवेदी स्मारक भाषणमाला" का आयोजन किया था। तबसे दौलतराम
-                महाविद्यालय का हिन्दी विभाग निरंतर भाषणमाला आयोजित कर रहा है।
-                उन्होंने यह भी बताया कि इसमें विषय का चयन समसामयिक एवं साहित्यिक
-                मूल्यों को नई दृष्टि एवं नई रोशनी में देखने के प्रयास रूप में
-                होता है। इसी क्रम में इस बार ३९ वीं कड़ी के अन्तर्गत
-                ट्रांसजेंडर:साहित्य समाज और चुनौतियाँ विषय का चयन किया गया जिससे
-                हम उनके मन की बात और संघर्ष को निकट से जान एवं समझ सकें।
-              </span>
-              <div className="pr-3  flex">
-                <span className="md:text-2xl text-lg underline text-justify font-bold mt-3">
-                  छात्र संवर्धन कार्यक्रम तीन दिवसीय कार्यशाला (SDP )रिपोर्ट
-                  2020-21)
-                </span>
-              </div>
-              <div className="pr-3  flex">
-                <span className="md:text-lg text-sm text-justify font-medium">
-                  <p>
-                    {" "}
-                    <strong>कार्यक्रम </strong>– तीन दिवसीय छात्र संवर्धन
-                    कार्यक्रम (SDP)
-                  </p>
-                  <p>
-                    {" "}
-                    <strong>विषय </strong> – ‘’गूगल क्लास रूम द्वारा आई.सी.टी.
-                    मिश्रित शिक्षण अधिगम : परोक्ष कक्षा को जीवंत बनाना ‘’
-                  </p>
-                  <p>
-                    {" "}
-                    <strong>विभाग </strong> – हिंदी{" "}
-                  </p>
-                  <p>
-                    {" "}
-                    <strong>उद्देश्य</strong> – छात्राओं को गूगल क्लास रूम से
-                    सम्बन्धित विभिन्न टूल्स की जानकारी देना जैसे-गूगल
-                    क्लासरूम,गूगल मीट,क्लास वर्क मैनेजमेंट,असाइनमेंट स्कैन करके
-                    अपलोड करना,वस्तुनिष्ठ प्रश्नोत्तरी के उत्तर सबमिट
-                    करना,ट्रांसलेटर एप की जानकारी,एम.एस.ऑफिस टूल्स आदि.
-                  </p>
-                  <p>
-                    {" "}
-                    <strong>पाठ्यक्रम समन्वयक </strong> – डॉ. ज्योति शर्मा
-                    (विभागाध्यक्षा)
-                  </p>
-                  <p>
-                    {" "}
-                    <strong>समयावधि</strong> – 10बजे से – मध्याहन 12 बजे तक{" "}
-                  </p>
-                  <p>
-                    {" "}
-                    <strong>दिनांक</strong> – 17-19 अगस्त 2020
-                  </p>
-                  <p>
-                    {" "}
-                    <strong>प्रतिभागियों की संख्या</strong> – 160 छात्राएं
-                  </p>
-                  <p>
-                    {" "}
-                    <strong>कार्यक्रम रुपरेखा / सूची</strong>
-                  </p>
-
-                  <p>
-                    {" "}
-                    <strong>17th August 2020</strong>
-                  </p>
-                  <p>
-                    {" "}
-                    Google Classroom (Stream), Google Meet, G Classroom
-                    (Classwork Management, Assignment handling) Part 1, Scanning
-                    documents and sharing in PDF (hindi hand-written assignment)
-                    in three modes.
-                  </p>
-                  <p>
-                    {" "}
-                    <strong >18th August 2020 </strong>{" "}
-                  </p>
-                  <p>
-                    {" "}
-                    Classwork Management (Assignment handling) Part 2, G
-                    Classroom (People), Google Docs, Quiz Answering (that is
-                    created) – Assignment to be uploaded in hindi (translator).
-                  </p>
-                  <p>
-                    {" "}
-                    <strong>19th August 2020</strong>
-                  </p>
-                  <p>
-                    {" "}
-                    Add-Ons – Translator etc., You-tube videos for translation
-                    (Voice drafting link), other MS Office tools, and Queries.
-                  </p>
-                  <br />
-                  <p>
-                    <strong>छात्र मूल्यांकन का आधार</strong> – वस्तुनिष्ठ
-                    प्रश्नावली पहले और दूसरे दिन
-                  </p>
-                  <p>
-                    <strong>ई कार्यशाला का सार/रिपोर्ट -</strong>
-                  </p>
-                  <p>
-                    दौलत राम महाविद्यालय के आंतरिक गुणवत्ता आश्वासन प्रकोष्ठ
-                    (IQAC) के अंतर्गत हिंदी विभाग द्वारा आंतरिक कौशल विकास
-                    कार्यक्रम के तहत ‘’गूगल क्लास रूम द्वारा आई.सी.टी.मिश्रित
-                    शिक्षण अधिगम : परोक्ष कक्षा को जीवंत बनाना’’ विषय पर
-                    छात्राओं के लिए तीन दिवसीय इ कार्यशाला का आयोजन किया गया. इस
-                    इ कार्यशाला द्वारा छात्राओं ने ऑनलाइन शिक्षण अधिगम के
-                    क्षेत्र में पूरे उत्साह और मनोयोग के साथ कदम बढ़ाया. कोविड-19
-                    के इस दौर में जहाँ एक ओर जिन्दगी की रफ़्तार थमी हुई-सी लगती
-                    है वहीँ दूसरी ओर अनेक नए बदलाव हमारी जिंदगी का हिस्सा बन गए
-                    हैं. परम्परागत शिक्षा प्रणाली से थोडा अलग अब देशभर के शिक्षण
-                    संस्थान ऑनलाइन शिक्षा माध्यमों को अपना रहे हैं.इस ऑनलाइन
-                    प्लेटफ़ॉर्म पर निः संदेह छात्रों और अध्यापकों को आरम्भिक स्तर
-                    पर कुछ समस्याओं का सामना करना पड़ रहा है परन्तु सीखने-सिखाने
-                    की इस प्रकिया में अवश्य कुछ सकारात्मक बदलाव आएगा.इसी
-                    सकारात्मक सोच के साथ महाविद्यालय की प्राचार्या डॉ.सविता रॉय
-                    ने छात्र हित में सभी विभागों द्वारा इ एस.डी.पी. आयोजित किये
-                    जाने का निर्देश दिया.इस कार्यशाला की समन्वयक और हिंदी विभाग
-                    की विभागाध्यक्षा डॉ.ज्योति शर्मा ने हिंदी विशेष की द्वितीय
-                    एवं तृतीय वर्ष की छात्राओं के लिए17-19 अगस्त 2020 को सुबह 10
-                    बजे से मध्याह्न 12 बजे तक इस कार्यशाला का आयोजन किया.वाणिज्य
-                    विभाग की सहायक प्रवक्ता डॉ.गुंजन गुप्ता और सुश्री मेघा जैन
-                    इस कार्यशाला में संसाधक वक्ता के रूप में उपस्थित रहीं. अंतिम
-                    दिन छात्राओं से प्रतिपुष्टि पत्र गूगल लिंक द्वारा भरवाया
-                    गया.
-                  </p>
-                  <br />
-                  <p><strong>प्रतिपुष्टि पत्र के आधार पर कार्यक्रम का सार – 
-</strong></p>
-<p>छात्राओं द्वारा अंतिम दिन कार्यशाला से सम्बन्धित प्रतिपुष्टि पत्र भरवाया गया.छात्राओं की इस सम्बन्ध में बहुत अच्छी प्रतिक्रिया रही.उनका मानना है कि इस तरह की कार्यशाला के आयोजन द्वारा उन्हें गूगल क्लास रूम के बेसिक्स समझ आए जिससे ऑनलाइन क्लास लेने और वहां कक्षा सम्बन्धी विभिन्न कार्यों को करने में उन्हें आसानी रहेगी.छात्राओं के लिए प्रत्येक सत्र बहुत रोचक और ज्ञानवर्धक रहे.उनका कहना है कि गूगल क्लास रूम से सम्बन्धित इस तरह की इ कार्यशाला का आयोजन नए गूगल क्लास रूम टूल्स के साथ किया जाना चाहिए.
-</p>
-<br />
-<p>
-                    <strong>वस्तुनिष्ठ प्रश्नावली</strong>  – 17 अगस्त 2020
-                  </p>
-<p>
-                    <strong>वस्तुनिष्ठ प्रश्नावली</strong>  – 18 अगस्त 2020
-                  </p>
-<p>
-                    <strong>प्रतिपुष्टि पत्र</strong>  – 19 अगस्त 2020
-                  </p>
-
-                </span>
-              </div>
-            </div>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+            {data1 &&
+              data1.sort(sortOn("title")).map((currElem) => {
+                const { _id, title, img_data } = currElem;
+                return (
+                  <div className="flex flex-col ">
+                    <div class="first hero" key={_id}>
+                      <div class="hero-description-bk"></div>
+                      <div className="">
+                        <div className="">
+                          {img_data.file_path &&
+                            img_data.file_path.map((elem) => {
+                              var path2 = elem.file_path1.replace(/\\/g, "/");
+                              var path = path2.slice(19);
+                              return (
+                                <>
+                                  <img
+                                    class="hero-profile-img"
+                                    src={path}
+                                    alt=""
+                                  />
+                                </>
+                              );
+                            })}
+                          <div class="hero-description-bk"></div>
+                          <div class="hero-description ml-16">
+                            <p>{title}</p>
+                          </div>
+                          {img_data.pdf_path &&
+                            img_data.pdf_path.map((elem) => {
+                              const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                              const path = path2.slice(19);
+                              return (
+                                <>
+                                  {elem.value === "true" && (
+                                    <>
+                                      <a href={path}>
+                                        <div class="hero-btn ml-28">
+                                          Learn More
+                                        </div>
+                                      </a>
+                                    </>
+                                  )}
+                                </>
+                              );
+                            })}
+                        </div>
+                      </div>
+                      {auth && (
+                        <>
+                          <div className="flex flex-col">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
+                              onClick={() => del(_id)}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    {img_data.pdf_path &&
+                      img_data.pdf_path.map((elem) => {
+                        return (
+                          <>
+                            {auth && elem.value != "true" && (
+                              <>
+                                <div
+                                  className="flex flex-col justify-center content-center max-w-sm w-[220px]  ml-auto mr-auto mb-5"
+                                  key={_id}
+                                >
+                                  <p>Events file</p>
+                                  <div class="md:flex flex-col md:items-center h-full ">
+                                    <div className="upload-section flex h-full mb-[10px] ">
+                                      <Dropzone
+                                        onDrop={onDropPdf}
+                                        onDragEnter={() => updateBorder("over")}
+                                        onDragLeave={() =>
+                                          updateBorder("leave")
+                                        }
+                                      >
+                                        {({ getRootProps, getInputProps }) => (
+                                          <div
+                                            {...getRootProps({
+                                              className:
+                                                "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                                            })}
+                                            ref={dropRef}
+                                          >
+                                            <input {...getInputProps()} />
+                                            <p>
+                                              Drag and drop a file OR click here
+                                              to select a file
+                                            </p>
+                                            {pdf && (
+                                              <div>
+                                                <strong>Selected file:</strong>{" "}
+                                                {pdf.name}
+                                              </div>
+                                            )}
+                                          </div>
+                                        )}
+                                      </Dropzone>
+                                    </div>
+                                    <div class="md:w-[220px]  ">
+                                      <button
+                                        class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                        type="button"
+                                        onClick={() =>
+                                          handleSubmit_file(_id, pdf)
+                                        }
+                                      >
+                                        Add Event file
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                          </>
+                        );
+                      })}
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
-    </div>
+
+      {auth && (
+        <>
+          <form
+            method="post"
+            className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+          >
+            <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+              <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                {errMsg}
+              </p>
+            </h2>
+            <div className="mb-3">
+              <textarea
+                name="Caption"
+                cols="10"
+                rows="5"
+                ref={userRef}
+                onChange={(e) => setCaption(e.target.value)}
+                value={caption}
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                placeholder="Title of Society"
+              ></textarea>
+            </div>
+            <div class="md:flex flex-col md:items-center h-full">
+              {/* <div class="md:w-1/3"></div> */}
+              <div className="upload-section flex h-full mb-[10px] w-full">
+                <Dropzone
+                  onDrop={onDrop}
+                  onDragEnter={() => updateBorder("over")}
+                  onDragLeave={() => updateBorder("leave")}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <div
+                      {...getRootProps({
+                        className:
+                          "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                      })}
+                      ref={dropRef}
+                    >
+                      <input {...getInputProps()} />
+                      <p>Drag and drop a file OR click here to select a file</p>
+                      {file && (
+                        <div>
+                          <strong>Selected file:</strong> {file.name}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </Dropzone>
+                {previewSrc ? (
+                  isPreviewAvailable ? (
+                    <div className="image-preview ml-[5%] w-full">
+                      <img
+                        className="preview-image w-full h-full block mb-[10px]"
+                        src={previewSrc}
+                        alt="Preview"
+                      />
+                    </div>
+                  ) : (
+                    <div className="preview-message flex justify-center items-center ml-[5%]">
+                      <p>No preview available for this file</p>
+                    </div>
+                  )
+                ) : (
+                  <div className="preview-message flex justify-center items-center ml-[5%]">
+                    <p>Image preview will be shown here after selection</p>
+                  </div>
+                )}
+              </div>
+              <div class="md:w-2/3 ">
+                <button
+                  class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  type="button"
+                  onClick={handleSubmit}
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+        </>
+      )}
+    </>
   );
 }
 
-export default Hindi_events;
+export default Events;

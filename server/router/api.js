@@ -77,6 +77,19 @@ const Hin_Faculty = require("../models/Academics/Departments/Hindi/Hin_Faculty_S
 const Bio_ProgramOffered = require("../models/Academics/Departments/Biochemistry/Bio_ProgramsOffered_Schema");
 const Bio_Evetns = require("../models/Academics/Departments/Biochemistry/Bio_Evetns_Schema");
 const Botany_Events = require("../models/Academics/Departments/Botany/Botany_Events_Schema");
+const Phy_Events = require("../models/Academics/Departments/Physics/Phy_Events_Schema");
+const Math_Events = require("../models/Academics/Departments/Mathematics/Math_Events_Schema");
+const Psychology_Events = require("../models/Academics/Departments/Psychology/Psychology_Events_Schema");
+const Philo_Events = require("../models/Academics/Departments/Philosophy/Philo_events_schema");
+const PE_Events = require("../models/Academics/Departments/Physical_Education/PE_Events_Schema");
+const NHE_Events = require("../models/Academics/Departments/NHE/NHE_Events_Schema");
+const Music_Events = require("../models/Academics/Departments/Music/Music_Events_Schema");
+const His_Events = require("../models/Academics/Departments/History/His_Events_Schema");
+const Hin_Events = require("../models/Academics/Departments/Hindi/Hin_Events_Schema");
+const Eng_Events = require("../models/Academics/Departments/English/Eng_Events_Schema");
+const Eco_Events = require("../models/Academics/Departments/Economics/Eco_Events_Schema");
+const Com_Events = require("../models/Academics/Departments/Commerce/Com_Events_Schema");
+const PolSci_Events = require("../models/Academics/Departments/Political_Science/PolSci_Events_Schema");
 const Biochem_About = require("../models/Academics/Departments/Biochemistry/About_depart_Schema");
 const Bio_Photo_Gallery = require("../models/Academics/Departments/Biochemistry/Bio_Photo_Gallery_Schema");
 const Hist_Photo_Gallery = require("../models/Academics/Departments/History/Hist_Photo_Gallery_Schema");
@@ -155,7 +168,7 @@ const Hist_Awards = require("../models/Academics/Departments/History/Hist_Awards
 const Math_ProgramOffered = require("../models/Academics/Departments/Mathematics/Math_ProgramsOffered_Schema");
 const Math_Awards = require("../models/Academics/Departments/Mathematics/Math_Awards_Schema");
 const NHE_ProgramOffered = require("../models/Academics/Departments/NHE/NHE_ProgramsOffered_Schema");
-const Physics_Events = require("../models/Academics/Departments/Physics/Physics_Events_Schema");
+// const Physics_Events = require("../models/Academics/Departments/Physics/Physics_Events_Schema");
 const Sanskrit_Events = require("../models/Academics/Departments/Sanskrit/Sanskrit_Events_Schema");
 const Zoology_Events = require("../models/Academics/Departments/Zoology/Zoology_Events_Schema");
 const Physics_Stuachieve = require("../models/Academics/Departments/Physics/Physics_Stuachieve_Schema");
@@ -2889,120 +2902,274 @@ router.post(
         }
     }
 );
-// Physics Events
-router.get("/Physics_Events", async (req, res) => {
-    const details = await Physics_Events.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Physics_Events/:id", async (req, res) => {
-    const delete_user = await Physics_Events.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
+
+// PolSci Events
+router.post("/delete_PolSci_Events/:id", async (req, res) => {
+    const delete_user = await PolSci_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
 });
 
+router.get("/PolSci_Events", async (req, res) => {
+    try {
+        const files = await PolSci_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Physics_Events_add",
+    "/PolSci_Events_file_add/:id",
     upload.single("file"),
     async (req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Physics_Events({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
+            const { path, mimetyPolSci } = req.file;
+            // console.log(path, mimetyPolSci)
+            const data = await PolSci_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetyPolSci1: mimetyPolSci,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/PolSci_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetyPolSci } = req.file;
+            // console.log(title,path,mimetyPolSci)
+            const file = new PolSci_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetyPolSci1: mimetyPolSci },
+                "img_data.pdf_path": { value: false },
             });
             await file.save();
             res.send("file uploaded successfully.");
         } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
         }
     }
 );
+
 // Sanskrit Events
+router.post("/delete_Sanskrit_Events/:id", async (req, res) => {
+    const delete_user = await Sanskrit_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
 router.get("/Sanskrit_Events", async (req, res) => {
-    const details = await Sanskrit_Events.find();
-    res.status(200).json(details);
+    try {
+        const files = await Sanskrit_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
 });
-router.delete("/delete_Sanskrit_Events/:id", async (req, res) => {
-    const delete_user = await Sanskrit_Events.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
+
+
+router.post(
+    "/Sanskrit_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetySanskrit } = req.file;
+            // console.log(path, mimetySanskrit)
+            const data = await Sanskrit_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetySanskrit1: mimetySanskrit,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
 
 router.post(
     "/Sanskrit_Events_add",
     upload.single("file"),
     async (req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
+            const { title } = req.body;
+            const { path, mimetySanskrit } = req.file;
+            // console.log(title,path,mimetySanskrit)
             const file = new Sanskrit_Events({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetySanskrit1: mimetySanskrit },
+                "img_data.pdf_path": { value: false },
             });
             await file.save();
             res.send("file uploaded successfully.");
         } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
         }
     }
 );
+
 // Zoology Events
+router.post("/delete_Zoology_Events/:id", async (req, res) => {
+    const delete_user = await Zoology_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
 router.get("/Zoology_Events", async (req, res) => {
-    const details = await Zoology_Events.find();
-    res.status(200).json(details);
+    try {
+        const files = await Zoology_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
 });
-router.delete("/delete_Zoology_Events/:id", async (req, res) => {
-    const delete_user = await Zoology_Events.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
+
+
+router.post(
+    "/Zoology_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetyZoology } = req.file;
+            // console.log(path, mimetyZoology)
+            const data = await Zoology_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetyZoology1: mimetyZoology,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
 
 router.post(
     "/Zoology_Events_add",
     upload.single("file"),
     async (req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
+            const { title } = req.body;
+            const { path, mimetyZoology } = req.file;
+            // console.log(title,path,mimetyZoology)
             const file = new Zoology_Events({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetyZoology1: mimetyZoology },
+                "img_data.pdf_path": { value: false },
             });
             await file.save();
             res.send("file uploaded successfully.");
         } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
         }
     }
 );
+
 //  Physics Students' Achievements
 router.get("/Physics_Stuachieve", async (req, res) => {
     const details = await Physics_Stuachieve.find();
@@ -10248,6 +10415,1168 @@ router.post(
         }
     }
 );
+// Music Events
+router.post("/delete_Music_Events/:id", async (req, res) => {
+    const delete_user = await Music_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Music_Events", async (req, res) => {
+    try {
+        const files = await Music_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Music_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Music_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Music_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Music_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+// NHE Events
+router.post("/delete_NHE_Events/:id", async (req, res) => {
+    const delete_user = await NHE_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/NHE_Events", async (req, res) => {
+    try {
+        const files = await NHE_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/NHE_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await NHE_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/NHE_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new NHE_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+// Philo Events
+router.post("/delete_Philo_Events/:id", async (req, res) => {
+    const delete_user = await Philo_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Philo_Events", async (req, res) => {
+    try {
+        const files = await Philo_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Philo_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Philo_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Philo_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Philo_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+// PE Events
+router.post("/delete_PE_Events/:id", async (req, res) => {
+    const delete_user = await PE_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/PE_Events", async (req, res) => {
+    try {
+        const files = await PE_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/PE_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await PE_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/PE_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new PE_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+// Psychology Events
+router.post("/delete_Psychology_Events/:id", async (req, res) => {
+    const delete_user = await Psychology_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Psychology_Events", async (req, res) => {
+    try {
+        const files = await Psychology_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Psychology_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetyPsychology } = req.file;
+            // console.log(path, mimetyPsychology)
+            const data = await Psychology_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetyPsychology1: mimetyPsychology,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Psychology_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetyPsychology } = req.file;
+            // console.log(title,path,mimetyPsychology)
+            const file = new Psychology_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetyPsychology1: mimetyPsychology },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+
+// Math Events
+router.post("/delete_Math_Events/:id", async (req, res) => {
+    const delete_user = await Math_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Math_Events", async (req, res) => {
+    try {
+        const files = await Math_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Math_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Math_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Math_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Math_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+
+// Eco Events
+router.post("/delete_Eco_Events/:id", async (req, res) => {
+    const delete_user = await Eco_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Eco_Events", async (req, res) => {
+    try {
+        const files = await Eco_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Eco_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Eco_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Eco_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Eco_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+// Phy Events
+router.post("/delete_Phy_Events/:id", async (req, res) => {
+    const delete_user = await Phy_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Phy_Events", async (req, res) => {
+    try {
+        const files = await Phy_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Phy_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetyPhy } = req.file;
+            // console.log(path, mimetyPhy)
+            const data = await Phy_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetyPhy1: mimetyPhy,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Phy_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetyPhy } = req.file;
+            // console.log(title,path,mimetyPhy)
+            const file = new Phy_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetyPhy1: mimetyPhy },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+
+// Hin Events
+router.post("/delete_Hin_Events/:id", async (req, res) => {
+    const delete_user = await Hin_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Hin_Events", async (req, res) => {
+    try {
+        const files = await Hin_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Hin_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Hin_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Hin_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Hin_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+// His Events
+router.post("/delete_His_Events/:id", async (req, res) => {
+    const delete_user = await His_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/His_Events", async (req, res) => {
+    try {
+        const files = await His_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/His_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await His_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/His_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new His_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+
+// Com Events
+router.post("/delete_Com_Events/:id", async (req, res) => {
+    const delete_user = await Com_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Com_Events", async (req, res) => {
+    try {
+        const files = await Com_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Com_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Com_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Com_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Com_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+// Eng Events
+router.post("/delete_Eng_Events/:id", async (req, res) => {
+    const delete_user = await Eng_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Eng_Events", async (req, res) => {
+    try {
+        const files = await Eng_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Eng_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Eng_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Eng_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Eng_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
+
+// Com Events
+router.post("/delete_Com_Events/:id", async (req, res) => {
+    const delete_user = await Com_Events.findOne({ _id: req.params.id });
+    const pdf = delete_user.img_data.pdf_path;
+    const img = delete_user.img_data.file_path;
+    // console.log(pdf, img)
+    if (pdf[0].pdf_path1 === "../daulatram/public/images/uploads") {
+        if (img[0].file_path1) {
+            await delete_user.deleteOne({ _id: req.params.id });
+            await unlinkAsync(img[0].file_path1);
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            console.log("Unsuccessfully deleted");
+        }
+    } else {
+        await delete_user.deleteOne({ _id: req.params.id });
+        await unlinkAsync(img[0].file_path1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json("File Deleted");
+    }
+});
+
+router.get("/Com_Events", async (req, res) => {
+    try {
+        const files = await Com_Events.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Com_Events_file_add/:id",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Com_Events.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+
+
+router.post(
+    "/Com_Events_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
+            // console.log(title,path,mimetype)
+            const file = new Com_Events({
+                title: title,
+                // description: description,
+                "img_data.file_path": { file_path1: path, file_mimetype1: mimetype },
+                "img_data.pdf_path": { value: false },
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error occur while uploading data");
+        }
+    }
+);
+
 
 // Chem Events
 router.post("/delete_Chem_Events/:id", async (req, res) => {
