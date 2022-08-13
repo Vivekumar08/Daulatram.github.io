@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Sanskrit_Events_Schema = mongoose.Schema(
+const Botany_Events_Schema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -44,6 +44,6 @@ const Sanskrit_Events_Schema = mongoose.Schema(
   }
 );
 
-const Sanskrit_Events = mongoose.model('Sanskrit_Events', Sanskrit_Events_Schema);
+const Botany_Events = mongoose.model('Botany_Events', Botany_Events_Schema);
 
-module.exports = Sanskrit_Events;
+module.exports = Botany_Events;

@@ -292,7 +292,7 @@ export const useful = [
     links: [
       {
         name: "COVID Information & Resources",
-        link: "http://www.du.ac.in/uploads/COVIDCARE/index.html",
+        link: "/UsefulLinks",
       },
       {
         name: "Employment Opportunities",

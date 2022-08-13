@@ -1,18 +1,159 @@
-import React, {useState} from "react";
-import Departments from "../../../../Components/Sidebar/Departments";
-import Commercebanner from "../Commerce/Commercebanner.jsx";
-import Commerce from "../../../../Components/DepartSIde/Commerce.jsx";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-function Com_Events() {
+import { faTrashCan, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import "../../../Societies.css";
+
+import Commerce from "../../../../Components/DepartSIde/Commerce";
+import Commercebanner from "./Commercebanner";
+
+
+
+function Events() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const [pdf, setPdf] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Com_Events");
+    setData1(await response.json());
+  };
+
+  const onDropPdf = (files) => {
+    const [uploadedFile] = files;
+    setPdf(uploadedFile);
+    // setData(prev=>({...prev,pdf:uploadedFile}))
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const del = async (id) => {
+    // console.log(id);
+    const response = await fetch(`/delete_Com_Events/${id}`, {
+      method: "POST",
+    });
+    const data = await response.json();
+    if (data || response.status === 200) {
+      fetchdata();
+    } else {
+      setErrMsg("Unable to Delete");
+    }
+  };
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
+
+  const updateBorder = (dragState) => {
+    if (dragState === "over") {
+      dropRef.current.style.border = "2px solid #000";
+    } else if (dragState === "leave") {
+      dropRef.current.style.border = "2px dashed #e9ebeb";
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    try {
+      if (pdf) {
+        await axios.post(
+          `/Com_Events_file_add/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setPdf("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (caption.trim() !== "") {
+
+        setErrMsg("");
+        console.log(file, caption);
+        await axios.post(
+          `/Com_Events_add`,
+          { file: file, title: caption },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        // setErrMsg("Please select a file to add.");
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
   return (
-    <div className=" flex flex-col">
+    <>
       <div className="">
         <Commercebanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -36,179 +177,228 @@ function Com_Events() {
             </div>
           )}
         </div>
-      <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Commerce />
         </div>
-        <div className="w-full mr-16">
-          <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
-            Commerce Department: Events
-          </h2>
-          <div className="pr-3 pl-3 flex mr-1 ml-2">
-            <span className="md:text-lg text-sm text-justify font-medium mb-2">
-              We bring to you glimpses of some of the recent events, activities
-              and workshops organised by our Department
-            </span>
+        <div className="flex flex-col md:w-[1100px]">
+          <div className="">
+            <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center  items-center ">
+              Events
+            </h2>
           </div>
-          <div>
-            <h2 className="md:text-3xl text-lg ml-4 font-bold underline mb-2">2020-21</h2>
-
-            <ol className="md:text-base text-sm list-decimal mt-2 ml-8">
-              <li>
-                <strong>.E-SDP</strong> Commerce Association organised E-SDP
-                during 17th - 19th August, 2020 on the topic "Simplifying Online
-                Learning through ICT Tools".
-                <figure className="flex pr-4 pl-4 pb-2">
-                  <div
-                    style={{
-                      backgroundImage:
-                        "url(/images/ImgPages/Commerce/Event_1.jpg)",
-
-                    }}
-                    className="bg-center ml-auto mr-auto lg:w-[720px] w-[350px] h-[200px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                    // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
-                  ></div>
-                </figure>
-              </li>
-
-              <li>
-                <strong> Webinar -</strong> Association organised webinar with
-                Dr. Arpita Kaul,Assistant professor,Sri Venkateswara college as
-                Resource Person on the Topic entitled "Google Classroom & Google
-                Meet" held on 1st August 2020.
-                <figure className="flex pr-4 pl-4 pb-2">
-                  <div
-                    style={{
-                      backgroundImage:
-                        "url(/images/ImgPages/Commerce/Event_2.jpg)",
-
-                    }}
-                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[350px] h-[250px] lg:h-[520px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                    // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
-                  ></div>
-                </figure>
-              </li>
-              <li>
-                <strong> National webinar -</strong> National Webinar held on
-                4th July 2020 conducted on Google Meet Platform on the topic
-                entitled "Mentoring Teachers for Effective Online Teaching" with
-                Mr. Rajiv Jain, as Resource Person
-                <figure className="flex pr-4 pl-4 pb-2">
-                  <div
-                    style={{
-                      backgroundImage:
-                        "url(/images/ImgPages/Commerce/Event_3.jpg)",
-                     
-                    }}
-                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[360px] h-[250px] lg:h-[520px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                    // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
-                  ></div>
-                </figure>
-              </li>
-              <li>
-                <strong> Natinal Webinar -</strong> Dr. Indu Jain with Dr.
-                Mithila Bagai, Resource Person at National Webinar on " Sahaja
-                Yoga Meditation: Discover Inner Peace and Positivity" organized
-                on 11th July 2020 on Google Meet Platform.
-                <figure className="flex pr-4 pl-4 pb-2">
-                  <div
-                    style={{
-                      backgroundImage:
-                        "url(/images/ImgPages/Commerce/Event_4.jpg)",
-
-                    }}
-                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[350px] h-[250px] lg:h-[520px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                    // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
-                  ></div>
-                </figure>
-              </li>
-              <li>
-                <strong>E-FDP</strong> Mrs. Sushma Arora, e-FDP Convenor with
-                Resource Persons Dr. Nikhil Rajput & Ms. Bhavya Grover at e- FDP
-                entitled “Empowering Teaching-Learning Process using Google
-                Classroom & Other ICT Tools: A Comprehensive Practical Approach”
-                organized by the Department of Commerce, Daulat Ram College
-                during 21st – 23rd July, 2020.
-                <figure className="flex pr-4 pl-4 pb-2">
-                  <div
-                    style={{
-                      backgroundImage:
-                        "url(/images/ImgPages/Commerce/Event_5.jpg)",
-                      
-                    }}
-                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[350px] h-[220px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                    // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
-                  ></div>
-                </figure>
-              </li>
-              <li>
-                <strong> National Conference</strong> -Mrs. Sushma Arora,
-                Conference Advisor with Dr.Indrani Mukherjee, Chief Guest &Dr.
-                Rita Rani, Conference Convenor at Valedictory Function of
-                National Conference held on 21st January 2020 at Daulat Ram
-                College.
-                <figure className="flex pr-4 pl-4 pb-2">
-                  <div
-                    style={{
-                      backgroundImage:
-                        "url(/images/ImgPages/Commerce/Event_6.png)",
-                      
-                    }}
-                    className="bg-center ml-auto mr-auto lg:w-[780px] w-[350px] h-[290px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                    // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
-                  ></div>
-                </figure>
-              </li>
-            </ol>
-          </div>
-          <br />
-          <div>
-            <h2 className="md:text-3xl text-lg ml-4 font-bold underline mb-6">2019-20</h2>
-
-            <ol className="md:text-base text-sm list-decimal mt-2 ml-8">
-              <li>
-                <strong>Freshers Party</strong> -Faculty Members together with
-                the Student Union members on the occasion of Freshers’ Party for
-                students of B.Com (H) course held on 3rd September 2019.
-              </li>
-
-              <li>
-                <strong>Annual Fest</strong>- Dr. Kavita Sharma, Head of
-                Department of Commerce, Delhi School of Economics, University of
-                Delhi addressing the students during the inaugural session of
-                annual fest COMVISION 2019 held on 17th January 2019.
-              </li>
-              <li>
-                <strong>Farewell party</strong>- The outgoing batch of students
-                of our Department pose together as they bid adieu to their
-                college on the occasion of Farewell 2018-19.
-              </li>
-              <li>
-                <strong> Natinal Webinar -</strong> Dr. Indu Jain with Dr.
-                Mithila Bagai, Resource Person at National Webinar on " Sahaja
-                Yoga Meditation: Discover Inner Peace and Positivity" organized
-                on 11th July 2020 on Google Meet Platform.
-              </li>
-              <li>
-                <strong>E-FDP</strong> Mrs. Sushma Arora, e-FDP Convenor with
-                Resource Persons Dr. Nikhil Rajput & Ms. Bhavya Grover at e- FDP
-                entitled “Empowering Teaching-Learning Process using Google
-                Classroom & Other ICT Tools: A Comprehensive Practical Approach”
-                organized by the Department of Commerce, Daulat Ram College
-                during 21st – 23rd July, 2020.
-              </li>
-              <li>
-                <strong> National Conference</strong> -Mrs. Sushma Arora,
-                Conference Advisor with Dr.Indrani Mukherjee, Chief Guest &Dr.
-                Rita Rani, Conference Convenor at Valedictory Function of
-                National Conference held on 21st January 2020 at Daulat Ram
-                College.
-              </li>
-            </ol>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+            {data1 &&
+              data1.sort(sortOn("title")).map((currElem) => {
+                const { _id, title, img_data } = currElem;
+                return (
+                  <div className="flex flex-col ">
+                    <div class="first hero" key={_id}>
+                      <div class="hero-description-bk"></div>
+                      <div className="">
+                        <div className="">
+                          {img_data.file_path &&
+                            img_data.file_path.map((elem) => {
+                              var path2 = elem.file_path1.replace(/\\/g, "/");
+                              var path = path2.slice(19);
+                              return (
+                                <>
+                                  <img
+                                    class="hero-profile-img"
+                                    src={path}
+                                    alt=""
+                                  />
+                                </>
+                              );
+                            })}
+                          <div class="hero-description-bk"></div>
+                          <div class="hero-description ml-16">
+                            <p>{title}</p>
+                          </div>
+                          {img_data.pdf_path &&
+                            img_data.pdf_path.map((elem) => {
+                              const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                              const path = path2.slice(19);
+                              return (
+                                <>
+                                  {elem.value === "true" && (
+                                    <>
+                                      <a href={path}>
+                                        <div class="hero-btn ml-28">
+                                          Learn More
+                                        </div>
+                                      </a>
+                                    </>
+                                  )}
+                                </>
+                              );
+                            })}
+                        </div>
+                      </div>
+                      {auth && (
+                        <>
+                          <div className="flex flex-col">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
+                              onClick={() => del(_id)}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                    {img_data.pdf_path &&
+                      img_data.pdf_path.map((elem) => {
+                        return (
+                          <>
+                            {auth && elem.value != "true" && (
+                              <>
+                                <div
+                                  className="flex flex-col justify-center content-center max-w-sm w-[220px]  ml-auto mr-auto mb-5"
+                                  key={_id}
+                                >
+                                  <p>Events file</p>
+                                  <div class="md:flex flex-col md:items-center h-full ">
+                                    <div className="upload-section flex h-full mb-[10px] ">
+                                      <Dropzone
+                                        onDrop={onDropPdf}
+                                        onDragEnter={() => updateBorder("over")}
+                                        onDragLeave={() =>
+                                          updateBorder("leave")
+                                        }
+                                      >
+                                        {({ getRootProps, getInputProps }) => (
+                                          <div
+                                            {...getRootProps({
+                                              className:
+                                                "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                                            })}
+                                            ref={dropRef}
+                                          >
+                                            <input {...getInputProps()} />
+                                            <p>
+                                              Drag and drop a file OR click here
+                                              to select a file
+                                            </p>
+                                            {pdf && (
+                                              <div>
+                                                <strong>Selected file:</strong>{" "}
+                                                {pdf.name}
+                                              </div>
+                                            )}
+                                          </div>
+                                        )}
+                                      </Dropzone>
+                                    </div>
+                                    <div class="md:w-[220px]  ">
+                                      <button
+                                        class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                        type="button"
+                                        onClick={() =>
+                                          handleSubmit_file(_id, pdf)
+                                        }
+                                      >
+                                        Add Event file
+                                      </button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            )}
+                          </>
+                        );
+                      })}
+                  </div>
+                );
+              })}
           </div>
         </div>
       </div>
-    </div>
+
+      {auth && (
+        <>
+          <form
+            method="post"
+            className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+          >
+            <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+              <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                {errMsg}
+              </p>
+            </h2>
+            <div className="mb-3">
+              <textarea
+                name="Caption"
+                cols="10"
+                rows="5"
+                ref={userRef}
+                onChange={(e) => setCaption(e.target.value)}
+                value={caption}
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                placeholder="Title of Society"
+              ></textarea>
+            </div>
+            <div class="md:flex flex-col md:items-center h-full">
+              {/* <div class="md:w-1/3"></div> */}
+              <div className="upload-section flex h-full mb-[10px] w-full">
+                <Dropzone
+                  onDrop={onDrop}
+                  onDragEnter={() => updateBorder("over")}
+                  onDragLeave={() => updateBorder("leave")}
+                >
+                  {({ getRootProps, getInputProps }) => (
+                    <div
+                      {...getRootProps({
+                        className:
+                          "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                      })}
+                      ref={dropRef}
+                    >
+                      <input {...getInputProps()} />
+                      <p>Drag and drop a file OR click here to select a file</p>
+                      {file && (
+                        <div>
+                          <strong>Selected file:</strong> {file.name}
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </Dropzone>
+                {previewSrc ? (
+                  isPreviewAvailable ? (
+                    <div className="image-preview ml-[5%] w-full">
+                      <img
+                        className="preview-image w-full h-full block mb-[10px]"
+                        src={previewSrc}
+                        alt="Preview"
+                      />
+                    </div>
+                  ) : (
+                    <div className="preview-message flex justify-center items-center ml-[5%]">
+                      <p>No preview available for this file</p>
+                    </div>
+                  )
+                ) : (
+                  <div className="preview-message flex justify-center items-center ml-[5%]">
+                    <p>Image preview will be shown here after selection</p>
+                  </div>
+                )}
+              </div>
+              <div class="md:w-2/3 ">
+                <button
+                  class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  type="button"
+                  onClick={handleSubmit}
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          </form>
+        </>
+      )}
+    </>
   );
 }
 
-export default Com_Events;
+export default Events;

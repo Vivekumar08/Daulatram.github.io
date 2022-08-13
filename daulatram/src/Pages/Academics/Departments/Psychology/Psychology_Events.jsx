@@ -1,6 +1,3 @@
-
-import Histbanner from "../History/Histbanner.jsx";
-import History from "../../../../Components/DepartSIde/History.jsx";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faBars, faClose } from "@fortawesome/free-solid-svg-icons";
@@ -8,8 +5,8 @@ import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import "../../../Societies.css";
-
-
+import Psychology from "../../../../Components/DepartSIde/Psychology";
+import Psychobanner from "./Psychobanner";
 
 function Events() {
   const [visible, setVisible] = useState(false);
@@ -26,7 +23,7 @@ function Events() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/His_Events");
+    const response = await fetch("/Psychology_Events");
     setData1(await response.json());
   };
 
@@ -61,7 +58,7 @@ function Events() {
 
   const del = async (id) => {
     // console.log(id);
-    const response = await fetch(`/delete_His_Events/${id}`, {
+    const response = await fetch(`/delete_Psychology_Events/${id}`, {
       method: "POST",
     });
     const data = await response.json();
@@ -95,7 +92,7 @@ function Events() {
     try {
       if (pdf) {
         await axios.post(
-          `/His_Events_file_add/${id}`,
+          `/Psychology_Events_file_add/${id}`,
           {
             file: pdf,
           },
@@ -125,7 +122,7 @@ function Events() {
         setErrMsg("");
         console.log(file, caption);
         await axios.post(
-          `/His_Events_add`,
+          `/Psychology_Events_add`,
           { file: file, title: caption },
           {
             headers: {
@@ -150,7 +147,7 @@ function Events() {
   return (
     <>
       <div className="">
-        <Histbanner />
+        <Psychobanner />
       </div>
       <div className="flex flex-row">
         <div className="md:hidden">
@@ -163,7 +160,7 @@ function Events() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <History />
+                <Psychology />
               </div>
             </>
           ) : (
@@ -178,7 +175,7 @@ function Events() {
           )}
         </div>
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <History />
+          <Psychology />
         </div>
         <div className="flex flex-col md:w-[1100px]">
           <div className="">

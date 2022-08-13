@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Guidelines_Schema = mongoose.Schema(
+const Student_Facilities_Schema = mongoose.Schema(
   {
     title: {
       type: String,
@@ -31,6 +31,6 @@ const Guidelines_Schema = mongoose.Schema(
   }
 );
 
-const Guidelines = mongoose.model('Guidelines', Guidelines_Schema);
+const Student_Facilities = mongoose.model('Student_Facilities', Student_Facilities_Schema);
 
-module.exports = Guidelines;
+module.exports = Student_Facilities;
