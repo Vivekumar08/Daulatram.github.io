@@ -169,13 +169,13 @@ const Events1 = () => {
   return (
     <>
       <div className="quick_links flex flex-row items-center mt-6 justify-center text-center text-white font-bold  ">
-        <span className="quick_content uppercase w-full">
-          <strong>College Events and Activities </strong>
+        <span className="uppercase w-full font-bold text-2xl">
+          College Events and Activities
         </span>
       </div>
 
       <div className="carouselwrapper module-wrapper">
-        <div className={data1 && data1.length >= 3 && "ui"}>
+        <div className={data1 && data1.length >4 && "ui"}>
           <button onClick={() => setMoveClass("next")} className="prev">
             <FontAwesomeIcon icon={faArrowLeft} size="2xl" />
           </button>

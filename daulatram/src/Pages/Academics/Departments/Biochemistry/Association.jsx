@@ -1,10 +1,5 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import Departments from "../../../../Components/Sidebar/Departments";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
-import association1 from "../../../../Dummy_data//ImgPages/Biochemistry/association1.jpg";
-import association2 from "../../../../Dummy_data//ImgPages/Biochemistry/association2.jpg";
-import association3 from "../../../../Dummy_data//ImgPages/Biochemistry/association3.jpg";
-import association4 from "../../../../Dummy_data//ImgPages/Biochemistry/association4.jpg";
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
 
 import Dropzone from "react-dropzone";
@@ -12,7 +7,7 @@ import axios from "axios";
 import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-import Association_dat from "./Association_dat";
+import Common_dat from "../Common_dat";
 
 function Association() {
   const [visible, setVisible] = useState(false);
@@ -58,6 +53,28 @@ function Association() {
     }
   };
 
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(`/delete_Bio_Association_para/${id}`, {
+        method: "POST",
+        body: JSON.stringify(arr),
+        headers: { "Content-Type": "application/json" },
+      });
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
   const del = async (id) => {
     console.log(id);
     const response = await fetch(`/delete_Bio_Association/${id}`, {
@@ -97,6 +114,27 @@ function Association() {
     fetchdata();
   };
 
+  const handleSubmit_data = async (id, para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Bio_Association_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
@@ -110,7 +148,6 @@ function Association() {
       console.log(err);
     }
   };
-
 
   const handleSubmit_file = async (id, pdf) => {
     console.log(id);
@@ -205,7 +242,7 @@ function Association() {
                 const { _id, title, description, img_data } = curElem;
                 return (
                   <>
-                    <Association_dat
+                    <Common_dat
                       key={_id}
                       id={_id}
                       tittle={title}
@@ -213,7 +250,9 @@ function Association() {
                       pic={img_data}
                       delete={del}
                       delete_img={dele}
-                      delete_file = {delete_file}
+                      delete_file={delete_file}
+                      delete_para={del_para}
+                      add_para={handleSubmit_data}
                       file_upload={handleSubmit_file}
                       Link_upload={handleSubmit_link}
                       submit_img={handleSubmit_img}
@@ -228,6 +267,9 @@ function Association() {
                 method="post"
                 className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
               >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p>Add New Data</p>
+                </h2>
                 <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
                   <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
                     {errMsg}
@@ -274,66 +316,6 @@ function Association() {
               </form>
             </>
           )}
-          {/* <div>
-            <div
-              style={{
-                backgroundImage:
-                  "url(/images/ImgPages/Biochemistry/association1.jpg)",
-              }}
-              className="bg-center ml-auto mr-auto lg:w-[800px] w-[250px] h-[190px] lg:h-[420px] bg-no-repeat mb-3 mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-            ></div>
-
-            <div className="flex pr-4 pl-4 pb-1">
-              <span className=" card-description md:text-lg text-sm text-justify font-medium ">
-                The Biochemistry Association of Daulat Ram College takes immense
-                pride in organizing a plethora of activities year-round covering
-                Fresher’s, Farewell, Fest- ‘Biomania’, year-round seminars (meet
-                the scientist), skill enhancement workshops, and guest lectures
-                by prominent personalities.
-              </span>
-            </div>
-            <div className=" ml-4 flex flex-row pr-2 ">
-              <span className=" card-description md:text-lg text-sm text-justify font-medium ">
-                The annual Fresher’s party is hosted by the 2nd and 3rd year
-                students at the start of a new session to welcome new students
-                into the warm and loving family of biochemistry. The annual
-                Farewell, organised by 1st and 2nd year students at the end of a
-                session celebrates the three year journey of passing out seniors
-                and bids them a bittersweet adieu. <br /> The annual fest-
-                Biomania, hosts large crowds of students, enthusiastic to
-                experience a culmination of guest lectures, talent shows, high
-                spirited crowd, entertaining activities; all put together by
-                combined efforts of the biomania family.
-                <br /> There are various events organised by the department such
-                as meet the scientist where prominent personalities are invited
-                to deliver lectures on their recent research activities to
-                motivate students.
-              </span>
-            </div>
-
-            <div
-              style={{
-                backgroundImage:
-                  "url(/images/ImgPages/Biochemistry/association2.jpg)",
-              }}
-              className="bg-center ml-auto mr-auto lg:w-[800px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mb-3 mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-            ></div>
-
-            <div
-              style={{
-                backgroundImage:
-                  "url(/images/ImgPages/Biochemistry/association3.jpg)",
-              }}
-              className="bg-center ml-auto mr-auto lg:w-[800px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mb-3 mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-            ></div>
-            <div
-              style={{
-                backgroundImage:
-                  "url(/images/ImgPages/Biochemistry/association4.jpg)",
-              }}
-              className="bg-center ml-auto mr-auto lg:w-[800px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mb-3 mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-            ></div>
-          </div> */}
         </div>
       </div>
     </div>

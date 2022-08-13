@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Bio_Association_Schema = mongoose.Schema(
+const Bio_Awards_Schema = mongoose.Schema(
     {
         title: {
             type: String,
@@ -54,6 +54,6 @@ const Bio_Association_Schema = mongoose.Schema(
     }
 );
 
-const Bio_Association = mongoose.model('Bio_Association', Bio_Association_Schema);
+const Bio_Awards = mongoose.model('Bio_Awards', Bio_Awards_Schema);
 
-module.exports = Bio_Association;
+module.exports = Bio_Awards;

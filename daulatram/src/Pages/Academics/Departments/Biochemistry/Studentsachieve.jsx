@@ -1,18 +1,209 @@
-import React, {useState} from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
 import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
-import Departments from "../../../../Components/Sidebar/Departments";
+
+import axios from "axios";
+import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import Common_dat from "../Common_dat";
+
 function Studentsachieve() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Bio_Student_Achievement");
+    setData1(await response.json());
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const handleSubmit_img = async (id, file) => {
+    try {
+      if (file) {
+        setErrMsg("");
+        await axios.post(
+          `/Bio_Student_Achievement_img_upload/${id}`,
+          { file: file },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(`/delete_Bio_Student_Achievement_para/${id}`, {
+        method: "POST",
+        body: JSON.stringify(arr),
+        headers: { "Content-Type": "application/json" },
+      });
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(`/delete_Bio_Student_Achievement/${id}`, {
+      method: "POST",
+    });
+    await response.json();
+    if (response.status === 200) {
+      setErrMsg("");
+      fetchdata();
+    } else if (response.status === 400) {
+      setErrMsg("First Delete all the images related to this section");
+    }
+  };
+
+  const delete_file = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_pdf_link_Bio_Student_Achievement_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+  const dele = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_img_Bio_Student_Achievement_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+
+  const handleSubmit_data = async (id, para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Bio_Student_Achievement_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit_link = async (id, link) => {
+    try {
+      console.log(link);
+      await axios.post(`/Bio_Student_Achievement_add_link/${id}`, {
+        link: link,
+      });
+      setCaption("");
+      setAuth(true);
+      fetchdata();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    console.log(id);
+    try {
+      console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Bio_Student_Achievement_file_upload/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        setErrMsg("");
+        await axios.post(`/Bio_Student_Achievement_upload`, {
+          title: link,
+          description: caption,
+        });
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
-    <>
-      <div className=" flex flex-col">
-        <div className="">
-          <DepartBanner />
-        </div>
-        <div className="flex flex-row">
+    <div className=" flex flex-col">
+      <div className="">
+        <DepartBanner />
+      </div>
+
+      <div className="flex flex-row">
         <div className="md:hidden">
           {visible ? (
             <>
@@ -37,94 +228,96 @@ function Studentsachieve() {
             </div>
           )}
         </div>
-          <div className="md:flex hidden md:flex-col mt-12 ml-2 ">
-              <Biochemistry/>
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
+          <Biochemistry />
+        </div>
+        <div className="w-full mr-16">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            Student's Achievements
+          </h2>
+          <div className="text-justify p-3 m-2 ml-4">
+            {data1 &&
+              data1.map((curElem) => {
+                const { _id, title, description, img_data } = curElem;
+                return (
+                  <>
+                    <Common_dat
+                      key={_id}
+                      id={_id}
+                      tittle={title}
+                      para={description}
+                      pic={img_data}
+                      delete={del}
+                      delete_img={dele}
+                      delete_file={delete_file}
+                      delete_para={del_para}
+                      add_para={handleSubmit_data}
+                      file_upload={handleSubmit_file}
+                      Link_upload={handleSubmit_link}
+                      submit_img={handleSubmit_img}
+                    />
+                  </>
+                );
+              })}
+          </div>
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p>Add New Data</p>
+                </h2>
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Link"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setLink(e.target.value)}
+                    value={link}
+                    placeholder="Title"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Caption"
+                  ></textarea>
+                </div>
+                <div class="md:flex flex-col md:items-center">
+                  {/* <div class="md:w-1/3"></div> */}
 
-              </div>
-          <div className="ml-3 ">
-            <div className="w-full mr-16">
-              <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center  ">
-                Students Achievements
-              </h2>
-            </div>
-            <div className="flex flex-row">
-              <div>
-                <div className="mr-5 ml-4">
-                  
-                    <div>
-                      <h2 className="md:text-2xl text-lg ml-4 font-bold underline mb-6">
-                        Awards
-                      </h2>
-                      <p className="md:text-1xl text-base ml-4 font-bold ">
-                        Academic :
-                      </p>
-                      <ol className="md:text-base text-sm list-decimal mt-2 ml-8 ">
-                        <li>
-                          Shefali Jain, Best poster, DST Inspire Science
-                          Conclave 2019: Research on the Frontier, Miranda
-                          House, 16 January to 18 January 2019.
-                        </li>
-
-                        <li>
-                          Pratiksha, Best poster, DBT Biotechnology meet,
-                          Miranda house 2nd august 2019
-                        </li>
-
-                        <li>
-                          {" "}
-                          Aakanshya satpathy, All arounder, To recognise all
-                          round excellence in academic and extracurricular
-                          activities, Daulat Ram College, Feb, 2019.
-                        </li>
-                      </ol>
-                    </div>
-                    <div>
-                      <h2 className="md:text-2xl text-lg  ml-4 font-bold underline mb-6 mt-3">
-                        Student's Progression
-                      </h2>
-                    </div>
-                    <ol className="list-decimal ml-8 md:text-base text-sm">
-                      <li>AAKANKSHA MAKOL 2016 batch Medical analyst.</li>
-                      <li>Ridhima Batra is self employed.</li>
-                      <li>Teena Bajaj masters in biochemistry.</li>
-                      <li>
-                        Soanli Gupta (2019) Pursuing Integrated M.Sc-PhD from
-                        IISER Pune.
-                      </li>
-                      <li>
-                        5 Shefali Anand (2015) Assistant professor in Jain
-                        Univerity.
-                      </li>
-                      <li>6 Simran Kaur (2013) Pursuing PhD.</li>
-                      <li>
-                        Parul Mittal (2016) MSc biotechnology and now pursuing
-                        PhD from INMAS and DU.
-                      </li>
-                      <li>
-                        Priyanka Gupta (2016) Post graduate diploma in Dietetics
-                        and Public Health Nutrition,M.Sc Food and
-                        Nutrition,Certified Diabetes Educator, Lactation.
-                      </li>
-                      <li>
-                        Anukampa Pandey (2013) MSc (Bioinformatics), CSIR-NET,
-                        Assistant Professor, Banaras Hindu University , BHU
-                        TRBB.
-                      </li>
-                      <li>Jyoti arora, pursuing PhD.</li>
-                      <li>Priya Bhatnagar, PhD Scholar.</li>
-                    </ol>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      Add
+                    </button>
                   </div>
                 </div>
-              </div>
-              {/* <div className=" flex  flex-col ml-4 mr-16 mt-10 ">
-              <Biochemistry/>
-
-              </div> */}
-            </div>
-          </div>
+              </form>
+            </>
+          )}
         </div>
-    
-    </>
+      </div>
+    </div>
   );
 }
 

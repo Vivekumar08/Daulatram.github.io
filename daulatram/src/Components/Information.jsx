@@ -36,8 +36,8 @@ function Information() {
     <>
       <div className="bg-white pb-4 ">
         <div className="quick_links flex flex-row items-center justify-center text-center text-white font-bold  ">
-          <span className="quick_content uppercase w-full">
-            <strong>Information Section</strong>
+          <span className=" uppercase w-full font-bold text-2xl">
+            Information Section
           </span>
         </div>
         {/* content/body/messages */}
