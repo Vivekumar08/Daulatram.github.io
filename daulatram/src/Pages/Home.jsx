@@ -12,7 +12,7 @@ function Home() {
       <Information />
       <Campustour />
       <Quicklinks />
-      <Events1 />
+      <Events1/>
     </>
   );
 }

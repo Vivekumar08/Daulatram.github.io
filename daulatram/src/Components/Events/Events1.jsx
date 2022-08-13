@@ -169,8 +169,8 @@ const Events1 = () => {
   return (
     <>
       <div className="quick_links flex flex-row items-center mt-6 justify-center text-center text-white font-bold  ">
-        <span className="quick_content uppercase w-full">
-          <strong>College Events and Activities </strong>
+        <span className="uppercase w-full font-bold text-2xl">
+          College Events and Activities
         </span>
       </div>
 

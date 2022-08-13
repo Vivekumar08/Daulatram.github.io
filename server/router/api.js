@@ -24,6 +24,7 @@ const helpdesk = require("../models/Admission/helpdeskAdmission");
 const GE_Options = require("../models/Admission/GE_Options_Schema");
 const File = require("../models/Research/Research_fac_Schema");
 const Publications = require("../models/Research/Publications_Schema");
+const Icc = require("../models/StudentZone/ICC_Schema");
 const Magz_and_News = require("../models/Research/Magz_and_News_Schema");
 const Soc = require("../models/Societies/Societies_Schema");
 const Library = require("../models/Library/Library_Schema");
@@ -4235,6 +4236,73 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Eresources({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype,
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// ICC
+
+router.get("/ICC", async (req, res) => {
+    const details = await Icc.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+router.delete("/deleteICC/:id", async (req, res) => {
+    const delete_user = await Icc.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === "text/link") {
+        console.log(delete_user.file_mimetype);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(delete_user.file_mimetype);
+        await unlinkAsync(delete_user.file_path);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+router.post("/ICC_online_add_link", async (req, res) => {
+    try {
+        const { file, link, title } = req.body;
+        if (!title || !link || !file) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Details Properly" });
+        }
+        const user = new Icc({
+            title,
+            link,
+            file_path: file,
+            file_mimetype: "text/link",
+        });
+        await user.save();
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+router.post(
+    "/ICC_online_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Icc({
                 title,
                 link,
                 file_path: path,
@@ -9518,6 +9586,7 @@ router.get("/Publications_res_download/:id", async (req, res) => {
         res.status(400).send("Error while downloading file. Try again later.");
     }
 });
+
 
 // Library
 

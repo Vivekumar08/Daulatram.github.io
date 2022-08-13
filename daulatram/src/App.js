@@ -73,6 +73,7 @@ import Administration from "./Pages/AboutUs/Administration";
 import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
 import Attendence from "./Pages/Student_zone/Attendence";
+import ICC from "./Pages/Student_zone/ICC";
 import Resources from "./Pages/Academics/Resources/Resources";
 import Contact from "./Pages/Footer/Contact";
 import Bulletins_page from "./Pages/Footer/Bulletins_page";
@@ -887,6 +888,14 @@ function App() {
               </>
             }
             path="/Student_Zone/Attendance"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <ICC />
+              </>
+            }
+            path="/Student_Zone/ICC"
           ></Route>{" "}
           <Route
             element={
