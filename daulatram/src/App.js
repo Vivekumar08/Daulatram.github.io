@@ -43,6 +43,7 @@ import Botany_Events from "./Pages/Academics/Departments/Botany/Botany_Events"
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
 import Facilities from "./Pages/Academics/Facilities/Facilities";
+import NHE_Events from "./Pages/Academics/Departments/NHE/NHE_Events"
 
 import { EnablinUnit } from "./Pages/Societies/EnablinUnit";
 import ExtraCurricular from "./Pages/Societies/ExtraCurricular";
@@ -156,7 +157,7 @@ import NotFound from "./Pages/NotFound";
 import Eng_Facs from "./Pages/Academics/Departments/English/Facilities";
 import Eng_awards from "./Pages/Academics/Departments/English/Awards";
 import Eng_Eve from "./Pages/Academics/Departments/English/Events";
-
+import Psychology_Events from "./Pages/Academics/Departments/Psychology/Psychology_Events"
 // Hindi
 import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
 import Hindi_fac from "./Pages/Academics/Departments/Hindi/Hindi_fac";
@@ -216,7 +217,7 @@ import PhysicalEdu_awards from "./Pages/Academics/Departments/Physical_Education
 import Physics_about from "./Pages/Academics/Departments/Physics/Physics_about";
 import Physics_fac from "./Pages/Academics/Departments/Physics/Physics_fac";
 import Physics_programoffered from "./Pages/Academics/Departments/Physics/Physics_programoffered";
-import Physics_events from "./Pages/Academics/Departments/Physics/Physics_events";
+import Physics_events from "./Pages/Academics/Departments/Physics/Phy_Events";
 import Physics_studachieve from "./Pages/Academics/Departments/Physics/Physics_studachieve";
 import Physics_publications from "./Pages/Academics/Departments/Physics/Physics_publications";
 import Physics_facilities from "./Pages/Academics/Departments/Physics/Physics_facilities";
@@ -271,6 +272,7 @@ import NHE_Gallery from "./Pages/Academics/Departments/NHE/NHE_Gallery";
 import Philo_Gallery from "./Pages/Academics/Departments/Philosophy/Philo_Gallery";
 import Library from "./Pages/Library/Library";
 import PE_gallery from "./Pages/Academics/Departments/Physical_Education/PE_gallery";
+import PE_Events from "./Pages/Academics/Departments/Physical_Education/PE_Events";
 import Physics_gallery from "./Pages/Academics/Departments/Physics/Physics_gallery";
 import PS_gallery from "./Pages/Academics/Departments/Political_Science/PS_gallery";
 import Psycho_gallery from "./Pages/Academics/Departments/Psychology/Psycho_gallery";
@@ -281,6 +283,8 @@ import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
 import Accreditation from "./Pages/Accreditation/accred"
 import Useful from "./Pages/UsefulLinks/Useful";
 import Student_Union from "./Pages/Student_zone/Student_union";
+import Music_Events from "./Pages/Academics/Departments/Music/Music_Events";
+import Phy_Events from "./Pages/Academics/Departments/Physics/Phy_Events";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -422,6 +426,30 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/events"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <NHE_Events />
+              </>
+            }
+            path="/academics/departments/NHE/events"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <PE_Events />
+              </>
+            }
+            path="/academics/departments/Physical_Education/Events"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Psychology_Events />
+              </>
+            }
+            path="/academics/departments/Psychology/Events"
           ></Route>{" "}
           <Route
             element={
@@ -1221,6 +1249,14 @@ function App() {
           <Route
             element={
               <>
+                <Music_Events />
+              </>
+            }
+            path="/academics/departments/Music/Events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Com_studachieve />
               </>
             }
@@ -1831,7 +1867,7 @@ function App() {
           <Route
             element={
               <>
-                <Physics_events />
+                <Phy_Events />
               </>
             }
             path="/academics/departments/Physics/Events"
