@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Com_Association_Schema = mongoose.Schema({
+const Eng_Association_Schema = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -45,6 +45,6 @@ const Com_Association_Schema = mongoose.Schema({
     timestamps: true
 });
 
-const Com_Association = mongoose.model('Com_Association', Com_Association_Schema);
+const Eng_Association = mongoose.model('Eng_Association', Eng_Association_Schema);
 
-module.exports = Com_Association;
+module.exports = Eng_Association;

@@ -76,6 +76,7 @@ const Physics_Faculty = require("../models/Academics/Departments/Physics/Physics
 const Eco_Faculty = require("../models/Academics/Departments/Economics/Eco_Faculty_Schema");
 const philo_Faculty = require("../models/Academics/Departments/Philosophy/philo_Faculty_Schema");
 const Eng_Faculty = require("../models/Academics/Departments/English/Eng_Faculty_Schema");
+const Eng_Association = require("../models/Academics/Departments/English/Eng_Association_Schema");
 const Political_Science_Faculty = require("../models/Academics/Departments/Political_Science/Political_Science_Faculty_Schema");
 const NHE_Faculty = require("../models/Academics/Departments/NHE/NHE_Faculty_Schema");
 const Hin_Faculty = require("../models/Academics/Departments/Hindi/Hin_Faculty_Schema");
@@ -125,9 +126,10 @@ const Bot_ProgramOffered = require("../models/Academics/Departments/Botany/Bot_P
 const Bot_Awards = require("../models/Academics/Departments/Botany/Awards_Schema");
 const Bot_Lab_Staff = require("../models/Academics/Departments/Botany/Bot_Lab_Staff_Schema");
 const Bot_StuAch = require("../models/Academics/Departments/Botany/StuAch_Schema");
+const Bot_Association = require("../models/Academics/Departments/Botany/Bot_Association_Schema");
 const Chem_Fac = require("../models/Academics/Departments/Chemistry/Fac");
 const Chem_Pubs = require("../models/Academics/Departments/Chemistry/Pubs_Schema");
-const Chem_Association = require("../models/Academics/Departments/Chemistry/Association");
+const Chem_Association = require("../models/Academics/Departments/Chemistry/Chem_Association_Schema");
 const Com_StuAch = require("../models/Academics/Departments/Commerce/StuAch_Schema");
 const Com_Fac = require("../models/Academics/Departments/Commerce/Fac");
 const Com_Pubs = require("../models/Academics/Departments/Commerce/Pubs_Schema");
@@ -142,7 +144,7 @@ const Eng_Pubs = require("../models/Academics/Departments/English/Pubs_Schema");
 const Eng_Eve = require("../models/Academics/Departments/English/Events");
 const Hin_Fac = require("../models/Academics/Departments/Hindi/Fac");
 const Hin_Pubs = require("../models/Academics/Departments/Hindi/Pubs_Schema");
-const Hin_Association = require("../models/Academics/Departments/Hindi/Association");
+const Hindi_Association = require("../models/Academics/Departments/Hindi/Hindi_Association_Schema");
 
 const Chem_ProgramOffered = require("../models/Academics/Departments/Chemistry/Chem_ProgramsOffered_Schema");
 const Chem_Awards = require("../models/Academics/Departments/Chemistry/Chem_Awards_Schema");
@@ -150,6 +152,7 @@ const Com_ProgramOffered = require("../models/Academics/Departments/Commerce/Com
 const Com_Awards = require("../models/Academics/Departments/Commerce/Awards_Schema");
 const Eco_ProgramOffered = require("../models/Academics/Departments/Economics/Eco_ProgramsOffered_Schema");
 const Eco_Awards = require("../models/Academics/Departments/Economics/Eco_Awards_Schema");
+const Eco_Association = require("../models/Academics/Departments/Economics/Eco_Association_Schema");
 const Eng_ProgramOffered = require("../models/Academics/Departments/English/Eng_ProgramsOffered_Schema");
 const Eng_Awards = require("../models/Academics/Departments/English/Eng_Awards_Schema");
 const Hin_ProgramOffered = require("../models/Academics/Departments/Hindi/Hin_ProgramsOffered_Schema");
@@ -226,11 +229,11 @@ const upload = multer({
 });
 
 // Admin
-router.get("/getdata", async (req, res) => {
+router.get("/getdata", async(req, res) => {
     const details = await User.find();
     res.status(200).json(details);
 });
-router.get("/resetData", async (req, res) => {
+router.get("/resetData", async(req, res) => {
     const tok = req.query.resetPasswordToken;
 
     const details = await User.findOne({
@@ -256,7 +259,7 @@ router.get("/resetData", async (req, res) => {
     }
 });
 
-router.put("/updatePasswordViaEmail", async (req, res) => {
+router.put("/updatePasswordViaEmail", async(req, res) => {
     try {
         // console.log(req.body)
         const { Username, Password } = req.body;
@@ -290,7 +293,7 @@ router.put("/updatePasswordViaEmail", async (req, res) => {
     }
 });
 
-router.post("/NewAdmin", async (req, res) => {
+router.post("/NewAdmin", async(req, res) => {
     try {
         const salt = await bcrypt.genSalt();
         const { Username, Email, Password } = req.body;
@@ -315,7 +318,7 @@ router.post("/NewAdmin", async (req, res) => {
     }
 });
 
-router.post("/forgotEmail", async (req, res) => {
+router.post("/forgotEmail", async(req, res) => {
     try {
         const { Email } = req.body;
         if (!Email) {
@@ -369,7 +372,7 @@ router.post("/forgotEmail", async (req, res) => {
     }
 });
 
-router.post("/AdminLogin", async (req, res) => {
+router.post("/AdminLogin", async(req, res) => {
     try {
         const { Username, Password } = req.body;
         if (!Username || !Password) {
@@ -402,20 +405,20 @@ router.post("/AdminLogin", async (req, res) => {
     }
 });
 
-router.delete("/delete/:id", async (req, res) => {
+router.delete("/delete/:id", async(req, res) => {
     const delete_user = await User.findOneAndDelete({ _id: req.params.id });
     res.send(delete_user + "User deleted");
 });
 
 // Feedback Form Staff Zone
 
-router.get("/feedback", async (req, res) => {
+router.get("/feedback", async(req, res) => {
     // res.send(`Hello World from the server`);
     const details = await Feedback.find();
     res.status(200).json(details);
 });
 
-router.post("/StaffZone_feedback", async (req, res) => {
+router.post("/StaffZone_feedback", async(req, res) => {
     const { Link, Caption, text } = req.body;
     if (!Link || !Caption) {
         return res
@@ -427,14 +430,14 @@ router.post("/StaffZone_feedback", async (req, res) => {
     console.log("Details Saved Successfully");
     return res.status(200).json({ message: "Details Saved Successfully " });
 });
-router.delete("/deletefeedback/:id", async (req, res) => {
+router.delete("/deletefeedback/:id", async(req, res) => {
     const delete_user = await Feedback.findOneAndDelete({ _id: req.params.id });
     res.status(200).json(delete_user + "User deleted");
 });
 
 // Guidelines
 
-router.post("/delete_Guidelines_fac/:id", async (req, res) => {
+router.post("/delete_Guidelines_fac/:id", async(req, res) => {
     const delete_user = await Guidelines.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -445,14 +448,14 @@ router.post("/delete_Guidelines_fac/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Guidelines_fac/:id", async (req, res) => {
+router.post("/delete_img_Guidelines_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Guidelines.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/Guidelines", async (req, res) => {
+router.get("/Guidelines", async(req, res) => {
     try {
         const files = await Guidelines.find({});
         const sortedByCreationDate = files.sort(
@@ -464,7 +467,7 @@ router.get("/Guidelines", async (req, res) => {
     }
 });
 
-router.post("/Guidelines_upload", async (req, res) => {
+router.post("/Guidelines_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -482,7 +485,7 @@ router.post("/Guidelines_upload", async (req, res) => {
 router.post(
     "/Guidelines_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Guidelines.findOne({ _id: req.params.id })
@@ -516,7 +519,7 @@ router.post(
     }
 );
 
-router.get("/Guidelines_download/:id", async (req, res) => {
+router.get("/Guidelines_download/:id", async(req, res) => {
     try {
         const file = await Guidelines.findById(req.params.id);
         res.set({
@@ -531,7 +534,7 @@ router.get("/Guidelines_download/:id", async (req, res) => {
 
 // About Us Founder
 
-router.get("/Founder_About", async (req, res) => {
+router.get("/Founder_About", async(req, res) => {
     const details = await Founder.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -540,7 +543,7 @@ router.get("/Founder_About", async (req, res) => {
     }
 });
 
-router.post("/delete_Founder_About_data/:id", async (req, res) => {
+router.post("/delete_Founder_About_data/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -561,7 +564,7 @@ router.post("/delete_Founder_About_data/:id", async (req, res) => {
 
 router.post(
     "/Founder_About_add_data/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Founder.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -581,7 +584,7 @@ router.post(
 router.post(
     "/Founder_About_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             // console.log(req.body);
             const file = new Founder({
@@ -606,7 +609,7 @@ router.post(
 );
 // About Us Chairperson
 
-router.get("/Chairperson_About", async (req, res) => {
+router.get("/Chairperson_About", async(req, res) => {
     const details = await Chairperson.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -615,7 +618,7 @@ router.get("/Chairperson_About", async (req, res) => {
     }
 });
 
-router.post("/delete_Chairperson_About_data/:id", async (req, res) => {
+router.post("/delete_Chairperson_About_data/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -636,7 +639,7 @@ router.post("/delete_Chairperson_About_data/:id", async (req, res) => {
 
 router.post(
     "/Chairperson_About_add_data/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Chairperson.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -656,7 +659,7 @@ router.post(
 router.post(
     "/Chairperson_About_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             // console.log(req.body);
             const file = new Chairperson({
@@ -681,7 +684,7 @@ router.post(
 );
 // About Us College Profile Mission and Vision
 
-router.get("/Mission_About", async (req, res) => {
+router.get("/Mission_About", async(req, res) => {
     const details = await Mission.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -690,7 +693,7 @@ router.get("/Mission_About", async (req, res) => {
     }
 });
 
-router.post("/delete_Mission_About_data/:id", async (req, res) => {
+router.post("/delete_Mission_About_data/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -711,7 +714,7 @@ router.post("/delete_Mission_About_data/:id", async (req, res) => {
 
 router.post(
     "/Mission_About_add_data/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Mission.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -731,7 +734,7 @@ router.post(
 router.post(
     "/Mission_About_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             // console.log(req.body);
             const file = new Mission({
@@ -756,7 +759,7 @@ router.post(
 );
 // About Us Principal
 
-router.get("/Principal_About", async (req, res) => {
+router.get("/Principal_About", async(req, res) => {
     const details = await Principal.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -765,7 +768,7 @@ router.get("/Principal_About", async (req, res) => {
     }
 });
 
-router.post("/delete_Principal_About_data/:id", async (req, res) => {
+router.post("/delete_Principal_About_data/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -786,7 +789,7 @@ router.post("/delete_Principal_About_data/:id", async (req, res) => {
 
 router.post(
     "/Principal_About_add_data/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Principal.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -806,7 +809,7 @@ router.post(
 router.post(
     "/Principal_About_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             // console.log(req.body);
             const file = new Principal({
@@ -831,7 +834,7 @@ router.post(
 );
 // About Us VicePrincipal
 
-router.get("/VicePrincipal_About", async (req, res) => {
+router.get("/VicePrincipal_About", async(req, res) => {
     const details = await VicePrincipal.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -840,7 +843,7 @@ router.get("/VicePrincipal_About", async (req, res) => {
     }
 });
 
-router.post("/delete_VicePrincipal_About_data/:id", async (req, res) => {
+router.post("/delete_VicePrincipal_About_data/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -861,7 +864,7 @@ router.post("/delete_VicePrincipal_About_data/:id", async (req, res) => {
 
 router.post(
     "/VicePrincipal_About_add_data/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await VicePrincipal.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -881,7 +884,7 @@ router.post(
 router.post(
     "/VicePrincipal_About_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             // console.log(req.body);
             const file = new VicePrincipal({
@@ -906,11 +909,11 @@ router.post(
 );
 // Staff Roster
 
-router.get("/Staff_Roster", async (req, res) => {
+router.get("/Staff_Roster", async(req, res) => {
     const details = await Roster.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Staff_Roster/:id", async (req, res) => {
+router.delete("/delete_Staff_Roster/:id", async(req, res) => {
     const delete_user = await Roster.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -919,7 +922,7 @@ router.delete("/delete_Staff_Roster/:id", async (req, res) => {
 router.post(
     "/Staff_Roster_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -943,7 +946,7 @@ router.post(
 );
 // Bulletin
 
-router.get("/bulletin", async (req, res) => {
+router.get("/bulletin", async(req, res) => {
     const details = await Bulletin.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -951,7 +954,7 @@ router.get("/bulletin", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/delete_admissionbulletin/:id", async (req, res) => {
+router.delete("/delete_admissionbulletin/:id", async(req, res) => {
     const delete_user = await Bulletin.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -960,7 +963,7 @@ router.delete("/delete_admissionbulletin/:id", async (req, res) => {
 router.post(
     "/bulletin_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -985,7 +988,7 @@ router.post(
 
 // Biochemistry About The Department 
 
-router.get("/Biochem_About", async (req, res) => {
+router.get("/Biochem_About", async(req, res) => {
     const details = await Biochem_About.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -994,7 +997,7 @@ router.get("/Biochem_About", async (req, res) => {
     }
 });
 
-router.post("/delete_Biochem_About_data/:id", async (req, res) => {
+router.post("/delete_Biochem_About_data/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -1015,7 +1018,7 @@ router.post("/delete_Biochem_About_data/:id", async (req, res) => {
 
 router.post(
     "/Biochem_About_add_data/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Biochem_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -1035,7 +1038,7 @@ router.post(
 router.post(
     "/Biochem_About_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             // console.log(req.body);
             const file = new Biochem_About({
@@ -1061,11 +1064,11 @@ router.post(
 
 // BioChemistry Program Offered
 
-router.get("/Bio_ProgramOffered", async (req, res) => {
+router.get("/Bio_ProgramOffered", async(req, res) => {
     const details = await Bio_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Bio_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Bio_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Bio_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1076,7 +1079,7 @@ router.delete("/delete_Bio_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Bio_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1099,7 +1102,7 @@ router.post(
     }
 );
 // BioChemistry Awards
-router.post("/delete_Bio_Awards/:id", async (req, res) => {
+router.post("/delete_Bio_Awards/:id", async(req, res) => {
     const delete_user = await Bio_Awards.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -1110,14 +1113,14 @@ router.post("/delete_Bio_Awards/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Bio_Awards_fac/:id", async (req, res) => {
+router.post("/delete_img_Bio_Awards_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Bio_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post("/delete_pdf_link_Bio_Awards_fac/:id", async (req, res) => {
+router.post("/delete_pdf_link_Bio_Awards_fac/:id", async(req, res) => {
     const delete_user = await Bio_Awards.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             "img_data.pdf_path": {
@@ -1139,7 +1142,7 @@ router.post("/delete_pdf_link_Bio_Awards_fac/:id", async (req, res) => {
     }
 });
 
-router.post("/delete_Bio_Awards_para/:id", async (req, res) => {
+router.post("/delete_Bio_Awards_para/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -1159,7 +1162,7 @@ router.post("/delete_Bio_Awards_para/:id", async (req, res) => {
 });
 
 
-router.get("/Bio_Awards", async (req, res) => {
+router.get("/Bio_Awards", async(req, res) => {
     try {
         const files = await Bio_Awards.find({});
         const sortedByCreationDate = files.sort(
@@ -1174,7 +1177,7 @@ router.get("/Bio_Awards", async (req, res) => {
 
 router.post(
     "/Bio_Awards_add_para/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Bio_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -1195,7 +1198,7 @@ router.post(
 router.post(
     "/Bio_Awards_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -1221,7 +1224,7 @@ router.post(
         }
     }
 );
-router.post("/Bio_Awards_add_link/:id", async (req, res) => {
+router.post("/Bio_Awards_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -1253,7 +1256,7 @@ router.post("/Bio_Awards_add_link/:id", async (req, res) => {
     }
 });
 
-router.post("/Bio_Awards_upload", async (req, res) => {
+router.post("/Bio_Awards_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -1273,7 +1276,7 @@ router.post("/Bio_Awards_upload", async (req, res) => {
 router.post(
     "/Bio_Awards_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Bio_Awards.findOne({ _id: req.params.id })
@@ -1307,7 +1310,7 @@ router.post(
     }
 );
 
-router.get("/Bio_Association_download/:id", async (req, res) => {
+router.get("/Bio_Association_download/:id", async(req, res) => {
     try {
         const file = await Bio_Awards.findById(req.params.id);
         res.set({
@@ -1321,11 +1324,11 @@ router.get("/Bio_Association_download/:id", async (req, res) => {
 
 //maths prog
 
-router.get("/Math_ProgramOffered", async (req, res) => {
+router.get("/Math_ProgramOffered", async(req, res) => {
     const details = await Math_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Math_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Math_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Math_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1336,7 +1339,7 @@ router.delete("/delete_Math_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Math_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1360,11 +1363,11 @@ router.post(
 );
 // Maths Awards
 
-router.get("/Math_Awards", async (req, res) => {
+router.get("/Math_Awards", async(req, res) => {
     const details = await Math_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Math_Awards/:id", async (req, res) => {
+router.delete("/delete_Math_Awards/:id", async(req, res) => {
     const delete_user = await Math_Awards.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1374,7 +1377,7 @@ router.delete("/delete_Math_Awards/:id", async (req, res) => {
 router.post(
     "/Math_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1399,11 +1402,11 @@ router.post(
 
 //NHEs prog
 
-router.get("/NHE_ProgramOffered", async (req, res) => {
+router.get("/NHE_ProgramOffered", async(req, res) => {
     const details = await NHE_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_NHE_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_NHE_ProgramOffered/:id", async(req, res) => {
     const delete_user = await NHE_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1414,7 +1417,7 @@ router.delete("/delete_NHE_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/NHE_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1475,11 +1478,11 @@ router.post(
 
 //Philosophy prog
 
-router.get("/Philo_ProgramOffered", async (req, res) => {
+router.get("/Philo_ProgramOffered", async(req, res) => {
     const details = await Philo_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Philo_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Philo_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Philo_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1490,7 +1493,7 @@ router.delete("/delete_Philo_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Philo_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1514,11 +1517,11 @@ router.post(
 );
 
 //history prog
-router.get("/Hist_ProgramOffered", async (req, res) => {
+router.get("/Hist_ProgramOffered", async(req, res) => {
     const details = await Hist_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Hist_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Hist_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Hist_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1529,7 +1532,7 @@ router.delete("/delete_Hist_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Hist_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1553,11 +1556,11 @@ router.post(
 );
 // History Awards
 
-router.get("/Hist_Awards", async (req, res) => {
+router.get("/Hist_Awards", async(req, res) => {
     const details = await Hist_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Hist_Awards/:id", async (req, res) => {
+router.delete("/delete_Hist_Awards/:id", async(req, res) => {
     const delete_user = await Hist_Awards.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1567,7 +1570,7 @@ router.delete("/delete_Hist_Awards/:id", async (req, res) => {
 router.post(
     "/Hist_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1592,11 +1595,11 @@ router.post(
 
 // Commerce Program Offered
 
-router.get("/Com_ProgramOffered", async (req, res) => {
+router.get("/Com_ProgramOffered", async(req, res) => {
     const details = await Com_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Com_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Com_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Com_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1607,7 +1610,7 @@ router.delete("/delete_Com_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Com_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1631,11 +1634,11 @@ router.post(
 );
 // Commerce Awards
 
-router.get("/Com_Awards", async (req, res) => {
+router.get("/Com_Awards", async(req, res) => {
     const details = await Com_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Com_Awards/:id", async (req, res) => {
+router.delete("/delete_Com_Awards/:id", async(req, res) => {
     const delete_user = await Com_Awards.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -1643,7 +1646,7 @@ router.delete("/delete_Com_Awards/:id", async (req, res) => {
 router.post(
     "/Com_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1667,11 +1670,11 @@ router.post(
 );
 // Chemistry Program Offered
 
-router.get("/Chem_ProgramOffered", async (req, res) => {
+router.get("/Chem_ProgramOffered", async(req, res) => {
     const details = await Chem_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Chem_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Chem_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Chem_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1682,7 +1685,7 @@ router.delete("/delete_Chem_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Chem_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1706,11 +1709,11 @@ router.post(
 );
 // Chemistry Awards
 
-router.get("/Chem_Awards", async (req, res) => {
+router.get("/Chem_Awards", async(req, res) => {
     const details = await Chem_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Chem_Awards/:id", async (req, res) => {
+router.delete("/delete_Chem_Awards/:id", async(req, res) => {
     const delete_user = await Chem_Awards.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1720,7 +1723,7 @@ router.delete("/delete_Chem_Awards/:id", async (req, res) => {
 router.post(
     "/Chem_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1744,11 +1747,11 @@ router.post(
 );
 // Botany Program Offered
 
-router.get("/Bot_ProgramOffered", async (req, res) => {
+router.get("/Bot_ProgramOffered", async(req, res) => {
     const details = await Bot_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Bot_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Bot_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Bot_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1759,7 +1762,7 @@ router.delete("/delete_Bot_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Bot_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1783,11 +1786,11 @@ router.post(
 );
 // Senior staff list
 
-router.get("/Senior_list", async (req, res) => {
+router.get("/Senior_list", async(req, res) => {
     const details = await Senior_list.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Senior_list/:id", async (req, res) => {
+router.delete("/delete_Senior_list/:id", async(req, res) => {
     const delete_user = await Senior_list.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1798,7 +1801,7 @@ router.delete("/delete_Senior_list/:id", async (req, res) => {
 router.post(
     "/Senior_list_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1822,11 +1825,11 @@ router.post(
 );
 // Botany Awards
 
-router.get("/Bot_Awards", async (req, res) => {
+router.get("/Bot_Awards", async(req, res) => {
     const details = await Bot_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Bot_Awards/:id", async (req, res) => {
+router.delete("/delete_Bot_Awards/:id", async(req, res) => {
     const delete_user = await Bot_Awards.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -1835,7 +1838,7 @@ router.delete("/delete_Bot_Awards/:id", async (req, res) => {
 router.post(
     "/Bot_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1859,11 +1862,11 @@ router.post(
 );
 // Botany Student Achievements
 
-router.get("/Bot_StuAch", async (req, res) => {
+router.get("/Bot_StuAch", async(req, res) => {
     const details = await Bot_StuAch.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Bot_StuAch/:id", async (req, res) => {
+router.delete("/delete_Bot_StuAch/:id", async(req, res) => {
     const delete_user = await Bot_StuAch.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -1872,7 +1875,7 @@ router.delete("/delete_Bot_StuAch/:id", async (req, res) => {
 router.post(
     "/Bot_StuAch_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1897,11 +1900,11 @@ router.post(
 
 // Chemistry Student Achievements
 
-router.get("/Chem_StuAch", async (req, res) => {
+router.get("/Chem_StuAch", async(req, res) => {
     const details = await Chem_StuAch.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Chem_StuAch/:id", async (req, res) => {
+router.delete("/delete_Chem_StuAch/:id", async(req, res) => {
     const delete_user = await Chem_StuAch.findOneAndDelete({
         _id: req.params.id,
     });
@@ -1912,7 +1915,7 @@ router.delete("/delete_Chem_StuAch/:id", async (req, res) => {
 router.post(
     "/Chem_StuAch_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1936,11 +1939,11 @@ router.post(
 );
 // Commerce Student Achievements
 
-router.get("/Com_StuAch", async (req, res) => {
+router.get("/Com_StuAch", async(req, res) => {
     const details = await Com_StuAch.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Com_StuAch/:id", async (req, res) => {
+router.delete("/delete_Com_StuAch/:id", async(req, res) => {
     const delete_user = await Com_StuAch.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -1949,7 +1952,7 @@ router.delete("/delete_Com_StuAch/:id", async (req, res) => {
 router.post(
     "/Com_StuAch_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -1973,11 +1976,11 @@ router.post(
 );
 // Economics Student Achievements
 
-router.get("/Eco_StuAch", async (req, res) => {
+router.get("/Eco_StuAch", async(req, res) => {
     const details = await Eco_StuAch.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eco_StuAch/:id", async (req, res) => {
+router.delete("/delete_Eco_StuAch/:id", async(req, res) => {
     const delete_user = await Eco_StuAch.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -1986,7 +1989,7 @@ router.delete("/delete_Eco_StuAch/:id", async (req, res) => {
 router.post(
     "/Eco_StuAch_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2010,11 +2013,11 @@ router.post(
 );
 // English Student Achievements
 
-router.get("/Eng_StuAch", async (req, res) => {
+router.get("/Eng_StuAch", async(req, res) => {
     const details = await Eng_StuAch.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eng_StuAch/:id", async (req, res) => {
+router.delete("/delete_Eng_StuAch/:id", async(req, res) => {
     const delete_user = await Eng_StuAch.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2023,7 +2026,7 @@ router.delete("/delete_Eng_StuAch/:id", async (req, res) => {
 router.post(
     "/Eng_StuAch_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2049,11 +2052,11 @@ router.post(
 
 // Chemistry Publication
 
-router.get("/Chem_Pubs", async (req, res) => {
+router.get("/Chem_Pubs", async(req, res) => {
     const details = await Chem_Pubs.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Chem_Pubs/:id", async (req, res) => {
+router.delete("/delete_Chem_Pubs/:id", async(req, res) => {
     const delete_user = await Chem_Pubs.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2062,7 +2065,7 @@ router.delete("/delete_Chem_Pubs/:id", async (req, res) => {
 router.post(
     "/Chem_Pubs_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2086,11 +2089,11 @@ router.post(
 );
 // Commerce Publication
 
-router.get("/Com_Pubs", async (req, res) => {
+router.get("/Com_Pubs", async(req, res) => {
     const details = await Com_Pubs.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Com_Pubs/:id", async (req, res) => {
+router.delete("/delete_Com_Pubs/:id", async(req, res) => {
     const delete_user = await Com_Pubs.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2099,7 +2102,7 @@ router.delete("/delete_Com_Pubs/:id", async (req, res) => {
 router.post(
     "/Com_Pubs_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2123,11 +2126,11 @@ router.post(
 );
 // Economics Publication
 
-router.get("/Eco_Pubs", async (req, res) => {
+router.get("/Eco_Pubs", async(req, res) => {
     const details = await Eco_Pubs.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eco_Pubs/:id", async (req, res) => {
+router.delete("/delete_Eco_Pubs/:id", async(req, res) => {
     const delete_user = await Eco_Pubs.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2136,7 +2139,7 @@ router.delete("/delete_Eco_Pubs/:id", async (req, res) => {
 router.post(
     "/Eco_Pubs_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2160,11 +2163,11 @@ router.post(
 );
 // English Publication
 
-router.get("/Eng_Pubs", async (req, res) => {
+router.get("/Eng_Pubs", async(req, res) => {
     const details = await Eng_Pubs.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eng_Pubs/:id", async (req, res) => {
+router.delete("/delete_Eng_Pubs/:id", async(req, res) => {
     const delete_user = await Eng_Pubs.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2173,7 +2176,7 @@ router.delete("/delete_Eng_Pubs/:id", async (req, res) => {
 router.post(
     "/Eng_Pubs_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2197,11 +2200,11 @@ router.post(
 );
 // Hindi Publication
 
-router.get("/Hin_Pubs", async (req, res) => {
+router.get("/Hin_Pubs", async(req, res) => {
     const details = await Hin_Pubs.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Hin_Pubs/:id", async (req, res) => {
+router.delete("/delete_Hin_Pubs/:id", async(req, res) => {
     const delete_user = await Hin_Pubs.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2210,7 +2213,7 @@ router.delete("/delete_Hin_Pubs/:id", async (req, res) => {
 router.post(
     "/Hin_Pubs_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2234,34 +2237,88 @@ router.post(
 );
 // Chemistry Association
 
-router.get("/Chem_Association", async (req, res) => {
-    const details = await Chem_Association.find();
-    res.status(200).json(details);
+router.post("/delete_Chem_Association/:id", async(req, res) => {
+    const delete_user = await Chem_Association.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Chem_Association/:id", async (req, res) => {
-    const delete_user = await Chem_Association.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Chem_Association_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Chem_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post(
-    "/Chem_Association_add",
-    upload.single("file"),
-    async (req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Chem_Association({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
+router.post("/delete_pdf_link_Chem_Association_fac/:id", async(req, res) => {
+    const delete_user = await Chem_Association.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Chem_Association_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Chem_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Chem_Association.findOneAndDelete({
+                _id: req.params.id,
             });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Chem_Association", async(req, res) => {
+    try {
+        const files = await Chem_Association.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Chem_Association_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Chem_Association.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -2271,36 +2328,218 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Chem_Association_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Chem_Association.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Chem_Association_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Chem_Association.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Chem_Association_upload", async(req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Chem_Association({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Chem_Association_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Chem_Association.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Chem_Association.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Chem_Association_download/:id", async(req, res) => {
+    try {
+        const file = await Chem_Association.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
 // Commerce Association
 
-router.get("/Com_Association", async (req, res) => {
-    const details = await Com_Association.find();
-    res.status(200).json(details);
+router.post("/delete_Com_Association/:id", async(req, res) => {
+    const delete_user = await Com_Association.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Com_Association/:id", async (req, res) => {
-    const delete_user = await Com_Association.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Com_Association_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Com_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post(
-    "/Com_Association_add",
-    upload.single("file"),
-    async (req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Com_Association({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
+router.post("/delete_pdf_link_Com_Association_fac/:id", async(req, res) => {
+    const delete_user = await Com_Association.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Com_Association_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Com_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Com_Association.findOneAndDelete({
+                _id: req.params.id,
             });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Com_Association", async(req, res) => {
+    try {
+        const files = await Com_Association.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Com_Association_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Com_Association.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -2310,36 +2549,669 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Com_Association_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Com_Association.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Com_Association_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Com_Association.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Com_Association_upload", async(req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Com_Association({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Com_Association_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Com_Association.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Com_Association.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Com_Association_download/:id", async(req, res) => {
+    try {
+        const file = await Com_Association.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+// Economics Association
+
+router.post("/delete_Eco_Association/:id", async(req, res) => {
+    const delete_user = await Eco_Association.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Eco_Association_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Eco_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Eco_Association_fac/:id", async(req, res) => {
+    const delete_user = await Eco_Association.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Eco_Association_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Eco_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Eco_Association.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Eco_Association", async(req, res) => {
+    try {
+        const files = await Eco_Association.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Eco_Association_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Eco_Association.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Eco_Association_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Eco_Association.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Eco_Association_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Eco_Association.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Eco_Association_upload", async(req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Eco_Association({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Eco_Association_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Eco_Association.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Eco_Association.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Eco_Association_download/:id", async(req, res) => {
+    try {
+        const file = await Eco_Association.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+// English Association
+
+router.post("/delete_Eng_Association/:id", async(req, res) => {
+    const delete_user = await Eng_Association.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Eng_Association_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Eng_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Eng_Association_fac/:id", async(req, res) => {
+    const delete_user = await Eng_Association.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Eng_Association_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Eng_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Eng_Association.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Eng_Association", async(req, res) => {
+    try {
+        const files = await Eng_Association.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Eng_Association_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Eng_Association.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Eng_Association_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Eng_Association.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Eng_Association_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Eng_Association.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Eng_Association_upload", async(req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Eng_Association({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Eng_Association_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Eng_Association.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Eng_Association.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Eng_Association_download/:id", async(req, res) => {
+    try {
+        const file = await Eng_Association.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+
+
+
+
+
+
 // Hindi Association
 
-router.get("/Hin_Association", async (req, res) => {
-    const details = await Hin_Association.find();
-    res.status(200).json(details);
+
+router.post("/delete_Hindi_Association/:id", async(req, res) => {
+    const delete_user = await Hindi_Association.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Hin_Association/:id", async (req, res) => {
-    const delete_user = await Hin_Association.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Hindi_Association_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Hindi_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post(
-    "/Hin_Association_add",
-    upload.single("file"),
-    async (req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Hin_Association({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
+router.post("/delete_pdf_link_Hindi_Association_fac/:id", async(req, res) => {
+    const delete_user = await Hindi_Association.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Hindi_Association_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Hindi_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Hindi_Association.findOneAndDelete({
+                _id: req.params.id,
             });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Hindi_Association", async(req, res) => {
+    try {
+        const files = await Hindi_Association.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Hindi_Association_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Hindi_Association.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -2349,13 +3221,141 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Hindi_Association_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Hindi_Association.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Hindi_Association_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Hindi_Association.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Hindi_Association_upload", async(req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Hindi_Association({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Hindi_Association_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Hindi_Association.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Hindi_Association.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Hindi_Association_download/:id", async(req, res) => {
+    try {
+        const file = await Hindi_Association.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
 // Chemistry Facilities
 
-router.get("/Chem_Fac", async (req, res) => {
+router.get("/Chem_Fac", async(req, res) => {
     const details = await Chem_Fac.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Chem_Fac/:id", async (req, res) => {
+router.delete("/delete_Chem_Fac/:id", async(req, res) => {
     const delete_user = await Chem_Fac.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2364,7 +3364,7 @@ router.delete("/delete_Chem_Fac/:id", async (req, res) => {
 router.post(
     "/Chem_Fac_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2388,11 +3388,11 @@ router.post(
 );
 // Commerce Facilities
 
-router.get("/Com_Fac", async (req, res) => {
+router.get("/Com_Fac", async(req, res) => {
     const details = await Com_Fac.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Com_Fac/:id", async (req, res) => {
+router.delete("/delete_Com_Fac/:id", async(req, res) => {
     const delete_user = await Com_Fac.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2401,7 +3401,7 @@ router.delete("/delete_Com_Fac/:id", async (req, res) => {
 router.post(
     "/Com_Fac_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2425,11 +3425,11 @@ router.post(
 );
 // Economics Facilities
 
-router.get("/Eco_Fac", async (req, res) => {
+router.get("/Eco_Fac", async(req, res) => {
     const details = await Eco_Fac.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eco_Fac/:id", async (req, res) => {
+router.delete("/delete_Eco_Fac/:id", async(req, res) => {
     const delete_user = await Eco_Fac.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2438,7 +3438,7 @@ router.delete("/delete_Eco_Fac/:id", async (req, res) => {
 router.post(
     "/Eco_Fac_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2462,11 +3462,11 @@ router.post(
 );
 // English Facilities
 
-router.get("/Eng_Fac", async (req, res) => {
+router.get("/Eng_Fac", async(req, res) => {
     const details = await Eng_Fac.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eng_Fac/:id", async (req, res) => {
+router.delete("/delete_Eng_Fac/:id", async(req, res) => {
     const delete_user = await Eng_Fac.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2475,7 +3475,7 @@ router.delete("/delete_Eng_Fac/:id", async (req, res) => {
 router.post(
     "/Eng_Fac_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2499,11 +3499,11 @@ router.post(
 );
 // Hindi Facilities
 
-router.get("/Hin_Fac", async (req, res) => {
+router.get("/Hin_Fac", async(req, res) => {
     const details = await Hin_Fac.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Hin_Fac/:id", async (req, res) => {
+router.delete("/delete_Hin_Fac/:id", async(req, res) => {
     const delete_user = await Hin_Fac.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2512,7 +3512,7 @@ router.delete("/delete_Hin_Fac/:id", async (req, res) => {
 router.post(
     "/Hin_Fac_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2536,11 +3536,11 @@ router.post(
 );
 // Economics Events
 
-router.get("/Eco_Eve", async (req, res) => {
+router.get("/Eco_Eve", async(req, res) => {
     const details = await Eco_Eve.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eco_Eve/:id", async (req, res) => {
+router.delete("/delete_Eco_Eve/:id", async(req, res) => {
     const delete_user = await Eco_Eve.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2549,7 +3549,7 @@ router.delete("/delete_Eco_Eve/:id", async (req, res) => {
 router.post(
     "/Eco_Eve_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2573,11 +3573,11 @@ router.post(
 );
 // English Events
 
-router.get("/Eng_Eve", async (req, res) => {
+router.get("/Eng_Eve", async(req, res) => {
     const details = await Eng_Eve.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eng_Eve/:id", async (req, res) => {
+router.delete("/delete_Eng_Eve/:id", async(req, res) => {
     const delete_user = await Eng_Eve.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2586,7 +3586,7 @@ router.delete("/delete_Eng_Eve/:id", async (req, res) => {
 router.post(
     "/Eng_Eve_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2612,11 +3612,11 @@ router.post(
 
 // Physical_Education Program offered
 
-router.get("/PE_ProgramOffered", async (req, res) => {
+router.get("/PE_ProgramOffered", async(req, res) => {
     const details = await PE_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_PE_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_PE_ProgramOffered/:id", async(req, res) => {
     const delete_user = await PE_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -2627,7 +3627,7 @@ router.delete("/delete_PE_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/PE_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2652,11 +3652,11 @@ router.post(
 
 // Physics Program offered
 
-router.get("/Physics_ProgramOffered", async (req, res) => {
+router.get("/Physics_ProgramOffered", async(req, res) => {
     const details = await Physics_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Physics_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Physics_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Physics_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -2667,7 +3667,7 @@ router.delete("/delete_Physics_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Physics_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2691,11 +3691,11 @@ router.post(
 );
 // Political Science Program offered
 
-router.get("/PolSci_ProgramOffered", async (req, res) => {
+router.get("/PolSci_ProgramOffered", async(req, res) => {
     const details = await PolSci_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_PolSci_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_PolSci_ProgramOffered/:id", async(req, res) => {
     const delete_user = await PolSci_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -2706,7 +3706,7 @@ router.delete("/delete_PolSci_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/PolSci_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2730,11 +3730,11 @@ router.post(
 );
 // Psychology Program offered
 
-router.get("/Psychology_ProgramOffered", async (req, res) => {
+router.get("/Psychology_ProgramOffered", async(req, res) => {
     const details = await Psychology_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Psychology_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Psychology_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Psychology_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -2745,7 +3745,7 @@ router.delete("/delete_Psychology_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Psychology_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2769,11 +3769,11 @@ router.post(
 );
 // Sanskrit Program offered
 
-router.get("/Sanskrit_ProgramOffered", async (req, res) => {
+router.get("/Sanskrit_ProgramOffered", async(req, res) => {
     const details = await Sanskrit_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Sanskrit_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Sanskrit_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Sanskrit_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -2784,7 +3784,7 @@ router.delete("/delete_Sanskrit_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Sanskrit_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2808,11 +3808,11 @@ router.post(
 );
 // Zoology Program offered
 
-router.get("/Zoology_ProgramOffered", async (req, res) => {
+router.get("/Zoology_ProgramOffered", async(req, res) => {
     const details = await Zoology_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Zoology_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Zoology_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Zoology_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -2823,7 +3823,7 @@ router.delete("/delete_Zoology_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Zoology_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2848,11 +3848,11 @@ router.post(
 
 // Physical Education Awards
 
-router.get("/PE_Fac", async (req, res) => {
+router.get("/PE_Fac", async(req, res) => {
     const details = await PE_Fac.find();
     res.status(200).json(details);
 });
-router.delete("/delete_PE_Fac/:id", async (req, res) => {
+router.delete("/delete_PE_Fac/:id", async(req, res) => {
     const delete_user = await PE_Fac.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2861,7 +3861,7 @@ router.delete("/delete_PE_Fac/:id", async (req, res) => {
 router.post(
     "/PE_Fac_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { name, Designation, Qualification, email } = req.body;
             const { path, mimetype } = req.file;
@@ -2888,11 +3888,11 @@ router.post(
 );
 // Physical Education Awards
 
-router.get("/PE_Awards", async (req, res) => {
+router.get("/PE_Awards", async(req, res) => {
     const details = await PE_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_PE_Awards/:id", async (req, res) => {
+router.delete("/delete_PE_Awards/:id", async(req, res) => {
     const delete_user = await PE_Awards.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -2901,7 +3901,7 @@ router.delete("/delete_PE_Awards/:id", async (req, res) => {
 router.post(
     "/PE_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2925,11 +3925,11 @@ router.post(
 );
 
 // Physics Awards
-router.get("/Physics_Awards", async (req, res) => {
+router.get("/Physics_Awards", async(req, res) => {
     const details = await Physics_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Physics_Awards/:id", async (req, res) => {
+router.delete("/delete_Physics_Awards/:id", async(req, res) => {
     const delete_user = await Physics_Awards.findOneAndDelete({
         _id: req.params.id,
     });
@@ -2940,7 +3940,7 @@ router.delete("/delete_Physics_Awards/:id", async (req, res) => {
 router.post(
     "/Physics_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -2964,7 +3964,7 @@ router.post(
 );
 
 // PolSci Events
-router.post("/delete_PolSci_Events/:id", async (req, res) => {
+router.post("/delete_PolSci_Events/:id", async(req, res) => {
     const delete_user = await PolSci_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -2985,7 +3985,7 @@ router.post("/delete_PolSci_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/PolSci_Events", async (req, res) => {
+router.get("/PolSci_Events", async(req, res) => {
     try {
         const files = await PolSci_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -3001,7 +4001,7 @@ router.get("/PolSci_Events", async (req, res) => {
 router.post(
     "/PolSci_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetyPolSci } = req.file;
             // console.log(path, mimetyPolSci)
@@ -3032,7 +4032,7 @@ router.post(
 router.post(
     "/PolSci_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetyPolSci } = req.file;
@@ -3053,7 +4053,7 @@ router.post(
 );
 
 // Sanskrit Events
-router.post("/delete_Sanskrit_Events/:id", async (req, res) => {
+router.post("/delete_Sanskrit_Events/:id", async(req, res) => {
     const delete_user = await Sanskrit_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -3074,7 +4074,7 @@ router.post("/delete_Sanskrit_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Sanskrit_Events", async (req, res) => {
+router.get("/Sanskrit_Events", async(req, res) => {
     try {
         const files = await Sanskrit_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -3090,7 +4090,7 @@ router.get("/Sanskrit_Events", async (req, res) => {
 router.post(
     "/Sanskrit_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetySanskrit } = req.file;
             // console.log(path, mimetySanskrit)
@@ -3121,7 +4121,7 @@ router.post(
 router.post(
     "/Sanskrit_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetySanskrit } = req.file;
@@ -3142,7 +4142,7 @@ router.post(
 );
 
 // Zoology Events
-router.post("/delete_Zoology_Events/:id", async (req, res) => {
+router.post("/delete_Zoology_Events/:id", async(req, res) => {
     const delete_user = await Zoology_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -3163,7 +4163,7 @@ router.post("/delete_Zoology_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Zoology_Events", async (req, res) => {
+router.get("/Zoology_Events", async(req, res) => {
     try {
         const files = await Zoology_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -3179,7 +4179,7 @@ router.get("/Zoology_Events", async (req, res) => {
 router.post(
     "/Zoology_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetyZoology } = req.file;
             // console.log(path, mimetyZoology)
@@ -3210,7 +4210,7 @@ router.post(
 router.post(
     "/Zoology_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetyZoology } = req.file;
@@ -3231,11 +4231,11 @@ router.post(
 );
 
 //  Physics Students' Achievements
-router.get("/Physics_Stuachieve", async (req, res) => {
+router.get("/Physics_Stuachieve", async(req, res) => {
     const details = await Physics_Stuachieve.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Physics_Stuachieve/:id", async (req, res) => {
+router.delete("/delete_Physics_Stuachieve/:id", async(req, res) => {
     const delete_user = await Physics_Stuachieve.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3246,7 +4246,7 @@ router.delete("/delete_Physics_Stuachieve/:id", async (req, res) => {
 router.post(
     "/Physics_Stuachieve_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3270,11 +4270,11 @@ router.post(
 );
 
 //  Sanskrit Students' Achievements
-router.get("/Sanskrit_Stuachieve", async (req, res) => {
+router.get("/Sanskrit_Stuachieve", async(req, res) => {
     const details = await Sanskrit_Stuachieve.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Sanskrit_Stuachieve/:id", async (req, res) => {
+router.delete("/delete_Sanskrit_Stuachieve/:id", async(req, res) => {
     const delete_user = await Sanskrit_Stuachieve.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3285,7 +4285,7 @@ router.delete("/delete_Sanskrit_Stuachieve/:id", async (req, res) => {
 router.post(
     "/Sanskrit_Stuachieve_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3309,11 +4309,11 @@ router.post(
 );
 
 //  Zoology Students' Achievements
-router.get("/Zoology_Stuachieve", async (req, res) => {
+router.get("/Zoology_Stuachieve", async(req, res) => {
     const details = await Zoology_Stuachieve.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Zoology_Stuachieve/:id", async (req, res) => {
+router.delete("/delete_Zoology_Stuachieve/:id", async(req, res) => {
     const delete_user = await Zoology_Stuachieve.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3324,7 +4324,7 @@ router.delete("/delete_Zoology_Stuachieve/:id", async (req, res) => {
 router.post(
     "/Zoology_Stuachieve_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3347,11 +4347,11 @@ router.post(
     }
 );
 //  Botany Publications
-router.get("/Bot_Publications", async (req, res) => {
+router.get("/Bot_Publications", async(req, res) => {
     const details = await Bot_Publications.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Bot_Publications/:id", async (req, res) => {
+router.delete("/delete_Bot_Publications/:id", async(req, res) => {
     const delete_user = await Bot_Publications.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3362,7 +4362,7 @@ router.delete("/delete_Bot_Publications/:id", async (req, res) => {
 router.post(
     "/Bot_Publications_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3385,11 +4385,11 @@ router.post(
     }
 );
 //  Physics Publications
-router.get("/Physics_Publications", async (req, res) => {
+router.get("/Physics_Publications", async(req, res) => {
     const details = await Physics_Publications.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Physics_Publications/:id", async (req, res) => {
+router.delete("/delete_Physics_Publications/:id", async(req, res) => {
     const delete_user = await Physics_Publications.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3400,7 +4400,7 @@ router.delete("/delete_Physics_Publications/:id", async (req, res) => {
 router.post(
     "/Physics_Publications_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3424,11 +4424,11 @@ router.post(
 );
 
 //  Political Science Publications
-router.get("/PS_Publications", async (req, res) => {
+router.get("/PS_Publications", async(req, res) => {
     const details = await PS_Publications.find();
     res.status(200).json(details);
 });
-router.delete("/delete_PS_Publications/:id", async (req, res) => {
+router.delete("/delete_PS_Publications/:id", async(req, res) => {
     const delete_user = await PS_Publications.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3439,7 +4439,7 @@ router.delete("/delete_PS_Publications/:id", async (req, res) => {
 router.post(
     "/PS_Publications_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3462,11 +4462,11 @@ router.post(
     }
 );
 //  Sanskrit Publications
-router.get("/Sanskrit_Publications", async (req, res) => {
+router.get("/Sanskrit_Publications", async(req, res) => {
     const details = await Sanskrit_Publications.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Sanskrit_Publications/:id", async (req, res) => {
+router.delete("/delete_Sanskrit_Publications/:id", async(req, res) => {
     const delete_user = await Sanskrit_Publications.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3477,7 +4477,7 @@ router.delete("/delete_Sanskrit_Publications/:id", async (req, res) => {
 router.post(
     "/Sanskrit_Publications_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3538,11 +4538,11 @@ router.post(
 // );
 
 //   Physics Facilities
-router.get("/Physics_Facilities", async (req, res) => {
+router.get("/Physics_Facilities", async(req, res) => {
     const details = await Physics_Facilities.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Physics_Facilities/:id", async (req, res) => {
+router.delete("/delete_Physics_Facilities/:id", async(req, res) => {
     const delete_user = await Physics_Facilities.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3553,7 +4553,7 @@ router.delete("/delete_Physics_Facilities/:id", async (req, res) => {
 router.post(
     "/Physics_Facilities_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3577,11 +4577,11 @@ router.post(
 );
 
 //   Physics Association
-router.get("/Physics_Association", async (req, res) => {
+router.get("/Physics_Association", async(req, res) => {
     const details = await Physics_Association.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Physics_Association/:id", async (req, res) => {
+router.delete("/delete_Physics_Association/:id", async(req, res) => {
     const delete_user = await Physics_Association.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3592,7 +4592,7 @@ router.delete("/delete_Physics_Association/:id", async (req, res) => {
 router.post(
     "/Physics_Association_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3615,11 +4615,11 @@ router.post(
     }
 );
 //   Physics Newsletter & Magazines
-router.get("/Physics_Newsletter", async (req, res) => {
+router.get("/Physics_Newsletter", async(req, res) => {
     const details = await Physics_Newsletter.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Physics_Newsletter/:id", async (req, res) => {
+router.delete("/delete_Physics_Newsletter/:id", async(req, res) => {
     const delete_user = await Physics_Newsletter.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3630,7 +4630,7 @@ router.delete("/delete_Physics_Newsletter/:id", async (req, res) => {
 router.post(
     "/Physics_Newsletter_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3653,11 +4653,11 @@ router.post(
     }
 );
 //   Political Science Association
-router.get("/PS_Association", async (req, res) => {
+router.get("/PS_Association", async(req, res) => {
     const details = await PS_Association.find();
     res.status(200).json(details);
 });
-router.delete("/delete_PS_Association/:id", async (req, res) => {
+router.delete("/delete_PS_Association/:id", async(req, res) => {
     const delete_user = await PS_Association.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3668,7 +4668,7 @@ router.delete("/delete_PS_Association/:id", async (req, res) => {
 router.post(
     "/PS_Association_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3691,11 +4691,11 @@ router.post(
     }
 );
 //   Sanskrit Association
-router.get("/Sanskrit_Association", async (req, res) => {
+router.get("/Sanskrit_Association", async(req, res) => {
     const details = await Sanskrit_Association.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Sanskrit_Association/:id", async (req, res) => {
+router.delete("/delete_Sanskrit_Association/:id", async(req, res) => {
     const delete_user = await Sanskrit_Association.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3706,7 +4706,7 @@ router.delete("/delete_Sanskrit_Association/:id", async (req, res) => {
 router.post(
     "/Sanskrit_Association_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3730,11 +4730,11 @@ router.post(
 );
 
 // Political Science Awards
-router.get("/PolSci_Awards", async (req, res) => {
+router.get("/PolSci_Awards", async(req, res) => {
     const details = await PolSci_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_PolSci_Awards/:id", async (req, res) => {
+router.delete("/delete_PolSci_Awards/:id", async(req, res) => {
     const delete_user = await PolSci_Awards.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3745,7 +4745,7 @@ router.delete("/delete_PolSci_Awards/:id", async (req, res) => {
 router.post(
     "/PolSci_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3770,11 +4770,11 @@ router.post(
 
 // Psychology Awards
 
-router.get("/Psychology_Awards", async (req, res) => {
+router.get("/Psychology_Awards", async(req, res) => {
     const details = await Psychology_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Psychology_Awards/:id", async (req, res) => {
+router.delete("/delete_Psychology_Awards/:id", async(req, res) => {
     const delete_user = await Psychology_Awards.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3785,7 +4785,7 @@ router.delete("/delete_Psychology_Awards/:id", async (req, res) => {
 router.post(
     "/Psychology_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3810,11 +4810,11 @@ router.post(
 
 // Sanskrit Awards
 
-router.get("/Sanskrit_Awards", async (req, res) => {
+router.get("/Sanskrit_Awards", async(req, res) => {
     const details = await Sanskrit_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Sanskrit_Awards/:id", async (req, res) => {
+router.delete("/delete_Sanskrit_Awards/:id", async(req, res) => {
     const delete_user = await Sanskrit_Awards.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3825,7 +4825,7 @@ router.delete("/delete_Sanskrit_Awards/:id", async (req, res) => {
 router.post(
     "/Sanskrit_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3850,11 +4850,11 @@ router.post(
 
 // Zoology Awards
 
-router.get("/Zoology_Awards", async (req, res) => {
+router.get("/Zoology_Awards", async(req, res) => {
     const details = await Zoology_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Zoology_Awards/:id", async (req, res) => {
+router.delete("/delete_Zoology_Awards/:id", async(req, res) => {
     const delete_user = await Zoology_Awards.findOneAndDelete({
         _id: req.params.id,
     });
@@ -3865,7 +4865,7 @@ router.delete("/delete_Zoology_Awards/:id", async (req, res) => {
 router.post(
     "/Zoology_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3890,11 +4890,11 @@ router.post(
 
 // Academics Training
 
-router.get("/Training_", async (req, res) => {
+router.get("/Training_", async(req, res) => {
     const details = await Training.find();
     res.status(200).json(details);
 });
-router.delete("/delete_academicsTraings/:id", async (req, res) => {
+router.delete("/delete_academicsTraings/:id", async(req, res) => {
     const delete_user = await Training.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -3903,7 +4903,7 @@ router.delete("/delete_academicsTraings/:id", async (req, res) => {
 router.post(
     "/Academics_Training_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3927,7 +4927,7 @@ router.post(
 );
 // Admission GE Options
 
-router.get("/GE_Options_admission", async (req, res) => {
+router.get("/GE_Options_admission", async(req, res) => {
     const details = await GE_Options.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -3935,7 +4935,7 @@ router.get("/GE_Options_admission", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/delete_GE_Options/:id", async (req, res) => {
+router.delete("/delete_GE_Options/:id", async(req, res) => {
     const delete_user = await GE_Options.findOneAndDelete({ _id: req.params.id });
     if (delete_user.file_mimetype === "text/link") {
         console.log(delete_user.file_mimetype);
@@ -3946,7 +4946,7 @@ router.delete("/delete_GE_Options/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/GE_Options_add_link", async (req, res) => {
+router.post("/GE_Options_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -3971,7 +4971,7 @@ router.post("/GE_Options_add_link", async (req, res) => {
 router.post(
     "/GE_Options_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -3995,7 +4995,7 @@ router.post(
 );
 // Admission FAQs
 
-router.get("/Admission_FAQs", async (req, res) => {
+router.get("/Admission_FAQs", async(req, res) => {
     const details = await Admission_FAQs.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4003,7 +5003,7 @@ router.get("/Admission_FAQs", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteAdmission_FAQs/:id", async (req, res) => {
+router.delete("/deleteAdmission_FAQs/:id", async(req, res) => {
     const delete_user = await Admission_FAQs.findOneAndDelete({
         _id: req.params.id,
     });
@@ -4016,7 +5016,7 @@ router.delete("/deleteAdmission_FAQs/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/Admission_FAQs_add_link", async (req, res) => {
+router.post("/Admission_FAQs_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -4041,7 +5041,7 @@ router.post("/Admission_FAQs_add_link", async (req, res) => {
 router.post(
     "/Admission_FAQs_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4065,7 +5065,7 @@ router.post(
 );
 // Admission Committee
 
-router.get("/Admission_comm", async (req, res) => {
+router.get("/Admission_comm", async(req, res) => {
     const details = await Admission_comm.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4073,7 +5073,7 @@ router.get("/Admission_comm", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteAdmission_comm/:id", async (req, res) => {
+router.delete("/deleteAdmission_comm/:id", async(req, res) => {
     const delete_user = await Admission_comm.findOneAndDelete({
         _id: req.params.id,
     });
@@ -4086,7 +5086,7 @@ router.delete("/deleteAdmission_comm/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/Admission_comm_add_link", async (req, res) => {
+router.post("/Admission_comm_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -4111,7 +5111,7 @@ router.post("/Admission_comm_add_link", async (req, res) => {
 router.post(
     "/Admission_comm_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4135,7 +5135,7 @@ router.post(
 );
 // Admission Grievance Committee
 
-router.get("/Admission_Grievance_comm", async (req, res) => {
+router.get("/Admission_Grievance_comm", async(req, res) => {
     const details = await Admission_Grievance.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4143,7 +5143,7 @@ router.get("/Admission_Grievance_comm", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteAdmission_Grievance_comm/:id", async (req, res) => {
+router.delete("/deleteAdmission_Grievance_comm/:id", async(req, res) => {
     const delete_user = await Admission_Grievance.findOneAndDelete({
         _id: req.params.id,
     });
@@ -4156,7 +5156,7 @@ router.delete("/deleteAdmission_Grievance_comm/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/Admission_Grievance_comm_add_link", async (req, res) => {
+router.post("/Admission_Grievance_comm_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -4181,7 +5181,7 @@ router.post("/Admission_Grievance_comm_add_link", async (req, res) => {
 router.post(
     "/Admission_Grievance_comm_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4205,7 +5205,7 @@ router.post(
 );
 // Admission Fee Structure
 
-router.get("/admission_Fee_Structure", async (req, res) => {
+router.get("/admission_Fee_Structure", async(req, res) => {
     const details = await Fee_Structure.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4213,7 +5213,7 @@ router.get("/admission_Fee_Structure", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteadmission_Fee_Structure/:id", async (req, res) => {
+router.delete("/deleteadmission_Fee_Structure/:id", async(req, res) => {
     const delete_user = await Fee_Structure.findOneAndDelete({
         _id: req.params.id,
     });
@@ -4226,7 +5226,7 @@ router.delete("/deleteadmission_Fee_Structure/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/admission_Fee_Structure_add_link", async (req, res) => {
+router.post("/admission_Fee_Structure_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -4251,7 +5251,7 @@ router.post("/admission_Fee_Structure_add_link", async (req, res) => {
 router.post(
     "/admission_Fee_Structure_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4275,7 +5275,7 @@ router.post(
 );
 // Professional Code of Ethics
 
-router.get("/Ethics_", async (req, res) => {
+router.get("/Ethics_", async(req, res) => {
     const details = await Ethics.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4283,7 +5283,7 @@ router.get("/Ethics_", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/delete_Ethics/:id", async (req, res) => {
+router.delete("/delete_Ethics/:id", async(req, res) => {
     const delete_user = await Ethics.findOneAndDelete({ _id: req.params.id });
     if (delete_user.file_mimetype === "text/link") {
         console.log(delete_user.file_mimetype);
@@ -4294,7 +5294,7 @@ router.delete("/delete_Ethics/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/Ethics_add_link", async (req, res) => {
+router.post("/Ethics_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title, heading } = req.body;
@@ -4320,7 +5320,7 @@ router.post("/Ethics_add_link", async (req, res) => {
 router.post(
     "/Ethics_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link, heading } = req.body;
             const { path, mimetype } = req.file;
@@ -4350,7 +5350,7 @@ router.post(
 );
 // Online Admission
 
-router.get("/admission", async (req, res) => {
+router.get("/admission", async(req, res) => {
     const details = await Adminssion.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4358,7 +5358,7 @@ router.get("/admission", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteAdmission/:id", async (req, res) => {
+router.delete("/deleteAdmission/:id", async(req, res) => {
     const delete_user = await Adminssion.findOneAndDelete({ _id: req.params.id });
     if (delete_user.file_mimetype === "text/link") {
         console.log(delete_user.file_mimetype);
@@ -4369,7 +5369,7 @@ router.delete("/deleteAdmission/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/admission_online_add_link", async (req, res) => {
+router.post("/admission_online_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -4394,7 +5394,7 @@ router.post("/admission_online_add_link", async (req, res) => {
 router.post(
     "/admission_online_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4418,7 +5418,7 @@ router.post(
 );
 // e-resources
 
-router.get("/eresources", async (req, res) => {
+router.get("/eresources", async(req, res) => {
     const details = await Eresources.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4426,7 +5426,7 @@ router.get("/eresources", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteeresources/:id", async (req, res) => {
+router.delete("/deleteeresources/:id", async(req, res) => {
     const delete_user = await Eresources.findOneAndDelete({ _id: req.params.id });
     if (delete_user.file_mimetype === "text/link") {
         console.log(delete_user.file_mimetype);
@@ -4437,7 +5437,7 @@ router.delete("/deleteeresources/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/eresources_online_add_link", async (req, res) => {
+router.post("/eresources_online_add_link", async(req, res) => {
     try {
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
@@ -4461,7 +5461,7 @@ router.post("/eresources_online_add_link", async (req, res) => {
 router.post(
     "/eresources_online_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4485,7 +5485,7 @@ router.post(
 );
 // ICC
 
-router.get("/ICC", async (req, res) => {
+router.get("/ICC", async(req, res) => {
     const details = await Icc.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4493,7 +5493,7 @@ router.get("/ICC", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteICC/:id", async (req, res) => {
+router.delete("/deleteICC/:id", async(req, res) => {
     const delete_user = await Icc.findOneAndDelete({ _id: req.params.id });
     if (delete_user.file_mimetype === "text/link") {
         console.log(delete_user.file_mimetype);
@@ -4504,7 +5504,7 @@ router.delete("/deleteICC/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/ICC_online_add_link", async (req, res) => {
+router.post("/ICC_online_add_link", async(req, res) => {
     try {
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
@@ -4528,7 +5528,7 @@ router.post("/ICC_online_add_link", async (req, res) => {
 router.post(
     "/ICC_online_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4553,7 +5553,7 @@ router.post(
 // Accreditation
 
 
-router.get("/accred", async (req, res) => {
+router.get("/accred", async(req, res) => {
     const details = await Accred.find();
 
 
@@ -4564,7 +5564,7 @@ router.get("/accred", async (req, res) => {
     }
 });
 
-router.delete("/deleteaccred/:id", async (req, res) => {
+router.delete("/deleteaccred/:id", async(req, res) => {
     const delete_user = await Accred.findOneAndDelete({ _id: req.params.id });
     if (delete_user.file_mimetype === "text/link") {
         console.log(delete_user.file_mimetype);
@@ -4575,7 +5575,7 @@ router.delete("/deleteaccred/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/accred_online_add_link", async (req, res) => {
+router.post("/accred_online_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -4600,7 +5600,7 @@ router.post("/accred_online_add_link", async (req, res) => {
 router.post(
     "/accred_online_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4624,7 +5624,7 @@ router.post(
 );
 // Helpdesk
 
-router.get("/Helpdesk", async (req, res) => {
+router.get("/Helpdesk", async(req, res) => {
     const details = await helpdesk.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4632,7 +5632,7 @@ router.get("/Helpdesk", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteHelpdesk/:id", async (req, res) => {
+router.delete("/deleteHelpdesk/:id", async(req, res) => {
     try {
         const delete_user = await helpdesk.findOneAndDelete({ _id: req.params.id });
         if (delete_user.file_mimetype === "text/link") {
@@ -4647,7 +5647,7 @@ router.delete("/deleteHelpdesk/:id", async (req, res) => {
         console.log(err);
     }
 });
-router.post("/helpdesk_admission_add_link", async (req, res) => {
+router.post("/helpdesk_admission_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -4672,7 +5672,7 @@ router.post("/helpdesk_admission_add_link", async (req, res) => {
 router.post(
     "/helpdesk_admission",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4696,7 +5696,7 @@ router.post(
 );
 // Ragging
 
-router.get("/Anti_Ragging", async (req, res) => {
+router.get("/Anti_Ragging", async(req, res) => {
     const details = await Ragging.find();
     if (details.length === 0) {
         res.status(200).json(false);
@@ -4704,7 +5704,7 @@ router.get("/Anti_Ragging", async (req, res) => {
         res.status(200).json(details);
     }
 });
-router.delete("/deleteAntiRagging/:id", async (req, res) => {
+router.delete("/deleteAntiRagging/:id", async(req, res) => {
     try {
         const delete_user = await Ragging.findOneAndDelete({ _id: req.params.id });
         if (delete_user.file_mimetype === "text/link") {
@@ -4719,7 +5719,7 @@ router.delete("/deleteAntiRagging/:id", async (req, res) => {
         console.log(err);
     }
 });
-router.post("/AntiRagging_add_link", async (req, res) => {
+router.post("/AntiRagging_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -4744,7 +5744,7 @@ router.post("/AntiRagging_add_link", async (req, res) => {
 router.post(
     "/admission_Anti_Ragging",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -4767,12 +5767,12 @@ router.post(
     }
 );
 // Biochemistry Photo Gallery
-router.get("/Bio_Photo_Gallery", async (req, res) => {
+router.get("/Bio_Photo_Gallery", async(req, res) => {
     const details = await Bio_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Bio_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Bio_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Bio_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -4784,7 +5784,7 @@ router.delete("/delete_Bio_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Bio_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Bio_Photo_Gallery.find()
@@ -4812,12 +5812,12 @@ router.post(
 );
 
 // History Photo Gallery
-router.get("/Hist_Photo_Gallery", async (req, res) => {
+router.get("/Hist_Photo_Gallery", async(req, res) => {
     const details = await Hist_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Hist_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Hist_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Hist_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -4829,7 +5829,7 @@ router.delete("/delete_Hist_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Hist_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Hist_Photo_Gallery.find()
@@ -4856,12 +5856,12 @@ router.post(
     }
 );
 // Hindi Photo Gallery
-router.get("/Hin_Photo_Gallery", async (req, res) => {
+router.get("/Hin_Photo_Gallery", async(req, res) => {
     const details = await Hin_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Hin_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Hin_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Hin_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -4873,7 +5873,7 @@ router.delete("/delete_Hin_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Hin_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Hin_Photo_Gallery.find()
@@ -4899,12 +5899,12 @@ router.post(
     }
 );
 // English Photo Gallery
-router.get("/Eng_Photo_Gallery", async (req, res) => {
+router.get("/Eng_Photo_Gallery", async(req, res) => {
     const details = await Eng_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Eng_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Eng_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Eng_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -4916,7 +5916,7 @@ router.delete("/delete_Eng_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Eng_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Eng_Photo_Gallery.find()
@@ -4942,12 +5942,12 @@ router.post(
     }
 );
 // Economics Photo Gallery
-router.get("/Eco_Photo_Gallery", async (req, res) => {
+router.get("/Eco_Photo_Gallery", async(req, res) => {
     const details = await Eco_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Eco_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Eco_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Eco_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -4959,7 +5959,7 @@ router.delete("/delete_Eco_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Eco_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Eco_Photo_Gallery.find()
@@ -4985,12 +5985,12 @@ router.post(
     }
 );
 // Commerce Photo Gallery
-router.get("/Com_Photo_Gallery", async (req, res) => {
+router.get("/Com_Photo_Gallery", async(req, res) => {
     const details = await Com_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Com_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Com_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Com_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5002,7 +6002,7 @@ router.delete("/delete_Com_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Com_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Com_Photo_Gallery.find()
@@ -5028,12 +6028,12 @@ router.post(
     }
 );
 // Chemistry Photo Gallery
-router.get("/Chem_Photo_Gallery", async (req, res) => {
+router.get("/Chem_Photo_Gallery", async(req, res) => {
     const details = await Chem_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Chem_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Chem_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Chem_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5045,7 +6045,7 @@ router.delete("/delete_Chem_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Chem_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Chem_Photo_Gallery.find()
@@ -5071,12 +6071,12 @@ router.post(
     }
 );
 // Botany Photo Gallery
-router.get("/Bot_Photo_Gallery", async (req, res) => {
+router.get("/Bot_Photo_Gallery", async(req, res) => {
     const details = await Bot_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Bot_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Bot_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Bot_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5088,7 +6088,7 @@ router.delete("/delete_Bot_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Bot_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Bot_Photo_Gallery.find()
@@ -5114,12 +6114,12 @@ router.post(
     }
 );
 // Math Photo Gallery
-router.get("/Math_Photo_Gallery", async (req, res) => {
+router.get("/Math_Photo_Gallery", async(req, res) => {
     const details = await Math_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Math_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Math_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Math_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5131,7 +6131,7 @@ router.delete("/delete_Math_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Math_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Math_Photo_Gallery.find()
@@ -5158,12 +6158,12 @@ router.post(
 );
 
 // Music Photo Gallery
-router.get("/Music_Photo_Gallery", async (req, res) => {
+router.get("/Music_Photo_Gallery", async(req, res) => {
     const details = await Music_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Music_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Music_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Music_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5175,7 +6175,7 @@ router.delete("/delete_Music_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Music_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Music_Photo_Gallery.find()
@@ -5202,12 +6202,12 @@ router.post(
 );
 
 // NHE Photo Gallery
-router.get("/NHE_Photo_Gallery", async (req, res) => {
+router.get("/NHE_Photo_Gallery", async(req, res) => {
     const details = await NHE_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_NHE_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_NHE_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await NHE_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5219,7 +6219,7 @@ router.delete("/delete_NHE_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/NHE_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await NHE_Photo_Gallery.find()
@@ -5246,12 +6246,12 @@ router.post(
 );
 
 // Philo Photo Gallery
-router.get("/Philo_Photo_Gallery", async (req, res) => {
+router.get("/Philo_Photo_Gallery", async(req, res) => {
     const details = await Philo_Photo_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Philo_Photo_Gallery/:id", async (req, res) => {
+router.delete("/delete_Philo_Photo_Gallery/:id", async(req, res) => {
     const delete_user = await Philo_Photo_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5263,7 +6263,7 @@ router.delete("/delete_Philo_Photo_Gallery/:id", async (req, res) => {
 router.post(
     "/Philo_Photo_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Philo_Photo_Gallery.find()
@@ -5289,12 +6289,12 @@ router.post(
     }
 );
 // Physical_Education Gallery
-router.get("/PE_Gallery", async (req, res) => {
+router.get("/PE_Gallery", async(req, res) => {
     const details = await PE_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_PE_Gallery/:id", async (req, res) => {
+router.delete("/delete_PE_Gallery/:id", async(req, res) => {
     const delete_user = await PE_Gallery.findOneAndDelete({ _id: req.params.id });
     console.log(delete_user.file_path);
     await unlinkAsync(delete_user.file_path);
@@ -5304,7 +6304,7 @@ router.delete("/delete_PE_Gallery/:id", async (req, res) => {
 router.post(
     "/PE_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await PE_Gallery.find()
@@ -5330,12 +6330,12 @@ router.post(
     }
 );
 // Physics Gallery
-router.get("/Physics_Gallery", async (req, res) => {
+router.get("/Physics_Gallery", async(req, res) => {
     const details = await Physics_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Physics_Gallery/:id", async (req, res) => {
+router.delete("/delete_Physics_Gallery/:id", async(req, res) => {
     const delete_user = await Physics_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5347,7 +6347,7 @@ router.delete("/delete_Physics_Gallery/:id", async (req, res) => {
 router.post(
     "/Physics_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Physics_Gallery.find()
@@ -5373,12 +6373,12 @@ router.post(
     }
 );
 // Zoology Gallery
-router.get("/Zoology_Gallery", async (req, res) => {
+router.get("/Zoology_Gallery", async(req, res) => {
     const details = await Zoology_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Zoology_Gallery/:id", async (req, res) => {
+router.delete("/delete_Zoology_Gallery/:id", async(req, res) => {
     const delete_user = await Zoology_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5390,7 +6390,7 @@ router.delete("/delete_Zoology_Gallery/:id", async (req, res) => {
 router.post(
     "/Zoology_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Zoology_Gallery.find()
@@ -5416,12 +6416,12 @@ router.post(
     }
 );
 // Sanskrit Gallery
-router.get("/Sanskrit_Gallery", async (req, res) => {
+router.get("/Sanskrit_Gallery", async(req, res) => {
     const details = await Sanskrit_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Sanskrit_Gallery/:id", async (req, res) => {
+router.delete("/delete_Sanskrit_Gallery/:id", async(req, res) => {
     const delete_user = await Sanskrit_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5433,7 +6433,7 @@ router.delete("/delete_Sanskrit_Gallery/:id", async (req, res) => {
 router.post(
     "/Sanskrit_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Sanskrit_Gallery.find()
@@ -5459,12 +6459,12 @@ router.post(
     }
 );
 // Psychology Gallery
-router.get("/Psychology_Gallery", async (req, res) => {
+router.get("/Psychology_Gallery", async(req, res) => {
     const details = await Psychology_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Psychology_Gallery/:id", async (req, res) => {
+router.delete("/delete_Psychology_Gallery/:id", async(req, res) => {
     const delete_user = await Psychology_Gallery.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5476,7 +6476,7 @@ router.delete("/delete_Psychology_Gallery/:id", async (req, res) => {
 router.post(
     "/Psychology_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Psychology_Gallery.find()
@@ -5502,12 +6502,12 @@ router.post(
     }
 );
 // PS Gallery
-router.get("/PS_Gallery", async (req, res) => {
+router.get("/PS_Gallery", async(req, res) => {
     const details = await PS_Gallery.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_PS_Gallery/:id", async (req, res) => {
+router.delete("/delete_PS_Gallery/:id", async(req, res) => {
     const delete_user = await PS_Gallery.findOneAndDelete({ _id: req.params.id });
     console.log(delete_user.file_path);
     await unlinkAsync(delete_user.file_path);
@@ -5517,7 +6517,7 @@ router.delete("/delete_PS_Gallery/:id", async (req, res) => {
 router.post(
     "/PS_Gallery_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await PS_Gallery.find()
@@ -5544,12 +6544,12 @@ router.post(
 );
 
 // About Us Gallery
-router.get("/About_Gallery", async (req, res) => {
+router.get("/About_Gallery", async(req, res) => {
     const details = await Gallery_About.find();
     res.status(200).json(details);
 });
 
-router.delete("/delete_Gallery_About/:id", async (req, res) => {
+router.delete("/delete_Gallery_About/:id", async(req, res) => {
     const delete_user = await Gallery_About.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5561,7 +6561,7 @@ router.delete("/delete_Gallery_About/:id", async (req, res) => {
 router.post(
     "/Gallery_About_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Gallery_About.find()
@@ -5588,11 +6588,11 @@ router.post(
 );
 // Staff Forms
 
-router.get("/StaffZone_forms", async (req, res) => {
+router.get("/StaffZone_forms", async(req, res) => {
     const details = await Staff_Forms.find();
     res.status(200).json(details);
 });
-router.delete("/delete_StaffZone_forms/:id", async (req, res) => {
+router.delete("/delete_StaffZone_forms/:id", async(req, res) => {
     const delete_user = await Staff_Forms.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5605,7 +6605,7 @@ router.delete("/delete_StaffZone_forms/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/StaffZone_forms_add_link", async (req, res) => {
+router.post("/StaffZone_forms_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -5630,7 +6630,7 @@ router.post("/StaffZone_forms_add_link", async (req, res) => {
 router.post(
     "/StaffZone_forms_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -5654,7 +6654,7 @@ router.post(
 );
 // Archives Notices
 
-router.get("/Archives_notice", async (req, res) => {
+router.get("/Archives_notice", async(req, res) => {
     try {
         const files = await Archives_Notice.find({});
         const sortedByCreationDate = files.sort(
@@ -5666,7 +6666,7 @@ router.get("/Archives_notice", async (req, res) => {
     }
 });
 
-router.post("/Archive_notice_add", async (req, res) => {
+router.post("/Archive_notice_add", async(req, res) => {
     try {
         var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
         const { file_path, file_mimetype, date, title, date_exp, new_ } = req.body;
@@ -5705,7 +6705,7 @@ router.post("/Archive_notice_add", async (req, res) => {
         console.log(err);
     }
 });
-router.delete("/delete_archives_notice/:id", async (req, res) => {
+router.delete("/delete_archives_notice/:id", async(req, res) => {
     const delete_user = await Archives_Notice.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5720,7 +6720,7 @@ router.delete("/delete_archives_notice/:id", async (req, res) => {
 });
 //  Bulletin Notices
 
-router.get("/Bulletins_notice", async (req, res) => {
+router.get("/Bulletins_notice", async(req, res) => {
     try {
         const files = await Bulletins_Notice.find({});
         const sortedByCreationDate = files.sort(
@@ -5732,7 +6732,7 @@ router.get("/Bulletins_notice", async (req, res) => {
     }
 });
 
-router.post("/Bulletins_notice_add", async (req, res) => {
+router.post("/Bulletins_notice_add", async(req, res) => {
     try {
         var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
         const { file_path, file_mimetype, date, title, date_exp, new_ } = req.body;
@@ -5790,7 +6790,7 @@ router.post("/Bulletins_notice_add", async (req, res) => {
         console.log(err);
     }
 });
-router.delete("/delete_Bulletins_notice/:id", async (req, res) => {
+router.delete("/delete_Bulletins_notice/:id", async(req, res) => {
     try {
         const delete_user = await Bulletins_Notice.findOneAndDelete({
             _id: req.params.id,
@@ -5807,7 +6807,7 @@ router.delete("/delete_Bulletins_notice/:id", async (req, res) => {
 });
 // Public Notices
 
-router.get("/Public_notice", async (req, res) => {
+router.get("/Public_notice", async(req, res) => {
     try {
         const files = await Public_Notice.find({});
         const sortedByCreationDate = files.sort(
@@ -5818,7 +6818,7 @@ router.get("/Public_notice", async (req, res) => {
         res.status(400).send("Error while getting list of files. Try again later.");
     }
 });
-router.delete("/delete_Public_notice/:id", async (req, res) => {
+router.delete("/delete_Public_notice/:id", async(req, res) => {
     const delete_user = await Public_Notice.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5831,13 +6831,13 @@ router.delete("/delete_Public_notice/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.delete("/delete_Public_archive_notice/:id", async (req, res) => {
+router.delete("/delete_Public_archive_notice/:id", async(req, res) => {
     const delete_user = await Public_Notice.findOneAndDelete({
         _id: req.params.id,
     });
     res.status(200).json(delete_user + "User deleted");
 });
-router.post("/Public_notice_add_link", async (req, res) => {
+router.post("/Public_notice_add_link", async(req, res) => {
     try {
         var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
         const { file, date, title, date_exp, new_ } = req.body;
@@ -5879,7 +6879,7 @@ router.post("/Public_notice_add_link", async (req, res) => {
 router.post(
     "/Public_notice_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { date, title, date_exp, new_ } = req.body;
             const { path, mimetype } = req.file;
@@ -5926,7 +6926,7 @@ router.post(
 );
 // Staff Notices
 
-router.get("/Staff_notice", async (req, res) => {
+router.get("/Staff_notice", async(req, res) => {
     try {
         const files = await Staff_Notice.find({});
         const sortedByCreationDate = files.sort(
@@ -5937,7 +6937,7 @@ router.get("/Staff_notice", async (req, res) => {
         res.status(400).send("Error while getting list of files. Try again later.");
     }
 });
-router.delete("/delete_Staff_notice/:id", async (req, res) => {
+router.delete("/delete_Staff_notice/:id", async(req, res) => {
     const delete_user = await Staff_Notice.findOneAndDelete({
         _id: req.params.id,
     });
@@ -5950,13 +6950,13 @@ router.delete("/delete_Staff_notice/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.delete("/delete_Staff_archive_notice/:id", async (req, res) => {
+router.delete("/delete_Staff_archive_notice/:id", async(req, res) => {
     const delete_user = await Staff_Notice.findOneAndDelete({
         _id: req.params.id,
     });
     res.status(200).json(delete_user + "User deleted");
 });
-router.post("/Staff_notice_add_link", async (req, res) => {
+router.post("/Staff_notice_add_link", async(req, res) => {
     try {
         var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
         const { file, date, title, date_exp, new_ } = req.body;
@@ -5996,7 +6996,7 @@ router.post("/Staff_notice_add_link", async (req, res) => {
 router.post(
     "/Staff_notice_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { date, title, date_exp, new_ } = req.body;
             const { path, mimetype } = req.file;
@@ -6043,7 +7043,7 @@ router.post(
 );
 // Student Notices
 
-router.get("/Student_notice", async (req, res) => {
+router.get("/Student_notice", async(req, res) => {
     try {
         const files = await Student_Notice.find({});
         const sortedByCreationDate = files.sort(
@@ -6054,7 +7054,7 @@ router.get("/Student_notice", async (req, res) => {
         res.status(400).send("Error while getting list of files. Try again later.");
     }
 });
-router.delete("/delete_Student_notice/:id", async (req, res) => {
+router.delete("/delete_Student_notice/:id", async(req, res) => {
     const delete_user = await Student_Notice.findOneAndDelete({
         _id: req.params.id,
     });
@@ -6067,13 +7067,13 @@ router.delete("/delete_Student_notice/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.delete("/delete_Student_archive_notice/:id", async (req, res) => {
+router.delete("/delete_Student_archive_notice/:id", async(req, res) => {
     const delete_user = await Student_Notice.findOneAndDelete({
         _id: req.params.id,
     });
     res.status(200).json(delete_user + "User deleted");
 });
-router.post("/Student_notice_add_link", async (req, res) => {
+router.post("/Student_notice_add_link", async(req, res) => {
     try {
         var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
         const { file, date, title, date_exp, new_ } = req.body;
@@ -6113,7 +7113,7 @@ router.post("/Student_notice_add_link", async (req, res) => {
 router.post(
     "/Student_notice_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { date, title, date_exp, new_ } = req.body;
             const { path, mimetype } = req.file;
@@ -6160,7 +7160,7 @@ router.post(
 );
 
 // Student Union
-router.post("/delete_Student_union/:id", async (req, res) => {
+router.post("/delete_Student_union/:id", async(req, res) => {
     const delete_user = await Student_union.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -6171,14 +7171,14 @@ router.post("/delete_Student_union/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Student_union_fac/:id", async (req, res) => {
+router.post("/delete_img_Student_union_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Student_union.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post("/delete_pdf_link_Student_union_fac/:id", async (req, res) => {
+router.post("/delete_pdf_link_Student_union_fac/:id", async(req, res) => {
     const delete_user = await Student_union.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             "img_data.pdf_path": {
@@ -6200,7 +7200,7 @@ router.post("/delete_pdf_link_Student_union_fac/:id", async (req, res) => {
     }
 });
 
-router.post("/delete_Student_union_para/:id", async (req, res) => {
+router.post("/delete_Student_union_para/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -6220,7 +7220,7 @@ router.post("/delete_Student_union_para/:id", async (req, res) => {
 });
 
 
-router.get("/Student_union", async (req, res) => {
+router.get("/Student_union", async(req, res) => {
     try {
         const files = await Student_union.find({});
         const sortedByCreationDate = files.sort(
@@ -6235,7 +7235,7 @@ router.get("/Student_union", async (req, res) => {
 
 router.post(
     "/Student_union_add_para/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Student_union.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -6256,7 +7256,7 @@ router.post(
 router.post(
     "/Student_union_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -6282,7 +7282,7 @@ router.post(
         }
     }
 );
-router.post("/Student_union_add_link/:id", async (req, res) => {
+router.post("/Student_union_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -6314,7 +7314,7 @@ router.post("/Student_union_add_link/:id", async (req, res) => {
     }
 });
 
-router.post("/Student_union_upload", async (req, res) => {
+router.post("/Student_union_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -6334,7 +7334,7 @@ router.post("/Student_union_upload", async (req, res) => {
 router.post(
     "/Student_union_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Student_union.findOne({ _id: req.params.id })
@@ -6368,7 +7368,7 @@ router.post(
     }
 );
 
-router.get("/Student_union_download/:id", async (req, res) => {
+router.get("/Student_union_download/:id", async(req, res) => {
     try {
         const file = await Student_union.findById(req.params.id);
         res.set({
@@ -6380,7 +7380,7 @@ router.get("/Student_union_download/:id", async (req, res) => {
     }
 });
 // Add on Courses
-router.post("/delete_Courses/:id", async (req, res) => {
+router.post("/delete_Courses/:id", async(req, res) => {
     const delete_user = await Courses.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -6391,14 +7391,14 @@ router.post("/delete_Courses/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Courses_fac/:id", async (req, res) => {
+router.post("/delete_img_Courses_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Courses.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post("/delete_pdf_link_Courses_fac/:id", async (req, res) => {
+router.post("/delete_pdf_link_Courses_fac/:id", async(req, res) => {
     const delete_user = await Courses.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             "img_data.pdf_path": {
@@ -6420,7 +7420,7 @@ router.post("/delete_pdf_link_Courses_fac/:id", async (req, res) => {
     }
 });
 
-router.post("/delete_Courses_para/:id", async (req, res) => {
+router.post("/delete_Courses_para/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -6440,7 +7440,7 @@ router.post("/delete_Courses_para/:id", async (req, res) => {
 });
 
 
-router.get("/Courses", async (req, res) => {
+router.get("/Courses", async(req, res) => {
     try {
         const files = await Courses.find({});
         const sortedByCreationDate = files.sort(
@@ -6455,7 +7455,7 @@ router.get("/Courses", async (req, res) => {
 
 router.post(
     "/Courses_add_para/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Courses.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -6476,7 +7476,7 @@ router.post(
 router.post(
     "/Courses_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -6502,7 +7502,7 @@ router.post(
         }
     }
 );
-router.post("/Courses_add_link/:id", async (req, res) => {
+router.post("/Courses_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -6534,7 +7534,7 @@ router.post("/Courses_add_link/:id", async (req, res) => {
     }
 });
 
-router.post("/Courses_upload", async (req, res) => {
+router.post("/Courses_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -6554,7 +7554,7 @@ router.post("/Courses_upload", async (req, res) => {
 router.post(
     "/Courses_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Courses.findOne({ _id: req.params.id })
@@ -6588,7 +7588,7 @@ router.post(
     }
 );
 
-router.get("/Courses_download/:id", async (req, res) => {
+router.get("/Courses_download/:id", async(req, res) => {
     try {
         const file = await Courses.findById(req.params.id);
         res.set({
@@ -6600,7 +7600,7 @@ router.get("/Courses_download/:id", async (req, res) => {
     }
 });
 // Placement Cell
-router.post("/delete_Placement_cell/:id", async (req, res) => {
+router.post("/delete_Placement_cell/:id", async(req, res) => {
     const delete_user = await Placement_cell.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -6611,14 +7611,14 @@ router.post("/delete_Placement_cell/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Placement_cell_fac/:id", async (req, res) => {
+router.post("/delete_img_Placement_cell_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Placement_cell.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post("/delete_pdf_link_Placement_cell_fac/:id", async (req, res) => {
+router.post("/delete_pdf_link_Placement_cell_fac/:id", async(req, res) => {
     const delete_user = await Placement_cell.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             "img_data.pdf_path": {
@@ -6640,7 +7640,7 @@ router.post("/delete_pdf_link_Placement_cell_fac/:id", async (req, res) => {
     }
 });
 
-router.post("/delete_Placement_cell_para/:id", async (req, res) => {
+router.post("/delete_Placement_cell_para/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -6660,7 +7660,7 @@ router.post("/delete_Placement_cell_para/:id", async (req, res) => {
 });
 
 
-router.get("/Placement_cell", async (req, res) => {
+router.get("/Placement_cell", async(req, res) => {
     try {
         const files = await Placement_cell.find({});
         const sortedByCreationDate = files.sort(
@@ -6675,7 +7675,7 @@ router.get("/Placement_cell", async (req, res) => {
 
 router.post(
     "/Placement_cell_add_para/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Placement_cell.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -6696,7 +7696,7 @@ router.post(
 router.post(
     "/Placement_cell_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -6722,7 +7722,7 @@ router.post(
         }
     }
 );
-router.post("/Placement_cell_add_link/:id", async (req, res) => {
+router.post("/Placement_cell_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -6754,7 +7754,7 @@ router.post("/Placement_cell_add_link/:id", async (req, res) => {
     }
 });
 
-router.post("/Placement_cell_upload", async (req, res) => {
+router.post("/Placement_cell_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -6774,7 +7774,7 @@ router.post("/Placement_cell_upload", async (req, res) => {
 router.post(
     "/Placement_cell_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Placement_cell.findOne({ _id: req.params.id })
@@ -6808,7 +7808,7 @@ router.post(
     }
 );
 
-router.get("/Placement_cell_download/:id", async (req, res) => {
+router.get("/Placement_cell_download/:id", async(req, res) => {
     try {
         const file = await Placement_cell.findById(req.params.id);
         res.set({
@@ -6820,7 +7820,7 @@ router.get("/Placement_cell_download/:id", async (req, res) => {
     }
 });
 // Equal Opportunities
-router.post("/delete_Equal_opp/:id", async (req, res) => {
+router.post("/delete_Equal_opp/:id", async(req, res) => {
     const delete_user = await Equal_opp.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -6831,14 +7831,14 @@ router.post("/delete_Equal_opp/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Equal_opp_fac/:id", async (req, res) => {
+router.post("/delete_img_Equal_opp_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Equal_opp.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post("/delete_pdf_link_Equal_opp_fac/:id", async (req, res) => {
+router.post("/delete_pdf_link_Equal_opp_fac/:id", async(req, res) => {
     const delete_user = await Equal_opp.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             "img_data.pdf_path": {
@@ -6860,7 +7860,7 @@ router.post("/delete_pdf_link_Equal_opp_fac/:id", async (req, res) => {
     }
 });
 
-router.post("/delete_Equal_opp_para/:id", async (req, res) => {
+router.post("/delete_Equal_opp_para/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -6880,7 +7880,7 @@ router.post("/delete_Equal_opp_para/:id", async (req, res) => {
 });
 
 
-router.get("/Equal_opp", async (req, res) => {
+router.get("/Equal_opp", async(req, res) => {
     try {
         const files = await Equal_opp.find({});
         const sortedByCreationDate = files.sort(
@@ -6895,7 +7895,7 @@ router.get("/Equal_opp", async (req, res) => {
 
 router.post(
     "/Equal_opp_add_para/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Equal_opp.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -6916,7 +7916,7 @@ router.post(
 router.post(
     "/Equal_opp_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -6942,7 +7942,7 @@ router.post(
         }
     }
 );
-router.post("/Equal_opp_add_link/:id", async (req, res) => {
+router.post("/Equal_opp_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -6974,7 +7974,7 @@ router.post("/Equal_opp_add_link/:id", async (req, res) => {
     }
 });
 
-router.post("/Equal_opp_upload", async (req, res) => {
+router.post("/Equal_opp_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -6994,7 +7994,7 @@ router.post("/Equal_opp_upload", async (req, res) => {
 router.post(
     "/Equal_opp_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Equal_opp.findOne({ _id: req.params.id })
@@ -7028,7 +8028,7 @@ router.post(
     }
 );
 
-router.get("/Equal_opp_download/:id", async (req, res) => {
+router.get("/Equal_opp_download/:id", async(req, res) => {
     try {
         const file = await Equal_opp.findById(req.params.id);
         res.set({
@@ -7043,13 +8043,13 @@ router.get("/Equal_opp_download/:id", async (req, res) => {
 
 // Student Zone Feedback
 
-router.get("/Studfeedback", async (req, res) => {
+router.get("/Studfeedback", async(req, res) => {
     // res.send(`Hello World from the server`);
     const details = await Feedback.find();
     res.status(200).json(details);
 });
 
-router.post("/StudentZone_feedback", async (req, res) => {
+router.post("/StudentZone_feedback", async(req, res) => {
     const { Link, Caption, text } = req.body;
     if (!Link || !Caption) {
         return res
@@ -7061,7 +8061,7 @@ router.post("/StudentZone_feedback", async (req, res) => {
     console.log("Details Saved Successfully");
     return res.status(200).json({ message: "Details Saved Successfully " });
 });
-router.delete("/deletestudfeedback/:id", async (req, res) => {
+router.delete("/deletestudfeedback/:id", async(req, res) => {
     const delete_user = await Feedback.findOneAndDelete({ _id: req.params.id });
     res.status(200).json(delete_user + "User deleted");
 });
@@ -7069,11 +8069,11 @@ router.delete("/deletestudfeedback/:id", async (req, res) => {
 
 // Student-Zone Forms
 
-router.get("/StudentZone_forms", async (req, res) => {
+router.get("/StudentZone_forms", async(req, res) => {
     const details = await Student_forms.find();
     res.status(200).json(details);
 });
-router.delete("/delete_StudentZone_forms/:id", async (req, res) => {
+router.delete("/delete_StudentZone_forms/:id", async(req, res) => {
     const delete_user = await Student_forms.findOneAndDelete({
         _id: req.params.id,
     });
@@ -7086,7 +8086,7 @@ router.delete("/delete_StudentZone_forms/:id", async (req, res) => {
         res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/StudentZone_forms_add_link", async (req, res) => {
+router.post("/StudentZone_forms_add_link", async(req, res) => {
     try {
         console.log(req.body);
         const { file, link, title } = req.body;
@@ -7111,7 +8111,7 @@ router.post("/StudentZone_forms_add_link", async (req, res) => {
 router.post(
     "/StudentZone_forms_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -7135,18 +8135,18 @@ router.post(
 );
 // Teacher-In Charge
 
-router.get("/Teacher_In_Charge", async (req, res) => {
+router.get("/Teacher_In_Charge", async(req, res) => {
     const details = await Teacher.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Teacher_In_Charge/:id", async (req, res) => {
+router.delete("/delete_Teacher_In_Charge/:id", async(req, res) => {
     const delete_user = await Teacher.findOneAndDelete({ _id: req.params.id });
     res.status(200).json(delete_user + "User deleted");
 });
 
 router.post(
     "/Teacher_In_Charge_add",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link, Tic1, Tic2 } = req.body;
             console.log(title, link, Tic1, Tic2)
@@ -7171,11 +8171,11 @@ router.post(
 );
 // College Academics Calendar
 
-router.get("/C_Acad_Cal", async (req, res) => {
+router.get("/C_Acad_Cal", async(req, res) => {
     const details = await C_Acad_Cal.find();
     res.status(200).json(details);
 });
-router.delete("/delete_C_Acad_Cal/:id", async (req, res) => {
+router.delete("/delete_C_Acad_Cal/:id", async(req, res) => {
     const delete_user = await C_Acad_Cal.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -7184,7 +8184,7 @@ router.delete("/delete_C_Acad_Cal/:id", async (req, res) => {
 router.post(
     "/C_Acad_Cal_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -7209,11 +8209,11 @@ router.post(
 
 // University Academics Calendar
 
-router.get("/U_Acad_Cal", async (req, res) => {
+router.get("/U_Acad_Cal", async(req, res) => {
     const details = await U_Acad_Cal.find();
     res.status(200).json(details);
 });
-router.delete("/delete_U_Acad_Cal/:id", async (req, res) => {
+router.delete("/delete_U_Acad_Cal/:id", async(req, res) => {
     const delete_user = await U_Acad_Cal.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -7222,7 +8222,7 @@ router.delete("/delete_U_Acad_Cal/:id", async (req, res) => {
 router.post(
     "/U_Acad_Cal_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -7246,7 +8246,7 @@ router.post(
 );
 
 // Magzine and Newsletter
-router.post("/delete_Magz_and_News_res_fac/:id", async (req, res) => {
+router.post("/delete_Magz_and_News_res_fac/:id", async(req, res) => {
     const delete_user = await Magz_and_News.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -7257,14 +8257,14 @@ router.post("/delete_Magz_and_News_res_fac/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Magz_and_News_res_fac/:id", async (req, res) => {
+router.post("/delete_img_Magz_and_News_res_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/Magz_and_News_res", async (req, res) => {
+router.get("/Magz_and_News_res", async(req, res) => {
     try {
         const files = await Magz_and_News.find({});
         const sortedByCreationDate = files.sort(
@@ -7276,7 +8276,7 @@ router.get("/Magz_and_News_res", async (req, res) => {
     }
 });
 
-router.post("/Magz_and_News_res_upload", async (req, res) => {
+router.post("/Magz_and_News_res_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -7294,7 +8294,7 @@ router.post("/Magz_and_News_res_upload", async (req, res) => {
 router.post(
     "/Magz_and_News_res_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path,mimetype)
@@ -7322,7 +8322,7 @@ router.post(
     }
 );
 
-router.get("/Magz_and_News_res_download/:id", async (req, res) => {
+router.get("/Magz_and_News_res_download/:id", async(req, res) => {
     try {
         const file = await Magz_and_News.findById(req.params.id);
         res.set({
@@ -7334,7 +8334,7 @@ router.get("/Magz_and_News_res_download/:id", async (req, res) => {
     }
 });
 // Useful Links
-router.post("/delete_Useful_Links/:id", async (req, res) => {
+router.post("/delete_Useful_Links/:id", async(req, res) => {
     const delete_user = await Useful_Links.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -7345,14 +8345,14 @@ router.post("/delete_Useful_Links/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Useful_Links_res_fac/:id", async (req, res) => {
+router.post("/delete_img_Useful_Links_res_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Useful_Links.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/Useful_Links_res", async (req, res) => {
+router.get("/Useful_Links_res", async(req, res) => {
     try {
         const files = await Useful_Links.find({});
         const sortedByCreationDate = files.sort(
@@ -7364,7 +8364,7 @@ router.get("/Useful_Links_res", async (req, res) => {
     }
 });
 
-router.post("/Useful_Links_res_upload", async (req, res) => {
+router.post("/Useful_Links_res_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -7382,7 +8382,7 @@ router.post("/Useful_Links_res_upload", async (req, res) => {
 router.post(
     "/Useful_Links_res_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path,mimetype)
@@ -7410,7 +8410,7 @@ router.post(
     }
 );
 
-router.get("/Useful_Links_res_download/:id", async (req, res) => {
+router.get("/Useful_Links_res_download/:id", async(req, res) => {
     try {
         const file = await Useful_Links.findById(req.params.id);
         res.set({
@@ -7422,7 +8422,7 @@ router.get("/Useful_Links_res_download/:id", async (req, res) => {
     }
 });
 // Research
-router.post("/delete_research_fac/:id", async (req, res) => {
+router.post("/delete_research_fac/:id", async(req, res) => {
     const delete_user = await File.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -7433,14 +8433,14 @@ router.post("/delete_research_fac/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_research_fac/:id", async (req, res) => {
+router.post("/delete_img_research_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await File.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/research", async (req, res) => {
+router.get("/research", async(req, res) => {
     try {
         const files = await File.find({});
         const sortedByCreationDate = files.sort(
@@ -7452,7 +8452,7 @@ router.get("/research", async (req, res) => {
     }
 });
 
-router.post("/research_upload", async (req, res) => {
+router.post("/research_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -7470,7 +8470,7 @@ router.post("/research_upload", async (req, res) => {
 router.post(
     "/research_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path,mimetype)
@@ -7498,7 +8498,7 @@ router.post(
     }
 );
 
-router.get("/research_download/:id", async (req, res) => {
+router.get("/research_download/:id", async(req, res) => {
     try {
         const file = await File.findById(req.params.id);
         res.set({
@@ -7510,7 +8510,7 @@ router.get("/research_download/:id", async (req, res) => {
     }
 });
 // Student Facilities
-router.post("/delete_Student_Facilities_fac/:id", async (req, res) => {
+router.post("/delete_Student_Facilities_fac/:id", async(req, res) => {
     const delete_user = await Student_Facilities.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -7521,14 +8521,14 @@ router.post("/delete_Student_Facilities_fac/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Student_Facilities_fac/:id", async (req, res) => {
+router.post("/delete_img_Student_Facilities_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Student_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/Student_Facilities", async (req, res) => {
+router.get("/Student_Facilities", async(req, res) => {
     try {
         const files = await Student_Facilities.find({});
         const sortedByCreationDate = files.sort(
@@ -7540,7 +8540,7 @@ router.get("/Student_Facilities", async (req, res) => {
     }
 });
 
-router.post("/Student_Facilities_upload", async (req, res) => {
+router.post("/Student_Facilities_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -7558,7 +8558,7 @@ router.post("/Student_Facilities_upload", async (req, res) => {
 router.post(
     "/Student_Facilities_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Student_Facilities.findOne({ _id: req.params.id })
@@ -7592,7 +8592,7 @@ router.post(
     }
 );
 
-router.get("/Student_Facilities_download/:id", async (req, res) => {
+router.get("/Student_Facilities_download/:id", async(req, res) => {
     try {
         const file = await Student_Facilities.findById(req.params.id);
         res.set({
@@ -7604,7 +8604,7 @@ router.get("/Student_Facilities_download/:id", async (req, res) => {
     }
 });
 // Academics Facilities
-router.post("/delete_Academics_Facilities_fac/:id", async (req, res) => {
+router.post("/delete_Academics_Facilities_fac/:id", async(req, res) => {
     const delete_user = await Acad_Facilities.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -7615,14 +8615,14 @@ router.post("/delete_Academics_Facilities_fac/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Academics_Facilities_fac/:id", async (req, res) => {
+router.post("/delete_img_Academics_Facilities_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Acad_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/Academics_Facilities", async (req, res) => {
+router.get("/Academics_Facilities", async(req, res) => {
     try {
         const files = await Acad_Facilities.find({});
         const sortedByCreationDate = files.sort(
@@ -7634,7 +8634,7 @@ router.get("/Academics_Facilities", async (req, res) => {
     }
 });
 
-router.post("/Academics_Facilities_upload", async (req, res) => {
+router.post("/Academics_Facilities_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -7652,7 +8652,7 @@ router.post("/Academics_Facilities_upload", async (req, res) => {
 router.post(
     "/Academics_Facilities_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Acad_Facilities.findOne({ _id: req.params.id })
@@ -7686,7 +8686,7 @@ router.post(
     }
 );
 
-router.get("/Academics_Facilities_download/:id", async (req, res) => {
+router.get("/Academics_Facilities_download/:id", async(req, res) => {
     try {
         const file = await Acad_Facilities.findById(req.params.id);
         res.set({
@@ -7699,7 +8699,7 @@ router.get("/Academics_Facilities_download/:id", async (req, res) => {
 });
 
 // Resources Centre for Innovation
-router.post("/delete_Resource_centre_fac/:id", async (req, res) => {
+router.post("/delete_Resource_centre_fac/:id", async(req, res) => {
     const delete_user = await Resources_Innovation.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -7710,14 +8710,14 @@ router.post("/delete_Resource_centre_fac/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Resource_centre_fac/:id", async (req, res) => {
+router.post("/delete_img_Resource_centre_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Resources_Innovation.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/Resource_centre", async (req, res) => {
+router.get("/Resource_centre", async(req, res) => {
     try {
         const files = await Resources_Innovation.find({});
         const sortedByCreationDate = files.sort(
@@ -7729,7 +8729,7 @@ router.get("/Resource_centre", async (req, res) => {
     }
 });
 
-router.post("/Resource_centre_upload", async (req, res) => {
+router.post("/Resource_centre_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -7747,7 +8747,7 @@ router.post("/Resource_centre_upload", async (req, res) => {
 router.post(
     "/Resource_center_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Resources_Innovation.findOne({ _id: req.params.id })
@@ -7782,7 +8782,7 @@ router.post(
     }
 );
 
-router.get("/Resource_center_download/:id", async (req, res) => {
+router.get("/Resource_center_download/:id", async(req, res) => {
     try {
         const file = await Resources_Innovation.findById(req.params.id);
         res.set({
@@ -7796,7 +8796,7 @@ router.get("/Resource_center_download/:id", async (req, res) => {
 
 
 // Biochemistry Publications
-router.post("/delete_Bio_Publications/:id", async (req, res) => {
+router.post("/delete_Bio_Publications/:id", async(req, res) => {
     const delete_user = await Bio_Publications.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -7807,14 +8807,14 @@ router.post("/delete_Bio_Publications/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Bio_Publications_fac/:id", async (req, res) => {
+router.post("/delete_img_Bio_Publications_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Bio_Publications.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post("/delete_pdf_link_Bio_Publications_fac/:id", async (req, res) => {
+router.post("/delete_pdf_link_Bio_Publications_fac/:id", async(req, res) => {
     const delete_user = await Bio_Publications.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             "img_data.pdf_path": {
@@ -7836,7 +8836,7 @@ router.post("/delete_pdf_link_Bio_Publications_fac/:id", async (req, res) => {
     }
 });
 
-router.post("/delete_Bio_Publications_para/:id", async (req, res) => {
+router.post("/delete_Bio_Publications_para/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -7856,7 +8856,7 @@ router.post("/delete_Bio_Publications_para/:id", async (req, res) => {
 });
 
 
-router.get("/Bio_Publications", async (req, res) => {
+router.get("/Bio_Publications", async(req, res) => {
     try {
         const files = await Bio_Publications.find({});
         const sortedByCreationDate = files.sort(
@@ -7871,7 +8871,7 @@ router.get("/Bio_Publications", async (req, res) => {
 
 router.post(
     "/Bio_Publications_add_para/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Bio_Publications.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -7892,7 +8892,7 @@ router.post(
 router.post(
     "/Bio_Publications_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -7918,7 +8918,7 @@ router.post(
         }
     }
 );
-router.post("/Bio_Publications_add_link/:id", async (req, res) => {
+router.post("/Bio_Publications_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -7950,7 +8950,7 @@ router.post("/Bio_Publications_add_link/:id", async (req, res) => {
     }
 });
 
-router.post("/Bio_Publications_upload", async (req, res) => {
+router.post("/Bio_Publications_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -7970,7 +8970,7 @@ router.post("/Bio_Publications_upload", async (req, res) => {
 router.post(
     "/Bio_Publications_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Bio_Publications.findOne({ _id: req.params.id })
@@ -8004,7 +9004,7 @@ router.post(
     }
 );
 
-router.get("/Bio_Publications_download/:id", async (req, res) => {
+router.get("/Bio_Publications_download/:id", async(req, res) => {
     try {
         const file = await Bio_Publications.findById(req.params.id);
         res.set({
@@ -8017,7 +9017,7 @@ router.get("/Bio_Publications_download/:id", async (req, res) => {
 });
 
 // Biochemistry Student Achievements
-router.post("/delete_Bio_Student_Achievement/:id", async (req, res) => {
+router.post("/delete_Bio_Student_Achievement/:id", async(req, res) => {
     const delete_user = await Bio_Student_Achieve.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -8028,14 +9028,14 @@ router.post("/delete_Bio_Student_Achievement/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Bio_Student_Achievement_fac/:id", async (req, res) => {
+router.post("/delete_img_Bio_Student_Achievement_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Bio_Student_Achieve.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post("/delete_pdf_link_Bio_Student_Achievement_fac/:id", async (req, res) => {
+router.post("/delete_pdf_link_Bio_Student_Achievement_fac/:id", async(req, res) => {
     const delete_user = await Bio_Student_Achieve.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             "img_data.pdf_path": {
@@ -8057,7 +9057,7 @@ router.post("/delete_pdf_link_Bio_Student_Achievement_fac/:id", async (req, res)
     }
 });
 
-router.post("/delete_Bio_Student_Achievement_para/:id", async (req, res) => {
+router.post("/delete_Bio_Student_Achievement_para/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -8077,7 +9077,7 @@ router.post("/delete_Bio_Student_Achievement_para/:id", async (req, res) => {
 });
 
 
-router.get("/Bio_Student_Achievement", async (req, res) => {
+router.get("/Bio_Student_Achievement", async(req, res) => {
     try {
         const files = await Bio_Student_Achieve.find({});
         const sortedByCreationDate = files.sort(
@@ -8092,7 +9092,7 @@ router.get("/Bio_Student_Achievement", async (req, res) => {
 
 router.post(
     "/Bio_Student_Achievement_add_para/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Bio_Student_Achieve.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -8113,7 +9113,7 @@ router.post(
 router.post(
     "/Bio_Student_Achievement_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -8139,7 +9139,7 @@ router.post(
         }
     }
 );
-router.post("/Bio_Student_Achievement_add_link/:id", async (req, res) => {
+router.post("/Bio_Student_Achievement_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -8171,7 +9171,7 @@ router.post("/Bio_Student_Achievement_add_link/:id", async (req, res) => {
     }
 });
 
-router.post("/Bio_Student_Achievement_upload", async (req, res) => {
+router.post("/Bio_Student_Achievement_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -8191,7 +9191,7 @@ router.post("/Bio_Student_Achievement_upload", async (req, res) => {
 router.post(
     "/Bio_Student_Achievement_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Bio_Student_Achieve.findOne({ _id: req.params.id })
@@ -8225,7 +9225,7 @@ router.post(
     }
 );
 
-router.get("/Bio_Student_Achievement_download/:id", async (req, res) => {
+router.get("/Bio_Student_Achievement_download/:id", async(req, res) => {
     try {
         const file = await Bio_Student_Achieve.findById(req.params.id);
         res.set({
@@ -8238,7 +9238,7 @@ router.get("/Bio_Student_Achievement_download/:id", async (req, res) => {
 });
 
 // Biochemistry Research And Publications
-router.post("/delete_Bio_Research_facilities/:id", async (req, res) => {
+router.post("/delete_Bio_Research_facilities/:id", async(req, res) => {
     const delete_user = await Bio_Research_fac.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -8249,14 +9249,14 @@ router.post("/delete_Bio_Research_facilities/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Bio_Research_facilities_fac/:id", async (req, res) => {
+router.post("/delete_img_Bio_Research_facilities_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Bio_Research_fac.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post("/delete_pdf_link_Bio_Research_facilities_fac/:id", async (req, res) => {
+router.post("/delete_pdf_link_Bio_Research_facilities_fac/:id", async(req, res) => {
     const delete_user = await Bio_Research_fac.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             "img_data.pdf_path": {
@@ -8278,7 +9278,7 @@ router.post("/delete_pdf_link_Bio_Research_facilities_fac/:id", async (req, res)
     }
 });
 
-router.post("/delete_Bio_Research_facilities_para/:id", async (req, res) => {
+router.post("/delete_Bio_Research_facilities_para/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -8298,7 +9298,7 @@ router.post("/delete_Bio_Research_facilities_para/:id", async (req, res) => {
 });
 
 
-router.get("/Bio_Research_facilities", async (req, res) => {
+router.get("/Bio_Research_facilities", async(req, res) => {
     try {
         const files = await Bio_Research_fac.find({});
         const sortedByCreationDate = files.sort(
@@ -8313,7 +9313,7 @@ router.get("/Bio_Research_facilities", async (req, res) => {
 
 router.post(
     "/Bio_Research_facilities_add_para/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Bio_Research_fac.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -8334,7 +9334,7 @@ router.post(
 router.post(
     "/Bio_Research_facilities_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -8360,7 +9360,7 @@ router.post(
         }
     }
 );
-router.post("/Bio_Research_facilities_add_link/:id", async (req, res) => {
+router.post("/Bio_Research_facilities_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -8392,7 +9392,7 @@ router.post("/Bio_Research_facilities_add_link/:id", async (req, res) => {
     }
 });
 
-router.post("/Bio_Research_facilities_upload", async (req, res) => {
+router.post("/Bio_Research_facilities_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -8412,7 +9412,7 @@ router.post("/Bio_Research_facilities_upload", async (req, res) => {
 router.post(
     "/Bio_Research_facilities_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Bio_Research_fac.findOne({ _id: req.params.id })
@@ -8446,7 +9446,7 @@ router.post(
     }
 );
 
-router.get("/Bio_Research_facilities_upload_download/:id", async (req, res) => {
+router.get("/Bio_Research_facilities_upload_download/:id", async(req, res) => {
     try {
         const file = await Bio_Research_fac.findById(req.params.id);
         res.set({
@@ -8459,7 +9459,7 @@ router.get("/Bio_Research_facilities_upload_download/:id", async (req, res) => {
 });
 
 // Biochemistry Association
-router.post("/delete_Bio_Association/:id", async (req, res) => {
+router.post("/delete_Bio_Association/:id", async(req, res) => {
     const delete_user = await Bio_Association.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -8470,14 +9470,14 @@ router.post("/delete_Bio_Association/:id", async (req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Bio_Association_fac/:id", async (req, res) => {
+router.post("/delete_img_Bio_Association_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Bio_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.post("/delete_pdf_link_Bio_Association_fac/:id", async (req, res) => {
+router.post("/delete_pdf_link_Bio_Association_fac/:id", async(req, res) => {
     const delete_user = await Bio_Association.findOneAndUpdate({ _id: req.params.id }, {
         $set: {
             "img_data.pdf_path": {
@@ -8499,7 +9499,7 @@ router.post("/delete_pdf_link_Bio_Association_fac/:id", async (req, res) => {
     }
 });
 
-router.post("/delete_Bio_Association_para/:id", async (req, res) => {
+router.post("/delete_Bio_Association_para/:id", async(req, res) => {
     try {
         const { pid, type } = req.body;
         if (type === "para") {
@@ -8519,7 +9519,7 @@ router.post("/delete_Bio_Association_para/:id", async (req, res) => {
 });
 
 
-router.get("/Bio_Association", async (req, res) => {
+router.get("/Bio_Association", async(req, res) => {
     try {
         const files = await Bio_Association.find({});
         const sortedByCreationDate = files.sort(
@@ -8534,7 +9534,7 @@ router.get("/Bio_Association", async (req, res) => {
 
 router.post(
     "/Bio_Association_add_para/:id",
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { para1 } = req.body;
             await Bio_Association.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
@@ -8555,7 +9555,7 @@ router.post(
 router.post(
     "/Bio_Association_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -8581,7 +9581,7 @@ router.post(
         }
     }
 );
-router.post("/Bio_Association_add_link/:id", async (req, res) => {
+router.post("/Bio_Association_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -8613,7 +9613,7 @@ router.post("/Bio_Association_add_link/:id", async (req, res) => {
     }
 });
 
-router.post("/Bio_Association_upload", async (req, res) => {
+router.post("/Bio_Association_upload", async(req, res) => {
     try {
         // console.log(req.body)
         const { title, description } = req.body;
@@ -8633,7 +9633,7 @@ router.post("/Bio_Association_upload", async (req, res) => {
 router.post(
     "/Bio_Association_img_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             const dat = await Bio_Association.findOne({ _id: req.params.id })
@@ -8667,7 +9667,7 @@ router.post(
     }
 );
 
-router.get("/Bio_Association_download/:id", async (req, res) => {
+router.get("/Bio_Association_download/:id", async(req, res) => {
     try {
         const file = await Bio_Association.findById(req.params.id);
         res.set({
@@ -8678,13 +9678,233 @@ router.get("/Bio_Association_download/:id", async (req, res) => {
         res.status(400).send("Error while downloading file. Try again later.");
     }
 });
+// Botany Association
+router.post("/delete_Bot_Association/:id", async(req, res) => {
+    const delete_user = await Bot_Association.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Bot_Association_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Bot_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Bot_Association_fac/:id", async(req, res) => {
+    const delete_user = await Bot_Association.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Bot_Association_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Bot_Association.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Bot_Association.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Bot_Association", async(req, res) => {
+    try {
+        const files = await Bot_Association.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Bot_Association_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Bot_Association.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Bot_Association_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Bot_Association.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Bot_Association_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Bot_Association.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Bot_Association_upload", async(req, res) => {
+    try {
+        // console.log(req.body)
+        const { title, description } = req.body;
+        const file = new Bot_Association({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Bot_Association_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Bot_Association.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Bot_Association.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Bot_Association_download/:id", async(req, res) => {
+    try {
+        const file = await Bot_Association.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
 // Economics Program Offered
 
-router.get("/Eco_ProgramOffered", async (req, res) => {
+router.get("/Eco_ProgramOffered", async(req, res) => {
     const details = await Eco_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eco_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Eco_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Eco_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -8695,7 +9915,7 @@ router.delete("/delete_Eco_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Eco_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -8719,11 +9939,11 @@ router.post(
 );
 // Economics Awards
 
-router.get("/Eco_Awards", async (req, res) => {
+router.get("/Eco_Awards", async(req, res) => {
     const details = await Eco_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eco_Awards/:id", async (req, res) => {
+router.delete("/delete_Eco_Awards/:id", async(req, res) => {
     const delete_user = await Eco_Awards.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -8731,7 +9951,7 @@ router.delete("/delete_Eco_Awards/:id", async (req, res) => {
 router.post(
     "/Eco_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -8755,11 +9975,11 @@ router.post(
 );
 // English Program Offered
 
-router.get("/Eng_ProgramOffered", async (req, res) => {
+router.get("/Eng_ProgramOffered", async(req, res) => {
     const details = await Eng_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eng_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Eng_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Eng_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -8770,7 +9990,7 @@ router.delete("/delete_Eng_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Eng_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -8794,11 +10014,11 @@ router.post(
 );
 // English Awards
 
-router.get("/Eng_Awards", async (req, res) => {
+router.get("/Eng_Awards", async(req, res) => {
     const details = await Eng_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Eng_Awards/:id", async (req, res) => {
+router.delete("/delete_Eng_Awards/:id", async(req, res) => {
     const delete_user = await Eng_Awards.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -8806,7 +10026,7 @@ router.delete("/delete_Eng_Awards/:id", async (req, res) => {
 router.post(
     "/Eng_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -8830,11 +10050,11 @@ router.post(
 );
 // Hindi Program Offered
 
-router.get("/Hin_ProgramOffered", async (req, res) => {
+router.get("/Hin_ProgramOffered", async(req, res) => {
     const details = await Hin_ProgramOffered.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Hin_ProgramOffered/:id", async (req, res) => {
+router.delete("/delete_Hin_ProgramOffered/:id", async(req, res) => {
     const delete_user = await Hin_ProgramOffered.findOneAndDelete({
         _id: req.params.id,
     });
@@ -8845,7 +10065,7 @@ router.delete("/delete_Hin_ProgramOffered/:id", async (req, res) => {
 router.post(
     "/Hin_ProgramOffered_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -8869,11 +10089,11 @@ router.post(
 );
 // Hindi Awards
 
-router.get("/Hin_Awards", async (req, res) => {
+router.get("/Hin_Awards", async(req, res) => {
     const details = await Hin_Awards.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Hin_Awards/:id", async (req, res) => {
+router.delete("/delete_Hin_Awards/:id", async(req, res) => {
     const delete_user = await Hin_Awards.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -8881,7 +10101,7 @@ router.delete("/delete_Hin_Awards/:id", async (req, res) => {
 router.post(
     "/Hin_Awards_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -8905,11 +10125,11 @@ router.post(
 );
 // Hindi Magazine
 
-router.get("/Hin_Magazine", async (req, res) => {
+router.get("/Hin_Magazine", async(req, res) => {
     const details = await Hin_Magazine.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Hin_Magazine/:id", async (req, res) => {
+router.delete("/delete_Hin_Magazine/:id", async(req, res) => {
     const delete_user = await Hin_Magazine.findOneAndDelete({
         _id: req.params.id,
     });
@@ -8919,7 +10139,7 @@ router.delete("/delete_Hin_Magazine/:id", async (req, res) => {
 router.post(
     "/Hin_Magazine_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -8942,7 +10162,7 @@ router.post(
     }
 );
 // Events and Activities
-router.post("/delete_Events_and_Activities/:id", async (req, res) => {
+router.post("/delete_Events_and_Activities/:id", async(req, res) => {
     const delete_user = await Events_and_Activities.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -8964,8 +10184,7 @@ router.post("/delete_Events_and_Activities/:id", async (req, res) => {
             console.log("Unsuccessfully deleted");
         }
 
-    }
-    else {
+    } else {
         await delete_user.deleteOne({ _id: req.params.id });
         await unlinkAsync(img[0].file_path1);
         await unlinkAsync(pdf[0].pdf_path1);
@@ -8973,7 +10192,7 @@ router.post("/delete_Events_and_Activities/:id", async (req, res) => {
     }
 });
 
-router.get("/Events_and_Activities", async (req, res) => {
+router.get("/Events_and_Activities", async(req, res) => {
     try {
         const files = await Events_and_Activities.find({});
         res.json(files);
@@ -8984,7 +10203,7 @@ router.get("/Events_and_Activities", async (req, res) => {
 router.post(
     "/Events_and_Activities_file_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9010,7 +10229,7 @@ router.post(
         }
     }
 );
-router.post("/Events_and_Activities_add_link/:id", async (req, res) => {
+router.post("/Events_and_Activities_add_link/:id", async(req, res) => {
     try {
         const { link } = req.body;
         console.log(link)
@@ -9044,7 +10263,7 @@ router.post("/Events_and_Activities_add_link/:id", async (req, res) => {
 router.post(
     "/Events_and_Activities_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -9062,7 +10281,7 @@ router.post(
     }
 );
 
-router.get("/Events_and_Activities_download/:id", async (req, res) => {
+router.get("/Events_and_Activities_download/:id", async(req, res) => {
     try {
         const file = await Events_and_Activities.findById(req.params.id);
         res.set({
@@ -9075,7 +10294,7 @@ router.get("/Events_and_Activities_download/:id", async (req, res) => {
 });
 
 // Biochemistry Faculty
-router.post("/delete_bio_faculty/:id", async (req, res) => {
+router.post("/delete_bio_faculty/:id", async(req, res) => {
     const delete_user = await Bio_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -9096,7 +10315,7 @@ router.post("/delete_bio_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/bio_faculty", async (req, res) => {
+router.get("/bio_faculty", async(req, res) => {
     try {
         const files = await Bio_Faculty.find({});
         res.json(files);
@@ -9107,7 +10326,7 @@ router.get("/bio_faculty", async (req, res) => {
 router.post(
     "/bio_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9137,7 +10356,7 @@ router.post(
 router.post(
     "/bio_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -9157,7 +10376,7 @@ router.post(
     }
 );
 
-router.get("/bio_faculty_download/:id", async (req, res) => {
+router.get("/bio_faculty_download/:id", async(req, res) => {
     try {
         const file = await Bio_Faculty.findById(req.params.id);
         res.set({
@@ -9170,7 +10389,7 @@ router.get("/bio_faculty_download/:id", async (req, res) => {
 });
 
 // Hindi Faculty
-router.post("/delete_hin_faculty/:id", async (req, res) => {
+router.post("/delete_hin_faculty/:id", async(req, res) => {
     const delete_user = await Hin_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -9191,7 +10410,7 @@ router.post("/delete_hin_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/hin_faculty", async (req, res) => {
+router.get("/hin_faculty", async(req, res) => {
     try {
         const files = await Hin_Faculty.find({});
         res.json(files);
@@ -9202,7 +10421,7 @@ router.get("/hin_faculty", async (req, res) => {
 router.post(
     "/hin_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9232,7 +10451,7 @@ router.post(
 router.post(
     "/hin_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -9252,7 +10471,7 @@ router.post(
     }
 );
 
-router.get("/hin_faculty_download/:id", async (req, res) => {
+router.get("/hin_faculty_download/:id", async(req, res) => {
     try {
         const file = await Hin_Faculty.findById(req.params.id);
         res.set({
@@ -9264,7 +10483,7 @@ router.get("/hin_faculty_download/:id", async (req, res) => {
     }
 });
 // English Faculty
-router.post("/delete_eng_faculty/:id", async (req, res) => {
+router.post("/delete_eng_faculty/:id", async(req, res) => {
     const delete_user = await Eng_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -9285,7 +10504,7 @@ router.post("/delete_eng_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/eng_faculty", async (req, res) => {
+router.get("/eng_faculty", async(req, res) => {
     try {
         const files = await Eng_Faculty.find({});
         res.json(files);
@@ -9296,7 +10515,7 @@ router.get("/eng_faculty", async (req, res) => {
 router.post(
     "/eng_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9326,7 +10545,7 @@ router.post(
 router.post(
     "/eng_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -9346,7 +10565,7 @@ router.post(
     }
 );
 
-router.get("/eng_faculty_download/:id", async (req, res) => {
+router.get("/eng_faculty_download/:id", async(req, res) => {
     try {
         const file = await Eng_Faculty.findById(req.params.id);
         res.set({
@@ -9358,7 +10577,7 @@ router.get("/eng_faculty_download/:id", async (req, res) => {
     }
 });
 //Philosophy
-router.post("/delete_philo_faculty/:id", async (req, res) => {
+router.post("/delete_philo_faculty/:id", async(req, res) => {
     const delete_user = await philo_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -9379,7 +10598,7 @@ router.post("/delete_philo_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/philo_faculty", async (req, res) => {
+router.get("/philo_faculty", async(req, res) => {
     try {
         const files = await philo_Faculty.find({});
         res.json(files);
@@ -9390,7 +10609,7 @@ router.get("/philo_faculty", async (req, res) => {
 router.post(
     "/philo_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9420,7 +10639,7 @@ router.post(
 router.post(
     "/philo_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -9440,7 +10659,7 @@ router.post(
     }
 );
 
-router.get("/philo_faculty_download/:id", async (req, res) => {
+router.get("/philo_faculty_download/:id", async(req, res) => {
     try {
         const file = await philo_Faculty.findById(req.params.id);
         res.set({
@@ -9453,7 +10672,7 @@ router.get("/philo_faculty_download/:id", async (req, res) => {
 });
 
 //NHE FACULTY
-router.post("/delete_NHE_faculty/:id", async (req, res) => {
+router.post("/delete_NHE_faculty/:id", async(req, res) => {
     const delete_user = await NHE_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -9474,7 +10693,7 @@ router.post("/delete_NHE_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/NHE_faculty", async (req, res) => {
+router.get("/NHE_faculty", async(req, res) => {
     try {
         const files = await NHE_Faculty.find({});
         res.json(files);
@@ -9485,7 +10704,7 @@ router.get("/NHE_faculty", async (req, res) => {
 router.post(
     "/NHE_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9515,7 +10734,7 @@ router.post(
 router.post(
     "/NHE_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -9535,7 +10754,7 @@ router.post(
     }
 );
 
-router.get("/NHE_faculty_download/:id", async (req, res) => {
+router.get("/NHE_faculty_download/:id", async(req, res) => {
     try {
         const file = await NHE_Faculty.findById(req.params.id);
         res.set({
@@ -9549,7 +10768,7 @@ router.get("/NHE_faculty_download/:id", async (req, res) => {
 
 //Music
 
-router.post("/delete_Music_faculty/:id", async (req, res) => {
+router.post("/delete_Music_faculty/:id", async(req, res) => {
     const delete_user = await Music_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -9570,7 +10789,7 @@ router.post("/delete_Music_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/Music_faculty", async (req, res) => {
+router.get("/Music_faculty", async(req, res) => {
     try {
         const files = await Music_Faculty.find({});
         res.json(files);
@@ -9581,7 +10800,7 @@ router.get("/Music_faculty", async (req, res) => {
 router.post(
     "/Music_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9611,7 +10830,7 @@ router.post(
 router.post(
     "/Music_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -9631,7 +10850,7 @@ router.post(
     }
 );
 
-router.get("/Music_faculty_download/:id", async (req, res) => {
+router.get("/Music_faculty_download/:id", async(req, res) => {
     try {
         const file = await Music_Faculty.findById(req.params.id);
         res.set({
@@ -9643,7 +10862,7 @@ router.get("/Music_faculty_download/:id", async (req, res) => {
     }
 });
 // Economics Faculty
-router.post("/delete_eco_faculty/:id", async (req, res) => {
+router.post("/delete_eco_faculty/:id", async(req, res) => {
     const delete_user = await Eco_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -9664,7 +10883,7 @@ router.post("/delete_eco_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/eco_faculty", async (req, res) => {
+router.get("/eco_faculty", async(req, res) => {
     try {
         const files = await Eco_Faculty.find({});
         res.json(files);
@@ -9675,7 +10894,7 @@ router.get("/eco_faculty", async (req, res) => {
 router.post(
     "/eco_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9705,7 +10924,7 @@ router.post(
 router.post(
     "/eco_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -9725,7 +10944,7 @@ router.post(
     }
 );
 
-router.get("/eco_faculty_download/:id", async (req, res) => {
+router.get("/eco_faculty_download/:id", async(req, res) => {
     try {
         const file = await Eco_Faculty.findById(req.params.id);
         res.set({
@@ -9737,7 +10956,7 @@ router.get("/eco_faculty_download/:id", async (req, res) => {
     }
 });
 // Chemistry Faculty
-router.post("/delete_chem_faculty/:id", async (req, res) => {
+router.post("/delete_chem_faculty/:id", async(req, res) => {
     const delete_user = await Chem_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -9758,7 +10977,7 @@ router.post("/delete_chem_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/chem_faculty", async (req, res) => {
+router.get("/chem_faculty", async(req, res) => {
     try {
         const files = await Chem_Faculty.find({});
         res.json(files);
@@ -9769,7 +10988,7 @@ router.get("/chem_faculty", async (req, res) => {
 router.post(
     "/chem_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9799,7 +11018,7 @@ router.post(
 router.post(
     "/chem_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -9819,7 +11038,7 @@ router.post(
     }
 );
 
-router.get("/chem_faculty_download/:id", async (req, res) => {
+router.get("/chem_faculty_download/:id", async(req, res) => {
     try {
         const file = await Chem_Faculty.findById(req.params.id);
         res.set({
@@ -9831,7 +11050,7 @@ router.get("/chem_faculty_download/:id", async (req, res) => {
     }
 });
 // Botany Faculty
-router.post("/delete_bot_faculty/:id", async (req, res) => {
+router.post("/delete_bot_faculty/:id", async(req, res) => {
     const delete_user = await Bot_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -9852,7 +11071,7 @@ router.post("/delete_bot_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/bot_faculty", async (req, res) => {
+router.get("/bot_faculty", async(req, res) => {
     try {
         const files = await Bot_Faculty.find({});
         res.json(files);
@@ -9863,7 +11082,7 @@ router.get("/bot_faculty", async (req, res) => {
 router.post(
     "/bot_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -9893,7 +11112,7 @@ router.post(
 router.post(
     "/bot_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -9913,7 +11132,7 @@ router.post(
     }
 );
 
-router.get("/bot_faculty_download/:id", async (req, res) => {
+router.get("/bot_faculty_download/:id", async(req, res) => {
     try {
         const file = await Bot_Faculty.findById(req.params.id);
         res.set({
@@ -9926,7 +11145,7 @@ router.get("/bot_faculty_download/:id", async (req, res) => {
 });
 
 // Botany Lab Staff
-router.post("/delete_bot_Lab_faculty/:id", async (req, res) => {
+router.post("/delete_bot_Lab_faculty/:id", async(req, res) => {
     const delete_user = await Bot_Lab_Staff.findOne({ _id: req.params.id });
     const img = delete_user.img_data.file_path;
     // console.log()
@@ -9939,7 +11158,7 @@ router.post("/delete_bot_Lab_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/bot_Lab_faculty", async (req, res) => {
+router.get("/bot_Lab_faculty", async(req, res) => {
     try {
         const files = await Bot_Lab_Staff.find({});
         res.json(files);
@@ -9951,7 +11170,7 @@ router.get("/bot_Lab_faculty", async (req, res) => {
 router.post(
     "/bot_Lab_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
 
             const { title, description, DOJ } = req.body;
@@ -9972,7 +11191,7 @@ router.post(
     }
 );
 
-router.get("/bot_Lab_faculty_download/:id", async (req, res) => {
+router.get("/bot_Lab_faculty_download/:id", async(req, res) => {
     try {
         const file = await Bot_Faculty.findById(req.params.id);
         res.set({
@@ -9985,7 +11204,7 @@ router.get("/bot_Lab_faculty_download/:id", async (req, res) => {
 });
 
 //History Faculty
-router.post("/delete_Hist_faculty/:id", async (req, res) => {
+router.post("/delete_Hist_faculty/:id", async(req, res) => {
     const delete_user = await Hist_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -10006,7 +11225,7 @@ router.post("/delete_Hist_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/Hist_faculty", async (req, res) => {
+router.get("/Hist_faculty", async(req, res) => {
     try {
         const files = await Hist_Faculty.find({});
         res.json(files);
@@ -10017,7 +11236,7 @@ router.get("/Hist_faculty", async (req, res) => {
 router.post(
     "/Hist_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -10047,7 +11266,7 @@ router.post(
 router.post(
     "/Hist_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -10067,7 +11286,7 @@ router.post(
     }
 );
 
-router.get("/Hist_faculty_download/:id", async (req, res) => {
+router.get("/Hist_faculty_download/:id", async(req, res) => {
     try {
         const file = await Hist_Faculty.findById(req.params.id);
         res.set({
@@ -10079,7 +11298,7 @@ router.get("/Hist_faculty_download/:id", async (req, res) => {
     }
 });
 //Mathematics faculty
-router.post("/delete_Math_faculty/:id", async (req, res) => {
+router.post("/delete_Math_faculty/:id", async(req, res) => {
     const delete_user = await Math_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -10100,7 +11319,7 @@ router.post("/delete_Math_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/Math_faculty", async (req, res) => {
+router.get("/Math_faculty", async(req, res) => {
     try {
         const files = await Math_Faculty.find({});
         res.json(files);
@@ -10111,7 +11330,7 @@ router.get("/Math_faculty", async (req, res) => {
 router.post(
     "/Math_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -10141,7 +11360,7 @@ router.post(
 router.post(
     "/Math_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -10161,7 +11380,7 @@ router.post(
     }
 );
 
-router.get("/Math_faculty_download/:id", async (req, res) => {
+router.get("/Math_faculty_download/:id", async(req, res) => {
     try {
         const file = await Math_Faculty.findById(req.params.id);
         res.set({
@@ -10174,7 +11393,7 @@ router.get("/Math_faculty_download/:id", async (req, res) => {
 });
 
 // Physics Faculty
-router.post("/delete_Physics_fac/:id", async (req, res) => {
+router.post("/delete_Physics_fac/:id", async(req, res) => {
     const delete_user = await Physics_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -10195,7 +11414,7 @@ router.post("/delete_Physics_fac/:id", async (req, res) => {
     }
 });
 
-router.get("/Physics_faculty", async (req, res) => {
+router.get("/Physics_faculty", async(req, res) => {
     try {
         const files = await Physics_Faculty.find({});
         res.json(files);
@@ -10206,7 +11425,7 @@ router.get("/Physics_faculty", async (req, res) => {
 router.post(
     "/Physics_fac_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -10236,7 +11455,7 @@ router.post(
 router.post(
     "/Physics_fac_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -10256,7 +11475,7 @@ router.post(
     }
 );
 
-router.get("/Physics_fac_download/:id", async (req, res) => {
+router.get("/Physics_fac_download/:id", async(req, res) => {
     try {
         const file = await Physics_Faculty.findById(req.params.id);
         res.set({
@@ -10268,7 +11487,7 @@ router.get("/Physics_fac_download/:id", async (req, res) => {
     }
 });
 // Political Science Faculty
-router.post("/delete_Political_Science_faculty/:id", async (req, res) => {
+router.post("/delete_Political_Science_faculty/:id", async(req, res) => {
     const delete_user = await Political_Science_Faculty.findOne({
         _id: req.params.id,
     });
@@ -10291,7 +11510,7 @@ router.post("/delete_Political_Science_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/Political_Science_faculty", async (req, res) => {
+router.get("/Political_Science_faculty", async(req, res) => {
     try {
         const files = await Political_Science_Faculty.find({});
         res.json(files);
@@ -10302,7 +11521,7 @@ router.get("/Political_Science_faculty", async (req, res) => {
 router.post(
     "/Political_Science_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -10332,7 +11551,7 @@ router.post(
 router.post(
     "/Political_Science_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -10352,7 +11571,7 @@ router.post(
     }
 );
 
-router.get("/Political_Science_Faculty_download/:id", async (req, res) => {
+router.get("/Political_Science_Faculty_download/:id", async(req, res) => {
     try {
         const file = await Political_Science_Faculty.findById(req.params.id);
         res.set({
@@ -10364,7 +11583,7 @@ router.get("/Political_Science_Faculty_download/:id", async (req, res) => {
     }
 });
 // Psychology Faculty
-router.post("/delete_Psychology_faculty/:id", async (req, res) => {
+router.post("/delete_Psychology_faculty/:id", async(req, res) => {
     const delete_user = await Psychology_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -10385,7 +11604,7 @@ router.post("/delete_Psychology_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/Psychology_faculty", async (req, res) => {
+router.get("/Psychology_faculty", async(req, res) => {
     try {
         const files = await Psychology_Faculty.find({});
         res.json(files);
@@ -10396,7 +11615,7 @@ router.get("/Psychology_faculty", async (req, res) => {
 router.post(
     "/Psychology_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -10426,7 +11645,7 @@ router.post(
 router.post(
     "/Psychology_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -10446,7 +11665,7 @@ router.post(
     }
 );
 
-router.get("/Psychology_Faculty_download/:id", async (req, res) => {
+router.get("/Psychology_Faculty_download/:id", async(req, res) => {
     try {
         const file = await Psychology_Faculty.findById(req.params.id);
         res.set({
@@ -10458,7 +11677,7 @@ router.get("/Psychology_Faculty_download/:id", async (req, res) => {
     }
 });
 // Zoology Facultylty
-router.post("/delete_Zoology_faculty/:id", async (req, res) => {
+router.post("/delete_Zoology_faculty/:id", async(req, res) => {
     const delete_user = await Zoology_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -10479,7 +11698,7 @@ router.post("/delete_Zoology_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/Zoology_faculty", async (req, res) => {
+router.get("/Zoology_faculty", async(req, res) => {
     try {
         const files = await Zoology_Faculty.find({});
         res.json(files);
@@ -10490,7 +11709,7 @@ router.get("/Zoology_faculty", async (req, res) => {
 router.post(
     "/Zoology_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -10520,7 +11739,7 @@ router.post(
 router.post(
     "/Zoology_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -10540,7 +11759,7 @@ router.post(
     }
 );
 
-router.get("/Zoology_Faculty_download/:id", async (req, res) => {
+router.get("/Zoology_Faculty_download/:id", async(req, res) => {
     try {
         const file = await Zoology_Faculty.findById(req.params.id);
         res.set({
@@ -10640,7 +11859,7 @@ router.get("/Zoology_Faculty_download/:id", async (req, res) => {
 // });
 
 // Commerce Faculty
-router.post("/delete_com_faculty/:id", async (req, res) => {
+router.post("/delete_com_faculty/:id", async(req, res) => {
     const delete_user = await Com_Faculty.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -10661,7 +11880,7 @@ router.post("/delete_com_faculty/:id", async (req, res) => {
     }
 });
 
-router.get("/com_faculty", async (req, res) => {
+router.get("/com_faculty", async(req, res) => {
     try {
         const files = await Com_Faculty.find({});
         res.json(files);
@@ -10672,7 +11891,7 @@ router.get("/com_faculty", async (req, res) => {
 router.post(
     "/com_faculty_cv_upload/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             console.log(path, mimetype);
@@ -10702,7 +11921,7 @@ router.post(
 router.post(
     "/com_faculty_file_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description, filter } = req.body;
             const { path, mimetype } = req.file;
@@ -10722,7 +11941,7 @@ router.post(
     }
 );
 
-router.get("/com_faculty_download/:id", async (req, res) => {
+router.get("/com_faculty_download/:id", async(req, res) => {
     try {
         const file = await Com_Faculty.findById(req.params.id);
         res.set({
@@ -10734,7 +11953,7 @@ router.get("/com_faculty_download/:id", async (req, res) => {
     }
 });
 // Publications
-router.delete("/delete_Publications_res/:id", async (req, res) => {
+router.delete("/delete_Publications_res/:id", async(req, res) => {
     const delete_user = await Publications.findOneAndDelete({
         _id: req.params.id,
     });
@@ -10742,7 +11961,7 @@ router.delete("/delete_Publications_res/:id", async (req, res) => {
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/Publications_res", async (req, res) => {
+router.get("/Publications_res", async(req, res) => {
     try {
         const files = await Publications.find({});
         const sortedByCreationDate = files.sort(
@@ -10757,7 +11976,7 @@ router.get("/Publications_res", async (req, res) => {
 router.post(
     "/Publications_res_upload",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, description } = req.body;
             const { path, mimetype } = req.file;
@@ -10780,7 +11999,7 @@ router.post(
     }
 );
 
-router.get("/Publications_res_download/:id", async (req, res) => {
+router.get("/Publications_res_download/:id", async(req, res) => {
     try {
         const file = await File.findById(req.params.id);
         res.set({
@@ -10795,11 +12014,11 @@ router.get("/Publications_res_download/:id", async (req, res) => {
 
 // Library
 
-router.get("/Library_details", async (req, res) => {
+router.get("/Library_details", async(req, res) => {
     const details = await Library.find();
     res.status(200).json(details);
 });
-router.delete("/delete_Library/:id", async (req, res) => {
+router.delete("/delete_Library/:id", async(req, res) => {
     const delete_user = await Library.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
@@ -10808,7 +12027,7 @@ router.delete("/delete_Library/:id", async (req, res) => {
 router.post(
     "/Library_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
@@ -10832,7 +12051,7 @@ router.post(
 );
 
 // Biochemistry Events
-router.post("/delete_Bio_Evetns/:id", async (req, res) => {
+router.post("/delete_Bio_Evetns/:id", async(req, res) => {
     const delete_user = await Bio_Evetns.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -10853,7 +12072,7 @@ router.post("/delete_Bio_Evetns/:id", async (req, res) => {
     }
 });
 
-router.get("/Bio_Evetns", async (req, res) => {
+router.get("/Bio_Evetns", async(req, res) => {
     try {
         const files = await Bio_Evetns.find({});
         const sortedByCreationDate = files.sort(
@@ -10869,7 +12088,7 @@ router.get("/Bio_Evetns", async (req, res) => {
 router.post(
     "/Bio_Evetns_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -10900,7 +12119,7 @@ router.post(
 router.post(
     "/Bio_Evetns_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -10921,7 +12140,7 @@ router.post(
 );
 
 // Botany Events
-router.post("/delete_Botany_Events/:id", async (req, res) => {
+router.post("/delete_Botany_Events/:id", async(req, res) => {
     const delete_user = await Botany_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -10942,7 +12161,7 @@ router.post("/delete_Botany_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Botany_Events", async (req, res) => {
+router.get("/Botany_Events", async(req, res) => {
     try {
         const files = await Botany_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -10958,7 +12177,7 @@ router.get("/Botany_Events", async (req, res) => {
 router.post(
     "/Botany_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -10989,7 +12208,7 @@ router.post(
 router.post(
     "/Botany_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11009,7 +12228,7 @@ router.post(
     }
 );
 // Music Events
-router.post("/delete_Music_Events/:id", async (req, res) => {
+router.post("/delete_Music_Events/:id", async(req, res) => {
     const delete_user = await Music_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11030,7 +12249,7 @@ router.post("/delete_Music_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Music_Events", async (req, res) => {
+router.get("/Music_Events", async(req, res) => {
     try {
         const files = await Music_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11046,7 +12265,7 @@ router.get("/Music_Events", async (req, res) => {
 router.post(
     "/Music_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -11077,7 +12296,7 @@ router.post(
 router.post(
     "/Music_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11098,7 +12317,7 @@ router.post(
 );
 
 // NHE Events
-router.post("/delete_NHE_Events/:id", async (req, res) => {
+router.post("/delete_NHE_Events/:id", async(req, res) => {
     const delete_user = await NHE_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11119,7 +12338,7 @@ router.post("/delete_NHE_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/NHE_Events", async (req, res) => {
+router.get("/NHE_Events", async(req, res) => {
     try {
         const files = await NHE_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11135,7 +12354,7 @@ router.get("/NHE_Events", async (req, res) => {
 router.post(
     "/NHE_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -11166,7 +12385,7 @@ router.post(
 router.post(
     "/NHE_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11187,7 +12406,7 @@ router.post(
 );
 
 // Philo Events
-router.post("/delete_Philo_Events/:id", async (req, res) => {
+router.post("/delete_Philo_Events/:id", async(req, res) => {
     const delete_user = await Philo_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11208,7 +12427,7 @@ router.post("/delete_Philo_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Philo_Events", async (req, res) => {
+router.get("/Philo_Events", async(req, res) => {
     try {
         const files = await Philo_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11224,7 +12443,7 @@ router.get("/Philo_Events", async (req, res) => {
 router.post(
     "/Philo_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -11255,7 +12474,7 @@ router.post(
 router.post(
     "/Philo_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11276,7 +12495,7 @@ router.post(
 );
 
 // PE Events
-router.post("/delete_PE_Events/:id", async (req, res) => {
+router.post("/delete_PE_Events/:id", async(req, res) => {
     const delete_user = await PE_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11297,7 +12516,7 @@ router.post("/delete_PE_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/PE_Events", async (req, res) => {
+router.get("/PE_Events", async(req, res) => {
     try {
         const files = await PE_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11313,7 +12532,7 @@ router.get("/PE_Events", async (req, res) => {
 router.post(
     "/PE_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -11344,7 +12563,7 @@ router.post(
 router.post(
     "/PE_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11365,7 +12584,7 @@ router.post(
 );
 
 // Psychology Events
-router.post("/delete_Psychology_Events/:id", async (req, res) => {
+router.post("/delete_Psychology_Events/:id", async(req, res) => {
     const delete_user = await Psychology_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11386,7 +12605,7 @@ router.post("/delete_Psychology_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Psychology_Events", async (req, res) => {
+router.get("/Psychology_Events", async(req, res) => {
     try {
         const files = await Psychology_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11402,7 +12621,7 @@ router.get("/Psychology_Events", async (req, res) => {
 router.post(
     "/Psychology_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetyPsychology } = req.file;
             // console.log(path, mimetyPsychology)
@@ -11433,7 +12652,7 @@ router.post(
 router.post(
     "/Psychology_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetyPsychology } = req.file;
@@ -11455,7 +12674,7 @@ router.post(
 
 
 // Math Events
-router.post("/delete_Math_Events/:id", async (req, res) => {
+router.post("/delete_Math_Events/:id", async(req, res) => {
     const delete_user = await Math_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11476,7 +12695,7 @@ router.post("/delete_Math_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Math_Events", async (req, res) => {
+router.get("/Math_Events", async(req, res) => {
     try {
         const files = await Math_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11492,7 +12711,7 @@ router.get("/Math_Events", async (req, res) => {
 router.post(
     "/Math_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -11523,7 +12742,7 @@ router.post(
 router.post(
     "/Math_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11545,7 +12764,7 @@ router.post(
 
 
 // Eco Events
-router.post("/delete_Eco_Events/:id", async (req, res) => {
+router.post("/delete_Eco_Events/:id", async(req, res) => {
     const delete_user = await Eco_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11566,7 +12785,7 @@ router.post("/delete_Eco_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Eco_Events", async (req, res) => {
+router.get("/Eco_Events", async(req, res) => {
     try {
         const files = await Eco_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11582,7 +12801,7 @@ router.get("/Eco_Events", async (req, res) => {
 router.post(
     "/Eco_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -11613,7 +12832,7 @@ router.post(
 router.post(
     "/Eco_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11634,7 +12853,7 @@ router.post(
 );
 
 // Phy Events
-router.post("/delete_Phy_Events/:id", async (req, res) => {
+router.post("/delete_Phy_Events/:id", async(req, res) => {
     const delete_user = await Phy_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11655,7 +12874,7 @@ router.post("/delete_Phy_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Phy_Events", async (req, res) => {
+router.get("/Phy_Events", async(req, res) => {
     try {
         const files = await Phy_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11671,7 +12890,7 @@ router.get("/Phy_Events", async (req, res) => {
 router.post(
     "/Phy_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetyPhy } = req.file;
             // console.log(path, mimetyPhy)
@@ -11702,7 +12921,7 @@ router.post(
 router.post(
     "/Phy_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetyPhy } = req.file;
@@ -11724,7 +12943,7 @@ router.post(
 
 
 // Hin Events
-router.post("/delete_Hin_Events/:id", async (req, res) => {
+router.post("/delete_Hin_Events/:id", async(req, res) => {
     const delete_user = await Hin_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11745,7 +12964,7 @@ router.post("/delete_Hin_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Hin_Events", async (req, res) => {
+router.get("/Hin_Events", async(req, res) => {
     try {
         const files = await Hin_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11761,7 +12980,7 @@ router.get("/Hin_Events", async (req, res) => {
 router.post(
     "/Hin_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -11792,7 +13011,7 @@ router.post(
 router.post(
     "/Hin_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11813,7 +13032,7 @@ router.post(
 );
 
 // His Events
-router.post("/delete_His_Events/:id", async (req, res) => {
+router.post("/delete_His_Events/:id", async(req, res) => {
     const delete_user = await His_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11834,7 +13053,7 @@ router.post("/delete_His_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/His_Events", async (req, res) => {
+router.get("/His_Events", async(req, res) => {
     try {
         const files = await His_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11850,7 +13069,7 @@ router.get("/His_Events", async (req, res) => {
 router.post(
     "/His_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -11881,7 +13100,7 @@ router.post(
 router.post(
     "/His_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11903,7 +13122,7 @@ router.post(
 
 
 // Com Events
-router.post("/delete_Com_Events/:id", async (req, res) => {
+router.post("/delete_Com_Events/:id", async(req, res) => {
     const delete_user = await Com_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -11924,7 +13143,7 @@ router.post("/delete_Com_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Com_Events", async (req, res) => {
+router.get("/Com_Events", async(req, res) => {
     try {
         const files = await Com_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -11940,7 +13159,7 @@ router.get("/Com_Events", async (req, res) => {
 router.post(
     "/Com_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -11971,7 +13190,7 @@ router.post(
 router.post(
     "/Com_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -11992,7 +13211,7 @@ router.post(
 );
 
 // Eng Events
-router.post("/delete_Eng_Events/:id", async (req, res) => {
+router.post("/delete_Eng_Events/:id", async(req, res) => {
     const delete_user = await Eng_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -12013,7 +13232,7 @@ router.post("/delete_Eng_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Eng_Events", async (req, res) => {
+router.get("/Eng_Events", async(req, res) => {
     try {
         const files = await Eng_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -12029,7 +13248,7 @@ router.get("/Eng_Events", async (req, res) => {
 router.post(
     "/Eng_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -12060,7 +13279,7 @@ router.post(
 router.post(
     "/Eng_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -12082,7 +13301,7 @@ router.post(
 
 
 // Com Events
-router.post("/delete_Com_Events/:id", async (req, res) => {
+router.post("/delete_Com_Events/:id", async(req, res) => {
     const delete_user = await Com_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -12103,7 +13322,7 @@ router.post("/delete_Com_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Com_Events", async (req, res) => {
+router.get("/Com_Events", async(req, res) => {
     try {
         const files = await Com_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -12119,7 +13338,7 @@ router.get("/Com_Events", async (req, res) => {
 router.post(
     "/Com_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -12150,7 +13369,7 @@ router.post(
 router.post(
     "/Com_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -12172,7 +13391,7 @@ router.post(
 
 
 // Chem Events
-router.post("/delete_Chem_Events/:id", async (req, res) => {
+router.post("/delete_Chem_Events/:id", async(req, res) => {
     const delete_user = await Chem_Events.findOne({ _id: req.params.id });
     const pdf = delete_user.img_data.pdf_path;
     const img = delete_user.img_data.file_path;
@@ -12193,7 +13412,7 @@ router.post("/delete_Chem_Events/:id", async (req, res) => {
     }
 });
 
-router.get("/Chem_Events", async (req, res) => {
+router.get("/Chem_Events", async(req, res) => {
     try {
         const files = await Chem_Events.find({});
         const sortedByCreationDate = files.sort(
@@ -12209,7 +13428,7 @@ router.get("/Chem_Events", async (req, res) => {
 router.post(
     "/Chem_Events_file_add/:id",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { path, mimetype } = req.file;
             // console.log(path, mimetype)
@@ -12240,7 +13459,7 @@ router.post(
 router.post(
     "/Chem_Events_add",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title } = req.body;
             const { path, mimetype } = req.file;
@@ -12265,13 +13484,13 @@ router.post(
 
 
 // Societies
-router.delete("/delete_Socities/:id", async (req, res) => {
+router.delete("/delete_Socities/:id", async(req, res) => {
     const delete_user = await Soc.findOneAndDelete({ _id: req.params.id });
     await unlinkAsync(delete_user.file_path);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/Socitie", async (req, res) => {
+router.get("/Socitie", async(req, res) => {
     try {
         const files = await Soc.find({});
         const sortedByCreationDate = files.sort(
@@ -12286,7 +13505,7 @@ router.get("/Socitie", async (req, res) => {
 router.post(
     "/Soc",
     upload.single("file"),
-    async (req, res) => {
+    async(req, res) => {
         try {
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
