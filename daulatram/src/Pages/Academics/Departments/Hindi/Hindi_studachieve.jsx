@@ -1,17 +1,209 @@
-import React, {useState} from "react";
-import Hindibanner from "../Hindi/Hindibanner.jsx";
-import Hindi from "../../../../Components/DepartSIde/Hindi.jsx";
+import React, { useContext, useEffect, useState, useRef } from "react";
+import DepartBanner from "./Hindibanner";
+import Sidebar from "../../../../Components/DepartSIde/Hindi";
+import axios from "axios";
+import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-function Hindi_studachieve() {
+import Common_dat from "../Common_dat";
+
+function Studentsachieve() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Hin_Student_Achievement");
+    setData1(await response.json());
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const handleSubmit_img = async (id, file) => {
+    try {
+      if (file) {
+        setErrMsg("");
+        await axios.post(
+          `/Hin_Student_Achievement_img_upload/${id}`,
+          { file: file },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(`/delete_Hin_Student_Achievement_para/${id}`, {
+        method: "POST",
+        body: JSON.stringify(arr),
+        headers: { "Content-Type": "application/json" },
+      });
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(`/delete_Hin_Student_Achievement/${id}`, {
+      method: "POST",
+    });
+    await response.json();
+    if (response.status === 200) {
+      setErrMsg("");
+      fetchdata();
+    } else if (response.status === 400) {
+      setErrMsg("First Delete all the images related to this section");
+    }
+  };
+
+  const delete_file = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_pdf_link_Hin_Student_Achievement_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+  const dele = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_img_Hin_Student_Achievement_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+
+  const handleSubmit_data = async (id, para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Hin_Student_Achievement_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit_link = async (id, link) => {
+    try {
+      console.log(link);
+      await axios.post(`/Hin_Student_Achievement_add_link/${id}`, {
+        link: link,
+      });
+      setCaption("");
+      setAuth(true);
+      fetchdata();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    console.log(id);
+    try {
+      console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Hin_Student_Achievement_file_upload/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        setErrMsg("");
+        await axios.post(`/Hin_Student_Achievement_upload`, {
+          title: link,
+          description: caption,
+        });
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
     <div className=" flex flex-col">
       <div className="">
-        <Hindibanner />
+        <DepartBanner />
       </div>
+
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -21,7 +213,7 @@ function Hindi_studachieve() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Hindi />
+                <Sidebar />
               </div>
             </>
           ) : (
@@ -35,377 +227,97 @@ function Hindi_studachieve() {
             </div>
           )}
         </div>
-        <div className="  md:flex hidden md:flex-col mt-12 ml-2">
-          <Hindi />
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
+          <Sidebar />
         </div>
         <div className="w-full mr-16">
-          <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-20 items-center ">
-            Students' Achievements
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            Student's Achievements
           </h2>
-          <div className="pr-3 pl-3 flex mr-1 ml-1">
-            <span className="md:text-xl text-lg underline text-justify font-bold mb-2 mt-3">
-              Academic
-            </span>
+          <div className="text-justify p-3 m-2 ml-4">
+            {data1 &&
+              data1.map((curElem) => {
+                const { _id, title, description, img_data } = curElem;
+                return (
+                  <>
+                    <Common_dat
+                      key={_id}
+                      id={_id}
+                      tittle={title}
+                      para={description}
+                      pic={img_data}
+                      delete={del}
+                      delete_img={dele}
+                      delete_file={delete_file}
+                      delete_para={del_para}
+                      add_para={handleSubmit_data}
+                      file_upload={handleSubmit_file}
+                      Link_upload={handleSubmit_link}
+                      submit_img={handleSubmit_img}
+                    />
+                  </>
+                );
+              })}
           </div>
-          <div className="ml-4 ">
-            <ol className="md:text-base text-sm list-decimal mt-2 mb-2 ml-8">
-              <li>
-                <b>Brij Narayan Singh Memorial Prize ( 2019-20)</b> for securing
-                highest marks in paper of Hindi 2nd Year HINDI SAHITYA KA ITIHAS
-                instituted by Dr. (Mrs) M.L. Singh : <b>RITIKA BAJAJ</b>
-              </li>
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p>Add New Data</p>
+                </h2>
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Link"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setLink(e.target.value)}
+                    value={link}
+                    placeholder="Title"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Caption"
+                  ></textarea>
+                </div>
+                <div class="md:flex flex-col md:items-center">
+                  {/* <div class="md:w-1/3"></div> */}
 
-              <li>
-                <b>Smt. Ratna Devi Madan Memorial Prize ( 2019-20)</b> for
-                securing highest marks in Hindi (Hons) 3rd Year instituted by
-                Mrs. P.L. Madan : <b>MURSHIDA</b>
-              </li>
-
-              <li>
-                {" "}
-                <b>ANU AGRAHARI </b>- हिंदी विशेष तृतीय वर्ष को{" "}
-                <b>( 2019-20) में ‘बेस्ट आर्टिकल ऑफ़ कॉलेज मैगज़ीन’</b> का द्वितीय
-                पुरस्कार मिला |
-              </li>
-              <li>
-                <b>KHUSHBOO</b> - हिंदी विशेष प्रथम वर्ष में ( 2019-20) में
-                सर्वाधिक अंक हेतु पुरस्कार |
-              </li>
-              <li>
-                <b>RITIKA BAJAJ </b>-हिंदी विशेष द्वितीय वर्ष में ( 2019-20) में
-                सर्वाधिक अंक हेतु पुरस्कार |
-              </li>
-              <li>
-                <b>MURSHIDA</b> - हिंदी विशेष तृतीय वर्ष में ( 2019-20) में
-                सर्वाधिक अंक हेतु पुरस्कार |
-              </li>
-              <li>
-                <b>Brij Narayan Singh Memorial Prize ( 2018-19)</b> for securing
-                highest marks in paper of Hindi 2nd Year HINDI SAHITYA KA ITIHAS
-                instituted by Dr. (Mrs) M.L. Singh : <b>MURSHIDA</b>
-              </li>
-              <li>
-                <b>Smt. Ratna Devi Madan Memorial Prize ( 2018-19)</b> for
-                securing highest marks in Hindi (Hons) 3rd Year instituted by
-                Mrs. P.L. Madan : <b>POOJA BHATT</b>{" "}
-              </li>
-              <li>
-                <b>AARYA</b> -हिंदी विशेष तृतीय वर्ष को{" "}
-                <b>( 2018-19) में ‘बेस्ट आर्टिकल ऑफ़ कॉलेज मैगज़ीन’</b> का द्वितीय
-                पुरस्कार मिला |
-              </li>
-              <li>
-                <b>POOJA</b> - हिंदी विशेष प्रथम वर्ष में <b>( 2018-19) </b> में
-                सर्वाधिक अंक हेतु पुरस्कार |
-              </li>
-              <li>
-                MURSHIDA -हिंदी विशेष द्वितीय वर्ष में <b>( 2018-19)</b> में
-                सर्वाधिक अंक हेतु पुरस्कार |
-              </li>
-              <li></li>
-              <li>
-                MURSHIDA -हिंदी विशेष द्वितीय वर्ष में <b>( 2018-19)</b> में
-                सर्वाधिक अंक हेतु पुरस्कार |
-              </li>
-            </ol>
-          </div>
-          <div>
-            <h2 className="md:text-xl text-lg ml-4 font-bold underline mb-2 mt-3">
-              Sports
-            </h2>
-          </div>
-          <ol className="md:text-base text-sm list-decimal mt-1 ml-8 mb-2">
-            <li>
-              <b>डिम्पल</b> - प्रथम वर्ष, हिंदी विशेष ने 6-8 जनवरी 2020 को
-              दौलतराम महाविद्यालय द्वारा आयोजित ‘ भारती कप ‘ में हिस्सा लेकर
-              द्वितीय स्थान प्राप्त किया |
-            </li>
-            <li>
-              <b>अनीता</b>- लक्ष्मी हिंदी विशेष, द्वितीय वर्ष ने 24 फरवरी 2020
-              को महाविद्यालय में आयोजित वार्षिक खेलोत्सव में खो-खो में तृतीय
-              स्थान प्राप्त किया.
-            </li>
-            <li>
-              <b>इकरा</b> - हिंदी विशेष,द्वितीय वर्ष ने 24 फरवरी 2020 को
-              महाविद्यालय में आयोजित वार्षिक खेलोत्सव में कबड्डी में द्वितीय
-              स्थान प्राप्त किया.
-            </li>
-            <li>
-              <b>लतेश</b> , प्रथम वर्ष , हिंदी विशेष ने 27 सितंबर 2020 में
-              दौलतराम महाविद्यालय द्वारा आयोजित ‘फ्रेशर्स सस्पोर्ट्स मीट’ में{" "}
-              <b>‘खो-खो’ में भाग लेकर द्वितीय स्थान</b> प्राप्त किया |
-            </li>
-            <li>
-              <b>अंजलि मिश्रा</b> - ,प्रथम वर्ष हिंदी विशेष ने 27 अक्टूबर 2019
-              को दौलतराम महाविद्यालय में{" "}
-              <b>‘खो-खो प्रतियोगिता’ द्वितीय स्थान</b> प्राप्त किया |
-            </li>
-            <li>
-              <b>नेहा</b> - प्रथम वर्ष ,हिंदी विशेष ने 27 सितम्बर 2019 में
-              दौलतराम महाविद्यालय द्वारा आयोजित{" "}
-              <b>‘खेल प्रतियोगिता- कब्बड्डी’ में भाग लेकर द्वितीय स्थान</b>{" "}
-              प्राप्त किया |
-            </li>
-            <li>
-              <b>ज्योति</b>- हिंदी विशेष, प्रथम वर्ष ने 27 सितम्बर को आयोजित
-              ‘खेल प्रतियोगिता <b>खो-खो’ में भाग लेकर द्वितीय स्थान</b> प्राप्त
-              किया |
-            </li>
-            <li>
-              <b>बबिता तिवारी</b>- हिंदी विशेष , प्रथम वर्ष ने दौलतराम
-              महाविद्यालय द्वारा आयोजित{" "}
-              <b>‘‘खेल प्रतियोगिता- तेज दौड़’ में द्वितीय पुरुस्कार</b>
-              प्राप्त किया |
-            </li>
-          </ol>
-
-          <div>
-            <h2 className="text-xl ml-4 font-bold underline mb-2 mt-3">
-              Extra Circular
-            </h2>
-          </div>
-
-          <ol className="md:text-base text-sm list-decimal mt-1 ml-8 mb-2">
-            <li>
-              <b>मोहिनी</b> - हिंदी विशेष द्वितीय वर्ष ने 20 फ़रवरी 2021 को
-              स्वामी श्रद्धानंद महाविद्यालय में <b>‘ काव्यपाठ प्रतियोगिता’</b>{" "}
-              में <b>प्रथम स्थान</b>
-              प्राप्त किया
-            </li>
-            <li>
-              <b>मोहिनी</b> - हिंदी विशेष द्वितीय वर्ष ने 17 अप्रैल 2021 को
-              पी.जी.डी.ए.वी. महाविद्यालय में <b>‘ स्वरचित काव्यपाठ प्रतियोगिता’ में
-              प्रथम स्थान</b> प्राप्त किया
-            </li>
-            <li>
-              <b>मोहिनी</b> - हिंदी विशेष द्वितीय वर्ष ने 19 जुलाई 2021 को अरविन्द
-              महाविद्यालय में <b>‘ ओपन माइक काव्यपाठ प्रतियोगिता’ में द्वितीय स्थान</b>
-              प्राप्त किया
-            </li>
-            <li>
-                            <b>मोहिनी राय</b> हिंदी विशेष द्वितीय वर्ष में 11 जुलाई को <b>लिटरेरी
-              सोसायटी ऑफ डीसीएसी कारवा में टॉप 100 में प्रोत्साहन</b> प्राप्त किया |
-            </li>
-            <li>
-                            <b>मोहिनी राय</b> हिंदी विशेष द्वितीय वर्ष में 24 जुलाई 2021 को <b>देश गंगा
-              युवा क्रांति में काव्यांजलि 2021 में द्वितीय स्थान</b> प्राप्त किया
-              है।
-            </li>
-            <li>
-                            <b>मोहिनी राय</b> हिंदी विशेष द्वितीय वर्ष ने 14 अगस्त 2021 को गागी कॉलेज
-              में आयोजित अपने <b>आजादी हिंदी काव्य पाठ प्रतियोगिता में प्रथम स्थान</b>
-              प्राप्त किया
-            </li>
-            <li>
-                            <b>मोहिनी राय</b> हिंदी विशेष द्वितीय वर्ष ने 15 अगस्त 2021 को स्वामी
-              श्रद्धानंद महाविद्यालय में <b>गीत गायन प्रतियोगिता में 15 अगस्त 2021
-              को प्रथम स्थान</b> प्राप्त किया
-            </li>
-            <li>
-                            <b>मोहिनी राय</b> हिंदी विशेष द्वितीय वर्ष ने 17 अगस्त 2021 को किरोड़ीमल
-              कॉलेज में आयोजित <b>स्वरचित कविता प्रतियोगिता में द्वितीय स्थान</b>
-              प्राप्त किया।
-            </li>
-            <li>
-                            <b>मोहिनी राय</b> हिंदी विशेष द्वितीय वर्ष में 4 सितंबर 2021 को हंसराज
-              महाविदयालय एंड रिस्पेक्ट इंडिया फाउंडेशन में आयोजित <b>अखिल भारतीय
-              निबंध लेखन प्रतियोगिता में तृतीय स्थान</b> प्राप्त किया।
-            </li>
-            <li>
-            <b>मोहिनी राय</b> हिंदी विशेष द्वितीय वर्ष में 7 सितंबर 2021 को जीसस एंड
-              मैरी कॉलेज में आयोजित <b>स्वरचित कविता प्रतियोगिता में प्रथम स्थान
-  </b>प्राप्त किया।
-            </li>
-            <li>
-            <b>मोहिनी राय</b> हिंदी विशेष द्वितीय वर्ष ने 10 सितंबर 2021 को जीसस एंड
-              मैरी कॉलेज में <b>लोकगीत गायन प्रतियोगिता में प्रथम स्थान</b> प्राप्त
-              किया।
-            </li>
-            <li>
-              <b>मोहिनी राय</b> हिंदी विशेष द्वितीय वर्ष ने 11 सितंबर 2021 को किरोड़ीमल
-              महाविद्यालय में आयोजित <b>लोक गीत गायन प्रतियोगिता में प्रथम स्थान</b>
-              प्राप्त किया।
-            </li>
-            <li>
-              <b>आकांक्षा नेगी</b> हिंदी विशेष द्वितीय वर्ष ने 12 सितंबर2021 को दौलतराम
-              महाविद्यालय में आयोजित <b>लोक गीत प्रतियोगिता में प्रथम स्थान</b> प्राप्त
-              किया
-            </li>
-            <li>
-              <b>आकांक्षा नेगी</b> हिंदी विशेष द्वितीय वर्ष में 12 फरवरी 2021 को एनसीसी
-              दौलत राम कॉलेज में आयोजित <b>पोस्टर मेकिंग प्रतियोगिता में तृतीय
-              स्थान</b> प्राप्त किया है
-            </li>
-            <li>
-             <b>ईशु प्रिया</b> 3 वर्ष में 2 सितंबर 2021 को एनसीसी मोतीलाल नेहरू
-              महाविद्यालय में आयोजित <b>डांस कंपटीशन में तृतीय स्थान</b> प्राप्त किया
-            </li>
-            <li>
-              <b>दीपाली</b>- हिंदी विशेष द्वितीय वर्ष ने 5 फरवरी 2021 को दौलत राम कॉलेज
-              में आयोजित <b>निबंध लेखन प्रतियोगिता कोरोना वायरस पर तीसरा स्थान</b>
-              प्राप्त किया{" "}
-            </li>
-            <li>
-              <b>दीपाली</b>- हिंदी विशेष द्वितीय वर्ष में 14 सितंबर 2021 को शहीद भगतसिंह
-              महाविद्यालय में आयोजित <b>हिंदी भाषा मेरी पहचान निबंध लेखन
-              प्रतियोगिता में सर्टिफिकेट ऑफ मेरिट</b> प्राप्त किया
-            </li>
-            <li>
-              <b>बबीता चौरसिया</b>- हिंदी विशेष द्वितीय वर्ष में 17 सितंबर 2021 को शहीद
-              भगत सिंह महाविद्यालय में <b>प्रोत्साहन पुरस्कार</b> प्राप्त किया{" "}
-            </li>
-            <li>
-            <b>खुशी शर्मा</b>-  हिंदी विशेष द्वितीय वर्ष ने मिरांडा कॉलेज द्वारा आयोजित
-              <b>निबंध लेखन प्रतियोगिता में पहला स्थान</b> प्राप्त किया है
-            </li>
-            <li>
-            <b>खुशी शर्मा</b>-  हिंदी विशेष द्वितीय वर्ष ने अदिति महाविद्यालय को में
-              आयोजित <b>स्लोगन लेखन प्रतियोगिता में पहला स्थान</b> प्राप्त किया है
-            </li>
-            <li>
-                <b>खुशी शर्मा</b>- हिंदी विशेष द्वितीय वर्ष ने सेंट स्टीफन कॉलेज में
-              आयोजित <b>स्वरचित स्लोगन लेखन प्रतियोगिता में द्वितीय स्थान</b> प्राप्त
-              किया
-            </li>
-            <li>
-            <b>खुशी शर्मा</b>- हिंदी विशेष द्वितीय वर्ष ने शिवाजी कॉलेज द्वारा आयोजित
-              <b>पोयम रेसिटेशन प्रतियोगिता में द्वितीय स्थान</b> प्राप्त किया है
-            </li>
-            <li>
-              <b>खुशी शर्मा</b>- हिंदी विशेष द्वितीय वर्ष में सेंट स्टीफन कॉलेज में
-              आयोजित आर्ट <b>मेकिंग प्रतियोगिता में द्वितीय स्थान</b> प्राप्त किया है |
-            </li>
-            <li>
-              <b>इति</b>- हिंदी विशेष,तृतीय वर्ष, ने 27 फरवरी 2020 को गुरु तेग बहादुर
-              खालसा कॉलेज की <b>‘फाइन आर्ट सोसाइटी’ द्वारा आयोजित ‘ओपन पेंटिंग
-              कॉम्पिटिशन’ में ‘बेस्ट इन फेंटेसी ‘ पुरस्कार</b> प्राप्त किया
-            </li>
-            <li>
-              <b>अंजू</b>- हिंदी विशेष. द्वितीय वर्ष ने 22-23 फरवरी 2020 को हंसराज
-              महाविद्यालय की ‘हिंदी वाद-विवाद’ समिति द्वारा आयोजित <b>‘महात्मा
-              हंसराज स्मृति संसदीय वाद-विवाद’ प्रतियोगिता में सर्वश्रेष्ठ दल का
-              पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>नीलम</b>, द्वितीय वर्ष ,हिंदी विशेष ने 17 फ़रवरी 2020 को दौलतराम
-              महाविद्यालय में आयोजित <b>‘रंगोली प्रतियोगिता’ में प्रथम पुरस्कार
-</b>              प्राप्त लिया |
-            </li>
-            <li>
-              <b>नीलम</b> - द्वितीय वर्ष ,हिंदी विशेष ने 14 सितंबर 2020 में एमएससी-
-              द्वारा आयोजित <b>‘स्वरचित कविता’ प्रतियोगिता में भाग लेकर द्वितीय
-              स्थान</b> प्राप्त किया |
-            </li>
-            <li>
-              <b>अन्नू अग्रहरि</b>- हिंदी विशेष ,द्वितीय वर्ष ने 3 अक्टूबर 2019 को दौलत
-              राम महाविद्यालय के ‘गाँधी स्टडी सर्कल’ और ‘फाइन आर्ट सोसाइटी’
-              द्वारा महात्मा गाँधी की 150 वीं जयंती पर आयोजित <b>’स्लैम पोएट्री’ में
-              द्वितीय स्थान</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>श्रुति कुमारी</b>- हिंदी विशेष ,प्रथम वर्ष ने 3 फरवरी 2020 को
-              महाविद्यालय की <b>‘एन.सी.सी’ यूनिट द्वारा आयोजित वार्षिकोत्सव में
-              ‘एक्सीलेंस परफोर्मेंस’ पुरस्कार</b> प्राप्त किया
-            </li>
-            <li>
-            <b>आशा कुमारी</b>-- हिंदी विशेष,तृतीय वर्ष ने 18-19 मार्च 2019 में NSUI
-              द्वारा आयोजित <b>‘रास्ट्रीय स्तर बेहतर भारत वाद-विवाद’ प्रतियोगिता
-              में ‘सर्वश्रेष्ठ प्रश्नकर्ता’ का प्रमाण पत्र और 1000 रूपये नगद
-              धनराशी पुरस्कार</b> स्वरूप प्राप्त किये.
-            </li>
-            <li>
-              <b>आशा कुमारी</b>-- हिंदी विशेष,तृतीय वर्ष ने 1 फरवरी 2019 में मोतीलाल
-              नेहरु कॉलेज द्वारा आयोजित <b>‘पारम्परिक वाद-विवाद’ प्रतियोगिता में
-              ‘द्वितीय सर्वश्रेष्ठ डिबेटर ’ का प्रमाण पत्र और 1000 रूपये नगद
-              धनराशी पुरस्कार</b> स्वरूप प्राप्त किये.
-            </li>
-            <li>
-              <b>निकिता</b>--हिंदी विशेष,तृतीय वर्ष ने स्वामी श्रद्धानन्द कॉलेज दवारा
-              <b>‘सिद्धार्थ तरंग 2019’</b> में आयोजित <b>‘फैशन शो’ में प्रथम पुरस्कार</b>
-              प्राप्त किया.
-            </li>
-            <li><b>निकिता</b>-- हिंदी विशेष,तृतीय वर्ष ने DCBS,JMI
-              दवारा14-15 मार्च 2019 में आयोजित <b>‘COMMERCIALESE 2019’ के ‘फैशन शो’
-              में प्रथम पुरस्कार</b> प्राप्त किया.</li>
-            <li>
-              <b>निकिता</b> -- हिंदी विशेष,तृतीय वर्ष ने नक्षत्र दवारा 15 मार्च 2019
-              में आयोजित <b>‘ NAKASHATRA’S PANACHE 2019’ के ‘फैशन शो’ में प्रथम
-              पुरस्कार प्राप्त</b> किया.
-            </li>
-            <li>
-            <b>निकिता</b> -- हिंदी विशेष,तृतीय वर्ष ने आचार्य नरेंद्र देव महाविद्यालय
-              दवारा 2019 में आयोजित वार्षिकोत्सव <b>‘LEIOTHRIXX 2019’ के ‘फैशन शो’
-              में प्रथम पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b>--हिंदी विशेष,तृतीय वर्ष ने मानव रचना एजुकेशनल इंस्टीटयूट
-              दवारा 2019 में आयोजित वार्षिकोत्सव <b>‘INNOSKILL 2019’ के ‘फैशन शो’
-              में प्रथम पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b>--हिंदी विशेष,तृतीय वर्ष ने मानव रचना एजुकेशनल इंस्टीटयूट
-              दवारा 2019 में आयोजित वार्षिकोत्सव <b>‘INNOSKILL 2019’ के ‘फैशन शो’
-              में ‘बेस्ट थीम’ पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>प्रिया</b> -- हिंदी विशेष,प्रथम वर्ष ने 21 अक्टूबर 2019 में हंसराज
-              महाविद्यालय द्वारा आयोजित <b>‘नवागन्तुक वाद-विवाद’ प्रतियोगिता में
-              सर्वश्रेष्ठ दल का प्रमाण पत्र एवं 700 रूपये नगद</b> धनराशि प्राप्त की.
-            </li>
-            <li>
-            <b>मुर्शिदा</b> -- हिंदी विशेष,तृतीय वर्ष ने 24 अक्टूबर 2019 में डीएनयू
-              एन सी सी द्वारा <b>गीत प्रतियोगिता में प्रथम पुरस्कार के रूप में
-              ट्रॉफी और प्रमाण पत्र</b> प्राप्त किया .
-            </li>
-            <li>
-              <b>मुर्शिदा</b> --हिंदी विशेष,तृतीय वर्ष ने 2018-19 में दौलतराम
-              महाविद्यालय की <b>‘वाद-विवाद समिति’ द्वारा आयोजित प्रतियोगिता में
-              द्वितीय स्थान</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b> --हिंदी विशेष,तृतीय वर्ष ने भारतीय विद्यापीठ इंस्टीटयूट ऑफ़
-              मनेजमेंट एंड रिसर्च,नई दिल्ली दवारा 23-24 फरवरी 2018 को आयोजित
-              कार्यक्रम <b>‘FASHION FIESTA’ में प्रथम पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b>--हिंदी विशेष,तृतीय वर्ष ने मोलाना आजाद मेडिकल कॉलेज दवारा
-              2018 में आयोजित <b>‘Synapse 2018 ‘ वार्षिकोत्सव में द्वितीय पुरस्कार</b>
-              प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b> -- हिंदी विशेष,तृतीय वर्ष ने आत्माराम सनातन धर्म कॉलेज
-              दवारा 26-28 फरवरी 2018’ में आयोजित TIDE वार्षिकोत्सव के <b>‘फैशन शो’
-              में प्रथम पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b> -- हिंदी विशेष,तृतीय वर्ष ने श्री और्न्बिंदो कॉलेज दवारा
-              ‘MEHAK 2018’ में आयोजित <b>‘फैशन शो’ में प्रथम पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b> -- हिंदी विशेष,तृतीय वर्ष ने लेडी हार्डिंग मेडिकल कॉलेज
-              द्वारा 7-10 मार्च 2018 को आयोजित कार्यक्रम <b>‘SPLASH’ में प्रथम
-              पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b> -- हिंदी विशेष,तृतीय वर्ष ने स्वामी श्रद्धानन्द
-              कॉलेज द्वारा ‘सिद्धार्थ तरंग 2018’ में आयोजित <b>‘फैशन शो’ में
-              द्वितीय पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b> हिंदी विशेष,तृतीय वर्ष ने 22 फरवरी 2018 में
-              विवेकानन्द कॉलेज द्वारा आयोजित ‘फैशन शो <b>‘Fashionista’ में तृतीय
-              पुरस्कार</b> प्राप्त किया.
-            </li>
-            <li>
-              <b>निकिता</b> -- हिंदी विशेष,तृतीय वर्ष ने 2018 में IMT गाजियाबाद
-              द्वारा आयोजित वार्षिकोत्सब <b>‘PASSION 18‘ में प्रथम पुरस्कार</b>{" "}
-              प्राप्त किया.
-            </li>
-          </ol>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default Hindi_studachieve;
+export default Studentsachieve;

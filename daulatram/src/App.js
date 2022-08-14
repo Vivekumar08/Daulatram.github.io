@@ -179,7 +179,7 @@ import Hist_publications from "./Pages/Academics/Departments/History/Hist_public
 import Hist_awards from "./Pages/Academics/Departments/History/Hist_awards";
 import Hist_association from "./Pages/Academics/Departments/History/Hist_association";
 import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
-
+import Hist_stuAch from "./Pages/Academics/Departments/History/Hist_studachieve";
 // Mathemtics
 import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
 import Math_fac from "./Pages/Academics/Departments/Mathematics/Math_fac";
@@ -195,10 +195,13 @@ import Music_about from "./Pages/Academics/Departments/Music/Music_about";
 import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
 import Forgot from "./Pages/Admin/Forgot";
 import ResetPassword from "./Pages/Admin/ResetPassword";
+import Music_stuAch from "./Pages/Academics/Departments/Music/Music_studachieve";
 
 // NHE
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
 import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
+import NHE_stuAch from "./Pages/Academics/Departments/NHE/NHE_studachieve";
+
 import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
 // Philosophy
 import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
@@ -213,6 +216,7 @@ import PhysicalEdu_about from "./Pages/Academics/Departments/Physical_Education/
 import PhysicalEdu_programoffered from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_programoffered";
 import PhysicalEdu_fac from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_fac";
 import PhysicalEdu_awards from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_awards";
+import PE_stuAch from "./Pages/Academics/Departments/Physical_Education/PE_studachieve";
 
 // Physics
 import Physics_about from "./Pages/Academics/Departments/Physics/Physics_about";
@@ -235,12 +239,13 @@ import PolSci_awards from "./Pages/Academics/Departments/Political_Science/PolSc
 import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Science/Pol_Sci_publications";
 import Pol_Sci_association from "./Pages/Academics/Departments/Political_Science/Pol_Sci_association";
 import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_Sci_events";
-
+import PS_stuAch from "./Pages/Academics/Departments/Political_Science/PS_studachieve";
 // Psychology
 import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about";
 import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 import Psycho_awards from "./Pages/Academics/Departments/Psychology/Psycho_awards";
 import Psycho_programoffered from "./Pages/Academics/Departments/Psychology/Psycho_programoffered";
+import Psy_stuAch from "./Pages/Academics/Departments/Psychology/Psy_studachieve";
 
 // Sanskriti
 import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
@@ -1285,6 +1290,46 @@ function App() {
             }
             path="/academics/departments/Music/Events"
           ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Music_stuAch />
+              </>
+            }
+            path="/academics/departments/Music/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <NHE_stuAch />
+              </>
+            }
+            path="/academics/departments/NHE/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <PE_stuAch />
+              </>
+            }
+            path="/academics/departments/Physical_Education/Students'_achievements"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <PS_stuAch />
+              </>
+            }
+            path="/academics/departments/Political_Science/Students'_achievements"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Psy_stuAch />
+              </>
+            }
+            path="/academics/departments/Psychology/Students'_achievements"
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -1608,6 +1653,14 @@ function App() {
               </>
             }
             path="/academics/departments/History/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_stuAch />
+              </>
+            }
+            path="/academics/departments/History/Students'_achievements"
           ></Route>{" "}
           <Route
             element={

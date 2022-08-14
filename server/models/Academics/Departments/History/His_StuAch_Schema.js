@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Bot_Student_Achieve_Schema = mongoose.Schema(
+const His_Student_Achieve_Schema = mongoose.Schema(
     {
         title: {
             type: String,
@@ -54,6 +54,6 @@ const Bot_Student_Achieve_Schema = mongoose.Schema(
     }
 );
 
-const Bot_Student_Achieve = mongoose.model('Bot_Student_Achieve', Bot_Student_Achieve_Schema);
+const His_Student_Achieve = mongoose.model('His_Student_Achieve', His_Student_Achieve_Schema);
 
-module.exports = Bot_Student_Achieve;
+module.exports = His_Student_Achieve;

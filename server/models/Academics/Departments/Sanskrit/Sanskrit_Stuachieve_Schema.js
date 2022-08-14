@@ -1,28 +1,59 @@
 const mongoose = require('mongoose');
 
-const Sanskrit_Stuachieve_Schema = mongoose.Schema({
-    title: {
-        type: String,
-        required: true,
-        trim: true
+const Sans_Student_Achieve_Schema = mongoose.Schema(
+    {
+        title: {
+            type: String,
+            required: true,
+        },
+        description: {
+            type: String,
+            required: true,
+        },
+        img_data: {
+
+            file_path: [
+                {
+                    file_path1: {
+                        type: String,
+                        default: null
+                    },
+                    file_mimetype1: {
+                        type: String,
+                        default: null
+                    },
+                }
+            ],
+            pdf_path: [
+                {
+                    pdf_path1: {
+                        type: String,
+                        default: "../daulatram/public/images/uploads"
+                    },
+                    pdf_mimetype1: {
+                        type: String,
+                        default: null
+                    },
+                    value: {
+                        type: String,
+                        default: null
+                    },
+                }
+            ],
+            para: [
+                {
+                    para1: {
+                        type: String,
+                    },
+                }
+            ],
+        }
     },
-    link: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    file_path: {
-        type: String,
-        required: true
-    },
-    file_mimetype: {
-        type: String,
-        required: true
+    {
+        timestamps: true
     }
-}, {
-    timestamps: true
-});
+);
 
-const Sanskrit_Stuachieve = mongoose.model('Sanskrit_Stuachieve', Sanskrit_Stuachieve_Schema);
+const Sans_Student_Achieve = mongoose.model('Sans_Student_Achieve', Sans_Student_Achieve_Schema);
 
-module.exports = Sanskrit_Stuachieve;
+module.exports = Sans_Student_Achieve;
