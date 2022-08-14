@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState, useRef } from "react";
-import Chembanner from "../Chemistry/Chembanner";
-import Chemistry from "../../../../Components/DepartSIde/Chemistry";
 
+import Nhebanner from "../NHE/Nhebanner.jsx";
+import NHE from "../../../../Components/DepartSIde/NHE.jsx";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import AuthContext from "../../../../Context/AuthProvider";
@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import Common_dat from "../Common_dat";
 
-function Chemassociation() {
+function NHE_association() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
@@ -20,7 +20,7 @@ function Chemassociation() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Chem_Association");
+    const response = await fetch("/NHE_Association");
     setData1(await response.json());
   };
 
@@ -33,7 +33,7 @@ function Chemassociation() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Chem_Association_img_upload/${id}`,
+          `/NHE_Association_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -57,7 +57,7 @@ function Chemassociation() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Chem_Association_para/${id}`, {
+      const response = await fetch(`/delete_NHE_Association_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -77,7 +77,7 @@ function Chemassociation() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Chem_Association/${id}`, {
+    const response = await fetch(`/delete_NHE_Association/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -93,7 +93,7 @@ function Chemassociation() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Chem_Association_fac/${id}`,
+      `/delete_pdf_link_NHE_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -105,7 +105,7 @@ function Chemassociation() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Chem_Association_fac/${id}`,
+      `/delete_img_NHE_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -120,7 +120,7 @@ function Chemassociation() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Chem_Association_add_para/${id}`, {
+        await fetch(`/NHE_Association_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -138,7 +138,7 @@ function Chemassociation() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Chem_Association_add_link/${id}`, {
+      await axios.post(`/NHE_Association_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -155,7 +155,7 @@ function Chemassociation() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Chem_Association_file_upload/${id}`,
+          `/NHE_Association_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -182,7 +182,7 @@ function Chemassociation() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Chem_Association_upload`, {
+        await axios.post(`/NHE_Association_upload`, {
           title: link,
           description: caption,
         });
@@ -201,7 +201,7 @@ function Chemassociation() {
   return (
     <div className=" flex flex-col">
       <div className="">
-        <Chembanner/>
+        <Nhebanner />
       </div>
 
       <div className="flex flex-row">
@@ -215,7 +215,7 @@ function Chemassociation() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Chemistry />
+                <NHE />
               </div>
             </>
           ) : (
@@ -230,7 +230,7 @@ function Chemassociation() {
           )}
         </div>
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <Chemistry />
+          <NHE />
         </div>
         <div className="w-full mr-16">
           <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
@@ -322,4 +322,4 @@ function Chemassociation() {
   );
 }
 
-export default Chemassociation;
+export default NHE_association;
