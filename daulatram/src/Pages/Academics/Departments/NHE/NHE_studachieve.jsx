@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import DepartBanner from "./Mathbanner";
-import Sidebar from "../../../../Components/DepartSIde/Mathematics";
+import DepartBanner from "./Nhebanner";
+import Sidebar from "../../../../Components/DepartSIde/NHE";
 import axios from "axios";
 import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,7 +18,7 @@ function Studentsachieve() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Math_Student_Achievement");
+    const response = await fetch("/NHE_Student_Achievement");
     setData1(await response.json());
   };
 
@@ -31,7 +31,7 @@ function Studentsachieve() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Math_Student_Achievement_img_upload/${id}`,
+          `/NHE_Student_Achievement_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -55,7 +55,7 @@ function Studentsachieve() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Math_Student_Achievement_para/${id}`, {
+      const response = await fetch(`/delete_NHE_Student_Achievement_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -75,7 +75,7 @@ function Studentsachieve() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Math_Student_Achievement/${id}`, {
+    const response = await fetch(`/delete_NHE_Student_Achievement/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -91,7 +91,7 @@ function Studentsachieve() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Math_Student_Achievement_fac/${id}`,
+      `/delete_pdf_link_NHE_Student_Achievement_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -103,7 +103,7 @@ function Studentsachieve() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Math_Student_Achievement_fac/${id}`,
+      `/delete_img_NHE_Student_Achievement_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -118,7 +118,7 @@ function Studentsachieve() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Math_Student_Achievement_add_para/${id}`, {
+        await fetch(`/NHE_Student_Achievement_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -136,7 +136,7 @@ function Studentsachieve() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Math_Student_Achievement_add_link/${id}`, {
+      await axios.post(`/NHE_Student_Achievement_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -153,7 +153,7 @@ function Studentsachieve() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Math_Student_Achievement_file_upload/${id}`,
+          `/NHE_Student_Achievement_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -180,7 +180,7 @@ function Studentsachieve() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Math_Student_Achievement_upload`, {
+        await axios.post(`/NHE_Student_Achievement_upload`, {
           title: link,
           description: caption,
         });
