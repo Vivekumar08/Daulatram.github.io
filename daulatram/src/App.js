@@ -249,6 +249,7 @@ import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 import Psycho_awards from "./Pages/Academics/Departments/Psychology/Psycho_awards";
 import Psycho_programoffered from "./Pages/Academics/Departments/Psychology/Psycho_programoffered";
 import Psy_stuAch from "./Pages/Academics/Departments/Psychology/Psy_studachieve";
+import Psycho_association from "./Pages/Academics/Departments/Psychology/Psycho_association";
 
 // Sanskriti
 import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
@@ -573,13 +574,13 @@ function App() {
             path="/academics/PG_courses"
           ></Route>{" "}
           {/* <Route
-                        element={
-                          <>
-                            <Addoncourses />
-                          </>
-                        }
-                        path="/academics/Add_on_courses"
-                      ></Route>{" "} */}{" "}
+                                    element={
+                                      <>
+                                        <Addoncourses />
+                                      </>
+                                    }
+                                    path="/academics/Add_on_courses"
+                                  ></Route>{" "} */}{" "}
           <Route
             element={
               <>
@@ -2130,6 +2131,14 @@ function App() {
           <Route
             element={
               <>
+                <Psycho_association />
+              </>
+            }
+            path="/academics/departments/Psychology/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Psycho_programoffered />
               </>
             }
@@ -2224,6 +2233,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_association />
+              </>
+            }
+            path="/academics/departments/Zoology/association"
           ></Route>{" "}
           <Route
             element={

@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import Sanskrit from "../../../../Components/DepartSIde/Sanskrit";
-import Sansbanner from "./Sansbanner";
+
+import Psychology from "../../../../Components/DepartSIde/Psychology";
+import Psychobanner from "./Psychobanner";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import AuthContext from "../../../../Context/AuthProvider";
@@ -8,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import Common_dat from "../Common_dat";
 
-function Sans_association() {
+function Psycho_association() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
@@ -19,7 +20,7 @@ function Sans_association() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Sans_Association");
+    const response = await fetch("/Psycho_Association");
     setData1(await response.json());
   };
 
@@ -32,7 +33,7 @@ function Sans_association() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Sans_Association_img_upload/${id}`,
+          `/Psycho_Association_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -56,7 +57,7 @@ function Sans_association() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Sans_Association_para/${id}`, {
+      const response = await fetch(`/delete_Psycho_Association_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -76,7 +77,7 @@ function Sans_association() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Sans_Association/${id}`, {
+    const response = await fetch(`/delete_Psycho_Association/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -92,7 +93,7 @@ function Sans_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Sans_Association_fac/${id}`,
+      `/delete_pdf_link_Psycho_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -104,7 +105,7 @@ function Sans_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Sans_Association_fac/${id}`,
+      `/delete_img_Psycho_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -119,7 +120,7 @@ function Sans_association() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Sans_Association_add_para/${id}`, {
+        await fetch(`/Psycho_Association_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -137,7 +138,7 @@ function Sans_association() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Sans_Association_add_link/${id}`, {
+      await axios.post(`/Psycho_Association_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -154,7 +155,7 @@ function Sans_association() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Sans_Association_file_upload/${id}`,
+          `/Psycho_Association_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -181,7 +182,7 @@ function Sans_association() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Sans_Association_upload`, {
+        await axios.post(`/Psycho_Association_upload`, {
           title: link,
           description: caption,
         });
@@ -200,7 +201,7 @@ function Sans_association() {
   return (
     <div className=" flex flex-col">
       <div className="">
-        <Sansbanner />
+        <Psychobanner />
       </div>
 
       <div className="flex flex-row">
@@ -214,7 +215,7 @@ function Sans_association() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Sanskrit />
+                <Psychology />
               </div>
             </>
           ) : (
@@ -229,7 +230,7 @@ function Sans_association() {
           )}
         </div>
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <Sanskrit />
+          <Psychology />
         </div>
         <div className="w-full mr-16">
           <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
@@ -321,4 +322,4 @@ function Sans_association() {
   );
 }
 
-export default Sans_association;
+export default Psycho_association;

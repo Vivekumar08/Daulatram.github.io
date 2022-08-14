@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Sans_Association_Schema = mongoose.Schema({
+const Zoo_Association_Schema = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -45,6 +45,6 @@ const Sans_Association_Schema = mongoose.Schema({
     timestamps: true
 });
 
-const Sans_Association = mongoose.model('Sans_Association', Sans_Association_Schema);
+const Zoo_Association = mongoose.model('Zoo_Association', Zoo_Association_Schema);
 
-module.exports = Sans_Association;
+module.exports = Zoo_Association;
