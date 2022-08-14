@@ -1,16 +1,16 @@
 
 
 import React, { useContext, useEffect, useState, useRef } from "react";
+import Musicbanner from "./Musicbanner.jsx";
+import Music from "../../../../Components/DepartSIde/Music.jsx";
 import Dropzone from "react-dropzone";
-import Mathbanner from "../Mathematics/Mathbanner.jsx";
-import Mathematics from "../../../../Components/DepartSIde/Mathematics.jsx";
 import axios from "axios";
 import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import Common_dat from "../Common_dat";
 
-function Math_association() {
+function Music_association() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
@@ -21,7 +21,7 @@ function Math_association() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Math_Association");
+    const response = await fetch("/Music_Association");
     setData1(await response.json());
   };
 
@@ -34,7 +34,7 @@ function Math_association() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Math_Association_img_upload/${id}`,
+          `/Music_Association_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -58,7 +58,7 @@ function Math_association() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Math_Association_para/${id}`, {
+      const response = await fetch(`/delete_Music_Association_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -78,7 +78,7 @@ function Math_association() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Math_Association/${id}`, {
+    const response = await fetch(`/delete_Music_Association/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -94,7 +94,7 @@ function Math_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Math_Association_fac/${id}`,
+      `/delete_pdf_link_Music_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -106,7 +106,7 @@ function Math_association() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Math_Association_fac/${id}`,
+      `/delete_img_Music_Association_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -121,7 +121,7 @@ function Math_association() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Math_Association_add_para/${id}`, {
+        await fetch(`/Music_Association_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -139,7 +139,7 @@ function Math_association() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Math_Association_add_link/${id}`, {
+      await axios.post(`/Music_Association_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -156,7 +156,7 @@ function Math_association() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Math_Association_file_upload/${id}`,
+          `/Music_Association_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -183,7 +183,7 @@ function Math_association() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Math_Association_upload`, {
+        await axios.post(`/Music_Association_upload`, {
           title: link,
           description: caption,
         });
@@ -202,7 +202,7 @@ function Math_association() {
   return (
     <div className=" flex flex-col">
       <div className="">
-        <Mathbanner />
+        <Musicbanner />
       </div>
 
       <div className="flex flex-row">
@@ -216,7 +216,7 @@ function Math_association() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Mathematics />
+                <Music />
               </div>
             </>
           ) : (
@@ -231,7 +231,7 @@ function Math_association() {
           )}
         </div>
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <Mathematics />
+          <Music />
         </div>
         <div className="w-full mr-16">
           <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
@@ -323,4 +323,4 @@ function Math_association() {
   );
 }
 
-export default Math_association;
+export default Music_association;
