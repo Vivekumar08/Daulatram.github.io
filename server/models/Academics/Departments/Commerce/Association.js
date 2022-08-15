@@ -1,31 +1,50 @@
 const mongoose = require('mongoose');
 
-const Association = mongoose.Schema(
-  {
+const Com_Association_Schema = mongoose.Schema({
     title: {
-      type: String,
-      required: true,
-      trim: true
+        type: String,
+        required: true,
     },
-    link: {
-      type: String,
-      required: true,
-      trim: true
+    description: {
+        type: String,
+        required: true,
     },
-    file_path: {
-      type: String,
-      required: true
-    },
-    file_mimetype: {
-      type: String,
-      required: true
-    }
-  },
-  {
-    timestamps: true
-  }
-);
+    img_data: {
 
-const Com_Association = mongoose.model('Com_Association', Association);
+        file_path: [{
+            file_path1: {
+                type: String,
+                default: null
+            },
+            file_mimetype1: {
+                type: String,
+                default: null
+            },
+        }],
+        pdf_path: [{
+            pdf_path1: {
+                type: String,
+                default: "../daulatram/public/images/uploads"
+            },
+            pdf_mimetype1: {
+                type: String,
+                default: null
+            },
+            value: {
+                type: String,
+                default: null
+            },
+        }],
+        para: [{
+            para1: {
+                type: String,
+            },
+        }],
+    }
+}, {
+    timestamps: true
+});
+
+const Com_Association = mongoose.model('Com_Association', Com_Association_Schema);
 
 module.exports = Com_Association;

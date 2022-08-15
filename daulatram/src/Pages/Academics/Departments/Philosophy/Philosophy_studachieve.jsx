@@ -1,63 +1,176 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import Philosophybanner from "../Philosophy/Philosophybanner.jsx";
-import Philosophy from "../../../../Components/DepartSIde/Philosophy";
-import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrashCan, faClose, faBars } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../../../../Context/AuthProvider";
-import Dropzone from "react-dropzone";
+import React, { useContext, useEffect, useState, useRef } from "react";
+import DepartBanner from "./Philosophybanner";
+import Sidebar from "../../../../Components/DepartSIde/Philosophy";
 import axios from "axios";
+import AuthContext from "../../../../Context/AuthProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import Common_dat from "../Common_dat";
 
-const Philo_achieve = () => {
+function Studentsachieve() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
-  const dropRef = useRef();
   const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
   const [errMsg, setErrMsg] = useState("");
-  const [previewSrc, setPreviewSrc] = useState("");
-  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
-  const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Philo_achieve");
+    const response = await fetch("/Philo_Student_Achievement");
     setData1(await response.json());
-  };
-
-  const onDrop = (files) => {
-    const [uploadedFile] = files;
-    setFile(uploadedFile);
-
-    const fileReader = new FileReader();
-    fileReader.onload = () => {
-      setPreviewSrc(fileReader.result);
-    };
-    fileReader.readAsDataURL(uploadedFile);
-    setIsPreviewAvailable(
-      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
-    );
   };
 
   useEffect(() => {
     fetchdata();
   }, []);
 
+  const handleSubmit_img = async (id, file) => {
+    try {
+      if (file) {
+        setErrMsg("");
+        await axios.post(
+          `/Philo_Student_Achievement_img_upload/${id}`,
+          { file: file },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(`/delete_Philo_Student_Achievement_para/${id}`, {
+        method: "POST",
+        body: JSON.stringify(arr),
+        headers: { "Content-Type": "application/json" },
+      });
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Philo_achieve/${id}`,
+    const response = await fetch(`/delete_Philo_Student_Achievement/${id}`, {
+      method: "POST",
+    });
+    await response.json();
+    if (response.status === 200) {
+      setErrMsg("");
+      fetchdata();
+    } else if (response.status === 400) {
+      setErrMsg("First Delete all the images related to this section");
+    }
+  };
+
+  const delete_file = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_pdf_link_Philo_Student_Achievement_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
       {
-        method: "DELETE",
+        method: "POST",
       }
     );
-    const data = await response.json();
-    if (data || response.status === 200) {
+    fetchdata();
+  };
+  const dele = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_img_Philo_Student_Achievement_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+
+  const handleSubmit_data = async (id, para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Philo_Student_Achievement_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit_link = async (id, link) => {
+    try {
+      console.log(link);
+      await axios.post(`/Philo_Student_Achievement_add_link/${id}`, {
+        link: link,
+      });
+      setCaption("");
+      setAuth(true);
       fetchdata();
-    } else {
-      setErrMsg("Unable to Delete");
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    console.log(id);
+    try {
+      console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Philo_Student_Achievement_file_upload/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
     }
   };
 
@@ -66,31 +179,18 @@ const Philo_achieve = () => {
     try {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("link", link);
-        formData.append("title", caption);
-
         setErrMsg("");
-        console.log(formData);
-        await axios.post(`/Philo_achieve_add`, formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+        await axios.post(`/Philo_Student_Achievement_upload`, {
+          title: link,
+          description: caption,
         });
         setCaption("");
         setLink("");
-        setFile("");
-        setIsPreviewAvailable(false);
-        setPreviewSrc("");
         setAuth(true);
         fetchdata();
       } else {
-        // setErrMsg("Please select a file to add.");
         setErrMsg("Please enter all the field values.");
       }
-      // } else {
-      // }
     } catch (err) {
       err.response && setErrMsg(err.response.data);
     }
@@ -98,7 +198,9 @@ const Philo_achieve = () => {
 
   return (
     <div className=" flex flex-col">
-      <Philosophybanner />
+      <div className="">
+        <DepartBanner />
+      </div>
 
       <div className="flex flex-row">
         <div className="md:hidden">
@@ -111,7 +213,7 @@ const Philo_achieve = () => {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Botany />
+                <Sidebar />
               </div>
             </>
           ) : (
@@ -125,50 +227,34 @@ const Philo_achieve = () => {
             </div>
           )}
         </div>
-        <div className="w-[250px]  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <Philosophy />
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
+          <Sidebar />
         </div>
-
-        <div className="w-full mr-auto ml-auto">
-          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
-            Achievements
+        <div className="w-full mr-16">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            Student's Achievements
           </h2>
-          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
+          <div className="text-justify p-3 m-2 ml-4">
             {data1 &&
               data1.map((curElem) => {
-                const { _id, title, file_path, link } = curElem;
-                var path_pic = file_path;
-                var path2 = path_pic.replace(/\\/g, "/");
-                var path = path2.slice(19);
+                const { _id, title, description, img_data } = curElem;
                 return (
                   <>
-                   <div class="card2 ml-12 mb-8 md:ml-4 " key={_id}>
-                      <span className="  font-bold text-lg w-[75%] ">
-                        {link}
-                      </span>
-                      <div className="flex flex-col ml-4 w-full">
-                        <div class="info2 ml-4 w-full">
-                          <p className="text-justify ">{title}</p>
-                          <br />
-                          <a href={path} className="">
-                            <button className="w-[90%]">View</button>
-                            <br />
-                          </a>
-                          {auth && (
-                            <>
-                              <div className="flex flex-col w-full">
-                                <FontAwesomeIcon
-                                  icon={faTrashCan}
-                                  size="lg"
-                                  className=" cursor-pointer ml-auto  hover:text-red-500"
-                                  onClick={() => del(_id)}
-                                ></FontAwesomeIcon>
-                              </div>
-                            </>
-                          )}
-                        </div>
-                      </div>
-                    </div>
+                    <Common_dat
+                      key={_id}
+                      id={_id}
+                      tittle={title}
+                      para={description}
+                      pic={img_data}
+                      delete={del}
+                      delete_img={dele}
+                      delete_file={delete_file}
+                      delete_para={del_para}
+                      add_para={handleSubmit_data}
+                      file_upload={handleSubmit_file}
+                      Link_upload={handleSubmit_link}
+                      submit_img={handleSubmit_img}
+                    />
                   </>
                 );
               })}
@@ -179,6 +265,9 @@ const Philo_achieve = () => {
                 method="post"
                 className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
               >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p>Add New Data</p>
+                </h2>
                 <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
                   <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
                     {errMsg}
@@ -192,7 +281,7 @@ const Philo_achieve = () => {
                     ref={userRef}
                     onChange={(e) => setLink(e.target.value)}
                     value={link}
-                    placeholder="Enter Text Here"
+                    placeholder="Title"
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
                   />
                 </div>
@@ -206,57 +295,12 @@ const Philo_achieve = () => {
                     onChange={(e) => setCaption(e.target.value)}
                     value={caption}
                     className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
-                    placeholder="Description"
+                    placeholder="Enter Caption"
                   ></textarea>
                 </div>
                 <div class="md:flex flex-col md:items-center">
                   {/* <div class="md:w-1/3"></div> */}
-                  <div className="upload-section flex h-[200px] mb-[10px] w-full">
-                    <Dropzone
-                      onDrop={onDrop}
-                      onDragEnter={() => updateBorder("over")}
-                      onDragLeave={() => updateBorder("leave")}
-                    >
-                      {({ getRootProps, getInputProps }) => (
-                        <div
-                          {...getRootProps({
-                            className:
-                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
-                          })}
-                          ref={dropRef}
-                        >
-                          <input {...getInputProps()} />
-                          <p>
-                            Drag and drop a file OR click here to select a file
-                          </p>
-                          {file && (
-                            <div>
-                              <strong>Selected file:</strong> {file.name}
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </Dropzone>
-                    {previewSrc ? (
-                      isPreviewAvailable ? (
-                        <div className="image-preview ml-[5%] w-full">
-                          <img
-                            className="preview-image w-full h-full block mb-[10px]"
-                            src={previewSrc}
-                            alt="Preview"
-                          />
-                        </div>
-                      ) : (
-                        <div className="preview-message flex justify-center items-center ml-[5%]">
-                          <p>No preview available for this file</p>
-                        </div>
-                      )
-                    ) : (
-                      <div className="preview-message flex justify-center items-center ml-[5%]">
-                        <p>Image preview will be shown here after selection</p>
-                      </div>
-                    )}
-                  </div>
+
                   <div class="md:w-2/3 ">
                     <button
                       class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
@@ -274,6 +318,6 @@ const Philo_achieve = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Philo_achieve;
+export default Studentsachieve;

@@ -39,11 +39,11 @@ import Botany_Association from "./Pages/Academics/Departments/Botany/Botany_Asso
 import Bot_Lab_Staff from "./Pages/Academics/Departments/Botany/Bot_Lab_Staff";
 import Bot_awards from "./Pages/Academics/Departments/Botany/Awards";
 import Botany_Gallery from "./Pages/Academics/Departments/Botany/Bot_Gallery";
-import Botany_Events from "./Pages/Academics/Departments/Botany/Botany_Events"
+import Botany_Events from "./Pages/Academics/Departments/Botany/Botany_Events";
 import Association from "./Pages/Academics/Departments/Biochemistry/Association";
 import Laboratorystaff from "./Pages/Academics/Departments/Biochemistry/Laboratorystaff";
 import Facilities from "./Pages/Academics/Facilities/Facilities";
-import NHE_Events from "./Pages/Academics/Departments/NHE/NHE_Events"
+import NHE_Events from "./Pages/Academics/Departments/NHE/NHE_Events";
 
 import { EnablinUnit } from "./Pages/Societies/EnablinUnit";
 import ExtraCurricular from "./Pages/Societies/ExtraCurricular";
@@ -76,7 +76,7 @@ import Time_table from "./Pages/Student_zone/Time_table";
 import Admin from "./Pages/Admin/Admin";
 import Attendence from "./Pages/Student_zone/Attendence";
 import ICC from "./Pages/Student_zone/ICC";
-import Resources from "./Pages/Academics/Resources/Resources"
+import Resources from "./Pages/Academics/Resources/Resources";
 import Courses from "./Pages/Academics/Add on courses/courses";
 import Contact from "./Pages/Footer/Contact";
 import Bulletins_page from "./Pages/Footer/Bulletins_page";
@@ -158,7 +158,7 @@ import NotFound from "./Pages/NotFound";
 import Eng_Facs from "./Pages/Academics/Departments/English/Facilities";
 import Eng_awards from "./Pages/Academics/Departments/English/Awards";
 import Eng_Eve from "./Pages/Academics/Departments/English/Events";
-import Psychology_Events from "./Pages/Academics/Departments/Psychology/Psychology_Events"
+import Psychology_Events from "./Pages/Academics/Departments/Psychology/Psychology_Events";
 // Hindi
 import Hindi_about from "./Pages/Academics/Departments/Hindi/Hindi_about";
 import Hindi_fac from "./Pages/Academics/Departments/Hindi/Hindi_fac";
@@ -179,7 +179,7 @@ import Hist_publications from "./Pages/Academics/Departments/History/Hist_public
 import Hist_awards from "./Pages/Academics/Departments/History/Hist_awards";
 import Hist_association from "./Pages/Academics/Departments/History/Hist_association";
 import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
-
+import Hist_stuAch from "./Pages/Academics/Departments/History/Hist_studachieve";
 // Mathemtics
 import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
 import Math_fac from "./Pages/Academics/Departments/Mathematics/Math_fac";
@@ -195,10 +195,15 @@ import Music_about from "./Pages/Academics/Departments/Music/Music_about";
 import Music_fac from "./Pages/Academics/Departments/Music/Music_fac";
 import Forgot from "./Pages/Admin/Forgot";
 import ResetPassword from "./Pages/Admin/ResetPassword";
+import Music_stuAch from "./Pages/Academics/Departments/Music/Music_studachieve";
+import Music_association from "./Pages/Academics/Departments/Music/Music_association";
 
 // NHE
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
 import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
+import NHE_stuAch from "./Pages/Academics/Departments/NHE/NHE_studachieve";
+import NHE_association from "./Pages/Academics/Departments/NHE/NHE_association";
+
 import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
 // Philosophy
 import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
@@ -213,6 +218,8 @@ import PhysicalEdu_about from "./Pages/Academics/Departments/Physical_Education/
 import PhysicalEdu_programoffered from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_programoffered";
 import PhysicalEdu_fac from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_fac";
 import PhysicalEdu_awards from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_awards";
+import PE_stuAch from "./Pages/Academics/Departments/Physical_Education/PE_studachieve";
+import PE_association from "./Pages/Academics/Departments/Physical_Education/PE_association";
 
 // Physics
 import Physics_about from "./Pages/Academics/Departments/Physics/Physics_about";
@@ -235,12 +242,14 @@ import PolSci_awards from "./Pages/Academics/Departments/Political_Science/PolSc
 import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Science/Pol_Sci_publications";
 import Pol_Sci_association from "./Pages/Academics/Departments/Political_Science/Pol_Sci_association";
 import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_Sci_events";
-
+import PS_stuAch from "./Pages/Academics/Departments/Political_Science/PS_studachieve";
 // Psychology
 import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about";
 import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 import Psycho_awards from "./Pages/Academics/Departments/Psychology/Psycho_awards";
 import Psycho_programoffered from "./Pages/Academics/Departments/Psychology/Psycho_programoffered";
+import Psy_stuAch from "./Pages/Academics/Departments/Psychology/Psy_studachieve";
+import Psycho_association from "./Pages/Academics/Departments/Psychology/Psycho_association";
 
 // Sanskriti
 import Sans_about from "./Pages/Academics/Departments/Sanskrit/Sans_about";
@@ -281,7 +290,7 @@ import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_ga
 import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
 
 import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
-import Accreditation from "./Pages/Accreditation/accred"
+import Accreditation from "./Pages/Accreditation/accred";
 import Useful from "./Pages/UsefulLinks/Useful";
 import Student_Union from "./Pages/Student_zone/Student_union";
 import Placement_cell from "./Pages/Student_zone/Placement_cell";
@@ -290,7 +299,6 @@ import Equal_opp from "./Pages/Student_zone/Equal_opp";
 
 import Music_Events from "./Pages/Academics/Departments/Music/Music_Events";
 import Phy_Events from "./Pages/Academics/Departments/Physics/Phy_Events";
-
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -425,7 +433,7 @@ function App() {
             }
             path="/academics/departments/biochem/faculty"
           ></Route>{" "}
-            <Route
+          <Route
             element={
               <>
                 <Botany_Events />
@@ -433,7 +441,7 @@ function App() {
             }
             path="/academics/departments/Botany/events"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <NHE_Events />
@@ -441,7 +449,7 @@ function App() {
             }
             path="/academics/departments/NHE/events"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <PE_Events />
@@ -449,7 +457,7 @@ function App() {
             }
             path="/academics/departments/Physical_Education/Events"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Psychology_Events />
@@ -566,13 +574,13 @@ function App() {
             path="/academics/PG_courses"
           ></Route>{" "}
           {/* <Route
-            element={
-              <>
-                <Addoncourses />
-              </>
-            }
-            path="/academics/Add_on_courses"
-          ></Route>{" "} */}
+                                    element={
+                                      <>
+                                        <Addoncourses />
+                                      </>
+                                    }
+                                    path="/academics/Add_on_courses"
+                                  ></Route>{" "} */}{" "}
           <Route
             element={
               <>
@@ -629,7 +637,7 @@ function App() {
             }
             path="/Student_Zone/placements"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Student_Union />
@@ -909,8 +917,7 @@ function App() {
             }
             path="/academics/resources"
           ></Route>{" "}
-
-           <Route
+          <Route
             element={
               <>
                 <Courses />
@@ -1288,6 +1295,46 @@ function App() {
           <Route
             element={
               <>
+                <Music_stuAch />
+              </>
+            }
+            path="/academics/departments/Music/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <NHE_stuAch />
+              </>
+            }
+            path="/academics/departments/NHE/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <PE_stuAch />
+              </>
+            }
+            path="/academics/departments/Physical_Education/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <PS_stuAch />
+              </>
+            }
+            path="/academics/departments/Political_Science/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Psy_stuAch />
+              </>
+            }
+            path="/academics/departments/Psychology/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Com_studachieve />
               </>
             }
@@ -1612,6 +1659,14 @@ function App() {
           <Route
             element={
               <>
+                <Hist_stuAch />
+              </>
+            }
+            path="/academics/departments/History/Students'_achievements"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Hist_programoffered />
               </>
             }
@@ -1731,6 +1786,14 @@ function App() {
             }
             path="/academics/departments/Music/Faculty"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Music_association />
+              </>
+            }
+            path="/academics/departments/Music/association"
+          ></Route>{" "}
           {/* NHE */}{" "}
           <Route
             element={
@@ -1747,6 +1810,14 @@ function App() {
               </>
             }
             path="/academics/departments/NHE/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <NHE_association />
+              </>
+            }
+            path="/academics/departments/NHE/association"
           ></Route>{" "}
           <Route
             element={
@@ -1845,6 +1916,14 @@ function App() {
               </>
             }
             path="/academics/departments/Physical_Education/photogallery"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <PE_association />
+              </>
+            }
+            path="/academics/departments/Physical_Education/association"
           ></Route>{" "}
           <Route
             element={
@@ -2052,6 +2131,14 @@ function App() {
           <Route
             element={
               <>
+                <Psycho_association />
+              </>
+            }
+            path="/academics/departments/Psychology/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Psycho_programoffered />
               </>
             }
@@ -2146,6 +2233,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_association />
+              </>
+            }
+            path="/academics/departments/Zoology/association"
           ></Route>{" "}
           <Route
             element={

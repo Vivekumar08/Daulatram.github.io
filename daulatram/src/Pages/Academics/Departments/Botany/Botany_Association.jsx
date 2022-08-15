@@ -1,29 +1,222 @@
-import React, {useState} from "react";
+
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Botanybanner from "./Botanybanner.jsx";
-import Departments from "../../../../Components/Sidebar/Departments";
 import Botany from "../../../../Components/DepartSIde/Botany";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import Common_dat from "../Common_dat";
+
 function Botany_Association() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Bot_Association");
+    setData1(await response.json());
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const handleSubmit_img = async (id, file) => {
+    try {
+      if (file) {
+        setErrMsg("");
+        await axios.post(
+          `/Bot_Association_img_upload/${id}`,
+          { file: file },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(`/delete_Bot_Association_para/${id}`, {
+        method: "POST",
+        body: JSON.stringify(arr),
+        headers: { "Content-Type": "application/json" },
+      });
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(`/delete_Bot_Association/${id}`, {
+      method: "POST",
+    });
+    await response.json();
+    if (response.status === 200) {
+      setErrMsg("");
+      fetchdata();
+    } else if (response.status === 400) {
+      setErrMsg("First Delete all the images related to this section");
+    }
+  };
+
+  const delete_file = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_pdf_link_Bot_Association_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+  const dele = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_img_Bot_Association_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+
+  const handleSubmit_data = async (id, para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Bot_Association_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit_link = async (id, link) => {
+    try {
+      console.log(link);
+      await axios.post(`/Bot_Association_add_link/${id}`, {
+        link: link,
+      });
+      setCaption("");
+      setAuth(true);
+      fetchdata();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    console.log(id);
+    try {
+      console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Bot_Association_file_upload/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        setErrMsg("");
+        await axios.post(`/Bot_Association_upload`, {
+          title: link,
+          description: caption,
+        });
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
     <div className=" flex flex-col">
       <div className="">
         <Botanybanner />
       </div>
+
       <div className="flex flex-row">
-      <div className="md:hidden absolute bg-white">
+        <div className="md:hidden">
           {visible ? (
             <>
-                <div className=" flex  flex-col mt-8 ml-2">
-                  <FontAwesomeIcon
-                    icon={faClose}
-                    size="lg"
-                    onClick={() => setVisible(!visible)}
-                    className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
-                  />
-                  <Botany />
-                </div>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Botany />
+              </div>
             </>
           ) : (
             <div className=" flex  flex-col mt-8 ml-2">
@@ -36,115 +229,93 @@ function Botany_Association() {
             </div>
           )}
         </div>
-      <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Botany />
         </div>
-        <div className="ml-auto mr-auto">
-          <div className="w-full ml-auto mr-auto">
-            <h2 className="md:text-4xl text-lg sm:text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center md:justify-center items-center ">
-              Association
-            </h2>
+        <div className="w-full mr-16">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            Association
+          </h2>
+          <div className="text-justify p-3 m-2 ml-4">
+            {data1 &&
+              data1.map((curElem) => {
+                const { _id, title, description, img_data } = curElem;
+                return (
+                  <>
+                    <Common_dat
+                      key={_id}
+                      id={_id}
+                      tittle={title}
+                      para={description}
+                      pic={img_data}
+                      delete={del}
+                      delete_img={dele}
+                      delete_file={delete_file}
+                      delete_para={del_para}
+                      add_para={handleSubmit_data}
+                      file_upload={handleSubmit_file}
+                      Link_upload={handleSubmit_link}
+                      submit_img={handleSubmit_img}
+                    />
+                  </>
+                );
+              })}
           </div>
-          <div className="flex flex-row justify-between ">
-            <div className=" ">
-              <div>
-                <p className=" card-description lg:text-3xl md:text-2xl sm:text-lg flex pr-4 pl-4 mt-10 text-blue-900 text-justify justify-center font-bold ">
-                  Botanical Society – “Vasundhara”
-                </p>
-              </div>
-              {/* <div> */}
-              <div className="pr-4 pl-4 mt-5 mr-14">
-                <span className="md:text-base lg:text-lg text-sm text-justify font-medium">
-                  <p>
-                    {" "}
-                    The activities of Botanical Society “Vasundhara” are
-                    initiated every year at the beginning of the new academic
-                    session by conducting the election for the posts of its
-                    office bearers. The society formally starts with an
-                    inaugural lecture on{" "}
-                    <strong>
-                      {" "}
-                      “Our Nature and Wildlife Heritage: Past, Present & Future
-                      ”
-                    </strong>{" "}
-                    by one of our bright alumnae{" "}
-                    <strong>Ms. Radha Sharma,</strong> Co-founder and Director,
-                    Earth Calling Expeditions, Mylapore, Chennai.
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p>Add New Data</p>
+                </h2>
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
                   </p>
-                </span>
-              </div>
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Link"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setLink(e.target.value)}
+                    value={link}
+                    placeholder="Title"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Caption"
+                  ></textarea>
+                </div>
+                <div class="md:flex flex-col md:items-center">
+                  {/* <div class="md:w-1/3"></div> */}
 
-              <div className="pr-4 pl-4 mt-5 mr-14">
-                <span className="md:text-base lg:text-lg text-sm text-justify font-medium">
-                  <p>
-                    The speaker shared her inspiring personal experiences about
-                    wildlife safari’s. She highlighted major issues related to
-                    Tiger conservation and importance of tigers as Umbrella
-                    species in forest ecosystems. With an aim of knowledge
-                    enhancement and holistic development of students, various
-                    co-curricular and extra-curricular activities such as Paper
-                    Presentation, Botanical Quiz, Nature through lens, Botanical
-                    Rangoli, Phytodiversity, Sketching Competition are organized
-                    throughout the year. The annual inter-college botanical
-                    festival <strong>“Orchidz” </strong> is celebrated with
-                    great fervour that receives active and overwhelming
-                    participation from the students across Delhi University.
-                  </p>
-                </span>
-              </div>
-              <div>
-                <div
-                  style={{
-                    backgroundImage: "url(/images/ImgPages/Botany/Fest_1.jpg)",
-
-                  }}
-                  className="bg-center flext flex-row justify-center bg-no-repeat mt-[1%]  bg-cover lg:w-[70%] mr-28 w-[270px] h-[190px] lg:h-[470px] ml-20 md:ml-28 mb-4 rounded-2xl border-2 border-black"
-                ></div>
-              </div>
-              <div>
-                <div
-                  style={{
-                    backgroundImage: "url(/images/ImgPages/Botany/Fest_2.jpg)",
-
-                  }}
-                  className="bg-center flext flex-row justify-center bg-no-repeat mt-[1%]  bg-cover lg:w-[70%] mr-28 w-[270px] h-[190px] lg:h-[470px] ml-20 md:ml-28 mb-4 rounded-2xl border-2 border-black"
-                ></div>
-              </div>
-              <div>
-                <div
-                  style={{
-                    backgroundImage: "url(/images/ImgPages/Botany/Fest_3.jpg)",
-                    
-                  }}
-                  className="bg-center flext flex-row justify-center bg-no-repeat mt-[1%]  bg-cover lg:w-[70%] mr-28 w-[270px] h-[190px] lg:h-[900px] sm-ml-28 ml-20 md:ml-28 mb-4 rounded-2xl border-2 border-black"
-                ></div>
-              </div>
-
-              <div className="pr-4 pl-4 mt-5 mr-14">
-                <span className="md:text-base lg:text-lg text-sm text-justify font-medium">
-                  <p>
-                    The most important event of the fest is{" "}
-                    <strong>Paper Reading Competition</strong> for rolling{" "}
-                    <strong>Deepika Vigyan Trophy</strong>. Another highlight of
-                    the society is the publication of its annual magazine{" "}
-                    <strong>LIANA</strong>, compilation of articles contributed
-                    by students and faculty.
-                  </p>
-                </span>
-              </div>
-              <div>
-                <div
-                  style={{
-                    backgroundImage: "url(/images/ImgPages/Botany/Liana.png)",
-
-                  }}
-                  className="bg-center flext flex-row justify-center bg-no-repeat mt-[1%]  bg-cover lg:w-[70%] w-[270px] h-[350px] lg:h-[1200px] ml-20 md:ml-28  mb-4 rounded-2xl border-2 border-black"
-                ></div>
-              </div>
-              {/* </div> */}
-            </div>
-            
-          </div>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>

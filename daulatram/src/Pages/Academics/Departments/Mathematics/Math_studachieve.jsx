@@ -1,17 +1,209 @@
-import React, {useState} from "react";
-import Mathbanner from "../Mathematics/Mathbanner.jsx";
-import Mathematics from "../../../../Components/DepartSIde/Mathematics.jsx";
+import React, { useContext, useEffect, useState, useRef } from "react";
+import DepartBanner from "./Mathbanner";
+import Sidebar from "../../../../Components/DepartSIde/Mathematics";
+import axios from "axios";
+import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-function Math_studachieve() {
+import Common_dat from "../Common_dat";
+
+function Studentsachieve() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Math_Student_Achievement");
+    setData1(await response.json());
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const handleSubmit_img = async (id, file) => {
+    try {
+      if (file) {
+        setErrMsg("");
+        await axios.post(
+          `/Math_Student_Achievement_img_upload/${id}`,
+          { file: file },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(`/delete_Math_Student_Achievement_para/${id}`, {
+        method: "POST",
+        body: JSON.stringify(arr),
+        headers: { "Content-Type": "application/json" },
+      });
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(`/delete_Math_Student_Achievement/${id}`, {
+      method: "POST",
+    });
+    await response.json();
+    if (response.status === 200) {
+      setErrMsg("");
+      fetchdata();
+    } else if (response.status === 400) {
+      setErrMsg("First Delete all the images related to this section");
+    }
+  };
+
+  const delete_file = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_pdf_link_Math_Student_Achievement_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+  const dele = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_img_Math_Student_Achievement_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+
+  const handleSubmit_data = async (id, para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Math_Student_Achievement_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit_link = async (id, link) => {
+    try {
+      console.log(link);
+      await axios.post(`/Math_Student_Achievement_add_link/${id}`, {
+        link: link,
+      });
+      setCaption("");
+      setAuth(true);
+      fetchdata();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    console.log(id);
+    try {
+      console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Math_Student_Achievement_file_upload/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        setErrMsg("");
+        await axios.post(`/Math_Student_Achievement_upload`, {
+          title: link,
+          description: caption,
+        });
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
     <div className=" flex flex-col">
       <div className="">
-        <Mathbanner />
+        <DepartBanner />
       </div>
+
       <div className="flex flex-row">
-      <div className="md:hidden absolute bg-white">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -21,7 +213,7 @@ function Math_studachieve() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Mathematics />
+                <Sidebar />
               </div>
             </>
           ) : (
@@ -35,229 +227,97 @@ function Math_studachieve() {
             </div>
           )}
         </div>
-        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
-          <Mathematics />
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
+          <Sidebar />
         </div>
-        <div className="ml-3 ">
-          <div className="w-full mr-16">
-            <h2 className="md:text-3xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
-              Students Achievements
-            </h2>
+        <div className="w-full mr-16">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            Student's Achievements
+          </h2>
+          <div className="text-justify p-3 m-2 ml-4">
+            {data1 &&
+              data1.map((curElem) => {
+                const { _id, title, description, img_data } = curElem;
+                return (
+                  <>
+                    <Common_dat
+                      key={_id}
+                      id={_id}
+                      tittle={title}
+                      para={description}
+                      pic={img_data}
+                      delete={del}
+                      delete_img={dele}
+                      delete_file={delete_file}
+                      delete_para={del_para}
+                      add_para={handleSubmit_data}
+                      file_upload={handleSubmit_file}
+                      Link_upload={handleSubmit_link}
+                      submit_img={handleSubmit_img}
+                    />
+                  </>
+                );
+              })}
           </div>
-          <div className="flex flex-row">
-            <div>
-              <div className="mr-5 ml-4">
-                <div>
-                  <h2 className="mdtext-2xl text-xl ml-4 font-bold underline mb-3">
-                    Awards
-                  </h2>
-                  <p className=" ml-4 font-bold md:text-xl text-lg">Academic :</p>
-                  <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
-                    <li>
-                      Sneha Goyal (Batch 2017-20) won{" "}
-                      <b>Silver Jubilee Merit Scholarship</b> for securing
-                      Second position in University in B.Sc. (H) Maths second
-                      year.
-                    </li>
-
-                    <li>
-                      Mansi (Batch 2017-20) won{" "}
-                      <b>Silver Jubilee Merit Scholarship</b>
-                      for securing Third position in University in B.Sc.(H)
-                      Maths second year.
-                    </li>
-
-                    <li>
-                      {" "}
-                      Swati (Batch 2017-20) won{" "}
-                      <b>Silver Jubilee Merit Scholarship</b>
-                      for securing Third position in University in B.Sc.(H)
-                      Maths second year.
-                    </li>
-                    <li>
-                      Neha (Batch 2011-14) has been awarded{" "}
-                      <b>Silver Jubilee Merit Scholarship</b> for securing first
-                      position in University in B.Sc. (H) Maths second year.
-                    </li>
-                    <li>
-                      Deepshikha (Batch 2009-12) has been awarded{" "}
-                      <b>Silver Jubilee Merit Scholarship</b> for securing first
-                      position in University in B.Sc. (H) Maths second year.
-                    </li>
-                    <li>
-                      Deepshikha (Batch 2009-12) has been awarded{" "}
-                      <b>Teacher's Memorial Prize</b> for securing third
-                      position in the university in B.Sc. (H) Maths (All three
-                      years combined).
-                    </li>
-                  </ul>
-                  <br />
-                  <p className="ml-4 font-bold md:text-xl text-lg">Sports:</p>
-
-                  <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
-                    <li>
-                      Nandni Sorout (Batch 2017-20) has twice won first position
-                      in 100 m Hurdles in 8th and 33rd Haryana State Junior
-                      Athletics Championships organised by Athletics Haryana at
-                      Rohtak in August, 2019 and October 2019 respectively.
-                    </li>
-                    <li>
-                      Nandni Sorout won third position in 4*400 m Relay race in
-                      34th National Junior Athletics Championships organised by
-                      Jharkhand Athletics Association at Ranchi from 2-5
-                      November, 2018.
-                    </li>
-                    <li>
-                      Nandni Sorout won Second position in 400 m Hurdles and
-                      third position in 4*100 m Relay in 30th North Zone Junior
-                      Athletics Championships organised by Haryana Athletics
-                      Association at Rohtak on 6,7 October, 2018.
-                    </li>
-                    <li>
-                      Usha Yadav (Batch 2014-17) won first prize in the
-                      Basketball Senior Wing competition organized by NCC in Jan
-                      2016.
-                    </li>
-                    <li>
-                      Anshu Choudhary (Batch 2018-2021) won Third prize in Shot
-                      put at annual sports day of the college held on 24
-                      February, 2020.
-                    </li>
-                    <li>
-                      Swati Kaushik (Batch 2013-16) won 1 Gold medal, 1 silver
-                      and several prizes in various Taekwondo Championships.
-                    </li>
-                  </ul>
-
-                  <p className="ml-4 font-bold md:text-xl text-lg">
-                    Cultural / Others:
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p>Add New Data</p>
+                </h2>
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
                   </p>
-
-                  <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
-                    <li>
-                      Punyakshi (Batch 2018-21) won second prize in the Inter
-                      College Speech Competition organized by P.G.D.A.V.(Eve) on
-                      23 February, 2019.{" "}
-                    </li>
-                    <li>
-                      Sanghita P. Nath (Batch 2018-21) won Second Prize in
-                      Rangoli Bihu in Bihuoti competition held on 13 April 2019
-                      by Assam Association Gurgaon.
-                    </li>
-                    <li>
-                      Navya Whig (Batch 2017-20) won first prize in event
-                      “Designing Marathon” in the Commerce Fest 2020 organised
-                      by P.G.D.A.V College (Eve).
-                    </li>
-                    <li>
-                      Navya Whig won first prize in the event “Indian Classical
-                      Music Solo” organised by Dyal Singh College.
-                    </li>
-                    <li>
-                      Navya Whig won second prize in the event “Music Duo”
-                      organised by Sri Guru Gobind Singh College of Commerce.
-                    </li>
-                    <li>
-                      Navya Whig won first prize in “Agaaz '' event held at
-                      Rendezvous 18, IIT Delhi.
-                    </li>
-                    <li>
-                      Shreya Gulati (Batch 2017-20) won first prize in events
-                      “Industry Simulation” and “Business Simulation” organised
-                      by International Management Institute, New Delhi on 13
-                      January, 2019.
-                    </li>
-                    <li>
-                      Pinky Chauhan (Batch 2014-17) participated in a special
-                      National Integration camp held at GSSS, Kavaratti
-                      (Lakshadweep) from 14 Apr to 25 April 2017. She
-                      participated in NIAP and group dance competitions and was
-                      awarded 2nd and 3rd prize respectively.
-                    </li>
-                    <li>
-                      Garima Rathi (Batch 2013-16) won the Best Delegate Award
-                      in India’s First M-UNEA organized by Shaheed Bhagat Singh
-                      College in the year 2014.
-                    </li>
-                    <li>
-                      Devanshi Thapliyal (2013-16) won the Shri Krishna Mohan
-                      Memorial Prize for Best All-Round Student in the college
-                      in 2015-16.{" "}
-                    </li>
-                    <li>
-                      Vibhuti Dhadich (Batch 2012-15) as a part of Dramatics
-                      Society received the 2nd Prize for Street play at Delhi
-                      government Sahitya Kala Parishad in the year 2014.
-                    </li>
-                    <li>
-                      Riya Arora (Batch 2012-15) received the 2nd Prize in the
-                      event “Taarangana” in the annual fest of IGDTUW.
-                    </li>
-                  </ul>
-                  
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Link"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setLink(e.target.value)}
+                    value={link}
+                    placeholder="Title"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
                 </div>
-                <div>
-                  <h2 className="md:text-2xl text-xl ml-4 font-bold underline mb-3 mt-3">
-                    Student's Progression
-                  </h2>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Caption"
+                  ></textarea>
                 </div>
-                <ul className="list-decimal md:text-base text-sm mt-2 ml-10 mr-4 text-justify mb-4">
-                  <li>
-                    Sneha Goyal (Batch 2017-20) AIR 117 in JAM (Mathematics),
-                    2020, pursuing M.Sc. from IIT Roorkee.
-                  </li>
-                  <li>
-                    Sameepta Ahuja (Batch 2017-20) AIR 167 in JAM
-                    (Mathematics),2020, pursuing M.Sc. from IIT Roorkee.
-                  </li>
-                  <li>
-                    Aakanksha Sigar (Batch 2017-20) AIR 170 in JAM
-                    (Mathematics),2020, pursuing M.Sc. from IIT Kharagpur.
-                  </li>
-                  <li>
-                    Sushma Kumari (Batch 2017-20) AIR 250 in JAM (Statistics),
-                    2020, pursuing M.Sc. in Applied Statistics and Informatics
-                    from IIT Bombay.
-                  </li>
-                  <li>
-                    Tanisha Kumari (Batch 2017-20), pursuing M. Sc from IIT
-                    Indore.
-                  </li>
-                  <li>
-                    Komal (Batch 2016-19) AIR 35 in Delhi Technological
-                    University entrance exam for M.Sc.,2019.
-                  </li>
-                  <li>
-                    Ridhi Bakshi (Batch 2016-19) AIR 37 in Delhi Technological
-                    University entrance exam for M.Sc., 2019.
-                  </li>
-                  <li>
-                    Rashi Kamra (Batch 2016-19) AIR 271 in JAM (Mathematics),
-                    2019 and pursuing M.Sc. from IIT Ropar.
-                  </li>
-                  <li>
-                    H. Laxmi (Batch 2015-18) AIR 210 in JAM (Mathematics), 2018
-                    and AIR 257 in JAM (Statistics), 2018 and pursuing Ph.D.
-                    (Maths and Computing) from IIT Guwahati.
-                  </li>
-                  <li>
-                    Sonakshi Agarwal (Batch 2015-18) pursuing MBA in
-                    International Business from Indian Institute of Foreign
-                    Trade (IIFT) Delhi.
-                  </li>
-                  <li>Rishika (Batch 2015-18) pursuing MBA from IIM Indore.</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          {/* <div className=" flex  flex-col ml-4 mr-16 mt-10 ">
-          <Biochemistry/>
+                <div class="md:flex flex-col md:items-center">
+                  {/* <div class="md:w-1/3"></div> */}
 
-          </div> */}
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export default Math_studachieve;
+export default Studentsachieve;
