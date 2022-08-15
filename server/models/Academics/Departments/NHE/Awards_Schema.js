@@ -1,31 +1,59 @@
 const mongoose = require('mongoose');
 
-const Awards_Schema = mongoose.Schema(
-  {
-    title: {
-      type: String,
-      required: true,
-      trim: true
+const NHE_Awards_Schema = mongoose.Schema(
+    {
+        title: {
+            type: String,
+            required: true,
+        },
+        description: {
+            type: String,
+            required: true,
+        },
+        img_data: {
+
+            file_path: [
+                {
+                    file_path1: {
+                        type: String,
+                        default: null
+                    },
+                    file_mimetype1: {
+                        type: String,
+                        default: null
+                    },
+                }
+            ],
+            pdf_path: [
+                {
+                    pdf_path1: {
+                        type: String,
+                        default: "../daulatram/public/images/uploads"
+                    },
+                    pdf_mimetype1: {
+                        type: String,
+                        default: null
+                    },
+                    value: {
+                        type: String,
+                        default: null
+                    },
+                }
+            ],
+            para: [
+                {
+                    para1: {
+                        type: String,
+                    },
+                }
+            ],
+        }
     },
-    link: {
-      type: String,
-      required: true,
-      trim: true
-    },
-    file_path: {
-      type: String,
-      required: true
-    },
-    file_mimetype: {
-      type: String,
-      required: true
+    {
+        timestamps: true
     }
-  },
-  {
-    timestamps: true
-  }
 );
 
-const Bio_Awards = mongoose.model('Bio_Awards_Schema', Awards_Schema);
+const NHE_Awards = mongoose.model('NHE_Awards', NHE_Awards_Schema);
 
-module.exports = Bio_Awards;
+module.exports = NHE_Awards;

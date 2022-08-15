@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const His_Awards_Schema = mongoose.Schema(
+const Music_Awards_Schema = mongoose.Schema(
     {
         title: {
             type: String,
@@ -54,6 +54,6 @@ const His_Awards_Schema = mongoose.Schema(
     }
 );
 
-const His_Awards = mongoose.model('His_Awards', His_Awards_Schema);
+const Music_Awards = mongoose.model('Music_Awards', Music_Awards_Schema);
 
-module.exports = His_Awards;
+module.exports = Music_Awards;

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const His_Awards_Schema = mongoose.Schema(
+const Philo_Awards_Schema = mongoose.Schema(
     {
         title: {
             type: String,
@@ -54,6 +54,6 @@ const His_Awards_Schema = mongoose.Schema(
     }
 );
 
-const His_Awards = mongoose.model('His_Awards', His_Awards_Schema);
+const Philo_Awards = mongoose.model('Philo_Awards', Philo_Awards_Schema);
 
-module.exports = His_Awards;
+module.exports = Philo_Awards;

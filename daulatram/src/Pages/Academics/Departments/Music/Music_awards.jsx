@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
-import DepartBanner from "./Ecobanner";
-import Sidebar from "../../../../Components/DepartSIde/Economics";
+import DepartBanner from "./Musicbanner";
+import Sidebar from "../../../../Components/DepartSIde/Music";
 
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -20,7 +20,7 @@ function Awards() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Eco_Awards");
+    const response = await fetch("/Music_Awards");
     setData1(await response.json());
   };
 
@@ -33,7 +33,7 @@ function Awards() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Eco_Awards_img_upload/${id}`,
+          `/Music_Awards_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -57,7 +57,7 @@ function Awards() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Eco_Awards_para/${id}`, {
+      const response = await fetch(`/delete_Music_Awards_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -77,7 +77,7 @@ function Awards() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Eco_Awards/${id}`, {
+    const response = await fetch(`/delete_Music_Awards/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -93,7 +93,7 @@ function Awards() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Eco_Awards_fac/${id}`,
+      `/delete_pdf_link_Music_Awards_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -105,7 +105,7 @@ function Awards() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Eco_Awards_fac/${id}`,
+      `/delete_img_Music_Awards_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -120,7 +120,7 @@ function Awards() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Eco_Awards_add_para/${id}`, {
+        await fetch(`/Music_Awards_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -138,7 +138,7 @@ function Awards() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Eco_Awards_add_link/${id}`, {
+      await axios.post(`/Music_Awards_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -155,7 +155,7 @@ function Awards() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Eco_Awards_file_upload/${id}`,
+          `/Music_Awards_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -182,7 +182,7 @@ function Awards() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Eco_Awards_upload`, {
+        await axios.post(`/Music_Awards_upload`, {
           title: link,
           description: caption,
         });

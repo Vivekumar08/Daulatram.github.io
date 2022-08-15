@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState, useRef } from "react";
 import DepartBanner from "../../../../Components/Banners/DepartBanner";
-import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
+import Sidebar from "../../../../Components/DepartSIde/Biochemistry";
 
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -215,7 +215,7 @@ function Awards() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Biochemistry />
+                <Sidebar />
               </div>
             </>
           ) : (
@@ -230,7 +230,7 @@ function Awards() {
           )}
         </div>
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <Biochemistry />
+          <Sidebar />
         </div>
         <div className="w-full mr-16">
           <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">

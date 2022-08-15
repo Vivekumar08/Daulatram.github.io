@@ -69,6 +69,8 @@ const Bio_Publications = require("../models/Academics/Departments/Biochemistry/B
 const Hist_Publications = require("../models/Academics/Departments/History/Hist_Publications_Schema");
 const NHE_Publications = require("../models/Academics/Departments/NHE/NHE_Publications_Schema");
 const Bio_Awards = require("../models/Academics/Departments/Biochemistry/Bio_Awards_Schema");
+
+
 const Bio_Student_Achieve = require("../models/Academics/Departments/Biochemistry/Bio_Student_Achieve_Schema");
 const Bot_Student_Achieve = require("../models/Academics/Departments/Botany/StuAch_Schema");
 const Chem_Student_Achieve = require("../models/Academics/Departments/Chemistry/StuAch_Schema");
@@ -191,18 +193,18 @@ const PE_ProgramOffered = require("../models/Academics/Departments/Physical_Educ
 const PE_Awards = require("../models/Academics/Departments/Physical_Education/PE_Awards_Schema");
 const PE_Fac = require("../models/Academics/Departments/Physical_Education/PE_Fac_Schema");
 const Physics_ProgramOffered = require("../models/Academics/Departments/Physics/Physics_ProgramsOffered_Schema");
-const Physics_Awards = require("../models/Academics/Departments/Physics/Physics_Awards_Schema");
+const Phy_Awards = require("../models/Academics/Departments/Physics/Physics_Awards_Schema");
 const PolSci_ProgramOffered = require("../models/Academics/Departments/Political_Science/PolSci_ProgramsOffered_Schema");
-const PolSci_Awards = require("../models/Academics/Departments/Political_Science/PolSci_Awards_Schema");
+const PS_Awards = require("../models/Academics/Departments/Political_Science/PolSci_Awards_Schema");
 const Psychology_ProgramOffered = require("../models/Academics/Departments/Psychology/Psychology_ProgramsOffered_Schema");
 const Psycho_Association = require("../models/Academics/Departments/Psychology/Psycho_Association_Schema");
-const Psychology_Awards = require("../models/Academics/Departments/Psychology/Psychology_Awards_Schema");
+const Psy_Awards = require("../models/Academics/Departments/Psychology/Psychology_Awards_Schema");
 const Sanskrit_ProgramOffered = require("../models/Academics/Departments/Sanskrit/Sanskrit_Programsoffered_Schema");
-const Sanskrit_Awards = require("../models/Academics/Departments/Sanskrit/Sanskrit_Awards_Schema");
+const Sans_Awards = require("../models/Academics/Departments/Sanskrit/Sanskrit_Awards_Schema");
 const Zoology_ProgramOffered = require("../models/Academics/Departments/Zoology/Zoology_Programsoffered_Schema");
-const Zoology_Awards = require("../models/Academics/Departments/Zoology/Zoology_Awards_Schema");
+const Zoo_Awards = require("../models/Academics/Departments/Zoology/Zoology_Awards_Schema");
 const Hist_ProgramOffered = require("../models/Academics/Departments/History/Hist_ProgramsOffered_Schema");
-const Hist_Awards = require("../models/Academics/Departments/History/Hist_Awards_Schema");
+const His_Awards = require("../models/Academics/Departments/History/Hist_Awards_Schema");
 const Math_ProgramOffered = require("../models/Academics/Departments/Mathematics/Math_ProgramsOffered_Schema");
 const Math_Awards = require("../models/Academics/Departments/Mathematics/Math_Awards_Schema");
 const Math_Publications = require("../models/Academics/Departments/Mathematics/Math_Publications_Schema");
@@ -228,8 +230,10 @@ const IQAC = require("../models/Events&Activities/IQAC_schema");
 const Studentact = require("../models/Events&Activities/Studentact_schema");
 const Useful_Links = require("../models/Useful_Links_schema");
 
+const Music_Awards = require("../models/Academics/Departments/Music/Music_Awards_Schema");
+const Philo_Awards = require("../models/Academics/Departments/Philosophy/Philo_Awards_Schema");
 
-// const NHE_Awards = require("../models/Academics/Departments/NHE/Awards_Schema");
+const NHE_Awards = require("../models/Academics/Departments/NHE/Awards_Schema");
 const Philo_ProgramOffered = require("../models/Academics/Departments/Philosophy/Philo_ProgramsOffered_Schema");
 
 const unlinkAsync = promisify(fs.unlink);
@@ -2204,6 +2208,448 @@ router.get("/PE_Association_download/:id", async(req, res) => {
         res.status(400).send("Error while downloading file. Try again later.");
     }
 });
+//Music Awards
+router.post("/delete_Music_Awards/:id", async(req, res) => {
+    const delete_user = await Music_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Music_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Music_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Music_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Music_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Music_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Music_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Music_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Music_Awards", async(req, res) => {
+    try {
+        const files = await Music_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Music_Awards_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Music_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Music_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Music_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Music_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Music_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Music_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Music_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Music_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Music_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Music_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Music_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Music_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+//NHE Awards
+router.post("/delete_NHE_Awards/:id", async(req, res) => {
+    const delete_user = await NHE_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_NHE_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await NHE_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_NHE_Awards_fac/:id", async(req, res) => {
+    const delete_user = await NHE_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_NHE_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await NHE_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await NHE_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/NHE_Awards", async(req, res) => {
+    try {
+        const files = await NHE_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/NHE_Awards_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await NHE_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/NHE_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await NHE_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/NHE_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await NHE_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/NHE_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new NHE_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/NHE_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await NHE_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await NHE_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/NHE_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await NHE_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 // NHE Association
 
 router.post("/delete_NHE_Association/:id", async(req, res) => {
@@ -3565,7 +4011,7 @@ router.post(
     }
 );
 
-router.get("/Bio_Association_download/:id", async(req, res) => {
+router.get("/Bio_Awards_download/:id", async(req, res) => {
     try {
         const file = await Bio_Awards.findById(req.params.id);
         res.set({
@@ -3618,33 +4064,88 @@ router.post(
 );
 // Maths Awards
 
-router.get("/Math_Awards", async(req, res) => {
-    const details = await Math_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Math_Awards/:id", async(req, res) => {
+    const delete_user = await Math_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Math_Awards/:id", async(req, res) => {
-    const delete_user = await Math_Awards.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Math_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Math_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
+
+router.post("/delete_pdf_link_Math_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Math_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Math_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Math_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Math_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Math_Awards", async(req, res) => {
+    try {
+        const files = await Math_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Math_Awards_add",
-    upload.single("file"),
+    "/Math_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Math_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Math_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -3654,6 +4155,135 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Math_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Math_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Math_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Math_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Math_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Math_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Math_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Math_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Math_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Math_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Math_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 
 //NHEs prog
 
@@ -3694,42 +4324,7 @@ router.post(
         }
     }
 );
-// NHEs Awards
 
-// router.get('/NHE_Awards', async (req, res,) => {
-//     const details = await NHE_Awards.find()
-//     res.status(200).json(details)
-// });
-// router.delete('/delete_NHE_Awards/:id', async (req, res) => {
-//     const delete_user = await NHE_Awards.findOneAndDelete({ _id: req.params.id });
-//     await unlinkAsync(delete_user.file_path)
-//     res.status(200).json(delete_user + "User deleted")
-// });
-// router.post(
-//     '/NHE_Awards_add',
-//     upload.single('file'),
-//     async (req, res) => {
-//         try {
-//             const { title, link } = req.body;
-//             const { path, mimetype } = req.file;
-//             const file = new NHE_Awards({
-//                 title,
-//                 link,
-//                 file_path: path,
-//                 file_mimetype: mimetype
-//             });
-//             await file.save();
-//             res.send('file uploaded successfully.');
-//         } catch (error) {
-//             res.status(400).send('Error while uploading file. Try again later.');
-//         }
-//     },
-//     (error, req, res, next) => {
-//         if (error) {
-//             res.status(402).send(error.message);
-//         }
-//     }
-// );
 
 //Philosophy prog
 
@@ -3811,33 +4406,88 @@ router.post(
 );
 // History Awards
 
-router.get("/Hist_Awards", async(req, res) => {
-    const details = await Hist_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_His_Awards/:id", async(req, res) => {
+    const delete_user = await His_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Hist_Awards/:id", async(req, res) => {
-    const delete_user = await Hist_Awards.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_His_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await His_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
+
+router.post("/delete_pdf_link_His_Awards_fac/:id", async(req, res) => {
+    const delete_user = await His_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_His_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await His_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await His_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/His_Awards", async(req, res) => {
+    try {
+        const files = await His_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Hist_Awards_add",
-    upload.single("file"),
+    "/His_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Hist_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await His_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -3848,6 +4498,133 @@ router.post(
     }
 );
 
+
+router.post(
+    "/His_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await His_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/His_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await His_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/His_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new His_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/His_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await His_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await His_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/His_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await His_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
 // Commerce Program Offered
 
 router.get("/Com_ProgramOffered", async(req, res) => {
@@ -3889,31 +4666,88 @@ router.post(
 );
 // Commerce Awards
 
-router.get("/Com_Awards", async(req, res) => {
-    const details = await Com_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Com_Awards/:id", async(req, res) => {
+    const delete_user = await Com_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Com_Awards/:id", async(req, res) => {
-    const delete_user = await Com_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Com_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Com_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
+
+router.post("/delete_pdf_link_Com_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Com_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Com_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Com_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Com_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Com_Awards", async(req, res) => {
+    try {
+        const files = await Com_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Com_Awards_add",
-    upload.single("file"),
+    "/Com_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Com_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Com_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -3923,6 +4757,135 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Com_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Com_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Com_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Com_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Com_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Com_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Com_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Com_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Com_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Com_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Com_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 // Chemistry Program Offered
 
 router.get("/Chem_ProgramOffered", async(req, res) => {
@@ -3964,33 +4927,88 @@ router.post(
 );
 // Chemistry Awards
 
-router.get("/Chem_Awards", async(req, res) => {
-    const details = await Chem_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Chem_Awards/:id", async(req, res) => {
+    const delete_user = await Chem_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Chem_Awards/:id", async(req, res) => {
-    const delete_user = await Chem_Awards.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Chem_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Chem_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
+
+router.post("/delete_pdf_link_Chem_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Chem_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Chem_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Chem_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Chem_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Chem_Awards", async(req, res) => {
+    try {
+        const files = await Chem_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Chem_Awards_add",
-    upload.single("file"),
+    "/Chem_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Chem_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Chem_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -4000,6 +5018,135 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Chem_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Chem_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Chem_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Chem_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Chem_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Chem_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Chem_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Chem_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Chem_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Chem_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Chem_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 // Botany Program Offered
 
 router.get("/Bot_ProgramOffered", async(req, res) => {
@@ -4080,32 +5227,88 @@ router.post(
 );
 // Botany Awards
 
+router.post("/delete_Bot_Awards/:id", async(req, res) => {
+    const delete_user = await Bot_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Bot_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Bot_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Bot_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Bot_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Bot_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Bot_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Bot_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
 router.get("/Bot_Awards", async(req, res) => {
-    const details = await Bot_Awards.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Bot_Awards/:id", async(req, res) => {
-    const delete_user = await Bot_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
+    try {
+        const files = await Bot_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
 });
 
+
 router.post(
-    "/Bot_Awards_add",
-    upload.single("file"),
+    "/Bot_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Bot_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Bot_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -4116,32 +5319,112 @@ router.post(
     }
 );
 
-router.get("/Bot_StuAch", async(req, res) => {
-    const details = await Bot_StuAch.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Bot_StuAch/:id", async(req, res) => {
-    const delete_user = await Bot_StuAch.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
 
 router.post(
-    "/Bot_StuAch_add",
+    "/Bot_Awards_file_upload/:id",
     upload.single("file"),
     async(req, res) => {
         try {
-            const { title, link } = req.body;
             const { path, mimetype } = req.file;
-            const file = new Bot_StuAch({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
+            // console.log(path, mimetype)
+            const data = await Bot_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
             });
-            await file.save();
-            res.send("file uploaded successfully.");
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
         } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Bot_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Bot_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Bot_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Bot_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Bot_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Bot_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Bot_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -4151,6 +5434,18 @@ router.post(
         }
     }
 );
+
+router.get("/Bot_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Bot_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
 
 // Chemistry Student Achievements
 
@@ -8131,7 +9426,7 @@ router.post(
     }
 );
 
-// Physical Education Awards
+// Physical Education Fac
 
 router.get("/PE_Fac", async(req, res) => {
     const details = await PE_Fac.find();
@@ -8171,34 +9466,311 @@ router.post(
         }
     }
 );
+// Philosophy awards 
+router.post("/delete_Philo_Awards/:id", async(req, res) => {
+    const delete_user = await Philo_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Philo_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Philo_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Philo_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Philo_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Philo_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Philo_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Philo_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Philo_Awards", async(req, res) => {
+    try {
+        const files = await Philo_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Philo_Awards_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Philo_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Philo_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Philo_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Philo_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Philo_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Philo_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Philo_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Philo_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Philo_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Philo_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Philo_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Philo_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 // Physical Education Awards
 
-router.get("/PE_Awards", async(req, res) => {
-    const details = await PE_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_PE_Awards/:id", async(req, res) => {
+    const delete_user = await PE_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_PE_Awards/:id", async(req, res) => {
-    const delete_user = await PE_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_PE_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await PE_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
+router.post("/delete_pdf_link_PE_Awards_fac/:id", async(req, res) => {
+    const delete_user = await PE_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_PE_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await PE_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await PE_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/PE_Awards", async(req, res) => {
+    try {
+        const files = await PE_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/PE_Awards_add",
-    upload.single("file"),
+    "/PE_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new PE_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await PE_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -8208,36 +9780,219 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/PE_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await PE_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/PE_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await PE_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/PE_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new PE_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/PE_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await PE_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await PE_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/PE_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await PE_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 
 // Physics Awards
-router.get("/Physics_Awards", async(req, res) => {
-    const details = await Physics_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Phy_Awards/:id", async(req, res) => {
+    const delete_user = await Phy_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Physics_Awards/:id", async(req, res) => {
-    const delete_user = await Physics_Awards.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Phy_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Phy_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
+router.post("/delete_pdf_link_Phy_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Phy_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Phy_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Phy_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Phy_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Phy_Awards", async(req, res) => {
+    try {
+        const files = await Phy_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Physics_Awards_add",
-    upload.single("file"),
+    "/Phy_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Physics_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Phy_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -8247,6 +10002,135 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Phy_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Phy_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Phy_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Phy_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Phy_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Phy_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Phy_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Phy_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Phy_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Phy_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Phy_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 
 // PolSci Events
 router.post("/delete_PolSci_Events/:id", async(req, res) => {
@@ -10015,34 +11899,88 @@ router.post(
 );
 
 // Political Science Awards
-router.get("/PolSci_Awards", async(req, res) => {
-    const details = await PolSci_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_PS_Awards/:id", async(req, res) => {
+    const delete_user = await PS_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_PolSci_Awards/:id", async(req, res) => {
-    const delete_user = await PolSci_Awards.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_PS_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await PS_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
+router.post("/delete_pdf_link_PS_Awards_fac/:id", async(req, res) => {
+    const delete_user = await PS_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_PS_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await PS_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await PS_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/PS_Awards", async(req, res) => {
+    try {
+        const files = await PS_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/PolSci_Awards_add",
-    upload.single("file"),
+    "/PS_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new PolSci_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await PS_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -10052,37 +11990,219 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/PS_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await PS_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/PS_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await PS_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/PS_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new PS_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/PS_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await PS_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await PS_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/PS_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await PS_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
 
 // Psychology Awards
 
-router.get("/Psychology_Awards", async(req, res) => {
-    const details = await Psychology_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Psy_Awards/:id", async(req, res) => {
+    const delete_user = await Psy_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Psychology_Awards/:id", async(req, res) => {
-    const delete_user = await Psychology_Awards.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Psy_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Psy_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
+router.post("/delete_pdf_link_Psy_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Psy_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Psy_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Psy_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Psy_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Psy_Awards", async(req, res) => {
+    try {
+        const files = await Psy_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Psychology_Awards_add",
-    upload.single("file"),
+    "/Psy_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Psychology_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Psy_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -10092,37 +12212,220 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Psy_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Psy_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Psy_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Psy_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Psy_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Psy_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Psy_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Psy_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Psy_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Psy_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Psy_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 
 // Sanskrit Awards
 
-router.get("/Sanskrit_Awards", async(req, res) => {
-    const details = await Sanskrit_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Sans_Awards/:id", async(req, res) => {
+    const delete_user = await Sans_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Sanskrit_Awards/:id", async(req, res) => {
-    const delete_user = await Sanskrit_Awards.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Sans_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Sans_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
+router.post("/delete_pdf_link_Sans_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Sans_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Sans_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Sans_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Sans_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Sans_Awards", async(req, res) => {
+    try {
+        const files = await Sans_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Sanskrit_Awards_add",
-    upload.single("file"),
+    "/Sans_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Sanskrit_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Sans_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -10132,37 +12435,220 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Sans_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Sans_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Sans_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Sans_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Sans_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Sans_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Sans_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Sans_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Sans_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Sans_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Sans_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 
 // Zoology Awards
 
-router.get("/Zoology_Awards", async(req, res) => {
-    const details = await Zoology_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Zoo_Awards/:id", async(req, res) => {
+    const delete_user = await Zoo_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Zoology_Awards/:id", async(req, res) => {
-    const delete_user = await Zoology_Awards.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Zoo_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Zoo_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
+router.post("/delete_pdf_link_Zoo_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Zoo_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Zoo_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Zoo_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Zoo_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Zoo_Awards", async(req, res) => {
+    try {
+        const files = await Zoo_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Zoology_Awards_add",
-    upload.single("file"),
+    "/Zoo_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Zoology_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Zoo_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -10172,6 +12658,135 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Zoo_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Zoo_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Zoo_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Zoo_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Zoo_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Zoo_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Zoo_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Zoo_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Zoo_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Zoo_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Zoo_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 
 // Academics Training
 
@@ -20689,31 +23304,88 @@ router.post(
 );
 // Economics Awards
 
-router.get("/Eco_Awards", async(req, res) => {
-    const details = await Eco_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Eco_Awards/:id", async(req, res) => {
+    const delete_user = await Eco_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Eco_Awards/:id", async(req, res) => {
-    const delete_user = await Eco_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Eco_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Eco_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
+
+router.post("/delete_pdf_link_Eco_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Eco_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Eco_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Eco_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Eco_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Eco_Awards", async(req, res) => {
+    try {
+        const files = await Eco_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Eco_Awards_add",
-    upload.single("file"),
+    "/Eco_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Eco_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Eco_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -20723,6 +23395,135 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Eco_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Eco_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Eco_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Eco_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Eco_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Eco_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Eco_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Eco_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Eco_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Eco_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Eco_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 // English Program Offered
 
 router.get("/Eng_ProgramOffered", async(req, res) => {
@@ -20764,31 +23565,88 @@ router.post(
 );
 // English Awards
 
-router.get("/Eng_Awards", async(req, res) => {
-    const details = await Eng_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Eng_Awards/:id", async(req, res) => {
+    const delete_user = await Eng_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Eng_Awards/:id", async(req, res) => {
-    const delete_user = await Eng_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Eng_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Eng_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
+
+router.post("/delete_pdf_link_Eng_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Eng_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Eng_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Eng_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Eng_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Eng_Awards", async(req, res) => {
+    try {
+        const files = await Eng_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Eng_Awards_add",
-    upload.single("file"),
+    "/Eng_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Eng_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Eng_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -20798,6 +23656,135 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Eng_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Eng_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Eng_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Eng_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Eng_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Eng_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Eng_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Eng_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Eng_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Eng_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Eng_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 // Hindi Program Offered
 
 router.get("/Hin_ProgramOffered", async(req, res) => {
@@ -20839,31 +23826,88 @@ router.post(
 );
 // Hindi Awards
 
-router.get("/Hin_Awards", async(req, res) => {
-    const details = await Hin_Awards.find();
-    res.status(200).json(details);
+router.post("/delete_Hin_Awards/:id", async(req, res) => {
+    const delete_user = await Hin_Awards.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
 });
-router.delete("/delete_Hin_Awards/:id", async(req, res) => {
-    const delete_user = await Hin_Awards.findOneAndDelete({ _id: req.params.id });
-    await unlinkAsync(delete_user.file_path);
+router.post("/delete_img_Hin_Awards_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Hin_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
+
+router.post("/delete_pdf_link_Hin_Awards_fac/:id", async(req, res) => {
+    const delete_user = await Hin_Awards.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Hin_Awards_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Hin_Awards.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Hin_Awards.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Hin_Awards", async(req, res) => {
+    try {
+        const files = await Hin_Awards.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
 router.post(
-    "/Hin_Awards_add",
-    upload.single("file"),
+    "/Hin_Awards_add_para/:id",
     async(req, res) => {
         try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Hin_Awards({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
+            const { para1 } = req.body;
+            await Hin_Awards.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
+            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -20873,6 +23917,135 @@ router.post(
         }
     }
 );
+
+
+router.post(
+    "/Hin_Awards_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Hin_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Hin_Awards_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Hin_Awards.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Hin_Awards_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Hin_Awards({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Hin_Awards_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Hin_Awards.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Hin_Awards.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Hin_Awards_download/:id", async(req, res) => {
+    try {
+        const file = await Hin_Awards.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
 // Hindi Magazine
 
 router.get("/Hin_Magazine", async(req, res) => {

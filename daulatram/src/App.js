@@ -306,6 +306,10 @@ import Phy_Events from "./Pages/Academics/Departments/Physics/Phy_Events";
 import Vidyavistar from "./Pages/Events&Activities/Vidyavistar";
 import IQAC from "./Pages/Events&Activities/IQAC";
 import Studentact from "./Pages/Events&Activities/Studentact";
+import Music_Awards from "./Pages/Academics/Departments/Music/Music_awards";
+import NHE_Awards from "./Pages/Academics/Departments/NHE/NHE_awards";
+import Math_Awards from "./Pages/Academics/Departments/Mathematics/Math_awards";
+import Philo_Awards from "./Pages/Academics/Departments/Philosophy/philo_awards";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -1331,6 +1335,38 @@ function App() {
             }
             path="/academics/departments/Music/Students'_achievements"
           ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Music_Awards />
+              </>
+            }
+            path="/academics/departments/Music/awards"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <NHE_Awards />
+              </>
+            }
+            path="/academics/departments/NHE/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Math_Awards />
+              </>
+            }
+            path="/academics/departments/Mathematics/awards"
+          ></Route>{" "}
+          <Route
+          element={
+            <>
+              <Philo_Awards />
+            </>
+          }
+          path="/academics/departments/Philosophy/awards"
+        ></Route>{" "}
           <Route
             element={
               <>
