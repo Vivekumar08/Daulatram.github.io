@@ -1,15 +1,16 @@
-import Sanskrit from "../../../../Components/DepartSIde/Sanskrit";
-import Sansbanner from "./Sansbanner";
 import React, { useContext, useEffect, useState, useRef } from "react";
+// import DepartBanner from "../../../Components/Banners/DepartBanner";
+// import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
+
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import AuthContext from "../../../../Context/AuthProvider";
+import AuthContext from "../../Context/AuthProvider";
+// import AuthContext from "../../../../Components/Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import Common_dat from "../Common_dat";
 
-
-function Sans_publications() {
+function Vidyavistar() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
@@ -20,7 +21,7 @@ function Sans_publications() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Sans_Publications");
+    const response = await fetch("/Vidyavistar");
     setData1(await response.json());
   };
 
@@ -33,7 +34,7 @@ function Sans_publications() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Sans_Publications_img_upload/${id}`,
+          `/Vidyavistar_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -57,7 +58,7 @@ function Sans_publications() {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_Sans_Publications_para/${id}`, {
+      const response = await fetch(`/delete_Vidyavistar_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -77,7 +78,7 @@ function Sans_publications() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Sans_Publications/${id}`, {
+    const response = await fetch(`/delete_Vidyavistar/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -93,7 +94,7 @@ function Sans_publications() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Sans_Publications_fac/${id}`,
+      `/delete_pdf_link_Vidyavistar_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -105,7 +106,7 @@ function Sans_publications() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Sans_Publications_fac/${id}`,
+      `/delete_img_Vidyavistar_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -120,7 +121,7 @@ function Sans_publications() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Sans_Publications_add_para/${id}`, {
+        await fetch(`/Vidyavistar_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -138,7 +139,7 @@ function Sans_publications() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Sans_Publications_add_link/${id}`, {
+      await axios.post(`/Vidyavistar_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -155,7 +156,7 @@ function Sans_publications() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Sans_Publications_file_upload/${id}`,
+          `/Vidyavistar_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -182,7 +183,7 @@ function Sans_publications() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Sans_Publications_upload`, {
+        await axios.post(`/Vidyavistar_upload`, {
           title: link,
           description: caption,
         });
@@ -201,7 +202,7 @@ function Sans_publications() {
   return (
     <div className=" flex flex-col">
       <div className="">
-        <Sansbanner />
+        {/* <DepartBanner /> */}
       </div>
 
       <div className="flex flex-row">
@@ -215,7 +216,7 @@ function Sans_publications() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Sanskrit />
+                {/* <Vidyavistar /> */}
               </div>
             </>
           ) : (
@@ -230,11 +231,11 @@ function Sans_publications() {
           )}
         </div>
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <Sanskrit />
+          {/* <Vidyavistar /> */}
         </div>
         <div className="w-full mr-16">
           <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Publications
+            Vidya Vistar
           </h2>
           <div className="text-justify p-3 m-2 ml-4">
             {data1 &&
@@ -322,4 +323,4 @@ function Sans_publications() {
   );
 }
 
-export default Sans_publications;
+export default Vidyavistar;

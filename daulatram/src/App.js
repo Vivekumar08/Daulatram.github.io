@@ -221,6 +221,7 @@ import PhysicalEdu_fac from "./Pages/Academics/Departments/Physical_Education/Ph
 import PhysicalEdu_awards from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_awards";
 import PE_stuAch from "./Pages/Academics/Departments/Physical_Education/PE_studachieve";
 import PE_association from "./Pages/Academics/Departments/Physical_Education/PE_association";
+import PE_publications from "./Pages/Academics/Departments/Physical_Education/PE_publications";
 
 // Physics
 import Physics_about from "./Pages/Academics/Departments/Physics/Physics_about";
@@ -240,14 +241,15 @@ import Pol_Sci_about from "./Pages/Academics/Departments/Political_Science/Pol_S
 import Pol_Sci_fac from "./Pages/Academics/Departments/Political_Science/Pol_Sci_fac";
 import Pol_Sci_programoffered from "./Pages/Academics/Departments/Political_Science/Pol_Sci_programoffered";
 import PolSci_awards from "./Pages/Academics/Departments/Political_Science/PolSci_awards";
-import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Science/Pol_Sci_publications";
 import Pol_Sci_association from "./Pages/Academics/Departments/Political_Science/Pol_Sci_association";
+import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Science/Pol_Sci_publications";
 import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_Sci_events";
 import PS_stuAch from "./Pages/Academics/Departments/Political_Science/PS_studachieve";
 // Psychology
 import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about";
 import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 import Psycho_awards from "./Pages/Academics/Departments/Psychology/Psycho_awards";
+import Psycho_publications from "./Pages/Academics/Departments/Psychology/Psycho_publications";
 import Psycho_programoffered from "./Pages/Academics/Departments/Psychology/Psycho_programoffered";
 import Psy_stuAch from "./Pages/Academics/Departments/Psychology/Psy_studachieve";
 import Psycho_association from "./Pages/Academics/Departments/Psychology/Psycho_association";
@@ -265,6 +267,7 @@ import Sans_association from "./Pages/Academics/Departments/Sanskrit/Sans_associ
 // Zoology
 import Zoo_about from "./Pages/Academics/Departments/Zoology/Zoo_about";
 import Zoo_fac from "./Pages/Academics/Departments/Zoology/Zoo_fac";
+import Zoo_publications from "./Pages/Academics/Departments/Zoology/Zoo_publications";
 import Zoo_programoffered from "./Pages/Academics/Departments/Zoology/Zoo_programoffered";
 import Zoo_events from "./Pages/Academics/Departments/Zoology/Zoo_events";
 import Zoo_studachieve from "./Pages/Academics/Departments/Zoology/Zoo_studachieve";
@@ -300,6 +303,9 @@ import Equal_opp from "./Pages/Student_zone/Equal_opp";
 
 import Music_Events from "./Pages/Academics/Departments/Music/Music_Events";
 import Phy_Events from "./Pages/Academics/Departments/Physics/Phy_Events";
+import Vidyavistar from "./Pages/Events&Activities/Vidyavistar";
+import IQAC from "./Pages/Events&Activities/IQAC";
+import Studentact from "./Pages/Events&Activities/Studentact";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -441,6 +447,30 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Vidyavistar/>
+              </>
+            }
+            path="/Vidyavistar"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <IQAC/>
+              </>
+            }
+            path="/IQAC"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Studentact/>
+              </>
+            }
+            path="/StudentActivities"
           ></Route>{" "}
           <Route
             element={
@@ -1945,6 +1975,14 @@ function App() {
           <Route
             element={
               <>
+                <PE_publications />
+              </>
+            }
+            path="/academics/departments/Physical_Education/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <PhysicalEdu_awards />
               </>
             }
@@ -2091,6 +2129,14 @@ function App() {
           <Route
             element={
               <>
+                <PE_publications />
+              </>
+            }
+            path="/academics/departments/Physical_Education/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Pol_Sci_publications />
               </>
             }
@@ -2160,6 +2206,14 @@ function App() {
               </>
             }
             path="/academics/departments/Psychology/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Psycho_publications />
+              </>
+            }
+            path="/academics/departments/Psychology/Publications"
           ></Route>{" "}
           {/* Sanskriti */}{" "}
           <Route
@@ -2274,6 +2328,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_publications />
+              </>
+            }
+            path="/academics/departments/Zoology/Publications"
           ></Route>{" "}
           <Route
             element={

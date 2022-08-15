@@ -199,7 +199,7 @@ function Philosophy_publications() {
   return (
     <div className=" flex flex-col">
       <div className="">
-        <Philobanner />
+        <Philosophybanner />
       </div>
 
       <div className="flex flex-row">
