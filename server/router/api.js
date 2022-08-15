@@ -54,6 +54,7 @@ const Staff_Notice = require("../models/Notices/Staff_Notice_Schema");
 const Public_Notice = require("../models/Notices/Public_Notice_Schema");
 const Archives_Notice = require("../models/Notices/Archives_Notice_Schema");
 const Bulletins_Notice = require("../models/Notices/Bulletin_Schema");
+const Student_Grievance = require("../models/StudentZone/Student_Grievance_Schema");
 const Staff_Forms = require("../models/StaffZone/Staff_Forms_Schema");
 const Staff_Council_Comm = require("../models/StaffZone/Staff_Council_Comm_Schema");
 const Senior_list = require("../models/StaffZone/Senior_list_Schema");
@@ -282,7 +283,7 @@ router.get("/resetData", async (req, res) => {
 
 router.put("/updatePasswordViaEmail", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { Username, Password } = req.body;
 
         const details = await User.findOne({
@@ -318,7 +319,7 @@ router.post("/NewAdmin", async (req, res) => {
     try {
         const salt = await bcrypt.genSalt();
         const { Username, Email, Password } = req.body;
-        console.log(req.body);
+        ;
 
         if (!Username || !Email || !Password) {
             return res.status(400).json({ error: "Fill the complete form" });
@@ -490,7 +491,7 @@ router.get("/Guidelines", async (req, res) => {
 
 router.post("/Guidelines_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Guidelines({
             title: title,
@@ -607,7 +608,7 @@ router.post(
     upload.single("file"),
     async (req, res) => {
         try {
-            // console.log(req.body);
+            // ;
             const file = new Founder({
                 "img_data.file_path": {
                     file_path1: req.file.path,
@@ -682,7 +683,7 @@ router.post(
     upload.single("file"),
     async (req, res) => {
         try {
-            // console.log(req.body);
+            // ;
             const file = new Chairperson({
                 "img_data.file_path": {
                     file_path1: req.file.path,
@@ -757,7 +758,7 @@ router.post(
     upload.single("file"),
     async (req, res) => {
         try {
-            // console.log(req.body);
+            // ;
             const file = new Mission({
                 "img_data.file_path": {
                     file_path1: req.file.path,
@@ -832,7 +833,7 @@ router.post(
     upload.single("file"),
     async (req, res) => {
         try {
-            // console.log(req.body);
+            // ;
             const file = new Principal({
                 "img_data.file_path": {
                     file_path1: req.file.path,
@@ -907,7 +908,7 @@ router.post(
     upload.single("file"),
     async (req, res) => {
         try {
-            // console.log(req.body);
+            // ;
             const file = new VicePrincipal({
                 "img_data.file_path": {
                     file_path1: req.file.path,
@@ -1061,7 +1062,7 @@ router.post(
     upload.single("file"),
     async (req, res) => {
         try {
-            // console.log(req.body);
+            // ;
             const file = new Biochem_About({
                 "img_data.file_path": {
                     file_path1: req.file.path,
@@ -1240,7 +1241,7 @@ router.post("/Sans_Association_add_link/:id", async (req, res) => {
 
 router.post("/Sans_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Sans_Association({
             title: title,
@@ -1464,7 +1465,7 @@ router.post("/PS_Association_add_link/:id", async (req, res) => {
 
 router.post("/PS_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new PS_Association({
             title: title,
@@ -1686,7 +1687,7 @@ router.post("/Psycho_Association_add_link/:id", async (req, res) => {
 
 router.post("/Psycho_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Psycho_Association({
             title: title,
@@ -1909,7 +1910,7 @@ router.post("/Physics_Association_add_link/:id", async (req, res) => {
 
 router.post("/Physics_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Physics_Association({
             title: title,
@@ -2130,7 +2131,7 @@ router.post("/PE_Association_add_link/:id", async (req, res) => {
 
 router.post("/PE_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new PE_Association({
             title: title,
@@ -2351,7 +2352,7 @@ router.post("/NHE_Association_add_link/:id", async (req, res) => {
 
 router.post("/NHE_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new NHE_Association({
             title: title,
@@ -2572,7 +2573,7 @@ router.post("/Philo_Association_add_link/:id", async (req, res) => {
 
 router.post("/Philo_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Philo_Association({
             title: title,
@@ -2793,7 +2794,7 @@ router.post("/Math_Association_add_link/:id", async (req, res) => {
 
 router.post("/Math_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Math_Association({
             title: title,
@@ -3014,7 +3015,7 @@ router.post("/Music_Association_add_link/:id", async (req, res) => {
 
 router.post("/Music_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Music_Association({
             title: title,
@@ -3279,7 +3280,7 @@ router.post("/Hist_Association_add_link/:id", async (req, res) => {
 
 router.post("/Hist_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Hist_Association({
             title: title,
@@ -3502,7 +3503,7 @@ router.post("/Bio_Awards_add_link/:id", async (req, res) => {
 
 router.post("/Bio_Awards_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Bio_Awards({
             title: title,
@@ -4636,7 +4637,7 @@ router.post("/Chem_Association_add_link/:id", async (req, res) => {
 
 router.post("/Chem_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Chem_Association({
             title: title,
@@ -4857,7 +4858,7 @@ router.post("/Com_Association_add_link/:id", async (req, res) => {
 
 router.post("/Com_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Com_Association({
             title: title,
@@ -5078,7 +5079,7 @@ router.post("/Eco_Association_add_link/:id", async (req, res) => {
 
 router.post("/Eco_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Eco_Association({
             title: title,
@@ -5300,7 +5301,7 @@ router.post("/Eng_Association_add_link/:id", async (req, res) => {
 
 router.post("/Eng_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Eng_Association({
             title: title,
@@ -5529,7 +5530,7 @@ router.post("/Hindi_Association_add_link/:id", async (req, res) => {
 
 router.post("/Hindi_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Hindi_Association({
             title: title,
@@ -6207,7 +6208,7 @@ router.post("/Zoo_Association_add_link/:id", async (req, res) => {
 
 router.post("/Zoo_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Zoo_Association({
             title: title,
@@ -7415,7 +7416,7 @@ router.delete("/delete_GE_Options/:id", async (req, res) => {
 });
 router.post("/GE_Options_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -7485,7 +7486,7 @@ router.delete("/deleteAdmission_FAQs/:id", async (req, res) => {
 });
 router.post("/Admission_FAQs_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -7555,7 +7556,7 @@ router.delete("/deleteAdmission_comm/:id", async (req, res) => {
 });
 router.post("/Admission_comm_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -7625,7 +7626,7 @@ router.delete("/deleteAdmission_Grievance_comm/:id", async (req, res) => {
 });
 router.post("/Admission_Grievance_comm_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -7695,7 +7696,7 @@ router.delete("/deleteadmission_Fee_Structure/:id", async (req, res) => {
 });
 router.post("/admission_Fee_Structure_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -7763,7 +7764,7 @@ router.delete("/delete_Ethics/:id", async (req, res) => {
 });
 router.post("/Ethics_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title, heading } = req.body;
         if (!title || !link || !file || !heading) {
             return res
@@ -7838,7 +7839,7 @@ router.delete("/deleteAdmission/:id", async (req, res) => {
 });
 router.post("/admission_online_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -8044,7 +8045,7 @@ router.delete("/deleteaccred/:id", async (req, res) => {
 });
 router.post("/accred_online_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -8116,7 +8117,7 @@ router.delete("/deleteHelpdesk/:id", async (req, res) => {
 });
 router.post("/helpdesk_admission_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -8188,7 +8189,7 @@ router.delete("/deleteAntiRagging/:id", async (req, res) => {
 });
 router.post("/AntiRagging_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -9074,7 +9075,7 @@ router.delete("/delete_StaffZone_forms/:id", async (req, res) => {
 });
 router.post("/StaffZone_forms_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -9783,7 +9784,7 @@ router.post("/Student_union_add_link/:id", async (req, res) => {
 
 router.post("/Student_union_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Student_union({
             title: title,
@@ -10003,7 +10004,7 @@ router.post("/Courses_add_link/:id", async (req, res) => {
 
 router.post("/Courses_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Courses({
             title: title,
@@ -10223,7 +10224,7 @@ router.post("/Placement_cell_add_link/:id", async (req, res) => {
 
 router.post("/Placement_cell_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Placement_cell({
             title: title,
@@ -10443,7 +10444,7 @@ router.post("/Equal_opp_add_link/:id", async (req, res) => {
 
 router.post("/Equal_opp_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Equal_opp({
             title: title,
@@ -10555,7 +10556,7 @@ router.delete("/delete_StudentZone_forms/:id", async (req, res) => {
 });
 router.post("/StudentZone_forms_add_link", async (req, res) => {
     try {
-        console.log(req.body);
+        ;
         const { file, link, title } = req.body;
         if (!title || !link || !file) {
             return res
@@ -10745,7 +10746,7 @@ router.get("/Magz_and_News_res", async (req, res) => {
 
 router.post("/Magz_and_News_res_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Magz_and_News({
             title: title,
@@ -10833,7 +10834,7 @@ router.get("/Useful_Links_res", async (req, res) => {
 
 router.post("/Useful_Links_res_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Useful_Links({
             title: title,
@@ -10921,7 +10922,7 @@ router.get("/research", async (req, res) => {
 
 router.post("/research_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new File({
             title: title,
@@ -11009,7 +11010,7 @@ router.get("/Student_Facilities", async (req, res) => {
 
 router.post("/Student_Facilities_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Student_Facilities({
             title: title,
@@ -11103,7 +11104,7 @@ router.get("/Academics_Facilities", async (req, res) => {
 
 router.post("/Academics_Facilities_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Acad_Facilities({
             title: title,
@@ -11198,7 +11199,7 @@ router.get("/Resource_centre", async (req, res) => {
 
 router.post("/Resource_centre_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Resources_Innovation({
             title: title,
@@ -11419,7 +11420,7 @@ router.post("/Bio_Publications_add_link/:id", async (req, res) => {
 
 router.post("/Bio_Publications_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Bio_Publications({
             title: title,
@@ -11640,7 +11641,7 @@ router.post("/Bio_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Bio_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Bio_Student_Achieve({
             title: title,
@@ -11860,7 +11861,7 @@ router.post("/Sans_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Sans_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Sans_Student_Achieve({
             title: title,
@@ -12080,7 +12081,7 @@ router.post("/Zoo_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Zoo_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Zoo_Student_Achieve({
             title: title,
@@ -12300,7 +12301,7 @@ router.post("/Chem_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Chem_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Chem_Student_Achieve({
             title: title,
@@ -12521,7 +12522,7 @@ router.post("/Bot_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Bot_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Bot_Student_Achieve({
             title: title,
@@ -12742,7 +12743,7 @@ router.post("/Com_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Com_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Com_Student_Achieve({
             title: title,
@@ -12963,7 +12964,7 @@ router.post("/Eco_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Eco_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Eco_Student_Achieve({
             title: title,
@@ -13184,7 +13185,7 @@ router.post("/Eng_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Eng_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Eng_Student_Achieve({
             title: title,
@@ -13405,7 +13406,7 @@ router.post("/Hin_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Hin_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Hin_Student_Achieve({
             title: title,
@@ -13626,7 +13627,7 @@ router.post("/His_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/His_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new His_Student_Achieve({
             title: title,
@@ -13847,7 +13848,7 @@ router.post("/Math_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Math_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Math_Student_Achieve({
             title: title,
@@ -14068,7 +14069,7 @@ router.post("/Music_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Music_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Music_Student_Achieve({
             title: title,
@@ -14289,7 +14290,7 @@ router.post("/NHE_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/NHE_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new NHE_Student_Achieve({
             title: title,
@@ -14510,7 +14511,7 @@ router.post("/Philo_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Philo_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Philo_Student_Achieve({
             title: title,
@@ -14731,7 +14732,7 @@ router.post("/PE_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/PE_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new PE_Student_Achieve({
             title: title,
@@ -14952,7 +14953,7 @@ router.post("/Phy_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Phy_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Phy_Student_Achieve({
             title: title,
@@ -15173,7 +15174,7 @@ router.post("/PS_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/PS_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new PS_Student_Achieve({
             title: title,
@@ -15394,7 +15395,7 @@ router.post("/Psy_Student_Achievement_add_link/:id", async (req, res) => {
 
 router.post("/Psy_Student_Achievement_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Psy_Student_Achieve({
             title: title,
@@ -15615,7 +15616,7 @@ router.post("/Bio_Research_facilities_add_link/:id", async (req, res) => {
 
 router.post("/Bio_Research_facilities_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Bio_Research_fac({
             title: title,
@@ -15739,7 +15740,7 @@ router.post(
 
 router.post("/Staff_Council_Comm_upload", async (req, res) => {
     try {
-        console.log(req.body)
+        
         const { title, description } = req.body;
         const file = new Staff_Council_Comm({
             title: title,
@@ -15756,6 +15757,91 @@ router.post("/Staff_Council_Comm_upload", async (req, res) => {
 router.get("/Staff_Council_Comm_upload_download/:id", async (req, res) => {
     try {
         const file = await Staff_Council_Comm.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+// Staff Council Committee
+router.post("/delete_Student_Grievance/:id", async (req, res) => {
+    const delete_user = await Student_Grievance.findOneAndDelete({ _id: req.params.id });
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_Student_Grievance_para/:id", async (req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Student_Grievance.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Student_Grievance.findOneAndDelete({
+                _id: req.params.id,
+            });
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Student_Grievance", async (req, res) => {
+    try {
+        const files = await Student_Grievance.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Student_Grievance_add_para/:id",
+    async (req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Student_Grievance.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+
+router.post("/Student_Grievance_upload", async (req, res) => {
+    try {
+        
+        const { title, description } = req.body;
+        const file = new Student_Grievance({
+            title: title,
+            description: description,
+        });
+        await file.save();
+        res.status(200).send("file uploaded successfully.");
+    } catch (error) {
+        console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+
+router.get("/Student_Grievance_upload_download/:id", async (req, res) => {
+    try {
+        const file = await Student_Grievance.findById(req.params.id);
         res.set({
             "Content-Type": file.file_mimetype,
         });
@@ -15923,7 +16009,7 @@ router.post("/Bio_Association_add_link/:id", async (req, res) => {
 
 router.post("/Bio_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Bio_Association({
             title: title,
@@ -16143,7 +16229,7 @@ router.post("/Bot_Association_add_link/:id", async (req, res) => {
 
 router.post("/Bot_Association_upload", async (req, res) => {
     try {
-        // console.log(req.body)
+        // 
         const { title, description } = req.body;
         const file = new Bot_Association({
             title: title,
