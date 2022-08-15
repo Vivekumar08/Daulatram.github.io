@@ -197,13 +197,14 @@ import Forgot from "./Pages/Admin/Forgot";
 import ResetPassword from "./Pages/Admin/ResetPassword";
 import Music_stuAch from "./Pages/Academics/Departments/Music/Music_studachieve";
 import Music_association from "./Pages/Academics/Departments/Music/Music_association";
+import Music_publications from "./Pages/Academics/Departments/Music/Music_publications";
 
 // NHE
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
 import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
 import NHE_stuAch from "./Pages/Academics/Departments/NHE/NHE_studachieve";
 import NHE_association from "./Pages/Academics/Departments/NHE/NHE_association";
-
+import NHE_publications from "./Pages/Academics/Departments/NHE/NHE_publications";
 import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
 // Philosophy
 import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
@@ -574,13 +575,13 @@ function App() {
             path="/academics/PG_courses"
           ></Route>{" "}
           {/* <Route
-                                    element={
-                                      <>
-                                        <Addoncourses />
-                                      </>
-                                    }
-                                    path="/academics/Add_on_courses"
-                                  ></Route>{" "} */}{" "}
+                                                element={
+                                                  <>
+                                                    <Addoncourses />
+                                                  </>
+                                                }
+                                                path="/academics/Add_on_courses"
+                                              ></Route>{" "} */}{" "}
           <Route
             element={
               <>
@@ -1794,6 +1795,14 @@ function App() {
             }
             path="/academics/departments/Music/association"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Music_publications />
+              </>
+            }
+            path="/academics/departments/Music/Publications"
+          ></Route>{" "}
           {/* NHE */}{" "}
           <Route
             element={
@@ -1818,6 +1827,14 @@ function App() {
               </>
             }
             path="/academics/departments/NHE/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <NHE_publications />
+              </>
+            }
+            path="/academics/departments/NHE/Publications"
           ></Route>{" "}
           <Route
             element={

@@ -1,17 +1,211 @@
-import React,{useState} from "react";
-import Histbanner from "../History/Histbanner.jsx";
-import History from "../../../../Components/DepartSIde/History.jsx";
+
+import React, { useContext, useEffect, useState, useRef } from "react";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import Common_dat from "../Common_dat";
+import Histbanner from "../History/Histbanner.jsx";
+import History from "../../../../Components/DepartSIde/History.jsx";
+
 function Hist_publications() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Hist_Publications");
+    setData1(await response.json());
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const handleSubmit_img = async (id, file) => {
+    try {
+      if (file) {
+        setErrMsg("");
+        await axios.post(
+          `/Hist_Publications_img_upload/${id}`,
+          { file: file },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(`/delete_Hist_Publications_para/${id}`, {
+        method: "POST",
+        body: JSON.stringify(arr),
+        headers: { "Content-Type": "application/json" },
+      });
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(`/delete_Hist_Publications/${id}`, {
+      method: "POST",
+    });
+    await response.json();
+    if (response.status === 200) {
+      setErrMsg("");
+      fetchdata();
+    } else if (response.status === 400) {
+      setErrMsg("First Delete all the images related to this section");
+    }
+  };
+
+  const delete_file = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_pdf_link_Hist_Publications_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+  const dele = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_img_Hist_Publications_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+
+  const handleSubmit_data = async (id, para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Hist_Publications_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit_link = async (id, link) => {
+    try {
+      console.log(link);
+      await axios.post(`/Hist_Publications_add_link/${id}`, {
+        link: link,
+      });
+      setCaption("");
+      setAuth(true);
+      fetchdata();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    console.log(id);
+    try {
+      console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Hist_Publications_file_upload/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        setErrMsg("");
+        await axios.post(`/Hist_Publications_upload`, {
+          title: link,
+          description: caption,
+        });
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
     <div className=" flex flex-col">
       <div className="">
         <Histbanner />
       </div>
+
       <div className="flex flex-row">
-      <div className="md:hidden absolute bg-white">
+        <div className="md:hidden">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -35,112 +229,93 @@ function Hist_publications() {
             </div>
           )}
         </div>
-        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
           <History />
         </div>
         <div className="w-full mr-16">
-          <h2 className="md:text-3xl text-xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-2 items-center ">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Publications
           </h2>
-
-          <div className="md:ml-4 ml-10 mr-5">
-            <ol className="md:text-sm lg:text-base ml-2 text-sm flex flex-col text-justify list-decimal mt-2 mb-2">
-              <li>
-                Dr. Smarika Nawani, “The Misericórdia and the Bishopric in
-                Peninsular India during the Course of Retreat (C.1600- 1641)” in
-                Yogesh Sharma and J.L. Ferreira Viva Books in association with
-                Instituto Camões, New Delhi 2008 Authored ISBN-10:81- 309-1028-4
-                4 (eds) Portuguese Presence in India in 16th and 17th Centuries.
-                2. Dr. Smarika Nawani, “Rhythms of the Portuguese presence in
-                the Bay (16th -19th centuries)”, Focus, IIAS Newsletter no.85,
-                Leiden, The Netherlands March 2020.
-              </li>
-              <li>
-                Menka Singh, Lesbian History – A Challenge to Gender Studies
-                IOSR Journal of Humanities and Social Science Vol. 19, Issue 4,
-                Ver.3, April 2014, p.118-120 e-ISSN 2279-0837, p-ISSN 2279-0845.
-              </li>
-              <li>
-                Menka Singh, Khadi – A Sartorial Call for Mobilization
-                International Journal of Humanities and Social Science Invention
-                Vol. 3, Issue 3, March 2014, p.41- 46 ISSN (Online) 2319-7722,
-                ISSN(Print) 2319-7714.
-              </li>
-              <li>
-                Hind Swaraj - A Critique of Modern Civilization Scholars Journal
-                of Arts, Humanities and Social Sciences 2014, 2(2B), 270- 274
-                (Online) ISSN 2347- 9493 (Print).
-              </li>
-              <li>
-                Deepak Naorem, Article: “Myth Making and imagining a Brahmanical
-                Manipur since 18th century CE’, in webzine Raiot, 2nd April,
-                2018 10) Deepak Naorem, Article: Remembering Japan Laan:
-                Struggle for Relief, Rehabilitation and Compensation, in NE
-                Scholar Journal (July 2018)
-              </li>
-              <li>
-                Deepak Naorem, Article: ‘Whose memories? Imperial Commemorations
-                in North-East India’ , 2019
-                https://www.torch.ox.ac.uk/article/whose-memories-imperial-commemorations-inno
-                rth-east-india
-              </li>
-              <li>
-                Deepak Naorem, Research Paper: “Japanese invasion, War
-                preparation, Relief, Rehabilitation, Compensation and
-                ‘State-Making’ in an Imperial Frontier (1939-1955)”, in Asian
-                Ethnicity, Volume 21, 2020- Issue 1, pp. 96- 121;Doi:
-                https://www.tandfonline.com/doi/abs/10.1080/14631369.2019<br/>.1581985
-              </li>
-              <li>
-                Deepak Naorem, Article: “Chibu Stone Inscriptions and
-                Chandrakirti Memorial Park Conundrum in Manipur.” Raiot
-                (webzine), June 7, 2020.
-              </li>
-              <li>
-                Deepak Naorem, Article: “Remembering the Second World War in
-                Northeast India.” The India Forum Journal, Issue: December 4,
-                2020.
-              </li>
-              <li>
-                Deepak Naorem, Article: “Visiting Manipur State Archives.”
-                Archives and Access, June 19, 2020.
-              </li>
-              <li>
-                Deepak Naorem, Research Paper (Forthcoming): “(Re)reading Chivu
-                Stone Inscriptions: Colonial archives, ‘national histories’ and
-                commemorations in North-eastern India.” Indian Historical
-                Review, 2021
-              </li>
-              <li>
-                PRAVASH K. CHOUDHURY, Emperor’s Edicts Revisited: A study of
-                Ashokan Inscription 2014 Asian Journal of Research in Social
-                Science and Humanities ISSN-2249-7315 14. PRAVASH K. CHOUDHURY,
-                An Appraisal of Ginzburg’s Historicism: Problems and
-                Perspectives. 2014 International Journal of Humanities and
-                Social Sciences Invension (IJHSSI) ISSN 2319-7722
-              </li>
-              <li>
-                Nikhil Gangwar, Rural Credit And Indeptedness In Agrarian
-                Society Of Eastern Uttar Pradesh During The Nineteenth Century:
-                Azamgarh District As A Case Study, “The Journal Of Oriental
-                Research Madras” August 2021, ISSN : 0022-3301
-              </li>
-              <li>
-                Nikhil Gangwar, “Cattle and Colonial Rule in United Provinces”
-                Ijard, Volume 2; Issue 5; September 2017; Page No. 399-403
-                September 2017, ISSN: 2455- 4197. 17. Nikhil Gangwar,
-                Proprietary Rights during the 19th Century, in Emerging
-                Discourse in Social Sciences and Management, (ed.) Mahjabin Banu
-                and Uma Shanker Singh, pp. 17- 24. New Delhi Publishers 2018
-                Edited ISBN: 978- 93-85503- 83-2.
-              </li>
-              <li>
-                Ruby Singh, “Russian Soft Power diplomacy Towards Central Asia”
-                JIGYASHA (An Interdisciplinary Refereed Research Journal), 2019,
-                ISSN0974-7648, Page-344-351 9)
-              </li>
-            </ol>{" "}
+          <div className="text-justify p-3 m-2 ml-4">
+            {data1 &&
+              data1.map((curElem) => {
+                const { _id, title, description, img_data } = curElem;
+                return (
+                  <>
+                    <Common_dat
+                      key={_id}
+                      id={_id}
+                      tittle={title}
+                      para={description}
+                      pic={img_data}
+                      delete={del}
+                      delete_img={dele}
+                      delete_file={delete_file}
+                      delete_para={del_para}
+                      add_para={handleSubmit_data}
+                      file_upload={handleSubmit_file}
+                      Link_upload={handleSubmit_link}
+                      submit_img={handleSubmit_img}
+                    />
+                  </>
+                );
+              })}
           </div>
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p>Add New Data</p>
+                </h2>
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Link"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setLink(e.target.value)}
+                    value={link}
+                    placeholder="Title"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Caption"
+                  ></textarea>
+                </div>
+                <div class="md:flex flex-col md:items-center">
+                  {/* <div class="md:w-1/3"></div> */}
+
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>
