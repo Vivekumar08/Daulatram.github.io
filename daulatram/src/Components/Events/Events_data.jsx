@@ -69,7 +69,7 @@ const Events_data = (props) => {
                 <>
                   {elem.pdf_mimetype1 === "text/link" ? (
                     <>
-                      <Link href={elem.pdf_path1}>
+                      <Link to={elem.pdf_path1}>
                         <button className="read_btn ">Read More </button>
                       </Link>
                     </>
