@@ -166,7 +166,7 @@ const Bulletins_Admission = () => {
             <>
               <form
                 method="post"
-                className="flex flex-col justify-center content-center max-w-sm mt-5 h-full ml-auto mr-auto mb-16"
+                className="flex flex-col justify-center content-center max-w-sm mt-5  ml-auto mr-auto mb-16"
               >
                 <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
                   <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
@@ -198,9 +198,9 @@ const Bulletins_Admission = () => {
                     placeholder="Description"
                   ></textarea>
                 </div>
-                <div class="md:flex flex-col md:items-center">
+                <div class="md:flex flex-col h-full md:items-center">
                   {/* <div class="md:w-1/3"></div> */}
-                  <div className="upload-section flex h-[200px] mb-[10px] w-full">
+                  <div className="upload-section flex h-full mb-[10px] w-full">
                     <Dropzone
                       onDrop={onDrop}
                       onDragEnter={() => updateBorder("over")}

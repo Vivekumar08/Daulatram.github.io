@@ -116,7 +116,7 @@ const Bot_faculty = () => {
         </div>
         <div className="w-[1100px]">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-            Laboratory Stuff
+            Laboratory Staff
           </h2>
           <div className="  ">
             <h2 className="text-2xl uppercase font-bold  flex   ">

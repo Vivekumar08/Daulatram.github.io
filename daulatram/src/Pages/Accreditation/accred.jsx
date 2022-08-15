@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Maintanence from "../../Components/UnderMaintanence/Maintanence";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import Dropzone from "react-dropzone";
 import AuthContext from "../../Context/AuthProvider";
 import axios from "axios";
+import Accredsidebar from "../../Components/Sidebar/Accredsidebar";
+
 
 const Accred = () => {
   const [data1, setData1] = useState();
@@ -157,7 +158,9 @@ const Accred = () => {
           </div>
         </div>
       </div>
+
       <div className="flex flex-row">
+        <Accredsidebar/>
         <div className="w-full mb-5">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             Accreditation{" "}
