@@ -299,6 +299,9 @@ import Equal_opp from "./Pages/Student_zone/Equal_opp";
 
 import Music_Events from "./Pages/Academics/Departments/Music/Music_Events";
 import Phy_Events from "./Pages/Academics/Departments/Physics/Phy_Events";
+import Vidyavistar from "./Pages/Events&Activities/Vidyavistar";
+import IQAC from "./Pages/Events&Activities/IQAC";
+import Studentact from "./Pages/Events&Activities/Studentact";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -440,6 +443,30 @@ function App() {
               </>
             }
             path="/academics/departments/Botany/events"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Vidyavistar/>
+              </>
+            }
+            path="/Vidyavistar"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <IQAC/>
+              </>
+            }
+            path="/IQAC"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Studentact/>
+              </>
+            }
+            path="/StudentActivities"
           ></Route>{" "}
           <Route
             element={
