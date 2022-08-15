@@ -166,7 +166,7 @@ import Hindi_programoffered from "./Pages/Academics/Departments/Hindi/Hindi_prog
 import Hindi_events from "./Pages/Academics/Departments/Hindi/Hindi_events";
 import Hindi_studachieve from "./Pages/Academics/Departments/Hindi/Hindi_studachieve";
 import Hindi_publications from "./Pages/Academics/Departments/Hindi/Hindi_publications";
-import Hindi_awards from "./Pages/Academics/Departments/Hindi/Hindi_awards";
+import Hindi_awards from "./Pages/Academics/Departments/Hindi/Awards";
 import Hindi_association from "./Pages/Academics/Departments/Hindi/Hindi_association";
 import Hindi_magazine from "./Pages/Academics/Departments/Hindi/Hindi_magazine";
 import Hindi_Facs from "./Pages/Academics/Departments/Hindi/Facilities";
