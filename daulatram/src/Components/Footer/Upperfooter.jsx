@@ -104,7 +104,7 @@ function Upperfooter() {
                 <li className="pb-2">
                   <span className="mr-3">-</span>
                   <Link
-                    to="ST_SC_OBC_Complaints"
+                    to="/Student_Zone/Complainst_&_Suggetions"
                     className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                   >
                     ST-SC-OBC Complaints

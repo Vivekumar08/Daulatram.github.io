@@ -652,7 +652,7 @@ export const Student = [
       },
       {
         name: "Placement Cell",
-        link: "/Student_Zone/Placement_Cell",
+        link: "/Student_Zone/Placements",
       },
       {
         name: "Students' Facilities",

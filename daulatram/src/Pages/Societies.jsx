@@ -5,6 +5,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Societies = () => {
   const [data1, setData1] = useState();
@@ -44,12 +45,9 @@ const Societies = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Socities/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/delete_Socities/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -112,6 +110,24 @@ const Societies = () => {
 
   return (
     <>
+      <div
+        className="Banner"
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      >
+        <div className="name">
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-6xl  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Societies{" "}
+            </p>
+          </div>
+
+          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className="main_head">
         <h1>
           <span>Societies</span>

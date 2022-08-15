@@ -103,7 +103,7 @@ const Seniority_list = () => {
           <div className="name">
             <div className="flex flex-row justify-center">
               <p className="  text-[#fff] text-6xl  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-                Seniority Staff List{" "}
+                Seniority List{" "}
               </p>
             </div>
 
@@ -123,7 +123,7 @@ const Seniority_list = () => {
 
         <div className="w-full ml-auto mr-auto ">
           <h2 className=" md:text-3xl text-lg  uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center">
-          SENIOR STAFF LIST
+          SENIORITY  LIST
           </h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 ml-16 md:ml-24 lg:ml-10 w-full mt-5 mb-5">
             {data1 &&
