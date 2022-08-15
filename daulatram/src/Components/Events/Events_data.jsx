@@ -3,6 +3,7 @@ import AuthContext from "../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import Dropzone from "react-dropzone";
+import { Link } from "react-router-dom";
 
 const Events_data = (props) => {
   const errRef = useRef();
@@ -68,9 +69,9 @@ const Events_data = (props) => {
                 <>
                   {elem.pdf_mimetype1 === "text/link" ? (
                     <>
-                      <a href={elem.pdf_path1}>
+                      <Link href={elem.pdf_path1}>
                         <button className="read_btn ">Read More </button>
-                      </a>
+                      </Link>
                     </>
                   ) : (
                     <>
