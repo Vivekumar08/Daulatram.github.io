@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import Staff_side from "../../Components/Sidebar/Staff_side";
 import AuthContext from "../../Context/AuthProvider";
 import Maintanence from "../../Components/UnderMaintanence/Maintanence";
@@ -126,7 +127,9 @@ const Staff_Council_Committee = () => {
           </div>
         </div>
         <div className=" pl-5 text-xl text-[#000080] bg-gray-400 pt-3 pb-3 mt-28">
-          <span className="ml-5">Home</span>
+          <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
           <span className="ml-5">Staff Zone</span>
         </div>
       </div>
