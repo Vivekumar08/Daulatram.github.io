@@ -55,7 +55,7 @@ const Events_data = (props) => {
                     src={path}
                     alt={props.title}
                   />
-                  <span className="event_name text-4xl font-bold w-[200px] text-justify">
+                  <span className="event_name text-4xl font-bold  text-justify">
                     {props.title}
                   </span>
                 </>
