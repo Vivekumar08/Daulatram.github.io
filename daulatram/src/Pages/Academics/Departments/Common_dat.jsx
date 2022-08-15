@@ -178,7 +178,7 @@ const Common_dat = (props) => {
                       </div>
                     )}
                   </div>
-                  {elem.pdf_path1 === "../daulatram/public/images/uploads" && (
+                  {(elem.pdf_path1 === "../daulatram/public/images/uploads" || elem.pdf_path1 ===null) && (
                     <>
                       <p className="text-sm font-bold text-red-500">
                         {" "}
