@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Physics_Publications_Schema = mongoose.Schema({
+const Sans_Publications_Schema = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -45,6 +45,6 @@ const Physics_Publications_Schema = mongoose.Schema({
     timestamps: true
 });
 
-const Physics_Publications = mongoose.model('Physics_Publications', Physics_Publications_Schema);
+const Sans_Publications = mongoose.model('Sans_Publications', Sans_Publications_Schema);
 
-module.exports = Physics_Publications;
+module.exports = Sans_Publications;

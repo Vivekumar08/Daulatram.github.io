@@ -197,13 +197,14 @@ import Forgot from "./Pages/Admin/Forgot";
 import ResetPassword from "./Pages/Admin/ResetPassword";
 import Music_stuAch from "./Pages/Academics/Departments/Music/Music_studachieve";
 import Music_association from "./Pages/Academics/Departments/Music/Music_association";
+import Music_publications from "./Pages/Academics/Departments/Music/Music_publications";
 
 // NHE
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
 import Nhe_fac from "./Pages/Academics/Departments/NHE/Nhe_fac";
 import NHE_stuAch from "./Pages/Academics/Departments/NHE/NHE_studachieve";
 import NHE_association from "./Pages/Academics/Departments/NHE/NHE_association";
-
+import NHE_publications from "./Pages/Academics/Departments/NHE/NHE_publications";
 import Nhe_programoffered from "./Pages/Academics/Departments/NHE/Nhe_programoffered";
 // Philosophy
 import Philosophy_about from "./Pages/Academics/Departments/Philosophy/Philosophy_about";
@@ -220,6 +221,7 @@ import PhysicalEdu_fac from "./Pages/Academics/Departments/Physical_Education/Ph
 import PhysicalEdu_awards from "./Pages/Academics/Departments/Physical_Education/PhysicalEdu_awards";
 import PE_stuAch from "./Pages/Academics/Departments/Physical_Education/PE_studachieve";
 import PE_association from "./Pages/Academics/Departments/Physical_Education/PE_association";
+import PE_publications from "./Pages/Academics/Departments/Physical_Education/PE_publications";
 
 // Physics
 import Physics_about from "./Pages/Academics/Departments/Physics/Physics_about";
@@ -239,14 +241,15 @@ import Pol_Sci_about from "./Pages/Academics/Departments/Political_Science/Pol_S
 import Pol_Sci_fac from "./Pages/Academics/Departments/Political_Science/Pol_Sci_fac";
 import Pol_Sci_programoffered from "./Pages/Academics/Departments/Political_Science/Pol_Sci_programoffered";
 import PolSci_awards from "./Pages/Academics/Departments/Political_Science/PolSci_awards";
-import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Science/Pol_Sci_publications";
 import Pol_Sci_association from "./Pages/Academics/Departments/Political_Science/Pol_Sci_association";
+import Pol_Sci_publications from "./Pages/Academics/Departments/Political_Science/Pol_Sci_publications";
 import Pol_Sci_events from "./Pages/Academics/Departments/Political_Science/Pol_Sci_events";
 import PS_stuAch from "./Pages/Academics/Departments/Political_Science/PS_studachieve";
 // Psychology
 import Psycho_about from "./Pages/Academics/Departments/Psychology/Psycho_about";
 import Psycho_fac from "./Pages/Academics/Departments/Psychology/Psycho_fac";
 import Psycho_awards from "./Pages/Academics/Departments/Psychology/Psycho_awards";
+import Psycho_publications from "./Pages/Academics/Departments/Psychology/Psycho_publications";
 import Psycho_programoffered from "./Pages/Academics/Departments/Psychology/Psycho_programoffered";
 import Psy_stuAch from "./Pages/Academics/Departments/Psychology/Psy_studachieve";
 import Psycho_association from "./Pages/Academics/Departments/Psychology/Psycho_association";
@@ -264,6 +267,7 @@ import Sans_association from "./Pages/Academics/Departments/Sanskrit/Sans_associ
 // Zoology
 import Zoo_about from "./Pages/Academics/Departments/Zoology/Zoo_about";
 import Zoo_fac from "./Pages/Academics/Departments/Zoology/Zoo_fac";
+import Zoo_publications from "./Pages/Academics/Departments/Zoology/Zoo_publications";
 import Zoo_programoffered from "./Pages/Academics/Departments/Zoology/Zoo_programoffered";
 import Zoo_events from "./Pages/Academics/Departments/Zoology/Zoo_events";
 import Zoo_studachieve from "./Pages/Academics/Departments/Zoology/Zoo_studachieve";
@@ -601,13 +605,13 @@ function App() {
             path="/academics/PG_courses"
           ></Route>{" "}
           {/* <Route
-                                    element={
-                                      <>
-                                        <Addoncourses />
-                                      </>
-                                    }
-                                    path="/academics/Add_on_courses"
-                                  ></Route>{" "} */}{" "}
+                                                element={
+                                                  <>
+                                                    <Addoncourses />
+                                                  </>
+                                                }
+                                                path="/academics/Add_on_courses"
+                                              ></Route>{" "} */}{" "}
           <Route
             element={
               <>
@@ -1821,6 +1825,14 @@ function App() {
             }
             path="/academics/departments/Music/association"
           ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Music_publications />
+              </>
+            }
+            path="/academics/departments/Music/Publications"
+          ></Route>{" "}
           {/* NHE */}{" "}
           <Route
             element={
@@ -1845,6 +1857,14 @@ function App() {
               </>
             }
             path="/academics/departments/NHE/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <NHE_publications />
+              </>
+            }
+            path="/academics/departments/NHE/Publications"
           ></Route>{" "}
           <Route
             element={
@@ -1951,6 +1971,14 @@ function App() {
               </>
             }
             path="/academics/departments/Physical_Education/association"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <PE_publications />
+              </>
+            }
+            path="/academics/departments/Physical_Education/Publications"
           ></Route>{" "}
           <Route
             element={
@@ -2101,6 +2129,14 @@ function App() {
           <Route
             element={
               <>
+                <PE_publications />
+              </>
+            }
+            path="/academics/departments/Physical_Education/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
                 <Pol_Sci_publications />
               </>
             }
@@ -2170,6 +2206,14 @@ function App() {
               </>
             }
             path="/academics/departments/Psychology/Programoffered"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Psycho_publications />
+              </>
+            }
+            path="/academics/departments/Psychology/Publications"
           ></Route>{" "}
           {/* Sanskriti */}{" "}
           <Route
@@ -2284,6 +2328,14 @@ function App() {
               </>
             }
             path="/academics/departments/Zoology/awards"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Zoo_publications />
+              </>
+            }
+            path="/academics/departments/Zoology/Publications"
           ></Route>{" "}
           <Route
             element={
