@@ -7,52 +7,26 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
-import axios from "axios";
 
 const Mag_new_data = (props) => {
   const [visible, setVisible] = useState(false);
   const errRef = useRef();
+  const userRef = useRef();
   const dropRef = useRef();
+  const [para, setPara] = useState("");
   const [previewSrc, setPreviewSrc] = useState("");
-  const [errMsg, setErrMsg] = useState("");
-  const [file, setFile] = useState("");
+  const [pdf, setPdf] = useState(null);
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
 
-  const { auth, setAuth } = useContext(AuthContext);
+  const [link, setLink] = useState("");
+  const [file, setFile] = useState("");
+  const [check, setCheck] = useState(false);
+
+  const { auth } = useContext(AuthContext);
 
   var path_pic = props.pic;
   // console.log(path_pic.file_path);
 
-  const del = async (id) => {
-    console.log(id);
-    const response = await fetch(
-      `/delete_Magz_and_News_res_fac/${id}`,
-      {
-        method: "POST",
-      }
-    );
-    await response.json();
-    if (response.status === 200) {
-      // navigate('/research/research_facilities')
-      window.location.reload();
-      setErrMsg("");
-    } else if (response.status === 400) {
-      window.location.reload();
-      setErrMsg("First Delete all the images related to this section");
-    }
-  };
-  const dele = async (id, pid, file_path1) => {
-    console.log(id);
-    console.log(file_path1);
-    const response = await axios.post(
-      `/delete_img_Magz_and_News_res_fac/${id}`,
-      { file_path1: file_path1, pid: pid },
-      {
-        method: "POST",
-      }
-    );
-    window.location.reload();
-  };
   const onDrop = (files) => {
     const [uploadedFile] = files;
     setFile(uploadedFile);
@@ -72,37 +46,6 @@ const Mag_new_data = (props) => {
       dropRef.current.style.border = "2px solid #000";
     } else if (dragState === "leave") {
       dropRef.current.style.border = "2px dashed #e9ebeb";
-    }
-  };
-
-  const handleSubmit = async (id) => {
-    // id.preventDefault();
-    try {
-      if (file) {
-        console.log(file);
-        // console.log(e);
-
-        setErrMsg("");
-        const response = await axios.post(
-          `/Magz_and_News_res_img_upload/${id}`,
-          { file: file },
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
-        // const data = await response.json();
-        setAuth(true);
-        window.location.reload();
-      } else {
-        setErrMsg("Please select a file to add.");
-        //   setErrMsg("Please enter all the field values.");
-      }
-      // } else {
-      // }
-    } catch (err) {
-      err.response && setErrMsg(err.response.data);
     }
   };
 
@@ -139,106 +82,345 @@ const Mag_new_data = (props) => {
         </span>
       </div>
       <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
-        <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
-          {errMsg}
+        <p ref={errRef} className={props.err ? "errmsg" : "offscreen"}>
+          {props.err}
         </p>
       </h2>
-      {visible && <p>{props.para}</p>}
-      {visible && (
-        <>
-          {path_pic.file_path.map((elem) => {
-            var path2 = elem.file_path1.replace(/\\/g, "/");
-            var path = path2.slice(19);
-            return (
-              <>
-                <div className="flex justify-center items-center">
-                  <img
-                    src={path}
-                    style={{
-                      width: "700px",
-                      height: "400px",
-                    }}
-                    className="bg-cover bg-no-repeat bg-center mt-5 rounded-lg border-2   border-black"
-                  />
-                  {auth && (
+      <div className="flex flex-row   mb-5 ">
+        {visible && (
+          <>
+            <div className="flex flex-col w-full mb-5 mr-5 ">
+              <p className="text-justify text-sm leading-14 mb-5 ">
+                {props.para}
+              </p>
+              {path_pic.para &&
+                path_pic.para.map((elem) => {
+                  return (
                     <>
-                      <div className="flex flex-col">
-                        <FontAwesomeIcon
-                          icon={faTrashCan}
-                          size="3x"
-                          className=" cursor-pointer ml-5  hover:text-red-500"
-                          onClick={() =>
-                            dele(props.id, elem._id, elem.file_path1)
-                          }
-                        ></FontAwesomeIcon>
+                      <p className="text-justify leading-14 w-full text-sm ">
+                        {elem.para1}
+                      </p>
+                      {auth && (
+                        <>
+                          <div className="flex  w-full">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-auto  hover:text-red-500"
+                              onClick={() =>
+                                props.delete_para(props.id, elem._id, "para")
+                              }
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </>
+                  );
+                })}
+            </div>
+            <div className="flex flex-col ml-5 justify-end">
+              {path_pic.file_path.map((elem) => {
+                var path2 = elem.file_path1.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                return (
+                  <>
+                    <div className="flex flex-col justify-center items-center">
+                      <img
+                        src={path}
+                        style={{
+                          width: "400px",
+                          height: "250px",
+                        }}
+                        className="bg-center ml-auto mr-auto lg:w-[800px] w-[250px] h-[190px] lg:h-[420px] bg-no-repeat mb-3 mt-[3%] bg-cover  rounded-2xl border-2 border-black"
+                      />
+                      {auth && (
+                        <>
+                          <div className="flex flex-col">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-5  hover:text-red-500"
+                              onClick={() =>
+                                props.delete_img(
+                                  props.id,
+                                  elem._id,
+                                  elem.file_path1
+                                )
+                              }
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+              {path_pic.pdf_path &&
+                path_pic.pdf_path.map((elem) => {
+                  const path2 = elem.pdf_path1.replace(/\\/g, "/");
+                  const path = path2.slice(19);
+                  return (
+                    <>
+                      <div className="flex justify-center flex-col items-center">
+                        <div className="flex justify-center items-center">
+                          {elem.pdf_mimetype1 === "text/link" ? (
+                            <>
+                              <a href={elem.pdf_path1}>
+                                <button className="btn mt-5 ">Read More</button>
+                              </a>
+                            </>
+                          ) : (
+                            <>
+                              <a href={path}>
+                                <button className="btn mt-5">Read More</button>
+                              </a>
+                            </>
+                          )}
+
+                          {auth && (
+                            <div className="flex flex-col ">
+                              <FontAwesomeIcon
+                                icon={faTrashCan}
+                                size="lg"
+                                className=" cursor-pointer text-black ml-5 mt-2 hover:text-red-500"
+                                onClick={() =>
+                                  props.delete_file(
+                                    props.id,
+                                    elem._id,
+                                    elem.pdf_path1
+                                  )
+                                }
+                              />
+                            </div>
+                          )}
+                        </div>
+                        {(elem.pdf_path1 ===
+                          "../daulatram/public/images/uploads" ||
+                          elem.pdf_path1 === null) && (
+                          <>
+                            <p className="text-sm font-bold text-red-500">
+                              {" "}
+                              There's no data added yet
+                            </p>
+                          </>
+                        )}
                       </div>
                     </>
-                  )}
-                </div>
-              </>
-            );
-          })}
+                  );
+                })}
+            </div>
+          </>
+        )}
+      </div>
+
+      {auth && visible && (
+        <>
+          <form
+            method="post"
+            className="flex flex-col justify-center content-center max-w-sm mt-5 h-full ml-auto mr-auto mb-16"
+          >
+            <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+              <p>Modify File data</p>
+            </h2>
+            <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-5 mr-auto flex flex-row justify-center items-center text-red-500">
+              <p ref={errRef} className={props.err ? "errmsg" : "offscreen"}>
+                {props.err}
+              </p>
+            </h2>
+            <div className="flex flex-col h-full">
+              <div>
+                <label
+                  htmlFor="checked-toggle"
+                  className="inline-flex relative items-center cursor-pointer"
+                >
+                  <input
+                    type="checkbox"
+                    value={check}
+                    id="checked-toggle"
+                    className="sr-only peer"
+                    onChange={() => setCheck(!check)}
+                  />
+                  <div className="w-11 h-6  bg-gray-200 rounded-full peer  dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                  <p className="ml-3">Toggle to switch between File and Link</p>
+                </label>
+              </div>
+              {check ? (
+                <>
+                  <div className="flex flex-col ">
+                    <span className="ml-3  text-md font-medium text-gray-900">
+                      File
+                    </span>
+                    <div className="md:flex flex-col ">
+                      {/* <div className="md:w-1/3"></div> */}
+                      <div className="upload-section flex h-full  mb-[10px] w-full">
+                        <Dropzone
+                          onDrop={onDropPdf}
+                          onDragEnter={() => updateBorder("over")}
+                          onDragLeave={() => updateBorder("leave")}
+                        >
+                          {({ getRootProps, getInputProps }) => (
+                            <div
+                              {...getRootProps({
+                                className:
+                                  "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                              })}
+                              ref={dropRef}
+                            >
+                              <input {...getInputProps()} />
+                              <p>
+                                Drag and drop a file OR click here to select a
+                                file
+                              </p>
+                              {pdf && (
+                                <div>
+                                  <strong>Selected file:</strong> {pdf.name}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </Dropzone>
+                      </div>
+                    </div>
+                    <div className="md:w-2/3 ">
+                      <button
+                        className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                        type="button"
+                        onClick={() => props.file_upload(props.id, pdf)}
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex flex-col">
+                    {/* <div className=""> */}
+                    <span className="ml-3  text-md font-medium text-gray-900">
+                      Link
+                    </span>
+                    <input
+                      type="text"
+                      name="Link"
+                      // id=""
+                      ref={userRef}
+                      onChange={(e) => setLink(e.target.value)}
+                      value={link}
+                      placeholder="link"
+                      className=" bg-gray-200 appearance-none border-2 mb-3 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    />
+                  </div>
+                  <div className="md:w-2/3 mt-2 mb-16 ">
+                    <button
+                      className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={() => props.Link_upload(props.id, link)}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </form>
         </>
       )}
+
       {auth && visible && (
         <>
           <form
             method="POST"
-            className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+            className="flex flex-col justify-center content-center max-w-sm   ml-auto mr-auto mb-5"
           >
-            <div className="upload-section flex h-[200px] mb-[10px] w-full">
-              <Dropzone
-                onDrop={onDrop}
-                onDragEnter={() => updateBorder("over")}
-                onDragLeave={() => updateBorder("leave")}
-              >
-                {({ getRootProps, getInputProps }) => (
-                  <div
-                    {...getRootProps({
-                      className:
-                        "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
-                    })}
-                    ref={dropRef}
-                  >
-                    <input {...getInputProps()} />
-                    <p>Drag and drop a file OR click here to select a file</p>
-                    {file && (
-                      <div>
-                        <strong>Selected file:</strong> {file.name}
-                      </div>
-                    )}
-                  </div>
-                )}
-              </Dropzone>
-              {previewSrc ? (
-                isPreviewAvailable ? (
-                  <div className="image-preview ml-[5%] w-full">
-                    <img
-                      className="preview-image w-full h-full block mb-[10px]"
-                      src={previewSrc}
-                      alt="Preview"
-                    />
-                  </div>
-                ) : (
-                  <div className="preview-message flex justify-center items-center ml-[5%]">
-                    <p>No preview available for this file</p>
-                  </div>
-                )
-              ) : (
-                <div className="preview-message flex justify-center items-center ml-[5%]">
-                  <p>Image preview will be shown here after selection</p>
-                </div>
-              )}
+            <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+              <p>Update data</p>
+            </h2>
+            <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+              <p ref={errRef} className={props.err ? "errmsg" : "offscreen"}>
+                {props.err}
+              </p>
+            </h2>
+            <div className="mb-3">
+              <textarea
+                name="para"
+                // id=""
+                cols="10"
+                rows="5"
+                ref={userRef}
+                onChange={(e) => setPara(e.target.value)}
+                value={para}
+                className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                placeholder="Enter Paragraph Here"
+              ></textarea>
             </div>
-            <div class="md:w-2/3 ">
+            <div className="md:w-2/3 ">
               <button
-                class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 mb-5 rounded"
                 type="button"
-                onClick={() => handleSubmit(props.id)}
+                onClick={() => props.add_para(props.id, para)}
               >
-                Add Image
+                Add Para
               </button>
             </div>
+            {path_pic.file_path && path_pic.file_path.length < 1 && (
+              <div className="md:flex flex-col md:items-center h-full">
+                <div className="upload-section flex h-full mb-[10px] w-full">
+                  <Dropzone
+                    onDrop={onDrop}
+                    onDragEnter={() => updateBorder("over")}
+                    onDragLeave={() => updateBorder("leave")}
+                  >
+                    {({ getRootProps, getInputProps }) => (
+                      <div
+                        {...getRootProps({
+                          className:
+                            "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                        })}
+                        ref={dropRef}
+                      >
+                        <input {...getInputProps()} />
+                        <p>
+                          Drag and drop a file OR click here to select a file
+                        </p>
+                        {file && (
+                          <div>
+                            <strong>Selected file:</strong> {file.name}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </Dropzone>
+                  {previewSrc ? (
+                    isPreviewAvailable ? (
+                      <div className="image-preview ml-[5%] w-full">
+                        <img
+                          className="preview-image w-full h-full block mb-[10px]"
+                          src={previewSrc}
+                          alt="Preview"
+                        />
+                      </div>
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>No preview available for this file</p>
+                      </div>
+                    )
+                  ) : (
+                    <div className="preview-message flex justify-center items-center ml-[5%]">
+                      <p>Image preview will be shown here after selection</p>
+                    </div>
+                  )}
+                </div>
+                <div className="md:w-2/3 ">
+                  <button
+                    className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={() => props.submit_img(props.id, file)}
+                  >
+                    Add Image
+                  </button>
+                </div>
+              </div>
+            )}
           </form>
         </>
       )}

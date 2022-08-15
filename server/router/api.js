@@ -3565,7 +3565,7 @@ router.post(
     }
 );
 
-router.get("/Bio_Association_download/:id", async(req, res) => {
+router.get("/Bio_Awards_download/:id", async(req, res) => {
     try {
         const file = await Bio_Awards.findById(req.params.id);
         res.set({
@@ -13519,7 +13519,8 @@ router.post(
 );
 
 // Magzine and Newsletter
-router.post("/delete_Magz_and_News_res_fac/:id", async(req, res) => {
+
+router.post("/delete_Magz_and_News/:id", async(req, res) => {
     const delete_user = await Magz_and_News.findOne({ _id: req.params.id });
     const arr = delete_user.img_data.file_path;
     if (arr.length === 0) {
@@ -13530,14 +13531,56 @@ router.post("/delete_Magz_and_News_res_fac/:id", async(req, res) => {
         res.status(400).json("First Delete all the images related to this section");
     }
 });
-router.post("/delete_img_Magz_and_News_res_fac/:id", async(req, res) => {
+router.post("/delete_img_Magz_and_News_fac/:id", async(req, res) => {
     // console.log(req.body.file_path1)
     const delete_user = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
     await unlinkAsync(req.body.file_path1);
     res.status(200).json(delete_user + "User deleted");
 });
 
-router.get("/Magz_and_News_res", async(req, res) => {
+router.post("/delete_pdf_link_Magz_and_News_fac/:id", async(req, res) => {
+    const delete_user = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Magz_and_News_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Magz_and_News.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Magz_and_News", async(req, res) => {
     try {
         const files = await Magz_and_News.find({});
         const sortedByCreationDate = files.sort(
@@ -13549,40 +13592,14 @@ router.get("/Magz_and_News_res", async(req, res) => {
     }
 });
 
-router.post("/Magz_and_News_res_upload", async(req, res) => {
-    try {
-        // 
-        const { title, description } = req.body;
-        const file = new Magz_and_News({
-            title: title,
-            description: description,
-        });
-        await file.save();
-        res.send("file uploaded successfully.");
-    } catch (error) {
-        // console.log(error)
-        res.status(400).send("Error occur while uploading data");
-    }
-});
+
 router.post(
-    "/Magz_and_News_res_img_upload/:id",
-    upload.single("file"),
+    "/Magz_and_News_add_para/:id",
     async(req, res) => {
         try {
-            const { path, mimetype } = req.file;
-            // console.log(path,mimetype)
-            const dat = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, {
-                $push: {
-                    "img_data.file_path": {
-                        file_path1: path,
-                        file_mimetype1: mimetype,
-                    },
-                },
-            });
-            // console.log(dat)
-            if (dat) {
-                res.status(200).send("file uploaded successfully.");
-            }
+            const { para1 } = req.body;
+            await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
         } catch (error) {
             // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
@@ -13595,7 +13612,123 @@ router.post(
     }
 );
 
-router.get("/Magz_and_News_res_download/:id", async(req, res) => {
+
+router.post(
+    "/Magz_and_News_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Magz_and_News_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Magz_and_News_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Magz_and_News({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Magz_and_News_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Magz_and_News.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 1) {
+                const data = await Magz_and_News.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Magz_and_News_download/:id", async(req, res) => {
     try {
         const file = await Magz_and_News.findById(req.params.id);
         res.set({
@@ -13606,6 +13739,7 @@ router.get("/Magz_and_News_res_download/:id", async(req, res) => {
         res.status(400).send("Error while downloading file. Try again later.");
     }
 });
+
 // Useful Links
 router.post("/delete_Useful_Links/:id", async(req, res) => {
     const delete_user = await Useful_Links.findOne({ _id: req.params.id });
@@ -19530,7 +19664,7 @@ router.post(
     }
 );
 
-router.get("/Bio_Association_download/:id", async(req, res) => {
+router.get("/Administration_download/:id", async(req, res) => {
     try {
         const file = await About_Administration.findById(req.params.id);
         res.set({
