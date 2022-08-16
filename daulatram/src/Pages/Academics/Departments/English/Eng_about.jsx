@@ -1,18 +1,135 @@
-import React,{useState} from "react";
-import Departments from "../../../../Components/Sidebar/Departments";
-import Engbanner from "../English/Engbanner.jsx";
-import English from "../../../../Components/DepartSIde/English.jsx";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-function Eng_about() {
+import { faTrashCan,faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import DepartBanner from "./Engbanner";
+import Sidebar from "../../../../Components/DepartSIde/English";
+
+const Eng = () => {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [para, setPara] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+
+  const fetchdata = async () => {
+    const response = await fetch("/Eng_About");
+    const dat = await response.json();
+    console.log(dat);
+    {
+      dat ? dat.map((elem) => setData1(elem)) : setData1(dat);
+    }
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+
+  const del = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(
+        `/delete_Eng_About_data/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const handleSubmit = async (files) => {
+    try {
+      if (files) {
+        console.log(files);
+        setErrMsg("");
+        await axios.post(
+          `/Eng_About_add`,
+          { file: files },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+  const handleSubmit_data = async (id) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Eng_About_add_data/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setPara("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+
   return (
-    <div className=" flex flex-col">
+    <>
       <div className="">
-        <Engbanner />
+        <DepartBanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden absolute bg-white">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -22,7 +139,7 @@ function Eng_about() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <English />
+                <Sidebar />
               </div>
             </>
           ) : (
@@ -36,253 +153,180 @@ function Eng_about() {
             </div>
           )}
         </div>
-      <div className=" md:flex hidden md:flex-col mt-12 ml-2">
-          <English />
+        <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+          <Sidebar />
         </div>
-        <div className="w-full mr-16">
-          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
-            About the department
+        <div className=" w-full mr-16 ">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            About the Department
           </h2>
-
-          <div className="flex flex-row">
-            <div className="flex flex-col">
-              <p className="md:text-2xl text-lg flex flex-row justify-center items-center font-bold underline pr-3 pl-3 mb-2 ml-2 mt-3">
-                The English Literary Association
-              </p>
-              <p className="md:text-xl text-lg font-bold  pr-3 pl-3 mb-2 ml-2 mt-3">
-                Convener: Dr. Deesphikha Mahanta Bortamuly
-              </p>
-              <p className="md:text-lg text-lg font-bold mb-5 pr-3 pl-3 ml-2 mt-3">
-                Co-Convener: Ms. Trisha Mitra
-              </p>
-
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="md:text-lg text-sm text-justify font-medium">
-                  The English Literary Association – Literati – had an exciting
-                  year 2021-22. The inaugural session of the Study Circle
-                  2021-22 was held on 11th August, 2021, with a focus on honing
-                  critical reading skills, which are essentially different from
-                  mere comprehension. The Resource Person, Dr. Sayan Chaudhari,
-                  who teaches at the Critical Writing program at the Young India
-                  Fellowship, Ashoka University hammered a set of tools and
-                  parametres to empower the critical reading and introspection
-                  capabilities of the students in a session rightly titled:{" "}
-                  <strong>
-                    Why do Students Struggle to ‘Read’ in the English Classroom?
-                  </strong>
-                  <br />
-                  <p>
-                    {" "}
-                    <strong>Coordinator: </strong> Dr. Sakshi Wason
+          <figure className="flex flex-col p-4 ">
+            {data1 &&
+              data1.img_data.file_path &&
+              data1.img_data.file_path.map((elem) => {
+                var path2 = elem.file_path1.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                // console.log(path);
+                return (
+                  <>
+                    <div className=" flex flex-row  items-center p-4">
+                      <img
+                        src={path}
+                        style={{
+                          width: "300px",
+                          height: "250px",
+                        }}
+                        alt="founder"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-28 lg:ml-80"
+                      />
+                      {auth && (
+                        <>
+                          <div className="flex  ml-auto">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer   hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "link")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+            {data1 &&
+              data1.img_data.para &&
+              data1.img_data.para.map((elem) => {
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4 ">
+                      <span className="card-description leading-14 font-medium text-justify text-base md:text-lg  ">
+                        {elem.para1}
+                      </span>
+                      {auth && (
+                        <>
+                          <div className="flex  w-full">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-auto  hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "para")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+          </figure>
+          {auth && data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm w-full  full ml-auto mr-auto mb-5"
+              >
+                <div className="mb-3">
+                  <textarea
+                    name="para"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setPara(e.target.value)}
+                    value={para}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Paragraph Here"
+                  ></textarea>
+                </div>
+                <div class="md:w-2/3 ">
+                  <button
+                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={() => handleSubmit_data(data1._id)}
+                  >
+                    Add Para
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+          {auth && !data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
                   </p>
-                </span>
-              </div>
-              <br />
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="md:text-lg text-sm text-justify font-medium ">
-                  The next activity was an Invited Talk, delivered by Dr.
-                  Avishek Parui, who teaches English and Memory Studies at IIT
-                  Madras and is an Associate Fellow of the UK Higher Education
-                  Academy. The talk, titled:
-                  <strong>
-                    {" "}
-                    “Memory, Storytelling and Interrupted Embodiment: Reading
-                    Heart of Darkness and Mrs Dalloway”{" "}
-                  </strong>
-                  was held on 29th September, 2021 online and it received an
-                  overwhelming response from students, faculty members and
-                  research scholars from colleges and universities across the
-                  nation. <br />{" "}
-                  <p>
-                    Coordinator: <strong>Coordinator: </strong> Dr. Sakshi Wason
-                  </p>
-                </span>
-              </div>
-              <br />
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="md:text-lg text-sm text-justify font-medium">
-                  To make our students more research oriented, a talk by a
-                  former student and currently a research scholar Ms. Prakriti
-                  Das was organised by the department on 23rd October 2021.
-                  Prakriti explored various aspects of identity formation in
-                  African American Literature in her talk titled{" "}
-                  <strong>
-                    {" "}
-                    “Bodies, Spaces and Representations: Interrogating
-                    Intersectional Identities in African American Literature”.
-                  </strong>{" "}
-                  <br />{" "}
-                  <p>
-                    {" "}
-                    <strong>Coordinator: </strong> Dr. Shivali Sharma
-                  </p>
-                </span>
-              </div>
-              <br />
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="md:text-lg text-sm text-justify font-medium ">
-                  As a part of{" "}
-                  <strong>DRC SDP on ICT Tools for Learning,</strong> an SDP was
-                  organised to ensure that every student learns the basics
-                  required to attend lectures and participate in Google
-                  Workspace activities and is able to engage with the teachers
-                  and classmates following appropriate rules of netiquette. At
-                  the departmental level, the SDP was coordinated by Dr.
-                  Deepshikha Mahanta Bortamuly.
-                  <br />{" "}
-                  <p>
-                    <strong>Resource Persons: </strong> Ms. Trisha Mitra and Ms.
-                    Richa Dawar
-                  </p>
-                </span>
-              </div>
-              <br />
-              <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="md:text-lg text-sm text-justify font-medium">
-                  A talk on Children’s Literature was organised by the
-                  department on 10th November 2021. The speaker, Dr. Tanu Shree
-                  Singh titled her talk{" "}
-                  <strong>
-                    “Children’s Literature: Beyond Didactic Teaching”.
-                  </strong>{" "}
-                  As an author of engaging works like ‘Darkless’, 'Keep Calm'
-                  and 'Mommy On' and 'Mummy's Glasses', Dr. Tanu Shree believes
-                  in the potentials that a child's imagination beholds and tries
-                  to polish them through her research and efforts to engage more
-                  budding minds in the dynamics of literature. <br />
-                  <p>
-                    {" "}
-                    <strong>Coordinator: </strong> Dr. Violina Borah
-                  </p>
-                </span>
-              </div>
-              <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="md:text-lg text-sm text-justify font-medium">
-                  There are several areas where English literature and
-                  Psychology intersect in term introspection, interpretations
-                  and research. One such area is gender with its various
-                  manifestations in terms of society, social and individual
-                  psyche, culture and their embodiment in literature. With this
-                  realisation, an{" "}
-                  <strong>
-                    Inter-departmental Skill Development Programme on Gender
-                    Studies
-                  </strong>{" "}
-                  was organised by the departments of English and Psychology,
-                  convened jointly by Dr. Deepshikha Mahanta Bortamuly and Lt.
-                  Dr. Suparna Jain Thakur, co-convened by Prof. Rajni Sahni. A
-                  very inspiring Keynote Address was delivered by Dr Harinder
-                  Sandhu, Associate Professor, Mata Sundari College, University
-                  of Delhi. Talking about Women, Community and South Asian
-                  Literature in English, Dr. Dolikajyoti Sharma from the
-                  Department of English, Gauhati University highlighted various
-                  aspects of the broad general topic in a comprehensive manner
-                  in her Invited Lecture. The SDP had In House Resource Persons
-                  who channelised stimulating interactions on a variety of
-                  aspects under the broad general area. Prof. Rajni Sahni
-                  focused on “Gender Roles: Attitudes and Stereotypes”, Dr.
-                  Deepshikha Mahanta Bortamuly highlighted on “Gendered
-                  Literature, Gendering Literature and Cultured Formulations”,
-                  Lt. Dr. Suparna Jain Thakur on “Gender in the Psychological
-                  Context”, Ms Saneya on Gender Representations: Select
-                  Problematics in Popular Culture and Media, Dr Violina Borah on
-                  “Gender in the Social Context” and Dr Kshitija Wason focused
-                  on “Workplace and Gender Divides”. The participants made
-                  impressive presentations at the end of the course on different
-                  areas highlighted during the SDP.
-                </span>
-              </div>
-              <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="md:text-lg text-sm text-justify font-medium ">
-                  The annual publication this year was unique as two Reviewers
-                  from outside the college reviewed a section of shortlisted
-                  entries and their comments were included in the publication.
-                  Throughout the year, the department organized various
-                  competitive literary events and the short listed entries were
-                  included in our publication, <em>Expression 2022.</em> An
-                  acclaimed photographer of the department, Disha Gupta, who
-                  featured in the prestigious Hyderabad Literary Fest, provided
-                  the unique cover pages, inspired – as she mentions – by Lewis
-                  Carroll’s
-                  <em> Through the Looking Glass.</em> Expressions 2022 was
-                  released on the Annual day of the College, 21st March 2022, by
-                  the dignitaries present on the occasion.
-                </span>
-              </div>
-              <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="md:text-lg text-sm text-justify font-medium ">
-                  <strong>Faculty Editors: </strong>Dr. Deepshikha Mahanta
-                  Bortamuly Ms. Trisha <br />
-                  <strong>Mitra Reviewers: </strong>Dr. Simran Chadha and Ms.
-                  Baishali Baruah <br />
-                  <strong>Student Editors:</strong> Vanshika Sharma and
-                  Sanskriti Joshi
-                </span>
-              </div>
-              <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="md:text-lg text-sm text-justify font-medium ">
-                  History and literature always complement each other. While
-                  history presents the facts, literature can be an artistic
-                  expression of the same. Every piece of literature is
-                  understood through the socio-historic background of the time
-                  and place it is based on. The students of semester V,
-                  Department of English are fortunate to get acquainted with the
-                  rich history of Delhi through novels like Crimson City.
-                  History of a place is also reflected through architecture of
-                  the particular period. Dr Violina Borah and Ms Haritha P
-                  accompanied the students of semester V on 9th April 2022 to
-                  the Mehrauli Archeological Park near Qutub Minar to have a
-                  tactical experience of the same. The park houses more than a
-                  hundred historical remains that date from pre-Islamic to the
-                  late Mughal and Colonial period. Students visited Jamali
-                  Kamali, Quli Khan's Tomb, Rajon ki Baoli, Madhi Masjid, the
-                  boat house and many other sites. It was a fulfilling
-                  experience packed with knowledge in understanding the city
-                  better. <strong>Coordinator</strong>: Dr. Violina Borah and
-                  Haritha P
-                </span>
-              </div>
-              <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="md:text-lg text-sm text-justify font-medium">
-                  As it is aptly said, "Productivity is never an accident. It is
-                  always the result of a commitment to excellence, intelligent
-                  planning, and focused effort", the department organized its
-                  Annual Fest, Novella 2022 in a grand manner on 2nd March 2022.
-                  The inaugural event was graced by Prof. Manpreet Kaur Kang,
-                  Dean of Social Sciences, GGSIP University and Dr. Pallabi
-                  Borah of the Department of Folklore Research, Gauhati
-                  University, along with our Principal Prof. Savita Roy and Vice
-                  Principal, Prof Sarita Nanda. With a riveting theme - 'Under
-                  the Same Stars' - various events were organized, namely
-                  Photography, Poetry, Poster Making, and Flash Fiction
-                  competition, with a remarkably large participation from
-                  different educational institutions. Dr Sanjeev Nandan Prasad
-                  was the Invited Guest for the Poetry Session, while Ms. Ipsita
-                  Barua, Freelancer from Zurich was the Subject Expert for the
-                  Photography session, in addition to other judges and
-                  coordinators. The Fest turned out to be a huge success with
-                  the tireless contribution of the core team, volunteers,
-                  teachers, participants, judges and the presence of the
-                  audience.
-                </span>
-              </div>
-              <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="md:text-lg text-sm text-justify font-medium">
-                  <strong>President of Literati 2021-22: </strong>Bidisha Jalan
-                  <br />
-                  <strong>Vice President: </strong>Akanksha Kiran
-                  <br />
-                  <strong>Joint Secretaries</strong> Anshika Sharma and
-                  Samreedhi Shree
-                </span>
-              </div>
-            </div>
-          </div>
+                </h2>
+                <div class="md:flex flex-col md:items-center h-full">
+                  <div className="upload-section flex h-full mb-[10px] w-full">
+                    <Dropzone
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder("over")}
+                      onDragLeave={() => updateBorder("leave")}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div
+                          {...getRootProps({
+                            className:
+                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                          })}
+                          ref={dropRef}
+                        >
+                          <input {...getInputProps()} />
+                          <p>
+                            Drag and drop a file OR click here to select a file
+                          </p>
+                          {file && (
+                            <div>
+                              <strong>Selected file:</strong> {file.name}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                    {previewSrc ? (
+                      isPreviewAvailable ? (
+                        <div className="image-preview ml-[5%] w-full">
+                          <img
+                            className="preview-image w-full h-full block mb-[10px]"
+                            src={previewSrc}
+                            alt="Preview"
+                          />
+                        </div>
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>No preview available for this file</p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>Image preview will be shown here after selection</p>
+                      </div>
+                    )}
+                  </div>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={() => handleSubmit(file)}
+                    >
+                      Add Image
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
-        
       </div>
-    </div>
+    </>
   );
-}
+};
 
-export default Eng_about;
+export default Eng;

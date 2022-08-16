@@ -1,15 +1,132 @@
-import React, { useState } from "react";
-import Departments from "../../../../Components/Sidebar/Departments";
-import Ecobanner from "../Economics/Ecobanner.jsx";
-import Economics from "../../../../Components/DepartSIde/Economics.jsx";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-function Eco_about() {
+import { faTrashCan,faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import DepartBanner from "./Ecobanner";
+import Sidebar from "../../../../Components/DepartSIde/Economics";
+
+const Eco = () => {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [para, setPara] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+
+  const fetchdata = async () => {
+    const response = await fetch("/Eco_About");
+    const dat = await response.json();
+    console.log(dat);
+    {
+      dat ? dat.map((elem) => setData1(elem)) : setData1(dat);
+    }
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+
+  const del = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(
+        `/delete_Eco_About_data/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const handleSubmit = async (files) => {
+    try {
+      if (files) {
+        console.log(files);
+        setErrMsg("");
+        await axios.post(
+          `/Eco_About_add`,
+          { file: files },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+  const handleSubmit_data = async (id) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Eco_About_add_data/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setPara("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+
   return (
-    <div className=" flex flex-col">
+    <>
       <div className="">
-        <Ecobanner />
+        <DepartBanner />
       </div>
       <div className="flex flex-row">
         <div className="md:hidden absolute bg-white">
@@ -22,7 +139,7 @@ function Eco_about() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Economics />
+                <Sidebar />
               </div>
             </>
           ) : (
@@ -37,108 +154,179 @@ function Eco_about() {
           )}
         </div>
         <div className=" md:flex hidden md:flex-col mt-12 ml-2">
-          <Economics />
+          <Sidebar />
         </div>
-        <div className="w-full mr-10">
-          <h2 className="md:text-4xl text-lg uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center ml-4 items-center ">
-            About the department
+        <div className=" w-full mr-16 ">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            About the Department
           </h2>
-
-          <div className="flex flex-row">
-            <div className="flex flex-col">
-              <figure className="flex pr-4 pl-4 pb-2">
-                <div
-                  style={{
-                    backgroundImage:
-                      "url(/images/ImgPages/Economics/Eco_about.png)",
-                  }}
-                  className="bg-center ml-auto mr-auto lg:w-[750px] w-[250px] h-[190px] lg:h-[370px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-                  // className="rounded-3xl border-black border-2 h-[400px] mr-10 ml-64"
-                ></div>
-              </figure>
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="md:text-lg text-sm text-justify font-medium">
-                  The Department of Economics of Daulat Ram College was
-                  established in 1960. The Department oﬀers a complete
-                  three-year undergraduate B.A.(Hons) Economics course. Further,
-                  it oﬀers interdisciplinary courses ( like Introductory Micro
-                  and Macroeconomics, Indian Economy, Money and Banking, Public
-                  Finance etc.) and skill enhancement courses (like Research
-                  Methodology, Contemporary Economic Issues etc.). The papers
-                  and the course oﬀered, aims to provides a theoretical and
-                  practical understanding of the core economic principles both,
-                  at micro and macro level and enables one to understand what,
-                  ‘being developed’ entails in this globalized world and what
-                  policy initiatives can be taken to make India a developed
-                  nation.
-                </span>
-              </div>
-              <br />
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="md:text-lg text-sm text-justify font-medium ">
-                  The cut-oﬀ for admissions to the BA (Hons) Economics course
-                  for the last 5 years has been in the range of 95%-97%. The
-                  department comprises of a team of dedicated faculty members to
-                  guide and support students at every stage. The faculty has
-                  vast experience in the ﬁeld of teaching and research, with a
-                  number of research papers published in various national and
-                  international journals. The department as a whole comprising
-                  of both, teachers and students has been one of the most
-                  proactive and innovative departments of the college.
-                </span>
-              </div>
-              <br />
-              <div className="pr-3 pl-3 flex mr-1 ml-2">
-                <span className="md:text-lg text-sm text-justify font-medium ">
-                  The department members are also members of the Economics
-                  Association,<strong> ‘Éclat’</strong> which apart from
-                  organising activities like fresher’s welcome and farewell for
-                  the students of Economics, conducts several seminars, national
-                  and international conferences to enlighten them about the
-                  possible future prospects they may have and to provide them a
-                  clear understanding of all the possible post graduate courses
-                  that the students can pursue in future. Further, the
-                  association organises ‘Mutasir’, a youth conference, in which
-                  prominent economists are invited to talk about contemporary
-                  economic issues. This helps in broadening the scope and
-                  understanding of the students regarding the discipline. The
-                  association also launches the annual publication ‘Optima’,
-                  which is an interesting mosaic of ideas and understanding of
-                  various topics of economics, by the students and the faculty
-                  members. Further, the annual economics festival ‘Economania’,
-                  is organised by the association. In the festival, events like
-                  debate, paper presentations, MUNs or Modelling United Nations
-                  and so on, are conducted to keep up the competitive spirit
-                  among the students.
-                </span>
-              </div>
-              <br />
-              <div className="pr-3 pl-3 flex mr-1 ml-2 mb-6">
-                <span className="md:text-lg text-sm text-justify font-medium ">
-                  The students of the discipline are also encouraged to be
-                  active members of the Entrepreneurship Cell and Finance and
-                  Investment Cell of the College (Co-convened by the Economics
-                  Department). Overall, the department, through regular classes
-                  and associations and cells activities aim to equip the student
-                  with tools to harness future career opportunities in ﬁelds of
-                  Academics, Consultancy, Think-Tanks, Policymaking, Analysts,
-                  Research, Business Administration, Banking, Government
-                  Administration, Corporate consultants, among others. Students
-                  can bag various prestigious fellowships like the Young India
-                  Fellowship, LAMP Fellowship (Legislative Assistant to Member
-                  of Parliament), Gandhi fellowship(social sector
-                  fellowship),Teach for India fellowship. Students with an
-                  economics background usually avail of various internship
-                  prospects with Niti Aayog, Ministry of Finance, Ministry of
-                  External Aﬀairs, Corporates etc.
-                </span>
-              </div>
-            </div>
-          </div>
+          <figure className="flex flex-col p-4 ">
+            {data1 &&
+              data1.img_data.file_path &&
+              data1.img_data.file_path.map((elem) => {
+                var path2 = elem.file_path1.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                // console.log(path);
+                return (
+                  <>
+                    <div className=" flex flex-row  items-center p-4">
+                      <img
+                        src={path}
+                        style={{
+                          width: "300px",
+                          height: "250px",
+                        }}
+                        alt="founder"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-28 lg:ml-80"
+                      />
+                      {auth && (
+                        <>
+                          <div className="flex  ml-auto">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer   hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "link")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+            {data1 &&
+              data1.img_data.para &&
+              data1.img_data.para.map((elem) => {
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4 ">
+                      <span className="card-description leading-14 font-medium text-justify text-base md:text-lg  ">
+                        {elem.para1}
+                      </span>
+                      {auth && (
+                        <>
+                          <div className="flex  w-full">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-auto  hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "para")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+          </figure>
+          {auth && data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm w-full  full ml-auto mr-auto mb-5"
+              >
+                <div className="mb-3">
+                  <textarea
+                    name="para"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setPara(e.target.value)}
+                    value={para}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Paragraph Here"
+                  ></textarea>
+                </div>
+                <div class="md:w-2/3 ">
+                  <button
+                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={() => handleSubmit_data(data1._id)}
+                  >
+                    Add Para
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+          {auth && !data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div class="md:flex flex-col md:items-center h-full">
+                  <div className="upload-section flex h-full mb-[10px] w-full">
+                    <Dropzone
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder("over")}
+                      onDragLeave={() => updateBorder("leave")}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div
+                          {...getRootProps({
+                            className:
+                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                          })}
+                          ref={dropRef}
+                        >
+                          <input {...getInputProps()} />
+                          <p>
+                            Drag and drop a file OR click here to select a file
+                          </p>
+                          {file && (
+                            <div>
+                              <strong>Selected file:</strong> {file.name}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                    {previewSrc ? (
+                      isPreviewAvailable ? (
+                        <div className="image-preview ml-[5%] w-full">
+                          <img
+                            className="preview-image w-full h-full block mb-[10px]"
+                            src={previewSrc}
+                            alt="Preview"
+                          />
+                        </div>
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>No preview available for this file</p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>Image preview will be shown here after selection</p>
+                      </div>
+                    )}
+                  </div>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={() => handleSubmit(file)}
+                    >
+                      Add Image
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
-}
+};
 
-export default Eco_about;
+export default Eco;
