@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, Navigate } from "react-router-dom";
 import AuthContext from "../../Context/AuthProvider";
-import Staff_side from "../../Components/Sidebar/Staff_side";
+import Student_side from "../../Components/Sidebar/Student_side";
 
 const Stud_Feedback = () => {
   const userRef = useRef();
@@ -96,7 +96,7 @@ const Stud_Feedback = () => {
       </div>
       <div className="flex flex-row">
         <div className="w-[350px]">
-          <Staff_side />
+          <Student_side />
         </div>
        
           <div className="w-[1100px]">
