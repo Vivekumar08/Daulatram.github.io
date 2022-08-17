@@ -312,6 +312,12 @@ import Music_Awards from "./Pages/Academics/Departments/Music/Music_awards";
 import NHE_Awards from "./Pages/Academics/Departments/NHE/NHE_awards";
 import Math_Awards from "./Pages/Academics/Departments/Mathematics/Math_awards";
 import Philo_Awards from "./Pages/Academics/Departments/Philosophy/philo_awards";
+import NHE_facilities from "./Pages/Academics/Departments/NHE/NHE_facilities";
+import Philo_facilities from "./Pages/Academics/Departments/Philosophy/Philo_facilities";
+import PE_Facilities from "./Pages/Academics/Departments/Physical_Education/PE_Facilities";
+import PS_Facilities from "./Pages/Academics/Departments/Political_Science/PS_Facilities";
+import Psycho_Facilities from "./Pages/Academics/Departments/Psychology/Psycho_Facilities";
+import Sanskrit_Facilities from "./Pages/Academics/Departments/Sanskrit/Sanskrit_Facilities";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -1352,6 +1358,62 @@ function App() {
               </>
             }
             path="/academics/departments/NHE/awards"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <NHE_facilities />
+              </>
+            }
+            path="/academics/departments/NHE/Facilities"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <NHE_facilities />
+              </>
+            }
+            path="/academics/departments/NHE/Facilities"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                < Philo_facilities />
+              </>
+            }
+            path="/academics/departments/Philosophy/Facilities"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                < PE_Facilities />
+              </>
+            }
+            path="/academics/departments/Physical_Education/Facilities"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                < PS_Facilities />
+              </>
+            }
+            path="/academics/departments/Political_Science/Facilities"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                < Psycho_Facilities />
+              </>
+            }
+            path="/academics/departments/Psychology/Facilities"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                < Sanskrit_Facilities />
+              </>
+            }
+            path="/academics/departments/Sanskrit/Facilities"
           ></Route>{" "}
           <Route
             element={

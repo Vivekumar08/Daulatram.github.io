@@ -1,13 +1,202 @@
-import React, { useState } from "react";
-
-import research_zoo from "../../../../Dummy_data/ImgPages/Zoology/Research_zoo.pdf";
-
+import React, { useContext, useEffect, useState, useRef } from "react";
 import Zoobanner from "./Zoobanner";
 import Zoology from "../../../../Components/DepartSIde/Zoology";
+
+import axios from "axios";
+import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import Common_dat from "../Common_dat";
+
 function Zoo_facilities() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Zoo_Facilities");
+    setData1(await response.json());
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const handleSubmit_img = async (id, file) => {
+    try {
+      if (file) {
+        setErrMsg("");
+        await axios.post(
+          `/Zoo_Facilities_img_upload/${id}`,
+          { file: file },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(`/delete_Zoo_Facilities_para/${id}`, {
+        method: "POST",
+        body: JSON.stringify(arr),
+        headers: { "Content-Type": "application/json" },
+      });
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(`/delete_Zoo_Facilities/${id}`, {
+      method: "POST",
+    });
+    await response.json();
+    if (response.status === 200) {
+      setErrMsg("");
+      fetchdata();
+    } else if (response.status === 400) {
+      setErrMsg("First Delete all the images related to this section");
+    }
+  };
+
+  const delete_file = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_pdf_link_Zoo_Facilities_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+  const dele = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_img_Zoo_Facilities_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+
+  const handleSubmit_data = async (id, para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Zoo_Facilities_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit_link = async (id, link) => {
+    try {
+      console.log(link);
+      await axios.post(`/Zoo_Facilities_add_link/${id}`, {
+        link: link,
+      });
+      setCaption("");
+      setAuth(true);
+      fetchdata();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    console.log(id);
+    try {
+      console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Zoo_Facilities_file_upload/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        setErrMsg("");
+        await axios.post(`/Zoo_Facilities_upload`, {
+          title: link,
+          description: caption,
+        });
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
     <div className=" flex flex-col">
       <div className="">
@@ -42,200 +231,89 @@ function Zoo_facilities() {
           <Zoology />
         </div>
         <div className="w-full mr-16">
-          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
-            Research & Facilities
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            Research & FACILITIES
           </h2>
+          <div className="text-justify p-3 m-2 ml-4">
+            {data1 &&
+              data1.map((curElem) => {
+                const { _id, title, description, img_data } = curElem;
+                return (
+                  <>
+                    <Common_dat
+                      key={_id}
+                      id={_id}
+                      tittle={title}
+                      para={description}
+                      pic={img_data}
+                      delete={del}
+                      delete_img={dele}
+                      delete_file={delete_file}
+                      delete_para={del_para}
+                      add_para={handleSubmit_data}
+                      file_upload={handleSubmit_file}
+                      Link_upload={handleSubmit_link}
+                      submit_img={handleSubmit_img}
+                    />
+                  </>
+                );
+              })}
+          </div>
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p>Add New Data</p>
+                </h2>
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Link"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setLink(e.target.value)}
+                    value={link}
+                    placeholder="Title"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Caption"
+                  ></textarea>
+                </div>
+                <div class="md:flex flex-col md:items-center">
+                  {/* <div class="md:w-1/3"></div> */}
 
-          <div className="pr-3 pl-3 flex mr-1 ml-4">
-            <span className="md:text-xl md:ml-0 ml-9 text-lg underline text-justify font-bold mb-2 mt-3">
-              Drosophila Resource Center, Department of Zoology
-            </span>
-          </div>
-
-          <div className="ml-6 ">
-            <ul className="md:text-base text-sm list-decimal ml-10 mt-2  mr-5 text-justify mb-4 ">
-              <li>
-                The Department of Zoology has developed resource centers for two
-                animal model organisms: Drosophila melanogaster (Banana fruit
-                fly) and Danio rerio (Zebra fish)
-              </li>
-              <li>
-                The Department of Biotechnology, (GOI) expert committee
-                appreciated the work being carried out on Drosophila, and
-                awarded STAR status and special grant to be a resource centre
-                for training students and staff of our college and different
-                colleges of Delhi University. The center was established in the
-                year 2011—
-              </li>
-              <li>
-                The stock centre is maintaining wild type and different mutants
-                of Drosophila such as vestigial, dumpy , cross-veinless, curly,
-                amongst the wing mutations; white, white- apricot, sepia , bar
-                ,vermillion amongst the eye mutations; aristapedia,
-                antennapedia, the homoeitic mutants; sepia- vestigial,
-                sepia-curl, cross- veinless – white apricot, the double mutants.
-                ,vestigial ,dumpy , cross-veinless wings, forked brisles
-              </li>
-              <li>
-                Main Activities include maintenance of Drosophila Wild type
-                flies and Mutants; training to students and faculty of our
-                college as well as from other colleges of Delhi
-              </li>
-              <li>
-                Training provided University on colony maintenance, mutant
-                studies collection of eggs, study of various Developmental
-                stages, chromosome preparations. Analysis of chorionic, larval,
-                pupal moult proteins by simple SDS PAGE, eye pigment analysis by
-                simple paper chromatography; demonstration of Mendelian Laws and
-                other genetical studies
-              </li>
-              <li>
-                The Animal ethics Committee has totally banned dissections,
-                experiments with live organisms at the Undergraduate level as a
-                result; students of Zoology and Life Sciences have no choice
-                except end up doing dry Lab Experiments.
-              </li>
-              <li>
-                To bring back a feel of handling live animals, an effort was
-                made to introduce Drosophila as a model organism with some basic
-                experiments designed to study various developmental Stages,
-                Protein profiles, Mitotic Chromosomes, Salivary Gland
-                Chromosomes, Mendelian Genetics, Evolutionary Biology etc.
-              </li>
-              <li>Learning is more effective when it is an active process</li>
-              <li>
-                Regular Hands on Training to students of Zoology, Life sciences
-                and Botany Honours of the college
-              </li>
-              <li>
-                The Drosophila Center also provides all strains to other
-                Colleges
-              </li>
-              <li>
-                The students from Life sciences. Zoology, Botany from our
-                college are trained throughout the academic session in handling
-                the flies, maintenance of the stocks, carry out simple
-                experiments on Mendelian inheritance, Evolutionary biology,
-                Developmental Biology etc
-              </li>
-              <li>
-                A similar hands on training is also given to interested students
-                from other colleges. The coordinator Dr. Chitra Bhasin has
-                conducted five workshops in the college on Drosophila basics and
-                transmission genetics and developmental biology , chromosome
-                preparations, , behavior, developmental genetics etc.
-              </li>
-            </ul>
-            <img
-              style={{
-                backgroundImage: "url(/images/ImgPages/Zoology/r1.jpg)",
-              }}
-              className="bg-center ml-auto mr-auto lg:w-[900px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-            />
-            <img
-              style={{
-                backgroundImage: "url(/images/ImgPages/Zoology/r2.jpg)",
-              }}
-              className="bg-center ml-auto mr-auto lg:w-[900px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-            />
-          </div>
-          <div>
-            <div className="pr-3 pl-3 flex mr-1 ml-4">
-              <span className="md:text-xl md:ml-0 ml-9 text-lg underline text-justify font-bold mb-2 mt-3">
-                Reproductive Biology lab
-              </span>
-            </div>
-            <div className="pr-3 pl-3 flex mr-1 ml-6 md:ml-4">
-              <span className=" md:text-lg text-sm text-justify ml-8 font-medium md:ml-0">
-                Our Lab research efforts are focused on understanding key
-                reproductive health problems and causing factors for these in
-                young girls. We have completed the DU Innovation Project
-                “Bio-Markers of Heat Stress & Acclimation” in 2015 and Star
-                Innovation Project on “Incidence of PCOS in Young girls” in
-                2019. Our research have been fostered by doing projects with
-                undergraduate students. We have successfully organized symposium
-                and awareness Health camps in college for our students. Our
-                students were trained through various workshops for excellence
-                in public health data collection and analysis. We have presented
-                our work in form of poster, oral presentation in various
-                conferences and symposium and published research paper in
-                scientific journals.
-              </span>
-            </div>
-            <div className="pr-3 pl-3 flex mr-1 ml-4">
-              <span className=" md:text-lg text-sm text-justify md:ml-0 ml-10 font-medium">
-                Professor Rita Singh from Department of Zoology, North Campus of
-                Zoology was our mentor who guided us in our PCOS project. We
-                have made collaboration with health clinics and Gynaecoligist
-                for our research.
-              </span>
-            </div>
-            <div className="pr-3 pl-3 flex mr-1 ml-4">
-              <span className=" underline text-justify md:ml-0 ml-9 font-bold mb-1 mt-3">
-                List of Symposium and Health Camp Organized
-              </span>
-            </div>
-            <div className="ml-4 ">
-              <ol className="list-inside md:text-base text-sm list-decimal mt-2 md:ml-10 ml-12 mr-5 text-justify mb-3">
-                <li>Bone Mineral Density Camp March 2014</li>
-                <li>Reproductive Health Camp April 2016</li>
-                <li>National Symposium and Awareness Programme March 2017</li>
-                <li>
-                  {" "}
-                  Sustainable Health Programe on PCOS Awareness September 2016
-                </li>
-                <li>
-                  Skill Development Programme on “Life Style Management” July 3
-                  rd -15 th 2017
-                </li>
-              </ol>
-            </div>
-            <div className="pr-3 pl-3 flex mr-1 ml-4">
-              <span className="md:ml-0 ml-9 underline text-justify font-bold mb-1 mt-3">
-                List of Symposium and Conferences attended for Oral, Poster, and
-                Paper presentation.
-              </span>
-            </div>
-            <div className="ml-4 ">
-              <ol className="list-inside md:text-base text-sm list-decimal mt-2 md:ml-10 ml-12 mr-5 text-justify mb-4">
-                <li>
-                  “National Symposium on Reproductive Health in India: Cocerns &
-                  Awareness” Deshbandhu College, Feb 2016.
-                </li>
-                <li>
-                  {" "}
-                  National Seminar on “A paradigm shift towards Enpowerment of
-                  Women” Kalindi college, University of Delhi.
-                </li>
-                <li>
-                  {" "}
-                  National symposium on “Lifestyle and Reproductive Health
-                  Challenges inYoung Girls”, Daulat Ram College, March 29 2017.
-                </li>
-                <li>
-                  {" "}
-                  National Conference on Communicable Diseases, Zakir Hussain
-                  College, Jan 31-1 Feb 2018
-                </li>
-                <li>
-                  Lifestyle risk factors and reproductive health in young women,
-                  S.S Jain Subodh PG (Autonomous) College, Jaipur
-                </li>
-              </ol>
-              <img
-                style={{
-                  backgroundImage: "url(/images/ImgPages/Zoology/r3.JPG)",
-                }}
-                className="bg-center ml-auto mr-auto lg:w-[900px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-              />
-              <img
-                style={{
-                  backgroundImage: "url(/images/ImgPages/Zoology/r5.JPG)",
-                }}
-                className="bg-center ml-auto mr-auto lg:w-[900px] w-[250px] h-[190px] lg:h-[450px] bg-no-repeat mt-[3%] bg-cover  rounded-2xl border-2 border-black"
-              />
-            </div>
-          </div>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
     </div>

@@ -1,13 +1,15 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import Physicsbanner from "../Physics/Physicsbanner.jsx";
-import Physics from "../../../../Components/DepartSIde/Physics";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faBars } from "@fortawesome/free-solid-svg-icons";
-import AuthContext from "../../../../Context/AuthProvider";
+import React, { useContext, useEffect, useState, useRef } from "react";
+import Philosophybanner from "../Philosophy/Philosophybanner.jsx";
+import Philosophy from "../../../../Components/DepartSIde/Philosophy";
+
+import Dropzone from "react-dropzone";
 import axios from "axios";
+import AuthContext from "../../../../Context/AuthProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import Common_dat from "../Common_dat";
 
-const Physics_facilities = () => {
+function Philo_facilities() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
@@ -18,7 +20,7 @@ const Physics_facilities = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/physics_facilities");
+    const response = await fetch("/Philo_facilites");
     setData1(await response.json());
   };
 
@@ -31,7 +33,7 @@ const Physics_facilities = () => {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/physics_facilities_img_upload/${id}`,
+          `/Philo_facilites_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -55,7 +57,7 @@ const Physics_facilities = () => {
     try {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
-      const response = await fetch(`/delete_physics_facilities_para/${id}`, {
+      const response = await fetch(`/delete_Philo_facilites_para/${id}`, {
         method: "POST",
         body: JSON.stringify(arr),
         headers: { "Content-Type": "application/json" },
@@ -75,7 +77,7 @@ const Physics_facilities = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_physics_facilities/${id}`, {
+    const response = await fetch(`/delete_Philo_facilites/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -91,7 +93,7 @@ const Physics_facilities = () => {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_physics_facilities_fac/${id}`,
+      `/delete_pdf_link_Philo_facilites_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -103,7 +105,7 @@ const Physics_facilities = () => {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_physics_facilities_fac/${id}`,
+      `/delete_img_Philo_facilites_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -118,7 +120,7 @@ const Physics_facilities = () => {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/physics_facilities_add_para/${id}`, {
+        await fetch(`/Philo_facilites_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -136,7 +138,7 @@ const Physics_facilities = () => {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/physics_facilities_add_link/${id}`, {
+      await axios.post(`/Philo_facilites_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -153,7 +155,7 @@ const Physics_facilities = () => {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/physics_facilities_file_upload/${id}`,
+          `/Philo_facilites_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -180,7 +182,7 @@ const Physics_facilities = () => {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/physics_facilities_upload`, {
+        await axios.post(`/Philo_facilites_upload`, {
           title: link,
           description: caption,
         });
@@ -198,7 +200,9 @@ const Physics_facilities = () => {
 
   return (
     <div className=" flex flex-col">
-      <Physicsbanner />
+      <div className="">
+        <Philosophybanner />
+      </div>
 
       <div className="flex flex-row">
         <div className="md:hidden">
@@ -211,7 +215,7 @@ const Physics_facilities = () => {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <Physics />
+                <Philosophy />
               </div>
             </>
           ) : (
@@ -226,12 +230,11 @@ const Physics_facilities = () => {
           )}
         </div>
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <Physics />
+          <Philosophy />
         </div>
-
-        <div className="w-full mr-auto ml-auto">
-          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
-            Facilities
+        <div className="w-full mr-16">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            FACILITIES
           </h2>
           <div className="text-justify p-3 m-2 ml-4">
             {data1 &&
@@ -317,6 +320,6 @@ const Physics_facilities = () => {
       </div>
     </div>
   );
-};
+}
 
-export default Physics_facilities;
+export default Philo_facilities;

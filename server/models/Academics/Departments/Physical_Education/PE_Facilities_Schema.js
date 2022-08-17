@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const Physics_Facilities_Schema = mongoose.Schema(
+const PE_Facilities_Schema = mongoose.Schema(
     {
         title: {
             type: String,
@@ -54,6 +54,6 @@ const Physics_Facilities_Schema = mongoose.Schema(
     }
 );
 
-const Physics_Facilities = mongoose.model('Physics_Facilities', Physics_Facilities_Schema);
+const PE_Facilities = mongoose.model('PE_Facilities', PE_Facilities_Schema);
 
-module.exports = Physics_Facilities;
+module.exports = PE_Facilities;
