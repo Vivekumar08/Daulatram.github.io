@@ -234,7 +234,6 @@ const Physics_Publications = require("../models/Academics/Departments/Physics/Ph
 const PS_Publications = require("../models/Academics/Departments/Political_Science/PS_Publications_Schema");
 const Sans_Publications = require("../models/Academics/Departments/Sanskrit/Sans_Publications_Schema");
 const Zoo_Publications = require("../models/Academics/Departments/Zoology/Zoo_Publications_Schema")
-const Physics_Facilities = require("../models/Academics/Departments/Physics/Physics_Facilities_Schema");
 const Physics_Association = require("../models/Academics/Departments/Physics/Physics_Association_Schema");
 const PS_Association = require("../models/Academics/Departments/Political_Science/PS_Association_Schema");
 const Sanskrit_Association = require("../models/Academics/Departments/Sanskrit/Sanskrit_Association_Schema");
@@ -249,8 +248,16 @@ const Useful_Links = require("../models/Useful_Links_schema");
 const Music_Awards = require("../models/Academics/Departments/Music/Music_Awards_Schema");
 const Philo_Awards = require("../models/Academics/Departments/Philosophy/Philo_Awards_Schema");
 
+const NHE_fac = require("../models/Academics/Departments/NHE/NHE_fac_Schema");
 const NHE_Awards = require("../models/Academics/Departments/NHE/Awards_Schema");
 const Philo_ProgramOffered = require("../models/Academics/Departments/Philosophy/Philo_ProgramsOffered_Schema");
+const Philo_fac = require("../models/Academics/Departments/Philosophy/Philo_fac_Schema");
+const PE_Facilities = require("../models/Academics/Departments/Physical_Education/PE_Facilities_Schema");
+const Physics_Facilities = require("../models/Academics/Departments/Physics/Physics_Facilities_Schema");
+const PS_Facilities = require("../models/Academics/Departments/Political_Science/PS_Facilities_Schema");
+const Psychology_facilities = require("../models/Academics/Departments/Psychology/Psychology_facilities_Schema");
+const Sanskrit_Facilities = require("../models/Academics/Departments/Sanskrit/Sanskrit_Facilities_Schema");
+const Zoo_Facilities = require("../models/Academics/Departments/Zoology/Zoo_Facilities_Schema");
 
 const unlinkAsync = promisify(fs.unlink);
 
@@ -12470,44 +12477,6 @@ router.get("/Sans_Publications_download/:id", async(req, res) => {
     }
 });
 
-//   Physics Facilities
-router.get("/Physics_Facilities", async(req, res) => {
-    const details = await Physics_Facilities.find();
-    res.status(200).json(details);
-});
-router.delete("/delete_Physics_Facilities/:id", async(req, res) => {
-    const delete_user = await Physics_Facilities.findOneAndDelete({
-        _id: req.params.id,
-    });
-    await unlinkAsync(delete_user.file_path);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.post(
-    "/Physics_Facilities_add",
-    upload.single("file"),
-    async(req, res) => {
-        try {
-            const { title, link } = req.body;
-            const { path, mimetype } = req.file;
-            const file = new Physics_Facilities({
-                title,
-                link,
-                file_path: path,
-                file_mimetype: mimetype,
-            });
-            await file.save();
-            res.send("file uploaded successfully.");
-        } catch (error) {
-            res.status(400).send("Error while uploading file. Try again later.");
-        }
-    },
-    (error, req, res, next) => {
-        if (error) {
-            res.status(402).send(error.message);
-        }
-    }
-);
 
 //   Physics Association
 router.get("/Physics_Association", async(req, res) => {
@@ -12547,6 +12516,8 @@ router.post(
         }
     }
 );
+
+
 //   Physics Newsletter & Magazines
 router.get("/Physics_Newsletter", async(req, res) => {
     const details = await Physics_Newsletter.find();
@@ -22432,6 +22403,1781 @@ router.post(
 router.get("/Psy_Student_Achievement_download/:id", async(req, res) => {
     try {
         const file = await Psy_Student_Achieve.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+// Zoology Research And Publications
+router.post("/delete_Zoo_Facilities/:id", async(req, res) => {
+    const delete_user = await Zoo_Facilities.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Zoo_Facilities_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Zoo_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Zoo_Facilities_fac/:id", async(req, res) => {
+    const delete_user = await Zoo_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Zoo_Facilities_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Zoo_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Zoo_Facilities.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Zoo_Facilities", async(req, res) => {
+    try {
+        const files = await Zoo_Facilities.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Zoo_Facilities_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Zoo_Facilities.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Zoo_Facilities_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Zoo_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Zoo_Facilities_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Zoo_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Zoo_Facilities_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Zoo_Facilities({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Zoo_Facilities_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Zoo_Facilities.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Zoo_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Zoo_Facilities_upload_download/:id", async(req, res) => {
+    try {
+        const file = await Zoo_Facilities.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+
+// Sanskrit Research And Publications
+router.post("/delete_Sanskrit_Facilities/:id", async(req, res) => {
+    const delete_user = await Sanskrit_Facilities.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Sanskrit_Facilities_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Sanskrit_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Sanskrit_Facilities_fac/:id", async(req, res) => {
+    const delete_user = await Sanskrit_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Sanskrit_Facilities_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Sanskrit_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Sanskrit_Facilities.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Sanskrit_Facilities", async(req, res) => {
+    try {
+        const files = await Sanskrit_Facilities.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Sanskrit_Facilities_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Sanskrit_Facilities.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Sanskrit_Facilities_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Sanskrit_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Sanskrit_Facilities_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Sanskrit_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Sanskrit_Facilities_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Sanskrit_Facilities({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Sanskrit_Facilities_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Sanskrit_Facilities.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Sanskrit_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Sanskrit_Facilities_upload_download/:id", async(req, res) => {
+    try {
+        const file = await Sanskrit_Facilities.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+
+// Psychology Research And Publications
+router.post("/delete_Psycho_facilities/:id", async(req, res) => {
+    const delete_user = await Psychology_facilities.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Psycho_facilities_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Psychology_facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Psycho_facilities_fac/:id", async(req, res) => {
+    const delete_user = await Psychology_facilities.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Psycho_facilities_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Psychology_facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Psychology_facilities.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Psycho_facilities", async(req, res) => {
+    try {
+        const files = await Psychology_facilities.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Psycho_facilities_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Psychology_facilities.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Psycho_facilities_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Psychology_facilities.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Psycho_facilities_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Psychology_facilities.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Psycho_facilities_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Psychology_facilities({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Psycho_facilities_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Psychology_facilities.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Psychology_facilities.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Psycho_facilities_upload_download/:id", async(req, res) => {
+    try {
+        const file = await Psychology_facilities.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+
+// Political Science Research And Publications
+router.post("/delete_Pol_Sci_Facilities/:id", async(req, res) => {
+    const delete_user = await PS_Facilities.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Pol_Sci_Facilities_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await PS_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Pol_Sci_Facilities_fac/:id", async(req, res) => {
+    const delete_user = await PS_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Pol_Sci_Facilities_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await PS_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await PS_Facilities.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Pol_Sci_Facilities", async(req, res) => {
+    try {
+        const files = await PS_Facilities.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Pol_Sci_Facilities_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await PS_Facilities.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Pol_Sci_Facilities_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await PS_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Pol_Sci_Facilities_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await PS_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Pol_Sci_Facilities_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new PS_Facilities({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Pol_Sci_Facilities_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await PS_Facilities.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await PS_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Pol_Sci_Facilities_upload_download/:id", async(req, res) => {
+    try {
+        const file = await PS_Facilities.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+
+// Physics Research And Publications
+router.post("/delete_physics_facilities/:id", async(req, res) => {
+    const delete_user = await Physics_Facilities.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_physics_facilities_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Physics_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_physics_facilities_fac/:id", async(req, res) => {
+    const delete_user = await Physics_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_physics_facilities_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Physics_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Physics_Facilities.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/physics_facilities", async(req, res) => {
+    try {
+        const files = await Physics_Facilities.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/physics_facilities_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Physics_Facilities.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/physics_facilities_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Physics_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/physics_facilities_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Physics_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/physics_facilities_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Physics_Facilities({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/physics_facilities_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Physics_Facilities.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Physics_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/physics_facilities_upload_download/:id", async(req, res) => {
+    try {
+        const file = await Physics_Facilities.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+
+// Physical Education Research And Publications
+router.post("/delete_PE_facilities/:id", async(req, res) => {
+    const delete_user = await PE_Facilities.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_PE_facilities_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await PE_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_PE_facilities_fac/:id", async(req, res) => {
+    const delete_user = await PE_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_PE_facilities_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await PE_Facilities.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await PE_Facilities.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/PE_facilities", async(req, res) => {
+    try {
+        const files = await PE_Facilities.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/PE_facilities_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await PE_Facilities.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/PE_facilities_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await PE_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/PE_facilities_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await PE_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/PE_facilities_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new PE_Facilities({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/PE_facilities_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await PE_Facilities.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await PE_Facilities.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/PE_facilities_upload_download/:id", async(req, res) => {
+    try {
+        const file = await PE_Facilities.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+
+// NHE Research And Publications
+router.post("/delete_NHE_facilites/:id", async(req, res) => {
+    const delete_user = await NHE_fac.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_NHE_facilites_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await NHE_fac.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_NHE_facilites_fac/:id", async(req, res) => {
+    const delete_user = await NHE_fac.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_NHE_facilites_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await NHE_fac.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await NHE_fac.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/NHE_facilites", async(req, res) => {
+    try {
+        const files = await NHE_fac.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/NHE_facilites_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await NHE_fac.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/NHE_facilites_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await NHE_fac.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/NHE_facilites_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await NHE_fac.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/NHE_facilites_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new NHE_fac({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/NHE_facilites_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await NHE_fac.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await NHE_fac.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/NHE_facilities_upload_download/:id", async(req, res) => {
+    try {
+        const file = await NHE_fac.findById(req.params.id);
+        res.set({
+            "Content-Type": file.file_mimetype,
+        });
+        res.sendFile(path.join(__dirname, "..", file.file_path));
+    } catch (error) {
+        res.status(400).send("Error while downloading file. Try again later.");
+    }
+});
+
+
+// Philosophy Research And Publications
+router.post("/delete_Philo_facilites/:id", async(req, res) => {
+    const delete_user = await Philo_fac.findOne({ _id: req.params.id });
+    const arr = delete_user.img_data.file_path;
+    if (arr.length === 0) {
+        await delete_user.deleteOne({ _id: req.params.id });
+        // console.log(delete_user.img_data.file_path)
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        res.status(400).json("First Delete all the images related to this section");
+    }
+});
+router.post("/delete_img_Philo_facilites_fac/:id", async(req, res) => {
+    // console.log(req.body.file_path1)
+    const delete_user = await Philo_fac.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
+    await unlinkAsync(req.body.file_path1);
+    res.status(200).json(delete_user + "User deleted");
+});
+
+router.post("/delete_pdf_link_Philo_facilites_fac/:id", async(req, res) => {
+    const delete_user = await Philo_fac.findOneAndUpdate({ _id: req.params.id }, {
+        $set: {
+            "img_data.pdf_path": {
+                pdf_path1: "../daulatram/public/images/uploads",
+                pdf_mimetype1: null,
+                value: null,
+            },
+        },
+    });
+    const pdf = delete_user.img_data.pdf_path;
+
+    if (pdf[0].pdf_mimetype1 !== "text/link") {
+        console.log(pdf[0].pdf_mimetype1);
+        await unlinkAsync(pdf[0].pdf_path1);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(pdf[0].pdf_mimetype1);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+
+router.post("/delete_Philo_facilites_para/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Philo_fac.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Philo_fac.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+
+router.get("/Philo_facilites", async(req, res) => {
+    try {
+        const files = await Philo_fac.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+
+
+router.post(
+    "/Philo_facilites_add_para/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Philo_fac.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+router.post(
+    "/Philo_facilites_file_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            // console.log(path, mimetype)
+            const data = await Philo_fac.findOneAndUpdate({ _id: req.params.id }, {
+                $set: {
+                    "img_data.pdf_path": {
+                        pdf_path1: path,
+                        pdf_mimetype1: mimetype,
+                        value: true,
+                    },
+                },
+            });
+            if (data) {
+                // console.log(dat)
+                res.status(200).send("file uploaded successfully.");
+            } else {
+                res.status(401).send("Unable to upload CV, No data found");
+            }
+            // console.log(dat)
+        } catch (error) {
+            console.log(error);
+            res.status(402).send("Error while uploading file. Try again later.");
+        }
+    }
+);
+router.post("/Philo_facilites_add_link/:id", async(req, res) => {
+    try {
+        const { link } = req.body;
+        console.log(link)
+        if (!link) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+
+        const data = await Philo_fac.findOneAndUpdate({ _id: req.params.id }, {
+            $set: {
+                "img_data.pdf_path": {
+                    pdf_path1: link,
+                    pdf_mimetype1: "text/link",
+                    value: true,
+                },
+            },
+        });
+        if (data) {
+            // console.log(dat)
+            res.status(200).send("file uploaded successfully.");
+        } else {
+            res.status(401).send("Unable to update link, No data found");
+        }
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.post("/Philo_facilites_upload", async(req, res) => {
+    try {
+        // 
+        const { title, description } = req.body;
+        const file = new Philo_fac({
+            title: title,
+            description: description,
+            "img_data.pdf_path": { value: false },
+
+        });
+        await file.save();
+        res.send("file uploaded successfully.");
+    } catch (error) {
+        // console.log(error)
+        res.status(400).send("Error occur while uploading data");
+    }
+});
+router.post(
+    "/Philo_facilites_img_upload/:id",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { path, mimetype } = req.file;
+            const dat = await Philo_fac.findOne({ _id: req.params.id })
+            const arr = dat.img_data.file_path;
+            if (arr.length <= 4) {
+                const data = await Philo_fac.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.file_path": {
+                            file_path1: path,
+                            file_mimetype1: mimetype,
+                        },
+                    },
+                });
+                // console.log(dat)
+                if (data) {
+                    res.status(200).send("file uploaded successfully.");
+                }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous Images there is only a limit of 6 images");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.get("/Philo_facilites_upload_download/:id", async(req, res) => {
+    try {
+        const file = await Philo_fac.findById(req.params.id);
         res.set({
             "Content-Type": file.file_mimetype,
         });
