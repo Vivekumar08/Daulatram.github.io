@@ -1,5 +1,6 @@
-import Engbanner from "./Engbanner";
-import English from "../../../../Components/DepartSIde/English";
+
+import Musicbanner from "./Musicbanner.jsx";
+import Music from "../../../../Components/DepartSIde/Music.jsx";
 import React, { useContext, useEffect, useState, useRef } from "react";
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -8,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
 import Common_dat from "../Common_dat";
 
-function Facilities() {
+function Music_facilities() {
   const [visible, setVisible] = useState(false);
   const [data1, setData1] = useState();
   const userRef = useRef();
@@ -19,7 +20,7 @@ function Facilities() {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/Eng_Research_facilities");
+    const response = await fetch("/Music_Research_facilities");
     setData1(await response.json());
   };
 
@@ -32,7 +33,7 @@ function Facilities() {
       if (file) {
         setErrMsg("");
         await axios.post(
-          `/Eng_Research_facilities_img_upload/${id}`,
+          `/Music_Research_facilities_img_upload/${id}`,
           { file: file },
           {
             headers: {
@@ -57,7 +58,7 @@ function Facilities() {
       const arr = { pid: pid, type: type };
       console.log(id, arr);
       const response = await fetch(
-        `/delete_Eng_Research_facilities_para/${id}`,
+        `/delete_Music_Research_facilities_para/${id}`,
         {
           method: "POST",
           body: JSON.stringify(arr),
@@ -79,7 +80,7 @@ function Facilities() {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(`/delete_Eng_Research_facilities/${id}`, {
+    const response = await fetch(`/delete_Music_Research_facilities/${id}`, {
       method: "POST",
     });
     await response.json();
@@ -95,7 +96,7 @@ function Facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_pdf_link_Eng_Research_facilities_fac/${id}`,
+      `/delete_pdf_link_Music_Research_facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -107,7 +108,7 @@ function Facilities() {
     console.log(id);
     console.log(file_path1);
     await axios.post(
-      `/delete_img_Eng_Research_facilities_fac/${id}`,
+      `/delete_img_Music_Research_facilities_fac/${id}`,
       { file_path1: file_path1, pid: pid },
       {
         method: "POST",
@@ -122,7 +123,7 @@ function Facilities() {
         setErrMsg("");
         const arr = { para1: para };
         console.log(arr);
-        await fetch(`/Eng_Research_facilities_add_para/${id}`, {
+        await fetch(`/Music_Research_facilities_add_para/${id}`, {
           method: "POST",
           body: JSON.stringify(arr),
           headers: { "Content-Type": "application/json" },
@@ -140,7 +141,7 @@ function Facilities() {
   const handleSubmit_link = async (id, link) => {
     try {
       console.log(link);
-      await axios.post(`/Eng_Research_facilities_add_link/${id}`, {
+      await axios.post(`/Music_Research_facilities_add_link/${id}`, {
         link: link,
       });
       setCaption("");
@@ -157,7 +158,7 @@ function Facilities() {
       console.log(pdf);
       if (pdf) {
         await axios.post(
-          `/Eng_Research_facilities_file_upload/${id}`,
+          `/Music_Research_facilities_file_upload/${id}`,
           {
             file: pdf,
           },
@@ -184,7 +185,7 @@ function Facilities() {
       if (link.trim() !== "" && caption.trim() !== "") {
         // if (file) {
         setErrMsg("");
-        await axios.post(`/Eng_Research_facilities_upload`, {
+        await axios.post(`/Music_Research_facilities_upload`, {
           title: link,
           description: caption,
         });
@@ -203,7 +204,7 @@ function Facilities() {
   return (
     <div className=" flex flex-col">
       <div className="">
-        <Engbanner />
+        <Musicbanner />
       </div>
 
       <div className="flex flex-row">
@@ -217,7 +218,7 @@ function Facilities() {
                   onClick={() => setVisible(!visible)}
                   className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
                 />
-                <English />
+                <Music />
               </div>
             </>
           ) : (
@@ -232,7 +233,7 @@ function Facilities() {
           )}
         </div>
         <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
-          <English />
+          <Music />
         </div>
         <div className="w-full mr-16">
           <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
@@ -324,4 +325,4 @@ function Facilities() {
   );
 }
 
-export default Facilities;
+export default Music_facilities;

@@ -1,29 +1,226 @@
-import React, {useState} from "react";
 import Botanybanner from "./Botanybanner.jsx";
-import Departments from "../../../../Components/Sidebar/Departments";
 import Botany from "../../../../Components/DepartSIde/Botany.jsx";
+import React, { useContext, useEffect, useState, useRef } from "react";
+
+
+import Dropzone from "react-dropzone";
+import axios from "axios";
+import AuthContext from "../../../../Context/AuthProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-function Research_Fac() {
+import Common_dat from "../Common_dat";
+
+function BotanyResearch_fac() {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const [link, setLink] = useState("");
+  const [caption, setCaption] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const { auth, setAuth } = useContext(AuthContext);
+
+  const fetchdata = async () => {
+    const response = await fetch("/Bot_Research_facilities");
+    setData1(await response.json());
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+  const handleSubmit_img = async (id, file) => {
+    try {
+      if (file) {
+        setErrMsg("");
+        await axios.post(
+          `/Bot_Research_facilities_img_upload/${id}`,
+          { file: file },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const del_para = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(
+        `/delete_Bot_Research_facilities_para/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const del = async (id) => {
+    console.log(id);
+    const response = await fetch(`/delete_Bot_Research_facilities/${id}`, {
+      method: "POST",
+    });
+    await response.json();
+    if (response.status === 200) {
+      setErrMsg("");
+      fetchdata();
+    } else if (response.status === 400) {
+      setErrMsg("First Delete all the images related to this section");
+    }
+  };
+
+  const delete_file = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_pdf_link_Bot_Research_facilities_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+  const dele = async (id, pid, file_path1) => {
+    console.log(id);
+    console.log(file_path1);
+    await axios.post(
+      `/delete_img_Bot_Research_facilities_fac/${id}`,
+      { file_path1: file_path1, pid: pid },
+      {
+        method: "POST",
+      }
+    );
+    fetchdata();
+  };
+
+  const handleSubmit_data = async (id, para) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Bot_Research_facilities_add_para/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit_link = async (id, link) => {
+    try {
+      console.log(link);
+      await axios.post(`/Bot_Research_facilities_add_link/${id}`, {
+        link: link,
+      });
+      setCaption("");
+      setAuth(true);
+      fetchdata();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleSubmit_file = async (id, pdf) => {
+    console.log(id);
+    try {
+      console.log(pdf);
+      if (pdf) {
+        await axios.post(
+          `/Bot_Research_facilities_file_upload/${id}`,
+          {
+            file: pdf,
+          },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setCaption("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (link.trim() !== "" && caption.trim() !== "") {
+        // if (file) {
+        setErrMsg("");
+        await axios.post(`/Bot_Research_facilities_upload`, {
+          title: link,
+          description: caption,
+        });
+        setCaption("");
+        setLink("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
   return (
     <div className=" flex flex-col">
       <div className="">
         <Botanybanner />
       </div>
+
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden">
           {visible ? (
             <>
-                <div className=" flex  flex-col mt-8 ml-2">
-                  <FontAwesomeIcon
-                    icon={faClose}
-                    size="lg"
-                    onClick={() => setVisible(!visible)}
-                    className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
-                  />
-                  <Botany />
-                </div>
+              <div className=" flex  flex-col mt-8 ml-2">
+                <FontAwesomeIcon
+                  icon={faClose}
+                  size="lg"
+                  onClick={() => setVisible(!visible)}
+                  className=" border-2  border-[#000080] mr-2 hover:text-black text-white  rounded-lg p-2 cursor-pointer hover:bg-white bg-[#000080]"
+                />
+                <Botany />
+              </div>
             </>
           ) : (
             <div className=" flex  flex-col mt-8 ml-2">
@@ -36,133 +233,97 @@ function Research_Fac() {
             </div>
           )}
         </div>
-      <div className=" md:flex hidden md:flex-col mt-12 ml-2">
+        <div className="  md:flex hidden md:flex-col mt-12 ml-2 ">
           <Botany />
         </div>
-        
-          <div className="w-full mr-16">
-            <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
-              Research and Facilities
-            </h2>
-            <div className="flex pr-4 pl-4 pb-2">
-              <span className=" card-description md:text-base lg:text-lg text-sm text-justify font-medium ">
-                The Department has well equipped, projector fitted, air
-                conditioned four Laboratories, Museum, Culture room with tissue
-                culture facility, and a Botanical garden.
-              </span>
-              <br />
-            </div>
-
-            <div>
-              <p className=" card-description md:text-xl text-lg ml-2 flex pr-4 pl-4 text-justify font-bold">
-                Laboratories-
-              </p>
-            </div>
-            <div>
-              <p className=" card-description pl-4 pr-4 md:text-base lg:text-lg text-sm text-justify font-medium ">
-                Department of Botany having four laboratories, which are well
-                maintained and equipped with all essentials required like PCR
-                machine, Spectrophotometer, Gel Electrophoresis units
-                (Horizontal), UV Transilluminator, BOD incubator, Plant growth
-                chambers, Table Top Centrifuges, Binocular microscopes,
-                Autoclave, pH meters, Vortexer, Micro and macro weighing
-                balances, Micropipettes sets, Glassware, permanent slides etc.
-                required for conducting the practicals. Out of four laboratories
-                LAB A, LAB B, Hons LAB is fully devoted to practicals like
-                Metabolism, Plant Physiology, Plant Diversity, Biotechnology,
-                Genetics, Reproductive Biology, Anatomy, Ecology and many more.
-                Recently Bioinformatics Laboratory was added in the department
-                and well equipped with computers and software required for
-                performing the bioinformatics practical.
-              </p>
-            </div>
-            <div>
-              <div
-                style={{
-                  backgroundImage:
-                    "url(/images/ImgPages/Botany/PIC_1_Laboratories.JPG)",
-                
-                }}
-                className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[800px] mr-auto w-[250px] h-[190px] lg:h-[470px] ml-auto mb-4 rounded-2xl border-2 border-black"
-              ></div>
-            </div>
-
-            <div>
-              <p className=" card-description md:text-xl  text-lg ml-2 flex pr-4 pl-4 text-justify font-bold ">
-                Museum-
-              </p>
-            </div>
-            <div>
-              <p className=" card-description pl-4 pr-4 md:text-base lg:text-lg text-sm text-justify font-medium ">
-                The Departmental museum has a rich collection of preserved
-                specimens required for study of plant diversity in theory as
-                well as practical classes. The museum consists of preserved
-                specimens in liquid form and dried herbarium. There are
-                collections of many specimens which are specifically devoted for
-                Economic botany practical.
-              </p>
-            </div>
-            <div
-              style={{
-                backgroundImage:
-                  "url(/images/ImgPages/Botany/PIC_2_Museum.JPG)",
-                
-              }}
-              className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[800px] mr-auto w-[250px] h-[190px] lg:h-[470px] ml-auto mb-4 rounded-2xl border-2 border-black"
-            ></div>
-
-            <div>
-              <p className=" card-description md:text-base lg:text-lg text-sm ml-2 flex pr-4 pl-4 text-justify font-bold ">
-                Tissue Culture Facility-
-              </p>
-            </div>
-            <div>
-              <p className=" card-description pl-4 pr-4 md:text-base lg:text-lg text-sm text-justify font-medium ">
-                The Department has a well-equipped completely sterilized tissue
-                culture laboratory. The laboratory has a laminar flow,
-                autoclave, culture trolley, maintained light and temperature
-                conditions and other essentials required for tissue culture.
-              </p>
-            </div>
-            <div
-              style={{
-                backgroundImage:
-                  "url(/images/ImgPages/Botany/PIC_3_Tissue_Culture_room.JPG)",
-
-              }}
-              className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[800px] mr-auto w-[250px] h-[190px] lg:h-[470px] ml-auto mb-4 rounded-2xl border-2 border-black"
-            ></div>
-
-            <div>
-              <p className=" card-description md:text-xl text-lg ml-2 flex pr-4 pl-4 text-justify font-bold ">
-                Botanical Garden-
-              </p>
-            </div>
-            <div>
-              <p className=" card-description md:text-base lg:text-lg pr-4 pl-4 text-sm text-justify font-medium  ">
-                For routine practical classes fresh plant material is required
-                and for that Department is having a well-maintained Botanical
-                Garden. In the Botanical Garden various plants are available for
-                practicals like Systematics, Economic Botany, Genetics etc. The
-                Botanical Garden also has a small pond which is used for study
-                of aquatic plants as well as for conducting Ecology practical. A
-                green house is also installed in the Botanical Garden where many
-                plants are grown at controlled environmental conditions
-              </p>
-            </div>
-            <div
-              style={{
-                backgroundImage:
-                  "url(/images/ImgPages/Botany/PIC_4_Botanical_garden.png)",
-               
-              }}
-              className="bg-center bg-no-repeat mt-[1%]  bg-cover lg:w-[800px] mr-auto w-[250px] h-[190px] lg:h-[470px] ml-auto mb-4 rounded-2xl border-2 border-black"
-            ></div>
+        <div className="w-full mr-16">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            RESEARCH & FACILITIES
+          </h2>
+          <div className="text-justify p-3 m-2 ml-4">
+            {data1 &&
+              data1.map((curElem) => {
+                const { _id, title, description, img_data } = curElem;
+                return (
+                  <>
+                    <Common_dat
+                      key={_id}
+                      id={_id}
+                      tittle={title}
+                      para={description}
+                      pic={img_data}
+                      delete={del}
+                      delete_img={dele}
+                      delete_file={delete_file}
+                      delete_para={del_para}
+                      add_para={handleSubmit_data}
+                      file_upload={handleSubmit_file}
+                      Link_upload={handleSubmit_link}
+                      submit_img={handleSubmit_img}
+                    />
+                  </>
+                );
+              })}
           </div>
+          {auth && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-[#000080]">
+                  <p>Add New Data</p>
+                </h2>
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    name="Link"
+                    // id=""
+                    ref={userRef}
+                    onChange={(e) => setLink(e.target.value)}
+                    value={link}
+                    placeholder="Title"
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                  />
+                </div>
+                <div className="mb-3">
+                  <textarea
+                    name="Caption"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setCaption(e.target.value)}
+                    value={caption}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Caption"
+                  ></textarea>
+                </div>
+                <div class="md:flex flex-col md:items-center">
+                  {/* <div class="md:w-1/3"></div> */}
+
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={handleSubmit}
+                    >
+                      Add
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
-    
+    </div>
   );
 }
 
-export default Research_Fac;
+export default BotanyResearch_fac;

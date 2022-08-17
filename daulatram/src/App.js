@@ -180,6 +180,7 @@ import Hist_awards from "./Pages/Academics/Departments/History/Hist_awards";
 import Hist_association from "./Pages/Academics/Departments/History/Hist_association";
 import Hist_events from "./Pages/Academics/Departments/History/Hist_events";
 import Hist_stuAch from "./Pages/Academics/Departments/History/Hist_studachieve";
+import Hist_facs from "./Pages/Academics/Departments/History/Facilities";
 // Mathemtics
 import Math_about from "./Pages/Academics/Departments/Mathematics/Math_about";
 import Math_fac from "./Pages/Academics/Departments/Mathematics/Math_fac";
@@ -198,6 +199,7 @@ import ResetPassword from "./Pages/Admin/ResetPassword";
 import Music_stuAch from "./Pages/Academics/Departments/Music/Music_studachieve";
 import Music_association from "./Pages/Academics/Departments/Music/Music_association";
 import Music_publications from "./Pages/Academics/Departments/Music/Music_publications";
+import Music_facs from "./Pages/Academics/Departments/Music/Music_facilities";
 
 // NHE
 import Nhe_about from "./Pages/Academics/Departments/NHE/Nhe_about";
@@ -1715,6 +1717,7 @@ function App() {
             }
             path="/academics/departments/History/"
           ></Route>{" "}
+
           <Route
             element={
               <>
@@ -1722,6 +1725,14 @@ function App() {
               </>
             }
             path="/academics/departments/History/Faculty"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Hist_facs />
+              </>
+            }
+            path="/academics/departments/History/Facilities"
           ></Route>{" "}
           <Route
             element={
@@ -1868,6 +1879,14 @@ function App() {
               </>
             }
             path="/academics/departments/Music/Publications"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Music_facs />
+              </>
+            }
+            path="/academics/departments/Music/Facilities"
           ></Route>{" "}
           {/* NHE */}{" "}
           <Route
