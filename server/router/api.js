@@ -147,7 +147,15 @@ const Eng_About = require("../models/Academics/Departments/English/About_depart_
 const Hin_About = require("../models/Academics/Departments/Hindi/About_depart_Schema");
 const His_About = require("../models/Academics/Departments/History/About_depart_Schema");
 const Math_About = require("../models/Academics/Departments/Mathematics/About_depart_Schema");
-
+const Phy_About = require("../models/Academics/Departments/Physics/About_depart_Schema");
+const Zoo_About = require("../models/Academics/Departments/Zoology/About_depart_Schema");
+const Music_About = require("../models/Academics/Departments/Music/About_depart_Schema");
+const Philo_About = require("../models/Academics/Departments/Philosophy/About_depart_Schema");
+const NHE_About = require("../models/Academics/Departments/NHE/About_depart_Schema");
+const PE_About = require("../models/Academics/Departments/Physical_Education/About_depart_Schema");
+const Psy_About = require("../models/Academics/Departments/Psychology/About_depart_Schema");
+const Sans_About = require("../models/Academics/Departments/Sanskrit/About_depart_Schema");
+const Pol_Sci_About = require("../models/Academics/Departments/Political_Science/About_depart_Schema");
 const Bio_Photo_Gallery = require("../models/Academics/Departments/Biochemistry/Bio_Photo_Gallery_Schema");
 const Hist_Photo_Gallery = require("../models/Academics/Departments/History/Hist_Photo_Gallery_Schema");
 const Bot_Photo_Gallery = require("../models/Academics/Departments/Botany/Bot_Photo_Gallery_Schema");
@@ -1645,6 +1653,690 @@ router.post(
         }
     }
 );
+//  Music About The Department 
+
+router.get("/Music_About", async(req, res) => {
+    const details = await Music_About.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.post("/delete_Music_About_data/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Music_About.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Music_About.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.post(
+    "/Music_About_add_data/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Music_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    "/Music_About_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            // ;
+            const file = new Music_About({
+                "img_data.file_path": {
+                    file_path1: req.file.path,
+                    file_mimetype1: req.file.mimetype,
+                    value: false,
+                },
+            });
+            await file.save();
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error);
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  NHE About The Department 
+
+router.get("/NHE_About", async(req, res) => {
+    const details = await NHE_About.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.post("/delete_NHE_About_data/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await NHE_About.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await NHE_About.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.post(
+    "/NHE_About_add_data/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await NHE_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    "/NHE_About_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            // ;
+            const file = new NHE_About({
+                "img_data.file_path": {
+                    file_path1: req.file.path,
+                    file_mimetype1: req.file.mimetype,
+                    value: false,
+                },
+            });
+            await file.save();
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error);
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  Philo About The Department 
+
+router.get("/Philo_About", async(req, res) => {
+    const details = await Philo_About.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.post("/delete_Philo_About_data/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await Philo_About.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Philo_About.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.post(
+    "/Philo_About_add_data/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Philo_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    "/Philo_About_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            // ;
+            const file = new Philo_About({
+                "img_data.file_path": {
+                    file_path1: req.file.path,
+                    file_mimetype1: req.file.mimetype,
+                    value: false,
+                },
+            });
+            await file.save();
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error);
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  PE About The Department 
+
+router.get("/PE_About", async(req, res) => {
+    const details = await PE_About.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.post("/delete_PE_About_data/:id", async(req, res) => {
+    try {
+        const { pid, type } = req.body;
+        if (type === "para") {
+            const delete_user = await PE_About.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await PE_About.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.post(
+    "/PE_About_add_data/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await PE_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    "/PE_About_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            // ;
+            const file = new PE_About({
+                "img_data.file_path": {
+                    file_path1: req.file.path,
+                    file_mimetype1: req.file.mimetype,
+                    value: false,
+                },
+            });
+            await file.save();
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error);
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  Phy About The Department 
+
+router.get("/Phy_About", async(req, res) => {
+    const details = await Phy_About.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.post("/delete_Phy_About_data/:id", async(req, res) => {
+    try {
+        const { pid, tyPhy } = req.body;
+        if (tyPhy === "para") {
+            const delete_user = await Phy_About.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Phy_About.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.post(
+    "/Phy_About_add_data/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Phy_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    "/Phy_About_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            // ;
+            const file = new Phy_About({
+                "img_data.file_path": {
+                    file_path1: req.file.path,
+                    file_mimetyPhy1: req.file.mimetyPhy,
+                    value: false,
+                },
+            });
+            await file.save();
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error);
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  Pol_Sci About The Department 
+
+router.get("/Pol_Sci_About", async(req, res) => {
+    const details = await Pol_Sci_About.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.post("/delete_Pol_Sci_About_data/:id", async(req, res) => {
+    try {
+        const { pid, tyPol_Sci } = req.body;
+        if (tyPol_Sci === "para") {
+            const delete_user = await Pol_Sci_About.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Pol_Sci_About.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.post(
+    "/Pol_Sci_About_add_data/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Pol_Sci_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    "/Pol_Sci_About_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            // ;
+            const file = new Pol_Sci_About({
+                "img_data.file_path": {
+                    file_path1: req.file.path,
+                    file_mimetyPol_Sci1: req.file.mimetyPol_Sci,
+                    value: false,
+                },
+            });
+            await file.save();
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error);
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  Psy About The Department 
+
+router.get("/Psy_About", async(req, res) => {
+    const details = await Psy_About.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.post("/delete_Psy_About_data/:id", async(req, res) => {
+    try {
+        const { pid, tyPsy } = req.body;
+        if (tyPsy === "para") {
+            const delete_user = await Psy_About.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Psy_About.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.post(
+    "/Psy_About_add_data/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Psy_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    "/Psy_About_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            // ;
+            const file = new Psy_About({
+                "img_data.file_path": {
+                    file_path1: req.file.path,
+                    file_mimetyPsy1: req.file.mimetyPsy,
+                    value: false,
+                },
+            });
+            await file.save();
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error);
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  Sans About The Department 
+
+router.get("/Sans_About", async(req, res) => {
+    const details = await Sans_About.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.post("/delete_Sans_About_data/:id", async(req, res) => {
+    try {
+        const { pid, tySans } = req.body;
+        if (tySans === "para") {
+            const delete_user = await Sans_About.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Sans_About.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.post(
+    "/Sans_About_add_data/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Sans_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    "/Sans_About_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            // ;
+            const file = new Sans_About({
+                "img_data.file_path": {
+                    file_path1: req.file.path,
+                    file_mimetySans1: req.file.mimetySans,
+                    value: false,
+                },
+            });
+            await file.save();
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error);
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+//  Zoo About The Department 
+
+router.get("/Zoo_About", async(req, res) => {
+    const details = await Zoo_About.find();
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.post("/delete_Zoo_About_data/:id", async(req, res) => {
+    try {
+        const { pid, tyZoo } = req.body;
+        if (tyZoo === "para") {
+            const delete_user = await Zoo_About.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.para": { _id: pid } } });
+            res.status(200).json(delete_user + "User deleted");
+        } else {
+            const delete_user = await Zoo_About.findOneAndDelete({
+                _id: req.params.id,
+            });
+            const img = delete_user.img_data.file_path;
+            await unlinkAsync(img[0].file_path1);
+            res.status(202).json(delete_user + "User deleted");
+        }
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+router.post(
+    "/Zoo_About_add_data/:id",
+    async(req, res) => {
+        try {
+            const { para1 } = req.body;
+            await Zoo_About.findOneAndUpdate({ _id: req.params.id }, { $push: { "img_data.para": { para1: para1 } } });
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            // console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+router.post(
+    "/Zoo_About_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            // ;
+            const file = new Zoo_About({
+                "img_data.file_path": {
+                    file_path1: req.file.path,
+                    file_mimetyZoo1: req.file.mimetyZoo,
+                    value: false,
+                },
+            });
+            await file.save();
+            res.status(200).send("file uploaded successfully.");
+        } catch (error) {
+            console.log(error);
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
 //  Mathematics About The Department 
 
 router.get("/Math_About", async(req, res) => {

@@ -1,17 +1,136 @@
-import React,{useState} from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashCan,faBars, faClose } from "@fortawesome/free-solid-svg-icons";
+import AuthContext from "../../../../Context/AuthProvider";
+import Dropzone from "react-dropzone";
+import axios from "axios";
+
 import Psychology from "../../../../Components/DepartSIde/Psychology";
 import Psychobanner from "./Psychobanner";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faClose } from "@fortawesome/free-solid-svg-icons";
-function Psycho_about() {
+
+const Psy = () => {
   const [visible, setVisible] = useState(false);
+  const [data1, setData1] = useState();
+  const userRef = useRef();
+  const errRef = useRef();
+  const dropRef = useRef();
+  const [para, setPara] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [previewSrc, setPreviewSrc] = useState("");
+  const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
+  const [file, setFile] = useState(null);
+  const { auth, setAuth } = useContext(AuthContext);
+
+
+  const fetchdata = async () => {
+    const response = await fetch("/Psy_About");
+    const dat = await response.json();
+    console.log(dat);
+    {
+      dat ? dat.map((elem) => setData1(elem)) : setData1(dat);
+    }
+  };
+
+  const onDrop = (files) => {
+    const [uploadedFile] = files;
+    setFile(uploadedFile);
+
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewSrc(fileReader.result);
+    };
+    fileReader.readAsDataURL(uploadedFile);
+    setIsPreviewAvailable(
+      uploadedFile.name.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)
+    );
+  };
+
+  useEffect(() => {
+    fetchdata();
+  }, []);
+
+
+  const del = async (id, pid, type) => {
+    try {
+      const arr = { pid: pid, type: type };
+      console.log(id, arr);
+      const response = await fetch(
+        `/delete_Psy_About_data/${id}`,
+        {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      await response.json();
+      if (response.status === 200) {
+        fetchdata();
+      } else if (response.status === 202) {
+        fetchdata();
+      } else {
+        setErrMsg("");
+      }
+    } catch (err) {
+      console.log("Unable to delete");
+    }
+  };
+
+  const handleSubmit = async (files) => {
+    try {
+      if (files) {
+        console.log(files);
+        setErrMsg("");
+        await axios.post(
+          `/Psy_About_add`,
+          { file: files },
+          {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
+        setFile("");
+        setPreviewSrc("");
+        setIsPreviewAvailable(false);
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please select a file to add.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+  const handleSubmit_data = async (id) => {
+    try {
+      if (para !== "") {
+        setErrMsg("");
+        const arr = { para1: para };
+        console.log(arr);
+        await fetch(`/Psy_About_add_data/${id}`, {
+          method: "POST",
+          body: JSON.stringify(arr),
+          headers: { "Content-Type": "application/json" },
+        });
+        setPara("");
+        setAuth(true);
+        fetchdata();
+      } else {
+        setErrMsg("Please enter all the field values.");
+      }
+    } catch (err) {
+      err.response && setErrMsg(err.response.data);
+    }
+  };
+
+
   return (
-    <div className=" flex flex-col">
+    <>
       <div className="">
         <Psychobanner />
       </div>
       <div className="flex flex-row">
-      <div className="md:hidden">
+        <div className="md:hidden absolute bg-white">
           {visible ? (
             <>
               <div className=" flex  flex-col mt-8 ml-2">
@@ -38,106 +157,177 @@ function Psycho_about() {
         <div className=" md:flex hidden md:flex-col mt-12 ml-2">
           <Psychology />
         </div>
-        <div className="w-full mr-16">
-          <h2 className="md:text-4xl text-xl sm:text-xl uppercase font-bold mb-5 mt-[7%] flex flex-row ml-3 md:justify-center items-center  ">
-            About the department
+        <div className=" w-full mr-16 ">
+          <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
+            About the Department
           </h2>
-
-          <div className="flex flex-row">
-            <div className="flex flex-col">
-              <div className="flex flex-row">
-                <div>
-                  <img
-                    style={{
-                      backgroundImage:
-                        "url(/images/ImgPages/Psychology/about_theme.png)",
-                     
-                    }}
-                    className="bg-center ml-auto mr-auto lg:w-[700px] w-[250px] h-[190px] lg:h-[400px] bg-no-repeat mt-[3%] bg-cover mb-2  rounded-2xl border-2 border-black"
-                  />
-
-                  <div className="pr-3 pl-3 flex mr-1 ml-2">
-                    <span className="md:text-lg text-sm text-justify font-medium">
-                      The discipline of Psychology provides in depth
-                      understanding of various aspects of human behaviour and
-                      personality. Psychologists are constantly evolving new
-                      approaches and techniques to adapt to the changing needs
-                      of contemporary society. The subject provides exposure to
-                      its diverse ﬁelds such as Introduction to Psychology,
-                      Social Psychology, Understanding Psychological Disorders,
-                      Health Psychology, Bio Psychology and Developmental
-                      Psychology. The study of Psychology opens avenues for
-                      Careers in Counselling, Clinical and Organizational
-                      settings, teaching and research. It also helps to prepare
-                      for careers in Civil Services, HRM, Social Work,
-                      Advertising and Media.
-                    </span>
+          <figure className="flex flex-col p-4 ">
+            {data1 &&
+              data1.img_data.file_path &&
+              data1.img_data.file_path.map((elem) => {
+                var path2 = elem.file_path1.replace(/\\/g, "/");
+                var path = path2.slice(19);
+                // console.log(path);
+                return (
+                  <>
+                    <div className=" flex flex-row  items-center p-4">
+                      <img
+                        src={path}
+                        style={{
+                          width: "300px",
+                          height: "250px",
+                        }}
+                        alt="founder"
+                        className="rounded-3xl border-black border-2  md:h-[300px] md:w-[380px] ml-2 md:ml-28 lg:ml-80"
+                      />
+                      {auth && (
+                        <>
+                          <div className="flex  ml-auto">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer   hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "link")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+            {data1 &&
+              data1.img_data.para &&
+              data1.img_data.para.map((elem) => {
+                return (
+                  <>
+                    <div className="flex flex-row  items-center p-4 ">
+                      <span className="card-description leading-14 font-medium text-justify text-base md:text-lg  ">
+                        {elem.para1}
+                      </span>
+                      {auth && (
+                        <>
+                          <div className="flex  w-full">
+                            <FontAwesomeIcon
+                              icon={faTrashCan}
+                              size="lg"
+                              className=" cursor-pointer ml-auto  hover:text-red-500"
+                              onClick={() => del(data1._id, elem._id, "para")}
+                            ></FontAwesomeIcon>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </>
+                );
+              })}
+          </figure>
+          {auth && data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm w-full  full ml-auto mr-auto mb-5"
+              >
+                <div className="mb-3">
+                  <textarea
+                    name="para"
+                    // id=""
+                    cols="10"
+                    rows="5"
+                    ref={userRef}
+                    onChange={(e) => setPara(e.target.value)}
+                    value={para}
+                    className="bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    placeholder="Enter Paragraph Here"
+                  ></textarea>
+                </div>
+                <div class="md:w-2/3 ">
+                  <button
+                    class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={() => handleSubmit_data(data1._id)}
+                  >
+                    Add Para
+                  </button>
+                </div>
+              </form>
+            </>
+          )}
+          {auth && !data1 && (
+            <>
+              <form
+                method="post"
+                className="flex flex-col justify-center content-center max-w-sm  full ml-auto mr-auto mb-5"
+              >
+                <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
+                  <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
+                    {errMsg}
+                  </p>
+                </h2>
+                <div class="md:flex flex-col md:items-center h-full">
+                  <div className="upload-section flex h-full mb-[10px] w-full">
+                    <Dropzone
+                      onDrop={onDrop}
+                      onDragEnter={() => updateBorder("over")}
+                      onDragLeave={() => updateBorder("leave")}
+                    >
+                      {({ getRootProps, getInputProps }) => (
+                        <div
+                          {...getRootProps({
+                            className:
+                              "drop-zone mb-[10px] py-[40px] px-[10px] flex flex-col justify-center items-center cursor-pointer focus:outline-none border-2 border-dashed border-[#e9ebeb] w-full h-full",
+                          })}
+                          ref={dropRef}
+                        >
+                          <input {...getInputProps()} />
+                          <p>
+                            Drag and drop a file OR click here to select a file
+                          </p>
+                          {file && (
+                            <div>
+                              <strong>Selected file:</strong> {file.name}
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </Dropzone>
+                    {previewSrc ? (
+                      isPreviewAvailable ? (
+                        <div className="image-preview ml-[5%] w-full">
+                          <img
+                            className="preview-image w-full h-full block mb-[10px]"
+                            src={previewSrc}
+                            alt="Preview"
+                          />
+                        </div>
+                      ) : (
+                        <div className="preview-message flex justify-center items-center ml-[5%]">
+                          <p>No preview available for this file</p>
+                        </div>
+                      )
+                    ) : (
+                      <div className="preview-message flex justify-center items-center ml-[5%]">
+                        <p>Image preview will be shown here after selection</p>
+                      </div>
+                    )}
                   </div>
-                  <div className="pr-3 pl-3 flex mr-1 ml-2 mb-5">
-                    <span className="md:text-lg text-sm text-justify font-medium">
-                      The department which has a history of over ﬁve decades is
-                      well-equipped with state-of-art laboratories, latest
-                      psychological tests and equipment. It has an active
-                      Psychology Association which organizes several academic
-                      and co- curricular activities including Conferences and a
-                      Departmental magazine “PsyTrack”. The department is also
-                      the ﬁrst in the University to have a ‘Psychology Resource
-                      Centre’ which is actively involved in working towards
-                      positive self- development, mental health enhancement,
-                      etc. The Counselling Centre is also being run in the
-                      department for students, teaching and non-teaching staﬀ.
-                      The dedicated faculty uses latest teaching methods such as
-                      multimedia preparations, role-play and experimental
-                      training. Our faculty also actively participates in
-                      academic pursuits such as publication of research papers,
-                      attending conferences and supervising doctoral work. In
-                      keeping with the demands of the contemporary world and the
-                      emphasis on skills, the department regularly organizes
-                      skill development and value engagement programs
-                    </span>
-                  </div>
-                  <div className="pr-3 pl-3 flex mr-1 ml-2 mb-5">
-                    <span className="md:text-lg text-sm text-justify font-medium">
-                      The Psychology association organized various activities in
-                      the session 2019-2020. On 6th April 2019, a talk on
-                      ‘Exploring the Vulnerabilities if the LGBTQIA+ Community
-                      in India’ was organized. On 11th April 2019, farewell for
-                      the outgoing batch was organized, and on 6th September,
-                      2019, the inaugural function and fresher’s welcome for the
-                      ﬁrst-year psychology students was held. On 26th August
-                      2019, movie screening and analysis workshop under the
-                      title ‘A Transformation from Loneliness to Solitude’ by
-                      Mr. Sourav Sarkar was organized. On August 28, 2019, a
-                      workshop for ﬁnal year students titled ‘Perceptive Leader’
-                      was conducted by Mr. V. Shri Hari. The FiGh Value
-                      Engagement Program on “Values enhancing Well-Being” was
-                      organised from 16th August to 30th September, 2019 for
-                      ﬁrst year undergraduate Psychology students. On October
-                      1st, 2019, World Mental Health Day was organized. The
-                      highlight of the day was a panel discussion on the theme
-                      ‘Promoting Eudaimonia: A State of Happiness and
-                      Satisfaction’. Two events were organized by the Positive
-                      Psychology Center (under PRC): one day workshop on
-                      Self-Positive on 7th June, 2019 and ‘Positive
-                      Conversations: Inspiring Youth Series’ on 31st October,
-                      2019. Finally, to commemorate the completion of 50 years
-                      of the department, Golden Jubilee celebrations were
-                      organized on 5th March, 2020. The program consisted of
-                      sharing of experiences by retired teachers, alumni,
-                      cultural programs and interactive session. In the second
-                      part of the day students from across all the colleges of
-                      University of Delhi participated in three inter-college
-                      competitions, namely, slam poetry, debate, and quiz.
-                    </span>
+                  <div class="md:w-2/3 ">
+                    <button
+                      class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                      type="button"
+                      onClick={() => handleSubmit(file)}
+                    >
+                      Add Image
+                    </button>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
+              </form>
+            </>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
-}
+};
 
-export default Psycho_about;
+export default Psy;
