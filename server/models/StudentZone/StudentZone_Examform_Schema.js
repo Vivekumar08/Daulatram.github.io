@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const StudentZone_foms_Schema = mongoose.Schema({
+const StudentZone_Examform_Schema = mongoose.Schema({
     title: {
         type: String,
         required: true,
@@ -23,6 +23,6 @@ const StudentZone_foms_Schema = mongoose.Schema({
     timestamps: true
 });
 
-const Student_forms = mongoose.model('Student_forms', StudentZone_foms_Schema);
+const Student_Examform = mongoose.model('Student_Examform', StudentZone_Examform_Schema);
 
-module.exports = Student_forms;
+module.exports = Student_Examform;

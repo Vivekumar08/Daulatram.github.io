@@ -623,7 +623,7 @@ export const Student = [
         link: "/Student_Zone/Internal_Assesments",
       },
       {
-        name: "Examination Form and Datesheet",
+        name: "Examination Form & Datesheet",
         link: "/Student_Zone/Examination_Form_&_Database",
       },
       {

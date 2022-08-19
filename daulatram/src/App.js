@@ -299,6 +299,7 @@ import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
 import Accreditation from "./Pages/Accreditation/accred";
 import Useful from "./Pages/UsefulLinks/Useful";
 import Student_Union from "./Pages/Student_zone/Student_union";
+import Student_examform from "./Pages/Student_zone/Examform_datesheet";
 import Placement_cell from "./Pages/Student_zone/Placement_cell";
 
 import Equal_opp from "./Pages/Student_zone/Equal_opp";
@@ -463,7 +464,7 @@ function App() {
           <Route
             element={
               <>
-                <Vidyavistar/>
+                <Vidyavistar />
               </>
             }
             path="/Vidyavistar"
@@ -471,15 +472,15 @@ function App() {
           <Route
             element={
               <>
-                <IQAC/>
+                <IQAC />
               </>
             }
             path="/IQAC"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
-                <Studentact/>
+                <Studentact />
               </>
             }
             path="/StudentActivities"
@@ -617,13 +618,13 @@ function App() {
             path="/academics/PG_courses"
           ></Route>{" "}
           {/* <Route
-                                                element={
-                                                  <>
-                                                    <Addoncourses />
-                                                  </>
-                                                }
-                                                path="/academics/Add_on_courses"
-                                              ></Route>{" "} */}{" "}
+                                                            element={
+                                                              <>
+                                                                <Addoncourses />
+                                                              </>
+                                                            }
+                                                            path="/academics/Add_on_courses"
+                                                          ></Route>{" "} */}{" "}
           <Route
             element={
               <>
@@ -687,6 +688,14 @@ function App() {
               </>
             }
             path="/Student_Zone/Student_Union"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Student_examform />
+              </>
+            }
+            path="/Student_Zone/Examination_Form_&_Database"
           ></Route>{" "}
           <Route
             element={
@@ -1343,7 +1352,7 @@ function App() {
             }
             path="/academics/departments/Music/Students'_achievements"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <Music_Awards />
@@ -1351,7 +1360,7 @@ function App() {
             }
             path="/academics/departments/Music/awards"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <NHE_Awards />
@@ -1359,7 +1368,7 @@ function App() {
             }
             path="/academics/departments/NHE/awards"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <NHE_facilities />
@@ -1367,7 +1376,7 @@ function App() {
             }
             path="/academics/departments/NHE/Facilities"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
                 <NHE_facilities />
@@ -1375,42 +1384,42 @@ function App() {
             }
             path="/academics/departments/NHE/Facilities"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
-                < Philo_facilities />
+                <Philo_facilities />
               </>
             }
             path="/academics/departments/Philosophy/Facilities"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
-                < PE_Facilities />
+                <PE_Facilities />
               </>
             }
             path="/academics/departments/Physical_Education/Facilities"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
-                < PS_Facilities />
+                <PS_Facilities />
               </>
             }
             path="/academics/departments/Political_Science/Facilities"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
-                < Psycho_Facilities />
+                <Psycho_Facilities />
               </>
             }
             path="/academics/departments/Psychology/Facilities"
           ></Route>{" "}
-           <Route
+          <Route
             element={
               <>
-                < Sanskrit_Facilities />
+                <Sanskrit_Facilities />
               </>
             }
             path="/academics/departments/Sanskrit/Facilities"
@@ -1424,13 +1433,13 @@ function App() {
             path="/academics/departments/Mathematics/awards"
           ></Route>{" "}
           <Route
-          element={
-            <>
-              <Philo_Awards />
-            </>
-          }
-          path="/academics/departments/Philosophy/awards"
-        ></Route>{" "}
+            element={
+              <>
+                <Philo_Awards />
+              </>
+            }
+            path="/academics/departments/Philosophy/awards"
+          ></Route>{" "}
           <Route
             element={
               <>
@@ -1779,7 +1788,6 @@ function App() {
             }
             path="/academics/departments/History/"
           ></Route>{" "}
-
           <Route
             element={
               <>
