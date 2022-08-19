@@ -23,6 +23,6 @@ const Antiragg_Schema = mongoose.Schema({
     timestamps: true
 });
 
-const Antiragg = mongoose.model('Student_Internal', Antiragg_Schema);
+const Antiragg = mongoose.model('Antiragg', Antiragg_Schema);
 
 module.exports = Antiragg;
