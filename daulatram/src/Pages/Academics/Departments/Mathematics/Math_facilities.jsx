@@ -236,8 +236,7 @@ function Math_facilities() {
         </div>
         <div className="w-full mr-16">
           <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            RESEARCH & FACILITIES
-          </h2>
+          FACILITIES          </h2>
           <div className="text-justify p-3 m-2 ml-4">
             {data1 &&
               data1.map((curElem) => {
