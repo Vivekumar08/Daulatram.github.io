@@ -50,6 +50,8 @@ const About_Administration = require("../models/About_Us/About_Administration_Sc
 const VicePrincipal = require("../models/About_Us/VicePrincipal_Schema");
 const Student_forms = require("../models/StudentZone/StudentZone_foms_Schema");
 const Student_Examform = require("../models/StudentZone/StudentZone_Examform_Schema");
+const Student_Feepayment = require("../models/StudentZone/StudentZone_Feepayment_Schema");
+const Student_Internal = require("../models/StudentZone/StudentZone_Internal_Schema");
 const Ethics = require("../models/StaffZone/Ethics_Schema");
 const Student_Notice = require("../models/Notices/Student_Notice_Schema");
 const Staff_Notice = require("../models/Notices/Staff_Notice_Schema");
@@ -17497,6 +17499,136 @@ router.post(
             const { title, link } = req.body;
             const { path, mimetype } = req.file;
             const file = new Student_Examform({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype,
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Student-Zone Fee Payment Portal
+
+router.get("/StudentZone_Feepayment", async(req, res) => {
+    const details = await Student_Feepayment.find();
+    res.status(200).json(details);
+});
+router.delete("/delete_StudentZone_Feepayment/:id", async(req, res) => {
+    const delete_user = await Student_Feepayment.findOneAndDelete({
+        _id: req.params.id,
+    });
+    if (delete_user.file_mimetype === "text/link") {
+        console.log(delete_user.file_mimetype);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(delete_user.file_mimetype);
+        await unlinkAsync(delete_user.file_path);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+router.post("/StudentZone_Feepayment_add_link", async(req, res) => {
+    try {;
+        const { file, link, title } = req.body;
+        if (!title || !link || !file) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+        const user = new Student_Feepayment({
+            title,
+            link,
+            file_path: file,
+            file_mimetype: "text/link",
+        });
+        await user.save();
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+router.post(
+    "/StudentZone_Feepayment_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Student_Feepayment({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype,
+            });
+            await file.save();
+            res.send("file uploaded successfully.");
+        } catch (error) {
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+// Student-Zone Internal Assessment
+
+router.get("/StudentZone_Internal", async(req, res) => {
+    const details = await Student_Internal.find();
+    res.status(200).json(details);
+});
+router.delete("/delete_StudentZone_Internal/:id", async(req, res) => {
+    const delete_user = await Student_Internal.findOneAndDelete({
+        _id: req.params.id,
+    });
+    if (delete_user.file_mimetype === "text/link") {
+        console.log(delete_user.file_mimetype);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(delete_user.file_mimetype);
+        await unlinkAsync(delete_user.file_path);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+router.post("/StudentZone_Internal_add_link", async(req, res) => {
+    try {;
+        const { file, link, title } = req.body;
+        if (!title || !link || !file) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+        const user = new Student_Internal({
+            title,
+            link,
+            file_path: file,
+            file_mimetype: "text/link",
+        });
+        await user.save();
+        console.log("Details Saved Successfully");
+        return res.status(200).json({ message: "Details Saved Successfully " });
+    } catch (err) {
+        console.log(err);
+    }
+});
+router.post(
+    "/StudentZone_Internal_add",
+    upload.single("file"),
+    async(req, res) => {
+        try {
+            const { title, link } = req.body;
+            const { path, mimetype } = req.file;
+            const file = new Student_Internal({
                 title,
                 link,
                 file_path: path,

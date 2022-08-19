@@ -6,10 +6,10 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AuthContext from "../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
-import Examformbanner from "../../Components/Banners/Examformbanner";
+import Feepaymentbanner from "../../Components/Banners/Feepaymentbanner";
 import Student_side from "../../Components/Sidebar/Student_side";
 
-const Examform_datesheet = () => {
+const Student_feepayment = () => {
   const [data1, setData1] = useState();
   const userRef = useRef();
   const errRef = useRef();
@@ -24,7 +24,7 @@ const Examform_datesheet = () => {
   const { auth, setAuth } = useContext(AuthContext);
 
   const fetchdata = async () => {
-    const response = await fetch("/StudentZone_Examform");
+    const response = await fetch("/StudentZone_Feepayment");
     setData1(await response.json());
   };
 
@@ -61,7 +61,7 @@ const Examform_datesheet = () => {
   const del = async (id) => {
     console.log(id);
     const response = await fetch(
-      `/delete_StudentZone_Examform/${id}`,
+      `/delete_StudentZone_Feepayment/${id}`,
       {
         method: "DELETE",
       }
@@ -94,7 +94,7 @@ const Examform_datesheet = () => {
 
         setErrMsg("");
         await axios.post(
-          `/StudentZone_Examform_add`,
+          `/StudentZone_Feepayment_add`,
           formData,
           {
             headers: {
@@ -121,7 +121,7 @@ const Examform_datesheet = () => {
     e.preventDefault();
     console.log(link, caption, file);
     const response = await fetch(
-      "/StudentZone_Examform_add_link",
+      "/StudentZone_Feepayment_add_link",
       {
         method: "POST",
         headers: {
@@ -150,7 +150,7 @@ const Examform_datesheet = () => {
   return (
     <div className=" flex flex-col mb-16 ">
       <div className="">
-        <Examformbanner />
+        <Feepaymentbanner />
       </div>
       <div className="flex flex-row">
         <div className="w-[350px] flex flex-row">
@@ -159,8 +159,7 @@ const Examform_datesheet = () => {
 
         <div className="w-[1100px] mb-5">
           <h2 className=" text-2xl md:text-2xl lg:text-4xl md:ml-36 uppercase font-bold mb-5 mt-[5%]  flex flex-row lg:justify-center items-center   ">
-            Examination form & Datesheet 
-          </h2>
+Fee Payment Portal          </h2>
           <div className="main flex-col ">
             <table className=" text-xs md:text-base  w-80 h-40  ml-1 md:table-fixed xl:ml-60  md:ml-32 md:w-[420px] lg:ml-44 sm:w-[480px] lg:w-[550px] xl:w-[750px] md:h-[180px] mt-1 ">
               <tr className="h-20 text-lg">
@@ -388,4 +387,4 @@ const Examform_datesheet = () => {
   );
 };
 
-export default Examform_datesheet;
+export default Student_feepayment;
