@@ -172,7 +172,7 @@ const Hostel_dat = (props) => {
               <>
                 <div
                   className="flex relative w-full items-center border rounded-xl bg-[#daa520] "
-                  //   key={_id}
+                    key={_id}
                 >
                   <div className="  p-2 m-3 md:m-4 w-12 h-13 md:w-16 md:h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-0 opacity-0 "></div>
                   <div>
@@ -246,8 +246,8 @@ const Hostel_dat = (props) => {
               <p>Modify File data</p>
             </h2>
             <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-5 mr-auto flex flex-row justify-center items-center text-red-500">
-              <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
-                {errMsg}
+              <p ref={errRef} className={props.errMsg ? "errmsg" : "offscreen"}>
+                {props.errMsg}
               </p>
             </h2>
             <div className="mb-3">

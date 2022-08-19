@@ -499,8 +499,8 @@ router.post("/StaffZone_feedback", async (req, res) => {
     }
     const user = new Feedback(req.body);
     await user.save();
-    
-    
+
+
 });
 router.delete("/deletefeedback/:id", async (req, res) => {
     const delete_user = await Feedback.findOneAndDelete({ _id: req.params.id });
@@ -2544,7 +2544,7 @@ router.post(
 router.post("/Sans_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -2566,8 +2566,8 @@ router.post("/Sans_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -2768,7 +2768,7 @@ router.post(
 router.post("/PS_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -2790,8 +2790,8 @@ router.post("/PS_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -2990,7 +2990,7 @@ router.post(
 router.post("/Psycho_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -3012,8 +3012,8 @@ router.post("/Psycho_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -3213,7 +3213,7 @@ router.post(
 router.post("/Physics_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -3235,8 +3235,8 @@ router.post("/Physics_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -3434,7 +3434,7 @@ router.post(
 router.post("/PE_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -3456,8 +3456,8 @@ router.post("/PE_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -3654,7 +3654,7 @@ router.post(
 router.post("/Music_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -3676,8 +3676,8 @@ router.post("/Music_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -3875,7 +3875,7 @@ router.post(
 router.post("/NHE_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -3897,8 +3897,8 @@ router.post("/NHE_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -4097,7 +4097,7 @@ router.post(
 router.post("/NHE_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -4119,8 +4119,8 @@ router.post("/NHE_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -4318,7 +4318,7 @@ router.post(
 router.post("/Philo_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -4340,8 +4340,8 @@ router.post("/Philo_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -4539,7 +4539,7 @@ router.post(
 router.post("/Math_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -4561,8 +4561,8 @@ router.post("/Math_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -4760,7 +4760,7 @@ router.post(
 router.post("/Music_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -4782,8 +4782,8 @@ router.post("/Music_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -5025,7 +5025,7 @@ router.post(
 router.post("/Hist_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -5047,8 +5047,8 @@ router.post("/Hist_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -5248,7 +5248,7 @@ router.post(
 router.post("/Bio_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -5270,8 +5270,8 @@ router.post("/Bio_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -5509,7 +5509,7 @@ router.post(
 router.post("/Math_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -5531,8 +5531,8 @@ router.post("/Math_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -5851,7 +5851,7 @@ router.post(
 router.post("/His_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -5873,8 +5873,8 @@ router.post("/His_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -6111,7 +6111,7 @@ router.post(
 router.post("/Com_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -6133,8 +6133,8 @@ router.post("/Com_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -6372,7 +6372,7 @@ router.post(
 router.post("/Chem_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -6394,8 +6394,8 @@ router.post("/Chem_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -6672,7 +6672,7 @@ router.post(
 router.post("/Bot_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -6694,8 +6694,8 @@ router.post("/Bot_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -7046,7 +7046,7 @@ router.post(
 router.post("/Chem_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -7068,8 +7068,8 @@ router.post("/Chem_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -7268,7 +7268,7 @@ router.post(
 router.post("/Com_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -7290,8 +7290,8 @@ router.post("/Com_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -7489,7 +7489,7 @@ router.post(
 router.post("/Eco_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -7511,8 +7511,8 @@ router.post("/Eco_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -7711,7 +7711,7 @@ router.post(
 router.post("/Eng_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -7733,8 +7733,8 @@ router.post("/Eng_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -7932,7 +7932,7 @@ router.post(
 router.post("/Hist_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -7954,8 +7954,8 @@ router.post("/Hist_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -8152,7 +8152,7 @@ router.post(
 router.post("/Music_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -8174,8 +8174,8 @@ router.post("/Music_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -8372,7 +8372,7 @@ router.post(
 router.post("/NHE_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -8394,8 +8394,8 @@ router.post("/NHE_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -8595,7 +8595,7 @@ router.post(
 router.post("/Math_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -8617,8 +8617,8 @@ router.post("/Math_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -8817,7 +8817,7 @@ router.post(
 router.post("/Hindi_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -8839,8 +8839,8 @@ router.post("/Hindi_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -9039,7 +9039,7 @@ router.post(
 router.post("/Chem_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -9061,8 +9061,8 @@ router.post("/Chem_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -9260,7 +9260,7 @@ router.post(
 router.post("/Com_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -9282,8 +9282,8 @@ router.post("/Com_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -9481,7 +9481,7 @@ router.post(
 router.post("/Eco_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -9503,8 +9503,8 @@ router.post("/Eco_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -9703,7 +9703,7 @@ router.post(
 router.post("/Eng_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -9725,8 +9725,8 @@ router.post("/Eng_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -9932,7 +9932,7 @@ router.post(
 router.post("/Hindi_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -9954,8 +9954,8 @@ router.post("/Hindi_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -10265,7 +10265,7 @@ router.post(
 router.post("/Hindi_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -10287,8 +10287,8 @@ router.post("/Hindi_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -10758,7 +10758,7 @@ router.post(
 router.post("/Zoo_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -10780,8 +10780,8 @@ router.post("/Zoo_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -11060,7 +11060,7 @@ router.post(
 router.post("/Philo_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -11082,8 +11082,8 @@ router.post("/Philo_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -11282,7 +11282,7 @@ router.post(
 router.post("/PE_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -11304,8 +11304,8 @@ router.post("/PE_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -11504,7 +11504,7 @@ router.post(
 router.post("/Phy_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -11526,8 +11526,8 @@ router.post("/Phy_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -12149,7 +12149,7 @@ router.post(
 router.post("/Psycho_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -12171,8 +12171,8 @@ router.post("/Psycho_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -12375,7 +12375,7 @@ router.post(
 router.post("/Physics_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -12397,8 +12397,8 @@ router.post("/Physics_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -12635,7 +12635,7 @@ router.post(
 router.post("/PS_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -12657,8 +12657,8 @@ router.post("/PS_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -12858,7 +12858,7 @@ router.post(
 router.post("/Zoo_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -12880,8 +12880,8 @@ router.post("/Zoo_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -13079,7 +13079,7 @@ router.post(
 router.post("/Sans_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -13101,8 +13101,8 @@ router.post("/Sans_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -13456,7 +13456,7 @@ router.post(
 router.post("/PS_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -13478,8 +13478,8 @@ router.post("/PS_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -13678,7 +13678,7 @@ router.post(
 router.post("/Psy_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -13700,8 +13700,8 @@ router.post("/Psy_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -13901,7 +13901,7 @@ router.post(
 router.post("/Sans_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -13923,8 +13923,8 @@ router.post("/Sans_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14124,7 +14124,7 @@ router.post(
 router.post("/Zoo_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -14146,8 +14146,8 @@ router.post("/Zoo_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14294,8 +14294,8 @@ router.post("/GE_Options_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14364,8 +14364,8 @@ router.post("/Admission_FAQs_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14434,8 +14434,8 @@ router.post("/Admission_comm_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14504,8 +14504,8 @@ router.post("/Admission_Grievance_comm_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14574,8 +14574,8 @@ router.post("/admission_Fee_Structure_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14643,8 +14643,8 @@ router.post("/Ethics_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14717,8 +14717,8 @@ router.post("/admission_online_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14784,8 +14784,8 @@ router.post("/eresources_online_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14851,8 +14851,8 @@ router.post("/ICC_online_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14923,8 +14923,8 @@ router.post("/accred_online_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -14995,8 +14995,8 @@ router.post("/helpdesk_admission_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -15067,8 +15067,8 @@ router.post("/AntiRagging_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -15953,8 +15953,8 @@ router.post("/StaffZone_forms_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -16018,7 +16018,7 @@ router.post("/Archive_notice_add", async (req, res) => {
                     file_mimetype: file_mimetype,
                 });
                 await user.save();
-                
+
             } else {
                 return res.status(401).json({ message: "Expiry date invalid " });
             }
@@ -16031,7 +16031,7 @@ router.post("/Archive_notice_add", async (req, res) => {
                 file_mimetype: file_mimetype,
             });
             await user.save();
-            
+
         }
     } catch (err) {
         console.log(err);
@@ -16112,7 +16112,7 @@ router.post("/Bulletins_notice_add", async (req, res) => {
                     file_mimetype: file_mimetype,
                 });
                 await user_save.save();
-                
+
             }
             // const user = new Bulletins_Notice({ date, title, new_, file_path: file_path, file_mimetype: file_mimetype });
             // await user.save();
@@ -16189,7 +16189,7 @@ router.post("/Public_notice_add_link", async (req, res) => {
                     file_mimetype: "text/link",
                 });
                 await user.save();
-                
+
             } else {
                 return res.status(401).json({ message: "Expiry date invalid " });
             }
@@ -16202,7 +16202,7 @@ router.post("/Public_notice_add_link", async (req, res) => {
                 file_mimetype: "text/link",
             });
             await user.save();
-            
+
         }
     } catch (err) {
         console.log(err);
@@ -16227,7 +16227,7 @@ router.post(
                         file_mimetype: mimetype,
                     });
                     await user.save();
-                    
+
                     return res
                         .status(200)
                         .json({ message: "Details Saved Successfully " });
@@ -16243,8 +16243,8 @@ router.post(
                     file_mimetype: mimetype,
                 });
                 await user.save();
-                
-                
+
+
             }
         } catch (error) {
             res.status(400).send("Error while uploading file. Try again later.");
@@ -16306,7 +16306,7 @@ router.post("/Staff_notice_add_link", async (req, res) => {
                     file_mimetype: "text/link",
                 });
                 await user.save();
-                
+
             } else {
                 return res.status(401).json({ message: "Expiry date invalid " });
             }
@@ -16319,7 +16319,7 @@ router.post("/Staff_notice_add_link", async (req, res) => {
                 file_mimetype: "text/link",
             });
             await user.save();
-            
+
         }
     } catch (err) {
         console.log(err);
@@ -16344,7 +16344,7 @@ router.post(
                         file_mimetype: mimetype,
                     });
                     await user.save();
-                    
+
                     return res
                         .status(200)
                         .json({ message: "Details Saved Successfully " });
@@ -16360,8 +16360,8 @@ router.post(
                     file_mimetype: mimetype,
                 });
                 await user.save();
-                
-                
+
+
             }
         } catch (error) {
             res.status(400).send("Error while uploading file. Try again later.");
@@ -16423,7 +16423,7 @@ router.post("/Student_notice_add_link", async (req, res) => {
                     file_mimetype: "text/link",
                 });
                 await user.save();
-                
+
             } else {
                 return res.status(401).json({ message: "Expiry date invalid " });
             }
@@ -16436,7 +16436,7 @@ router.post("/Student_notice_add_link", async (req, res) => {
                 file_mimetype: "text/link",
             });
             await user.save();
-            
+
         }
     } catch (err) {
         console.log(err);
@@ -16461,7 +16461,7 @@ router.post(
                         file_mimetype: mimetype,
                     });
                     await user.save();
-                    
+
                     return res
                         .status(200)
                         .json({ message: "Details Saved Successfully " });
@@ -16477,8 +16477,8 @@ router.post(
                     file_mimetype: mimetype,
                 });
                 await user.save();
-                
-                
+
+
             }
         } catch (error) {
             res.status(400).send("Error while uploading file. Try again later.");
@@ -16617,7 +16617,7 @@ router.post(
 router.post("/Student_union_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -16639,8 +16639,8 @@ router.post("/Student_union_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -16837,7 +16837,7 @@ router.post(
 router.post("/Courses_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -16859,8 +16859,8 @@ router.post("/Courses_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -17057,7 +17057,7 @@ router.post(
 router.post("/Placement_cell_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -17079,8 +17079,8 @@ router.post("/Placement_cell_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -17277,7 +17277,7 @@ router.post(
 router.post("/Equal_opp_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -17299,8 +17299,8 @@ router.post("/Equal_opp_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -17390,8 +17390,8 @@ router.post("/StudentZone_feedback", async (req, res) => {
     }
     const user = new Feedback(req.body);
     await user.save();
-    
-    
+
+
 });
 router.delete("/deletestudfeedback/:id", async (req, res) => {
     const delete_user = await Feedback.findOneAndDelete({ _id: req.params.id });
@@ -17434,8 +17434,8 @@ router.post("/StudentZone_forms_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -17566,8 +17566,8 @@ router.post("/StudentZone_Examform_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -17632,8 +17632,8 @@ router.post("/StudentZone_Feepayment_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -17698,8 +17698,8 @@ router.post("/StudentZone_Internal_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -17765,8 +17765,8 @@ router.post("/Antiragg_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -18037,7 +18037,7 @@ router.post(
 router.post("/Magz_and_News_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -18059,8 +18059,8 @@ router.post("/Magz_and_News_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -18718,7 +18718,7 @@ router.post(
 router.post("/Philo_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -18740,8 +18740,8 @@ router.post("/Philo_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -18940,7 +18940,7 @@ router.post(
 router.post("/Bio_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -18962,8 +18962,8 @@ router.post("/Bio_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -19160,7 +19160,7 @@ router.post(
 router.post("/Bot_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -19182,8 +19182,8 @@ router.post("/Bot_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -19382,7 +19382,7 @@ router.post(
 router.post("/Bio_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -19404,8 +19404,8 @@ router.post("/Bio_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -19602,7 +19602,7 @@ router.post(
 router.post("/Sans_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -19624,8 +19624,8 @@ router.post("/Sans_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -19822,7 +19822,7 @@ router.post(
 router.post("/Zoo_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -19844,8 +19844,8 @@ router.post("/Zoo_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -20043,7 +20043,7 @@ router.post(
 router.post("/PE_Publications_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -20065,8 +20065,8 @@ router.post("/PE_Publications_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -20265,7 +20265,7 @@ router.post(
 router.post("/Chem_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -20287,8 +20287,8 @@ router.post("/Chem_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -20486,7 +20486,7 @@ router.post(
 router.post("/Bot_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -20508,8 +20508,8 @@ router.post("/Bot_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -20707,7 +20707,7 @@ router.post(
 router.post("/Com_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -20729,8 +20729,8 @@ router.post("/Com_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -20928,7 +20928,7 @@ router.post(
 router.post("/Eco_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -20950,8 +20950,8 @@ router.post("/Eco_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -21149,7 +21149,7 @@ router.post(
 router.post("/Eng_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -21171,8 +21171,8 @@ router.post("/Eng_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -21370,7 +21370,7 @@ router.post(
 router.post("/Hin_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -21392,8 +21392,8 @@ router.post("/Hin_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -21591,7 +21591,7 @@ router.post(
 router.post("/His_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -21613,8 +21613,8 @@ router.post("/His_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -21812,7 +21812,7 @@ router.post(
 router.post("/Math_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -21834,8 +21834,8 @@ router.post("/Math_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -22033,7 +22033,7 @@ router.post(
 router.post("/Music_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -22055,8 +22055,8 @@ router.post("/Music_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -22254,7 +22254,7 @@ router.post(
 router.post("/NHE_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -22276,8 +22276,8 @@ router.post("/NHE_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -22475,7 +22475,7 @@ router.post(
 router.post("/Philo_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -22497,8 +22497,8 @@ router.post("/Philo_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -22696,7 +22696,7 @@ router.post(
 router.post("/PE_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -22718,8 +22718,8 @@ router.post("/PE_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -22917,7 +22917,7 @@ router.post(
 router.post("/Phy_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -22939,8 +22939,8 @@ router.post("/Phy_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -23138,7 +23138,7 @@ router.post(
 router.post("/PS_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -23160,8 +23160,8 @@ router.post("/PS_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -23359,7 +23359,7 @@ router.post(
 router.post("/Psy_Student_Achievement_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -23381,8 +23381,8 @@ router.post("/Psy_Student_Achievement_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -23580,7 +23580,7 @@ router.post(
 router.post("/Zoo_Facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -23602,8 +23602,8 @@ router.post("/Zoo_Facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -23802,7 +23802,7 @@ router.post(
 router.post("/Sanskrit_Facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -23824,8 +23824,8 @@ router.post("/Sanskrit_Facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -24024,7 +24024,7 @@ router.post(
 router.post("/Psycho_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -24046,8 +24046,8 @@ router.post("/Psycho_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -24246,7 +24246,7 @@ router.post(
 router.post("/Pol_Sci_Facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -24268,8 +24268,8 @@ router.post("/Pol_Sci_Facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -24468,7 +24468,7 @@ router.post(
 router.post("/physics_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -24490,8 +24490,8 @@ router.post("/physics_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -24690,7 +24690,7 @@ router.post(
 router.post("/PE_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -24712,8 +24712,8 @@ router.post("/PE_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -24912,7 +24912,7 @@ router.post(
 router.post("/NHE_facilites_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -24934,8 +24934,8 @@ router.post("/NHE_facilites_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -25134,7 +25134,7 @@ router.post(
 router.post("/Philo_facilites_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -25156,8 +25156,8 @@ router.post("/Philo_facilites_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -25355,7 +25355,7 @@ router.post(
 router.post("/Bio_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -25377,8 +25377,8 @@ router.post("/Bio_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -25576,7 +25576,7 @@ router.post(
 router.post("/Bot_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -25598,8 +25598,8 @@ router.post("/Bot_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -25796,7 +25796,7 @@ router.post(
 router.post("/Eng_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -25818,8 +25818,8 @@ router.post("/Eng_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -26017,7 +26017,7 @@ router.post(
 router.post("/Hist_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -26039,8 +26039,8 @@ router.post("/Hist_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -26237,7 +26237,7 @@ router.post(
 router.post("/Music_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -26259,8 +26259,8 @@ router.post("/Music_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -26458,7 +26458,7 @@ router.post(
 router.post("/Chem_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -26480,8 +26480,8 @@ router.post("/Chem_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -26678,7 +26678,7 @@ router.post(
 router.post("/Math_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -26700,8 +26700,8 @@ router.post("/Math_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -26898,7 +26898,7 @@ router.post(
 router.post("/Eng_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -26920,8 +26920,8 @@ router.post("/Eng_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -27118,7 +27118,7 @@ router.post(
 router.post("/Com_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -27140,8 +27140,8 @@ router.post("/Com_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -27338,7 +27338,7 @@ router.post(
 router.post("/Eco_Research_facilities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -27360,8 +27360,8 @@ router.post("/Eco_Research_facilities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -27732,7 +27732,7 @@ router.post(
 router.post("/Administration_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -27754,8 +27754,8 @@ router.post("/Administration_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -27953,7 +27953,7 @@ router.post(
 router.post("/Bio_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -27975,8 +27975,8 @@ router.post("/Bio_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -28074,11 +28074,11 @@ router.post("/delete_pdf_link_Stud_Hostel_fac/:id", async (req, res) => {
         const delete_user = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.pdf_path": { _id: req.body.pid } } });
         // const pdf = delete_user.img_data.pdf_path;
         if (req.body.file_mimetype !== "text/link") {
-            console.log(req.body.file_path);
+            
             await unlinkAsync(req.body.file_path);
             res.status(200).json(delete_user + "User deleted");
         } else {
-            console.log(req.body.file_path);
+            
             res.status(200).json(delete_user + "User deleted");
         }
     } catch (err) {
@@ -28144,45 +28144,59 @@ router.post(
     upload.single("file"),
     async (req, res) => {
         try {
-            const { title, path, mimetype } = req.file;
+            const { title } = req.body;
+            const { path, mimetype } = req.file;
             // console.log(path, mimetype)
+            if (!title) {
+                return res
+                    .status(400)
+                    .json({ error: "Fill the Admission Details Properly" });
+            }
             const user = await Stud_Hostel.findOne({ _id: req.params.id })
-            if (user.length > 1){
+            const arr = user.img_data.pdf_path;
+            if (arr.length <= 4) {
 
-                const data = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, {
-                    $push: {
-                        "img_data.pdf_path": {
-                            title: title,
-                            pdf_path1: path,
-                            pdf_mimetype1: mimetype,
-                            value: true,
+                if (arr[0].pdf_path1 !== null) {
+
+                    const data = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, {
+                        $push: {
+                            "img_data.pdf_path": {
+                                title: title,
+                                pdf_path1: path,
+                                pdf_mimetype1: mimetype,
+                                value: true,
+                            },
                         },
-                    },
-                });
-                if (data) {
+                    });
+                    if (data) {
+                        // console.log(dat)
+                        res.status(200).send("file uploaded successfully.");
+                    } else {
+                        res.status(401).send("Unable to upload CV, No data found");
+                    }
                     // console.log(dat)
-                    res.status(200).send("file uploaded successfully.");
                 } else {
-                    res.status(401).send("Unable to upload CV, No data found");
-                }
-                // console.log(dat)
-            }else{
-                const data = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, {
-                    $set: {
-                        "img_data.pdf_path": {
-                            title: title,
-                            pdf_path1: path,
-                            pdf_mimetype1: mimetype,
-                            value: true,
+                    const data = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, {
+                        $set: {
+                            "img_data.pdf_path": {
+                                title: title,
+                                pdf_path1: path,
+                                pdf_mimetype1: mimetype,
+                                value: true,
+                            },
                         },
-                    },
-                });
-                if (data) {
-                    // console.log(dat)
-                    res.status(200).send("file uploaded successfully.");
-                } else {
-                    res.status(401).send("Unable to upload CV, No data found");
+                    });
+                    if (data) {
+                        // console.log(dat)
+                        res.status(200).send("file uploaded successfully.");
+                    } else {
+                        res.status(401).send("Unable to upload CV, No data found");
+                    }
+
                 }
+            } else {
+                await unlinkAsync(path);
+                res.status(402).send("Delete previous notice, there is only a limit of 5");
 
             }
         } catch (error) {
@@ -28200,45 +28214,48 @@ router.post("/Stud_Hostel_add_link/:id", async (req, res) => {
                 .json({ error: "Fill the Admission Details Properly" });
         }
         const user = await Stud_Hostel.findOne({ _id: req.params.id })
-        if (user.length > 1){
-        const data = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, {
-            $push: {
-                "img_data.pdf_path": {
-                    title: title,
-                    pdf_path1: link,
-                    pdf_mimetype1: "text/link",
-                    value: true,
-                },
-            },
-        });
-        if (data) {
-            // console.log(dat)
-            res.status(200).send("file uploaded successfully.");
-        } else {
-            res.status(401).send("Unable to update link, No data found");
-        }
-        
-        
-    }else{
-        const data = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, {
-            $set: {
-                "img_data.pdf_path": {
-                    title: title,
-                    pdf_path1: link,
-                    pdf_mimetype1: "text/link",
-                    value: true,
-                },
-            },
-        });
-        if (data) {
-            // console.log(dat)
-            res.status(200).send("file uploaded successfully.");
-        } else {
-            res.status(401).send("Unable to update link, No data found");
-        }
-        
+        const arr = user.img_data.pdf_path;
+        if (arr.length <= 4) {
+            if (arr[0].pdf_path1 !== null) {
+                const data = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, {
+                    $push: {
+                        "img_data.pdf_path": {
+                            title: title,
+                            pdf_path1: link,
+                            pdf_mimetype1: "text/link",
+                            value: true,
+                        },
+                    },
+                });
+                if (data) {
+                    // console.log(dat)
+                    res.status(200).send("file uploaded successfully.");
+                } else {
+                    res.status(401).send("Unable to update link, No data found");
+                }
 
-    }
+
+            } else {
+                const data = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, {
+                    $set: {
+                        "img_data.pdf_path": {
+                            title: title,
+                            pdf_path1: link,
+                            pdf_mimetype1: "text/link",
+                            value: true,
+                        },
+                    },
+                });
+                if (data) {
+                    // console.log(dat)
+                    res.status(200).send("file uploaded successfully.");
+                } else {
+                    res.status(401).send("Unable to update link, No data found");
+                }
+            }
+        }else {
+            res.status(402).send("Delete previous notice, there is only a limit of 5");
+        }
     } catch (err) {
         console.log(err);
     }
@@ -28436,7 +28453,7 @@ router.post(
 router.post("/IQAC_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -28458,8 +28475,8 @@ router.post("/IQAC_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -28657,7 +28674,7 @@ router.post(
 router.post("/Studentact_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -28679,8 +28696,8 @@ router.post("/Studentact_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -28879,7 +28896,7 @@ router.post(
 router.post("/Vidyavistar_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -28901,8 +28918,8 @@ router.post("/Vidyavistar_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -29101,7 +29118,7 @@ router.post(
 router.post("/Bot_Association_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -29123,8 +29140,8 @@ router.post("/Bot_Association_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -29361,7 +29378,7 @@ router.post(
 router.post("/Eco_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -29383,8 +29400,8 @@ router.post("/Eco_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -29622,7 +29639,7 @@ router.post(
 router.post("/Eng_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -29644,8 +29661,8 @@ router.post("/Eng_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -29883,7 +29900,7 @@ router.post(
 router.post("/Hin_Awards_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -29905,8 +29922,8 @@ router.post("/Hin_Awards_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -30087,7 +30104,7 @@ router.post(
 router.post("/Events_and_Activities_add_link/:id", async (req, res) => {
     try {
         const { link } = req.body;
-        
+
         if (!link) {
             return res
                 .status(400)
@@ -30109,8 +30126,8 @@ router.post("/Events_and_Activities_add_link/:id", async (req, res) => {
         } else {
             res.status(401).send("Unable to update link, No data found");
         }
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }

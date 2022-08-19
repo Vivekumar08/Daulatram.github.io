@@ -174,14 +174,13 @@ const Hostel = () => {
       setAuth(true);
       fetchdata();
     } catch (err) {
-      console.log(err);
+      err.response && setErrMsg(err.response.data);
     }
   };
 
   const handleSubmit_file = async (id, pdf, title) => {
     console.log(id);
     try {
-      console.log(pdf);
       if (pdf) {
         await axios.post(
           `/Stud_Hostel_file_upload/${id}`,
@@ -260,6 +259,7 @@ const Hostel = () => {
                         tittle={title}
                         para={description}
                         pic={img_data}
+                        errMsg = {errMsg}
                         delete={del}
                         delete_img={dele}
                         delete_file={delete_file}
