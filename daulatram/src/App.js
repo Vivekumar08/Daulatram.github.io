@@ -296,6 +296,7 @@ import Sanskrit_gallery from "./Pages/Academics/Departments/Sanskrit/Sanskrit_ga
 import Zoo_gallery from "./Pages/Academics/Departments/Zoology/Zoo_gallery";
 
 import Stud_Feedback from "./Pages/Student_zone/Stud_Feedback";
+import Student_feepayment from "./Pages/Student_zone/Student_feepayment";
 import Accreditation from "./Pages/Accreditation/accred";
 import Useful from "./Pages/UsefulLinks/Useful";
 import Student_Union from "./Pages/Student_zone/Student_union";
@@ -618,13 +619,13 @@ function App() {
             path="/academics/PG_courses"
           ></Route>{" "}
           {/* <Route
-                                                            element={
-                                                              <>
-                                                                <Addoncourses />
-                                                              </>
-                                                            }
-                                                            path="/academics/Add_on_courses"
-                                                          ></Route>{" "} */}{" "}
+                                                                        element={
+                                                                          <>
+                                                                            <Addoncourses />
+                                                                          </>
+                                                                        }
+                                                                        path="/academics/Add_on_courses"
+                                                                      ></Route>{" "} */}{" "}
           <Route
             element={
               <>
@@ -1024,6 +1025,14 @@ function App() {
               </>
             }
             path="/Student_Zone/Attendance"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Student_feepayment />
+              </>
+            }
+            path="/Student_Zone/Fee_Payment_Portal"
           ></Route>{" "}
           <Route
             element={
