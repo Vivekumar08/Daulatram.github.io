@@ -88,6 +88,7 @@ import Second_year from "./Pages/Student_zone/Internals/Second_year/Second_year"
 import Third_year from "./Pages/Student_zone/Internals/Third_year/Third_year";
 import Hostel from "./Pages/Student_zone/Hostel";
 import Forms from "./Pages/Student_zone/Forms";
+import Scholarship from "./Pages/Student_zone/Scholarship";
 import Student_facilities from "./Pages/Student_zone/Student_Facilities/Student_Facilities";
 import Eresources from "./Pages/Student_zone/Eresources";
 import Antiragging from "./Pages/Student_zone/Antiragging";
@@ -320,6 +321,7 @@ import PE_Facilities from "./Pages/Academics/Departments/Physical_Education/PE_F
 import PS_Facilities from "./Pages/Academics/Departments/Political_Science/PS_Facilities";
 import Psycho_Facilities from "./Pages/Academics/Departments/Psychology/Psycho_Facilities";
 import Sanskrit_Facilities from "./Pages/Academics/Departments/Sanskrit/Sanskrit_Facilities";
+import Scholarships from "./Pages/Student_zone/Scholarship";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -1113,6 +1115,14 @@ function App() {
               </>
             }
             path="/Student_Zone/Forms"
+          ></Route>{" "}
+           <Route
+            element={
+              <>
+                <Scholarships />
+              </>
+            }
+            path="/Student_Zone/Scholarship"
           ></Route>{" "}
           <Route
             element={
