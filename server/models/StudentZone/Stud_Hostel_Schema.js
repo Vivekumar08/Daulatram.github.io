@@ -28,12 +28,11 @@ const Stud_Hostel_Schema = mongoose.Schema(
                 {
                     title: {
                         type: String,
-                        required: true,
-                        trim: true
+                        default: null
                     },
                     pdf_path1: {
                         type: String,
-                        default: "../daulatram/public/images/uploads"
+                        default: null
                     },
                     pdf_mimetype1: {
                         type: String,

@@ -256,8 +256,8 @@ const Public_Notice = () => {
     try {
       if (!date_exp || !month_exp || !year_exp) {
         const date_e = null;
-          setErrMsg("");
-          const response = await fetch("/Public_notice_add_link", {
+        setErrMsg("");
+        const response = await fetch("/Public_notice_add_link", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -283,8 +283,8 @@ const Public_Notice = () => {
         }
       } else {
         const date_e = `${date_exp}/${month_exp}/${year_exp}`;
-          setErrMsg("");
-          const response = await fetch("/Public_notice_add_link", {
+        setErrMsg("");
+        const response = await fetch("/Public_notice_add_link", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
