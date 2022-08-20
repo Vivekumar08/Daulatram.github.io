@@ -56,7 +56,7 @@ const Mag_new_data = (props) => {
           className="flex items-center w-full py-4 cursor-pointer"
           onClick={() => setVisible(!visible)}
         >
-          <h1 className="font-bold flex-shrink pr-4 text-2xl">
+          <h1 className="font-bold flex-shrink pr-4 text-lg md:text-2xl ">
             {props.tittle}
           </h1>
           <div class="flex-grow h-px bg-gray-400"></div>
@@ -90,14 +90,14 @@ const Mag_new_data = (props) => {
         {visible && (
           <>
             <div className="flex flex-col w-full mb-5 mr-5 ">
-              <p className="text-justify text-sm leading-14 mb-5 ">
+              <p className="text-justify md:text-sm text-xs leading-14 mb-5 ">
                 {props.para}
               </p>
               {path_pic.para &&
                 path_pic.para.map((elem) => {
                   return (
                     <>
-                      <p className="text-justify leading-14 w-full text-sm ">
+                      <p className="text-justify leading-14 w-full md:text-sm text-xs">
                         {elem.para1}
                       </p>
                       {auth && (
@@ -127,10 +127,10 @@ const Mag_new_data = (props) => {
                     <div className="flex flex-col justify-center items-center">
                       <img
                         src={path}
-                        style={{
-                          width: "400px",
-                          height: "250px",
-                        }}
+                        // style={{
+                        //   width: "400px",
+                        //   height: "250px",
+                        // }}
                         className="bg-center ml-auto mr-auto lg:w-[800px] w-[250px] h-[190px] lg:h-[420px] bg-no-repeat mb-3 mt-[3%] bg-cover  rounded-2xl border-2 border-black"
                       />
                       {auth && (

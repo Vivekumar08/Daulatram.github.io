@@ -3,31 +3,31 @@ import { v4 as uuidv4 } from "uuid";
 const dataSlider = [
   {
     id: uuidv4(),
-    img:`/Images/img1.jpeg` 
+    img:`/Images/DRC1.jpeg` 
   },
   {
     id: uuidv4(),
-    img:`/Images/img2.jpeg` 
+    img:`/Images/DRC2.jpeg` 
   },
   {
     id: uuidv4(),
-    img:`/Images/img3.jpeg` 
+    img:`/Images/DRC3.jpeg` 
   },
   {
     id: uuidv4(),
-    img:`/Images/img4.jpeg` 
+    img:`/Images/DRC4.jpeg` 
   },
   {
     id: uuidv4(),
-    img:`/Images/img5.jpeg` 
+    img:`/Images/DRC5.jpeg` 
   },
   {
     id: uuidv4(),
-    img:`/Images/img2.jpeg` 
+    img:`/Images/DRC6.jpeg` 
   },
   {
     id: uuidv4(),
-    img:`/Images/img5.jpeg` 
+    img:`/Images/DRC7.jpeg` 
   },
 
 ];

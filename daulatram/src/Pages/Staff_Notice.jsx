@@ -269,15 +269,18 @@ const Staff_Notice = () => {
           }),
         });
         const data = await response.json();
-        if (!data && response.status === 400) {
-          setErrMsg("No Server Response");
-        } else if (response.status === 400) {
-          setErrMsg("Fill Complete Details");
-        } else {
+        if (data && response.status === 200) {
           setCaption("");
           setFile("");
           setAuth(true);
+          
           fetchdata();
+        } else if (response.status === 401) {
+          setErrMsg("Fill Complete Details");
+        } else if (response.status === 400) {
+          setErrMsg("Error while uploading file. Try again later.");
+        } else {
+          setErrMsg("No Server Response");
         }
       } else {
         const date_e = `${date_exp}/${month_exp}/${year_exp}`;
@@ -296,15 +299,18 @@ const Staff_Notice = () => {
           }),
         });
         const data = await response.json();
-        if (!data && response.status === 400) {
-          setErrMsg("No Server Response");
-        } else if (response.status === 400) {
-          setErrMsg("Fill Complete Details");
-        } else {
+        if (data && response.status === 200) {
           setCaption("");
           setFile("");
           setAuth(true);
+          
           fetchdata();
+        } else if (response.status === 401) {
+          setErrMsg("Fill Complete Details");
+        } else if (response.status === 400) {
+          setErrMsg("Error while uploading file. Try again later.");
+        } else {
+          setErrMsg("No Server Response");
         }
       }
     } catch (err) {
@@ -336,16 +342,21 @@ const Staff_Notice = () => {
                   date,
                 } = curElem;
                 const date_split = date.split("/");
+                let date_e = null;
+                let exp_date;
+                if (date_exp !== null) {
+                  date_e = date_exp.split("/");
+                  exp_date = new Date(date_e[2], date_e[1], date_e[0]);
+                }
                 const cur_date = new Date();
-                const exp_date = new Date(date_exp);
                 const diffTime = Math.abs(exp_date - cur_date);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 var path2 = file_path.replace(/\\/g, "/");
                 var path = path2.slice(19);
                 return (
                   <>
                     <div
-                      className="flex relative w-full mt-2 items-center border rounded-xl bg-[#daa520] "
+                      className="flex relative w-full items-center border-4 border-[#000080] mb-2 rounded-xl "
                       key={_id}
                     >
                       <div className="  p-2 m-3 md:m-4 w-12 h-13 md:w-16 md:h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25 ">
@@ -366,7 +377,7 @@ const Staff_Notice = () => {
                             >
                               <span className="text-base md:text-xl">
                                 {title}
-                                {diffDays > 0 && new_ && (
+                                {diffTime > 0 && new_ && (
                                   <sup className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>
@@ -383,7 +394,7 @@ const Staff_Notice = () => {
                             >
                               <span className="text-base md:text-xl">
                                 {title}
-                                {new_ && (
+                                {diffTime > 0 && new_ && (
                                   <sup className="font-extrabold ml-1 text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>

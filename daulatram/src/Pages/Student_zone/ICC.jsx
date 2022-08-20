@@ -178,7 +178,7 @@ const Icc = () => {
   
           <div className="w-full mb-5">
             <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
-            ICC
+            Internal Complaints Committee
             </h2>
             {data1 ? "" : <Maintanence />}
           {/* <div class="flex justify-evenly w-full mt-5 mb-5"> */}

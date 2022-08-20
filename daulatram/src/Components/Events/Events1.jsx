@@ -214,7 +214,7 @@ const Events1 = () => {
         <>
           <form
             method="post"
-            className="flex flex-col justify-center content-center max-w-sm  h-full ml-auto mr-auto mb-5"
+            className="flex flex-col justify-center content-center max-w-sm   ml-auto mr-auto mb-5"
           >
             <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
               <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
@@ -236,7 +236,7 @@ const Events1 = () => {
             <div class="md:flex flex-col md:items-center">
               {/* <div class="md:w-1/3"></div> */}
               <p>Image of the Event</p>
-              <div className="upload-section flex h-[200px] mb-[10px] w-full">
+              <div className="upload-section flex h-full mb-[10px] w-full">
                 <Dropzone
                   onDrop={onDropImg}
                   onDragEnter={() => updateBorder("over")}

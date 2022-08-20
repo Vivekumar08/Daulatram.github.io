@@ -56,13 +56,16 @@ function Information() {
                     file_path,
                     new_,
                     date_exp,
-                    date,
                   } = curElem;
-                  // const date_split = date.split("/");
+                  let date_e = null;
+                  let exp_date;
+                  if (date_exp !== null) {
+                    date_e = date_exp.split("/");
+                    exp_date = new Date(date_e[2], date_e[1], date_e[0]);
+                  }
                   const cur_date = new Date();
-                  const exp_date = new Date(date_exp);
                   const diffTime = Math.abs(exp_date - cur_date);
-                  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                  // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                   var path2 = file_path.replace(/\\/g, "/");
                   var path = path2.slice(19);
                   return (
@@ -71,9 +74,9 @@ function Information() {
                         <>
                           <a href={path} target="_blank" key={_id}>
                             <div className="flex items-center   ">
-                              <span className="information  hover:font-semibold hover:text-blue-600 text-justify w-[15em]  ml-4 text-sm mb-4 mt-4">
+                              <span className="information  hover:font-semibold hover:text-blue-600 text-justify   ml-4 text-sm mb-4 mt-4">
                                 {title}
-                                {diffDays > 0 && new_ && (
+                                {diffTime > 0 && new_ && (
                                   <sup className="font-extrabold text-transparent  bg-clip-text text-xs bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>
@@ -86,9 +89,9 @@ function Information() {
                         <>
                           <a href={file_path} key={_id} target="_blank">
                             <div className="flex items-center ">
-                              <span className="information   hover:font-semibold hover:text-blue-600 text-justify w-[15em]  ml-4 text-sm mb-4 mt-4">
+                              <span className="information   hover:font-semibold hover:text-blue-600 text-justify   ml-4 text-sm mb-4 mt-4">
                                 {title}
-                                {new_ && diffDays > 0 && (
+                                {new_ && diffTime > 0 && (
                                   <sup className="font-extrabold text-transparent  bg-clip-text text-xs bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>
@@ -115,20 +118,17 @@ function Information() {
             </span>
             {Staffinfo &&
               Staffinfo.map((curElem) => {
-                const {
-                  _id,
-                  title,
-                  file_mimetype,
-                  file_path,
-                  new_,
-                  date_exp,
-                  date,
-                } = curElem;
-                // const date_split = date.split("/");
+                const { _id, title, file_mimetype, file_path, new_, date_exp } =
+                  curElem;
+                let date_e = null;
+                let exp_date;
+                if (date_exp !== null) {
+                  date_e = date_exp.split("/");
+                  exp_date = new Date(date_e[2], date_e[1], date_e[0]);
+                }
                 const cur_date = new Date();
-                const exp_date = new Date(date_exp);
                 const diffTime = Math.abs(exp_date - cur_date);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 var path2 = file_path.replace(/\\/g, "/");
                 var path = path2.slice(19);
                 return (
@@ -137,9 +137,9 @@ function Information() {
                       <>
                         <a href={path} target="_blank" key={_id}>
                           <div className="flex items-center   ">
-                            <span className="information  hover:font-semibold hover:text-blue-600 text-justify w-[15em]  ml-4 text-sm mb-4 mt-4">
+                            <span className="information  hover:font-semibold hover:text-blue-600 text-justify   ml-4 text-sm mb-4 mt-4">
                               {title}
-                              {diffDays > 0 && new_ && (
+                              {diffTime > 0 && new_ && (
                                 <sup className="font-extrabold text-transparent  bg-clip-text text-xs bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                   new
                                 </sup>
@@ -152,9 +152,9 @@ function Information() {
                       <>
                         <a href={file_path} key={_id} target="_blank">
                           <div className="flex items-center ">
-                            <span className="information   hover:font-semibold hover:text-blue-600 text-justify w-[15em] ml-4   text-sm mb-4 mt-4">
+                            <span className="information   hover:font-semibold hover:text-blue-600 text-justify  ml-4   text-sm mb-4 mt-4">
                               {title}
-                              {new_ && diffDays > 0 && (
+                              {new_ && diffTime > 0 && (
                                 <sup className="font-extrabold text-transparent  bg-clip-text text-xs bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                   new
                                 </sup>
@@ -180,20 +180,17 @@ function Information() {
             </span>
             {Publicinfo &&
               Publicinfo.map((curElem) => {
-                const {
-                  _id,
-                  title,
-                  file_mimetype,
-                  file_path,
-                  new_,
-                  date_exp,
-                  date,
-                } = curElem;
-                // const date_split = date.split("/");
+                const { _id, title, file_mimetype, file_path, new_, date_exp } =
+                  curElem;
+                let date_e = null;
+                let exp_date;
+                if (date_exp !== null) {
+                  date_e = date_exp.split("/");
+                  exp_date = new Date(date_e[2], date_e[1], date_e[0]);
+                }
                 const cur_date = new Date();
-                const exp_date = new Date(date_exp);
                 const diffTime = Math.abs(exp_date - cur_date);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 var path2 = file_path.replace(/\\/g, "/");
                 var path = path2.slice(19);
                 return (
@@ -202,9 +199,9 @@ function Information() {
                       <>
                         <a href={path} target="_blank" key={_id}>
                           <div className="flex items-center   ">
-                            <span className="information  hover:font-semibold hover:text-blue-600 text-justify w-[15em]  ml-4 text-sm mb-4 mt-4">
+                            <span className="information  hover:font-semibold hover:text-blue-600 text-justify   ml-4 text-sm mb-4 mt-4">
                               {title}
-                              {diffDays > 0 && new_ && (
+                              {diffTime > 0 && new_ && (
                                 <sup className="font-extrabold text-transparent  bg-clip-text text-xs bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                   new
                                 </sup>
@@ -217,9 +214,9 @@ function Information() {
                       <>
                         <a href={file_path} key={_id} target="_blank">
                           <div className="flex items-center ">
-                            <span className="information  hover:font-semibold hover:text-blue-600 text-justify w-[15em]  ml-4 text-sm mb-4 mt-4">
+                            <span className="information  hover:font-semibold hover:text-blue-600 text-justify   ml-4 text-sm mb-4 mt-4">
                               {title}
-                              {new_ && diffDays > 0 && (
+                              {new_ && diffTime > 0 && (
                                 <sup className="font-extrabold  text-transparent  bg-clip-text text-xs bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                   new
                                 </sup>

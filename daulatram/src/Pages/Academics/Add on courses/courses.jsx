@@ -225,7 +225,7 @@ function Courses() {
 
         <div className="w-[1100px] mr-8">
           <h2 className="text-3xl lg:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
-            Centre for Foreign Languages (Add on courses)
+            Centre for Foreign Languages (Add-on courses)
           </h2>
           <div className="text-justify p-3 m-2 ml-4">
             {data1 &&

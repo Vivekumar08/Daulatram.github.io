@@ -105,7 +105,7 @@ const Bulletins_page = () => {
                 return (
                   <>
                     <div
-                      className="flex relative w-full items-center border rounded-xl bg-[#daa520] "
+                      className="flex relative w-full items-center border-4 border-[#000080] mb-2 rounded-xl"
                       key={_id}
                     >
                       <div className="  p-2 m-3 md:m-4 w-12 h-13 md:w-16 md:h-16 text-center bg-gray-700 rounded-full text-white float-right fd-cl group-hover:opacity-25 ">

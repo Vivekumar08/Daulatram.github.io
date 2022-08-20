@@ -58,7 +58,7 @@ function Upperfooter() {
                 <li className="pb-2">
                   <span className="mr-3">-</span>
                   <Link
-                    to="/StaffZone/Feedback"
+                    to="/Student_Zone/Student_Feedback"
                     className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                   >
                     Feedback
@@ -77,7 +77,7 @@ function Upperfooter() {
                 <li className="pb-2">
                   <span className="mr-3">-</span>
                   <Link
-                    to="/Grievances"
+                    to="/Student_Zone/Grievance_Redressal"
                     className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                   >
                     Grievances
@@ -98,7 +98,7 @@ function Upperfooter() {
                     to="/Anti_Sexual_Harrasement"
                     className="hover:text-white hover:font-semibold text-[#d3d3d3] hover:px-2"
                   >
-                    Anti-Sexual Harrasement
+                    Anti-Sexual Harassment
                   </Link>
                 </li>
                 <li className="pb-2">

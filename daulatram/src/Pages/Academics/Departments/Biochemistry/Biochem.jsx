@@ -169,7 +169,7 @@ const Biochem = () => {
                 // console.log(path);
                 return (
                   <>
-                    <div className=" flex flex-row  items-center p-4">
+                    <div className=" flex flex-row ml-[100px] items-center p-4">
                       <img
                         src={path}
                         style={{

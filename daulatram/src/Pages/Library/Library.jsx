@@ -127,7 +127,7 @@ const Library = () => {
           <h2 className=" md:text-3xl text-lg  uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center ">
             Library
           </h2>
-          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 ml-16 md:ml-24 lg:ml-10 w-full mt-5 mb-5">
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2  xl:grid-cols-3 ml-16 md:ml-24 lg:ml-10  mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, file_path, link } = curElem;
@@ -171,7 +171,7 @@ const Library = () => {
             <>
               <form
                 method="post"
-                className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+                className="flex flex-col justify-center content-center max-w-sm  ml-auto mr-auto mb-5"
               >
                 <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
                   <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
@@ -205,7 +205,7 @@ const Library = () => {
                 </div>
                 <div class="md:flex flex-col md:items-center">
                   {/* <div class="md:w-1/3"></div> */}
-                  <div className="upload-section flex h-[200px] mb-[10px] w-full">
+                  <div className="upload-section flex h-full mb-[10px] w-full">
                     <Dropzone
                       onDrop={onDrop}
                       onDragEnter={() => updateBorder("over")}

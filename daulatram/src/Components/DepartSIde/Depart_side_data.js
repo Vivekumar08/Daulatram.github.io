@@ -20,7 +20,7 @@ export const biochems = [{
     },
     {
         id: 5,
-        title: "Student's Achievements",
+        title: "Students' Achievements",
         link: "/academics/departments/biochem/studentsachieve",
     },
     {
