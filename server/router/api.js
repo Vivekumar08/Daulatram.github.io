@@ -18136,72 +18136,66 @@ router.get("/Magz_and_News_download/:id", async (req, res) => {
 });
 
 // Useful Links
-router.post("/delete_Useful_Links/:id", async (req, res) => {
-    const delete_user = await Useful_Links.findOne({ _id: req.params.id });
-    const arr = delete_user.img_data.file_path;
-    if (arr.length === 0) {
-        await delete_user.deleteOne({ _id: req.params.id });
-        // console.log(delete_user.img_data.file_path)
+router.get("/useful", async (req, res) => {
+    const details = await Useful_Links.find();
+
+
+    if (details.length === 0) {
+        res.status(200).json(false);
+    } else {
+        res.status(200).json(details);
+    }
+});
+
+router.delete("/deleteuseful/:id", async (req, res) => {
+    const delete_user = await Useful_Links.findOneAndDelete({ _id: req.params.id });
+    if (delete_user.file_mimetype === "text/link") {
+        console.log(delete_user.file_mimetype);
         res.status(200).json(delete_user + "User deleted");
     } else {
-        res.status(400).json("First Delete all the images related to this section");
+        console.log(delete_user.file_mimetype);
+        await unlinkAsync(delete_user.file_path);
+        res.status(200).json(delete_user + "User deleted");
     }
 });
-router.post("/delete_img_Useful_Links_res_fac/:id", async (req, res) => {
-    // console.log(req.body.file_path1)
-    const delete_user = await Useful_Links.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.file_path": { _id: req.body.pid } } });
-    await unlinkAsync(req.body.file_path1);
-    res.status(200).json(delete_user + "User deleted");
-});
-
-router.get("/Useful_Links_res", async (req, res) => {
+router.post("/useful_online_add_link", async (req, res) => {
     try {
-        const files = await Useful_Links.find({});
-        const sortedByCreationDate = files.sort(
-            (a, b) => b.createdAt - a.createdAt
-        );
-        res.send(sortedByCreationDate);
-    } catch (error) {
-        res.status(400).send("Error while getting list of files. Try again later.");
-    }
-});
-
-router.post("/Useful_Links_res_upload", async (req, res) => {
-    try {
-        // 
-        const { title, description } = req.body;
-        const file = new Useful_Links({
-            title: title,
-            description: description,
+        ;
+        const { file, link, title } = req.body;
+        if (!title || !link || !file) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Details Properly" });
+        }
+        const user = new Useful_Links({
+            title,
+            link,
+            file_path: file,
+            file_mimetype: "text/link",
         });
-        await file.save();
-        res.send("file uploaded successfully.");
-    } catch (error) {
-        // console.log(error)
-        res.status(400).send("Error occur while uploading data");
+        await user.save();
+
+
+    } catch (err) {
+        console.log(err);
     }
 });
 router.post(
-    "/Useful_Links_res_img_upload/:id",
+    "/useful_online_add",
     upload.single("file"),
     async (req, res) => {
         try {
+            const { title, link } = req.body;
             const { path, mimetype } = req.file;
-            // console.log(path,mimetype)
-            const dat = await Useful_Links.findOneAndUpdate({ _id: req.params.id }, {
-                $push: {
-                    "img_data.file_path": {
-                        file_path1: path,
-                        file_mimetype1: mimetype,
-                    },
-                },
+            const file = new Useful_Links({
+                title,
+                link,
+                file_path: path,
+                file_mimetype: mimetype,
             });
-            // console.log(dat)
-            if (dat) {
-                res.status(200).send("file uploaded successfully.");
-            }
+            await file.save();
+            res.send("file uploaded successfully.");
         } catch (error) {
-            // console.log(error)
             res.status(400).send("Error while uploading file. Try again later.");
         }
     },
@@ -18212,17 +18206,6 @@ router.post(
     }
 );
 
-router.get("/Useful_Links_res_download/:id", async (req, res) => {
-    try {
-        const file = await Useful_Links.findById(req.params.id);
-        res.set({
-            "Content-Type": file.file_mimetype,
-        });
-        res.sendFile(path.join(__dirname, "..", file.file_path));
-    } catch (error) {
-        res.status(400).send("Error while downloading file. Try again later.");
-    }
-});
 // Research
 router.post("/delete_research_fac/:id", async (req, res) => {
     const delete_user = await File.findOne({ _id: req.params.id });
