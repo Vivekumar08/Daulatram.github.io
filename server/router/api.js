@@ -16090,9 +16090,7 @@ router.post("/Bulletins_notice_add", async (req, res) => {
                         file_mimetype: file_mimetype,
                     });
                     await user_save.save();
-                    return res
-                        .status(200)
-                        .json({ message: "Details Saved Successfully " });
+                    return res.status(200).json({ message: "Details Saved Successfully " });
                 }
             } else {
                 return res.status(401).json({ message: "Expiry date invalid " });
@@ -16189,6 +16187,8 @@ router.post("/Public_notice_add_link", async (req, res) => {
                     file_mimetype: "text/link",
                 });
                 await user.save();
+                return res.status(200).json({ message: "Details Saved Successfully " });
+
 
             } else {
                 return res.status(401).json({ message: "Expiry date invalid " });
@@ -16202,6 +16202,8 @@ router.post("/Public_notice_add_link", async (req, res) => {
                 file_mimetype: "text/link",
             });
             await user.save();
+            return res.status(200).json({ message: "Details Saved Successfully " });
+
 
         }
     } catch (err) {
@@ -16227,10 +16229,8 @@ router.post(
                         file_mimetype: mimetype,
                     });
                     await user.save();
+                    return res.status(200).send("Notice Added.");
 
-                    return res
-                        .status(200)
-                        .json({ message: "Details Saved Successfully " });
                 } else {
                     return res.status(401).json({ message: "Expiry date invalid " });
                 }
@@ -16243,6 +16243,7 @@ router.post(
                     file_mimetype: mimetype,
                 });
                 await user.save();
+                return res.status(200).send("Notice Added.");
 
 
             }
@@ -16306,6 +16307,7 @@ router.post("/Staff_notice_add_link", async (req, res) => {
                     file_mimetype: "text/link",
                 });
                 await user.save();
+                return res.status(200).json({ message: "Details Saved Successfully " });
 
             } else {
                 return res.status(401).json({ message: "Expiry date invalid " });
@@ -16319,6 +16321,7 @@ router.post("/Staff_notice_add_link", async (req, res) => {
                 file_mimetype: "text/link",
             });
             await user.save();
+            return res.status(200).json({ message: "Details Saved Successfully " });
 
         }
     } catch (err) {
@@ -16344,10 +16347,8 @@ router.post(
                         file_mimetype: mimetype,
                     });
                     await user.save();
+                    return res.status(200).json({ message: "Details Saved Successfully " });
 
-                    return res
-                        .status(200)
-                        .json({ message: "Details Saved Successfully " });
                 } else {
                     return res.status(401).json({ message: "Expiry date invalid " });
                 }
@@ -16360,8 +16361,7 @@ router.post(
                     file_mimetype: mimetype,
                 });
                 await user.save();
-
-
+                return res.status(200).json({ message: "Details Saved Successfully " });
             }
         } catch (error) {
             res.status(400).send("Error while uploading file. Try again later.");
@@ -16423,6 +16423,7 @@ router.post("/Student_notice_add_link", async (req, res) => {
                     file_mimetype: "text/link",
                 });
                 await user.save();
+                return res.status(200).json({ message: "Details Saved Successfully " });
 
             } else {
                 return res.status(401).json({ message: "Expiry date invalid " });
@@ -16436,6 +16437,7 @@ router.post("/Student_notice_add_link", async (req, res) => {
                 file_mimetype: "text/link",
             });
             await user.save();
+            return res.status(200).json({ message: "Details Saved Successfully " });
 
         }
     } catch (err) {
@@ -16477,6 +16479,7 @@ router.post(
                     file_mimetype: mimetype,
                 });
                 await user.save();
+                return res.status(200).json({ message: "Details Saved Successfully " });
 
 
             }
@@ -17500,8 +17503,8 @@ router.post("/Scholarship_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
-        
-        
+
+
     } catch (err) {
         console.log(err);
     }
@@ -28074,11 +28077,11 @@ router.post("/delete_pdf_link_Stud_Hostel_fac/:id", async (req, res) => {
         const delete_user = await Stud_Hostel.findOneAndUpdate({ _id: req.params.id }, { $pull: { "img_data.pdf_path": { _id: req.body.pid } } });
         // const pdf = delete_user.img_data.pdf_path;
         if (req.body.file_mimetype !== "text/link") {
-            
+
             await unlinkAsync(req.body.file_path);
             res.status(200).json(delete_user + "User deleted");
         } else {
-            
+
             res.status(200).json(delete_user + "User deleted");
         }
     } catch (err) {
@@ -28253,7 +28256,7 @@ router.post("/Stud_Hostel_add_link/:id", async (req, res) => {
                     res.status(401).send("Unable to update link, No data found");
                 }
             }
-        }else {
+        } else {
             res.status(402).send("Delete previous notice, there is only a limit of 5");
         }
     } catch (err) {

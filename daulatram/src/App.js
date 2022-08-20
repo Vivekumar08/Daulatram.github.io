@@ -827,7 +827,7 @@ function App() {
                 <Guidelines_Admission />
               </>
             }
-            path="/admission/OBC_SC_ST_EWS_Complaints"
+            path="/admission/OBC_SC_ST_EWS"
           ></Route>{" "}
           // {/* ** ** ** ** ** ** ** ** ** ** ** * */} {/* Staff Zone */} //{" "}
           {/* ** ** ** ** ** ** ** ** ** ** ** * */}{" "}

@@ -53,6 +53,10 @@ export const links = [
         link: "/academics/UG_courses",
       },
       {
+        name: "Postgraduate Courses",
+        link: "/academics/PG_courses",
+      },
+      {
         name: "Centre for Foreign Languages (Add-On Courses)",
         link: "/academics/Add_on_courses",
       },
@@ -119,8 +123,8 @@ export const links = [
         link: "/admission/helpdesk",
       },
       {
-        name: "OBC/SC/ST/EWS Complaints",
-        link: "/admission/OBC_SC_ST_EWS_Complaints",
+        name: "OBC/SC/ST/EWS Guidelines",
+        link: "/admission/OBC_SC_ST_EWS",
       },
       {
         name: "Admission Grievance Committee",
@@ -552,7 +556,7 @@ export const admisn = [
       },
       {
         name: "OBC/SC/ST/EWS Guidelines",
-        link: "/admission/OBC_SC_ST_EWS_Complaints",
+        link: "/admission/OBC_SC_ST_EWS",
       },
       {
         name: "Admission Grievance Committee",

@@ -220,12 +220,12 @@ const Mag_New = () => {
         <div className="w-[1100px]">
           <div className="flex justify-center items-center flex-col">
             <div>
-              <h2 className="text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center  ">
-                Magazines and Newsletter
+              <h2 className="text-2xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row md:justify-center justify-start items-center  ">
+                Magazines and Newsletters
               </h2>
             </div>
           </div>
-          <div className="text-justify p-3 m-2 ml-4">
+          <div className="text-justify p-3 pl-0 m-2 ml-4">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, description, img_data } = curElem;

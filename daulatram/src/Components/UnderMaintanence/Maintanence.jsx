@@ -13,7 +13,7 @@ const Maintanence = () => {
           </div>
           <h1 className="md:maint mb-14 font-bold text-3xl ">coming soon</h1>
           <h2 className="md:text-xl text-sm m-5">
-            Our developer team is hard at work updating our system. Please wait Or you can browse other tabs and pages of our website.
+            Our developer team is hard at work updating our system. Please wait or you can browse other tabs and pages of our website.
             
           </h2>
         </div>

@@ -147,7 +147,7 @@ const Feedback = () => {
               <>
                 <form
                   method="post"
-                  className="flex flex-col justify-center content-center max-w-sm  h-[450px] ml-auto mr-auto mb-5"
+                  className="flex flex-col justify-center content-center max-w-sm   ml-auto mr-auto mb-5"
                 >
                   <h2 className="text-xl uppercase font-bold ml-10 mb-4 mt-[0] mr-auto flex flex-row justify-center items-center text-red-500">
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"}>
