@@ -40,6 +40,7 @@ const Acad_Facilities = require("../models/Academics/Acad_Facilities_Schema");
 const Student_Facilities = require("../models/StudentZone/Student_Facilities_Schema");
 
 const Feedback = require("../models/StaffZone/Feedback_Form_Schema");
+const Job = require("../models/Footer/Job_schema")
 const Roster = require("../models/StaffZone/Roster_Schema");
 const Founder = require("../models/About_Us/Founder_Schema");
 const Chairperson = require("../models/About_Us/Chairperson_Schema");
@@ -505,6 +506,32 @@ router.delete("/deletefeedback/:id", async (req, res) => {
     const delete_user = await Feedback.findOneAndDelete({ _id: req.params.id });
     res.status(200).json(delete_user + "User deleted");
 });
+
+// Job Footer
+
+router.get("/Job", async (req, res) => {
+    // res.send(`Hello World from the server`);
+    const details = await Job.find();
+    res.status(200).json(details);
+});
+
+router.post("/Footer_Job", async (req, res) => {
+    const { Link, Caption, text } = req.body;
+    if (!Link || !Caption) {
+        return res
+            .status(400)
+            .json({ error: "Fill the Admission Details Properly" });
+    }
+    const user = new Job(req.body);
+    await user.save();
+
+
+});
+router.delete("/delete_Job/:id", async (req, res) => {
+    const delete_user = await Job.findOneAndDelete({ _id: req.params.id });
+    res.status(200).json(delete_user + "User deleted");
+});
+
 
 // Guidelines
 
