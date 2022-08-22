@@ -85,7 +85,7 @@ const Bio_Publications = require("../models/Academics/Departments/Biochemistry/B
 const Hist_Publications = require("../models/Academics/Departments/History/Hist_Publications_Schema");
 const NHE_Publications = require("../models/Academics/Departments/NHE/NHE_Publications_Schema");
 const Bio_Awards = require("../models/Academics/Departments/Biochemistry/Bio_Awards_Schema");
-const Complaints =require("../models/StudentZone/Complaints_schema")
+const Complaints = require("../models/StudentZone/Complaints_schema")
 const Bio_Student_Achieve = require("../models/Academics/Departments/Biochemistry/Bio_Student_Achieve_Schema");
 const Bot_Student_Achieve = require("../models/Academics/Departments/Botany/StuAch_Schema");
 const Chem_Student_Achieve = require("../models/Academics/Departments/Chemistry/StuAch_Schema");
@@ -190,6 +190,9 @@ const Zoology_Faculty = require("../models/Academics/Departments/Zoology/Zoology
 const Bot_ProgramOffered = require("../models/Academics/Departments/Botany/Bot_ProgramsOffered_Schema");
 const Bot_Awards = require("../models/Academics/Departments/Botany/Awards_Schema");
 const Bot_Lab_Staff = require("../models/Academics/Departments/Botany/Bot_Lab_Staff_Schema");
+
+const Tender_Footer = require("../models/Footer/Tender_Schema")
+const RTI_Footer = require("../models/Footer/RTI_Footer_Schema")
 
 const Bot_Association = require("../models/Academics/Departments/Botany/Bot_Association_Schema");
 const Chem_Publications = require("../models/Academics/Departments/Chemistry/Chem_Publications_Schema");
@@ -16161,6 +16164,261 @@ router.delete("/delete_Bulletins_notice/:id", async (req, res) => {
         console.log("error in deleting the bulletins");
     }
 });
+
+
+// RT Footer
+
+router.get("/RTI_Footer", async (req, res) => {
+    try {
+        const files = await RTI_Footer.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.status(200).send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+router.delete("/delete_RTI_Footer/:id", async (req, res) => {
+    const delete_user = await RTI_Footer.findOneAndDelete({
+        _id: req.params.id,
+    });
+    if (delete_user.file_mimetype === "text/link") {
+        console.log(delete_user.file_mimetype);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(delete_user.file_mimetype);
+        await unlinkAsync(delete_user.file_path);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+router.post("/RTI_Footer_add_link", async (req, res) => {
+    try {
+        var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
+        const { file, date, title, date_exp, new_, filter } = req.body;
+        if (!title || !date || !file) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+        if (new_) {
+            if (date_regex.test(date_exp)) {
+                const user = new RTI_Footer({
+                    date,
+                    title,
+                    date_exp,
+                    new_,
+                    file_path: file,
+                    file_mimetype: "text/link",
+                    filter
+                });
+                await user.save();
+                return res.status(200).json({ message: "Details Saved Successfully " });
+
+
+            } else {
+                return res.status(401).json({ message: "Expiry date invalid " });
+            }
+        } else {
+            const user = new RTI_Footer({
+                date,
+                title,
+                new_,
+                file_path: file,
+                file_mimetype: "text/link",
+                filter
+            });
+            await user.save();
+            return res.status(200).json({ message: "Details Saved Successfully " });
+
+
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+router.post(
+    "/RTI_Footer_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { date, title, date_exp, new_, filter } = req.body;
+            const { path, mimetype } = req.file;
+            var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
+            if (new_==true) {
+                console.log(date, title, date_exp, new_, filter)
+                console.log(path,mimetype)
+                if (date_regex.test(date_exp)) {
+                    const user = new RTI_Footer({
+                        date,
+                        title,
+                        date_exp,
+                        new_,
+                        file_path: path,
+                        file_mimetype: mimetype,
+                        filter
+                    });
+                    await user.save();
+                    console.log("Notice Added")
+                    return res.status(200).send("Notice Added.");
+
+                } else {
+                    return res.status(401).json({ message: "Expiry date invalid " });
+                }
+            } else {
+                console.log(date, title, date_exp, filter)
+                console.log(path,mimetype)
+                const user = new RTI_Footer({
+                    date,
+                    title,
+                    new_,
+                    file_path: path,
+                    file_mimetype: mimetype,
+                    filter
+                });
+                await user.save();
+                console.log("Notice Added")
+                return res.status(200).send("Notice Added.");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
+
+// Tender Footer
+
+router.get("/Tender_Footer", async (req, res) => {
+    try {
+        const files = await Tender_Footer.find({});
+        const sortedByCreationDate = files.sort(
+            (a, b) => b.createdAt - a.createdAt
+        );
+        res.status(200).send(sortedByCreationDate);
+    } catch (error) {
+        res.status(400).send("Error while getting list of files. Try again later.");
+    }
+});
+router.delete("/delete_Tender_Footer/:id", async (req, res) => {
+    const delete_user = await Tender_Footer.findOneAndDelete({
+        _id: req.params.id,
+    });
+    if (delete_user.file_mimetype === "text/link") {
+        console.log(delete_user.file_mimetype);
+        res.status(200).json(delete_user + "User deleted");
+    } else {
+        console.log(delete_user.file_mimetype);
+        await unlinkAsync(delete_user.file_path);
+        res.status(200).json(delete_user + "User deleted");
+    }
+});
+router.post("/Tender_Footer_add_link", async (req, res) => {
+    try {
+        var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
+        const { file, date, title, date_exp, new_, filter } = req.body;
+        if (!title || !date || !file) {
+            return res
+                .status(400)
+                .json({ error: "Fill the Admission Details Properly" });
+        }
+        if (new_) {
+            if (date_regex.test(date_exp)) {
+                const user = new Tender_Footer({
+                    date,
+                    title,
+                    date_exp,
+                    new_,
+                    file_path: file,
+                    file_mimetype: "text/link",
+                    filter
+                });
+                await user.save();
+                return res.status(200).json({ message: "Details Saved Successfully " });
+
+
+            } else {
+                return res.status(401).json({ message: "Expiry date invalid " });
+            }
+        } else {
+            const user = new Tender_Footer({
+                date,
+                title,
+                new_,
+                file_path: file,
+                file_mimetype: "text/link",
+                filter
+            });
+            await user.save();
+            return res.status(200).json({ message: "Details Saved Successfully " });
+
+
+        }
+    } catch (err) {
+        console.log(err);
+    }
+});
+router.post(
+    "/Tender_Footer_add",
+    upload.single("file"),
+    async (req, res) => {
+        try {
+            const { date, title, date_exp, new_, filter } = req.body;
+            const { path, mimetype } = req.file;
+            var date_regex = /^\d{2}\/\d{2}\/\d{4}$/;
+            if (new_==true) {
+                console.log(date, title, date_exp, new_, filter)
+                console.log(path,mimetype)
+                if (date_regex.test(date_exp)) {
+                    const user = new Tender_Footer({
+                        date,
+                        title,
+                        date_exp,
+                        new_,
+                        file_path: path,
+                        file_mimetype: mimetype,
+                        filter
+                    });
+                    await user.save();
+                    console.log("Notice Added")
+                    return res.status(200).send("Notice Added.");
+
+                } else {
+                    return res.status(401).json({ message: "Expiry date invalid " });
+                }
+            } else {
+                console.log(date, title, date_exp, filter)
+                console.log(path,mimetype)
+                const user = new Tender_Footer({
+                    date,
+                    title,
+                    new_,
+                    file_path: path,
+                    file_mimetype: mimetype,
+                    filter
+                });
+                await user.save();
+                console.log("Notice Added")
+                return res.status(200).send("Notice Added.");
+            }
+        } catch (error) {
+            console.log(error)
+            res.status(400).send("Error while uploading file. Try again later.");
+        }
+    },
+    (error, req, res, next) => {
+        if (error) {
+            res.status(402).send(error.message);
+        }
+    }
+);
+
 // Public Notices
 
 router.get("/Public_notice", async (req, res) => {
