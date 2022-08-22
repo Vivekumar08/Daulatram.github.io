@@ -249,9 +249,9 @@ const RTI = () => {
         </div>
       </div>
       <div className="flex flex-col mb-5 ml-8 gap-3">
-        {/* <h2 className="text-4xl uppercase font-bold mb-5 mt-5 flex flex-row justify-start items-center ">
-          Latest Tenders
-        </h2> */}
+        <h2 className="text-4xl uppercase font-bold mb-5 mt-5 flex flex-row justify-start items-center ">
+          {""}
+        </h2>
         {data1 &&
           data1.map((curElem) => {
             const {
@@ -446,13 +446,13 @@ const RTI = () => {
                   value="RTI"
                   className="p-2 text-lg acctive:text-white  block px-4 py-2  "
                 >
-                  LATEST TENDERS
+                  RTI MANUALS
                 </option>
                 <option
                   value="Simple"
                   className="p-2 text-lg acctive:text-white  block px-4 py-2 "
                 >
-                  OLD TENDERS
+                  SIMPLE RTI
                 </option>
               </select>
             </div>
