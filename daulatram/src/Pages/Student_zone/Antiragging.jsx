@@ -1,4 +1,3 @@
-
 import AntiRagbanner from "../../Components/Banners/AntiRagbanner";
 import Student_side from "../../Components/Sidebar/Student_side";
 
@@ -62,12 +61,9 @@ const Antiragg = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_Antiragg/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/delete_Antiragg/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -95,15 +91,11 @@ const Antiragg = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(
-          `/Antiragg_add`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axios.post(`/Antiragg_add`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         setCaption("");
         setLink("");
         setFile(null);
@@ -122,30 +114,27 @@ const Antiragg = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch(
-      "/Antiragg_add_link",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          link: link,
-          title: caption,
-          file: file,
-        }),
-      }
-    );
+    const response = await fetch("/Antiragg_add_link", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        link: link,
+        title: caption,
+        file: file,
+      }),
+    });
     const data = await response.json();
-    if (!data) {
-      setErrMsg("No Server Response");
-    } else if (response.status === 400) {
-      setErrMsg("Fill Complete Details");
-    } else {
+    if (data && response.status === 200) {
       setCaption("");
       setLink("");
       setAuth(true);
       fetchdata();
+    } else if (response.status === 400) {
+      setErrMsg("Fill Complete Details");
+    } else {
+      setErrMsg("No Server Response");
     }
   };
 
@@ -161,7 +150,8 @@ const Antiragg = () => {
 
         <div className="w-[1100px] mb-5">
           <h2 className=" text-2xl md:text-2xl lg:text-4xl md:ml-36 uppercase font-bold mb-5 mt-[5%]  flex flex-row lg:justify-center items-center   ">
-Anti-Ragging Helplines      </h2>
+            Anti-Ragging Helplines{" "}
+          </h2>
           <div className="main flex-col ">
             <table className=" text-xs md:text-base  w-80 h-40  ml-1 md:table-fixed xl:ml-60  md:ml-32 md:w-[420px] lg:ml-44 sm:w-[480px] lg:w-[550px] xl:w-[750px] md:h-[180px] mt-1 ">
               <tr className="h-20 text-lg">
