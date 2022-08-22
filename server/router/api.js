@@ -17736,7 +17736,7 @@ router.post(
 // Student-Zone Antiragging
 
 router.get("/Antiragg", async (req, res) => {
-    const details = await Anturagg.find();
+    const details = await Antiragg.find();
     res.status(200).json(details);
 });
 router.delete("/delete_Antiragg/:id", async (req, res) => {
@@ -17768,6 +17768,7 @@ router.post("/Antiragg_add_link", async (req, res) => {
             file_mimetype: "text/link",
         });
         await user.save();
+        res.status(200).json("file uploaded successfully.");
 
 
     } catch (err) {
