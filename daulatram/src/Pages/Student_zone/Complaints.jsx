@@ -4,6 +4,7 @@ import Student_side from "../../Components/Sidebar/Student_side";
 import React, { useContext, useEffect, useState, useRef } from "react";
 import DepartBanner from "../../Components/Banners/DepartBanner";
 // import Biochemistry from "../../../../Components/DepartSIde/Biochemistry";
+import { Link } from "react-router-dom";
 
 import Dropzone from "react-dropzone";
 import axios from "axios";
@@ -203,8 +204,23 @@ function Complaints() {
 
   return (
     <div className=" flex flex-col">
-      <div className="">
-        <DepartBanner />
+      <div
+        className="Banner"
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      >
+        <div className="name">
+        <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Complaints / Suggestions{" "}
+            </p>
+          </div>
+          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+              <span className="ml-5">Student Zone</span>
+          </div>
+        </div>
       </div>
 
       <div className="flex flex-row">
