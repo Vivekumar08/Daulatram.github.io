@@ -322,6 +322,7 @@ import PS_Facilities from "./Pages/Academics/Departments/Political_Science/PS_Fa
 import Psycho_Facilities from "./Pages/Academics/Departments/Psychology/Psycho_Facilities";
 import Sanskrit_Facilities from "./Pages/Academics/Departments/Sanskrit/Sanskrit_Facilities";
 import Scholarships from "./Pages/Student_zone/Scholarship";
+import Anti_Harassment from "./Pages/Footer/Anti_Harassment";
 
 function App() {
   const { auth, setAuth } = useContext(AuthContext);
@@ -1206,6 +1207,14 @@ function App() {
               </>
             }
             path="/Contact_us"
+          ></Route>{" "}
+          <Route
+            element={
+              <>
+                <Anti_Harassment/>
+              </>
+            }
+            path="/Anti_Sexual_Harrasement"
           ></Route>{" "}
           {auth && (
             <Route
