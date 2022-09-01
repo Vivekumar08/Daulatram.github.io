@@ -190,14 +190,29 @@ const Helpdesk = () => {
                             icon={faArrowRight}
                             className="ml-3 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400"
                           />
-                          <a
-                            href={path}
-                            target="_blank"
-                            className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
-                          >
-                            {" "}
-                            {link}{" "}
-                          </a>
+                          {file_mimetype === "text/link" ? (
+                            <>
+                              <a
+                                href={file_path}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
+                              >
+                                {link}{" "}
+                              </a>{" "}
+                            </>
+                          ) : (
+                            <>
+                              <a
+                                href={path}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
+                              >
+                                {link}{" "}
+                              </a>{" "}
+                            </>
+                          )}
                         </h1>
                       </div>
                     </li>

@@ -59,12 +59,9 @@ const OnlineAdmission = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/deleteAdmission/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/deleteAdmission/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -92,15 +89,11 @@ const OnlineAdmission = () => {
         formData.append("title", caption);
 
         setErrMsg("");
-        await axios.post(
-          `/admission_online_add`,
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axios.post(`/admission_online_add`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
         setCaption("");
         setLink("");
         setFile(null);
@@ -119,20 +112,17 @@ const OnlineAdmission = () => {
   const handleSubmit1 = async (e) => {
     e.preventDefault();
     console.log(link, caption, file);
-    const response = await fetch(
-      "/admission_online_add_link",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          link: link,
-          title: caption,
-          file: file,
-        }),
-      }
-    );
+    const response = await fetch("/admission_online_add_link", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        link: link,
+        title: caption,
+        file: file,
+      }),
+    });
     const data = await response.json();
     if (!data) {
       setErrMsg("No Server Response");
@@ -178,7 +168,7 @@ const OnlineAdmission = () => {
           </h2>
           {data1 ? (
             data1.map((curElem) => {
-              const { _id, title, file_path, link } = curElem;
+              const { _id, title, file_path, link,file_mimetype } = curElem;
               var path_pic = file_path;
               var path2 = path_pic.replace(/\\/g, "/");
               var path = path2.slice(19);
@@ -192,14 +182,29 @@ const OnlineAdmission = () => {
                             icon={faArrowRight}
                             className="ml-3 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400"
                           />
-                          <a
-                            href={path}
-                            target="_blank"
-                            className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
-                          >
-                            {" "}
-                            {link}{" "}
-                          </a>
+                          {file_mimetype === "text/link" ? (
+                            <>
+                              <a
+                                href={file_path}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
+                              >
+                                {link}{" "}
+                              </a>{" "}
+                            </>
+                          ) : (
+                            <>
+                              <a
+                                href={path}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="ml-1 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400 hover:pl-3"
+                              >
+                                {link}{" "}
+                              </a>{" "}
+                            </>
+                          )}
                           <p className=" ml-3 mt-2 leading-14 font-medium text-justify text-base md:text-lg">
                             {title}
                           </p>
