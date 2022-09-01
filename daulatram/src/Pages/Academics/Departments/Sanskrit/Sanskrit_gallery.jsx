@@ -26,7 +26,7 @@ function Sanskrit_gallery() {
   const [slideLength, setSlideLength] = useState(0);
   const autoScroll = true;
   let slideInterval;
-  let intervalTime = 5000;
+  let intervalTime = 3000;
   const fetchdata = async () => {
     const response = await fetch("/Psychology_Gallery");
     setData1(await response.json());

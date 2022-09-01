@@ -25,7 +25,7 @@ function Hist_Gallery() {
   const [slideLength, setSlideLength] = useState(0);
   const autoScroll = true;
   let slideInterval;
-  let intervalTime = 5000;
+  let intervalTime = 3000;
 
   const fetchdata = async () => {
     const response = await fetch("/Hist_Photo_Gallery");
