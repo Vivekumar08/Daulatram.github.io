@@ -47,7 +47,7 @@ const Useful = () => {
                           // rel="noreferrer"
                           className="hover:text-white"
                         >
-                          <li className="text-base m-1 p-1 pl-2 pr-2 text-gray-500 capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
+                          <li className="text-base m-1 p-1 pl-2 pr-2 text-black capitalize rounded-md outline-none hover:text-white hover:bg-[#000080] ">
                             {slink.name}
                           </li>
                         </Link>

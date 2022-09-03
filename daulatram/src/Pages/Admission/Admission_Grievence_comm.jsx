@@ -180,7 +180,7 @@ const Admission_Grievence_comm = () => {
           </h2>
           {data1 ? (
             data1.map((curElem) => {
-              const { _id, title, file_path, link } = curElem;
+              const { _id, title, file_path, link,file_mimetype } = curElem;
               console.log(_id);
               var path_pic = file_path;
               var path2 = path_pic.replace(/\\/g, "/");

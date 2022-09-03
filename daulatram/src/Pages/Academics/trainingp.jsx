@@ -60,6 +60,19 @@ const trainingp = () => {
     }
   };
 
+  function sortOn(property) {
+    return function (a, b) {
+      if (a[property] < b[property]) {
+        return -1;
+      } else if (a[property] > b[property]) {
+        return 1;
+      } else {
+        return 0;
+      }
+    };
+  }
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -119,7 +132,7 @@ const trainingp = () => {
                   {auth && <th className="text-lg w-[15%]">Delete</th>}
                 </tr>
                 {data1 &&
-                  data1.map((curElem) => {
+                  data1.sort(sortOn("link")).map((curElem) => {
                     const { _id, title, file_path, link } = curElem;
                     var path_pic = file_path;
                     var path2 = path_pic.replace(/\\/g, "/");

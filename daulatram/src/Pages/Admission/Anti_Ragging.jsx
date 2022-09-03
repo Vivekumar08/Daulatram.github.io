@@ -181,7 +181,7 @@ const Anti_Ragging = () => {
           </h2>
           {data1 ?(
             data1.map((curElem) => {
-              const { _id, title, file_path, link } = curElem;
+              const { _id, title, file_path, link ,file_mimetype} = curElem;
               var path_pic = file_path;
               var path2 = path_pic.replace(/\\/g, "/");
               var path = path2.slice(19);
