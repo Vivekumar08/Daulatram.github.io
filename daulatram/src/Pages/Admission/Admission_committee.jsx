@@ -174,7 +174,7 @@ const Admission_committee = () => {
           </h2>
           {data1 ? (
             data1.map((curElem) => {
-              const { _id, title, file_path, link } = curElem;
+              const { _id, title, file_path, link,file_mimetype } = curElem;
               console.log(_id);
               var path_pic = file_path;
               var path2 = path_pic.replace(/\\/g, "/");
@@ -182,9 +182,9 @@ const Admission_committee = () => {
               return (
                 <>
                   <div className="flex flex-row mb-5 ml-5">
-                    <li className="mt-8 list-none" key={_id}>
+                    <li className="mt-5 list-none" key={_id}>
                       <div className="flex flex-col ">
-                        <h1 className="mt-5">
+                        <h1 className="mt-2">
                           <FontAwesomeIcon
                             icon={faArrowRight}
                             className="ml-3 font-medium text-justify text-base md:text-lg  md:text-left text-blue-400"

@@ -69,7 +69,7 @@ function Header() {
                 {"NAAC GRADE 'A' "} <span style={{ color: "black" }}> | </span>
               </div>
               <div className="ml-1">
-                INDIA TODAY RANK (SCIENCE:7 COMMERCE:13 HUMANITIES:15 ){" "}
+                INDIA TODAY RANK (SCIENCE:7 COMMERCE:15 HUMANITIES:17 ){" "}
                 <span style={{ color: "black" }}>| </span>
               </div>
               <div className="ml-1">DBT STAR COLLEGE</div>
