@@ -186,7 +186,7 @@ function Events() {
               Events
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+          <div className="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5 ">
             {data1 &&
               data1.sort(sortOn("title")).map((currElem) => {
                 const { _id, title, img_data } = currElem;

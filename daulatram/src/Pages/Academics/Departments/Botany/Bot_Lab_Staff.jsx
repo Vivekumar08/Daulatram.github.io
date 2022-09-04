@@ -123,7 +123,7 @@ const Bot_faculty = () => {
               Dedicated Laboratory Staff
             </h2>
           </div>
-          <div class="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
+          <div class="grid grid-cols-1 ml-2 md:grid-cols-3 w-full mt-5 mb-5">
             {data1 &&
               data1.map((curElem) => {
                 const { _id, title, description, img_data, DOJ } = curElem;
