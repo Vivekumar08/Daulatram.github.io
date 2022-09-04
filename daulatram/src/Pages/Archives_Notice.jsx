@@ -97,11 +97,16 @@ const Public_Notice = () => {
                   date,
                 } = curElem;
                 const date_split = date.split("/");
+                let date_e = null;
+                let exp_date;
+                if (date_exp !== null) {
+                  date_e = date_exp.split("/");
+                  exp_date = new Date(date_e[2], date_e[1]-1, date_e[0]);
+                }
                 const cur_date = new Date();
-                const exp_date = new Date(date_exp);
-                const diffTime = Math.abs(exp_date - cur_date);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-                var path2 = file_path.replace(/\\/g, "/");
+                const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
+                var path_pic = file_path;
+                var path2 = path_pic.replace(/\\/g, "/");
                 var path = path2.slice(19);
                 return (
                   <>
@@ -144,7 +149,7 @@ const Public_Notice = () => {
                             >
                               <span className="text-base md:text-xl">
                                 {title}
-                                {new_ && (
+                                {diffTime > 0 && new_ && (
                                   <sup className="font-extrabold ml-1 text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
                                     new
                                   </sup>
