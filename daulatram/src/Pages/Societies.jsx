@@ -141,16 +141,16 @@ const Societies = () => {
           var path2 = path_pic.replace(/\\/g, "/");
           var path = path2.slice(19);
           return (
-            <div class="first hero" key={_id}>
-              <img class="hero-profile-img" src={path} alt="" />
+            <div class="first1 fac1" key={_id}>
+              <img class="Fac-img1" src={path} alt="" />
               <div class="hero-description-bk"></div>
               <div className="">
                 <div className="">
-                  <div class="hero-description ml-16">
-                    <p>{title}</p>
+                  <div class="hero-description ">
+                    <p className="font-medium"> {title}</p>
                   </div>
                   <a href={link} target="_blank">
-                    <div class="hero-btn ml-28">Learn More</div>
+                    <div class="hero-btn ml-12">Learn More</div>
                   </a>
                 </div>
               </div>

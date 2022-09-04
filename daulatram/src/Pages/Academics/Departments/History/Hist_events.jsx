@@ -1,4 +1,3 @@
-
 import Histbanner from "../History/Histbanner.jsx";
 import History from "../../../../Components/DepartSIde/History.jsx";
 import React, { useContext, useEffect, useRef, useState } from "react";
@@ -8,8 +7,6 @@ import AuthContext from "../../../../Context/AuthProvider";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import "../../../Societies.css";
-
-
 
 function Events() {
   const [visible, setVisible] = useState(false);
@@ -121,7 +118,6 @@ function Events() {
     e.preventDefault();
     try {
       if (caption.trim() !== "") {
-
         setErrMsg("");
         console.log(file, caption);
         await axios.post(
@@ -192,8 +188,8 @@ function Events() {
                 const { _id, title, img_data } = currElem;
                 return (
                   <div className="flex flex-col ">
-                    <div class="first hero" key={_id}>
-                      <div class="hero-description-bk"></div>
+                    <div className="first1 fac1 " key={_id}>
+                      {/* <div className="hero-description-bk"></div> */}
                       <div className="">
                         <div className="">
                           {img_data.file_path &&
@@ -202,17 +198,13 @@ function Events() {
                               var path = path2.slice(19);
                               return (
                                 <>
-                                  <img
-                                    class="hero-profile-img"
-                                    src={path}
-                                    alt=""
-                                  />
+                                  <img className="Fac-img1" src={path} alt="" />
                                 </>
                               );
                             })}
-                          <div class="hero-description-bk"></div>
-                          <div class="hero-description ml-16">
-                            <p>{title}</p>
+                          <div className="hero-description-bk"></div>
+                          <div className="hero-description">
+                            <p className="font-medium"> {title}</p>
                           </div>
                           {img_data.pdf_path &&
                             img_data.pdf_path.map((elem) => {
@@ -223,7 +215,7 @@ function Events() {
                                   {elem.value === "true" && (
                                     <>
                                       <a href={path}>
-                                        <div class="hero-btn ml-28">
+                                        <div className="hero-btn ml-12">
                                           Learn More
                                         </div>
                                       </a>
@@ -258,7 +250,7 @@ function Events() {
                                   key={_id}
                                 >
                                   <p>Events file</p>
-                                  <div class="md:flex flex-col md:items-center h-full ">
+                                  <div className="md:flex flex-col md:items-center h-full ">
                                     <div className="upload-section flex h-full mb-[10px] ">
                                       <Dropzone
                                         onDrop={onDropPdf}
@@ -290,9 +282,9 @@ function Events() {
                                         )}
                                       </Dropzone>
                                     </div>
-                                    <div class="md:w-[220px]  ">
+                                    <div className="md:w-[220px]  ">
                                       <button
-                                        class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                        className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                                         type="button"
                                         onClick={() =>
                                           handleSubmit_file(_id, pdf)
@@ -338,8 +330,8 @@ function Events() {
                 placeholder="Title of Society"
               ></textarea>
             </div>
-            <div class="md:flex flex-col md:items-center h-full">
-              {/* <div class="md:w-1/3"></div> */}
+            <div className="md:flex flex-col md:items-center h-full">
+              {/* <div className="md:w-1/3"></div> */}
               <div className="upload-section flex h-full mb-[10px] w-full">
                 <Dropzone
                   onDrop={onDrop}
@@ -384,9 +376,9 @@ function Events() {
                   </div>
                 )}
               </div>
-              <div class="md:w-2/3 ">
+              <div className="md:w-2/3 ">
                 <button
-                  class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                   type="button"
                   onClick={handleSubmit}
                 >

@@ -118,7 +118,6 @@ function Events() {
     e.preventDefault();
     try {
       if (caption.trim() !== "") {
-
         setErrMsg("");
         console.log(file, caption);
         await axios.post(
@@ -183,14 +182,13 @@ function Events() {
               Events
             </h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 ">
+          <div className="grid grid-cols-1 ml-5 md:grid-cols-3 w-full mt-5 mb-5">
             {data1 &&
               data1.sort(sortOn("title")).map((currElem) => {
                 const { _id, title, img_data } = currElem;
                 return (
                   <div className="flex flex-col ">
-                    <div class="first hero" key={_id}>
-                      <div class="hero-description-bk"></div>
+                    <div className="first1 fac1 " key={_id}>
                       <div className="">
                         <div className="">
                           {img_data.file_path &&
@@ -200,16 +198,16 @@ function Events() {
                               return (
                                 <>
                                   <img
-                                    class="hero-profile-img"
+                                    className="Fac-img1"
                                     src={path}
                                     alt=""
                                   />
                                 </>
                               );
                             })}
-                          <div class="hero-description-bk"></div>
-                          <div class="hero-description ml-16">
-                            <p>{title}</p>
+                          <div className="hero-description-bk"></div>
+                          <div className="Fac-description ">
+                            <p className="font-medium"> {title}</p>
                           </div>
                           {img_data.pdf_path &&
                             img_data.pdf_path.map((elem) => {
@@ -220,7 +218,7 @@ function Events() {
                                   {elem.value === "true" && (
                                     <>
                                       <a href={path}>
-                                        <div class="hero-btn ml-28">
+                                        <div className="hero-btn ml-12">
                                           Learn More
                                         </div>
                                       </a>
@@ -233,11 +231,11 @@ function Events() {
                       </div>
                       {auth && (
                         <>
-                          <div className="flex flex-col">
+                          <div className="flex flex-col w-full  ml-auto">
                             <FontAwesomeIcon
                               icon={faTrashCan}
                               size="lg"
-                              className="mt-6 cursor-pointer absolute right-0 bottom-5 mr-16 hover:text-black text-white"
+                              className=" cursor-pointer text-white  absolute right-10  hover:text-black"
                               onClick={() => del(_id)}
                             ></FontAwesomeIcon>
                           </div>
@@ -255,7 +253,7 @@ function Events() {
                                   key={_id}
                                 >
                                   <p>Events file</p>
-                                  <div class="md:flex flex-col md:items-center h-full ">
+                                  <div className="md:flex flex-col md:items-center h-full ">
                                     <div className="upload-section flex h-full mb-[10px] ">
                                       <Dropzone
                                         onDrop={onDropPdf}
@@ -287,9 +285,9 @@ function Events() {
                                         )}
                                       </Dropzone>
                                     </div>
-                                    <div class="md:w-[220px]  ">
+                                    <div className="md:w-[220px]  ">
                                       <button
-                                        class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                                        className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                                         type="button"
                                         onClick={() =>
                                           handleSubmit_file(_id, pdf)
@@ -335,8 +333,8 @@ function Events() {
                 placeholder="Title of Society"
               ></textarea>
             </div>
-            <div class="md:flex flex-col md:items-center h-full">
-              {/* <div class="md:w-1/3"></div> */}
+            <div className="md:flex flex-col md:items-center h-full">
+              {/* <div className="md:w-1/3"></div> */}
               <div className="upload-section flex h-full mb-[10px] w-full">
                 <Dropzone
                   onDrop={onDrop}
@@ -381,9 +379,9 @@ function Events() {
                   </div>
                 )}
               </div>
-              <div class="md:w-2/3 ">
+              <div className="md:w-2/3 ">
                 <button
-                  class="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+                  className="shadow w-full  bg-[#000080] hover:bg-[#0000d0] focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
                   type="button"
                   onClick={handleSubmit}
                 >
