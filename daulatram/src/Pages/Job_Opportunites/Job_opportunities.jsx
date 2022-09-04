@@ -17,14 +17,38 @@ const Forms = () => {
   const [link, setLink] = useState("");
   const [caption, setCaption] = useState("");
   const [check, setCheck] = useState(false);
+  const [date_exp, setDate_exp] = useState("");
+  const [month_exp, setMonth_exp] = useState("");
+  const [year_exp, setYear_exp] = useState("");
+  const [new_opt, setNew_opt] = useState(false);
   const [errMsg, setErrMsg] = useState("");
   const [previewSrc, setPreviewSrc] = useState("");
   const [isPreviewAvailable, setIsPreviewAvailable] = useState(false);
   const [file, setFile] = useState(null);
   const { auth, setAuth } = useContext(AuthContext);
 
+  var mS = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+
+  const current = new Date();
+  const date = `${current.getDate()}/${
+    current.getMonth() + 1
+  }/${current.getFullYear()}`;
+
   const fetchdata = async () => {
-    const response = await fetch("/StaffZone_forms");
+    const response = await fetch("/Job_Opportunities");
     setData1(await response.json());
   };
 
@@ -60,12 +84,9 @@ const Forms = () => {
 
   const del = async (id) => {
     console.log(id);
-    const response = await fetch(
-      `/delete_StaffZone_forms/${id}`,
-      {
-        method: "DELETE",
-      }
-    );
+    const response = await fetch(`/delete_Job_Opportunities/${id}`, {
+      method: "DELETE",
+    });
     const data = await response.json();
     if (data || response.status === 200) {
       fetchdata();
@@ -86,94 +107,147 @@ const Forms = () => {
     e.preventDefault();
     try {
       if (link.trim() !== "" && caption.trim() !== "") {
-        // if (file) {
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("link", link);
-        formData.append("title", caption);
+        if (!date_exp || !month_exp || !year_exp) {
+          // if (file) {
+          const date_e = null;
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("link", link);
+          formData.append("title", caption);
+          formData.append("date", date);
+          formData.append("date_exp", date_e);
+          formData.append("new_", new_opt);
 
-        setErrMsg("");
-        await axios.post(
-          `/StaffZone_forms_add`,
-          formData,
-          {
+          setErrMsg("");
+          await axios.post(`/Job_Opportunities_add`, formData, {
             headers: {
               "Content-Type": "multipart/form-data",
             },
-          }
-        );
-        setCaption("");
-        setLink("");
-        setFile("");
-        setPreviewSrc("");
-        setIsPreviewAvailable(false);
-        setAuth(true);
-        fetchdata();
+          });
+          setCaption("");
+          setLink("");
+          setFile("");
+          setPreviewSrc("");
+          setIsPreviewAvailable(false);
+          setAuth(true);
+          fetchdata();
+        } else {
+          const date_e = `${date_exp}/${month_exp}/${year_exp}`;
+          const formData = new FormData();
+          formData.append("file", file);
+          formData.append("link", link);
+          formData.append("title", caption);
+          formData.append("date", date);
+          formData.append("date_exp", date_e);
+          formData.append("new_", new_opt);
+
+          setErrMsg("");
+          await axios.post(`/Job_Opportunities_add`, formData, {
+            headers: {
+              "Content-Type": "multipart/form-data",
+            },
+          });
+          setCaption("");
+          setLink("");
+          setFile("");
+          setPreviewSrc("");
+          setIsPreviewAvailable(false);
+          setAuth(true);
+          fetchdata();
+        }
       } else {
-        // setErrMsg("Please select a file to add.");
         setErrMsg("Please enter all the field values.");
       }
-      // } else {
-      // }
     } catch (err) {
       err.response && setErrMsg(err.response.data);
     }
   };
   const handleSubmit1 = async (e) => {
     e.preventDefault();
-    console.log(link, caption, file);
-    const response = await fetch(
-      "/StaffZone_forms_add_link",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          link: link,
-          title: caption,
-          file: file,
-        }),
+    try {
+      if (!date_exp || !month_exp || !year_exp) {
+        const date_e = null;
+        setErrMsg("");
+        const response = await fetch("/Job_Opportunities_add_link", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            link: link,
+            title: caption,
+            file: file,
+            date: date,
+            date_exp: date_e,
+            new_: new_opt,
+          }),
+        });
+        const data = await response.json();
+        if (!data) {
+          setErrMsg("No Server Response");
+        } else if (response.status === 400) {
+          setErrMsg("Fill Complete Details");
+        } else {
+          setCaption("");
+          setLink("");
+          setAuth(true);
+          fetchdata();
+        }
+      } else {
+        const date_e = `${date_exp}/${month_exp}/${year_exp}`;
+        setErrMsg("");
+        const response = await fetch("/Job_Opportunities_add_link", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            link: link,
+            title: caption,
+            file: file,
+            date: date,
+            date_exp: date_e,
+            new_: new_opt,
+          }),
+        });
+        const data = await response.json();
+        if (!data) {
+          setErrMsg("No Server Response");
+        } else if (response.status === 400) {
+          setErrMsg("Fill Complete Details");
+        } else {
+          setCaption("");
+          setLink("");
+          setAuth(true);
+          fetchdata();
+        }
       }
-    );
-    const data = await response.json();
-    if (!data) {
-      setErrMsg("No Server Response");
-    } else if (response.status === 400) {
-      setErrMsg("Fill Complete Details");
-    } else {
-      setCaption("");
-      setLink("");
-      setAuth(true);
-      fetchdata();
+    } catch (err) {
+      console.log(err);
     }
   };
 
   return (
     <div className=" flex flex-col mb-16 ">
       <div
-className="Banner"
-style={{ backgroundImage: "url(/images/img1.jpeg)" }}
->
-<div className="name">
-<div className="flex flex-row justify-center">
-    <p className="  text-[#fff] uppercase text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
-    Job Opportunites{" "}
-    </p>
-  </div>
-  <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
-    <Link to={"/"}>
-      <span className="ml-5">Home</span>
-    </Link>
-  </div>
-</div>
-</div>
+        className="Banner"
+        style={{ backgroundImage: "url(/images/img1.jpeg)" }}
+      >
+        <div className="name">
+          <div className="flex flex-row justify-center">
+            <p className="  text-[#fff] uppercase text-3xl md:text-4xl lg:text-6xl shadow-lg  mt-12 font-bold  p-5 flex justify-center w-full rounded-md  ">
+              Job Opportunites{" "}
+            </p>
+          </div>
+          <div className=" bg-gray-400 pt-3 pb-3 pl-5 text-lg text-[#000080] mt-28 ">
+            <Link to={"/"}>
+              <span className="ml-5">Home</span>
+            </Link>
+          </div>
+        </div>
+      </div>
       <div className="flex flex-row">
-        {/* <div className="w-[280px]">
-          <Sidebar />
-        </div> */}
-
-        <div className="w-[1100px] mb-5">
+        <div className="w-full mb-5">
           <h2 className=" text-3xl md:text-4xl uppercase font-bold mb-5 mt-[5%] flex flex-row justify-center items-center   ">
             Job Opportunities
           </h2>
@@ -187,8 +261,25 @@ style={{ backgroundImage: "url(/images/img1.jpeg)" }}
               </tr>
               {data1 &&
                 data1.sort(sortOn("link")).map((curElem) => {
-                  const { _id, title, file_path, link, file_mimetype } =
-                    curElem;
+                  const {
+                    _id,
+                    title,
+                    file_path,
+                    link,
+                    file_mimetype,
+                    new_,
+                    date_exp,
+                    date,
+                  } = curElem;
+                  const date_split = date.split("/");
+                  let date_e = null;
+                  let exp_date;
+                  if (date_exp !== null) {
+                    date_e = date_exp.split("/");
+                    exp_date = new Date(date_e[2], date_e[1]-1, date_e[0]);
+                  }
+                  const cur_date = new Date();
+                  const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
                   var path_pic = file_path;
                   var path2 = path_pic.replace(/\\/g, "/");
                   var path = path2.slice(19);
@@ -198,6 +289,11 @@ style={{ backgroundImage: "url(/images/img1.jpeg)" }}
                         <td className="text-lg  overlay ">{link}</td>
                         <td className="text-lg overlay">
                           <strong>{title} </strong>
+                          {diffTime > 0 && new_ && (
+                            <sup className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
+                              new
+                            </sup>
+                          )}
                         </td>
                         <td>
                           {" "}
@@ -209,25 +305,29 @@ style={{ backgroundImage: "url(/images/img1.jpeg)" }}
                                 rel="noreferrer"
                               >
                                 {" "}
-                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">Click Here</button>
+                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">
+                                  Click Here
+                                </button>
                               </a>{" "}
                             </>
                           ) : (
                             <>
                               <a href={path} target="_blank" rel="noreferrer">
                                 {" "}
-                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">Click Here</button>
+                                <button className="md:btn text-sm font-semibold bg-[#fff] hover:bg-[#000080] text-black hover:text-white p-1  border-2 border-[#000080] rounded-md">
+                                  Click Here
+                                </button>
                               </a>{" "}
                             </>
                           )}
                         </td>
                         {auth && (
                           <>
-                            <td className="flex h-full overlay ">
+                            <td className=" ">
                               <FontAwesomeIcon
                                 icon={faTrashCan}
                                 size="2xl"
-                                className=" cursor-pointer ml-auto mr-auto mt-[25%]  hover:text-red-500"
+                                className=" cursor-pointer ml-auto mr-auto mt-[5%]  hover:text-red-500"
                                 onClick={() => del(_id)}
                               ></FontAwesomeIcon>
                             </td>
@@ -275,16 +375,85 @@ style={{ backgroundImage: "url(/images/img1.jpeg)" }}
                     placeholder="About"
                   ></textarea>
                 </div>
-                <div class="flex flex-col">
+                <div className="mb-3 flex ">
+                  <input
+                    value={`Date: ${current.getDate()}`}
+                    className="bg-gray-200 appearance-none border-2 mr-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    disabled
+                  />
+                  <input
+                    value={`Month: ${mS[current.getMonth()]}`}
+                    className="bg-gray-200 appearance-none border-2 mr-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    // placeholder={}
+                    disabled
+                  />
+                  <input
+                    value={`Year: ${current.getFullYear()}`}
+                    className="bg-gray-200 appearance-none border-2  border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                    // placeholder={}
+                    disabled
+                  />
+                </div>
+
+                <div class="flex flex-col h-full">
                   <div>
                     <label
                       htmlFor="checked-toggle"
+                      className="inline-flex relative items-center cursor-pointer"
+                    >
+                      <input
+                        type="checkbox"
+                        value={new_opt}
+                        id="checked-toggle"
+                        className="sr-only peer"
+                        onChange={() => setNew_opt(!new_opt)}
+                      />
+                      <div className="w-11 h-6  bg-gray-200 rounded-full peer  dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                      <p className="ml-3">
+                        Toggle to set{" "}
+                        <span className="font-extrabold text-transparent  bg-clip-text text-lg bg-gradient-to-r from-red-600 to-fuchsia-600 animate-text">
+                          new
+                        </span>{" "}
+                        label
+                      </p>
+                    </label>
+                  </div>
+                  {new_opt && (
+                    <>
+                      <div className="mb-3 flex ">
+                        <input
+                          onChange={(e) => setDate_exp(e.target.value)}
+                          value={date_exp}
+                          ref={userRef}
+                          className="bg-gray-200 appearance-none border-2 mr-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                          placeholder={"DD"}
+                        />
+                        <input
+                          onChange={(e) => setMonth_exp(e.target.value)}
+                          ref={userRef}
+                          value={month_exp}
+                          className="bg-gray-200 appearance-none border-2 mr-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                          placeholder={"MM"}
+                        />
+                        <input
+                          onChange={(e) => setYear_exp(e.target.value)}
+                          ref={userRef}
+                          value={year_exp}
+                          className="bg-gray-200 appearance-none border-2  border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-[#000080]"
+                          placeholder={"YYYY"}
+                        />
+                      </div>
+                    </>
+                  )}
+                  <div>
+                    <label
+                      htmlFor="checkedd-toggle"
                       class="inline-flex relative items-center cursor-pointer"
                     >
                       <input
                         type="checkbox"
                         value={check}
-                        id="checked-toggle"
+                        id="checkedd-toggle"
                         class="sr-only peer"
                         onChange={() => setCheck(!check)}
                       />

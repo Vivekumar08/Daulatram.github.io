@@ -346,10 +346,10 @@ const Staff_Notice = () => {
                 let exp_date;
                 if (date_exp !== null) {
                   date_e = date_exp.split("/");
-                  exp_date = new Date(date_e[2], date_e[1], date_e[0]);
+                    exp_date = new Date(date_e[2], date_e[1]-1, date_e[0]);
                 }
                 const cur_date = new Date();
-                const diffTime = Math.abs(exp_date - cur_date);
+                  const diffTime = Math.abs(exp_date) - Math.abs(cur_date);
                 // const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
                 var path2 = file_path.replace(/\\/g, "/");
                 var path = path2.slice(19);
