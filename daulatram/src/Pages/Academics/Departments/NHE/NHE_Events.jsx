@@ -190,8 +190,7 @@ function Events() {
                 const { _id, title, img_data } = currElem;
                 return (
                   <div className="flex flex-col ">
-                    <div class="first hero" key={_id}>
-                      <div class="hero-description-bk"></div>
+                    <div className="first1 fac1 " key={_id}>
                       <div className="">
                         <div className="">
                           {img_data.file_path &&
@@ -209,8 +208,8 @@ function Events() {
                               );
                             })}
                           <div class="hero-description-bk"></div>
-                          <div class="hero-description ml-16">
-                            <p>{title}</p>
+                          <div className="Fac-description ">
+                            <p className="font-medium"> {title}</p>
                           </div>
                           {img_data.pdf_path &&
                             img_data.pdf_path.map((elem) => {
@@ -221,7 +220,7 @@ function Events() {
                                   {elem.value === "true" && (
                                     <>
                                       <a href={path}>
-                                        <div class="hero-btn ml-28">
+                                        <div class="hero-btn ml-12">
                                           Learn More
                                         </div>
                                       </a>
